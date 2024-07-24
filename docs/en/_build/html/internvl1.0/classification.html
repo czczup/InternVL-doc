@@ -49,11 +49,11 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'internvl1.0/classification';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="InternViT-6B for Semantic Segmentation" href="segmentation.html" />
-    <link rel="prev" title="Build from source" href="../build.html" />
+    <link rel="next" title="InternVL for Zero-Shot Image Classification &amp; Image-Text Retrieval" href="clip_benchmark.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="../internvl1.1/internvl_chat.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-    <meta name="docbuild:last-update" content="Jul 24, 2024"/>
+    <meta name="docbuild:last-update" content="Jul 25, 2024"/>
   </head>
   
   
@@ -147,32 +147,15 @@
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Get Started</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get Started</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL-Chat</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../build.html">Build from source</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL-Chat-LLaVA</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../build.html">Build from source</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Classification</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../build.html">Build from source</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">CLIP Benchmark</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../build.html">Build from source</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL-G</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../build.html">Build from source</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/installation.html">Installation</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL 1.0</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clip_benchmark.html">clip_benchmark</a></li>
 <li class="toctree-l1"><a class="reference internal" href="segmentation.html">segmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internvl_chat_llava.html">internvl_chat_llava</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internvl_g.html">internvl_g</a></li>
 </ul>
 
     </div>
@@ -227,7 +210,7 @@
       
       
       
-      <li><a href="https://github.com/InternLM/internvl" target="_blank"
+      <li><a href="https://github.com/OpenGVLab/InternVL" target="_blank"
    class="btn btn-sm btn-source-repository-button dropdown-item"
    title="Source repository"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -244,7 +227,7 @@
       
       
       
-      <li><a href="https://github.com/InternLM/internvl/blob/main/docs/en/internvl1.0/classification.md?plain=1" target="_blank"
+      <li><a href="https://github.com/OpenGVLab/InternVL/blob/main/docs/en/internvl1.0/classification.md?plain=1" target="_blank"
    class="btn btn-sm btn-source-file-button dropdown-item"
    title="Show source"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -261,7 +244,7 @@
       
       
       
-      <li><a href="https://github.com/InternLM/internvl/edit/main/docs/en/internvl1.0/classification.md" target="_blank"
+      <li><a href="https://github.com/OpenGVLab/InternVL/edit/main/docs/en/internvl1.0/classification.md" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -278,7 +261,7 @@
       
       
       
-      <li><a href="https://github.com/InternLM/internvl/issues/new?title=Issue%20on%20page%20%2Finternvl1.0/classification.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/OpenGVLab/InternVL/issues/new?title=Issue%20on%20page%20%2Finternvl1.0/classification.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -437,7 +420,8 @@ we also report performance metrics on several ImageNet variants, to benchmark th
 <li><p><code class="docutils literal notranslate"><span class="pre">ImageNet-R</span></code>: Download it from <a class="reference external" href="https://people.eecs.berkeley.edu/~hendrycks/imagenet-r.tar">https://people.eecs.berkeley.edu/~hendrycks/imagenet-r.tar</a>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">ImageNetV2</span></code>: Download it from <a class="reference external" href="https://imagenetv2public.s3-us-west-2.amazonaws.com/imagenetv2-matched-frequency.tar.gz">https://imagenetv2public.s3-us-west-2.amazonaws.com/imagenetv2-matched-frequency.tar.gz</a>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">ImageNet-Sketch</span></code>: Download it using <code class="docutils literal notranslate"><span class="pre">gdown</span></code>.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># GDown is needed to download the dataset. Please install it via `pip install gdown`</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># GDown is needed to download the dataset.</span>
+<span class="c1"># Please install it via `pip install gdown`</span>
 gdown<span class="w"> </span>--id<span class="w"> </span>1Mj0i5HBthqH1p_yeXzsg22gZduvgoNeA
 </pre></div>
 </div>
@@ -484,12 +468,12 @@ unzip<span class="w"> </span>val.txt.zip
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>InternViT-6B-224px</p></td>
+<tr class="row-even"><td><p>intern_vit_6b_224px.pth</p></td>
 <td><p>pytorch</p></td>
 <td><p>🤗 <a class="reference external" href="https://huggingface.co/OpenGVLab/InternVL/blob/main/intern_vit_6b_224px.pth">HF link</a></p></td>
 <td class="text-center"><p>12 GB</p></td>
 </tr>
-<tr class="row-odd"><td><p>InternViT-6B-224px-head</p></td>
+<tr class="row-odd"><td><p>intern_vit_6b_224px_head.pth</p></td>
 <td><p>pytorch</p></td>
 <td><p>🤗 <a class="reference external" href="https://huggingface.co/OpenGVLab/InternVL/blob/main/intern_vit_6b_224px_head.pth">HF link</a></p></td>
 <td class="text-center"><p>25.7 MB</p></td>
@@ -512,7 +496,7 @@ wget<span class="w"> </span>https://huggingface.co/OpenGVLab/InternVL/resolve/ma
 <section id="linear-probing-on-imagenet-1k">
 <h2>Linear Probing on ImageNet-1K<a class="headerlink" href="#linear-probing-on-imagenet-1k" title="Permalink to this heading">#</a></h2>
 <blockquote>
-<div><p>Note, please install apex before training (see installation guide above for details).</p>
+<div><p><strong>Warning</strong>: Please install <code class="docutils literal notranslate"><span class="pre">apex</span></code> before training (see <a class="reference internal" href="../get_started/installation.html#additional-instructions"><span class="std std-ref">installation guide</span></a> for details).</p>
 </div></blockquote>
 <p>To train a linear classifier for <code class="docutils literal notranslate"><span class="pre">InternViT-6B</span></code> on ImageNet with 8 GPUs, run:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>torch.distributed.launch<span class="w"> </span>--nproc_per_node<span class="w"> </span><span class="m">8</span><span class="w"> </span>--master_port<span class="w"> </span><span class="m">12345</span><span class="w"> </span>main.py<span class="w"> </span>--cfg<span class="w"> </span>configs/intern_vit_6b_1k_224.yaml
@@ -520,9 +504,16 @@ wget<span class="w"> </span>https://huggingface.co/OpenGVLab/InternVL/resolve/ma
 <span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>train_in1k.sh<span class="w"> </span>&lt;partition&gt;<span class="w"> </span>&lt;job-name&gt;<span class="w"> </span>configs/intern_vit_6b_1k_224.yaml<span class="w"> </span>--launcher<span class="w"> </span>slurm
 </pre></div>
 </div>
+<p>Note, it is normal for the following information to appear during training and it can be safely ignored:</p>
+<blockquote>
+<div><p>_IncompatibleKeys(missing_keys=[], unexpected_keys=[‘clip_projector.norm1_q.weight’, ‘clip_projector.norm1_q.bias’, ‘clip_projector.norm1_k.weight’, ‘clip_projector.norm1_k.bias’, ‘clip_projector.norm1_v.weight’, ‘clip_projector.norm1_v.bias’, ‘clip_projector.cross_attn.q_bias’, ‘clip_projector.cross_attn.k_bias’, ‘clip_projector.cross_attn.v_bias’, ‘clip_projector.cross_attn.q.weight’, ‘clip_projector.cross_attn.k.weight’, ‘clip_projector.cross_attn.v.weight’, ‘clip_projector.cross_attn.proj.weight’, ‘clip_projector.cross_attn.proj.bias’])</p>
+</div></blockquote>
 </section>
 <section id="evaluation">
 <h2>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this heading">#</a></h2>
+<blockquote>
+<div><p><strong>Warning</strong>: Please install <code class="docutils literal notranslate"><span class="pre">apex</span></code> before evaluation (see <a class="reference internal" href="../get_started/installation.html#additional-instructions"><span class="std std-ref">installation guide</span></a> for details).</p>
+</div></blockquote>
 <table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>model name</p></th>
@@ -638,6 +629,8 @@ wget<span class="w"> </span>https://huggingface.co/OpenGVLab/InternVL/resolve/ma
 </pre></div>
 </div>
 </details>
+<br>
+<br>
 </section>
 </section>
 
@@ -653,20 +646,20 @@ wget<span class="w"> </span>https://huggingface.co/OpenGVLab/InternVL/resolve/ma
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../build.html"
+       href="../internvl1.1/internvl_chat.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Build from source</p>
+        <p class="prev-next-title">&lt;no title&gt;</p>
       </div>
     </a>
     <a class="right-next"
-       href="segmentation.html"
+       href="clip_benchmark.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">InternViT-6B for Semantic Segmentation</p>
+        <p class="prev-next-title">InternVL for Zero-Shot Image Classification &amp; Image-Text Retrieval</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -722,7 +715,7 @@ By InternVL Authors
   
   <div class="footer-item">
     <p class="last-updated">
-  Last updated on Jul 24, 2024.
+  Last updated on Jul 25, 2024.
   <br/>
 </p>
   </div>

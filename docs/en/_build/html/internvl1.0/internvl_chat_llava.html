@@ -1,0 +1,1200 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>InternVL for Multimodal Dialogue using LLaVA Codebase &#8212; internvl</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/readthedocs.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'internvl1.0/internvl_chat_llava';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="InternVL Stage-2 Pre-training &amp; Retrieval Fine-tuning" href="internvl_g.html" />
+    <link rel="prev" title="InternViT-6B for Semantic Segmentation" href="segmentation.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+    <meta name="docbuild:last-update" content="Jul 25, 2024"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/internvl-logo.svg" class="logo__image only-light" alt="internvl - Home"/>
+    <script>document.write(`<img src="../_static/internvl-logo.svg" class="logo__image only-dark" alt="internvl - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../get_started/installation.html">Installation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL 1.0</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="classification.html">classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clip_benchmark.html">clip_benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="segmentation.html">segmentation</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">internvl_chat_llava</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internvl_g.html">internvl_g</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/OpenGVLab/InternVL" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/OpenGVLab/InternVL/blob/main/docs/en/internvl1.0/internvl_chat_llava.md?plain=1" target="_blank"
+   class="btn btn-sm btn-source-file-button dropdown-item"
+   title="Show source"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">Show source</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/OpenGVLab/InternVL/edit/main/docs/en/internvl1.0/internvl_chat_llava.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/OpenGVLab/InternVL/issues/new?title=Issue%20on%20page%20%2Finternvl1.0/internvl_chat_llava.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/internvl1.0/internvl_chat_llava.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>InternVL for Multimodal Dialogue using LLaVA Codebase</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-preparation">Model Preparation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training">Training</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-zoo">Model Zoo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#demo">Demo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing">Testing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#llava-large-language-and-vision-assistant">🌋 LLaVA: Large Language and Vision Assistant</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#release">Release</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contents">Contents</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install">Install</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#upgrade-to-latest-code-base">Upgrade to latest code base</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#llava-weights">LLaVA Weights</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Demo</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gradio-web-ui">Gradio Web UI</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#launch-a-controller">Launch a controller</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#launch-a-gradio-web-server">Launch a gradio web server.</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#launch-a-model-worker">Launch a model worker</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#launch-a-model-worker-multiple-gpus-when-gpu-vram-24gb">Launch a model worker (Multiple GPUs, when GPU VRAM &lt;= 24GB)</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#launch-a-model-worker-4-bit-8-bit-inference-quantized">Launch a model worker (4-bit, 8-bit inference, quantized)</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#launch-a-model-worker-lora-weights-unmerged">Launch a model worker (LoRA weights, unmerged)</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cli-inference">CLI Inference</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#train">Train</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hyperparameters">Hyperparameters</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#download-vicuna-checkpoints-automatically">Download Vicuna checkpoints (automatically)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pretrain-feature-alignment">Pretrain (feature alignment)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#visual-instruction-tuning">Visual Instruction Tuning</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation">Evaluation</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gpt-assisted-evaluation">GPT-assisted Evaluation</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#citation">Citation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#acknowledgement">Acknowledgement</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#related-projects">Related Projects</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="internvl-for-multimodal-dialogue-using-llava-codebase">
+<h1>InternVL for Multimodal Dialogue using LLaVA Codebase<a class="headerlink" href="#internvl-for-multimodal-dialogue-using-llava-codebase" title="Permalink to this heading">#</a></h1>
+<p>This folder contains the implementation of the InternVL-Chat V1.0, which corresponds to Section 4.4 of our <a class="reference external" href="https://arxiv.org/pdf/2312.14238">InternVL 1.0 paper</a>.</p>
+<p>In this part, we mainly use the <a class="reference external" href="https://github.com/haotian-liu/LLaVA">LLaVA codebase</a> to evaluate InternVL in creating multimodal dialogue systems. Thanks for this great work.
+We have retained the original documentation of LLaVA-1.5 as a more detailed manual. In most cases, you will only need to refer to the new documentation that we have added.</p>
+<blockquote>
+<div><p>Note: To unify the environment across different tasks, we have made some compatibility modifications to the LLaVA-1.5 code, allowing it to support <code class="docutils literal notranslate"><span class="pre">transformers==4.37.2</span></code> (originally locked at 4.31.0). Please note that <code class="docutils literal notranslate"><span class="pre">transformers==4.37.2</span></code> should be installed.</p>
+</div></blockquote>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">#</a></h2>
+<p>First, follow the <a class="reference internal" href="#../INSTALLATION.md"><span class="xref myst">installation guide</span></a> to perform some basic installations.</p>
+<p>In addition, using this codebase requires executing the following steps:</p>
+<ul>
+<li><p>Install other requirements:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip<span class="w">  </span><span class="c1"># enable PEP 660 support</span>
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="model-preparation">
+<h2>Model Preparation<a class="headerlink" href="#model-preparation" title="Permalink to this heading">#</a></h2>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>model name</p></th>
+<th class="head"><p>type</p></th>
+<th class="head"><p>download</p></th>
+<th class="head text-center"><p>size</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>InternViT-6B-224px</p></td>
+<td><p>huggingface</p></td>
+<td><p>🤗 <a class="reference external" href="https://huggingface.co/OpenGVLab/InternViT-6B-224px">HF link</a></p></td>
+<td class="text-center"><p>12 GB</p></td>
+</tr>
+<tr class="row-odd"><td><p>InternViT-6B-448px-V1-0</p></td>
+<td><p>huggingface</p></td>
+<td><p>🤗 <a class="reference external" href="https://huggingface.co/OpenGVLab/InternViT-6B-448px-V1-0">HF link</a></p></td>
+<td class="text-center"><p>12 GB</p></td>
+</tr>
+<tr class="row-even"><td><p>vicuna-13b-v1.5</p></td>
+<td><p>huggingface</p></td>
+<td><p>🤗 <a class="reference external" href="https://huggingface.co/lmsys/vicuna-7b-v1.5">HF link</a></p></td>
+<td class="text-center"><p>13.5 GB</p></td>
+</tr>
+<tr class="row-odd"><td><p>vicuna-7b-v1.5</p></td>
+<td><p>huggingface</p></td>
+<td><p>🤗 <a class="reference external" href="https://huggingface.co/lmsys/vicuna-13b-v1.5">HF link</a></p></td>
+<td class="text-center"><p>26.1 GB</p></td>
+</tr>
+</tbody>
+</table>
+<p>Please download the above model weights and place them in the <code class="docutils literal notranslate"><span class="pre">pretrained/</span></code> folder.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>pretrained/
+<span class="c1"># pip install -U huggingface_hub</span>
+huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-download<span class="w"> </span>--local-dir-use-symlinks<span class="w"> </span>False<span class="w"> </span>OpenGVLab/InternViT-6B-224px<span class="w"> </span>--local-dir<span class="w"> </span>InternViT-6B-224px
+huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-download<span class="w"> </span>--local-dir-use-symlinks<span class="w"> </span>False<span class="w"> </span>OpenGVLab/InternViT-6B-448px-V1-0<span class="w"> </span>--local-dir<span class="w"> </span>InternViT-6B-448px
+huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-download<span class="w"> </span>--local-dir-use-symlinks<span class="w"> </span>False<span class="w"> </span>lmsys/vicuna-13b-v1.5<span class="w"> </span>--local-dir<span class="w"> </span>vicuna-13b-v1.5
+huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-download<span class="w"> </span>--local-dir-use-symlinks<span class="w"> </span>False<span class="w"> </span>lmsys/vicuna-7b-v1.5<span class="w"> </span>--local-dir<span class="w"> </span>vicuna-7b-v1.5
+</pre></div>
+</div>
+<p>The directory structure is:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pretrained
+│──<span class="w"> </span>InternViT-6B-224px/
+│──<span class="w"> </span>InternViT-6B-448px/
+│──<span class="w"> </span>vicuna-13b-v1.5/
+└──<span class="w"> </span>vicuna-7b-v1.5/
+</pre></div>
+</div>
+</section>
+<section id="training">
+<h2>Training<a class="headerlink" href="#training" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>InternViT-6B-224px + Vicuna-7B:</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># pretrain</span>
+<span class="nv">CUDA_VISIBLE_DEVICES</span><span class="o">=</span><span class="m">0</span>,1,2,3,4,5,6,7<span class="w"> </span>sh<span class="w"> </span>scripts_internvl/pretrain_internvit6b_224to336_vicuna7b.sh
+<span class="c1"># finetune</span>
+<span class="nv">CUDA_VISIBLE_DEVICES</span><span class="o">=</span><span class="m">0</span>,1,2,3,4,5,6,7<span class="w"> </span>sh<span class="w"> </span>scripts_internvl/finetune_internvit6b_224to336_vicuna7b.sh
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>InternViT-6B-224px + Vicuna-13B:</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># pretrain</span>
+<span class="nv">CUDA_VISIBLE_DEVICES</span><span class="o">=</span><span class="m">0</span>,1,2,3,4,5,6,7<span class="w"> </span>sh<span class="w"> </span>scripts_internvl/pretrain_internvit6b_224to336_vicuna13b.sh
+<span class="c1"># finetune</span>
+<span class="nv">CUDA_VISIBLE_DEVICES</span><span class="o">=</span><span class="m">0</span>,1,2,3,4,5,6,7<span class="w"> </span>sh<span class="w"> </span>scripts_internvl/finetune_internvit6b_224to336_vicuna13b.sh
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>InternViT-6B-448px + Vicuna-7B:</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># pretrain</span>
+<span class="nv">CUDA_VISIBLE_DEVICES</span><span class="o">=</span><span class="m">0</span>,1,2,3,4,5,6,7<span class="w"> </span>sh<span class="w"> </span>scripts_internvl/pretrain_internvit6b_448_vicuna7b.sh
+<span class="c1"># finetune</span>
+<span class="nv">CUDA_VISIBLE_DEVICES</span><span class="o">=</span><span class="m">0</span>,1,2,3,4,5,6,7<span class="w"> </span>sh<span class="w"> </span>scripts_internvl/finetune_internvit6b_448_vicuna7b.sh
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>InternViT-6B-448px + Vicuna-13B:</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># pretrain</span>
+<span class="nv">CUDA_VISIBLE_DEVICES</span><span class="o">=</span><span class="m">0</span>,1,2,3,4,5,6,7<span class="w"> </span>sh<span class="w"> </span>scripts_internvl/pretrain_internvit6b_448_vicuna13b.sh
+<span class="c1"># finetune</span>
+<span class="nv">CUDA_VISIBLE_DEVICES</span><span class="o">=</span><span class="m">0</span>,1,2,3,4,5,6,7<span class="w"> </span>sh<span class="w"> </span>scripts_internvl/finetune_internvit6b_448_vicuna13b.sh
+</pre></div>
+</div>
+</section>
+<section id="model-zoo">
+<h2>Model Zoo<a class="headerlink" href="#model-zoo" title="Permalink to this heading">#</a></h2>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>method</p></th>
+<th class="head text-center"><p>vision encoder</p></th>
+<th class="head text-center"><p>LLM</p></th>
+<th class="head text-center"><p>res.</p></th>
+<th class="head text-center"><p>VQAv2</p></th>
+<th class="head text-center"><p>GQA</p></th>
+<th class="head text-center"><p>VizWiz</p></th>
+<th class="head text-center"><p>SQA</p></th>
+<th class="head text-center"><p>TextVQA</p></th>
+<th class="head text-center"><p>POPE</p></th>
+<th class="head text-center"><p>MME</p></th>
+<th class="head text-center"><p>MMB</p></th>
+<th class="head text-center"><p>MMB<sub>CN</sub></p></th>
+<th class="head text-center"><p>MMVet</p></th>
+<th class="head text-center"><p>Download</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>LLaVA-1.5</p></td>
+<td class="text-center"><p>CLIP-L-336px</p></td>
+<td class="text-center"><p>V-7B</p></td>
+<td class="text-center"><p>336</p></td>
+<td class="text-center"><p>78.5</p></td>
+<td class="text-center"><p>62.0</p></td>
+<td class="text-center"><p>50.0</p></td>
+<td class="text-center"><p>66.8</p></td>
+<td class="text-center"><p>58.2</p></td>
+<td class="text-center"><p>85.9</p></td>
+<td class="text-center"><p>1510.7</p></td>
+<td class="text-center"><p>64.3</p></td>
+<td class="text-center"><p>58.3</p></td>
+<td class="text-center"><p>30.5</p></td>
+<td class="text-center"><p>🤗 <a class="reference external" href="https://huggingface.co/liuhaotian/llava-v1.5-7b">HF link</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>LLaVA-1.5</p></td>
+<td class="text-center"><p>CLIP-L-336px</p></td>
+<td class="text-center"><p>V-13B</p></td>
+<td class="text-center"><p>336</p></td>
+<td class="text-center"><p>80.0</p></td>
+<td class="text-center"><p>63.3</p></td>
+<td class="text-center"><p>53.6</p></td>
+<td class="text-center"><p>71.6</p></td>
+<td class="text-center"><p>61.3</p></td>
+<td class="text-center"><p>85.9</p></td>
+<td class="text-center"><p>1531.3</p></td>
+<td class="text-center"><p>67.7</p></td>
+<td class="text-center"><p>63.6</p></td>
+<td class="text-center"><p>35.4</p></td>
+<td class="text-center"><p>🤗 <a class="reference external" href="https://huggingface.co/liuhaotian/llava-v1.5-13b">HF link</a></p></td>
+</tr>
+<tr class="row-even"><td><p>InternVL-Chat-1.0</p></td>
+<td class="text-center"><p>IViT-6B-224px</p></td>
+<td class="text-center"><p>V-7B</p></td>
+<td class="text-center"><p>336</p></td>
+<td class="text-center"><p>79.3</p></td>
+<td class="text-center"><p>62.9</p></td>
+<td class="text-center"><p>52.5</p></td>
+<td class="text-center"><p>66.2</p></td>
+<td class="text-center"><p>57.0</p></td>
+<td class="text-center"><p>86.4</p></td>
+<td class="text-center"><p>1525.1</p></td>
+<td class="text-center"><p>64.6</p></td>
+<td class="text-center"><p>57.6</p></td>
+<td class="text-center"><p>31.2</p></td>
+<td class="text-center"><p>🤗 <a class="reference external" href="https://huggingface.co/OpenGVLab/InternVL-Chat-ViT-6B-Vicuna-7B">HF link</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>InternVL-Chat-1.0</p></td>
+<td class="text-center"><p>IViT-6B-224px</p></td>
+<td class="text-center"><p>V-13B</p></td>
+<td class="text-center"><p>336</p></td>
+<td class="text-center"><p>80.2</p></td>
+<td class="text-center"><p>63.9</p></td>
+<td class="text-center"><p>54.6</p></td>
+<td class="text-center"><p>70.1</p></td>
+<td class="text-center"><p>58.7</p></td>
+<td class="text-center"><p>87.1</p></td>
+<td class="text-center"><p>1546.9</p></td>
+<td class="text-center"><p>66.5</p></td>
+<td class="text-center"><p>61.9</p></td>
+<td class="text-center"><p>33.7</p></td>
+<td class="text-center"><p>🤗 <a class="reference external" href="https://huggingface.co/OpenGVLab/InternVL-Chat-ViT-6B-Vicuna-13B">HF link</a></p></td>
+</tr>
+<tr class="row-even"><td><p>InternVL-Chat-1.0</p></td>
+<td class="text-center"><p>IViT-6B-448px</p></td>
+<td class="text-center"><p>V-13B</p></td>
+<td class="text-center"><p>448</p></td>
+<td class="text-center"><p>82.0</p></td>
+<td class="text-center"><p>64.1</p></td>
+<td class="text-center"><p>60.1</p></td>
+<td class="text-center"><p>71.6</p></td>
+<td class="text-center"><p>64.8</p></td>
+<td class="text-center"><p>87.2</p></td>
+<td class="text-center"><p>1579.0</p></td>
+<td class="text-center"><p>68.2</p></td>
+<td class="text-center"><p>64.0</p></td>
+<td class="text-center"><p>36.7</p></td>
+<td class="text-center"><p>🤗 <a class="reference external" href="https://huggingface.co/OpenGVLab/InternVL-Chat-ViT-6B-Vicuna-13B-448px">HF link</a></p></td>
+</tr>
+</tbody>
+</table>
+<p>Please download the above model weights and place them in the <code class="docutils literal notranslate"><span class="pre">pretrained/</span></code> folder.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>pretrained/
+<span class="c1"># pip install -U huggingface_hub</span>
+huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-download<span class="w"> </span>--local-dir-use-symlinks<span class="w"> </span>False<span class="w"> </span>OpenGVLab/InternVL-Chat-ViT-6B-Vicuna-7B<span class="w"> </span>--local-dir<span class="w"> </span>InternVL-Chat-ViT-6B-Vicuna-7B
+huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-download<span class="w"> </span>--local-dir-use-symlinks<span class="w"> </span>False<span class="w"> </span>OpenGVLab/InternVL-Chat-ViT-6B-Vicuna-13B<span class="w"> </span>--local-dir<span class="w"> </span>InternVL-Chat-ViT-6B-Vicuna-13B
+huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-download<span class="w"> </span>--local-dir-use-symlinks<span class="w"> </span>False<span class="w"> </span>OpenGVLab/InternVL-Chat-ViT-6B-Vicuna-13B-448px<span class="w"> </span>--local-dir<span class="w"> </span>InternVL-Chat-ViT-6B-Vicuna-13B-448px
+</pre></div>
+</div>
+<p>The directory structure is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>pretrained
+│── InternViT-6B-224px/
+│── InternViT-6B-448px/
+│── vicuna-13b-v1.5/
+│── vicuna-7b-v1.5/
+│── InternVL-Chat-ViT-6B-Vicuna-7B/
+│── InternVL-Chat-ViT-6B-Vicuna-13B/
+└── InternVL-Chat-ViT-6B-Vicuna-13B-448px/
+</pre></div>
+</div>
+</section>
+<section id="demo">
+<h2>Demo<a class="headerlink" href="#demo" title="Permalink to this heading">#</a></h2>
+<p>The method for deploying the demo is consistent with LLaVA-1.5. You only need to change the model path. The specific steps are as follows:</p>
+<p><strong>Launch a controller</strong></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>llava.serve.controller<span class="w"> </span>--host<span class="w"> </span><span class="m">0</span>.0.0.0<span class="w"> </span>--port<span class="w"> </span><span class="m">10000</span>
+</pre></div>
+</div>
+<p><strong>Launch a gradio web server</strong></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>llava.serve.gradio_web_server<span class="w"> </span>--controller<span class="w"> </span>http://localhost:10000<span class="w"> </span>--model-list-mode<span class="w"> </span>reload<span class="w"> </span>--port<span class="w"> </span><span class="m">10038</span>
+</pre></div>
+</div>
+<p><strong>Launch a model worker</strong></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># OpenGVLab/InternVL-Chat-ViT-6B-Vicuna-7B</span>
+python<span class="w"> </span>-m<span class="w"> </span>llava.serve.model_worker<span class="w"> </span>--host<span class="w"> </span><span class="m">0</span>.0.0.0<span class="w"> </span>--controller<span class="w"> </span>http://localhost:10000<span class="w"> </span>--port<span class="w"> </span><span class="m">40000</span><span class="w"> </span>--worker<span class="w"> </span>http://localhost:40000<span class="w"> </span>--model-path<span class="w"> </span>./pretrained/InternVL-Chat-ViT-6B-Vicuna-7B
+<span class="c1"># OpenGVLab/InternVL-Chat-ViT-6B-Vicuna-13B</span>
+python<span class="w"> </span>-m<span class="w"> </span>llava.serve.model_worker<span class="w"> </span>--host<span class="w"> </span><span class="m">0</span>.0.0.0<span class="w"> </span>--controller<span class="w"> </span>http://localhost:10000<span class="w"> </span>--port<span class="w"> </span><span class="m">40001</span><span class="w"> </span>--worker<span class="w"> </span>http://localhost:40001<span class="w"> </span>--model-path<span class="w"> </span>./pretrained/InternVL-Chat-ViT-6B-Vicuna-13B
+</pre></div>
+</div>
+<p>After completing the above steps, you can access the web demo at <code class="docutils literal notranslate"><span class="pre">http://localhost:10038</span></code> and see the following page. Note that the models deployed here are <code class="docutils literal notranslate"><span class="pre">InternVL-Chat-ViT-6B-Vicuna-7B</span></code> and <code class="docutils literal notranslate"><span class="pre">InternVL-Chat-ViT-6B-Vicuna-13B</span></code>, which are the two models of our InternVL 1.0. The only difference from LLaVA-1.5 is that the CLIP-ViT-300M has been replaced with our InternViT-6B.</p>
+<p>If you need a more effective MLLM, please check out our InternVL2 series models.
+For more details on deploying the demo, please refer to <a class="reference internal" href="#gradio-web-ui">here</a>.</p>
+<p><img alt="image" src="../_images/llava_webui.png" /></p>
+</section>
+<section id="testing">
+<h2>Testing<a class="headerlink" href="#testing" title="Permalink to this heading">#</a></h2>
+<p>The method for testing the model remains the same as LLaVA-1.5; you just need to change the path of the script. Our scripts are located in <code class="docutils literal notranslate"><span class="pre">scripts_internvl/</span></code>.</p>
+<p>For example, testing <code class="docutils literal notranslate"><span class="pre">MME</span></code> using a single GPU:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sh<span class="w"> </span>scripts_internvl/eval/mme.sh<span class="w"> </span>pretrained/InternVL-Chat-ViT-6B-Vicuna-7B/
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="llava-large-language-and-vision-assistant">
+<h2>🌋 LLaVA: Large Language and Vision Assistant<a class="headerlink" href="#llava-large-language-and-vision-assistant" title="Permalink to this heading">#</a></h2>
+<p><em>Visual instruction tuning towards large language and vision models with GPT-4 level capabilities.</em></p>
+<p>[<a class="reference external" href="https://llava-vl.github.io/">Project Page</a>] [<a class="reference external" href="https://llava.hliu.cc/">Demo</a>]  [<a class="reference external" href="https://github.com/haotian-liu/LLaVA/blob/main/docs/Data.md">Data</a>] [<a class="reference external" href="https://github.com/haotian-liu/LLaVA/blob/main/docs/MODEL_ZOO.md">Model Zoo</a>]</p>
+<p>🤝Community Contributions: [<a class="reference external" href="https://github.com/ggerganov/llama.cpp/pull/3436">llama.cpp</a>] [<a class="reference external" href="https://github.com/camenduru/LLaVA-colab">Colab</a>] [<a class="reference external" href="https://huggingface.co/spaces/badayvedat/LLaVA">🤗Space</a>]</p>
+<p><strong>Improved Baselines with Visual Instruction Tuning</strong> [<a class="reference external" href="https://arxiv.org/abs/2310.03744">Paper</a>] <br>
+<a class="reference external" href="https://hliu.cc">Haotian Liu</a>, <a class="reference external" href="https://chunyuan.li/">Chunyuan Li</a>, <a class="reference external" href="https://yuheng-li.github.io/">Yuheng Li</a>, <a class="reference external" href="https://pages.cs.wisc.edu/~yongjaelee/">Yong Jae Lee</a></p>
+<p><strong>Visual Instruction Tuning</strong> (NeurIPS 2023, <strong>Oral</strong>) [<a class="reference external" href="https://arxiv.org/abs/2304.08485">Paper</a>]<br>
+<a class="reference external" href="https://hliu.cc">Haotian Liu*</a>, <a class="reference external" href="https://chunyuan.li/">Chunyuan Li*</a>, <a class="reference external" href="https://scholar.google.ca/citations?user=HDiw-TsAAAAJ&amp;amp;hl=en/">Qingyang Wu</a>, <a class="reference external" href="https://pages.cs.wisc.edu/~yongjaelee/">Yong Jae Lee</a> (*Equal Contribution)</p>
+<section id="release">
+<h3>Release<a class="headerlink" href="#release" title="Permalink to this heading">#</a></h3>
+<ul>
+<li><p>[10/12] 🔥 Check out the Korean LLaVA (Ko-LLaVA), created by ETRI, who has generously supported our research! [<a class="reference external" href="https://huggingface.co/spaces/etri-vilab/Ko-LLaVA">🤗 Demo</a>]</p></li>
+<li><p>[10/12] LLaVA is now supported in <a class="reference external" href="https://github.com/ggerganov/llama.cpp/pull/3436">llama.cpp</a> with 4-bit / 5-bit quantization support!</p></li>
+<li><p>[10/11] The training data and scripts of LLaVA-1.5 are released <a class="reference external" href="https://github.com/haotian-liu/LLaVA#train">here</a>, and evaluation scripts are released <a class="reference external" href="https://github.com/haotian-liu/LLaVA/blob/main/docs/Evaluation.md">here</a>!</p></li>
+<li><p>[10/5] 🔥 LLaVA-1.5 is out! Achieving SoTA on 11 benchmarks, with just simple modifications to the original LLaVA, utilizes all public data, completes training in ~1 day on a single 8-A100 node, and surpasses methods like Qwen-VL-Chat that use billion-scale data. Check out the <a class="reference external" href="https://arxiv.org/abs/2310.03744">technical report</a>, and explore the <a class="reference external" href="https://llava.hliu.cc/">demo</a>! Models are available in <a class="reference external" href="https://github.com/haotian-liu/LLaVA/blob/main/docs/MODEL_ZOO.md">Model Zoo</a>.</p></li>
+<li><p>[9/26] LLaVA is improved with reinforcement learning from human feedback (RLHF) to improve fact grounding and reduce hallucination. Check out the new SFT and RLHF checkpoints at project <a class="reference external" href="https://llava-rlhf.github.io/">[LLavA-RLHF]</a></p></li>
+<li><p>[9/22] <a class="reference external" href="https://arxiv.org/abs/2304.08485">LLaVA</a> is accepted by NeurIPS 2023 as <strong>oral presentation</strong>, and <a class="reference external" href="https://arxiv.org/abs/2306.00890">LLaVA-Med</a> is accepted by NeurIPS 2023 Datasets and Benchmarks Track as <strong>spotlight presentation</strong>.</p></li>
+<li><p>[9/20] We summarize our empirical study of training 33B and 65B LLaVA models in a <a class="reference external" href="https://arxiv.org/abs/2309.09958">note</a>. Further, if you are interested in the comprehensive review, evolution and trend of multimodal foundation models, please check out our recent survey paper <a class="reference external" href="https://arxiv.org/abs/2309.10020">``Multimodal Foundation Models: From Specialists to General-Purpose Assistants’’.</a></p>
+<p align="center">
+<img src="https://github.com/Computer-Vision-in-the-Wild/CVinW_Readings/blob/main/images/mfm_evolution.jpeg?raw=true" width=50%/>
+</p>
+</li>
+<li><p>[7/19] 🔥 We release a major upgrade, including support for LLaMA-2, LoRA training, 4-/8-bit inference, higher resolution (336x336), and a lot more. We release <a class="reference external" href="https://github.com/haotian-liu/LLaVA/blob/main/docs/LLaVA_Bench.md">LLaVA Bench</a> for benchmarking open-ended visual chat with results from Bard and Bing-Chat. We also support and verify training with RTX 3090 and RTX A6000. Check out <a class="reference external" href="https://github.com/haotian-liu/LLaVA/blob/main/docs/LLaVA_from_LLaMA2.md">LLaVA-from-LLaMA-2</a>, and our <a class="reference external" href="https://github.com/haotian-liu/LLaVA/blob/main/docs/MODEL_ZOO.md">model zoo</a>!</p></li>
+<li><p>[6/26] <a class="reference external" href="https://vlp-tutorial.github.io/">CVPR 2023 Tutorial</a> on <strong>Large Multimodal Models: Towards Building and Surpassing Multimodal GPT-4</strong>!  Please check out [<a class="reference external" href="https://datarelease.blob.core.windows.net/tutorial/vision_foundation_models_2023/slides/Chunyuan_cvpr2023_tutorial_lmm.pdf">Slides</a>] [<a class="reference external" href="https://arxiv.org/abs/2306.14895">Notes</a>] [<a class="reference external" href="https://youtu.be/mkI7EPD1vp8">YouTube</a>] [<a class="reference external" href="https://www.bilibili.com/video/BV1Ng4y1T7v3/">Bilibli</a>].</p></li>
+<li><p>[6/11] We released the preview for the most requested feature: DeepSpeed and LoRA support!  Please see documentations <a class="reference internal" href="#./docs/LoRA.md"><span class="xref myst">here</span></a>.</p></li>
+<li><p>[6/1] We released <strong>LLaVA-Med: Large Language and Vision Assistant for Biomedicine</strong>, a step towards building biomedical domain large language and vision models with GPT-4 level capabilities.  Checkout the <a class="reference external" href="https://arxiv.org/abs/2306.00890">paper</a> and <a class="reference external" href="https://github.com/microsoft/LLaVA-Med">page</a>.</p></li>
+<li><p>[5/6] We are releasing <a class="reference external" href="https://huggingface.co/liuhaotian/LLaVA-Lightning-MPT-7B-preview">LLaVA-Lighting-MPT-7B-preview</a>, based on MPT-7B-Chat!  See <a class="reference internal" href="#LLaVA-MPT-7b"><span class="xref myst">here</span></a> for more details.</p></li>
+<li><p>[5/2] 🔥 We are releasing LLaVA-Lighting!  Train a lite, multimodal GPT-4 with just $40 in 3 hours!  See <a class="reference internal" href="#train-llava-lightning"><span class="xref myst">here</span></a> for more details.</p></li>
+<li><p>[4/27] Thanks to the community effort, LLaVA-13B with 4-bit quantization allows you to run on a GPU with as few as 12GB VRAM!  Try it out <a class="reference external" href="https://github.com/oobabooga/text-generation-webui/tree/main/extensions/llava">here</a>.</p></li>
+<li><p>[4/17] 🔥 We released <strong>LLaVA: Large Language and Vision Assistant</strong>. We propose visual instruction tuning, towards building large language and vision models with GPT-4 level capabilities.  Checkout the <a class="reference external" href="https://arxiv.org/abs/2304.08485">paper</a> and <a class="reference external" href="https://llava.hliu.cc/">demo</a>.</p></li>
+</ul>
+<!-- <a href="https://llava.hliu.cc/"><img src="assets/demo.gif" width="70%"></a> -->
+<p><a class="reference external" href="https://github.com/tatsu-lab/stanford_alpaca/blob/main/LICENSE"><img alt="Code License" src="https://img.shields.io/badge/Code%20License-Apache_2.0-green.svg" /></a>
+<a class="reference external" href="https://github.com/tatsu-lab/stanford_alpaca/blob/main/DATA_LICENSE"><img alt="Data License" src="https://img.shields.io/badge/Data%20License-CC%20By%20NC%204.0-red.svg" /></a>
+<strong>Usage and License Notices</strong>: The data and checkpoint is intended and licensed for research use only. They are also restricted to uses that follow the license agreement of LLaMA, Vicuna and GPT-4. The dataset is CC BY NC 4.0 (allowing only non-commercial use) and models trained using the dataset should not be used outside of research purposes.</p>
+</section>
+<section id="contents">
+<h3>Contents<a class="headerlink" href="#contents" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference internal" href="#install">Install</a></p></li>
+<li><p><a class="reference internal" href="#llava-weights">LLaVA Weights</a></p></li>
+<li><p><a class="reference internal" href="#Demo"><span class="xref myst">Demo</span></a></p></li>
+<li><p><a class="reference external" href="https://github.com/haotian-liu/LLaVA/blob/main/docs/MODEL_ZOO.md">Model Zoo</a></p></li>
+<li><p><a class="reference external" href="https://github.com/haotian-liu/LLaVA/blob/main/docs/Data.md">Dataset</a></p></li>
+<li><p><a class="reference internal" href="#train">Train</a></p></li>
+<li><p><a class="reference internal" href="#evaluation">Evaluation</a></p></li>
+</ul>
+</section>
+<section id="install">
+<h3>Install<a class="headerlink" href="#install" title="Permalink to this heading">#</a></h3>
+<ol class="arabic">
+<li><p>Clone this repository and navigate to LLaVA folder</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/haotian-liu/LLaVA.git
+<span class="nb">cd</span><span class="w"> </span>LLaVA
+</pre></div>
+</div>
+</li>
+<li><p>Install Package</p>
+<div class="highlight-Shell notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>llava<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.10<span class="w"> </span>-y
+conda<span class="w"> </span>activate<span class="w"> </span>llava
+pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip<span class="w">  </span><span class="c1"># enable PEP 660 support</span>
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
+</pre></div>
+</div>
+</li>
+<li><p>Install additional packages for training cases</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ninja</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">flash</span><span class="o">-</span><span class="n">attn</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">build</span><span class="o">-</span><span class="n">isolation</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<section id="upgrade-to-latest-code-base">
+<h4>Upgrade to latest code base<a class="headerlink" href="#upgrade-to-latest-code-base" title="Permalink to this heading">#</a></h4>
+<div class="highlight-Shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>pull
+pip<span class="w"> </span>uninstall<span class="w"> </span>transformers
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
+</pre></div>
+</div>
+</section>
+</section>
+<section id="llava-weights">
+<h3>LLaVA Weights<a class="headerlink" href="#llava-weights" title="Permalink to this heading">#</a></h3>
+<p>Please check out our <a class="reference external" href="https://github.com/haotian-liu/LLaVA/blob/main/docs/MODEL_ZOO.md">Model Zoo</a> for all public LLaVA checkpoints, and the instructions of how to use the weights.</p>
+</section>
+<section id="id1">
+<h3>Demo<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<p>To run our demo, you need to prepare LLaVA checkpoints locally.  Please follow the instructions <a class="reference internal" href="#llava-weights">here</a> to download the checkpoints.</p>
+<section id="gradio-web-ui">
+<h4>Gradio Web UI<a class="headerlink" href="#gradio-web-ui" title="Permalink to this heading">#</a></h4>
+<p>To launch a Gradio demo locally, please run the following commands one by one. If you plan to launch multiple model workers to compare between different checkpoints, you only need to launch the controller and the web server <em>ONCE</em>.</p>
+<section id="launch-a-controller">
+<h5>Launch a controller<a class="headerlink" href="#launch-a-controller" title="Permalink to this heading">#</a></h5>
+<div class="highlight-Shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>llava.serve.controller<span class="w"> </span>--host<span class="w"> </span><span class="m">0</span>.0.0.0<span class="w"> </span>--port<span class="w"> </span><span class="m">10000</span>
+</pre></div>
+</div>
+</section>
+<section id="launch-a-gradio-web-server">
+<h5>Launch a gradio web server.<a class="headerlink" href="#launch-a-gradio-web-server" title="Permalink to this heading">#</a></h5>
+<div class="highlight-Shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>llava.serve.gradio_web_server<span class="w"> </span>--controller<span class="w"> </span>http://localhost:10000<span class="w"> </span>--model-list-mode<span class="w"> </span>reload
+</pre></div>
+</div>
+<p>You just launched the Gradio web interface. Now, you can open the web interface with the URL printed on the screen. You may notice that there is no model in the model list. Do not worry, as we have not launched any model worker yet. It will be automatically updated when you launch a model worker.</p>
+</section>
+<section id="launch-a-model-worker">
+<h5>Launch a model worker<a class="headerlink" href="#launch-a-model-worker" title="Permalink to this heading">#</a></h5>
+<p>This is the actual <em>worker</em> that performs the inference on the GPU.  Each worker is responsible for a single model specified in <code class="docutils literal notranslate"><span class="pre">--model-path</span></code>.</p>
+<div class="highlight-Shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>llava.serve.model_worker<span class="w"> </span>--host<span class="w"> </span><span class="m">0</span>.0.0.0<span class="w"> </span>--controller<span class="w"> </span>http://localhost:10000<span class="w"> </span>--port<span class="w"> </span><span class="m">40000</span><span class="w"> </span>--worker<span class="w"> </span>http://localhost:40000<span class="w"> </span>--model-path<span class="w"> </span>liuhaotian/llava-v1.5-13b
+</pre></div>
+</div>
+<p>Wait until the process finishes loading the model and you see “Uvicorn running on …”.  Now, refresh your Gradio web UI, and you will see the model you just launched in the model list.</p>
+<p>You can launch as many workers as you want, and compare between different model checkpoints in the same Gradio interface. Please keep the <code class="docutils literal notranslate"><span class="pre">--controller</span></code> the same, and modify the <code class="docutils literal notranslate"><span class="pre">--port</span></code> and <code class="docutils literal notranslate"><span class="pre">--worker</span></code> to a different port number for each worker.</p>
+<div class="highlight-Shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>llava.serve.model_worker<span class="w"> </span>--host<span class="w"> </span><span class="m">0</span>.0.0.0<span class="w"> </span>--controller<span class="w"> </span>http://localhost:10000<span class="w"> </span>--port<span class="w"> </span>&lt;different<span class="w"> </span>from<span class="w"> </span><span class="m">40000</span>,<span class="w"> </span>say<span class="w"> </span><span class="m">40001</span>&gt;<span class="w"> </span>--worker<span class="w"> </span>http://localhost:&lt;change<span class="w"> </span>accordingly,<span class="w"> </span>i.e.<span class="w"> </span><span class="m">40001</span>&gt;<span class="w"> </span>--model-path<span class="w"> </span>&lt;ckpt2&gt;
+</pre></div>
+</div>
+<p>If you are using an Apple device with an M1 or M2 chip, you can specify the mps device by using the <code class="docutils literal notranslate"><span class="pre">--device</span></code> flag: <code class="docutils literal notranslate"><span class="pre">--device</span> <span class="pre">mps</span></code>.</p>
+</section>
+<section id="launch-a-model-worker-multiple-gpus-when-gpu-vram-24gb">
+<h5>Launch a model worker (Multiple GPUs, when GPU VRAM &lt;= 24GB)<a class="headerlink" href="#launch-a-model-worker-multiple-gpus-when-gpu-vram-24gb" title="Permalink to this heading">#</a></h5>
+<p>If the VRAM of your GPU is less than 24GB (e.g., RTX 3090, RTX 4090, etc.), you may try running it with multiple GPUs. Our latest code base will automatically try to use multiple GPUs if you have more than one GPU. You can specify which GPUs to use with <code class="docutils literal notranslate"><span class="pre">CUDA_VISIBLE_DEVICES</span></code>. Below is an example of running with the first two GPUs.</p>
+<div class="highlight-Shell notranslate"><div class="highlight"><pre><span></span><span class="nv">CUDA_VISIBLE_DEVICES</span><span class="o">=</span><span class="m">0</span>,1<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>llava.serve.model_worker<span class="w"> </span>--host<span class="w"> </span><span class="m">0</span>.0.0.0<span class="w"> </span>--controller<span class="w"> </span>http://localhost:10000<span class="w"> </span>--port<span class="w"> </span><span class="m">40000</span><span class="w"> </span>--worker<span class="w"> </span>http://localhost:40000<span class="w"> </span>--model-path<span class="w"> </span>liuhaotian/llava-v1.5-13b
+</pre></div>
+</div>
+</section>
+<section id="launch-a-model-worker-4-bit-8-bit-inference-quantized">
+<h5>Launch a model worker (4-bit, 8-bit inference, quantized)<a class="headerlink" href="#launch-a-model-worker-4-bit-8-bit-inference-quantized" title="Permalink to this heading">#</a></h5>
+<p>You can launch the model worker with quantized bits (4-bit, 8-bit), which allows you to run the inference with reduced GPU memory footprint, potentially allowing you to run on a GPU with as few as 12GB VRAM. Note that inference with quantized bits may not be as accurate as the full-precision model. Simply append <code class="docutils literal notranslate"><span class="pre">--load-4bit</span></code> or <code class="docutils literal notranslate"><span class="pre">--load-8bit</span></code> to the <strong>model worker</strong> command that you are executing. Below is an example of running with 4-bit quantization.</p>
+<div class="highlight-Shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>llava.serve.model_worker<span class="w"> </span>--host<span class="w"> </span><span class="m">0</span>.0.0.0<span class="w"> </span>--controller<span class="w"> </span>http://localhost:10000<span class="w"> </span>--port<span class="w"> </span><span class="m">40000</span><span class="w"> </span>--worker<span class="w"> </span>http://localhost:40000<span class="w"> </span>--model-path<span class="w"> </span>liuhaotian/llava-v1.5-13b<span class="w"> </span>--load-4bit
+</pre></div>
+</div>
+</section>
+<section id="launch-a-model-worker-lora-weights-unmerged">
+<h5>Launch a model worker (LoRA weights, unmerged)<a class="headerlink" href="#launch-a-model-worker-lora-weights-unmerged" title="Permalink to this heading">#</a></h5>
+<p>You can launch the model worker with LoRA weights, without merging them with the base checkpoint, to save disk space. There will be additional loading time, while the inference speed is the same as the merged checkpoints. Unmerged LoRA checkpoints do not have <code class="docutils literal notranslate"><span class="pre">lora-merge</span></code> in the model name, and are usually much smaller (less than 1GB) than the merged checkpoints (13G for 7B, and 25G for 13B).</p>
+<p>To load unmerged LoRA weights, you simply need to pass an additional argument <code class="docutils literal notranslate"><span class="pre">--model-base</span></code>, which is the base LLM that is used to train the LoRA weights. You can check the base LLM of each LoRA weights in the <a class="reference external" href="https://github.com/haotian-liu/LLaVA/blob/main/docs/MODEL_ZOO.md">model zoo</a>.</p>
+<div class="highlight-Shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>llava.serve.model_worker<span class="w"> </span>--host<span class="w"> </span><span class="m">0</span>.0.0.0<span class="w"> </span>--controller<span class="w"> </span>http://localhost:10000<span class="w"> </span>--port<span class="w"> </span><span class="m">40000</span><span class="w"> </span>--worker<span class="w"> </span>http://localhost:40000<span class="w"> </span>--model-path<span class="w"> </span>liuhaotian/llava-v1-0719-336px-lora-vicuna-13b-v1.3<span class="w"> </span>--model-base<span class="w"> </span>lmsys/vicuna-13b-v1.3
+</pre></div>
+</div>
+</section>
+</section>
+<section id="cli-inference">
+<h4>CLI Inference<a class="headerlink" href="#cli-inference" title="Permalink to this heading">#</a></h4>
+<p>Chat about images using LLaVA without the need of Gradio interface. It also supports multiple GPUs, 4-bit and 8-bit quantized inference. With 4-bit quantization, for our LLaVA-1.5-7B, it uses less than 8GB VRAM on a single GPU.</p>
+<div class="highlight-Shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>llava.serve.cli<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--model-path<span class="w"> </span>liuhaotian/llava-v1.5-7b<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--image-file<span class="w"> </span><span class="s2">&quot;https://llava-vl.github.io/static/images/view.jpg&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--load-4bit
+</pre></div>
+</div>
+</section>
+</section>
+<section id="train">
+<h3>Train<a class="headerlink" href="#train" title="Permalink to this heading">#</a></h3>
+<p><em>Below is the latest training configuration for LLaVA v1.5. For legacy models, please refer to README of <a class="reference external" href="https://github.com/haotian-liu/LLaVA/tree/v1.0.1">this</a> version for now. We’ll add them in a separate doc later.</em></p>
+<p>LLaVA training consists of two stages: (1) feature alignment stage: use our 558K subset of the LAION-CC-SBU dataset to connect a <em>frozen pretrained</em> vision encoder to a <em>frozen LLM</em>; (2) visual instruction tuning stage: use 150K GPT-generated multimodal instruction-following data, plus around 515K VQA data from academic-oriented tasks, to teach the model to follow multimodal instructions.</p>
+<p>LLaVA is trained on 8 A100 GPUs with 80GB memory. To train on fewer GPUs, you can reduce the <code class="docutils literal notranslate"><span class="pre">per_device_train_batch_size</span></code> and increase the <code class="docutils literal notranslate"><span class="pre">gradient_accumulation_steps</span></code> accordingly. Always keep the global batch size the same: <code class="docutils literal notranslate"><span class="pre">per_device_train_batch_size</span></code> x <code class="docutils literal notranslate"><span class="pre">gradient_accumulation_steps</span></code> x <code class="docutils literal notranslate"><span class="pre">num_gpus</span></code>.</p>
+<section id="hyperparameters">
+<h4>Hyperparameters<a class="headerlink" href="#hyperparameters" title="Permalink to this heading">#</a></h4>
+<p>We use a similar set of hyperparameters as Vicuna in finetuning.  Both hyperparameters used in pretraining and finetuning are provided below.</p>
+<ol class="arabic simple">
+<li><p>Pretraining</p></li>
+</ol>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Hyperparameter</p></th>
+<th class="head text-right"><p>Global Batch Size</p></th>
+<th class="head text-right"><p>Learning rate</p></th>
+<th class="head text-right"><p>Epochs</p></th>
+<th class="head text-right"><p>Max length</p></th>
+<th class="head text-right"><p>Weight decay</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>LLaVA-v1.5-13B</p></td>
+<td class="text-right"><p>256</p></td>
+<td class="text-right"><p>1e-3</p></td>
+<td class="text-right"><p>1</p></td>
+<td class="text-right"><p>2048</p></td>
+<td class="text-right"><p>0</p></td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple" start="2">
+<li><p>Finetuning</p></li>
+</ol>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Hyperparameter</p></th>
+<th class="head text-right"><p>Global Batch Size</p></th>
+<th class="head text-right"><p>Learning rate</p></th>
+<th class="head text-right"><p>Epochs</p></th>
+<th class="head text-right"><p>Max length</p></th>
+<th class="head text-right"><p>Weight decay</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>LLaVA-v1.5-13B</p></td>
+<td class="text-right"><p>128</p></td>
+<td class="text-right"><p>2e-5</p></td>
+<td class="text-right"><p>1</p></td>
+<td class="text-right"><p>2048</p></td>
+<td class="text-right"><p>0</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="download-vicuna-checkpoints-automatically">
+<h4>Download Vicuna checkpoints (automatically)<a class="headerlink" href="#download-vicuna-checkpoints-automatically" title="Permalink to this heading">#</a></h4>
+<p>Our base model Vicuna v1.5, which is an instruction-tuned chatbot, will be downloaded automatically when you run our provided training scripts. No action is needed.</p>
+</section>
+<section id="pretrain-feature-alignment">
+<h4>Pretrain (feature alignment)<a class="headerlink" href="#pretrain-feature-alignment" title="Permalink to this heading">#</a></h4>
+<p>Please download the 558K subset of the LAION-CC-SBU dataset with BLIP captions we use in the paper <a class="reference external" href="https://huggingface.co/datasets/liuhaotian/LLaVA-Pretrain">here</a>.</p>
+<p>Pretrain takes around 5.5 hours for LLaVA-v1.5-13B on 8x A100 (80G), due to the increased resolution to 336px. It takes around 3.5 hours for LLaVA-v1.5-7B.</p>
+<p>Training script with DeepSpeed ZeRO-2: <a class="reference external" href="https://github.com/haotian-liu/LLaVA/blob/main/scripts/v1_5/pretrain.sh"><code class="docutils literal notranslate"><span class="pre">pretrain.sh</span></code></a>.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--mm_projector_type</span> <span class="pre">mlp2x_gelu</span></code>: the two-layer MLP vision-language connector.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--vision_tower</span> <span class="pre">openai/clip-vit-large-patch14-336</span></code>: CLIP ViT-L/14 336px.</p></li>
+</ul>
+</section>
+<section id="visual-instruction-tuning">
+<h4>Visual Instruction Tuning<a class="headerlink" href="#visual-instruction-tuning" title="Permalink to this heading">#</a></h4>
+<ol class="arabic simple">
+<li><p>Prepare data</p></li>
+</ol>
+<p>Please download the annotation of the final mixture our instruction tuning data <a class="reference external" href="https://huggingface.co/datasets/liuhaotian/LLaVA-Instruct-150K/blob/main/llava_v1_5_mix665k.json">llava_v1_5_mix665k.json</a>, and download the images from constituting datasets:</p>
+<ul class="simple">
+<li><p>COCO: <a class="reference external" href="http://images.cocodataset.org/zips/train2017.zip">train2017</a></p></li>
+<li><p>GQA: <a class="reference external" href="https://downloads.cs.stanford.edu/nlp/data/gqa/images.zip">images</a></p></li>
+<li><p>OCR-VQA: <a class="reference external" href="https://drive.google.com/drive/folders/1_GYPY5UkUy7HIcR0zq3ZCFgeZN7BAfm_?usp=sharing">download script</a></p></li>
+<li><p>TextVQA: <a class="reference external" href="https://dl.fbaipublicfiles.com/textvqa/images/train_val_images.zip">train_val_images</a></p></li>
+<li><p>VisualGenome: <a class="reference external" href="https://cs.stanford.edu/people/rak248/VG_100K_2/images.zip">part1</a>, <a class="reference external" href="https://cs.stanford.edu/people/rak248/VG_100K_2/images2.zip">part2</a></p></li>
+</ul>
+<p>After downloading all of them, organize the data as follows in <code class="docutils literal notranslate"><span class="pre">./playground/data</span></code>,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>├── coco
+│   └── train2017
+├── gqa
+│   └── images
+├── ocr_vqa
+│   └── images
+├── textvqa
+│   └── train_images
+└── vg
+    ├── VG_100K
+    └── VG_100K_2
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Start training!</p></li>
+</ol>
+<p>You may download our pretrained projectors in <a class="reference external" href="https://github.com/haotian-liu/LLaVA/blob/main/docs/MODEL_ZOO.md">Model Zoo</a>. It is not recommended to use legacy projectors, as they may be trained with a different version of the codebase, and if any option is off, the model will not function/train as we expected.</p>
+<p>Visual instruction tuning takes around 20 hours for LLaVA-v1.5-13B on 8x A100 (80G), due to the increased resolution to 336px. It takes around 10 hours for LLaVA-v1.5-7B on 8x A100 (40G).</p>
+<p>Training script with DeepSpeed ZeRO-3: <a class="reference external" href="https://github.com/haotian-liu/LLaVA/blob/main/scripts/v1_5/finetune.sh"><code class="docutils literal notranslate"><span class="pre">finetune.sh</span></code></a>.</p>
+<p>New options to note:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--mm_projector_type</span> <span class="pre">mlp2x_gelu</span></code>: the two-layer MLP vision-language connector.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--vision_tower</span> <span class="pre">openai/clip-vit-large-patch14-336</span></code>: CLIP ViT-L/14 336px.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--image_aspect_ratio</span> <span class="pre">pad</span></code>: this pads the non-square images to square, instead of cropping them; it slightly reduces hallucination.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--group_by_modality_length</span> <span class="pre">True</span></code>: this should only be used when your instruction tuning dataset contains both language (e.g. ShareGPT) and multimodal (e.g. LLaVA-Instruct). It makes the training sampler only sample a single modality (either image or language) during training, which we observe to speed up training by ~25%, and does not affect the final outcome.</p></li>
+</ul>
+</section>
+</section>
+<section id="evaluation">
+<h3>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this heading">#</a></h3>
+<p>In LLaVA-1.5, we evaluate models on a diverse set of 12 benchmarks. To ensure the reproducibility, we evaluate the models with greedy decoding. We do not evaluate using beam search to make the inference process consistent with the chat demo of real-time outputs.</p>
+<p>See <a class="reference external" href="https://github.com/haotian-liu/LLaVA/blob/main/docs/Evaluation.md">Evaluation.md</a>.</p>
+<section id="gpt-assisted-evaluation">
+<h4>GPT-assisted Evaluation<a class="headerlink" href="#gpt-assisted-evaluation" title="Permalink to this heading">#</a></h4>
+<p>Our GPT-assisted evaluation pipeline for multimodal modeling is provided for a comprehensive understanding of the capabilities of vision-language models.  Please see our paper for more details.</p>
+<ol class="arabic simple">
+<li><p>Generate LLaVA responses</p></li>
+</ol>
+<div class="highlight-Shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>model_vqa.py<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--model-path<span class="w"> </span>./checkpoints/LLaVA-13B-v0<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--question-file<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>playground/data/coco2014_val_qa_eval/qa90_questions.jsonl<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--image-folder<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>/path/to/coco2014_val<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--answers-file<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>/path/to/answer-file-our.jsonl
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Evaluate the generated responses.  In our case, <a class="reference internal" href="#./playground/data/coco2014_val_qa_eval/qa90_gpt4_answer.jsonl"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">answer-file-ref.jsonl</span></code></span></a> is the response generated by text-only GPT-4 (0314), with the context captions/boxes provided.</p></li>
+</ol>
+<div class="highlight-Shell notranslate"><div class="highlight"><pre><span></span><span class="nv">OPENAI_API_KEY</span><span class="o">=</span><span class="s2">&quot;sk-***********************************&quot;</span><span class="w"> </span>python<span class="w"> </span>llava/eval/eval_gpt_review_visual.py<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--question<span class="w"> </span>playground/data/coco2014_val_qa_eval/qa90_questions.jsonl<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--context<span class="w"> </span>llava/eval/table/caps_boxes_coco2014_val_80.jsonl<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--answer-list<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>/path/to/answer-file-ref.jsonl<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>/path/to/answer-file-our.jsonl<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--rule<span class="w"> </span>llava/eval/table/rule.json<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--output<span class="w"> </span>/path/to/review.json
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Summarize the evaluation results</p></li>
+</ol>
+<div class="highlight-Shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>summarize_gpt_review.py
+</pre></div>
+</div>
+</section>
+</section>
+<section id="citation">
+<h3>Citation<a class="headerlink" href="#citation" title="Permalink to this heading">#</a></h3>
+<p>If you find LLaVA useful for your research and applications, please cite using this BibTeX:</p>
+<div class="highlight-bibtex notranslate"><div class="highlight"><pre><span></span><span class="nc">@misc</span><span class="p">{</span><span class="nl">liu2023improvedllava</span><span class="p">,</span>
+<span class="w">      </span><span class="na">title</span><span class="p">=</span><span class="s">{Improved Baselines with Visual Instruction Tuning}</span><span class="p">,</span><span class="w"> </span>
+<span class="w">      </span><span class="na">author</span><span class="p">=</span><span class="s">{Liu, Haotian and Li, Chunyuan and Li, Yuheng and Lee, Yong Jae}</span><span class="p">,</span>
+<span class="w">      </span><span class="na">publisher</span><span class="p">=</span><span class="s">{arXiv:2310.03744}</span><span class="p">,</span>
+<span class="w">      </span><span class="na">year</span><span class="p">=</span><span class="s">{2023}</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="nc">@misc</span><span class="p">{</span><span class="nl">liu2023llava</span><span class="p">,</span>
+<span class="w">      </span><span class="na">title</span><span class="p">=</span><span class="s">{Visual Instruction Tuning}</span><span class="p">,</span><span class="w"> </span>
+<span class="w">      </span><span class="na">author</span><span class="p">=</span><span class="s">{Liu, Haotian and Li, Chunyuan and Wu, Qingyang and Lee, Yong Jae}</span><span class="p">,</span>
+<span class="w">      </span><span class="na">publisher</span><span class="p">=</span><span class="s">{arXiv:2304.08485}</span><span class="p">,</span>
+<span class="w">      </span><span class="na">year</span><span class="p">=</span><span class="s">{2023}</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="acknowledgement">
+<h3>Acknowledgement<a class="headerlink" href="#acknowledgement" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/lm-sys/FastChat">Vicuna</a>: the codebase we built upon, and our base model Vicuna-13B that has the amazing language capabilities!</p></li>
+</ul>
+</section>
+<section id="related-projects">
+<h3>Related Projects<a class="headerlink" href="#related-projects" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/Instruction-Tuning-with-GPT-4/GPT-4-LLM">Instruction Tuning with GPT-4</a></p></li>
+<li><p><a class="reference external" href="https://github.com/microsoft/LLaVA-Med">LLaVA-Med: Training a Large Language-and-Vision Assistant for Biomedicine in One Day</a></p></li>
+<li><p><a class="reference external" href="https://github.com/Luodian/Otter">Otter: In-Context Multi-Modal Instruction Tuning</a></p></li>
+</ul>
+<p>For future project ideas, please check out:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/UX-Decoder/Segment-Everything-Everywhere-All-At-Once">SEEM: Segment Everything Everywhere All at Once</a></p></li>
+<li><p><a class="reference external" href="https://github.com/IDEA-Research/Grounded-Segment-Anything">Grounded-Segment-Anything</a> to detect, segment, and generate anything by marrying <a class="reference external" href="https://github.com/IDEA-Research/GroundingDINO">Grounding DINO</a> and <a class="reference external" href="https://github.com/facebookresearch/segment-anything">Segment-Anything</a>.</p></li>
+</ul>
+<br>
+<br>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="segmentation.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">InternViT-6B for Semantic Segmentation</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="internvl_g.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">InternVL Stage-2 Pre-training &amp; Retrieval Fine-tuning</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-preparation">Model Preparation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training">Training</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-zoo">Model Zoo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#demo">Demo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing">Testing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#llava-large-language-and-vision-assistant">🌋 LLaVA: Large Language and Vision Assistant</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#release">Release</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contents">Contents</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install">Install</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#upgrade-to-latest-code-base">Upgrade to latest code base</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#llava-weights">LLaVA Weights</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Demo</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gradio-web-ui">Gradio Web UI</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#launch-a-controller">Launch a controller</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#launch-a-gradio-web-server">Launch a gradio web server.</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#launch-a-model-worker">Launch a model worker</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#launch-a-model-worker-multiple-gpus-when-gpu-vram-24gb">Launch a model worker (Multiple GPUs, when GPU VRAM &lt;= 24GB)</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#launch-a-model-worker-4-bit-8-bit-inference-quantized">Launch a model worker (4-bit, 8-bit inference, quantized)</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#launch-a-model-worker-lora-weights-unmerged">Launch a model worker (LoRA weights, unmerged)</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cli-inference">CLI Inference</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#train">Train</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hyperparameters">Hyperparameters</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#download-vicuna-checkpoints-automatically">Download Vicuna checkpoints (automatically)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pretrain-feature-alignment">Pretrain (feature alignment)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#visual-instruction-tuning">Visual Instruction Tuning</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation">Evaluation</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gpt-assisted-evaluation">GPT-assisted Evaluation</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#citation">Citation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#acknowledgement">Acknowledgement</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#related-projects">Related Projects</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By InternVL Authors
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, OpenGVLab.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+  Last updated on Jul 25, 2024.
+  <br/>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

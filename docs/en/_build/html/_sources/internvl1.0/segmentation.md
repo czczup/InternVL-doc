@@ -1,6 +1,6 @@
 # InternViT-6B for Semantic Segmentation
 
-This folder contains the implementation of the InternViT-6B for semantic segmentation, which corresponds to Section 4.2.2 of our [InternVL 1.0 paper](https://arxiv.org/pdf/2312.14238).
+This folder contains the implementation of the InternViT-6B for semantic segmentation, which is developed on top of [MMSegmentation v0.30.0](https://github.com/open-mmlab/mmsegmentation/tree/v0.30.0), corresponding to Section 4.2.2 of our [InternVL 1.0 paper](https://arxiv.org/pdf/2312.14238).
 
 In this part, we validate the visual perception capabilities of InternViT-6B, the most core component of InternVL 1.0.
 To investigate the pixel-level perceptual capacity of InternViT-6B, we conduct extensive experiments of semantic segmentation on the ADE20K dataset.
@@ -8,7 +8,7 @@ To investigate the pixel-level perceptual capacity of InternViT-6B, we conduct e
 ## Data Preparation
 
 To set up your dataset for segmentation, it is recommended to symlink the dataset root to `segmentation/data`. If your folder structure is different, you may need to adjust the corresponding paths in the config files.
-  
+
 ```none
 segmentation
 ├── data
@@ -28,9 +28,9 @@ If you want to use other datasets, please refer to the [guidelines](https://gith
 
 ## Model Preparation
 
-| model name         | type    | download                                                                                  | size  |
-| ------------------ | ------- | ----------------------------------------------------------------------------------------- | :---: |
-| InternViT-6B-224px | pytorch | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL/blob/main/intern_vit_6b_224px.pth) | 12 GB |
+| model name              | type    | download                                                                                  | size  |
+| ----------------------- | ------- | ----------------------------------------------------------------------------------------- | :---: |
+| intern_vit_6b_224px.pth | pytorch | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL/blob/main/intern_vit_6b_224px.pth) | 12 GB |
 
 Please download the above model weight and place it in the `pretrained/` folder:
 
@@ -60,7 +60,7 @@ GPUS=8 sh slurm_train.sh <partition> <job-name> configs/intern_vit_6b/linear_pro
 
 Note, it is normal for the following information to appear during training and it can be safely ignored:
 
-> INFO:mmseg:_IncompatibleKeys(missing_keys=[], unexpected_keys=['clip_projector.norm1_q.weight', 'clip_projector.norm1_q.bias', 'clip_projector.norm1_k.weight', 'clip_projector.norm1_k.bias', 'clip_projector.norm1_v.weight', 'clip_projector.norm1_v.bias', 'clip_projector.cross_attn.q_bias', 'clip_projector.cross_attn.k_bias', 'clip_projector.cross_attn.v_bias', 'clip_projector.cross_attn.q.weight', 'clip_projector.cross_attn.k.weight', 'clip_projector.cross_attn.v.weight', 'clip_projector.cross_attn.proj.weight', 'clip_projector.cross_attn.proj.bias'])
+> INFO:mmseg:\_IncompatibleKeys(missing_keys=\[\], unexpected_keys=\['clip_projector.norm1_q.weight', 'clip_projector.norm1_q.bias', 'clip_projector.norm1_k.weight', 'clip_projector.norm1_k.bias', 'clip_projector.norm1_v.weight', 'clip_projector.norm1_v.bias', 'clip_projector.cross_attn.q_bias', 'clip_projector.cross_attn.k_bias', 'clip_projector.cross_attn.v_bias', 'clip_projector.cross_attn.q.weight', 'clip_projector.cross_attn.k.weight', 'clip_projector.cross_attn.v.weight', 'clip_projector.cross_attn.proj.weight', 'clip_projector.cross_attn.proj.bias'\])
 
 ## Evaluation
 
@@ -88,3 +88,6 @@ For example, to evaluate the `InternViT-6B` with a single node with 8 GPUs:
 ```bash
 sh dist_test.sh configs/intern_vit_6b/linear_probing/linear_intern_vit_6b_504_80k_ade20k_bs16_lr4e-5_frozen.py checkpoints/linear_intern_vit_6b_504_80k_ade20k_bs16_lr4e-5_frozen.pth 8 --eval mIoU
 ```
+
+<br>
+<br>

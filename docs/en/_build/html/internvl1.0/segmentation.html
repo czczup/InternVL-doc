@@ -49,10 +49,11 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'internvl1.0/segmentation';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="InternViT-6B for Image Classification" href="classification.html" />
+    <link rel="next" title="InternVL for Multimodal Dialogue using LLaVA Codebase" href="internvl_chat_llava.html" />
+    <link rel="prev" title="InternVL for Zero-Shot Image Classification &amp; Image-Text Retrieval" href="clip_benchmark.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-    <meta name="docbuild:last-update" content="Jul 24, 2024"/>
+    <meta name="docbuild:last-update" content="Jul 25, 2024"/>
   </head>
   
   
@@ -146,32 +147,15 @@
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Get Started</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get Started</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL-Chat</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../build.html">Build from source</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL-Chat-LLaVA</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../build.html">Build from source</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Classification</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../build.html">Build from source</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">CLIP Benchmark</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../build.html">Build from source</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL-G</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../build.html">Build from source</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/installation.html">Installation</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL 1.0</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="classification.html">classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clip_benchmark.html">clip_benchmark</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">segmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internvl_chat_llava.html">internvl_chat_llava</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internvl_g.html">internvl_g</a></li>
 </ul>
 
     </div>
@@ -226,7 +210,7 @@
       
       
       
-      <li><a href="https://github.com/InternLM/internvl" target="_blank"
+      <li><a href="https://github.com/OpenGVLab/InternVL" target="_blank"
    class="btn btn-sm btn-source-repository-button dropdown-item"
    title="Source repository"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -243,7 +227,7 @@
       
       
       
-      <li><a href="https://github.com/InternLM/internvl/blob/main/docs/en/internvl1.0/segmentation.md?plain=1" target="_blank"
+      <li><a href="https://github.com/OpenGVLab/InternVL/blob/main/docs/en/internvl1.0/segmentation.md?plain=1" target="_blank"
    class="btn btn-sm btn-source-file-button dropdown-item"
    title="Show source"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -260,7 +244,7 @@
       
       
       
-      <li><a href="https://github.com/InternLM/internvl/edit/main/docs/en/internvl1.0/segmentation.md" target="_blank"
+      <li><a href="https://github.com/OpenGVLab/InternVL/edit/main/docs/en/internvl1.0/segmentation.md" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -277,7 +261,7 @@
       
       
       
-      <li><a href="https://github.com/InternLM/internvl/issues/new?title=Issue%20on%20page%20%2Finternvl1.0/segmentation.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/OpenGVLab/InternVL/issues/new?title=Issue%20on%20page%20%2Finternvl1.0/segmentation.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -418,7 +402,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="internvit-6b-for-semantic-segmentation">
 <h1>InternViT-6B for Semantic Segmentation<a class="headerlink" href="#internvit-6b-for-semantic-segmentation" title="Permalink to this heading">#</a></h1>
-<p>This folder contains the implementation of the InternViT-6B for semantic segmentation, which corresponds to Section 4.2.2 of our <a class="reference external" href="https://arxiv.org/pdf/2312.14238">InternVL 1.0 paper</a>.</p>
+<p>This folder contains the implementation of the InternViT-6B for semantic segmentation, which is developed on top of <a class="reference external" href="https://github.com/open-mmlab/mmsegmentation/tree/v0.30.0">MMSegmentation v0.30.0</a>, corresponding to Section 4.2.2 of our <a class="reference external" href="https://arxiv.org/pdf/2312.14238">InternVL 1.0 paper</a>.</p>
 <p>In this part, we validate the visual perception capabilities of InternViT-6B, the most core component of InternVL 1.0.
 To investigate the pixel-level perceptual capacity of InternViT-6B, we conduct extensive experiments of semantic segmentation on the ADE20K dataset.</p>
 <section id="data-preparation">
@@ -450,7 +434,7 @@ To investigate the pixel-level perceptual capacity of InternViT-6B, we conduct e
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>InternViT-6B-224px</p></td>
+<tr class="row-even"><td><p>intern_vit_6b_224px.pth</p></td>
 <td><p>pytorch</p></td>
 <td><p>🤗 <a class="reference external" href="https://huggingface.co/OpenGVLab/InternVL/blob/main/intern_vit_6b_224px.pth">HF link</a></p></td>
 <td class="text-center"><p>12 GB</p></td>
@@ -564,6 +548,8 @@ wget<span class="w"> </span>https://huggingface.co/OpenGVLab/InternVL/resolve/ma
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sh<span class="w"> </span>dist_test.sh<span class="w"> </span>configs/intern_vit_6b/linear_probing/linear_intern_vit_6b_504_80k_ade20k_bs16_lr4e-5_frozen.py<span class="w"> </span>checkpoints/linear_intern_vit_6b_504_80k_ade20k_bs16_lr4e-5_frozen.pth<span class="w"> </span><span class="m">8</span><span class="w"> </span>--eval<span class="w"> </span>mIoU
 </pre></div>
 </div>
+<br>
+<br>
 </section>
 </section>
 
@@ -579,13 +565,22 @@ wget<span class="w"> </span>https://huggingface.co/OpenGVLab/InternVL/resolve/ma
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="classification.html"
+       href="clip_benchmark.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">InternViT-6B for Image Classification</p>
+        <p class="prev-next-title">InternVL for Zero-Shot Image Classification &amp; Image-Text Retrieval</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="internvl_chat_llava.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">InternVL for Multimodal Dialogue using LLaVA Codebase</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -639,7 +634,7 @@ By InternVL Authors
   
   <div class="footer-item">
     <p class="last-updated">
-  Last updated on Jul 24, 2024.
+  Last updated on Jul 25, 2024.
   <br/>
 </p>
   </div>

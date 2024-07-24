@@ -49,10 +49,10 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'index';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Get Started" href="get_started.html" />
+    <link rel="next" title="Installation" href="get_started/installation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-    <meta name="docbuild:last-update" content="Jul 24, 2024"/>
+    <meta name="docbuild:last-update" content="Jul 25, 2024"/>
   </head>
   
   
@@ -146,32 +146,19 @@
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Get Started</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="get_started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get_started/installation.html">Installation</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL-Chat</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL 1.1</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="build.html">Build from source</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL-Chat-LLaVA</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="build.html">Build from source</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Classification</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="build.html">Build from source</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">CLIP Benchmark</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="build.html">Build from source</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL-G</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="build.html">Build from source</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internvl1.1/internvl_chat.html">internvl_chat</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL 1.0</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="internvl1.0/classification.html">classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internvl1.0/clip_benchmark.html">clip_benchmark</a></li>
 <li class="toctree-l1"><a class="reference internal" href="internvl1.0/segmentation.html">segmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internvl1.0/internvl_chat_llava.html">internvl_chat_llava</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internvl1.0/internvl_g.html">internvl_g</a></li>
 </ul>
 
     </div>
@@ -226,7 +213,7 @@
       
       
       
-      <li><a href="https://github.com/InternLM/internvl" target="_blank"
+      <li><a href="https://github.com/OpenGVLab/InternVL" target="_blank"
    class="btn btn-sm btn-source-repository-button dropdown-item"
    title="Source repository"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -243,7 +230,7 @@
       
       
       
-      <li><a href="https://github.com/InternLM/internvl/blob/main/docs/en/index.rst?plain=1" target="_blank"
+      <li><a href="https://github.com/OpenGVLab/InternVL/blob/main/docs/en/index.rst?plain=1" target="_blank"
    class="btn btn-sm btn-source-file-button dropdown-item"
    title="Show source"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -260,7 +247,7 @@
       
       
       
-      <li><a href="https://github.com/InternLM/internvl/edit/main/docs/en/index.rst" target="_blank"
+      <li><a href="https://github.com/OpenGVLab/InternVL/edit/main/docs/en/index.rst" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -277,7 +264,7 @@
       
       
       
-      <li><a href="https://github.com/InternLM/internvl/issues/new?title=Issue%20on%20page%20%2Findex.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/OpenGVLab/InternVL/issues/new?title=Issue%20on%20page%20%2Findex.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -425,8 +412,11 @@ document.write(`
 <figure class="align-center">
 <img alt="InternVL" class="no-scaled-link" src="_images/internvl-logo.svg" width="50%" /></figure>
 <p style="text-align:center">
-<strong>LMDeploy is a toolkit for compressing, deploying, and serving LLM.
+<strong>InternVL Family: Closing the Gap to Commercial Multimodal Models with <br>Open-Source Suites —— A Pioneering Open-Source Alternative to GPT-4o.
 </strong>
+ <br><br>
+ <a href="https://trendshift.io/repositories/9803" target="_blank"><img src="https://trendshift.io/api/badge/repositories/9803" alt="OpenGVLab%2FInternVL | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
+ <img height="55" alt="image" src="https://github.com/user-attachments/assets/bd62ab46-f0ea-40c6-ab10-7fde671716cc">
 </p>
 
 <p style="text-align:center">
@@ -434,64 +424,28 @@ document.write(`
 <a class="github-button" href="https://github.com/OpenGVLab/InternVL" data-show-count="true" data-size="large" aria-label="Star">Star</a>
 <a class="github-button" href="https://github.com/OpenGVLab/InternVL/subscription" data-icon="octicon-eye" data-size="large" aria-label="Watch">Watch</a>
 <a class="github-button" href="https://github.com/OpenGVLab/InternVL/fork" data-icon="octicon-repo-forked" data-size="large" aria-label="Fork">Fork</a>
-</p><p>LMDeploy has the following core features:</p>
-<ul class="simple">
-<li><p><strong>Efficient Inference</strong>: LMDeploy delivers up to 1.8x higher request throughput than vLLM, by introducing key features like persistent batch(a.k.a. continuous batching), blocked KV cache, dynamic split&amp;fuse, tensor parallelism, high-performance CUDA kernels and so on.</p></li>
-<li><p><strong>Effective Quantization</strong>: LMDeploy supports weight-only and k/v quantization, and the 4-bit inference performance is 2.4x higher than FP16. The quantization quality has been confirmed via OpenCompass evaluation.</p></li>
-<li><p><strong>Effortless Distribution Server</strong>: Leveraging the request distribution service, LMDeploy facilitates an easy and efficient deployment of multi-model services across multiple machines and cards.</p></li>
-<li><p><strong>Interactive Inference Mode</strong>: By caching the k/v of attention during multi-round dialogue processes, the engine remembers dialogue history, thus avoiding repetitive processing of historical sessions.</p></li>
-<li><p><strong>Excellent Compatibility</strong>: LMDeploy supports <a class="reference external" href="https://lmdeploy.readthedocs.io/en/latest/quantization/kv_quant.html">KV Cache Quant</a>, <a class="reference external" href="https://lmdeploy.readthedocs.io/en/latest/quantization/w4a16.html">AWQ</a> and <a class="reference external" href="https://lmdeploy.readthedocs.io/en/latest/inference/turbomind_config.html">Automatic Prefix Caching</a> to be used simultaneously.</p></li>
-</ul>
-<section id="documentation">
+</p><section id="documentation">
 <h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this heading">#</a></h2>
 <div class="toctree-wrapper compound" id="get-started">
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Get Started</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="get_started.html">Get Started</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="get_started.html#installation">Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="get_started.html#offline-batch-inference">Offline batch inference</a></li>
-<li class="toctree-l2"><a class="reference internal" href="get_started.html#serving">Serving</a></li>
-<li class="toctree-l2"><a class="reference internal" href="get_started.html#quantization">Quantization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="get_started.html#useful-tools">Useful Tools</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="get_started/installation.html">Installation</a></li>
 </ul>
 </div>
-<div class="toctree-wrapper compound" id="internvl-chat">
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL-Chat</span></p>
+<div class="toctree-wrapper compound" id="internvl-1-1">
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL 1.1</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="build.html">Build from source</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internvl1.1/internvl_chat.html">internvl_chat</a></li>
 </ul>
 </div>
-<div class="toctree-wrapper compound" id="internvl-chat-llava">
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL-Chat-LLaVA</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="build.html">Build from source</a></li>
-</ul>
-</div>
-<div class="toctree-wrapper compound" id="classification">
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Classification</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="build.html">Build from source</a></li>
-</ul>
-</div>
-<div class="toctree-wrapper compound" id="clip-benchmark">
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">CLIP Benchmark</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="build.html">Build from source</a></li>
-</ul>
-</div>
-<div class="toctree-wrapper compound" id="internvl-g">
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL-G</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="build.html">Build from source</a></li>
-</ul>
-</div>
-<div class="toctree-wrapper compound" id="segmentation">
+<div class="toctree-wrapper compound" id="internvl-1-0">
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL 1.0</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="internvl1.0/classification.html">classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internvl1.0/clip_benchmark.html">clip_benchmark</a></li>
 <li class="toctree-l1"><a class="reference internal" href="internvl1.0/segmentation.html">segmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internvl1.0/internvl_chat_llava.html">internvl_chat_llava</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internvl1.0/internvl_g.html">internvl_g</a></li>
 </ul>
 </div>
 </section>
@@ -516,11 +470,11 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="right-next"
-       href="get_started.html"
+       href="get_started/installation.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Get Started</p>
+        <p class="prev-next-title">Installation</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -580,7 +534,7 @@ By InternVL Authors
   
   <div class="footer-item">
     <p class="last-updated">
-  Last updated on Jul 24, 2024.
+  Last updated on Jul 25, 2024.
   <br/>
 </p>
   </div>

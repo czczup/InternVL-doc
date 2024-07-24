@@ -16,16 +16,13 @@ import sys
 
 sys.path.insert(0, os.path.abspath('../..'))
 
-version_file = '../../lmdeploy/version.py'
-with open(version_file, 'r') as f:
-    exec(compile(f.read(), version_file, 'exec'))
-__version__ = locals()['__version__']
+__version__ = '2.0.0'
 
 # -- Project information -----------------------------------------------------
 
-project = 'lmdeploy'
-copyright = '2021-2024, OpenMMLab'
-author = 'LMDeploy Authors'
+project = 'internvl'
+copyright = '2024, OpenGVLab'
+author = 'InternVL Authors'
 
 # The short X.Y version
 version = __version__
@@ -94,7 +91,7 @@ pygments_style = 'sphinx'
 #
 # html_theme = 'sphinx_rtd_theme'
 html_theme = 'sphinx_book_theme'
-html_logo = '_static/image/lmdeploy-logo.svg'
+html_logo = '_static/image/internvl-logo.svg'
 html_title = project
 html_copy_source = True
 html_last_updated_fmt = ''
@@ -104,7 +101,7 @@ html_last_updated_fmt = ''
 #
 html_theme_options = {
     'path_to_docs': 'docs/en',
-    'repository_url': 'https://github.com/InternLM/lmdeploy',
+    'repository_url': 'https://github.com/OpenGVLab/InternVL',
     'repository_branch': 'main',
     'show_navbar_depth': 3,
     'max_navbar_depth': 4,
@@ -119,7 +116,7 @@ html_theme_options = {
     # "icon_links": [
     #     {
     #         "name": "切换至简体中文",
-    #         "url": "https://lmdeploy.readthedocs.io/en/latest",
+    #         "url": "https://internvl.readthedocs.io/en/latest",
     #         "icon": "https://img.shields.io/badge/Doc-%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87-blue", # noqa: #501
     #         "type": "url",
     #     },
@@ -160,7 +157,7 @@ myst_heading_anchors = 5
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'lmdeploydoc'
+htmlhelp_basename = 'internvldoc'
 
 # -- Options for LaTeX output ------------------------------------------------
 
@@ -186,7 +183,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'lmdeploy.tex', 'lmdeploy Documentation',
+    (master_doc, 'internvl.tex', 'internvl Documentation',
      'LMDeploy Contributors', 'manual'),
 ]
 
@@ -194,7 +191,7 @@ latex_documents = [
 
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
-man_pages = [(master_doc, 'lmdeploy', 'lmdeploy Documentation', [author], 1)]
+man_pages = [(master_doc, 'internvl', 'internvl Documentation', [author], 1)]
 
 # -- Options for Texinfo output ----------------------------------------------
 
@@ -202,7 +199,7 @@ man_pages = [(master_doc, 'lmdeploy', 'lmdeploy Documentation', [author], 1)]
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'lmdeploy', 'lmdeploy Documentation', author, 'lmdeploy',
+    (master_doc, 'internvl', 'internvl Documentation', author, 'internvl',
      'One line description of project.', 'Miscellaneous'),
 ]
 

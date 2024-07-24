@@ -1,18 +1,17 @@
 # InternViT-6B for Image Classification
 
-This folder contains the implementation of the InternViT-6B for image classification.
-
+This folder contains the implementation of the InternViT-6B for image classification, which corresponds to Section 4.2.1 of our [InternVL 1.0 paper](https://arxiv.org/pdf/2312.14238).
 The codebase for this part is derived from [InternImage](https://github.com/OpenGVLab/InternImage), with some code references to [EVA](https://github.com/baaivision/EVA/tree/master) and [DINOv2](https://github.com/facebookresearch/dinov2). Thanks for their great work.
+
+In this part, we validate the visual perception capabilities of InternViT-6B, the most core component of InternVL 1.0.
+We evaluate the quality of visual representation produced by InternViT-6B using the ImageNet-1K dataset. Following common practices, we adopt the linear probing evaluation, i.e. training a linear classifier while keeping the backbone frozen. In addition to the ImageNet-1K validation set,
+we also report performance metrics on several ImageNet variants, to benchmark the domain generalization capability.
 
 InternViT-6B follows the structure of vanilla ViT, and its hyperparameters are listed in the table below.
 
 <img width="558" alt="image" src="https://github.com/OpenGVLab/InternVL/assets/23737120/e6bb0151-ab2f-4436-982f-6c68c5a69bc4">
 
-## 🛠️ Installation
-
-See [INSTALLATION.md](../INSTALLATION.md)
-
-## 📦 Data Preparation
+## Data Preparation
 
 > Please prepare the dataset according to your needs.
 
@@ -27,7 +26,8 @@ See [INSTALLATION.md](../INSTALLATION.md)
 - `ImageNet-Sketch`: Download it using `gdown`.
 
   ```shell
-  # GDown is needed to download the dataset. Please install it via `pip install gdown`
+  # GDown is needed to download the dataset.
+  # Please install it via `pip install gdown`
   gdown --id 1Mj0i5HBthqH1p_yeXzsg22gZduvgoNeA
   ```
 
@@ -64,17 +64,17 @@ unzip train.txt.zip
 unzip val.txt.zip
 ```
 
-## 📦 Model Preparation
+## Model Preparation
 
-| model name              | type    | download                                                                                       |  size   |
-| ----------------------- | ------- | ---------------------------------------------------------------------------------------------- | :-----: |
-| InternViT-6B-224px      | pytorch | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL/blob/main/intern_vit_6b_224px.pth)      |  12 GB  |
-| InternViT-6B-224px-head | pytorch | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL/blob/main/intern_vit_6b_224px_head.pth) | 25.7 MB |
+| model name                   | type    | download                                                                                       |  size   |
+| ---------------------------- | ------- | ---------------------------------------------------------------------------------------------- | :-----: |
+| intern_vit_6b_224px.pth      | pytorch | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL/blob/main/intern_vit_6b_224px.pth)      |  12 GB  |
+| intern_vit_6b_224px_head.pth | pytorch | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL/blob/main/intern_vit_6b_224px_head.pth) | 25.7 MB |
 
 Please download the above model weights and place them in the `pretrained/` folder.
 
 ```sh
-cd pretrained/
+cd pretrained
 wget https://huggingface.co/OpenGVLab/InternVL/resolve/main/intern_vit_6b_224px.pth
 wget https://huggingface.co/OpenGVLab/InternVL/resolve/main/intern_vit_6b_224px_head.pth
 ```
@@ -87,9 +87,9 @@ pretrained
 └── intern_vit_6b_224px.pth
 ```
 
-## 🔍 Linear Probing on ImageNet-1K
+## Linear Probing on ImageNet-1K
 
-> Note, please install apex before training (see installation guide above for details).
+> **Warning**: Please install `apex` before training (see [installation guide](../get_started/installation.md#additional-instructions) for details).
 
 To train a linear classifier for `InternViT-6B` on ImageNet with 8 GPUs, run:
 
@@ -99,11 +99,17 @@ python -m torch.distributed.launch --nproc_per_node 8 --master_port 12345 main.p
 GPUS=8 sh train_in1k.sh <partition> <job-name> configs/intern_vit_6b_1k_224.yaml --launcher slurm
 ```
 
-## 📊 Evaluation
+Note, it is normal for the following information to appear during training and it can be safely ignored:
 
-| model name                                                     | IN-1K | IN-ReaL | IN-V2 | IN-A | IN-R | IN-Sketch |                                                                       download                                                                       |
-| -------------------------------------------------------------- | :---: | :-----: | :---: | :--: | :--: | :-------: | :--------------------------------------------------------------------------------------------------------------------------------------------------: |
-| [intern_vit_6b_1k_224.yaml](configs/intern_vit_6b_1k_224.yaml) | 88.2  |  90.4   | 79.9  | 77.5 | 89.8 |   69.1    | [ckpt](https://huggingface.co/OpenGVLab/InternVL/resolve/main/intern_vit_6b_224px_head.pth) \| [log](./work_dirs/intern_vit_6b_1k_224/log_rank0.txt) |
+> \_IncompatibleKeys(missing_keys=\[\], unexpected_keys=\['clip_projector.norm1_q.weight', 'clip_projector.norm1_q.bias', 'clip_projector.norm1_k.weight', 'clip_projector.norm1_k.bias', 'clip_projector.norm1_v.weight', 'clip_projector.norm1_v.bias', 'clip_projector.cross_attn.q_bias', 'clip_projector.cross_attn.k_bias', 'clip_projector.cross_attn.v_bias', 'clip_projector.cross_attn.q.weight', 'clip_projector.cross_attn.k.weight', 'clip_projector.cross_attn.v.weight', 'clip_projector.cross_attn.proj.weight', 'clip_projector.cross_attn.proj.bias'\])
+
+## Evaluation
+
+> **Warning**: Please install `apex` before evaluation (see [installation guide](../get_started/installation.md#additional-instructions) for details).
+
+| model name                                                                                                                    | IN-1K | IN-ReaL | IN-V2 | IN-A | IN-R | IN-Sketch |                                                                       download                                                                       |
+| ----------------------------------------------------------------------------------------------------------------------------- | :---: | :-----: | :---: | :--: | :--: | :-------: | :--------------------------------------------------------------------------------------------------------------------------------------------------: |
+| [intern_vit_6b_1k_224.yaml](https://github.com/OpenGVLab/InternVL/blob/main/classification/configs/intern_vit_6b_1k_224.yaml) | 88.2  |  90.4   | 79.9  | 77.5 | 89.8 |   69.1    | [ckpt](https://huggingface.co/OpenGVLab/InternVL/resolve/main/intern_vit_6b_224px_head.pth) \| [log](./work_dirs/intern_vit_6b_1k_224/log_rank0.txt) |
 
 <details>
   <summary>Evaluate InternViT-6B on <b>ImageNet-1K val</b> with 8 GPUs (click to expand).</summary>
@@ -226,3 +232,6 @@ Accuracy of the network on the 50889 test images: 69.1%
 ```
 
 </details>
+
+<br>
+<br>
