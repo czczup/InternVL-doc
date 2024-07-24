@@ -9,7 +9,7 @@ build:
 
 
 sphinx:
-  configuration: docs/en/conf.py
+  configuration: docs/conf.py
 
 
 python:
