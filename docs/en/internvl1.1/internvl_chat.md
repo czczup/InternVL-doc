@@ -1,509 +1,1097 @@
-# InternVL for Multimodal Dialogue using LLaVA Codebase
+# InternVL-Chat-V1-1
 
-This folder contains the implementation of the InternVL-Chat V1.0, which corresponds to Section 4.4 of our [InternVL 1.0 paper](https://arxiv.org/pdf/2312.14238).
+## Introduction
 
-In this part, we mainly use the [LLaVA codebase](https://github.com/haotian-liu/LLaVA) to evaluate InternVL in creating multimodal dialogue systems. Thanks for this great work.
-We have retained the original documentation of LLaVA-1.5 as a more detailed manual. In most cases, you will only need to refer to the new documentation that we have added.
+We released [🤗 InternVL-Chat-V1-1](https://huggingface.co/OpenGVLab/InternVL-Chat-V1-1), featuring a structure similar to LLaVA, including a ViT, an MLP projector, and an LLM.
+As shown in the figure below, we connected our InternViT-6B to LLaMA2-13B through a simple MLP projector. Note that the LLaMA2-13B used here is not the original model but an internal chat version obtained by incrementally pre-training and fine-tuning the LLaMA2-13B base model for Chinese language tasks. Overall, our model has a total of 19 billion parameters.
 
-> Note: To unify the environment across different tasks, we have made some compatibility modifications to the LLaVA-1.5 code, allowing it to support `transformers==4.37.2` (originally locked at 4.31.0). Please note that `transformers==4.37.2` should be installed.
+<p align="center">
+    <img src="https://cdn-uploads.huggingface.co/production/uploads/64119264f0f81eb569e0d569/HD29tU-g0An9FpQn1yK8X.png" style="width: 75%;">
+</p>
 
-## Installation
+In this version, we explored increasing the resolution to 448 × 448, enhancing OCR capabilities, and improving support for Chinese conversations. Since the 448 × 448 input image generates 1024 visual tokens after passing through the ViT, leading to a significant computational burden, we use a pixel shuffle operation to reduce the 1024 tokens to 256 tokens.
 
-First, follow the [installation guide](../INSTALLATION.md) to perform some basic installations.
-
-In addition, using this codebase requires executing the following steps:
-
-- Install other requirements:
-
-  ```bash
-  pip install --upgrade pip  # enable PEP 660 support
-  pip install -e .
-  ```
+For more detailed information about this model, please read our [blog](https://internvl.github.io/blog/2024-01-24-InternVL-1.1/).
 
 ## Model Preparation
 
-| model name              | type        | download                                                               |  size   |
-| ----------------------- | ----------- | ---------------------------------------------------------------------- | :-----: |
-| InternViT-6B-224px      | huggingface | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternViT-6B-224px)      |  12 GB  |
-| InternViT-6B-448px-V1-0 | huggingface | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternViT-6B-448px-V1-0) |  12 GB  |
-| vicuna-13b-v1.5         | huggingface | 🤗 [HF link](https://huggingface.co/lmsys/vicuna-7b-v1.5)              | 13.5 GB |
-| vicuna-7b-v1.5          | huggingface | 🤗 [HF link](https://huggingface.co/lmsys/vicuna-13b-v1.5)             | 26.1 GB |
+| model name         | type | download                                                          |  size   |
+| ------------------ | ---- | ----------------------------------------------------------------- | :-----: |
+| InternVL-Chat-V1-1 | MLLM | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL-Chat-V1-1) | 35.0 GB |
 
 Please download the above model weights and place them in the `pretrained/` folder.
 
 ```sh
 cd pretrained/
 # pip install -U huggingface_hub
-huggingface-cli download --resume-download --local-dir-use-symlinks False OpenGVLab/InternViT-6B-224px --local-dir InternViT-6B-224px
-huggingface-cli download --resume-download --local-dir-use-symlinks False OpenGVLab/InternViT-6B-448px-V1-0 --local-dir InternViT-6B-448px
-huggingface-cli download --resume-download --local-dir-use-symlinks False lmsys/vicuna-13b-v1.5 --local-dir vicuna-13b-v1.5
-huggingface-cli download --resume-download --local-dir-use-symlinks False lmsys/vicuna-7b-v1.5 --local-dir vicuna-7b-v1.5
+huggingface-cli download --resume-download --local-dir-use-symlinks False OpenGVLab/InternVL-Chat-V1-1 --local-dir InternVL-Chat-V1-1
 ```
 
 The directory structure is:
 
 ```sh
 pretrained
-│── InternViT-6B-224px/
-│── InternViT-6B-448px/
-│── vicuna-13b-v1.5/
-└── vicuna-7b-v1.5/
+└── InternVL-Chat-V1-1
 ```
 
-## Training
+## Performance
 
-- InternViT-6B-224px + Vicuna-7B:
+|             model              |  LLaVA-1.5   | InternVL-Chat-V1-0 | InternVL-Chat-V1-0 | InternVL-Chat-V1-1 |
+| :----------------------------: | :----------: | :----------------: | :----------------: | :----------------: |
+|           resolution           |     336      |        336         |        448         |        448         |
+|         vision encoder         | CLIP-L-336px | InternViT-6B-224px | InternViT-6B-448px | InternViT-6B-448px |
+|         language model         |  Vicuna-13B  |     Vicuna-13B     |     Vicuna-13B     |     LLaMA2-13B     |
+|                                |              |                    |                    |                    |
+|    VQAv2<sub>testdev</sub>     |     80.0     |        80.2        |        82.0        |        80.9        |
+|     GQA<sub>testdev</sub>      |     63.3     |        63.9        |        64.1        |        62.5        |
+|     VizWiz<sub>test</sub>      |     53.6     |        54.6        |        60.1        |        57.3        |
+|       SQA<sub>test</sub>       |     71.6     |        70.1        |        71.6        |        90.1        |
+| TextVQA<sub>val, w/o OCR</sub> |      -       |         -          |         -          |        64.2        |
+| TextVQA<sub>val, w/ OCR</sub>  |     61.3     |        58.7        |        64.8        |        68.6        |
+|              POPE              |     85.9     |        87.1        |        87.2        |        87.1        |
+|    MME<sub>perception</sub>    |    1531.3    |       1546.9       |       1579.0       |       1659.8       |
+|    MME<sub>cognition</sub>     |              |                    |                    |                    |
+|     MMB-EN<sub>test</sub>      |     67.7     |        66.5        |        68.2        |        75.4        |
+|     MMB-CN<sub>test</sub>      |     63.6     |        61.9        |        64.0        |        70.3        |
+|   MMVet<sub>GPT-4-0613</sub>   |     35.4     |        33.7        |        36.7        |        46.7        |
 
-```shell
-# pretrain
-CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 sh scripts_internvl/pretrain_internvit6b_224to336_vicuna7b.sh
-# finetune
-CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 sh scripts_internvl/finetune_internvit6b_224to336_vicuna7b.sh
+Here, we have conducted only a simple performance comparison. For more detailed performance information and additional evaluation metrics, please refer to our performance summary table.
+
+## Quick Start
+
+We provide an example code to run InternVL-Chat-V1-1 using `transformers`.
+
+We also welcome you to experience the InternVL2 series models in our [online demo](https://internvl.opengvlab.com/). Currently, due to the limited GPU resources with public IP addresses, we can only deploy models up to a maximum of 26B. We will expand soon and deploy larger models to the online demo.
+
+> Please use transformers==4.37.2 to ensure the model works normally.
+
+### Model Loading
+
+#### 16-bit (bf16 / fp16)
+
+```python
+import torch
+from transformers import AutoTokenizer, AutoModel, CLIPImageProcessor
+path = "OpenGVLab/InternVL-Chat-V1-1"
+model = AutoModel.from_pretrained(
+    path,
+    torch_dtype=torch.bfloat16,
+    low_cpu_mem_usage=True,
+    trust_remote_code=True).eval().cuda()
 ```
 
-- InternViT-6B-224px + Vicuna-13B:
+#### BNB 8-bit Quantization
 
-```shell
-# pretrain
-CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 sh scripts_internvl/pretrain_internvit6b_224to336_vicuna13b.sh
-# finetune
-CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 sh scripts_internvl/finetune_internvit6b_224to336_vicuna13b.sh
+```python
+import torch
+from transformers import AutoTokenizer, AutoModel, CLIPImageProcessor
+path = "OpenGVLab/InternVL-Chat-V1-1"
+model = AutoModel.from_pretrained(
+    path,
+    torch_dtype=torch.bfloat16,
+    load_in_8bit=True,
+    low_cpu_mem_usage=True,
+    trust_remote_code=True).eval()
 ```
 
-- InternViT-6B-448px + Vicuna-7B:
+#### BNB 4-bit Quantization
 
-```shell
-# pretrain
-CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 sh scripts_internvl/pretrain_internvit6b_448_vicuna7b.sh
-# finetune
-CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 sh scripts_internvl/finetune_internvit6b_448_vicuna7b.sh
+> **⚠️ Warning:** Due to significant quantization errors with BNB 4-bit quantization on InternViT-6B, the model may produce nonsensical outputs and fail to understand images. Therefore, please avoid using BNB 4-bit quantization.
+
+#### Multiple GPUs
+
+The reason for writing the code this way is to avoid errors that occur during multi-GPU inference due to tensors not being on the same device. By ensuring that the first and last layers of the large language model (LLM) are on the same device, we prevent such errors.
+
+```python
+import math
+import torch
+from transformers import AutoTokenizer, AutoModel, CLIPImageProcessor
+
+def split_model(model_name):
+    device_map = {}
+    world_size = torch.cuda.device_count()
+    num_layers = {'InternVL-Chat-V1-1': 40}[model_name]
+    # Since the first GPU will be used for ViT, treat it as half a GPU.
+    num_layers_per_gpu = math.ceil(num_layers / (world_size - 0.5))
+    num_layers_per_gpu = [num_layers_per_gpu] * world_size
+    num_layers_per_gpu[0] = math.ceil(num_layers_per_gpu[0] * 0.5)
+    layer_cnt = 0
+    for i, num_layer in enumerate(num_layers_per_gpu):
+        for j in range(num_layer):
+            device_map[f'language_model.model.layers.{layer_cnt}'] = i
+            layer_cnt += 1
+    device_map['vision_model'] = 0
+    device_map['mlp1'] = 0
+    device_map['language_model.model.tok_embeddings'] = 0
+    device_map['language_model.model.embed_tokens'] = 0
+    device_map['language_model.output'] = 0
+    device_map['language_model.model.norm'] = 0
+    device_map['language_model.lm_head'] = 0
+    device_map[f'language_model.model.layers.{num_layers - 1}'] = 0
+
+    return device_map
+
+path = "OpenGVLab/InternVL-Chat-V1-1"
+device_map = split_model('InternVL-Chat-V1-1')
+model = AutoModel.from_pretrained(
+    path,
+    torch_dtype=torch.bfloat16,
+    low_cpu_mem_usage=True,
+    trust_remote_code=True,
+    device_map=device_map).eval()
 ```
 
-- InternViT-6B-448px + Vicuna-13B:
+### Inference with Transformers
 
-```shell
-# pretrain
-CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 sh scripts_internvl/pretrain_internvit6b_448_vicuna13b.sh
-# finetune
-CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 sh scripts_internvl/finetune_internvit6b_448_vicuna13b.sh
+#### Pure-text conversation
+
+```python
+from transformers import AutoTokenizer, AutoModel
+import torch
+
+path = "OpenGVLab/InternVL-Chat-V1-1"
+model = AutoModel.from_pretrained(
+    path,
+    torch_dtype=torch.bfloat16,
+    low_cpu_mem_usage=True,
+    trust_remote_code=True).eval().cuda()
+tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True)
+
+generation_config = dict(num_beams=1, max_new_tokens=1024, do_sample=False)
+question = 'Hello, who are you?'
+response, history = model.chat(tokenizer, None, question, generation_config, history=None, return_history=True)
+print(f'User: {question}')
+print(f'Assistant: {response}')
+
+question = 'Can you tell me a story?'
+response, history = model.chat(tokenizer, None, question, generation_config, history=history, return_history=True)
+print(f'User: {question}')
+print(f'Assistant: {response}')
 ```
 
-## Model Zoo
+#### Single-image single-round conversation
 
-| method            | vision encoder |  LLM  | res. | VQAv2 | GQA  | VizWiz | SQA  | TextVQA | POPE |  MME   | MMB  | MMB<sub>CN</sub> | MMVet |                                       Download                                       |
-| ----------------- | :------------: | :---: | :--: | :---: | :--: | :----: | :--: | :-----: | :--: | :----: | :--: | :--------------: | :---: | :----------------------------------------------------------------------------------: |
-| LLaVA-1.5         |  CLIP-L-336px  | V-7B  | 336  | 78.5  | 62.0 |  50.0  | 66.8 |  58.2   | 85.9 | 1510.7 | 64.3 |       58.3       | 30.5  |            🤗 [HF link](https://huggingface.co/liuhaotian/llava-v1.5-7b)             |
-| LLaVA-1.5         |  CLIP-L-336px  | V-13B | 336  | 80.0  | 63.3 |  53.6  | 71.6 |  61.3   | 85.9 | 1531.3 | 67.7 |       63.6       | 35.4  |            🤗 [HF link](https://huggingface.co/liuhaotian/llava-v1.5-13b)            |
-| InternVL-Chat-1.0 | IViT-6B-224px  | V-7B  | 336  | 79.3  | 62.9 |  52.5  | 66.2 |  57.0   | 86.4 | 1525.1 | 64.6 |       57.6       | 31.2  |    🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL-Chat-ViT-6B-Vicuna-7B)     |
-| InternVL-Chat-1.0 | IViT-6B-224px  | V-13B | 336  | 80.2  | 63.9 |  54.6  | 70.1 |  58.7   | 87.1 | 1546.9 | 66.5 |       61.9       | 33.7  |    🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL-Chat-ViT-6B-Vicuna-13B)    |
-| InternVL-Chat-1.0 | IViT-6B-448px  | V-13B | 448  | 82.0  | 64.1 |  60.1  | 71.6 |  64.8   | 87.2 | 1579.0 | 68.2 |       64.0       | 36.7  | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL-Chat-ViT-6B-Vicuna-13B-448px) |
+```python
+from transformers import AutoTokenizer, AutoModel, CLIPImageProcessor
+from PIL import Image
+import torch
 
-Please download the above model weights and place them in the `pretrained/` folder.
+path = "OpenGVLab/InternVL-Chat-V1-1"
+model = AutoModel.from_pretrained(
+    path,
+    torch_dtype=torch.bfloat16,
+    low_cpu_mem_usage=True,
+    trust_remote_code=True).eval().cuda()
+tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True)
 
-```shell
-cd pretrained/
-# pip install -U huggingface_hub
-huggingface-cli download --resume-download --local-dir-use-symlinks False OpenGVLab/InternVL-Chat-ViT-6B-Vicuna-7B --local-dir InternVL-Chat-ViT-6B-Vicuna-7B
-huggingface-cli download --resume-download --local-dir-use-symlinks False OpenGVLab/InternVL-Chat-ViT-6B-Vicuna-13B --local-dir InternVL-Chat-ViT-6B-Vicuna-13B
-huggingface-cli download --resume-download --local-dir-use-symlinks False OpenGVLab/InternVL-Chat-ViT-6B-Vicuna-13B-448px --local-dir InternVL-Chat-ViT-6B-Vicuna-13B-448px
+image_processor = CLIPImageProcessor.from_pretrained(path)
+image = Image.open('./examples/image2.jpg').resize((448, 448))
+pixel_values = image_processor(images=image, return_tensors='pt').pixel_values.to(torch.bfloat16).cuda()
+
+generation_config = dict(num_beams=1, max_new_tokens=1024, do_sample=False)
+question = '<image>\nPlease describe the image shortly.'
+response = model.chat(tokenizer, pixel_values, question, generation_config)
+print(f'User: {question}')
+print(f'Assistant: {response}')
+```
+
+#### Single-image multi-round conversation
+
+```python
+from transformers import AutoTokenizer, AutoModel, CLIPImageProcessor
+from PIL import Image
+import torch
+
+path = "OpenGVLab/InternVL-Chat-V1-1"
+model = AutoModel.from_pretrained(
+    path,
+    torch_dtype=torch.bfloat16,
+    low_cpu_mem_usage=True,
+    trust_remote_code=True).eval().cuda()
+tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True)
+
+image_processor = CLIPImageProcessor.from_pretrained(path)
+image = Image.open('./examples/image2.jpg').resize((448, 448))
+pixel_values = image_processor(images=image, return_tensors='pt').pixel_values.to(torch.bfloat16).cuda()
+
+generation_config = dict(num_beams=1, max_new_tokens=1024, do_sample=False)
+question = '<image>\nPlease describe the image in detail.'
+response, history = model.chat(tokenizer, pixel_values, question, generation_config, history=None, return_history=True)
+print(f'User: {question}')
+print(f'Assistant: {response}')
+
+question = 'Please write a poem according to the image.'
+response, history = model.chat(tokenizer, pixel_values, question, generation_config, history=history, return_history=True)
+print(f'User: {question}')
+print(f'Assistant: {response}')
+```
+
+#### Multi-image multi-round conversation, combined images
+
+> **⚠️️ Warning:** Please note that for this model, we support multi-image chat in the interface, but the results are not very good due to the lack of training with multi-image data.
+
+```python
+from transformers import AutoTokenizer, AutoModel, CLIPImageProcessor
+from PIL import Image
+import torch
+
+path = "OpenGVLab/InternVL-Chat-V1-1"
+model = AutoModel.from_pretrained(
+    path,
+    torch_dtype=torch.bfloat16,
+    low_cpu_mem_usage=True,
+    trust_remote_code=True).eval().cuda()
+tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True)
+
+image_processor = CLIPImageProcessor.from_pretrained(path)
+image1 = Image.open('./examples/image1.jpg').resize((448, 448))
+pixel_values1 = image_processor(images=image1, return_tensors='pt').pixel_values.to(torch.bfloat16).cuda()
+image2 = Image.open('./examples/image2.jpg').resize((448, 448))
+pixel_values2 = image_processor(images=image2, return_tensors='pt').pixel_values.to(torch.bfloat16).cuda()
+pixel_values = torch.cat((pixel_values1, pixel_values2), dim=0)
+
+generation_config = dict(num_beams=1, max_new_tokens=1024, do_sample=False)
+question = '<image>\nDescribe the two images in detail.'
+response, history = model.chat(tokenizer, pixel_values, question, generation_config,
+                               history=None, return_history=True)
+print(f'User: {question}')
+print(f'Assistant: {response}')
+
+question = 'What are the similarities and differences between these two images.'
+response, history = model.chat(tokenizer, pixel_values, question, generation_config,
+                               history=history, return_history=True)
+print(f'User: {question}')
+print(f'Assistant: {response}')
+```
+
+#### Multi-image multi-round conversation, separate images
+
+> **⚠️️ Warning:** Please note that for this model, we support multi-image chat in the interface, but the results are not very good due to the lack of training with multi-image data.
+
+```python
+from transformers import AutoTokenizer, AutoModel, CLIPImageProcessor
+from PIL import Image
+import torch
+
+path = "OpenGVLab/InternVL-Chat-V1-1"
+model = AutoModel.from_pretrained(
+    path,
+    torch_dtype=torch.bfloat16,
+    low_cpu_mem_usage=True,
+    trust_remote_code=True).eval().cuda()
+tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True)
+
+image_processor = CLIPImageProcessor.from_pretrained(path)
+image1 = Image.open('./examples/image1.jpg').resize((448, 448))
+pixel_values1 = image_processor(images=image1, return_tensors='pt').pixel_values.to(torch.bfloat16).cuda()
+image2 = Image.open('./examples/image2.jpg').resize((448, 448))
+pixel_values2 = image_processor(images=image2, return_tensors='pt').pixel_values.to(torch.bfloat16).cuda()
+pixel_values = torch.cat((pixel_values1, pixel_values2), dim=0)
+num_patches_list = [pixel_values1.size(0), pixel_values2.size(0)]
+
+generation_config = dict(num_beams=1, max_new_tokens=1024, do_sample=False)
+question = 'Image-1: <image>\nImage-2: <image>\nDescribe the two images in detail.'
+response, history = model.chat(tokenizer, pixel_values, question, generation_config,
+                               num_patches_list=num_patches_list, history=None, return_history=True)
+print(f'User: {question}')
+print(f'Assistant: {response}')
+
+question = 'What are the similarities and differences between these two images.'
+response, history = model.chat(tokenizer, pixel_values, question, generation_config,
+                               num_patches_list=num_patches_list, history=history, return_history=True)
+print(f'User: {question}')
+print(f'Assistant: {response}')
+```
+
+#### Batch inference, single image per sample
+
+```python
+from transformers import AutoTokenizer, AutoModel, CLIPImageProcessor
+from PIL import Image
+import torch
+
+path = "OpenGVLab/InternVL-Chat-V1-1"
+model = AutoModel.from_pretrained(
+    path,
+    torch_dtype=torch.bfloat16,
+    low_cpu_mem_usage=True,
+    trust_remote_code=True).eval().cuda()
+tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True)
+
+image_processor = CLIPImageProcessor.from_pretrained(path)
+image1 = Image.open('./examples/image1.jpg').resize((448, 448))
+pixel_values1 = image_processor(images=image1, return_tensors='pt').pixel_values.to(torch.bfloat16).cuda()
+image2 = Image.open('./examples/image2.jpg').resize((448, 448))
+pixel_values2 = image_processor(images=image2, return_tensors='pt').pixel_values.to(torch.bfloat16).cuda()
+pixel_values = torch.cat((pixel_values1, pixel_values2), dim=0)
+num_patches_list = [pixel_values1.size(0), pixel_values2.size(0)]
+
+generation_config = dict(num_beams=1, max_new_tokens=1024, do_sample=False)
+questions = ['<image>\nDescribe the image in detail.'] * len(num_patches_list)
+responses = model.batch_chat(tokenizer, pixel_values,
+                             num_patches_list=num_patches_list,
+                             questions=questions,
+                             generation_config=generation_config)
+for question, response in zip(questions, responses):
+    print(f'User: {question}')
+    print(f'Assistant: {response}')
+```
+
+#### Video multi-round conversation
+
+> **⚠️️ Warning:** Please note that for this model, we support video chat in the interface, but the results are not very good due to the lack of training with video data.
+
+```python
+from transformers import AutoTokenizer, AutoModel, CLIPImageProcessor
+from decord import VideoReader, cpu
+from PIL import Image
+import numpy as np
+import torch
+
+
+def get_index(bound, fps, max_frame, first_idx=0, num_segments=32):
+    if bound:
+        start, end = bound[0], bound[1]
+    else:
+        start, end = -100000, 100000
+    start_idx = max(first_idx, round(start * fps))
+    end_idx = min(round(end * fps), max_frame)
+    seg_size = float(end_idx - start_idx) / num_segments
+    frame_indices = np.array([
+        int(start_idx + (seg_size / 2) + np.round(seg_size * idx))
+        for idx in range(num_segments)
+    ])
+    return frame_indices
+
+def load_video(video_path, bound=None, num_segments=32):
+    vr = VideoReader(video_path, ctx=cpu(0), num_threads=1)
+    max_frame = len(vr) - 1
+    fps = float(vr.get_avg_fps())
+
+    pixel_values_list, num_patches_list = [], []
+    image_processor = CLIPImageProcessor.from_pretrained(path)
+    frame_indices = get_index(bound, fps, max_frame, first_idx=0, num_segments=num_segments)
+    for frame_index in frame_indices:
+        img = Image.fromarray(vr[frame_index].asnumpy()).convert('RGB').resize((448, 448))
+        pixel_values = image_processor(images=img, return_tensors='pt').pixel_values
+        num_patches_list.append(pixel_values.shape[0])
+        pixel_values_list.append(pixel_values)
+    pixel_values = torch.cat(pixel_values_list)
+    return pixel_values, num_patches_list
+
+
+path = "OpenGVLab/InternVL-Chat-V1-1"
+model = AutoModel.from_pretrained(
+    path,
+    torch_dtype=torch.bfloat16,
+    low_cpu_mem_usage=True,
+    trust_remote_code=True).eval().cuda()
+tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True)
+
+generation_config = dict(num_beams=1, max_new_tokens=1024, do_sample=False)
+
+video_path = './examples/red-panda.mp4'
+pixel_values, num_patches_list = load_video(video_path, num_segments=8)
+pixel_values = pixel_values.to(torch.bfloat16).cuda()
+video_prefix = ''.join([f'Frame{i+1}: <image>\n' for i in range(len(num_patches_list))])
+question = video_prefix + 'What is the red panda doing?'
+# Frame1: <image>\nFrame2: <image>\n...\nFrame8: <image>\n{question}
+response, history = model.chat(tokenizer, pixel_values, question, generation_config,
+                               num_patches_list=num_patches_list, history=None, return_history=True)
+print(f'User: {question}')
+print(f'Assistant: {response}')
+
+question = 'Describe this video in detail.'
+response, history = model.chat(tokenizer, pixel_values, question, generation_config,
+                               num_patches_list=num_patches_list, history=history, return_history=True)
+print(f'User: {question}')
+print(f'Assistant: {response}')
+```
+
+#### Streaming output
+
+Besides this method, you can also use the following code to get streamed output.
+
+```python
+from transformers import TextIteratorStreamer
+from threading import Thread
+
+# Initialize the streamer
+streamer = TextIteratorStreamer(tokenizer, skip_prompt=True, skip_special_tokens=True, timeout=10)
+# Define the generation configuration
+generation_config = dict(num_beams=1, max_new_tokens=1024, do_sample=False, streamer=streamer)
+# Start the model chat in a separate thread
+thread = Thread(target=model.chat, kwargs=dict(
+    tokenizer=tokenizer, pixel_values=pixel_values, question=question,
+    history=None, return_history=False, generation_config=generation_config,
+))
+thread.start()
+
+# Initialize an empty string to store the generated text
+generated_text = ''
+# Loop through the streamer to get the new text as it is generated
+for new_text in streamer:
+    if new_text == model.conv_template.sep:
+        break
+    generated_text += new_text
+    print(new_text, end='', flush=True)  # Print each new chunk of generated text on the same line
+```
+
+## Evaluation
+
+To evaluate the performance of the InternVL-Chat-V1-1 model across various tasks, follow the instructions for each specific dataset. Ensure that the appropriate number of GPUs is allocated as specified.
+
+> 1⃣️ We simultaneously use InternVL and VLMEvalKit repositories for model evaluation. Specifically, the results reported for DocVQA, ChartQA, InfoVQA, TextVQA, MME, AI2D, MMBench, CCBench, MMVet, and SEED-Image were tested using the InternVL repository. OCRBench, RealWorldQA, HallBench, and MathVista were evaluated using the VLMEvalKit.
+
+> 2⃣️ Please note that evaluating the same model using different testing toolkits like InternVL and VLMEvalKit can result in slight differences, which is normal. Updates to code versions and variations in environment and hardware can also cause minor discrepancies in results.
+
+> 3⃣️️ Note, the dataset description is generated by GPT-4 and may contain errors.
+
+### Evaluation using InternVL Codebase
+
+#### MME
+
+MME is a comprehensive benchmark designed to evaluate Multimodal Large Language Models (MLLMs) on both perception and cognition abilities across 14 different subtasks, ensuring robust and diverse testing of these models.
+
+Please use the following command to perform the test with 1 GPU:
+
+```bash
+GPUS=1 sh evaluate.sh pretrained/InternVL-Chat-V1-1 mme
+```
+
+The expected test results are:
+
+```
+=========== Perception ===========
+total score: 1664.5088035214085
+
+         existence  score: 185.0
+         count  score: 173.33333333333334
+         position  score: 163.33333333333334
+         color  score: 190.0
+         posters  score: 161.22448979591837
+         celebrity  score: 149.11764705882354
+         scene  score: 153.5
+         landmark  score: 167.5
+         artwork  score: 144.0
+         OCR  score: 177.5
+
+
+=========== Cognition ===========
+total score: 360.7142857142857
+
+         commonsense_reasoning  score: 130.71428571428572
+         numerical_calculation  score: 70.0
+         text_translation  score: 110.0
+         code_reasoning  score: 50.0
+```
+
+#### OKVQA
+
+OKVQA (Outside Knowledge Visual Question Answering) is a dataset designed for visual question answering tasks that require external knowledge beyond what is visible in the image, featuring over 14,000 questions to evaluate the reasoning abilities of AI models.
+
+Please use the following command to perform the test with 8 GPU:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-1 vqa-okvqa-val
+```
+
+The expected test results are:
+
+```
+okvqa_val 0.6406262386048285
+```
+
+#### TextVQA
+
+TextVQA is a dataset designed to evaluate visual question answering models by requiring them to read and reason about text present within images, containing 45,336 questions over 28,408 images from the OpenImages dataset.
+
+The TextVQA dataset provides official OCR results, specifically Rosetta OCR tokens. During testing with InstructBLIP and LLaVA 1.5, the OCR results are input to the LLM as a prompt. If you want to input Rosetta OCR tokens, use the following command:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-1 vqa-textvqa-val-ocr
+```
+
+The expected test results are:
+
+```
+textvqa_val_ocr 0.686240000000003
+```
+
+If you do not want to input Rosetta OCR tokens, use this command:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-1 vqa-textvqa-val
+```
+
+The expected test results are:
+
+```
+textvqa_val 0.6420000000000028
+```
+
+#### VizWiz
+
+The VizWiz VQA dataset is a visual question answering dataset created to help answer visual questions posed by blind individuals. It contains over 31,000 visual questions, where users took a picture using a mobile phone and recorded a spoken question about it. Each question comes with 10 crowdsourced answers. This dataset addresses tasks such as predicting the answer to a visual question and determining whether a visual question can be answered.
+
+For the validation set, run:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-1 vqa-vizwiz-val
+```
+
+The expected test results are:
+
+```
+vizwiz_val 0.5899899435054417
+```
+
+For the test set, run:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-1 vqa-vizwiz-test
+```
+
+For the test set, submit the results to the [evaluation server](https://eval.ai/web/challenges/challenge-page/1911/my-submission).
+
+The expected test results are:
+
+```
+57.3
+```
+
+#### ChartQA
+
+The ChartQA dataset is a comprehensive benchmark for question answering about charts that involves both visual and logical reasoning. It includes a mix of 9.6K human-written questions and 23.1K machine-generated questions derived from chart summaries. This dataset is designed to evaluate models that can understand and analyze charts by answering complex questions that often require multiple logical and arithmetic operations, as well as referencing visual features of the charts.
+
+The ChartQA dataset includes two test sets: `chartqa_test_human` and `chartqa_test_augmented`. The final score for model evaluation is calculated as the average of the scores on these two test sets:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-1 vqa-chartqa-test
+```
+
+The expected test results are:
+
+```
+['chartqa_test_human', {'relaxed_accuracy': 0.4034}]
+['chartqa_test_augmented', {'relaxed_accuracy': 0.795}]
+average score = (40.34 + 79.5) / 2 = 59.9
+```
+
+#### DocVQA
+
+The DocVQA dataset consists of 50,000 questions on 12,000+ document images. It is designed for visual question answering tasks where questions are answered using text within the document images. The dataset includes OCR transcriptions and ground truth answers, supporting evaluation of models that interpret and extract information from documents.
+
+For the validation set, run:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-1 vqa-docvqa-val
+```
+
+The expected test results are:
+
+```
+Overall ANLS: 0.476
+```
+
+For the test set, run:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-1 vqa-docvqa-test
+```
+
+For the test set, submit the results to the [evaluation server](https://rrc.cvc.uab.es/?ch=17).
+
+The expected test results are:
+
+```
+Overall ANLS: 0.481
+```
+
+#### AI2D
+
+The AI2D dataset contains over 5,000 grade school science diagrams with extensive annotations and 15,000 multiple-choice questions for research on diagram understanding and question answering.
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-1 vqa-ai2d-test
+```
+
+The expected test results are:
+
+```
+ai2diagram_test {'accuracy': 0.7240140932642487}
+```
+
+#### InfographicVQA
+
+The InfographicVQA dataset is a collection of infographics accompanied by natural language questions and answers. This dataset includes a diverse range of infographics sourced from thousands of different websites, ensuring a variety of layouts and designs. It comprises 30,035 questions across 5,485 images, split into training, validation, and test sets.
+
+For the validation set, run:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-1 vqa-infovqa-val
+```
+
+The expected test results are:
+
+```
+Overall ANLS: 0.3334
+```
+
+For the test set, run:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-1 vqa-infovqa-test
+```
+
+For the test set, submit the results to the [evaluation server](https://rrc.cvc.uab.es/?ch=17).
+
+The expected test results are:
+
+```
+Overall ANLS: 0.320
+```
+
+#### GQA
+
+The GQA dataset is a large-scale visual question answering dataset designed for real-world visual reasoning and compositional question answering. It contains over 22 million questions grounded in real images, each accompanied by detailed scene graphs that describe objects, their attributes, and relationships within the scene. The dataset includes images from the Visual Genome dataset, with questions that require various reasoning skills such as spatial understanding and multi-step inference.
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-1 vqa-gqa-testdev
+```
+
+The expected test results are:
+
+```
+Accuracy: 62.46%
+```
+
+#### ScienceQA
+
+The ScienceQA dataset is a large-scale benchmark for multimodal science question answering, consisting of 21,208 multiple-choice questions derived from elementary and high school science curricula. This dataset features a diverse range of topics across natural science, social science, and language science. It includes questions with image context (48.7%), text context (48.2%), and both (30.8%).
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-1 scienceqa
+```
+
+The expected test results are:
+
+```
+Acc@1: 0.90133019335647
+```
+
+#### POPE
+
+The POPE (Polling-based Object Probing Evaluation) dataset is designed to evaluate object hallucination in MLLMs. The dataset consists of 3,000 questions related to the captions of 500 images. By treating the MLLMs' answers to these questions as a binary classification task, the dataset allows researchers to measure accuracy, precision, recall, and F1 scores to determine the extent of hallucination in the models.
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-1 pope
+```
+
+The expected test results are:
+
+```
+Category: random, # samples: 2910
+TP      FP      TN      FN
+1196    14      1396    304
+Accuracy: 0.8907216494845361
+Precision: 0.9884297520661157
+Recall: 0.7973333333333333
+F1 score: 0.8826568265682657
+Yes ratio: 0.41580756013745707
+0.883, 0.891, 0.988, 0.797, 0.416
+====================================
+Category: popular, # samples: 3000
+TP      FP      TN      FN
+1196    47      1453    304
+Accuracy: 0.883
+Precision: 0.9621882542236525
+Recall: 0.7973333333333333
+F1 score: 0.8720379146919431
+Yes ratio: 0.41433333333333333
+0.872, 0.883, 0.962, 0.797, 0.414
+====================================
+Category: adversarial, # samples: 3000
+TP      FP      TN      FN
+1196    89      1411    304
+Accuracy: 0.869
+Precision: 0.930739299610895
+Recall: 0.7973333333333333
+F1 score: 0.858886894075404
+Yes ratio: 0.42833333333333334
+0.859, 0.869, 0.931, 0.797, 0.428
+====================================
+
+(0.883 + 0.872 + 0.859) / 3 = 87.1
+```
+
+#### Tiny LVLM
+
+The Tiny LVLM-eHub is a streamlined evaluation benchmark designed to assess the multimodal capabilities of MLLMs, including models like Bard. It focuses on six categories of multimodal abilities: visual perception, visual knowledge acquisition, visual reasoning, visual commonsense, object hallucination, and embodied intelligence.
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-1 tiny_lvlm
+```
+
+The expected test results are:
+
+```
+Visual_Knowledge_Acquisition: 0.74
+Object_Hallucination: 0.8966666666666666
+Visual_Commonsense: 0.6
+Visual_Perception: 0.574
+Visual_Reasoning: 0.6218181818181818
+Overall: 3.4324848484848486
+```
+
+#### MMMU
+
+The MMMU dataset is a comprehensive benchmark designed to evaluate multimodal models on college-level tasks that require domain-specific knowledge and reasoning. It includes 11,500 questions sourced from college exams, quizzes, and textbooks, spanning six disciplines: Art & Design, Business, Science, Health & Medicine, Humanities & Social Science, and Tech & Engineering. These questions cover 30 subjects and feature 30 types of images, such as charts, diagrams, maps, tables, and more.
+
+For the validation set, run:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-1 mmmu-val
+```
+
+The expected test results are:
+
+```
+{'Overall-Art and Design': {'num': 120, 'acc': 0.558}, 'Art': {'num': 30, 'acc': 0.633}, 'Art_Theory': {'num': 30, 'acc': 0.7}, 'Design': {'num': 30, 'acc': 0.633}, 'Music': {'num': 30, 'acc': 0.267}, 'Overall-Business': {'num': 150, 'acc': 0.313}, 'Accounting': {'num': 30, 'acc': 0.333}, 'Economics': {'num': 30, 'acc': 0.4}, 'Finance': {'num': 30, 'acc': 0.133}, 'Manage': {'num': 30, 'acc': 0.433}, 'Marketing': {'num': 30, 'acc': 0.267}, 'Overall-Science': {'num': 150, 'acc': 0.333}, 'Biology': {'num': 30, 'acc': 0.367}, 'Chemistry': {'num': 30, 'acc': 0.3}, 'Geography': {'num': 30, 'acc': 0.267}, 'Math': {'num': 30, 'acc': 0.4}, 'Physics': {'num': 30, 'acc': 0.333}, 'Overall-Health and Medicine': {'num': 150, 'acc': 0.393}, 'Basic_Medical_Science': {'num': 30, 'acc': 0.367}, 'Clinical_Medicine': {'num': 30, 'acc': 0.433}, 'Diagnostics_and_Laboratory_Medicine': {'num': 30, 'acc': 0.4}, 'Pharmacy': {'num': 30, 'acc': 0.367}, 'Public_Health': {'num': 30, 'acc': 0.4}, 'Overall-Humanities and Social Science': {'num': 120, 'acc': 0.542}, 'History': {'num': 30, 'acc': 0.567}, 'Literature': {'num': 30, 'acc': 0.767}, 'Sociology': {'num': 30, 'acc': 0.4}, 'Psychology': {'num': 30, 'acc': 0.433}, 'Overall-Tech and Engineering': {'num': 210, 'acc': 0.29}, 'Agriculture': {'num': 30, 'acc': 0.433}, 'Architecture_and_Engineering': {'num': 30, 'acc': 0.267}, 'Computer_Science': {'num': 30, 'acc': 0.233}, 'Electronics': {'num': 30, 'acc': 0.333}, 'Energy_and_Power': {'num': 30, 'acc': 0.2}, 'Materials': {'num': 30, 'acc': 0.233}, 'Mechanical_Engineering': {'num': 30, 'acc': 0.333}, 'Overall': {'num': 900, 'acc': 0.388}}
+```
+
+For the test set, run:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-1 mmmu-test
+```
+
+For the test set, submit the results to the [evaluation server](https://eval.ai/web/challenges/challenge-page/2179/overview).
+
+The expected test results are:
+
+```
+35.3
+```
+
+#### MMVet (GPT-4-0613)
+
+The MM-Vet dataset is a comprehensive benchmark designed to evaluate the integrated capabilities of MLLMs. It encompasses six core vision-language (VL) capabilities: recognition, knowledge, optical character recognition (OCR), spatial awareness, language generation, and math. The dataset includes 200 images and 218 questions, each requiring one or more of these capabilities to answer. The evaluation uses an open-ended LLM-based approach, allowing assessment across various answer styles and question types.
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-1 mmvet
+```
+
+Then, submit the results to the [evaluation server](https://huggingface.co/spaces/whyu/MM-Vet_Evaluator). The expected test results are:
+
+```
+46.7
+```
+
+#### MMBench
+
+The MMBench dataset is a comprehensive multi-modality benchmark designed to evaluate the fine-grained abilities of vision-language models. It contains around 3,000 multiple-choice questions covering 20 ability dimensions, structured into a hierarchical taxonomy. These dimensions include perception and reasoning abilities, further broken down into specific skills like coarse and fine-grained perception, attribute reasoning, and logic reasoning.
+
+For the English dev / test set, run:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-1 mmbench-dev-en
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-1 mmbench-test-en
 
 ```
 
-The directory structure is:
+Then, submit the results to the [evaluation server](https://mmbench.opencompass.org.cn/mmbench-submission). The expected test results are:
 
 ```
-pretrained
-│── InternViT-6B-224px/
-│── InternViT-6B-448px/
-│── vicuna-13b-v1.5/
-│── vicuna-7b-v1.5/
-│── InternVL-Chat-ViT-6B-Vicuna-7B/
-│── InternVL-Chat-ViT-6B-Vicuna-13B/
-└── InternVL-Chat-ViT-6B-Vicuna-13B-448px/
+mmbench-dev-en: 76.7
+mmbench-test-en: 75.4
 ```
 
-## Demo
+For the Chinese dev / test set, run:
 
-The method for deploying the demo is consistent with LLaVA-1.5. You only need to change the model path. The specific steps are as follows:
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-1 mmbench-dev-cn
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-1 mmbench-test-cn
 
-**Launch a controller**
-
-```shell
-python -m llava.serve.controller --host 0.0.0.0 --port 10000
 ```
 
-**Launch a gradio web server**
-
-```shell
-python -m llava.serve.gradio_web_server --controller http://localhost:10000 --model-list-mode reload --port 10038
-```
-
-**Launch a model worker**
-
-```shell
-# OpenGVLab/InternVL-Chat-ViT-6B-Vicuna-7B
-python -m llava.serve.model_worker --host 0.0.0.0 --controller http://localhost:10000 --port 40000 --worker http://localhost:40000 --model-path ./pretrained/InternVL-Chat-ViT-6B-Vicuna-7B
-# OpenGVLab/InternVL-Chat-ViT-6B-Vicuna-13B
-python -m llava.serve.model_worker --host 0.0.0.0 --controller http://localhost:10000 --port 40001 --worker http://localhost:40001 --model-path ./pretrained/InternVL-Chat-ViT-6B-Vicuna-13B
-```
-
-After completing the above steps, you can access the web demo at `http://localhost:10038` and see the following page. Note that the models deployed here are `InternVL-Chat-ViT-6B-Vicuna-7B` and `InternVL-Chat-ViT-6B-Vicuna-13B`, which are the two models of our InternVL 1.0. The only difference from LLaVA-1.5 is that the CLIP-ViT-300M has been replaced with our InternViT-6B.
-
-If you need a more effective MLLM, please check out our InternVL2 series models.
-For more details on deploying the demo, please refer to [here](#gradio-web-ui).
-
-![image](./llava_webui.png)
-
-## Testing
-
-The method for testing the model remains the same as LLaVA-1.5; you just need to change the path of the script. Our scripts are located in `scripts_internvl/`.
-
-For example, testing `MME` using a single GPU:
-
-```shell
-sh scripts_internvl/eval/mme.sh pretrained/InternVL-Chat-ViT-6B-Vicuna-7B/
-```
-
-______________________________________________________________________
-
-## 🌋 LLaVA: Large Language and Vision Assistant
-
-*Visual instruction tuning towards large language and vision models with GPT-4 level capabilities.*
-
-\[[Project Page](https://llava-vl.github.io/)\] \[[Demo](https://llava.hliu.cc/)\]  \[[Data](https://github.com/haotian-liu/LLaVA/blob/main/docs/Data.md)\] \[[Model Zoo](https://github.com/haotian-liu/LLaVA/blob/main/docs/MODEL_ZOO.md)\]
-
-🤝Community Contributions: \[[llama.cpp](https://github.com/ggerganov/llama.cpp/pull/3436)\] \[[Colab](https://github.com/camenduru/LLaVA-colab)\] \[[🤗Space](https://huggingface.co/spaces/badayvedat/LLaVA)\]
-
-**Improved Baselines with Visual Instruction Tuning** \[[Paper](https://arxiv.org/abs/2310.03744)\] <br>
-[Haotian Liu](https://hliu.cc), [Chunyuan Li](https://chunyuan.li/), [Yuheng Li](https://yuheng-li.github.io/), [Yong Jae Lee](https://pages.cs.wisc.edu/~yongjaelee/)
-
-**Visual Instruction Tuning** (NeurIPS 2023, **Oral**) \[[Paper](https://arxiv.org/abs/2304.08485)\]<br>
-[Haotian Liu\*](https://hliu.cc), [Chunyuan Li\*](https://chunyuan.li/), [Qingyang Wu](https://scholar.google.ca/citations?user=HDiw-TsAAAAJ&hl=en/), [Yong Jae Lee](https://pages.cs.wisc.edu/~yongjaelee/) (\*Equal Contribution)
-
-### Release
-
-- \[10/12\] 🔥 Check out the Korean LLaVA (Ko-LLaVA), created by ETRI, who has generously supported our research! \[[🤗 Demo](https://huggingface.co/spaces/etri-vilab/Ko-LLaVA)\]
-
-- \[10/12\] LLaVA is now supported in [llama.cpp](https://github.com/ggerganov/llama.cpp/pull/3436) with 4-bit / 5-bit quantization support!
-
-- \[10/11\] The training data and scripts of LLaVA-1.5 are released [here](https://github.com/haotian-liu/LLaVA#train), and evaluation scripts are released [here](https://github.com/haotian-liu/LLaVA/blob/main/docs/Evaluation.md)!
-
-- \[10/5\] 🔥 LLaVA-1.5 is out! Achieving SoTA on 11 benchmarks, with just simple modifications to the original LLaVA, utilizes all public data, completes training in ~1 day on a single 8-A100 node, and surpasses methods like Qwen-VL-Chat that use billion-scale data. Check out the [technical report](https://arxiv.org/abs/2310.03744), and explore the [demo](https://llava.hliu.cc/)! Models are available in [Model Zoo](https://github.com/haotian-liu/LLaVA/blob/main/docs/MODEL_ZOO.md).
-
-- \[9/26\] LLaVA is improved with reinforcement learning from human feedback (RLHF) to improve fact grounding and reduce hallucination. Check out the new SFT and RLHF checkpoints at project [\[LLavA-RLHF\]](https://llava-rlhf.github.io/)
-
-- \[9/22\] [LLaVA](https://arxiv.org/abs/2304.08485) is accepted by NeurIPS 2023 as **oral presentation**, and [LLaVA-Med](https://arxiv.org/abs/2306.00890) is accepted by NeurIPS 2023 Datasets and Benchmarks Track as **spotlight presentation**.
-
-- \[9/20\] We summarize our empirical study of training 33B and 65B LLaVA models in a [note](https://arxiv.org/abs/2309.09958). Further, if you are interested in the comprehensive review, evolution and trend of multimodal foundation models, please check out our recent survey paper [\`\`Multimodal Foundation Models: From Specialists to General-Purpose Assistants''.](https://arxiv.org/abs/2309.10020)
-
-  <p align="center">
-  <img src="https://github.com/Computer-Vision-in-the-Wild/CVinW_Readings/blob/main/images/mfm_evolution.jpeg?raw=true" width=50%/>
-  </p>
-
-- \[7/19\] 🔥 We release a major upgrade, including support for LLaMA-2, LoRA training, 4-/8-bit inference, higher resolution (336x336), and a lot more. We release [LLaVA Bench](https://github.com/haotian-liu/LLaVA/blob/main/docs/LLaVA_Bench.md) for benchmarking open-ended visual chat with results from Bard and Bing-Chat. We also support and verify training with RTX 3090 and RTX A6000. Check out [LLaVA-from-LLaMA-2](https://github.com/haotian-liu/LLaVA/blob/main/docs/LLaVA_from_LLaMA2.md), and our [model zoo](https://github.com/haotian-liu/LLaVA/blob/main/docs/MODEL_ZOO.md)!
-
-- \[6/26\] [CVPR 2023 Tutorial](https://vlp-tutorial.github.io/) on **Large Multimodal Models: Towards Building and Surpassing Multimodal GPT-4**!  Please check out \[[Slides](https://datarelease.blob.core.windows.net/tutorial/vision_foundation_models_2023/slides/Chunyuan_cvpr2023_tutorial_lmm.pdf)\] \[[Notes](https://arxiv.org/abs/2306.14895)\] \[[YouTube](https://youtu.be/mkI7EPD1vp8)\] \[[Bilibli](https://www.bilibili.com/video/BV1Ng4y1T7v3/)\].
-
-- \[6/11\] We released the preview for the most requested feature: DeepSpeed and LoRA support!  Please see documentations [here](./docs/LoRA.md).
-
-- \[6/1\] We released **LLaVA-Med: Large Language and Vision Assistant for Biomedicine**, a step towards building biomedical domain large language and vision models with GPT-4 level capabilities.  Checkout the [paper](https://arxiv.org/abs/2306.00890) and [page](https://github.com/microsoft/LLaVA-Med).
-
-- \[5/6\] We are releasing [LLaVA-Lighting-MPT-7B-preview](https://huggingface.co/liuhaotian/LLaVA-Lightning-MPT-7B-preview), based on MPT-7B-Chat!  See [here](#LLaVA-MPT-7b) for more details.
-
-- \[5/2\] 🔥 We are releasing LLaVA-Lighting!  Train a lite, multimodal GPT-4 with just $40 in 3 hours!  See [here](#train-llava-lightning) for more details.
-
-- \[4/27\] Thanks to the community effort, LLaVA-13B with 4-bit quantization allows you to run on a GPU with as few as 12GB VRAM!  Try it out [here](https://github.com/oobabooga/text-generation-webui/tree/main/extensions/llava).
-
-- \[4/17\] 🔥 We released **LLaVA: Large Language and Vision Assistant**. We propose visual instruction tuning, towards building large language and vision models with GPT-4 level capabilities.  Checkout the [paper](https://arxiv.org/abs/2304.08485) and [demo](https://llava.hliu.cc/).
-
-<!-- <a href="https://llava.hliu.cc/"><img src="assets/demo.gif" width="70%"></a> -->
-
-[![Code License](https://img.shields.io/badge/Code%20License-Apache_2.0-green.svg)](https://github.com/tatsu-lab/stanford_alpaca/blob/main/LICENSE)
-[![Data License](https://img.shields.io/badge/Data%20License-CC%20By%20NC%204.0-red.svg)](https://github.com/tatsu-lab/stanford_alpaca/blob/main/DATA_LICENSE)
-**Usage and License Notices**: The data and checkpoint is intended and licensed for research use only. They are also restricted to uses that follow the license agreement of LLaMA, Vicuna and GPT-4. The dataset is CC BY NC 4.0 (allowing only non-commercial use) and models trained using the dataset should not be used outside of research purposes.
-
-### Contents
-
-- [Install](#install)
-- [LLaVA Weights](#llava-weights)
-- [Demo](#Demo)
-- [Model Zoo](https://github.com/haotian-liu/LLaVA/blob/main/docs/MODEL_ZOO.md)
-- [Dataset](https://github.com/haotian-liu/LLaVA/blob/main/docs/Data.md)
-- [Train](#train)
-- [Evaluation](#evaluation)
-
-### Install
-
-1. Clone this repository and navigate to LLaVA folder
-
-   ```bash
-   git clone https://github.com/haotian-liu/LLaVA.git
-   cd LLaVA
-   ```
-
-2. Install Package
-
-   ```Shell
-   conda create -n llava python=3.10 -y
-   conda activate llava
-   pip install --upgrade pip  # enable PEP 660 support
-   pip install -e .
-   ```
-
-3. Install additional packages for training cases
-
-   ```
-   pip install ninja
-   pip install flash-attn --no-build-isolation
-   ```
-
-#### Upgrade to latest code base
-
-```Shell
-git pull
-pip uninstall transformers
-pip install -e .
-```
-
-### LLaVA Weights
-
-Please check out our [Model Zoo](https://github.com/haotian-liu/LLaVA/blob/main/docs/MODEL_ZOO.md) for all public LLaVA checkpoints, and the instructions of how to use the weights.
-
-### Demo
-
-To run our demo, you need to prepare LLaVA checkpoints locally.  Please follow the instructions [here](#llava-weights) to download the checkpoints.
-
-#### Gradio Web UI
-
-To launch a Gradio demo locally, please run the following commands one by one. If you plan to launch multiple model workers to compare between different checkpoints, you only need to launch the controller and the web server *ONCE*.
-
-##### Launch a controller
-
-```Shell
-python -m llava.serve.controller --host 0.0.0.0 --port 10000
-```
-
-##### Launch a gradio web server.
-
-```Shell
-python -m llava.serve.gradio_web_server --controller http://localhost:10000 --model-list-mode reload
-```
-
-You just launched the Gradio web interface. Now, you can open the web interface with the URL printed on the screen. You may notice that there is no model in the model list. Do not worry, as we have not launched any model worker yet. It will be automatically updated when you launch a model worker.
-
-##### Launch a model worker
-
-This is the actual *worker* that performs the inference on the GPU.  Each worker is responsible for a single model specified in `--model-path`.
-
-```Shell
-python -m llava.serve.model_worker --host 0.0.0.0 --controller http://localhost:10000 --port 40000 --worker http://localhost:40000 --model-path liuhaotian/llava-v1.5-13b
-```
-
-Wait until the process finishes loading the model and you see "Uvicorn running on ...".  Now, refresh your Gradio web UI, and you will see the model you just launched in the model list.
-
-You can launch as many workers as you want, and compare between different model checkpoints in the same Gradio interface. Please keep the `--controller` the same, and modify the `--port` and `--worker` to a different port number for each worker.
-
-```Shell
-python -m llava.serve.model_worker --host 0.0.0.0 --controller http://localhost:10000 --port <different from 40000, say 40001> --worker http://localhost:<change accordingly, i.e. 40001> --model-path <ckpt2>
-```
-
-If you are using an Apple device with an M1 or M2 chip, you can specify the mps device by using the `--device` flag: `--device mps`.
-
-##### Launch a model worker (Multiple GPUs, when GPU VRAM \<= 24GB)
-
-If the VRAM of your GPU is less than 24GB (e.g., RTX 3090, RTX 4090, etc.), you may try running it with multiple GPUs. Our latest code base will automatically try to use multiple GPUs if you have more than one GPU. You can specify which GPUs to use with `CUDA_VISIBLE_DEVICES`. Below is an example of running with the first two GPUs.
-
-```Shell
-CUDA_VISIBLE_DEVICES=0,1 python -m llava.serve.model_worker --host 0.0.0.0 --controller http://localhost:10000 --port 40000 --worker http://localhost:40000 --model-path liuhaotian/llava-v1.5-13b
-```
-
-##### Launch a model worker (4-bit, 8-bit inference, quantized)
-
-You can launch the model worker with quantized bits (4-bit, 8-bit), which allows you to run the inference with reduced GPU memory footprint, potentially allowing you to run on a GPU with as few as 12GB VRAM. Note that inference with quantized bits may not be as accurate as the full-precision model. Simply append `--load-4bit` or `--load-8bit` to the **model worker** command that you are executing. Below is an example of running with 4-bit quantization.
-
-```Shell
-python -m llava.serve.model_worker --host 0.0.0.0 --controller http://localhost:10000 --port 40000 --worker http://localhost:40000 --model-path liuhaotian/llava-v1.5-13b --load-4bit
-```
-
-##### Launch a model worker (LoRA weights, unmerged)
-
-You can launch the model worker with LoRA weights, without merging them with the base checkpoint, to save disk space. There will be additional loading time, while the inference speed is the same as the merged checkpoints. Unmerged LoRA checkpoints do not have `lora-merge` in the model name, and are usually much smaller (less than 1GB) than the merged checkpoints (13G for 7B, and 25G for 13B).
-
-To load unmerged LoRA weights, you simply need to pass an additional argument `--model-base`, which is the base LLM that is used to train the LoRA weights. You can check the base LLM of each LoRA weights in the [model zoo](https://github.com/haotian-liu/LLaVA/blob/main/docs/MODEL_ZOO.md).
-
-```Shell
-python -m llava.serve.model_worker --host 0.0.0.0 --controller http://localhost:10000 --port 40000 --worker http://localhost:40000 --model-path liuhaotian/llava-v1-0719-336px-lora-vicuna-13b-v1.3 --model-base lmsys/vicuna-13b-v1.3
-```
-
-#### CLI Inference
-
-Chat about images using LLaVA without the need of Gradio interface. It also supports multiple GPUs, 4-bit and 8-bit quantized inference. With 4-bit quantization, for our LLaVA-1.5-7B, it uses less than 8GB VRAM on a single GPU.
-
-```Shell
-python -m llava.serve.cli \
-    --model-path liuhaotian/llava-v1.5-7b \
-    --image-file "https://llava-vl.github.io/static/images/view.jpg" \
-    --load-4bit
-```
-
-### Train
-
-*Below is the latest training configuration for LLaVA v1.5. For legacy models, please refer to README of [this](https://github.com/haotian-liu/LLaVA/tree/v1.0.1) version for now. We'll add them in a separate doc later.*
-
-LLaVA training consists of two stages: (1) feature alignment stage: use our 558K subset of the LAION-CC-SBU dataset to connect a *frozen pretrained* vision encoder to a *frozen LLM*; (2) visual instruction tuning stage: use 150K GPT-generated multimodal instruction-following data, plus around 515K VQA data from academic-oriented tasks, to teach the model to follow multimodal instructions.
-
-LLaVA is trained on 8 A100 GPUs with 80GB memory. To train on fewer GPUs, you can reduce the `per_device_train_batch_size` and increase the `gradient_accumulation_steps` accordingly. Always keep the global batch size the same: `per_device_train_batch_size` x `gradient_accumulation_steps` x `num_gpus`.
-
-#### Hyperparameters
-
-We use a similar set of hyperparameters as Vicuna in finetuning.  Both hyperparameters used in pretraining and finetuning are provided below.
-
-1. Pretraining
-
-| Hyperparameter | Global Batch Size | Learning rate | Epochs | Max length | Weight decay |
-| -------------- | ----------------: | ------------: | -----: | ---------: | -----------: |
-| LLaVA-v1.5-13B |               256 |          1e-3 |      1 |       2048 |            0 |
-
-2. Finetuning
-
-| Hyperparameter | Global Batch Size | Learning rate | Epochs | Max length | Weight decay |
-| -------------- | ----------------: | ------------: | -----: | ---------: | -----------: |
-| LLaVA-v1.5-13B |               128 |          2e-5 |      1 |       2048 |            0 |
-
-#### Download Vicuna checkpoints (automatically)
-
-Our base model Vicuna v1.5, which is an instruction-tuned chatbot, will be downloaded automatically when you run our provided training scripts. No action is needed.
-
-#### Pretrain (feature alignment)
-
-Please download the 558K subset of the LAION-CC-SBU dataset with BLIP captions we use in the paper [here](https://huggingface.co/datasets/liuhaotian/LLaVA-Pretrain).
-
-Pretrain takes around 5.5 hours for LLaVA-v1.5-13B on 8x A100 (80G), due to the increased resolution to 336px. It takes around 3.5 hours for LLaVA-v1.5-7B.
-
-Training script with DeepSpeed ZeRO-2: [`pretrain.sh`](https://github.com/haotian-liu/LLaVA/blob/main/scripts/v1_5/pretrain.sh).
-
-- `--mm_projector_type mlp2x_gelu`: the two-layer MLP vision-language connector.
-- `--vision_tower openai/clip-vit-large-patch14-336`: CLIP ViT-L/14 336px.
-
-#### Visual Instruction Tuning
-
-1. Prepare data
-
-Please download the annotation of the final mixture our instruction tuning data [llava_v1_5_mix665k.json](https://huggingface.co/datasets/liuhaotian/LLaVA-Instruct-150K/blob/main/llava_v1_5_mix665k.json), and download the images from constituting datasets:
-
-- COCO: [train2017](http://images.cocodataset.org/zips/train2017.zip)
-- GQA: [images](https://downloads.cs.stanford.edu/nlp/data/gqa/images.zip)
-- OCR-VQA: [download script](https://drive.google.com/drive/folders/1_GYPY5UkUy7HIcR0zq3ZCFgeZN7BAfm_?usp=sharing)
-- TextVQA: [train_val_images](https://dl.fbaipublicfiles.com/textvqa/images/train_val_images.zip)
-- VisualGenome: [part1](https://cs.stanford.edu/people/rak248/VG_100K_2/images.zip), [part2](https://cs.stanford.edu/people/rak248/VG_100K_2/images2.zip)
-
-After downloading all of them, organize the data as follows in `./playground/data`,
+Then, submit the results to the [evaluation server](https://mmbench.opencompass.org.cn/mmbench-submission). The expected test results are:
 
 ```
-├── coco
-│   └── train2017
-├── gqa
-│   └── images
-├── ocr_vqa
-│   └── images
-├── textvqa
-│   └── train_images
-└── vg
-    ├── VG_100K
-    └── VG_100K_2
+mmbench-dev-cn: 71.9
+mmbench-test-cn: 70.3
 ```
 
-2. Start training!
+#### CCBench
 
-You may download our pretrained projectors in [Model Zoo](https://github.com/haotian-liu/LLaVA/blob/main/docs/MODEL_ZOO.md). It is not recommended to use legacy projectors, as they may be trained with a different version of the codebase, and if any option is off, the model will not function/train as we expected.
-
-Visual instruction tuning takes around 20 hours for LLaVA-v1.5-13B on 8x A100 (80G), due to the increased resolution to 336px. It takes around 10 hours for LLaVA-v1.5-7B on 8x A100 (40G).
-
-Training script with DeepSpeed ZeRO-3: [`finetune.sh`](https://github.com/haotian-liu/LLaVA/blob/main/scripts/v1_5/finetune.sh).
-
-New options to note:
-
-- `--mm_projector_type mlp2x_gelu`: the two-layer MLP vision-language connector.
-- `--vision_tower openai/clip-vit-large-patch14-336`: CLIP ViT-L/14 336px.
-- `--image_aspect_ratio pad`: this pads the non-square images to square, instead of cropping them; it slightly reduces hallucination.
-- `--group_by_modality_length True`: this should only be used when your instruction tuning dataset contains both language (e.g. ShareGPT) and multimodal (e.g. LLaVA-Instruct). It makes the training sampler only sample a single modality (either image or language) during training, which we observe to speed up training by ~25%, and does not affect the final outcome.
-
-### Evaluation
-
-In LLaVA-1.5, we evaluate models on a diverse set of 12 benchmarks. To ensure the reproducibility, we evaluate the models with greedy decoding. We do not evaluate using beam search to make the inference process consistent with the chat demo of real-time outputs.
-
-See [Evaluation.md](https://github.com/haotian-liu/LLaVA/blob/main/docs/Evaluation.md).
-
-#### GPT-assisted Evaluation
-
-Our GPT-assisted evaluation pipeline for multimodal modeling is provided for a comprehensive understanding of the capabilities of vision-language models.  Please see our paper for more details.
-
-1. Generate LLaVA responses
-
-```Shell
-python model_vqa.py \
-    --model-path ./checkpoints/LLaVA-13B-v0 \
-    --question-file \
-    playground/data/coco2014_val_qa_eval/qa90_questions.jsonl \
-    --image-folder \
-    /path/to/coco2014_val \
-    --answers-file \
-    /path/to/answer-file-our.jsonl
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-1 ccbench-dev
 ```
 
-2. Evaluate the generated responses.  In our case, [`answer-file-ref.jsonl`](./playground/data/coco2014_val_qa_eval/qa90_gpt4_answer.jsonl) is the response generated by text-only GPT-4 (0314), with the context captions/boxes provided.
+Then, submit the results to the [evaluation server](https://mmbench.opencompass.org.cn/mmbench-submission). The expected test results are:
 
-```Shell
-OPENAI_API_KEY="sk-***********************************" python llava/eval/eval_gpt_review_visual.py \
-    --question playground/data/coco2014_val_qa_eval/qa90_questions.jsonl \
-    --context llava/eval/table/caps_boxes_coco2014_val_80.jsonl \
-    --answer-list \
-    /path/to/answer-file-ref.jsonl \
-    /path/to/answer-file-our.jsonl \
-    --rule llava/eval/table/rule.json \
-    --output /path/to/review.json
+```
+ccbench-dev: 43.3
 ```
 
-3. Summarize the evaluation results
+#### SEED
 
-```Shell
-python summarize_gpt_review.py
+CCBench is a multimodal benchmark specifically designed to evaluate models on tasks related to Chinese culture. It is part of the larger MMBench suite of benchmarks, developed by the OpenCompass Community, and aims to provide fine-grained evaluations across various capabilities of vision-language models. CCBench includes 510 questions in a multiple-choice format, focusing on cultural knowledge and understanding.
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-1 seed
 ```
 
-### Citation
+The expected test results are:
 
-If you find LLaVA useful for your research and applications, please cite using this BibTeX:
+```
+Data type Scene Understanding: 78.63%
+Data type Instance Identity: 77.44%
+Data type Instance Location: 74.66%
+Data type Instance Attributes: 70.04%
+Data type Instances Counting: 65.79%
+Data type Spatial Relation: 58.90%
+Data type Instance Interaction: 77.32%
+Data type Visual Reasoning: 79.15%
+Data type Text Understanding: 39.53%
+Data type Action Recognition: 54.34%
+Data type Action Prediction: 40.82%
+Data type Procedure Understanding: 37.24%
+Total accuracy: 67.40%
+Image accuracy: 73.24%
+Video accuracy: 45.28%
+```
 
-```bibtex
-@misc{liu2023improvedllava,
-      title={Improved Baselines with Visual Instruction Tuning}, 
-      author={Liu, Haotian and Li, Chunyuan and Li, Yuheng and Lee, Yong Jae},
-      publisher={arXiv:2310.03744},
-      year={2023},
+#### MMVP
+
+The MMVP dataset is designed to benchmark the performance of multimodal large language models (MLLMs) in visual question answering tasks. This dataset focuses on identifying "CLIP-blind pairs," which are images that appear similar to the CLIP model despite having clear visual differences. The MMVP dataset includes 300 images derived from ImageNet-1k and LAION-Aesthetics, each paired with straightforward questions to evaluate the models' visual capabilities. It highlights the challenges these systems face, often leading to incorrect responses and hallucinated explanations.
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-1 mmvp
+```
+
+The expected test results are:
+
+```
+Evaluating MMVP ...
+Results saved to results/MMVP_240725163208.jsonl
+The accuracy is 0.4666666666666667
+```
+
+#### MVBench
+
+MVBench is a comprehensive multimodal video understanding benchmark developed to evaluate the temporal comprehension capabilities of MLLMs. It includes 20 challenging video tasks that require temporal understanding and cannot be effectively solved using a single frame. The benchmark uses a novel static-to-dynamic method, transforming static tasks into dynamic ones to systematically generate video tasks that demand a wide range of temporal skills, from perception to cognition.
+
+We evaluate our models on MVBench by extracting 16 frames from each video, and each frame was resized to a 448x448 image.
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-1 mvbench
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+### Evaluation using VLMEvalKit Codebase
+
+#### MathVista
+
+The MathVista dataset is a comprehensive benchmark for evaluating mathematical reasoning within visual contexts. It consists of three newly created datasets—IQTest, FunctionQA, and PaperQA—designed to address logical reasoning on puzzle test figures, algebraic reasoning over functional plots, and scientific reasoning with academic paper figures, respectively.
+
+```bash
+torchrun --nproc-per-node=8 run.py --data MathVista --model InternVL-Chat-V1-1 --verbose
+```
+
+The expected test results are:
+
+```
+--  ---------------------------  ----  ---  ---  -------  -------
+ 0  Overall                      1000  594  363  59.4     36.3
+ 1  scientific reasoning          122   95   58  77.8689  47.541
+ 2  textbook question answering   158  107   74  67.7215  46.8354
+ 3  numeric commonsense           144   67   56  46.5278  38.8889
+ 4  arithmetic reasoning          353  143  122  40.5099  34.5609
+ 5  visual question answering     179  102   80  56.9832  44.6927
+ 6  geometry reasoning            239  198   63  82.8452  26.3598
+ 7  algebraic reasoning           281  217   74  77.2242  26.3345
+ 8  geometry problem solving      208  181   50  87.0192  24.0385
+ 9  math word problem             186   74   66  39.7849  35.4839
+10  logical reasoning              37   25    5  67.5676  13.5135
+11  figure question answering     269  130   93  48.3271  34.5725
+12  statistical reasoning         301  126  109  41.8605  36.2126
+--  ---------------------------  ----  ---  ---  -------  -------
+```
+
+#### HallusionBench
+
+HallusionBench is a comprehensive benchmark designed to evaluate image-context reasoning in MLLMs, focusing on identifying issues related to language hallucination and visual illusion. The dataset consists of 346 images paired with 1,129 questions crafted by human experts. These questions are divided into two categories: Visual Dependent (VD) and Visual Supplement (VS), allowing the benchmark to assess the nuanced understanding and interpretation of visual data by MLLMs.
+
+```bash
+torchrun --nproc-per-node=8 run.py --data HallusionBench --model InternVL-Chat-V1-1 --verbose
+```
+
+The expected test results are:
+
+```
+"split","aAcc","fAcc","qAcc"
+"Overall","56.256572029442694","26.011560693641616","26.153846153846157"
+"VD","54.483925549915405","29.565217391304348","23.465703971119133"
+"VS","59.166666666666664","18.96551724137931","30.337078651685395"
+"VD_figure","70.0","51.21951219512195","41.02564102564102"
+"VD_ocr","75.28089887640449","53.48837209302325","51.162790697674424"
+"VD_math","47.22222222222222","5.555555555555555","18.51851851851852"
+"VS_ocr","53.70370370370371","23.076923076923077","11.11111111111111"
+"VS_map","54.6875","13.636363636363635","12.5"
+"VS_chart","62.30769230769231","17.5","44.73684210526316"
+"VD_video","42.35294117647059","10.416666666666668","5.797101449275362"
+"VD_illusion","52.77777777777778","27.419354838709676","18.055555555555554"
+"VS_table","60.71428571428571","21.428571428571427","30.23255813953488"
+
+result = (56.256572029442694 + 26.011560693641616 + 26.153846153846157) / 3 = 36.1
+```
+
+#### MMStar
+
+The MMStar dataset is an advanced multimodal benchmark designed to evaluate the capabilities of MLLMs. It comprises 1,500 carefully selected samples that are balanced and purified to ensure they exhibit visual dependency and minimal data leakage. The dataset evaluates models across six core capabilities and 18 detailed axes, focusing on complex multimodal tasks that require advanced reasoning and understanding of visual content.
+
+```bash
+torchrun --nproc-per-node=8 run.py --data MMStar --model InternVL-Chat-V1-1 --verbose
+```
+
+The expected test results are:
+
+```
+"split","Overall","coarse perception","fine-grained perception","instance reasoning","logical reasoning","math","science & technology"
+"none","0.452","0.652","0.384","0.612","0.404","0.292","0.368"
+```
+
+#### OCRBench
+
+OCRBench is a comprehensive evaluation benchmark designed to assess the OCR capabilities of MLLMs. It includes five components: Text Recognition, Scene Text-Centric Visual Question Answering (VQA), Document-Oriented VQA, Key Information Extraction (KIE), and Handwritten Mathematical Expression Recognition (HMER). The benchmark encompasses data from 29 datasets, making it one of the most thorough OCR evaluation tools available. OCRBench aims to reveal both the strengths and weaknesses of MLLMs, particularly in handling multilingual text, handwritten text, non-semantic text, and mathematical expressions. The benchmark includes 1,000 question-answer pairs, all manually verified for precision.
+
+```bash
+torchrun --nproc-per-node=8 run.py --data OCRBench --model InternVL-Chat-V1-1 --verbose
+```
+
+The expected test results are:
+
+```
+{
+    "Text Recognition": 230,
+    "Scene Text-centric VQA": 157,
+    "Doc-oriented VQA": 72,
+    "Key Information Extraction": 71,
+    "Handwritten Mathematical Expression Recognition": 0,
+    "Final Score": 530,
+    "Final Score Norm": 53.0
 }
-
-@misc{liu2023llava,
-      title={Visual Instruction Tuning}, 
-      author={Liu, Haotian and Li, Chunyuan and Wu, Qingyang and Lee, Yong Jae},
-      publisher={arXiv:2304.08485},
-      year={2023},
-}
 ```
 
-### Acknowledgement
+#### MMMU
 
-- [Vicuna](https://github.com/lm-sys/FastChat): the codebase we built upon, and our base model Vicuna-13B that has the amazing language capabilities!
+The MMMU dataset is a comprehensive benchmark designed to evaluate multimodal models on college-level tasks that require domain-specific knowledge and reasoning. It includes 11,500 questions sourced from college exams, quizzes, and textbooks, spanning six disciplines: Art & Design, Business, Science, Health & Medicine, Humanities & Social Science, and Tech & Engineering. These questions cover 30 subjects and feature 30 types of images, such as charts, diagrams, maps, tables, and more.
 
-### Related Projects
+```bash
+torchrun --nproc-per-node=8 run.py --data MMMU_DEV_VAL --model InternVL-Chat-V1-1 --verbose
+```
 
-- [Instruction Tuning with GPT-4](https://github.com/Instruction-Tuning-with-GPT-4/GPT-4-LLM)
-- [LLaVA-Med: Training a Large Language-and-Vision Assistant for Biomedicine in One Day](https://github.com/microsoft/LLaVA-Med)
-- [Otter: In-Context Multi-Modal Instruction Tuning](https://github.com/Luodian/Otter)
+The expected test results are:
 
-For future project ideas, please check out:
+```
+-----------------------------------  -------------------  -------------------
+split                                validation           dev
+Overall                              0.4022222222222222   0.47333333333333333
+Accounting                           0.36666666666666664  0.2
+Agriculture                          0.4666666666666667   0.2
+Architecture_and_Engineering         0.23333333333333334  0.4
+Art                                  0.6333333333333333   0.8
+Art_Theory                           0.7333333333333333   0.6
+Basic_Medical_Science                0.4                  0.6
+Biology                              0.36666666666666664  0.4
+Chemistry                            0.4666666666666667   0.8
+Clinical_Medicine                    0.4                  0.4
+Computer_Science                     0.26666666666666666  0.6
+Design                               0.6333333333333333   0.6
+Diagnostics_and_Laboratory_Medicine  0.4                  0.8
+Economics                            0.43333333333333335  0.8
+Electronics                          0.4                  0.4
+Energy_and_Power                     0.2                  0.2
+Finance                              0.3333333333333333   0.8
+Geography                            0.26666666666666666  0.0
+History                              0.5333333333333333   0.6
+Literature                           0.7666666666666667   0.4
+Manage                               0.4666666666666667   0.2
+Marketing                            0.26666666666666666  0.8
+Materials                            0.16666666666666666  0.2
+Math                                 0.43333333333333335  0.4
+Mechanical_Engineering               0.26666666666666666  0.2
+Music                                0.26666666666666666  0.2
+Pharmacy                             0.4                  0.6
+Physics                              0.3333333333333333   0.2
+Psychology                           0.43333333333333335  0.6
+Public_Health                        0.36666666666666664  0.4
+Sociology                            0.36666666666666664  0.8
+Art & Design                         0.5666666666666667   0.55
+Business                             0.37333333333333335  0.56
+Health & Medicine                    0.3933333333333333   0.56
+Humanities & Social Science          0.525                0.6
+Science                              0.37333333333333335  0.36
+Tech & Engineering                   0.2857142857142857   0.3142857142857143
+-----------------------------------  -------------------  -------------------
+```
 
-- [SEEM: Segment Everything Everywhere All at Once](https://github.com/UX-Decoder/Segment-Everything-Everywhere-All-At-Once)
-- [Grounded-Segment-Anything](https://github.com/IDEA-Research/Grounded-Segment-Anything) to detect, segment, and generate anything by marrying [Grounding DINO](https://github.com/IDEA-Research/GroundingDINO) and [Segment-Anything](https://github.com/facebookresearch/segment-anything).
+#### RealWorldQA
+
+The RealWorldQA dataset is a benchmark designed to evaluate the real-world spatial understanding capabilities of multimodal AI models. It consists of over 700 images, each accompanied by a question and a verifiable answer, focusing on various real-world scenarios, including those captured from vehicles. This dataset aims to test how well AI models comprehend physical environments and spatial relations, enhancing their ability to interpret and analyze real-world scenes.
+
+```bash
+torchrun --nproc-per-node=8 run.py --data RealWorldQA --model InternVL-Chat-V1-1 --verbose
+```
+
+The expected test results are:
+
+```
+"split","Overall"
+"none","0.5803921568627451"
+```
+
+#### LLaVA-Bench (GPT-4-Turbo)
+
+The LLaVA-Bench-in-the-Wild dataset is designed to evaluate the capabilities of MLLMs in handling more complex and diverse visual tasks. It includes a set of 24 images with 60 associated questions, covering a range of indoor and outdoor scenes, memes, paintings, and sketches. Each image is paired with detailed, manually curated descriptions and questions that test the model's generalizability to novel domains.
+
+```bash
+torchrun --nproc-per-node=8 run.py --data LLaVABench --model InternVL-Chat-V1-1 --verbose
+```
+
+The expected test results are:
+
+```
+2024-07-25 16:11:27,640 - RUN - INFO - The evaluation of model InternVL-Chat-V1-1 x dataset LLaVABench has finished!
+2024-07-25 16:11:27,640 - RUN - INFO - Evaluation Results:
+2024-07-25 16:11:27,641 - RUN - INFO -
+-  -------  ----  ----  ----
+0  overall *64.8* 46.7  72
+1  complex  64.4  47.1  73.2
+2  conv     67.1  57.6  85.9
+3  detail   61.7  33.3  54
+-  -------  ----  ----  ----
+```
+
+#### VideoMME
+
+The Video-MME dataset is a comprehensive benchmark designed to evaluate the capabilities of MLLMs in video analysis. It is the first benchmark specifically tailored for this purpose, focusing on a high-quality assessment of models' performance in processing sequential visual data.
+
+```bash
+torchrun --nproc-per-node=8 run.py --data Video-MME --model InternVL-Chat-V1-1 --verbose --nframe 16
+```
+
+The expected test results are:
+
+```
+TODO
+```
 
 <br>
 <br>

@@ -33,6 +33,28 @@ Documentation
    :caption: Get Started
 
    get_started/installation.md
+   get_started/eval_data_preparation.md
+
+.. _internvl_2_0:
+.. toctree::
+   :maxdepth: 1
+   :caption: InternVL 2.0
+
+   internvl_chat <internvl2.0/internvl_chat.md>
+
+.. _internvl_1_5:
+.. toctree::
+   :maxdepth: 1
+   :caption: InternVL 1.5
+
+   internvl_chat <internvl1.5/internvl_chat.md>
+
+.. _internvl_1_2:
+.. toctree::
+   :maxdepth: 1
+   :caption: InternVL 1.2
+
+   internvl_chat <internvl1.2/internvl_chat.md>
 
 .. _internvl_1_1:
 .. toctree::
