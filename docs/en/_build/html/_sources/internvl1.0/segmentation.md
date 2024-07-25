@@ -89,5 +89,24 @@ For example, to evaluate the `InternViT-6B` with a single node with 8 GPUs:
 sh dist_test.sh configs/intern_vit_6b/linear_probing/linear_intern_vit_6b_504_80k_ade20k_bs16_lr4e-5_frozen.py checkpoints/linear_intern_vit_6b_504_80k_ade20k_bs16_lr4e-5_frozen.pth 8 --eval mIoU
 ```
 
+## Citation
+
+If you find this project useful in your research, please consider citing:
+
+```BibTeX
+@article{chen2023internvl,
+  title={InternVL: Scaling up Vision Foundation Models and Aligning for Generic Visual-Linguistic Tasks},
+  author={Chen, Zhe and Wu, Jiannan and Wang, Wenhai and Su, Weijie and Chen, Guo and Xing, Sen and Zhong, Muyan and Zhang, Qinglong and Zhu, Xizhou and Lu, Lewei and Li, Bin and Luo, Ping and Lu, Tong and Qiao, Yu and Dai, Jifeng},
+  journal={arXiv preprint arXiv:2312.14238},
+  year={2023}
+}
+@article{chen2024far,
+  title={How Far Are We to GPT-4V? Closing the Gap to Commercial Multimodal Models with Open-Source Suites},
+  author={Chen, Zhe and Wang, Weiyun and Tian, Hao and Ye, Shenglong and Gao, Zhangwei and Cui, Erfei and Tong, Wenwen and Hu, Kongzhi and Luo, Jiapeng and Ma, Zheng and others},
+  journal={arXiv preprint arXiv:2404.16821},
+  year={2024}
+}
+```
+
 <br>
 <br>

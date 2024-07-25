@@ -1017,6 +1017,25 @@ Expected results:
 
 </details>
 
+## Citation
+
+If you find this project useful in your research, please consider citing:
+
+```BibTeX
+@article{chen2023internvl,
+  title={InternVL: Scaling up Vision Foundation Models and Aligning for Generic Visual-Linguistic Tasks},
+  author={Chen, Zhe and Wu, Jiannan and Wang, Wenhai and Su, Weijie and Chen, Guo and Xing, Sen and Zhong, Muyan and Zhang, Qinglong and Zhu, Xizhou and Lu, Lewei and Li, Bin and Luo, Ping and Lu, Tong and Qiao, Yu and Dai, Jifeng},
+  journal={arXiv preprint arXiv:2312.14238},
+  year={2023}
+}
+@article{chen2024far,
+  title={How Far Are We to GPT-4V? Closing the Gap to Commercial Multimodal Models with Open-Source Suites},
+  author={Chen, Zhe and Wang, Weiyun and Tian, Hao and Ye, Shenglong and Gao, Zhangwei and Cui, Erfei and Tong, Wenwen and Hu, Kongzhi and Luo, Jiapeng and Ma, Zheng and others},
+  journal={arXiv preprint arXiv:2404.16821},
+  year={2024}
+}
+```
+
 ## Original README of CLIP Benchmark
 
 [![pypi](https://img.shields.io/pypi/v/clip_benchmark.svg)](https://pypi.python.org/pypi/clip_benchmark)

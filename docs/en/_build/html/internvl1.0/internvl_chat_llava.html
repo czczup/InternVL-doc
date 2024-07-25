@@ -148,6 +148,7 @@
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Get Started</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../get_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/eval_data_preparation.html">Eval Data Preparation</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL 1.1</span></p>
 <ul class="nav bd-sidenav">
@@ -395,6 +396,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-zoo">Model Zoo</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#demo">Demo</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing">Testing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citation">Citation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#llava-large-language-and-vision-assistant">🌋 LLaVA: Large Language and Vision Assistant</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#release">Release</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contents">Contents</a></li>
@@ -427,7 +429,7 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gpt-assisted-evaluation">GPT-assisted Evaluation</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#citation">Citation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Citation</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#acknowledgement">Acknowledgement</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#related-projects">Related Projects</a></li>
 </ul>
@@ -706,6 +708,24 @@ For more details on deploying the demo, please refer to <a class="reference inte
 <p>The method for testing the model remains the same as LLaVA-1.5; you just need to change the path of the script. Our scripts are located in <code class="docutils literal notranslate"><span class="pre">scripts_internvl/</span></code>.</p>
 <p>For example, testing <code class="docutils literal notranslate"><span class="pre">MME</span></code> using a single GPU:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sh<span class="w"> </span>scripts_internvl/eval/mme.sh<span class="w"> </span>pretrained/InternVL-Chat-ViT-6B-Vicuna-7B/
+</pre></div>
+</div>
+</section>
+<section id="citation">
+<h2>Citation<a class="headerlink" href="#citation" title="Permalink to this heading">#</a></h2>
+<p>If you find this project useful in your research, please consider citing:</p>
+<div class="highlight-BibTeX notranslate"><div class="highlight"><pre><span></span><span class="nc">@article</span><span class="p">{</span><span class="nl">chen2023internvl</span><span class="p">,</span>
+<span class="w">  </span><span class="na">title</span><span class="p">=</span><span class="s">{InternVL: Scaling up Vision Foundation Models and Aligning for Generic Visual-Linguistic Tasks}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">author</span><span class="p">=</span><span class="s">{Chen, Zhe and Wu, Jiannan and Wang, Wenhai and Su, Weijie and Chen, Guo and Xing, Sen and Zhong, Muyan and Zhang, Qinglong and Zhu, Xizhou and Lu, Lewei and Li, Bin and Luo, Ping and Lu, Tong and Qiao, Yu and Dai, Jifeng}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">journal</span><span class="p">=</span><span class="s">{arXiv preprint arXiv:2312.14238}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">year</span><span class="p">=</span><span class="s">{2023}</span>
+<span class="p">}</span>
+<span class="nc">@article</span><span class="p">{</span><span class="nl">chen2024far</span><span class="p">,</span>
+<span class="w">  </span><span class="na">title</span><span class="p">=</span><span class="s">{How Far Are We to GPT-4V? Closing the Gap to Commercial Multimodal Models with Open-Source Suites}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">author</span><span class="p">=</span><span class="s">{Chen, Zhe and Wang, Weiyun and Tian, Hao and Ye, Shenglong and Gao, Zhangwei and Cui, Erfei and Tong, Wenwen and Hu, Kongzhi and Luo, Jiapeng and Ma, Zheng and others}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">journal</span><span class="p">=</span><span class="s">{arXiv preprint arXiv:2404.16821}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">year</span><span class="p">=</span><span class="s">{2024}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </section>
@@ -1014,8 +1034,8 @@ pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </s
 </div>
 </section>
 </section>
-<section id="citation">
-<h3>Citation<a class="headerlink" href="#citation" title="Permalink to this heading">#</a></h3>
+<section id="id2">
+<h3>Citation<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
 <p>If you find LLaVA useful for your research and applications, please cite using this BibTeX:</p>
 <div class="highlight-bibtex notranslate"><div class="highlight"><pre><span></span><span class="nc">@misc</span><span class="p">{</span><span class="nl">liu2023improvedllava</span><span class="p">,</span>
 <span class="w">      </span><span class="na">title</span><span class="p">=</span><span class="s">{Improved Baselines with Visual Instruction Tuning}</span><span class="p">,</span><span class="w"> </span>
@@ -1107,6 +1127,7 @@ pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </s
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-zoo">Model Zoo</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#demo">Demo</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing">Testing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citation">Citation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#llava-large-language-and-vision-assistant">🌋 LLaVA: Large Language and Vision Assistant</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#release">Release</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contents">Contents</a></li>
@@ -1139,7 +1160,7 @@ pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </s
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gpt-assisted-evaluation">GPT-assisted Evaluation</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#citation">Citation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Citation</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#acknowledgement">Acknowledgement</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#related-projects">Related Projects</a></li>
 </ul>

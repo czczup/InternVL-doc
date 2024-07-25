@@ -416,6 +416,7 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation">Evaluation</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation-using-internvl-codebase">Evaluation using InternVL Codebase</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preparation">Data Preparation</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mme">MME</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#okvqa">OKVQA</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#textvqa">TextVQA</a></li>
@@ -438,11 +439,12 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation-using-vlmevalkit-codebase">Evaluation using VLMEvalKit Codebase</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Data Preparation</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mathvista">MathVista</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hallusionbench">HallusionBench</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mmstar">MMStar</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ocrbench">OCRBench</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">MMMU</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">MMMU</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#realworldqa">RealWorldQA</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#llava-bench-gpt-4-turbo">LLaVA-Bench (GPT-4-Turbo)</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#videomme">VideoMME</a></li>
@@ -450,6 +452,7 @@ document.write(`
 </li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citation">Citation</a></li>
 </ul>
             </nav>
         </div>
@@ -470,7 +473,7 @@ As shown in the figure below, we connected our InternViT-6B to LLaMA2-13B throug
 <p align="center">
     <img src="https://cdn-uploads.huggingface.co/production/uploads/64119264f0f81eb569e0d569/HD29tU-g0An9FpQn1yK8X.png" style="width: 75%;">
 </p>
-<p>In this version, we explored increasing the resolution to 448 × 448, enhancing OCR capabilities, and improving support for Chinese conversations. Since the 448 × 448 input image generates 1024 visual tokens after passing through the ViT, leading to a significant computational burden, we use a pixel shuffle operation to reduce the 1024 tokens to 256 tokens.</p>
+<p>In this version, we explored increasing the resolution to 448 × 448, enhancing OCR capabilities, and improving support for Chinese conversations. Since the 448 × 448 input image generates 1024 visual tokens after passing through the ViT, leading to a significant computational burden, we use a pixel shuffle (unshuffle) operation to reduce the 1024 tokens to 256 tokens.</p>
 <p>For more detailed information about this model, please read our <a class="reference external" href="https://internvl.github.io/blog/2024-01-24-InternVL-1.1/">blog</a>.</p>
 </section>
 <section id="model-preparation">
@@ -587,25 +590,19 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
 <td class="text-center"><p>1579.0</p></td>
 <td class="text-center"><p>1659.8</p></td>
 </tr>
-<tr class="row-even"><td class="text-center"><p>MME<sub>cognition</sub></p></td>
-<td class="text-center"><p></p></td>
-<td class="text-center"><p></p></td>
-<td class="text-center"><p></p></td>
-<td class="text-center"><p></p></td>
-</tr>
-<tr class="row-odd"><td class="text-center"><p>MMB-EN<sub>test</sub></p></td>
+<tr class="row-even"><td class="text-center"><p>MMB-EN<sub>test</sub></p></td>
 <td class="text-center"><p>67.7</p></td>
 <td class="text-center"><p>66.5</p></td>
 <td class="text-center"><p>68.2</p></td>
 <td class="text-center"><p>75.4</p></td>
 </tr>
-<tr class="row-even"><td class="text-center"><p>MMB-CN<sub>test</sub></p></td>
+<tr class="row-odd"><td class="text-center"><p>MMB-CN<sub>test</sub></p></td>
 <td class="text-center"><p>63.6</p></td>
 <td class="text-center"><p>61.9</p></td>
 <td class="text-center"><p>64.0</p></td>
 <td class="text-center"><p>70.3</p></td>
 </tr>
-<tr class="row-odd"><td class="text-center"><p>MMVet<sub>GPT-4-0613</sub></p></td>
+<tr class="row-even"><td class="text-center"><p>MMVet<sub>GPT-4-0613</sub></p></td>
 <td class="text-center"><p>35.4</p></td>
 <td class="text-center"><p>33.7</p></td>
 <td class="text-center"><p>36.7</p></td>
@@ -1014,6 +1011,10 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
 </div></blockquote>
 <section id="evaluation-using-internvl-codebase">
 <h3>Evaluation using InternVL Codebase<a class="headerlink" href="#evaluation-using-internvl-codebase" title="Permalink to this heading">#</a></h3>
+<section id="data-preparation">
+<h4>Data Preparation<a class="headerlink" href="#data-preparation" title="Permalink to this heading">#</a></h4>
+<p>Please prepare the evaluation data according to the <a class="reference internal" href="../get_started/eval_data_preparation.html"><span class="std std-doc">guidance provided here</span></a>.</p>
+</section>
 <section id="mme">
 <h4>MME<a class="headerlink" href="#mme" title="Permalink to this heading">#</a></h4>
 <p>MME is a comprehensive benchmark designed to evaluate Multimodal Large Language Models (MLLMs) on both perception and cognition abilities across 14 different subtasks, ensuring robust and diverse testing of these models.</p>
@@ -1366,6 +1367,10 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
 </section>
 <section id="evaluation-using-vlmevalkit-codebase">
 <h3>Evaluation using VLMEvalKit Codebase<a class="headerlink" href="#evaluation-using-vlmevalkit-codebase" title="Permalink to this heading">#</a></h3>
+<section id="id1">
+<h4>Data Preparation<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h4>
+<p>VLMEvalKit will automatically download the necessary data for evaluation, so you do not need to prepare it manually.</p>
+</section>
 <section id="mathvista">
 <h4>MathVista<a class="headerlink" href="#mathvista" title="Permalink to this heading">#</a></h4>
 <p>The MathVista dataset is a comprehensive benchmark for evaluating mathematical reasoning within visual contexts. It consists of three newly created datasets—IQTest, FunctionQA, and PaperQA—designed to address logical reasoning on puzzle test figures, algebraic reasoning over functional plots, and scientific reasoning with academic paper figures, respectively.</p>
@@ -1447,8 +1452,8 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
 </pre></div>
 </div>
 </section>
-<section id="id1">
-<h4>MMMU<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h4>
+<section id="id2">
+<h4>MMMU<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h4>
 <p>The MMMU dataset is a comprehensive benchmark designed to evaluate multimodal models on college-level tasks that require domain-specific knowledge and reasoning. It includes 11,500 questions sourced from college exams, quizzes, and textbooks, spanning six disciplines: Art &amp; Design, Business, Science, Health &amp; Medicine, Humanities &amp; Social Science, and Tech &amp; Engineering. These questions cover 30 subjects and feature 30 types of images, such as charts, diagrams, maps, tables, and more.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>torchrun<span class="w"> </span>--nproc-per-node<span class="o">=</span><span class="m">8</span><span class="w"> </span>run.py<span class="w"> </span>--data<span class="w"> </span>MMMU_DEV_VAL<span class="w"> </span>--model<span class="w"> </span>InternVL-Chat-V1-1<span class="w"> </span>--verbose
 </pre></div>
@@ -1538,10 +1543,28 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
 </pre></div>
 </div>
-<br>
-<br>
 </section>
 </section>
+</section>
+<section id="citation">
+<h2>Citation<a class="headerlink" href="#citation" title="Permalink to this heading">#</a></h2>
+<p>If you find this project useful in your research, please consider citing:</p>
+<div class="highlight-BibTeX notranslate"><div class="highlight"><pre><span></span><span class="nc">@article</span><span class="p">{</span><span class="nl">chen2023internvl</span><span class="p">,</span>
+<span class="w">  </span><span class="na">title</span><span class="p">=</span><span class="s">{InternVL: Scaling up Vision Foundation Models and Aligning for Generic Visual-Linguistic Tasks}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">author</span><span class="p">=</span><span class="s">{Chen, Zhe and Wu, Jiannan and Wang, Wenhai and Su, Weijie and Chen, Guo and Xing, Sen and Zhong, Muyan and Zhang, Qinglong and Zhu, Xizhou and Lu, Lewei and Li, Bin and Luo, Ping and Lu, Tong and Qiao, Yu and Dai, Jifeng}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">journal</span><span class="p">=</span><span class="s">{arXiv preprint arXiv:2312.14238}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">year</span><span class="p">=</span><span class="s">{2023}</span>
+<span class="p">}</span>
+<span class="nc">@article</span><span class="p">{</span><span class="nl">chen2024far</span><span class="p">,</span>
+<span class="w">  </span><span class="na">title</span><span class="p">=</span><span class="s">{How Far Are We to GPT-4V? Closing the Gap to Commercial Multimodal Models with Open-Source Suites}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">author</span><span class="p">=</span><span class="s">{Chen, Zhe and Wang, Weiyun and Tian, Hao and Ye, Shenglong and Gao, Zhangwei and Cui, Erfei and Tong, Wenwen and Hu, Kongzhi and Luo, Jiapeng and Ma, Zheng and others}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">journal</span><span class="p">=</span><span class="s">{arXiv preprint arXiv:2404.16821}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">year</span><span class="p">=</span><span class="s">{2024}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<br>
+<br>
 </section>
 </section>
 
@@ -1615,6 +1638,7 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation">Evaluation</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation-using-internvl-codebase">Evaluation using InternVL Codebase</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preparation">Data Preparation</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mme">MME</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#okvqa">OKVQA</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#textvqa">TextVQA</a></li>
@@ -1637,11 +1661,12 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation-using-vlmevalkit-codebase">Evaluation using VLMEvalKit Codebase</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Data Preparation</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mathvista">MathVista</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hallusionbench">HallusionBench</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mmstar">MMStar</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ocrbench">OCRBench</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">MMMU</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">MMMU</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#realworldqa">RealWorldQA</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#llava-bench-gpt-4-turbo">LLaVA-Bench (GPT-4-Turbo)</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#videomme">VideoMME</a></li>
@@ -1649,6 +1674,7 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
 </li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citation">Citation</a></li>
 </ul>
   </nav></div>
 
