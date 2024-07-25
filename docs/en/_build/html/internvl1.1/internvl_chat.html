@@ -50,10 +50,10 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="InternViT-6B for Image Classification" href="../internvl1.0/classification.html" />
-    <link rel="prev" title="Eval Data Preparation" href="../get_started/eval_data_preparation.html" />
+    <link rel="prev" title="InternVL-Chat-V1-2" href="../internvl1.2/internvl_chat.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-    <meta name="docbuild:last-update" content="Jul 25, 2024"/>
+    <meta name="docbuild:last-update" content="Jul 26, 2024"/>
   </head>
   
   
@@ -149,6 +149,10 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../get_started/installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../get_started/eval_data_preparation.html">Eval Data Preparation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL 1.2</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.2/internvl_chat.html">internvl_chat</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL 1.1</span></p>
 <ul class="current nav bd-sidenav">
@@ -615,7 +619,7 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
 <section id="quick-start">
 <h2>Quick Start<a class="headerlink" href="#quick-start" title="Permalink to this heading">#</a></h2>
 <p>We provide an example code to run InternVL-Chat-V1-1 using <code class="docutils literal notranslate"><span class="pre">transformers</span></code>.</p>
-<p>We also welcome you to experience the InternVL2 series models in our <a class="reference external" href="https://internvl.opengvlab.com/">online demo</a>. Currently, due to the limited GPU resources with public IP addresses, we can only deploy models up to a maximum of 26B. We will expand soon and deploy larger models to the online demo.</p>
+<p>We also welcome you to experience the InternVL2 series models in our <a class="reference external" href="https://internvl.opengvlab.com/">online demo</a>.</p>
 <blockquote>
 <div><p>Please use transformers==4.37.2 to ensure the model works normally.</p>
 </div></blockquote>
@@ -624,7 +628,7 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
 <section id="bit-bf16-fp16">
 <h4>16-bit (bf16 / fp16)<a class="headerlink" href="#bit-bf16-fp16" title="Permalink to this heading">#</a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
-<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoTokenizer</span><span class="p">,</span> <span class="n">AutoModel</span><span class="p">,</span> <span class="n">CLIPImageProcessor</span>
+<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoTokenizer</span><span class="p">,</span> <span class="n">AutoModel</span>
 <span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;OpenGVLab/InternVL-Chat-V1-1&quot;</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">AutoModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
     <span class="n">path</span><span class="p">,</span>
@@ -637,7 +641,7 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
 <section id="bnb-8-bit-quantization">
 <h4>BNB 8-bit Quantization<a class="headerlink" href="#bnb-8-bit-quantization" title="Permalink to this heading">#</a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
-<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoTokenizer</span><span class="p">,</span> <span class="n">AutoModel</span><span class="p">,</span> <span class="n">CLIPImageProcessor</span>
+<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoTokenizer</span><span class="p">,</span> <span class="n">AutoModel</span>
 <span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;OpenGVLab/InternVL-Chat-V1-1&quot;</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">AutoModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
     <span class="n">path</span><span class="p">,</span>
@@ -659,7 +663,7 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
 <p>The reason for writing the code this way is to avoid errors that occur during multi-GPU inference due to tensors not being on the same device. By ensuring that the first and last layers of the large language model (LLM) are on the same device, we prevent such errors.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">import</span> <span class="nn">torch</span>
-<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoTokenizer</span><span class="p">,</span> <span class="n">AutoModel</span><span class="p">,</span> <span class="n">CLIPImageProcessor</span>
+<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoTokenizer</span><span class="p">,</span> <span class="n">AutoModel</span>
 
 <span class="k">def</span> <span class="nf">split_model</span><span class="p">(</span><span class="n">model_name</span><span class="p">):</span>
     <span class="n">device_map</span> <span class="o">=</span> <span class="p">{}</span>
@@ -1360,7 +1364,13 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
 </pre></div>
 </div>
 <p>The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;Action Sequence&quot;</span><span class="p">:</span> <span class="mf">62.5</span><span class="p">,</span> <span class="s2">&quot;Action Prediction&quot;</span><span class="p">:</span> <span class="mf">56.49999999999999</span><span class="p">,</span> <span class="s2">&quot;Action Antonym&quot;</span><span class="p">:</span> <span class="mf">49.0</span><span class="p">,</span> 
+<span class="s2">&quot;Fine-grained Action&quot;</span><span class="p">:</span> <span class="mf">41.0</span><span class="p">,</span> <span class="s2">&quot;Unexpected Action&quot;</span><span class="p">:</span> <span class="mf">64.5</span><span class="p">,</span> <span class="s2">&quot;Object Existence&quot;</span><span class="p">:</span> <span class="mf">49.0</span><span class="p">,</span> 
+<span class="s2">&quot;Object Interaction&quot;</span><span class="p">:</span> <span class="mf">64.0</span><span class="p">,</span> <span class="s2">&quot;Object Shuffle&quot;</span><span class="p">:</span> <span class="mf">32.5</span><span class="p">,</span> <span class="s2">&quot;Moving Direction&quot;</span><span class="p">:</span> <span class="mf">39.5</span><span class="p">,</span> 
+<span class="s2">&quot;Action Localization&quot;</span><span class="p">:</span> <span class="mf">27.500000000000004</span><span class="p">,</span> <span class="s2">&quot;Scene Transition&quot;</span><span class="p">:</span> <span class="mf">88.5</span><span class="p">,</span> <span class="s2">&quot;Action Count&quot;</span><span class="p">:</span> <span class="mf">42.0</span><span class="p">,</span>
+ <span class="s2">&quot;Moving Count&quot;</span><span class="p">:</span> <span class="mf">33.0</span><span class="p">,</span> <span class="s2">&quot;Moving Attribute&quot;</span><span class="p">:</span> <span class="mf">57.99999999999999</span><span class="p">,</span> <span class="s2">&quot;State Change&quot;</span><span class="p">:</span> <span class="mf">46.5</span><span class="p">,</span> 
+ <span class="s2">&quot;Fine-grained Pose&quot;</span><span class="p">:</span> <span class="mf">44.0</span><span class="p">,</span> <span class="s2">&quot;Character Order&quot;</span><span class="p">:</span> <span class="mf">59.0</span><span class="p">,</span> <span class="s2">&quot;Egocentric Navigation&quot;</span><span class="p">:</span> <span class="mf">38.5</span><span class="p">,</span>
+  <span class="s2">&quot;Episodic Reasoning&quot;</span><span class="p">:</span> <span class="mf">44.5</span><span class="p">,</span> <span class="s2">&quot;Counterfactual Inference&quot;</span><span class="p">:</span> <span class="mf">39.0</span><span class="p">,</span> <span class="s2">&quot;Avg&quot;</span><span class="p">:</span> <span class="mf">48.949999999999996</span><span class="p">}</span>
 </pre></div>
 </div>
 </section>
@@ -1580,12 +1590,12 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../get_started/eval_data_preparation.html"
+       href="../internvl1.2/internvl_chat.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Eval Data Preparation</p>
+        <p class="prev-next-title">InternVL-Chat-V1-2</p>
       </div>
     </a>
     <a class="right-next"
@@ -1708,7 +1718,7 @@ By InternVL Authors
   
   <div class="footer-item">
     <p class="last-updated">
-  Last updated on Jul 25, 2024.
+  Last updated on Jul 26, 2024.
   <br/>
 </p>
   </div>

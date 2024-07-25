@@ -60,7 +60,7 @@ Here, we have conducted only a simple performance comparison. For more detailed 
 
 We provide an example code to run InternVL-Chat-V1-1 using `transformers`.
 
-We also welcome you to experience the InternVL2 series models in our [online demo](https://internvl.opengvlab.com/). Currently, due to the limited GPU resources with public IP addresses, we can only deploy models up to a maximum of 26B. We will expand soon and deploy larger models to the online demo.
+We also welcome you to experience the InternVL2 series models in our [online demo](https://internvl.opengvlab.com/).
 
 > Please use transformers==4.37.2 to ensure the model works normally.
 
@@ -70,7 +70,7 @@ We also welcome you to experience the InternVL2 series models in our [online dem
 
 ```python
 import torch
-from transformers import AutoTokenizer, AutoModel, CLIPImageProcessor
+from transformers import AutoTokenizer, AutoModel
 path = "OpenGVLab/InternVL-Chat-V1-1"
 model = AutoModel.from_pretrained(
     path,
@@ -83,7 +83,7 @@ model = AutoModel.from_pretrained(
 
 ```python
 import torch
-from transformers import AutoTokenizer, AutoModel, CLIPImageProcessor
+from transformers import AutoTokenizer, AutoModel
 path = "OpenGVLab/InternVL-Chat-V1-1"
 model = AutoModel.from_pretrained(
     path,
@@ -104,7 +104,7 @@ The reason for writing the code this way is to avoid errors that occur during mu
 ```python
 import math
 import torch
-from transformers import AutoTokenizer, AutoModel, CLIPImageProcessor
+from transformers import AutoTokenizer, AutoModel
 
 def split_model(model_name):
     device_map = {}
@@ -894,7 +894,13 @@ GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-1 mvbench
 The expected test results are:
 
 ```
-TODO
+{"Action Sequence": 62.5, "Action Prediction": 56.49999999999999, "Action Antonym": 49.0, 
+"Fine-grained Action": 41.0, "Unexpected Action": 64.5, "Object Existence": 49.0, 
+"Object Interaction": 64.0, "Object Shuffle": 32.5, "Moving Direction": 39.5, 
+"Action Localization": 27.500000000000004, "Scene Transition": 88.5, "Action Count": 42.0,
+ "Moving Count": 33.0, "Moving Attribute": 57.99999999999999, "State Change": 46.5, 
+ "Fine-grained Pose": 44.0, "Character Order": 59.0, "Egocentric Navigation": 38.5,
+  "Episodic Reasoning": 44.5, "Counterfactual Inference": 39.0, "Avg": 48.949999999999996}
 ```
 
 ### Evaluation using VLMEvalKit Codebase
