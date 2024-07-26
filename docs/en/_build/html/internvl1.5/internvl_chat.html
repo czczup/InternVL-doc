@@ -1,0 +1,1893 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>InternVL-Chat-V1-2 &#8212; internvl</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/readthedocs.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'internvl1.5/internvl_chat';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="InternVL-Chat-V1-2" href="../internvl1.2/internvl_chat.html" />
+    <link rel="prev" title="Eval Data Preparation" href="../get_started/eval_data_preparation.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+    <meta name="docbuild:last-update" content="Jul 26, 2024"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/internvl-logo.svg" class="logo__image only-light" alt="internvl - Home"/>
+    <script>document.write(`<img src="../_static/internvl-logo.svg" class="logo__image only-dark" alt="internvl - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../get_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/eval_data_preparation.html">Eval Data Preparation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL 1.5</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">internvl_chat</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL 1.2</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.2/internvl_chat.html">internvl_chat</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL 1.1</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.1/internvl_chat.html">internvl_chat</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL 1.0</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.0/classification.html">classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.0/clip_benchmark.html">clip_benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.0/segmentation.html">segmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.0/internvl_chat_llava.html">internvl_chat_llava</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.0/internvl_g.html">internvl_g</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/OpenGVLab/InternVL" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/OpenGVLab/InternVL/blob/main/docs/en/internvl1.5/internvl_chat.md?plain=1" target="_blank"
+   class="btn btn-sm btn-source-file-button dropdown-item"
+   title="Show source"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">Show source</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/OpenGVLab/InternVL/edit/main/docs/en/internvl1.5/internvl_chat.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/OpenGVLab/InternVL/issues/new?title=Issue%20on%20page%20%2Finternvl1.5/internvl_chat.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/internvl1.5/internvl_chat.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>InternVL-Chat-V1-2</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance">Performance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-start">Quick Start</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-loading">Model Loading</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bit-bf16-fp16">16-bit (bf16 / fp16)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bnb-8-bit-quantization">BNB 8-bit Quantization</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bnb-4-bit-quantization">BNB 4-bit Quantization</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-gpus">Multiple GPUs</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inference-with-transformers">Inference with Transformers</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pure-text-conversation">Pure-text conversation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#single-image-single-round-conversation">Single-image single-round conversation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#single-image-multi-round-conversation">Single-image multi-round conversation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-image-multi-round-conversation-combined-images">Multi-image multi-round conversation, combined images</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-image-multi-round-conversation-separate-images">Multi-image multi-round conversation, separate images</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#batch-inference-single-image-per-sample">Batch inference, single image per sample</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#video-multi-round-conversation">Video multi-round conversation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#streaming-output">Streaming output</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproduce-internvl-chat-v1-2">Reproduce InternVL-Chat-V1-2</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-preparation">1. Model Preparation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training-datasets-preparation">2. Training Datasets Preparation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#start-training">3. Start Training</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fine-tune-on-a-custom-dataset">Fine-tune on a Custom Dataset</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1. Model Preparation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-your-customized-training-data">2. Prepare Your Customized Training Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#start-2nd-fine-tuning">3. Start 2nd Fine-tuning</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation">Evaluation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation-using-internvl-codebase">Evaluation using InternVL Codebase</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preparation">Data Preparation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mme">MME</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#okvqa">OKVQA</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#textvqa">TextVQA</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#vizwiz">VizWiz</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#chartqa">ChartQA</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#docvqa">DocVQA</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ai2d">AI2D</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#infographicvqa">InfographicVQA</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gqa">GQA</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#scienceqa">ScienceQA</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pope">POPE</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tiny-lvlm">Tiny LVLM</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mmmu">MMMU</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mmvet-gpt-4-0613">MMVet (GPT-4-0613)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mmbench">MMBench</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ccbench">CCBench</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#seed">SEED</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mmvp">MMVP</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mvbench">MVBench</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation-using-vlmevalkit-codebase">Evaluation using VLMEvalKit Codebase</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Data Preparation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mathvista">MathVista</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hallusionbench">HallusionBench</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mmstar">MMStar</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ocrbench">OCRBench</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">MMMU</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#realworldqa">RealWorldQA</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#llava-bench-gpt-4-turbo">LLaVA-Bench (GPT-4-Turbo)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#videomme">VideoMME</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citation">Citation</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="internvl-chat-v1-2">
+<h1>InternVL-Chat-V1-2<a class="headerlink" href="#internvl-chat-v1-2" title="Permalink to this heading">#</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
+<p>We are excited to introduce <a class="reference external" href="https://huggingface.co/OpenGVLab/InternVL-Chat-V1-2">🤗 InternVL-Chat-V1-2</a>. Inspired by <a class="reference external" href="https://llava-vl.github.io/blog/2024-01-30-llava-next/">LLaVA-NeXT-34B</a>, we have also adopted <a class="reference external" href="https://huggingface.co/NousResearch/Nous-Hermes-2-Yi-34B">Nous-Hermes-2-Yi-34B</a> as the language model. Below is the pipeline.</p>
+<p align="center">
+    <img src="https://cdn-uploads.huggingface.co/production/uploads/64119264f0f81eb569e0d569/GIEKCvNc1Y5iMQqLv645p.png" style="width: 70%;">
+</p>
+<p>From the experimental results, we’ve observed that <strong>a stronger language model (34B) can better leverage the powerful capabilities of our vision foundation model.</strong></p>
+<p>For better training reproducibility, we follow the minimalist design and data efficiency similar to LLaVA-NeXT. To reduce training costs, we provide a <a class="reference external" href="https://huggingface.co/OpenGVLab/InternViT-6B-448px-V1-2/blob/main/mlp_projector/hermes_2_yi_34b.pth">pre-trained MLP projector</a> and only employ around 1.2 million visual instruction tuning samples for SFT. Our model has a total of 40 billion parameters and can be trained within 1.5 days using 32 A100 GPUs. The code, data, and model have been made publicly available.</p>
+<p>Additionally, <a class="reference external" href="https://huggingface.co/OpenGVLab/InternVL-Chat-V1-2-Plus">🤗 InternVL-Chat-V1-2-Plus</a> uses the same model architecture as InternVL-Chat-V1-2, but the difference lies in the SFT dataset. InternVL-Chat-V1-2 only utilizes an SFT dataset with 1.2M samples, while our plus version employs an SFT dataset with 12M samples.</p>
+</section>
+<section id="performance">
+<h2>Performance<a class="headerlink" href="#performance" title="Permalink to this heading">#</a></h2>
+<p>* Proprietary Model          † Training Set Observed</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>name</p></th>
+<th class="head"><p>image size</p></th>
+<th class="head"><p>MMMU<br>(val)</p></th>
+<th class="head"><p>MMMU<br>(test)</p></th>
+<th class="head"><p>MathVista<br>(testmini)</p></th>
+<th class="head"><p>MMB<br>(test)</p></th>
+<th class="head"><p>MMB−CN<br>(test)</p></th>
+<th class="head"><p>MMVP</p></th>
+<th class="head"><p>MME</p></th>
+<th class="head"><p>ScienceQA<br>(image)</p></th>
+<th class="head"><p>POPE</p></th>
+<th class="head"><p>TextVQA<br>(val)</p></th>
+<th class="head"><p>SEEDv1<br>(image)</p></th>
+<th class="head"><p>VizWiz<br>(test)</p></th>
+<th class="head"><p>GQA<br>(test)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>GPT-4V*</p></td>
+<td><p>unknown</p></td>
+<td><p>56.8</p></td>
+<td><p>55.7</p></td>
+<td><p>49.9</p></td>
+<td><p>77.0</p></td>
+<td><p>74.4</p></td>
+<td><p>38.7</p></td>
+<td><p>1409/517</p></td>
+<td><p>-</p></td>
+<td><p>-</p></td>
+<td><p>78.0</p></td>
+<td><p>71.6</p></td>
+<td><p>-</p></td>
+<td><p>-</p></td>
+</tr>
+<tr class="row-odd"><td><p>Gemini Ultra*</p></td>
+<td><p>unknown</p></td>
+<td><p>59.4</p></td>
+<td><p>-</p></td>
+<td><p>53.0</p></td>
+<td><p>-</p></td>
+<td><p>-</p></td>
+<td><p>-</p></td>
+<td><p>-</p></td>
+<td><p>-</p></td>
+<td><p>-</p></td>
+<td><p>82.3</p></td>
+<td><p>-</p></td>
+<td><p>-</p></td>
+<td><p>-</p></td>
+</tr>
+<tr class="row-even"><td><p>Gemini Pro*</p></td>
+<td><p>unknown</p></td>
+<td><p>47.9</p></td>
+<td><p>-</p></td>
+<td><p>45.2</p></td>
+<td><p>73.6</p></td>
+<td><p>74.3</p></td>
+<td><p>40.7</p></td>
+<td><p>1497/437</p></td>
+<td><p>-</p></td>
+<td><p>-</p></td>
+<td><p>74.6</p></td>
+<td><p>70.7</p></td>
+<td><p>-</p></td>
+<td><p>-</p></td>
+</tr>
+<tr class="row-odd"><td><p>Qwen−VL−Plus*</p></td>
+<td><p>unknown</p></td>
+<td><p>45.2</p></td>
+<td><p>40.8</p></td>
+<td><p>43.3</p></td>
+<td><p>67.0</p></td>
+<td><p>70.7</p></td>
+<td><p>-</p></td>
+<td><p>1681/502</p></td>
+<td><p>-</p></td>
+<td><p>-</p></td>
+<td><p>78.9</p></td>
+<td><p>65.7</p></td>
+<td><p>-</p></td>
+<td><p>-</p></td>
+</tr>
+<tr class="row-even"><td><p>Qwen−VL−Max*</p></td>
+<td><p>unknown</p></td>
+<td><p>51.4</p></td>
+<td><p>46.8</p></td>
+<td><p>51.0</p></td>
+<td><p>77.6</p></td>
+<td><p>75.7</p></td>
+<td><p>-</p></td>
+<td><p>-</p></td>
+<td><p>-</p></td>
+<td><p>-</p></td>
+<td><p>79.5</p></td>
+<td><p>-</p></td>
+<td><p>-</p></td>
+<td><p>-</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>LLaVA−NeXT−34B</p></td>
+<td><p>672x672</p></td>
+<td><p>51.1</p></td>
+<td><p>44.7</p></td>
+<td><p>46.5</p></td>
+<td><p>79.3</p></td>
+<td><p>79.0</p></td>
+<td><p>-</p></td>
+<td><p>1631/397</p></td>
+<td><p>81.8</p></td>
+<td><p>87.7</p></td>
+<td><p>69.5</p></td>
+<td><p>75.9</p></td>
+<td><p>63.8</p></td>
+<td><p>67.1†</p></td>
+</tr>
+<tr class="row-odd"><td><p>InternVL−Chat<br>−V1-2</p></td>
+<td><p>448x448</p></td>
+<td><p>51.6</p></td>
+<td><p>46.2</p></td>
+<td><p>47.7</p></td>
+<td><p>82.2</p></td>
+<td><p>81.2</p></td>
+<td><p>56.7</p></td>
+<td><p>1687/489</p></td>
+<td><p>83.3</p></td>
+<td><p>88.0</p></td>
+<td><p>72.5</p></td>
+<td><p>75.6</p></td>
+<td><p>60.0</p></td>
+<td><p>64.0†</p></td>
+</tr>
+<tr class="row-even"><td><p>InternVL−Chat<br>−V1-2−Plus</p></td>
+<td><p>448x448</p></td>
+<td><p>50.3</p></td>
+<td><p>45.6</p></td>
+<td><p>59.9</p></td>
+<td><p>83.8</p></td>
+<td><p>82.0</p></td>
+<td><p>58.7</p></td>
+<td><p>1625/553</p></td>
+<td><p>98.1†</p></td>
+<td><p>88.7</p></td>
+<td><p>74.1†</p></td>
+<td><p>76.4</p></td>
+<td><p>-</p></td>
+<td><p>66.9†</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>MMBench results are collected from the <a class="reference external" href="https://mmbench.opencompass.org.cn/leaderboard">leaderboard</a>.</p></li>
+</ul>
+<p>Here, we have conducted only a simple performance comparison. For more detailed performance information and additional evaluation metrics, please refer to our performance summary table.</p>
+</section>
+<section id="quick-start">
+<h2>Quick Start<a class="headerlink" href="#quick-start" title="Permalink to this heading">#</a></h2>
+<p>We provide an example code to run InternVL-Chat-V1-2-Plus using <code class="docutils literal notranslate"><span class="pre">transformers</span></code>.</p>
+<p>We also welcome you to experience the InternVL2 series models in our <a class="reference external" href="https://internvl.opengvlab.com/">online demo</a>.</p>
+<blockquote>
+<div><p>Please use transformers==4.37.2 to ensure the model works normally.</p>
+</div></blockquote>
+<section id="model-loading">
+<h3>Model Loading<a class="headerlink" href="#model-loading" title="Permalink to this heading">#</a></h3>
+<section id="bit-bf16-fp16">
+<h4>16-bit (bf16 / fp16)<a class="headerlink" href="#bit-bf16-fp16" title="Permalink to this heading">#</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoTokenizer</span><span class="p">,</span> <span class="n">AutoModel</span><span class="p">,</span> <span class="n">CLIPImageProcessor</span>
+<span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;OpenGVLab/InternVL-Chat-V1-2-Plus&quot;</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+    <span class="n">path</span><span class="p">,</span>
+    <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">,</span>
+    <span class="n">low_cpu_mem_usage</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="bnb-8-bit-quantization">
+<h4>BNB 8-bit Quantization<a class="headerlink" href="#bnb-8-bit-quantization" title="Permalink to this heading">#</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoTokenizer</span><span class="p">,</span> <span class="n">AutoModel</span><span class="p">,</span> <span class="n">CLIPImageProcessor</span>
+<span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;OpenGVLab/InternVL-Chat-V1-2-Plus&quot;</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+    <span class="n">path</span><span class="p">,</span>
+    <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">,</span>
+    <span class="n">load_in_8bit</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">low_cpu_mem_usage</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="bnb-4-bit-quantization">
+<h4>BNB 4-bit Quantization<a class="headerlink" href="#bnb-4-bit-quantization" title="Permalink to this heading">#</a></h4>
+<blockquote>
+<div><p><strong>⚠️ Warning:</strong> Due to significant quantization errors with BNB 4-bit quantization on InternViT-6B, the model may produce nonsensical outputs and fail to understand images. Therefore, please avoid using BNB 4-bit quantization.</p>
+</div></blockquote>
+</section>
+<section id="multiple-gpus">
+<h4>Multiple GPUs<a class="headerlink" href="#multiple-gpus" title="Permalink to this heading">#</a></h4>
+<p>The reason for writing the code this way is to avoid errors that occur during multi-GPU inference due to tensors not being on the same device. By ensuring that the first and last layers of the large language model (LLM) are on the same device, we prevent such errors.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoTokenizer</span><span class="p">,</span> <span class="n">AutoModel</span>
+
+<span class="k">def</span> <span class="nf">split_model</span><span class="p">(</span><span class="n">model_name</span><span class="p">):</span>
+    <span class="n">device_map</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">world_size</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_count</span><span class="p">()</span>
+    <span class="n">num_layers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;InternVL-Chat-V1-2&#39;</span><span class="p">:</span> <span class="mi">60</span><span class="p">,</span> <span class="s1">&#39;InternVL-Chat-V1-2-Plus&#39;</span><span class="p">:</span> <span class="mi">60</span><span class="p">}[</span><span class="n">model_name</span><span class="p">]</span>
+    <span class="c1"># Since the first GPU will be used for ViT, treat it as half a GPU.</span>
+    <span class="n">num_layers_per_gpu</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">num_layers</span> <span class="o">/</span> <span class="p">(</span><span class="n">world_size</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">))</span>
+    <span class="n">num_layers_per_gpu</span> <span class="o">=</span> <span class="p">[</span><span class="n">num_layers_per_gpu</span><span class="p">]</span> <span class="o">*</span> <span class="n">world_size</span>
+    <span class="n">num_layers_per_gpu</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">num_layers_per_gpu</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">layer_cnt</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">num_layer</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">num_layers_per_gpu</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_layer</span><span class="p">):</span>
+            <span class="n">device_map</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;language_model.model.layers.</span><span class="si">{</span><span class="n">layer_cnt</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
+            <span class="n">layer_cnt</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">device_map</span><span class="p">[</span><span class="s1">&#39;vision_model&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">device_map</span><span class="p">[</span><span class="s1">&#39;mlp1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">device_map</span><span class="p">[</span><span class="s1">&#39;language_model.model.tok_embeddings&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">device_map</span><span class="p">[</span><span class="s1">&#39;language_model.model.embed_tokens&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">device_map</span><span class="p">[</span><span class="s1">&#39;language_model.output&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">device_map</span><span class="p">[</span><span class="s1">&#39;language_model.model.norm&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">device_map</span><span class="p">[</span><span class="s1">&#39;language_model.lm_head&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">device_map</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;language_model.model.layers.</span><span class="si">{</span><span class="n">num_layers</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">return</span> <span class="n">device_map</span>
+
+<span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;OpenGVLab/InternVL-Chat-V1-2-Plus&quot;</span>
+<span class="n">device_map</span> <span class="o">=</span> <span class="n">split_model</span><span class="p">(</span><span class="s1">&#39;InternVL-Chat-V1-2-Plus&#39;</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+    <span class="n">path</span><span class="p">,</span>
+    <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">,</span>
+    <span class="n">low_cpu_mem_usage</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">device_map</span><span class="o">=</span><span class="n">device_map</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="inference-with-transformers">
+<h3>Inference with Transformers<a class="headerlink" href="#inference-with-transformers" title="Permalink to this heading">#</a></h3>
+<section id="pure-text-conversation">
+<h4>Pure-text conversation<a class="headerlink" href="#pure-text-conversation" title="Permalink to this heading">#</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoTokenizer</span><span class="p">,</span> <span class="n">AutoModel</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+
+<span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;OpenGVLab/InternVL-Chat-V1-2-Plus&quot;</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+    <span class="n">path</span><span class="p">,</span>
+    <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">,</span>
+    <span class="n">low_cpu_mem_usage</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">generation_config</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">num_beams</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">do_sample</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">question</span> <span class="o">=</span> <span class="s1">&#39;Hello, who are you?&#39;</span>
+<span class="n">response</span><span class="p">,</span> <span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">chat</span><span class="p">(</span><span class="n">tokenizer</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">question</span><span class="p">,</span> <span class="n">generation_config</span><span class="p">,</span> <span class="n">history</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_history</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;User: </span><span class="si">{</span><span class="n">question</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Assistant: </span><span class="si">{</span><span class="n">response</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">question</span> <span class="o">=</span> <span class="s1">&#39;Can you tell me a story?&#39;</span>
+<span class="n">response</span><span class="p">,</span> <span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">chat</span><span class="p">(</span><span class="n">tokenizer</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">question</span><span class="p">,</span> <span class="n">generation_config</span><span class="p">,</span> <span class="n">history</span><span class="o">=</span><span class="n">history</span><span class="p">,</span> <span class="n">return_history</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;User: </span><span class="si">{</span><span class="n">question</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Assistant: </span><span class="si">{</span><span class="n">response</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="single-image-single-round-conversation">
+<h4>Single-image single-round conversation<a class="headerlink" href="#single-image-single-round-conversation" title="Permalink to this heading">#</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoTokenizer</span><span class="p">,</span> <span class="n">AutoModel</span><span class="p">,</span> <span class="n">CLIPImageProcessor</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+
+<span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;OpenGVLab/InternVL-Chat-V1-2-Plus&quot;</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+    <span class="n">path</span><span class="p">,</span>
+    <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">,</span>
+    <span class="n">low_cpu_mem_usage</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">image_processor</span> <span class="o">=</span> <span class="n">CLIPImageProcessor</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;./examples/image2.jpg&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="mi">448</span><span class="p">,</span> <span class="mi">448</span><span class="p">))</span>
+<span class="n">pixel_values</span> <span class="o">=</span> <span class="n">image_processor</span><span class="p">(</span><span class="n">images</span><span class="o">=</span><span class="n">image</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s1">&#39;pt&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">pixel_values</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">)</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
+
+<span class="n">generation_config</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">num_beams</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">do_sample</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">question</span> <span class="o">=</span> <span class="s1">&#39;&lt;image&gt;</span><span class="se">\n</span><span class="s1">Please describe the image shortly.&#39;</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">chat</span><span class="p">(</span><span class="n">tokenizer</span><span class="p">,</span> <span class="n">pixel_values</span><span class="p">,</span> <span class="n">question</span><span class="p">,</span> <span class="n">generation_config</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;User: </span><span class="si">{</span><span class="n">question</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Assistant: </span><span class="si">{</span><span class="n">response</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="single-image-multi-round-conversation">
+<h4>Single-image multi-round conversation<a class="headerlink" href="#single-image-multi-round-conversation" title="Permalink to this heading">#</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoTokenizer</span><span class="p">,</span> <span class="n">AutoModel</span><span class="p">,</span> <span class="n">CLIPImageProcessor</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+
+<span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;OpenGVLab/InternVL-Chat-V1-2-Plus&quot;</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+    <span class="n">path</span><span class="p">,</span>
+    <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">,</span>
+    <span class="n">low_cpu_mem_usage</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">image_processor</span> <span class="o">=</span> <span class="n">CLIPImageProcessor</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;./examples/image2.jpg&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="mi">448</span><span class="p">,</span> <span class="mi">448</span><span class="p">))</span>
+<span class="n">pixel_values</span> <span class="o">=</span> <span class="n">image_processor</span><span class="p">(</span><span class="n">images</span><span class="o">=</span><span class="n">image</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s1">&#39;pt&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">pixel_values</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">)</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
+
+<span class="n">generation_config</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">num_beams</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">do_sample</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">question</span> <span class="o">=</span> <span class="s1">&#39;&lt;image&gt;</span><span class="se">\n</span><span class="s1">Please describe the image in detail.&#39;</span>
+<span class="n">response</span><span class="p">,</span> <span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">chat</span><span class="p">(</span><span class="n">tokenizer</span><span class="p">,</span> <span class="n">pixel_values</span><span class="p">,</span> <span class="n">question</span><span class="p">,</span> <span class="n">generation_config</span><span class="p">,</span> <span class="n">history</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_history</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;User: </span><span class="si">{</span><span class="n">question</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Assistant: </span><span class="si">{</span><span class="n">response</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">question</span> <span class="o">=</span> <span class="s1">&#39;Please write a poem according to the image.&#39;</span>
+<span class="n">response</span><span class="p">,</span> <span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">chat</span><span class="p">(</span><span class="n">tokenizer</span><span class="p">,</span> <span class="n">pixel_values</span><span class="p">,</span> <span class="n">question</span><span class="p">,</span> <span class="n">generation_config</span><span class="p">,</span> <span class="n">history</span><span class="o">=</span><span class="n">history</span><span class="p">,</span> <span class="n">return_history</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;User: </span><span class="si">{</span><span class="n">question</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Assistant: </span><span class="si">{</span><span class="n">response</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="multi-image-multi-round-conversation-combined-images">
+<h4>Multi-image multi-round conversation, combined images<a class="headerlink" href="#multi-image-multi-round-conversation-combined-images" title="Permalink to this heading">#</a></h4>
+<blockquote>
+<div><p><strong>⚠️️ Warning:</strong> Please note that for this model, we support multi-image chat in the interface, but the results are not very good due to the lack of training with multi-image data.</p>
+</div></blockquote>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoTokenizer</span><span class="p">,</span> <span class="n">AutoModel</span><span class="p">,</span> <span class="n">CLIPImageProcessor</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+
+<span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;OpenGVLab/InternVL-Chat-V1-2-Plus&quot;</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+    <span class="n">path</span><span class="p">,</span>
+    <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">,</span>
+    <span class="n">low_cpu_mem_usage</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">image_processor</span> <span class="o">=</span> <span class="n">CLIPImageProcessor</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+<span class="n">image1</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;./examples/image1.jpg&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="mi">448</span><span class="p">,</span> <span class="mi">448</span><span class="p">))</span>
+<span class="n">pixel_values1</span> <span class="o">=</span> <span class="n">image_processor</span><span class="p">(</span><span class="n">images</span><span class="o">=</span><span class="n">image1</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s1">&#39;pt&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">pixel_values</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">)</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
+<span class="n">image2</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;./examples/image2.jpg&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="mi">448</span><span class="p">,</span> <span class="mi">448</span><span class="p">))</span>
+<span class="n">pixel_values2</span> <span class="o">=</span> <span class="n">image_processor</span><span class="p">(</span><span class="n">images</span><span class="o">=</span><span class="n">image2</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s1">&#39;pt&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">pixel_values</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">)</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
+<span class="n">pixel_values</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="n">pixel_values1</span><span class="p">,</span> <span class="n">pixel_values2</span><span class="p">),</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">generation_config</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">num_beams</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">do_sample</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">question</span> <span class="o">=</span> <span class="s1">&#39;&lt;image&gt;</span><span class="se">\n</span><span class="s1">Describe the two images in detail.&#39;</span>
+<span class="n">response</span><span class="p">,</span> <span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">chat</span><span class="p">(</span><span class="n">tokenizer</span><span class="p">,</span> <span class="n">pixel_values</span><span class="p">,</span> <span class="n">question</span><span class="p">,</span> <span class="n">generation_config</span><span class="p">,</span>
+                               <span class="n">history</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_history</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;User: </span><span class="si">{</span><span class="n">question</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Assistant: </span><span class="si">{</span><span class="n">response</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">question</span> <span class="o">=</span> <span class="s1">&#39;What are the similarities and differences between these two images.&#39;</span>
+<span class="n">response</span><span class="p">,</span> <span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">chat</span><span class="p">(</span><span class="n">tokenizer</span><span class="p">,</span> <span class="n">pixel_values</span><span class="p">,</span> <span class="n">question</span><span class="p">,</span> <span class="n">generation_config</span><span class="p">,</span>
+                               <span class="n">history</span><span class="o">=</span><span class="n">history</span><span class="p">,</span> <span class="n">return_history</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;User: </span><span class="si">{</span><span class="n">question</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Assistant: </span><span class="si">{</span><span class="n">response</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="multi-image-multi-round-conversation-separate-images">
+<h4>Multi-image multi-round conversation, separate images<a class="headerlink" href="#multi-image-multi-round-conversation-separate-images" title="Permalink to this heading">#</a></h4>
+<blockquote>
+<div><p><strong>⚠️️ Warning:</strong> Please note that for this model, we support multi-image chat in the interface, but the results are not very good due to the lack of training with multi-image data.</p>
+</div></blockquote>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoTokenizer</span><span class="p">,</span> <span class="n">AutoModel</span><span class="p">,</span> <span class="n">CLIPImageProcessor</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+
+<span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;OpenGVLab/InternVL-Chat-V1-2-Plus&quot;</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+    <span class="n">path</span><span class="p">,</span>
+    <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">,</span>
+    <span class="n">low_cpu_mem_usage</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">image_processor</span> <span class="o">=</span> <span class="n">CLIPImageProcessor</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+<span class="n">image1</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;./examples/image1.jpg&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="mi">448</span><span class="p">,</span> <span class="mi">448</span><span class="p">))</span>
+<span class="n">pixel_values1</span> <span class="o">=</span> <span class="n">image_processor</span><span class="p">(</span><span class="n">images</span><span class="o">=</span><span class="n">image1</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s1">&#39;pt&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">pixel_values</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">)</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
+<span class="n">image2</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;./examples/image2.jpg&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="mi">448</span><span class="p">,</span> <span class="mi">448</span><span class="p">))</span>
+<span class="n">pixel_values2</span> <span class="o">=</span> <span class="n">image_processor</span><span class="p">(</span><span class="n">images</span><span class="o">=</span><span class="n">image2</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s1">&#39;pt&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">pixel_values</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">)</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
+<span class="n">pixel_values</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="n">pixel_values1</span><span class="p">,</span> <span class="n">pixel_values2</span><span class="p">),</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">num_patches_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">pixel_values1</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">pixel_values2</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)]</span>
+
+<span class="n">generation_config</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">num_beams</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">do_sample</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">question</span> <span class="o">=</span> <span class="s1">&#39;Image-1: &lt;image&gt;</span><span class="se">\n</span><span class="s1">Image-2: &lt;image&gt;</span><span class="se">\n</span><span class="s1">Describe the two images in detail.&#39;</span>
+<span class="n">response</span><span class="p">,</span> <span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">chat</span><span class="p">(</span><span class="n">tokenizer</span><span class="p">,</span> <span class="n">pixel_values</span><span class="p">,</span> <span class="n">question</span><span class="p">,</span> <span class="n">generation_config</span><span class="p">,</span>
+                               <span class="n">num_patches_list</span><span class="o">=</span><span class="n">num_patches_list</span><span class="p">,</span> <span class="n">history</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_history</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;User: </span><span class="si">{</span><span class="n">question</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Assistant: </span><span class="si">{</span><span class="n">response</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">question</span> <span class="o">=</span> <span class="s1">&#39;What are the similarities and differences between these two images.&#39;</span>
+<span class="n">response</span><span class="p">,</span> <span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">chat</span><span class="p">(</span><span class="n">tokenizer</span><span class="p">,</span> <span class="n">pixel_values</span><span class="p">,</span> <span class="n">question</span><span class="p">,</span> <span class="n">generation_config</span><span class="p">,</span>
+                               <span class="n">num_patches_list</span><span class="o">=</span><span class="n">num_patches_list</span><span class="p">,</span> <span class="n">history</span><span class="o">=</span><span class="n">history</span><span class="p">,</span> <span class="n">return_history</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;User: </span><span class="si">{</span><span class="n">question</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Assistant: </span><span class="si">{</span><span class="n">response</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="batch-inference-single-image-per-sample">
+<h4>Batch inference, single image per sample<a class="headerlink" href="#batch-inference-single-image-per-sample" title="Permalink to this heading">#</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoTokenizer</span><span class="p">,</span> <span class="n">AutoModel</span><span class="p">,</span> <span class="n">CLIPImageProcessor</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+
+<span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;OpenGVLab/InternVL-Chat-V1-2-Plus&quot;</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+    <span class="n">path</span><span class="p">,</span>
+    <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">,</span>
+    <span class="n">low_cpu_mem_usage</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">image_processor</span> <span class="o">=</span> <span class="n">CLIPImageProcessor</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+<span class="n">image1</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;./examples/image1.jpg&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="mi">448</span><span class="p">,</span> <span class="mi">448</span><span class="p">))</span>
+<span class="n">pixel_values1</span> <span class="o">=</span> <span class="n">image_processor</span><span class="p">(</span><span class="n">images</span><span class="o">=</span><span class="n">image1</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s1">&#39;pt&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">pixel_values</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">)</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
+<span class="n">image2</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;./examples/image2.jpg&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="mi">448</span><span class="p">,</span> <span class="mi">448</span><span class="p">))</span>
+<span class="n">pixel_values2</span> <span class="o">=</span> <span class="n">image_processor</span><span class="p">(</span><span class="n">images</span><span class="o">=</span><span class="n">image2</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s1">&#39;pt&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">pixel_values</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">)</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
+<span class="n">pixel_values</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="n">pixel_values1</span><span class="p">,</span> <span class="n">pixel_values2</span><span class="p">),</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">num_patches_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">pixel_values1</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">pixel_values2</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)]</span>
+
+<span class="n">generation_config</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">num_beams</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">do_sample</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">questions</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&lt;image&gt;</span><span class="se">\n</span><span class="s1">Describe the image in detail.&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">num_patches_list</span><span class="p">)</span>
+<span class="n">responses</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">batch_chat</span><span class="p">(</span><span class="n">tokenizer</span><span class="p">,</span> <span class="n">pixel_values</span><span class="p">,</span>
+                             <span class="n">num_patches_list</span><span class="o">=</span><span class="n">num_patches_list</span><span class="p">,</span>
+                             <span class="n">questions</span><span class="o">=</span><span class="n">questions</span><span class="p">,</span>
+                             <span class="n">generation_config</span><span class="o">=</span><span class="n">generation_config</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">question</span><span class="p">,</span> <span class="n">response</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">questions</span><span class="p">,</span> <span class="n">responses</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;User: </span><span class="si">{</span><span class="n">question</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Assistant: </span><span class="si">{</span><span class="n">response</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="video-multi-round-conversation">
+<h4>Video multi-round conversation<a class="headerlink" href="#video-multi-round-conversation" title="Permalink to this heading">#</a></h4>
+<blockquote>
+<div><p><strong>⚠️️ Warning:</strong> Please note that for this model, we support video chat in the interface, but the results are not very good due to the lack of training with video data.</p>
+</div></blockquote>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoTokenizer</span><span class="p">,</span> <span class="n">AutoModel</span><span class="p">,</span> <span class="n">CLIPImageProcessor</span>
+<span class="kn">from</span> <span class="nn">decord</span> <span class="kn">import</span> <span class="n">VideoReader</span><span class="p">,</span> <span class="n">cpu</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+
+
+<span class="k">def</span> <span class="nf">get_index</span><span class="p">(</span><span class="n">bound</span><span class="p">,</span> <span class="n">fps</span><span class="p">,</span> <span class="n">max_frame</span><span class="p">,</span> <span class="n">first_idx</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">num_segments</span><span class="o">=</span><span class="mi">32</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">bound</span><span class="p">:</span>
+        <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="n">bound</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">bound</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="o">-</span><span class="mi">100000</span><span class="p">,</span> <span class="mi">100000</span>
+    <span class="n">start_idx</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">first_idx</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">start</span> <span class="o">*</span> <span class="n">fps</span><span class="p">))</span>
+    <span class="n">end_idx</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">end</span> <span class="o">*</span> <span class="n">fps</span><span class="p">),</span> <span class="n">max_frame</span><span class="p">)</span>
+    <span class="n">seg_size</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">end_idx</span> <span class="o">-</span> <span class="n">start_idx</span><span class="p">)</span> <span class="o">/</span> <span class="n">num_segments</span>
+    <span class="n">frame_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+        <span class="nb">int</span><span class="p">(</span><span class="n">start_idx</span> <span class="o">+</span> <span class="p">(</span><span class="n">seg_size</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">seg_size</span> <span class="o">*</span> <span class="n">idx</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_segments</span><span class="p">)</span>
+    <span class="p">])</span>
+    <span class="k">return</span> <span class="n">frame_indices</span>
+
+<span class="k">def</span> <span class="nf">load_video</span><span class="p">(</span><span class="n">video_path</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">num_segments</span><span class="o">=</span><span class="mi">32</span><span class="p">):</span>
+    <span class="n">vr</span> <span class="o">=</span> <span class="n">VideoReader</span><span class="p">(</span><span class="n">video_path</span><span class="p">,</span> <span class="n">ctx</span><span class="o">=</span><span class="n">cpu</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">num_threads</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">max_frame</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">vr</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">fps</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">vr</span><span class="o">.</span><span class="n">get_avg_fps</span><span class="p">())</span>
+
+    <span class="n">pixel_values_list</span><span class="p">,</span> <span class="n">num_patches_list</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+    <span class="n">image_processor</span> <span class="o">=</span> <span class="n">CLIPImageProcessor</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="n">frame_indices</span> <span class="o">=</span> <span class="n">get_index</span><span class="p">(</span><span class="n">bound</span><span class="p">,</span> <span class="n">fps</span><span class="p">,</span> <span class="n">max_frame</span><span class="p">,</span> <span class="n">first_idx</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">num_segments</span><span class="o">=</span><span class="n">num_segments</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">frame_index</span> <span class="ow">in</span> <span class="n">frame_indices</span><span class="p">:</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">vr</span><span class="p">[</span><span class="n">frame_index</span><span class="p">]</span><span class="o">.</span><span class="n">asnumpy</span><span class="p">())</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">&#39;RGB&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="mi">448</span><span class="p">,</span> <span class="mi">448</span><span class="p">))</span>
+        <span class="n">pixel_values</span> <span class="o">=</span> <span class="n">image_processor</span><span class="p">(</span><span class="n">images</span><span class="o">=</span><span class="n">img</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s1">&#39;pt&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">pixel_values</span>
+        <span class="n">num_patches_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pixel_values</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">pixel_values_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pixel_values</span><span class="p">)</span>
+    <span class="n">pixel_values</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">pixel_values_list</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pixel_values</span><span class="p">,</span> <span class="n">num_patches_list</span>
+
+
+<span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;OpenGVLab/InternVL-Chat-V1-2-Plus&quot;</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+    <span class="n">path</span><span class="p">,</span>
+    <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">,</span>
+    <span class="n">low_cpu_mem_usage</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">generation_config</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">num_beams</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">do_sample</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">video_path</span> <span class="o">=</span> <span class="s1">&#39;./examples/red-panda.mp4&#39;</span>
+<span class="n">pixel_values</span><span class="p">,</span> <span class="n">num_patches_list</span> <span class="o">=</span> <span class="n">load_video</span><span class="p">(</span><span class="n">video_path</span><span class="p">,</span> <span class="n">num_segments</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">pixel_values</span> <span class="o">=</span> <span class="n">pixel_values</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">)</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
+<span class="n">video_prefix</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s1">&#39;Frame</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">: &lt;image&gt;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">num_patches_list</span><span class="p">))])</span>
+<span class="n">question</span> <span class="o">=</span> <span class="n">video_prefix</span> <span class="o">+</span> <span class="s1">&#39;What is the red panda doing?&#39;</span>
+<span class="c1"># Frame1: &lt;image&gt;\nFrame2: &lt;image&gt;\n...\nFrame8: &lt;image&gt;\n{question}</span>
+<span class="n">response</span><span class="p">,</span> <span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">chat</span><span class="p">(</span><span class="n">tokenizer</span><span class="p">,</span> <span class="n">pixel_values</span><span class="p">,</span> <span class="n">question</span><span class="p">,</span> <span class="n">generation_config</span><span class="p">,</span>
+                               <span class="n">num_patches_list</span><span class="o">=</span><span class="n">num_patches_list</span><span class="p">,</span> <span class="n">history</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_history</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;User: </span><span class="si">{</span><span class="n">question</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Assistant: </span><span class="si">{</span><span class="n">response</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">question</span> <span class="o">=</span> <span class="s1">&#39;Describe this video in detail.&#39;</span>
+<span class="n">response</span><span class="p">,</span> <span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">chat</span><span class="p">(</span><span class="n">tokenizer</span><span class="p">,</span> <span class="n">pixel_values</span><span class="p">,</span> <span class="n">question</span><span class="p">,</span> <span class="n">generation_config</span><span class="p">,</span>
+                               <span class="n">num_patches_list</span><span class="o">=</span><span class="n">num_patches_list</span><span class="p">,</span> <span class="n">history</span><span class="o">=</span><span class="n">history</span><span class="p">,</span> <span class="n">return_history</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;User: </span><span class="si">{</span><span class="n">question</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Assistant: </span><span class="si">{</span><span class="n">response</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="streaming-output">
+<h4>Streaming output<a class="headerlink" href="#streaming-output" title="Permalink to this heading">#</a></h4>
+<p>Besides this method, you can also use the following code to get streamed output.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">TextIteratorStreamer</span>
+<span class="kn">from</span> <span class="nn">threading</span> <span class="kn">import</span> <span class="n">Thread</span>
+
+<span class="c1"># Initialize the streamer</span>
+<span class="n">streamer</span> <span class="o">=</span> <span class="n">TextIteratorStreamer</span><span class="p">(</span><span class="n">tokenizer</span><span class="p">,</span> <span class="n">skip_prompt</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">skip_special_tokens</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="c1"># Define the generation configuration</span>
+<span class="n">generation_config</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">num_beams</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">do_sample</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">streamer</span><span class="o">=</span><span class="n">streamer</span><span class="p">)</span>
+<span class="c1"># Start the model chat in a separate thread</span>
+<span class="n">thread</span> <span class="o">=</span> <span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">chat</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+    <span class="n">tokenizer</span><span class="o">=</span><span class="n">tokenizer</span><span class="p">,</span> <span class="n">pixel_values</span><span class="o">=</span><span class="n">pixel_values</span><span class="p">,</span> <span class="n">question</span><span class="o">=</span><span class="n">question</span><span class="p">,</span>
+    <span class="n">history</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_history</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">generation_config</span><span class="o">=</span><span class="n">generation_config</span><span class="p">,</span>
+<span class="p">))</span>
+<span class="n">thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+<span class="c1"># Initialize an empty string to store the generated text</span>
+<span class="n">generated_text</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="c1"># Loop through the streamer to get the new text as it is generated</span>
+<span class="k">for</span> <span class="n">new_text</span> <span class="ow">in</span> <span class="n">streamer</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">new_text</span> <span class="o">==</span> <span class="n">model</span><span class="o">.</span><span class="n">conv_template</span><span class="o">.</span><span class="n">sep</span><span class="p">:</span>
+        <span class="k">break</span>
+    <span class="n">generated_text</span> <span class="o">+=</span> <span class="n">new_text</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">new_text</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># Print each new chunk of generated text on the same line</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="reproduce-internvl-chat-v1-2">
+<h2>Reproduce InternVL-Chat-V1-2<a class="headerlink" href="#reproduce-internvl-chat-v1-2" title="Permalink to this heading">#</a></h2>
+<p>Here, we provide all the necessary code, data, and models to reproduce InternVL-Chat-V1-2. Please follow the guidelines below for preparation.</p>
+<section id="model-preparation">
+<h3>1. Model Preparation<a class="headerlink" href="#model-preparation" title="Permalink to this heading">#</a></h3>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>model name</p></th>
+<th class="head"><p>type</p></th>
+<th class="head"><p>download</p></th>
+<th class="head text-center"><p>size</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>InternViT-6B-448px-V1-2</p></td>
+<td><p>ViT</p></td>
+<td><p>🤗 <a class="reference external" href="https://huggingface.co/OpenGVLab/InternViT-6B-448px-V1-2">HF link</a></p></td>
+<td class="text-center"><p>11.1 GB</p></td>
+</tr>
+<tr class="row-odd"><td><p>Nous-Hermes-2-Yi-34B</p></td>
+<td><p>LLM</p></td>
+<td><p>🤗 <a class="reference external" href="https://huggingface.co/NousResearch/Nous-Hermes-2-Yi-34B">HF link</a></p></td>
+<td class="text-center"><p>65.0 GB</p></td>
+</tr>
+</tbody>
+</table>
+<p>If you want to replicate the training of <code class="docutils literal notranslate"><span class="pre">InternVL-Chat-V1-2</span></code>, please follow the commands below to download <code class="docutils literal notranslate"><span class="pre">InternViT-6B-448px-V1-2</span></code> and <code class="docutils literal notranslate"><span class="pre">Nous-Hermes-2-Yi-34B</span></code>.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>pretrained/
+<span class="c1"># pip install -U huggingface_hub</span>
+huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-download<span class="w"> </span>--local-dir-use-symlinks<span class="w"> </span>False<span class="w"> </span>OpenGVLab/InternViT-6B-448px-V1-2<span class="w"> </span>--local-dir<span class="w"> </span>InternViT-6B-448px-V1-2
+huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-download<span class="w"> </span>--local-dir-use-symlinks<span class="w"> </span>False<span class="w"> </span>OpenGVLab/Nous-Hermes-2-Yi-34B<span class="w"> </span>--local-dir<span class="w"> </span>Nous-Hermes-2-Yi-34B
+</pre></div>
+</div>
+<p>The directory structure is:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pretrained
+├──<span class="w"> </span>InternViT-6B-448px-V1-2
+└──<span class="w"> </span>Nous-Hermes-2-Yi-34B
+</pre></div>
+</div>
+</section>
+<section id="training-datasets-preparation">
+<h3>2. Training Datasets Preparation<a class="headerlink" href="#training-datasets-preparation" title="Permalink to this heading">#</a></h3>
+<p>Inspired by LLaVA-NeXT, we adopted a data-efficient SFT strategy to train InternVL-Chat-V1-2, utilizing approximately 1.2M of visual instruction tuning samples in total, all of which are fully open-source. In a macro sense, we build upon <a class="reference external" href="https://github.com/InternLM/InternLM-XComposer/blob/main/projects/ShareGPT4V/docs/Data.md#prepare-images">ShareGPT-4V</a> and additionally integrate <a class="reference external" href="https://huggingface.co/datasets/openbmb/llava_zh">LLaVA-ZH</a>, <a class="reference external" href="https://github.com/kushalkafle/DVQA_dataset">DVQA</a>, <a class="reference external" href="https://github.com/vis-nlp/ChartQA">ChartQA</a>, <a class="reference external" href="https://allenai.org/data/diagrams">AI2D</a>, <a class="reference external" href="https://www.docvqa.org/datasets">DocVQA</a>, <a class="reference external" href="https://github.com/SCNU203/GeoQA-Plus">GeoQA+</a>, and <a class="reference external" href="https://huggingface.co/datasets/naver-clova-ix/synthdog-en">SynthDoG-EN</a>. Most of the data remains consistent with LLaVA-NeXT.</p>
+<p>First, download the <a class="reference external" href="https://huggingface.co/OpenGVLab/InternVL/resolve/main/playground.zip">annotation files</a> and place them in the <code class="docutils literal notranslate"><span class="pre">playground/opensource/</span></code> folder.</p>
+<p>Second, download all the images we used.</p>
+<ul class="simple">
+<li><p>AI2D: <a class="reference external" href="https://drive.google.com/file/d/1dqqa3MnrxMXaU_K9JA6C83je32ibwdOY/view?usp=sharing">ai2d_images</a> (provided by InternLM-XComposer)</p></li>
+<li><p>ChartQA: <a class="reference external" href="https://huggingface.co/datasets/ahmed-masry/ChartQA/resolve/main/ChartQA%20Dataset.zip">ChartQA Dataset</a></p></li>
+<li><p>COCO: <a class="reference external" href="http://images.cocodataset.org/zips/train2017.zip">train2017</a></p></li>
+<li><p>DocVQA: <a class="reference external" href="https://datasets.cvc.uab.es/rrc/DocVQA/train.tar.gz">train</a>, <a class="reference external" href="https://datasets.cvc.uab.es/rrc/DocVQA/val.tar.gz">val</a>, <a class="reference external" href="https://datasets.cvc.uab.es/rrc/DocVQA/test.tar.gz">test</a></p></li>
+<li><p>DVQA: <a class="reference external" href="https://drive.google.com/file/d/1iKH2lTi1-QxtNUVRxTUWFvUvRHq6HAsZ/view">images</a></p></li>
+<li><p>GQA: <a class="reference external" href="https://downloads.cs.stanford.edu/nlp/data/gqa/images.zip">images</a></p></li>
+<li><p>LLaVA-Pretrain: <a class="reference external" href="https://huggingface.co/datasets/liuhaotian/LLaVA-Pretrain/resolve/main/images.zip">images</a></p></li>
+<li><p>OCR-VQA: <a class="reference external" href="https://drive.google.com/drive/folders/1_GYPY5UkUy7HIcR0zq3ZCFgeZN7BAfm_?usp=sharing">download script</a>. We save all files as <code class="docutils literal notranslate"><span class="pre">.jpg</span></code></p></li>
+<li><p>SAM: We only use 000000~000050.tar for now. You can quickly download 9K images from <a class="reference external" href="https://drive.google.com/file/d/1dKumdOKSXtV7lIXdrG7jsIK_z2vZv2gs/view?usp=drive_link">here</a>.</p></li>
+<li><p>TextVQA: <a class="reference external" href="https://dl.fbaipublicfiles.com/textvqa/images/train_val_images.zip">trainvalimages</a></p></li>
+<li><p>SynthDoG-EN: We only use 00000~00004 parquet files for now, with a total of 30K images. We provide the converted <a class="reference external" href="https://huggingface.co/OpenGVLab/InternVL/resolve/main/synthdog-en-images.zip">images</a>.</p></li>
+<li><p>VisualGenome: <a class="reference external" href="https://cs.stanford.edu/people/rak248/VG_100K_2/images.zip">part1</a>, <a class="reference external" href="https://cs.stanford.edu/people/rak248/VG_100K_2/images2.zip">part2</a></p></li>
+<li><p>WebData: <a class="reference external" href="https://drive.google.com/drive/folders/1tCUQ-sq6vdshZVkF0ZeF3K4eztkXJgax?usp=sharing">images</a>. Only for academic usage.</p></li>
+<li><p>GeoQA+: <a class="reference external" href="https://huggingface.co/OpenGVLab/InternVL/resolve/main/geoqa%2B_images.zip">images</a>. We have converted the data format and redistributed it.</p></li>
+</ul>
+<blockquote>
+<div><p><strong>⚠️ Warning:</strong> Note that in the <code class="docutils literal notranslate"><span class="pre">sharegpt4v_mix665k_cap23k_coco-ap9k_lcs3k_sam9k_div2k.jsonl</span></code> file, the format of the RefCOCO data is consistent with LLaVA 1.5, which is <code class="docutils literal notranslate"><span class="pre">[x1,</span> <span class="pre">y1,</span> <span class="pre">x2,</span> <span class="pre">y2]</span></code> with coordinates ranging from <code class="docutils literal notranslate"><span class="pre">0-1</span></code>. During the training of InternVL-Chat-V1-2, we did not apply any special processing to this format. However, for the training of InternVL-Chat-V1-2-Plus, we converted the coordinate format to <code class="docutils literal notranslate"><span class="pre">&lt;box&gt;[[x1,</span> <span class="pre">y1,</span> <span class="pre">x2,</span> <span class="pre">y2]]&lt;/box&gt;</span></code> and adjusted the coordinate range to <code class="docutils literal notranslate"><span class="pre">0-1000</span></code>.</p>
+</div></blockquote>
+<p>Then, organize the data as follows in <code class="docutils literal notranslate"><span class="pre">playground/data</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>playground/
+├── opensource
+│   ├── ai2d_train_12k.jsonl
+│   ├── chartqa_train_18k.jsonl
+│   ├── docvqa_train_10k.jsonl
+│   ├── dvqa_train_200k.jsonl
+│   ├── geoqa+.jsonl
+│   ├── llava_instruct_150k_zh.jsonl
+│   ├── sharegpt4v_instruct_gpt4-vision_cap100k.jsonl
+│   ├── sharegpt4v_mix665k_cap23k_coco-ap9k_lcs3k_sam9k_div2k.jsonl
+│   └── synthdog_en.jsonl
+├── data
+│   ├── ai2d
+│   │   ├── abc_images
+│   │   └── images
+│   ├── chartqa
+│   │   ├── test
+│   │   ├── train
+│   │   └── val
+│   ├── coco
+│   │   └── train2017
+│   ├── docvqa
+│   │   ├── test
+│   │   ├── train
+│   │   └── val
+│   ├── dvqa
+│   │   └── images
+│   ├── gqa
+│   │   └── images
+│   ├── llava
+│   │   └── llava_pretrain
+│   │       └── images
+│   ├── ocr_vqa
+│   │   └── images
+│   ├── sam
+│   │   └── images
+│   ├── share_textvqa
+│   │   └── images
+│   ├── synthdog-en
+│   │   └── images
+│   ├── textvqa
+│   │   └── train_images
+│   ├── vg
+│   │   ├── VG_100K
+│   │   └── VG_100K_2
+│   ├── web-celebrity
+│   │   └── images
+│   ├── web-landmark
+│   │   └── images
+│   ├── wikiart
+│   │   └── images
+│   ├── geoqa+
+│   │   └── images
+</pre></div>
+</div>
+</section>
+<section id="start-training">
+<h3>3. Start Training<a class="headerlink" href="#start-training" title="Permalink to this heading">#</a></h3>
+<p>We provide slurm scripts for multi-node multi-GPU training. You can use either 32 or 64 GPUs to train this model. If you use 64 GPUs, training will take approximately 18 hours.</p>
+<ul class="simple">
+<li><p>If you encounter an OOM error, you can decrease the <code class="docutils literal notranslate"><span class="pre">PER_DEVICE_BATCH_SIZE</span></code>, for example, set <code class="docutils literal notranslate"><span class="pre">PER_DEVICE_BATCH_SIZE=4</span></code>.</p></li>
+</ul>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># using 32 GPUs</span>
+<span class="nv">PARTITION</span><span class="o">=</span><span class="s1">&#39;your partition&#39;</span><span class="w"> </span><span class="nv">GPUS</span><span class="o">=</span><span class="m">32</span><span class="w"> </span><span class="nv">PER_DEVICE_BATCH_SIZE</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>shell/internvl1.2/hermes2_yi34b/internvl_chat_v1_2_hermes2_yi34b_448_res_finetune.sh
+<span class="c1"># using 64 GPUs</span>
+<span class="nv">PARTITION</span><span class="o">=</span><span class="s1">&#39;your partition&#39;</span><span class="w"> </span><span class="nv">GPUS</span><span class="o">=</span><span class="m">64</span><span class="w"> </span><span class="nv">PER_DEVICE_BATCH_SIZE</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>shell/internvl1.2/hermes2_yi34b/internvl_chat_v1_2_hermes2_yi34b_448_res_finetune.sh
+</pre></div>
+</div>
+<p>The hyperparameters used for fine-tuning are listed in the following table. And, you can view the training logs in tensorboard at <a class="reference external" href="https://huggingface.co/OpenGVLab/InternVL-Chat-V1-2/tensorboard">here</a>.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Hyperparameter</p></th>
+<th class="head"><p>Trainable Param</p></th>
+<th class="head"><p>Global Batch Size</p></th>
+<th class="head"><p>Learning rate</p></th>
+<th class="head"><p>Epoch</p></th>
+<th class="head"><p>Max length</p></th>
+<th class="head"><p>Weight decay</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>InternVL-Chat-<br>V1-2</p></td>
+<td><p>40B</p></td>
+<td><p>512</p></td>
+<td><p>1e-5</p></td>
+<td><p>1</p></td>
+<td><p>2048</p></td>
+<td><p>0.05</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="fine-tune-on-a-custom-dataset">
+<h2>Fine-tune on a Custom Dataset<a class="headerlink" href="#fine-tune-on-a-custom-dataset" title="Permalink to this heading">#</a></h2>
+<section id="id1">
+<h3>1. Model Preparation<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>model name</p></th>
+<th class="head"><p>type</p></th>
+<th class="head"><p>download</p></th>
+<th class="head text-center"><p>size</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>InternVL-Chat-V1-2</p></td>
+<td><p>MLLM</p></td>
+<td><p>🤗 <a class="reference external" href="https://huggingface.co/OpenGVLab/InternVL-Chat-V1-2">HF link</a></p></td>
+<td class="text-center"><p>75.0 GB</p></td>
+</tr>
+<tr class="row-odd"><td><p>InternVL-Chat-V1-2-Plus</p></td>
+<td><p>MLLM</p></td>
+<td><p>🤗 <a class="reference external" href="https://huggingface.co/OpenGVLab/InternVL-Chat-V1-2-Plus">HF link</a></p></td>
+<td class="text-center"><p>75.0 GB</p></td>
+</tr>
+</tbody>
+</table>
+<p>Before starting the second fine-tuning, download the pre-trained model we provide. Two versions are available: <a class="reference external" href="https://huggingface.co/OpenGVLab/InternVL-Chat-V1-2">InternVL-Chat-V1-2</a> and <a class="reference external" href="https://huggingface.co/OpenGVLab/InternVL-Chat-V1-2-Plus">InternVL-Chat-V1-2-Plus</a>. We recommend downloading the Plus version.</p>
+<p>Use the following commands to download the desired model:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>pretrained/
+<span class="c1"># pip install -U huggingface_hub</span>
+<span class="c1"># Download OpenGVLab/InternVL-Chat-V1-2</span>
+huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-download<span class="w"> </span>--local-dir-use-symlinks<span class="w"> </span>False<span class="w"> </span>OpenGVLab/InternVL-Chat-V1-2<span class="w"> </span>--local-dir<span class="w"> </span>InternVL-Chat-V1-2
+<span class="c1"># Download OpenGVLab/InternVL-Chat-V1-2-Plus</span>
+huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-download<span class="w"> </span>--local-dir-use-symlinks<span class="w"> </span>False<span class="w"> </span>OpenGVLab/InternVL-Chat-V1-2-Plus<span class="w"> </span>--local-dir<span class="w"> </span>InternVL-Chat-V1-2-Plus
+</pre></div>
+</div>
+<p>The directory structure is:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pretrained
+├──<span class="w"> </span>InternVL-Chat-V1-2
+└──<span class="w"> </span>InternVL-Chat-V1-2-Plus
+</pre></div>
+</div>
+</section>
+<section id="prepare-your-customized-training-data">
+<h3>2. Prepare Your Customized Training Data<a class="headerlink" href="#prepare-your-customized-training-data" title="Permalink to this heading">#</a></h3>
+<p>After downloading the pre-trained model, prepare your customized SFT (Supervised Fine-Tuning) data. Create a JSON file in <code class="docutils literal notranslate"><span class="pre">internvl_chat/shell/data/</span></code> similar to <a class="reference external" href="https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/shell/data/internvl_1_2_finetune.json">this example</a>.</p>
+<p>The format for the JSON file should be:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span>{
+  &quot;your-custom-dataset-1&quot;: {
+    &quot;root&quot;: &quot;path/to/the/image/&quot;,
+    &quot;annotation&quot;: &quot;path/to/the/jsonl/annotation&quot;,
+    &quot;data_augment&quot;: false,
+    &quot;repeat_time&quot;: 1,
+    &quot;length&quot;: &quot;number of your data&quot;
+  },
+  ...
+}
+</pre></div>
+</div>
+<p>Example:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;sharegpt4v_instruct_gpt4-vision_cap100k&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;root&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;playground/data/&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;annotation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;playground/opensource/sharegpt4v_instruct_gpt4-vision_cap100k.jsonl&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;data_augment&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;repeat_time&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;length&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">102025</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="start-2nd-fine-tuning">
+<h3>3. Start 2nd Fine-tuning<a class="headerlink" href="#start-2nd-fine-tuning" title="Permalink to this heading">#</a></h3>
+<p>Fine-tune the pre-trained models using either the <a class="reference external" href="https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/shell/internvl1.2/2nd_finetune/internvl_chat_v1_2_hermes2_yi34b_448_res_2nd_finetune_full.sh">script for training the full LLM</a>
+or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/shell/internvl1.2/2nd_finetune/internvl_chat_v1_2_hermes2_yi34b_448_res_2nd_finetune_lora.sh">script for training the LoRA adapter</a>, depending on your available GPU resources.</p>
+<p>Before fine-tuning, set the <code class="docutils literal notranslate"><span class="pre">--meta_path</span></code> to the path of the JSON file you created in the previous step. The default pre-trained model path in these shell scripts is <code class="docutils literal notranslate"><span class="pre">./pretrained/InternVL-Chat-V1-2-Plus</span></code>.</p>
+<blockquote>
+<div><p>💡 Fine-tuning the full LLM requires at least 16 A100 80G GPUs, whereas fine-tuning the LoRA requires 2 A100 80G GPUs.</p>
+</div></blockquote>
+<blockquote>
+<div><p>💡 The number of GPUs and hyperparameters used here are just an example. To achieve optimal results, you may need to adjust these settings based on your available hardware and dataset size.</p>
+</div></blockquote>
+<p>Commands for fine-tuning:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># Using 16 GPUs with SLURM system, fine-tune the full LLM, cost about 80G per GPU</span>
+<span class="nv">PARTITION</span><span class="o">=</span><span class="s1">&#39;your partition&#39;</span><span class="w"> </span><span class="nv">GPUS</span><span class="o">=</span><span class="m">16</span><span class="w"> </span>sh<span class="w"> </span>shell/internvl1.2/2nd_finetune/internvl_chat_v1_2_hermes2_yi34b_448_res_2nd_finetune_full.sh
+<span class="c1"># Using 2 GPUs, fine-tune the LoRA, without SLURM system, cost about 63G per GPU</span>
+<span class="nv">GPUS</span><span class="o">=</span><span class="m">2</span><span class="w"> </span>sh<span class="w"> </span>shell/internvl1.2/2nd_finetune/internvl_chat_v1_2_hermes2_yi34b_448_res_2nd_finetune_lora.sh
+</pre></div>
+</div>
+<p>If you encounter any issues, please let me know, and I will update the training guide to enhance its usability.</p>
+</section>
+</section>
+<section id="evaluation">
+<h2>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this heading">#</a></h2>
+<p>To evaluate the performance of the InternVL-Chat-V1-2-Plus model across various tasks, follow the instructions for each specific dataset. Ensure that the appropriate number of GPUs is allocated as specified.</p>
+<blockquote>
+<div><p>1⃣️ We simultaneously use InternVL and VLMEvalKit repositories for model evaluation. Specifically, the results reported for DocVQA, ChartQA, InfoVQA, TextVQA, MME, AI2D, MMBench, CCBench, MMVet, and SEED-Image were tested using the InternVL repository. OCRBench, RealWorldQA, HallBench, and MathVista were evaluated using the VLMEvalKit.</p>
+</div></blockquote>
+<blockquote>
+<div><p>2⃣️ Please note that evaluating the same model using different testing toolkits like InternVL and VLMEvalKit can result in slight differences, which is normal. Updates to code versions and variations in environment and hardware can also cause minor discrepancies in results.</p>
+</div></blockquote>
+<blockquote>
+<div><p>3⃣️️ Note, the dataset description is generated by GPT-4 and may contain errors.</p>
+</div></blockquote>
+<section id="evaluation-using-internvl-codebase">
+<h3>Evaluation using InternVL Codebase<a class="headerlink" href="#evaluation-using-internvl-codebase" title="Permalink to this heading">#</a></h3>
+<section id="data-preparation">
+<h4>Data Preparation<a class="headerlink" href="#data-preparation" title="Permalink to this heading">#</a></h4>
+<p>Please prepare the evaluation data according to the <a class="reference internal" href="../get_started/eval_data_preparation.html"><span class="std std-doc">guidance provided here</span></a>.</p>
+</section>
+<section id="mme">
+<h4>MME<a class="headerlink" href="#mme" title="Permalink to this heading">#</a></h4>
+<p>MME is a comprehensive benchmark designed to evaluate Multimodal Large Language Models (MLLMs) on both perception and cognition abilities across 14 different subtasks, ensuring robust and diverse testing of these models.</p>
+<p>Please use the following command to perform the test with 1 GPU:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-2-Plus<span class="w"> </span>mme
+</pre></div>
+</div>
+<p>The expected test results are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
+</pre></div>
+</div>
+</section>
+<section id="okvqa">
+<h4>OKVQA<a class="headerlink" href="#okvqa" title="Permalink to this heading">#</a></h4>
+<p>OKVQA (Outside Knowledge Visual Question Answering) is a dataset designed for visual question answering tasks that require external knowledge beyond what is visible in the image, featuring over 14,000 questions to evaluate the reasoning abilities of AI models.</p>
+<p>Please use the following command to perform the test with 8 GPU:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-2-Plus<span class="w"> </span>vqa-okvqa-val
+</pre></div>
+</div>
+<p>The expected test results are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
+</pre></div>
+</div>
+</section>
+<section id="textvqa">
+<h4>TextVQA<a class="headerlink" href="#textvqa" title="Permalink to this heading">#</a></h4>
+<p>TextVQA is a dataset designed to evaluate visual question answering models by requiring them to read and reason about text present within images, containing 45,336 questions over 28,408 images from the OpenImages dataset.</p>
+<p>The TextVQA dataset provides official OCR results, specifically Rosetta OCR tokens. During testing with InstructBLIP and LLaVA 1.5, the OCR results are input to the LLM as a prompt. If you want to input Rosetta OCR tokens, use the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-2-Plus<span class="w"> </span>vqa-textvqa-val-ocr
+</pre></div>
+</div>
+<p>The expected test results are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
+</pre></div>
+</div>
+<p>If you do not want to input Rosetta OCR tokens, use this command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-2-Plus<span class="w"> </span>vqa-textvqa-val
+</pre></div>
+</div>
+<p>The expected test results are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
+</pre></div>
+</div>
+</section>
+<section id="vizwiz">
+<h4>VizWiz<a class="headerlink" href="#vizwiz" title="Permalink to this heading">#</a></h4>
+<p>The VizWiz VQA dataset is a visual question answering dataset created to help answer visual questions posed by blind individuals. It contains over 31,000 visual questions, where users took a picture using a mobile phone and recorded a spoken question about it. Each question comes with 10 crowdsourced answers. This dataset addresses tasks such as predicting the answer to a visual question and determining whether a visual question can be answered.</p>
+<p>For the validation set, run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-2-Plus<span class="w"> </span>vqa-vizwiz-val
+</pre></div>
+</div>
+<p>The expected test results are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
+</pre></div>
+</div>
+<p>For the test set, run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-2-Plus<span class="w"> </span>vqa-vizwiz-test
+</pre></div>
+</div>
+<p>For the test set, submit the results to the <a class="reference external" href="https://eval.ai/web/challenges/challenge-page/1911/my-submission">evaluation server</a>.</p>
+<p>The expected test results are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
+</pre></div>
+</div>
+</section>
+<section id="chartqa">
+<h4>ChartQA<a class="headerlink" href="#chartqa" title="Permalink to this heading">#</a></h4>
+<p>The ChartQA dataset is a comprehensive benchmark for question answering about charts that involves both visual and logical reasoning. It includes a mix of 9.6K human-written questions and 23.1K machine-generated questions derived from chart summaries. This dataset is designed to evaluate models that can understand and analyze charts by answering complex questions that often require multiple logical and arithmetic operations, as well as referencing visual features of the charts.</p>
+<p>The ChartQA dataset includes two test sets: <code class="docutils literal notranslate"><span class="pre">chartqa_test_human</span></code> and <code class="docutils literal notranslate"><span class="pre">chartqa_test_augmented</span></code>. The final score for model evaluation is calculated as the average of the scores on these two test sets:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-2-Plus<span class="w"> </span>vqa-chartqa-test
+</pre></div>
+</div>
+<p>The expected test results are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
+</pre></div>
+</div>
+</section>
+<section id="docvqa">
+<h4>DocVQA<a class="headerlink" href="#docvqa" title="Permalink to this heading">#</a></h4>
+<p>The DocVQA dataset consists of 50,000 questions on 12,000+ document images. It is designed for visual question answering tasks where questions are answered using text within the document images. The dataset includes OCR transcriptions and ground truth answers, supporting evaluation of models that interpret and extract information from documents.</p>
+<p>For the validation set, run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-2-Plus<span class="w"> </span>vqa-docvqa-val
+</pre></div>
+</div>
+<p>The expected test results are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
+</pre></div>
+</div>
+<p>For the test set, run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-2-Plus<span class="w"> </span>vqa-docvqa-test
+</pre></div>
+</div>
+<p>For the test set, submit the results to the <a class="reference external" href="https://rrc.cvc.uab.es/?ch=17">evaluation server</a>.</p>
+<p>The expected test results are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
+</pre></div>
+</div>
+</section>
+<section id="ai2d">
+<h4>AI2D<a class="headerlink" href="#ai2d" title="Permalink to this heading">#</a></h4>
+<p>The AI2D dataset contains over 5,000 grade school science diagrams with extensive annotations and 15,000 multiple-choice questions for research on diagram understanding and question answering.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-2-Plus<span class="w"> </span>vqa-ai2d-test
+</pre></div>
+</div>
+<p>The expected test results are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
+</pre></div>
+</div>
+</section>
+<section id="infographicvqa">
+<h4>InfographicVQA<a class="headerlink" href="#infographicvqa" title="Permalink to this heading">#</a></h4>
+<p>The InfographicVQA dataset is a collection of infographics accompanied by natural language questions and answers. This dataset includes a diverse range of infographics sourced from thousands of different websites, ensuring a variety of layouts and designs. It comprises 30,035 questions across 5,485 images, split into training, validation, and test sets.</p>
+<p>For the validation set, run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-2-Plus<span class="w"> </span>vqa-infovqa-val
+</pre></div>
+</div>
+<p>The expected test results are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
+</pre></div>
+</div>
+<p>For the test set, run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-2-Plus<span class="w"> </span>vqa-infovqa-test
+</pre></div>
+</div>
+<p>For the test set, submit the results to the <a class="reference external" href="https://rrc.cvc.uab.es/?ch=17">evaluation server</a>.</p>
+<p>The expected test results are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
+</pre></div>
+</div>
+</section>
+<section id="gqa">
+<h4>GQA<a class="headerlink" href="#gqa" title="Permalink to this heading">#</a></h4>
+<p>The GQA dataset is a large-scale visual question answering dataset designed for real-world visual reasoning and compositional question answering. It contains over 22 million questions grounded in real images, each accompanied by detailed scene graphs that describe objects, their attributes, and relationships within the scene. The dataset includes images from the Visual Genome dataset, with questions that require various reasoning skills such as spatial understanding and multi-step inference.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-2-Plus<span class="w"> </span>vqa-gqa-testdev
+</pre></div>
+</div>
+<p>The expected test results are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
+</pre></div>
+</div>
+</section>
+<section id="scienceqa">
+<h4>ScienceQA<a class="headerlink" href="#scienceqa" title="Permalink to this heading">#</a></h4>
+<p>The ScienceQA dataset is a large-scale benchmark for multimodal science question answering, consisting of 21,208 multiple-choice questions derived from elementary and high school science curricula. This dataset features a diverse range of topics across natural science, social science, and language science. It includes questions with image context (48.7%), text context (48.2%), and both (30.8%).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-2-Plus<span class="w"> </span>scienceqa
+</pre></div>
+</div>
+<p>The expected test results are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
+</pre></div>
+</div>
+</section>
+<section id="pope">
+<h4>POPE<a class="headerlink" href="#pope" title="Permalink to this heading">#</a></h4>
+<p>The POPE (Polling-based Object Probing Evaluation) dataset is designed to evaluate object hallucination in MLLMs. The dataset consists of 3,000 questions related to the captions of 500 images. By treating the MLLMs’ answers to these questions as a binary classification task, the dataset allows researchers to measure accuracy, precision, recall, and F1 scores to determine the extent of hallucination in the models.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-2-Plus<span class="w"> </span>pope
+</pre></div>
+</div>
+<p>The expected test results are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
+</pre></div>
+</div>
+</section>
+<section id="tiny-lvlm">
+<h4>Tiny LVLM<a class="headerlink" href="#tiny-lvlm" title="Permalink to this heading">#</a></h4>
+<p>The Tiny LVLM-eHub is a streamlined evaluation benchmark designed to assess the multimodal capabilities of MLLMs, including models like Bard. It focuses on six categories of multimodal abilities: visual perception, visual knowledge acquisition, visual reasoning, visual commonsense, object hallucination, and embodied intelligence.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-2-Plus<span class="w"> </span>tiny_lvlm
+</pre></div>
+</div>
+<p>The expected test results are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
+</pre></div>
+</div>
+</section>
+<section id="mmmu">
+<h4>MMMU<a class="headerlink" href="#mmmu" title="Permalink to this heading">#</a></h4>
+<p>The MMMU dataset is a comprehensive benchmark designed to evaluate multimodal models on college-level tasks that require domain-specific knowledge and reasoning. It includes 11,500 questions sourced from college exams, quizzes, and textbooks, spanning six disciplines: Art &amp; Design, Business, Science, Health &amp; Medicine, Humanities &amp; Social Science, and Tech &amp; Engineering. These questions cover 30 subjects and feature 30 types of images, such as charts, diagrams, maps, tables, and more.</p>
+<p>For the validation set, run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-2-Plus<span class="w"> </span>mmmu-val
+</pre></div>
+</div>
+<p>The expected test results are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
+</pre></div>
+</div>
+<p>For the test set, run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-2-Plus<span class="w"> </span>mmmu-test
+</pre></div>
+</div>
+<p>For the test set, submit the results to the <a class="reference external" href="https://eval.ai/web/challenges/challenge-page/2179/overview">evaluation server</a>.</p>
+<p>The expected test results are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
+</pre></div>
+</div>
+</section>
+<section id="mmvet-gpt-4-0613">
+<h4>MMVet (GPT-4-0613)<a class="headerlink" href="#mmvet-gpt-4-0613" title="Permalink to this heading">#</a></h4>
+<p>The MM-Vet dataset is a comprehensive benchmark designed to evaluate the integrated capabilities of MLLMs. It encompasses six core vision-language (VL) capabilities: recognition, knowledge, optical character recognition (OCR), spatial awareness, language generation, and math. The dataset includes 200 images and 218 questions, each requiring one or more of these capabilities to answer. The evaluation uses an open-ended LLM-based approach, allowing assessment across various answer styles and question types.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-2-Plus<span class="w"> </span>mmvet
+</pre></div>
+</div>
+<p>Then, submit the results to the <a class="reference external" href="https://huggingface.co/spaces/whyu/MM-Vet_Evaluator">evaluation server</a>. The expected test results are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
+</pre></div>
+</div>
+</section>
+<section id="mmbench">
+<h4>MMBench<a class="headerlink" href="#mmbench" title="Permalink to this heading">#</a></h4>
+<p>The MMBench dataset is a comprehensive multi-modality benchmark designed to evaluate the fine-grained abilities of vision-language models. It contains around 3,000 multiple-choice questions covering 20 ability dimensions, structured into a hierarchical taxonomy. These dimensions include perception and reasoning abilities, further broken down into specific skills like coarse and fine-grained perception, attribute reasoning, and logic reasoning.</p>
+<p>For the English dev / test set, run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-2-Plus<span class="w"> </span>mmbench-dev-en
+<span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-2-Plus<span class="w"> </span>mmbench-test-en
+</pre></div>
+</div>
+<p>Then, submit the results to the <a class="reference external" href="https://mmbench.opencompass.org.cn/mmbench-submission">evaluation server</a>. The expected test results are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mmbench</span><span class="o">-</span><span class="n">dev</span><span class="o">-</span><span class="n">en</span><span class="p">:</span> <span class="n">TODO</span>
+<span class="n">mmbench</span><span class="o">-</span><span class="n">test</span><span class="o">-</span><span class="n">en</span><span class="p">:</span> <span class="n">TODO</span>
+</pre></div>
+</div>
+<p>For the Chinese dev / test set, run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-2-Plus<span class="w"> </span>mmbench-dev-cn
+<span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-2-Plus<span class="w"> </span>mmbench-test-cn
+</pre></div>
+</div>
+<p>Then, submit the results to the <a class="reference external" href="https://mmbench.opencompass.org.cn/mmbench-submission">evaluation server</a>. The expected test results are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mmbench</span><span class="o">-</span><span class="n">dev</span><span class="o">-</span><span class="n">cn</span><span class="p">:</span> <span class="n">TODO</span>
+<span class="n">mmbench</span><span class="o">-</span><span class="n">test</span><span class="o">-</span><span class="n">cn</span><span class="p">:</span> <span class="n">TODO</span>
+</pre></div>
+</div>
+</section>
+<section id="ccbench">
+<h4>CCBench<a class="headerlink" href="#ccbench" title="Permalink to this heading">#</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-2-Plus<span class="w"> </span>ccbench-dev
+</pre></div>
+</div>
+<p>Then, submit the results to the <a class="reference external" href="https://mmbench.opencompass.org.cn/mmbench-submission">evaluation server</a>. The expected test results are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ccbench</span><span class="o">-</span><span class="n">dev</span><span class="p">:</span> <span class="n">TODO</span>
+</pre></div>
+</div>
+</section>
+<section id="seed">
+<h4>SEED<a class="headerlink" href="#seed" title="Permalink to this heading">#</a></h4>
+<p>CCBench is a multimodal benchmark specifically designed to evaluate models on tasks related to Chinese culture. It is part of the larger MMBench suite of benchmarks, developed by the OpenCompass Community, and aims to provide fine-grained evaluations across various capabilities of vision-language models. CCBench includes 510 questions in a multiple-choice format, focusing on cultural knowledge and understanding.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-2-Plus<span class="w"> </span>seed
+</pre></div>
+</div>
+<p>The expected test results are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
+</pre></div>
+</div>
+</section>
+<section id="mmvp">
+<h4>MMVP<a class="headerlink" href="#mmvp" title="Permalink to this heading">#</a></h4>
+<p>The MMVP dataset is designed to benchmark the performance of multimodal large language models (MLLMs) in visual question answering tasks. This dataset focuses on identifying “CLIP-blind pairs,” which are images that appear similar to the CLIP model despite having clear visual differences. The MMVP dataset includes 300 images derived from ImageNet-1k and LAION-Aesthetics, each paired with straightforward questions to evaluate the models’ visual capabilities. It highlights the challenges these systems face, often leading to incorrect responses and hallucinated explanations.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-2-Plus<span class="w"> </span>mmvp
+</pre></div>
+</div>
+<p>The expected test results are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
+</pre></div>
+</div>
+</section>
+<section id="mvbench">
+<h4>MVBench<a class="headerlink" href="#mvbench" title="Permalink to this heading">#</a></h4>
+<p>MVBench is a comprehensive multimodal video understanding benchmark developed to evaluate the temporal comprehension capabilities of MLLMs. It includes 20 challenging video tasks that require temporal understanding and cannot be effectively solved using a single frame. The benchmark uses a novel static-to-dynamic method, transforming static tasks into dynamic ones to systematically generate video tasks that demand a wide range of temporal skills, from perception to cognition.</p>
+<p>We evaluate our models on MVBench by extracting 16 frames from each video, and each frame was resized to a 448x448 image.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-2-Plus<span class="w"> </span>mvbench
+</pre></div>
+</div>
+<p>The expected test results are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="evaluation-using-vlmevalkit-codebase">
+<h3>Evaluation using VLMEvalKit Codebase<a class="headerlink" href="#evaluation-using-vlmevalkit-codebase" title="Permalink to this heading">#</a></h3>
+<section id="id2">
+<h4>Data Preparation<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h4>
+<p>VLMEvalKit will automatically download the necessary data for evaluation, so you do not need to prepare it manually.</p>
+</section>
+<section id="mathvista">
+<h4>MathVista<a class="headerlink" href="#mathvista" title="Permalink to this heading">#</a></h4>
+<p>The MathVista dataset is a comprehensive benchmark for evaluating mathematical reasoning within visual contexts. It consists of three newly created datasets—IQTest, FunctionQA, and PaperQA—designed to address logical reasoning on puzzle test figures, algebraic reasoning over functional plots, and scientific reasoning with academic paper figures, respectively.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>torchrun<span class="w"> </span>--nproc-per-node<span class="o">=</span><span class="m">8</span><span class="w"> </span>run.py<span class="w"> </span>--data<span class="w"> </span>MathVista<span class="w"> </span>--model<span class="w"> </span>InternVL-Chat-V1-2-Plus<span class="w"> </span>--verbose
+</pre></div>
+</div>
+<p>The expected test results are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
+</pre></div>
+</div>
+</section>
+<section id="hallusionbench">
+<h4>HallusionBench<a class="headerlink" href="#hallusionbench" title="Permalink to this heading">#</a></h4>
+<p>HallusionBench is a comprehensive benchmark designed to evaluate image-context reasoning in MLLMs, focusing on identifying issues related to language hallucination and visual illusion. The dataset consists of 346 images paired with 1,129 questions crafted by human experts. These questions are divided into two categories: Visual Dependent (VD) and Visual Supplement (VS), allowing the benchmark to assess the nuanced understanding and interpretation of visual data by MLLMs.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>torchrun<span class="w"> </span>--nproc-per-node<span class="o">=</span><span class="m">8</span><span class="w"> </span>run.py<span class="w"> </span>--data<span class="w"> </span>HallusionBench<span class="w"> </span>--model<span class="w"> </span>InternVL-Chat-V1-2-Plus<span class="w"> </span>--verbose
+</pre></div>
+</div>
+<p>The expected test results are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
+</pre></div>
+</div>
+</section>
+<section id="mmstar">
+<h4>MMStar<a class="headerlink" href="#mmstar" title="Permalink to this heading">#</a></h4>
+<p>The MMStar dataset is an advanced multimodal benchmark designed to evaluate the capabilities of MLLMs. It comprises 1,500 carefully selected samples that are balanced and purified to ensure they exhibit visual dependency and minimal data leakage. The dataset evaluates models across six core capabilities and 18 detailed axes, focusing on complex multimodal tasks that require advanced reasoning and understanding of visual content.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>torchrun<span class="w"> </span>--nproc-per-node<span class="o">=</span><span class="m">8</span><span class="w"> </span>run.py<span class="w"> </span>--data<span class="w"> </span>MMStar<span class="w"> </span>--model<span class="w"> </span>InternVL-Chat-V1-2-Plus<span class="w"> </span>--verbose
+</pre></div>
+</div>
+<p>The expected test results are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
+</pre></div>
+</div>
+</section>
+<section id="ocrbench">
+<h4>OCRBench<a class="headerlink" href="#ocrbench" title="Permalink to this heading">#</a></h4>
+<p>OCRBench is a comprehensive evaluation benchmark designed to assess the OCR capabilities of MLLMs. It includes five components: Text Recognition, Scene Text-Centric Visual Question Answering (VQA), Document-Oriented VQA, Key Information Extraction (KIE), and Handwritten Mathematical Expression Recognition (HMER). The benchmark encompasses data from 29 datasets, making it one of the most thorough OCR evaluation tools available. OCRBench aims to reveal both the strengths and weaknesses of MLLMs, particularly in handling multilingual text, handwritten text, non-semantic text, and mathematical expressions. The benchmark includes 1,000 question-answer pairs, all manually verified for precision.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>torchrun<span class="w"> </span>--nproc-per-node<span class="o">=</span><span class="m">8</span><span class="w"> </span>run.py<span class="w"> </span>--data<span class="w"> </span>OCRBench<span class="w"> </span>--model<span class="w"> </span>InternVL-Chat-V1-2-Plus<span class="w"> </span>--verbose
+</pre></div>
+</div>
+<p>The expected test results are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h4>MMMU<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h4>
+<p>The MMMU dataset is a comprehensive benchmark designed to evaluate multimodal models on college-level tasks that require domain-specific knowledge and reasoning. It includes 11,500 questions sourced from college exams, quizzes, and textbooks, spanning six disciplines: Art &amp; Design, Business, Science, Health &amp; Medicine, Humanities &amp; Social Science, and Tech &amp; Engineering. These questions cover 30 subjects and feature 30 types of images, such as charts, diagrams, maps, tables, and more.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>torchrun<span class="w"> </span>--nproc-per-node<span class="o">=</span><span class="m">8</span><span class="w"> </span>run.py<span class="w"> </span>--data<span class="w"> </span>MMMU_DEV_VAL<span class="w"> </span>--model<span class="w"> </span>InternVL-Chat-V1-2-Plus<span class="w"> </span>--verbose
+</pre></div>
+</div>
+<p>The expected test results are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
+</pre></div>
+</div>
+</section>
+<section id="realworldqa">
+<h4>RealWorldQA<a class="headerlink" href="#realworldqa" title="Permalink to this heading">#</a></h4>
+<p>The RealWorldQA dataset is a benchmark designed to evaluate the real-world spatial understanding capabilities of multimodal AI models. It consists of over 700 images, each accompanied by a question and a verifiable answer, focusing on various real-world scenarios, including those captured from vehicles. This dataset aims to test how well AI models comprehend physical environments and spatial relations, enhancing their ability to interpret and analyze real-world scenes.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>torchrun<span class="w"> </span>--nproc-per-node<span class="o">=</span><span class="m">8</span><span class="w"> </span>run.py<span class="w"> </span>--data<span class="w"> </span>RealWorldQA<span class="w"> </span>--model<span class="w"> </span>InternVL-Chat-V1-2-Plus<span class="w"> </span>--verbose
+</pre></div>
+</div>
+<p>The expected test results are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
+</pre></div>
+</div>
+</section>
+<section id="llava-bench-gpt-4-turbo">
+<h4>LLaVA-Bench (GPT-4-Turbo)<a class="headerlink" href="#llava-bench-gpt-4-turbo" title="Permalink to this heading">#</a></h4>
+<p>The LLaVA-Bench-in-the-Wild dataset is designed to evaluate the capabilities of MLLMs in handling more complex and diverse visual tasks. It includes a set of 24 images with 60 associated questions, covering a range of indoor and outdoor scenes, memes, paintings, and sketches. Each image is paired with detailed, manually curated descriptions and questions that test the model’s generalizability to novel domains.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>torchrun<span class="w"> </span>--nproc-per-node<span class="o">=</span><span class="m">8</span><span class="w"> </span>run.py<span class="w"> </span>--data<span class="w"> </span>LLaVABench<span class="w"> </span>--model<span class="w"> </span>InternVL-Chat-V1-2-Plus<span class="w"> </span>--verbose
+</pre></div>
+</div>
+<p>The expected test results are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
+</pre></div>
+</div>
+</section>
+<section id="videomme">
+<h4>VideoMME<a class="headerlink" href="#videomme" title="Permalink to this heading">#</a></h4>
+<p>The Video-MME dataset is a comprehensive benchmark designed to evaluate the capabilities of MLLMs in video analysis. It is the first benchmark specifically tailored for this purpose, focusing on a high-quality assessment of models’ performance in processing sequential visual data.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>torchrun<span class="w"> </span>--nproc-per-node<span class="o">=</span><span class="m">8</span><span class="w"> </span>run.py<span class="w"> </span>--data<span class="w"> </span>Video-MME<span class="w"> </span>--model<span class="w"> </span>InternVL-Chat-V1-2-Plus<span class="w"> </span>--verbose<span class="w"> </span>--nframe<span class="w"> </span><span class="m">16</span>
+</pre></div>
+</div>
+<p>The expected test results are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="citation">
+<h2>Citation<a class="headerlink" href="#citation" title="Permalink to this heading">#</a></h2>
+<p>If you find this project useful in your research, please consider citing:</p>
+<div class="highlight-BibTeX notranslate"><div class="highlight"><pre><span></span><span class="nc">@article</span><span class="p">{</span><span class="nl">chen2023internvl</span><span class="p">,</span>
+<span class="w">  </span><span class="na">title</span><span class="p">=</span><span class="s">{InternVL: Scaling up Vision Foundation Models and Aligning for Generic Visual-Linguistic Tasks}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">author</span><span class="p">=</span><span class="s">{Chen, Zhe and Wu, Jiannan and Wang, Wenhai and Su, Weijie and Chen, Guo and Xing, Sen and Zhong, Muyan and Zhang, Qinglong and Zhu, Xizhou and Lu, Lewei and Li, Bin and Luo, Ping and Lu, Tong and Qiao, Yu and Dai, Jifeng}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">journal</span><span class="p">=</span><span class="s">{arXiv preprint arXiv:2312.14238}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">year</span><span class="p">=</span><span class="s">{2023}</span>
+<span class="p">}</span>
+<span class="nc">@article</span><span class="p">{</span><span class="nl">chen2024far</span><span class="p">,</span>
+<span class="w">  </span><span class="na">title</span><span class="p">=</span><span class="s">{How Far Are We to GPT-4V? Closing the Gap to Commercial Multimodal Models with Open-Source Suites}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">author</span><span class="p">=</span><span class="s">{Chen, Zhe and Wang, Weiyun and Tian, Hao and Ye, Shenglong and Gao, Zhangwei and Cui, Erfei and Tong, Wenwen and Hu, Kongzhi and Luo, Jiapeng and Ma, Zheng and others}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">journal</span><span class="p">=</span><span class="s">{arXiv preprint arXiv:2404.16821}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">year</span><span class="p">=</span><span class="s">{2024}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<br>
+<br>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../get_started/eval_data_preparation.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Eval Data Preparation</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../internvl1.2/internvl_chat.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">InternVL-Chat-V1-2</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance">Performance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-start">Quick Start</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-loading">Model Loading</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bit-bf16-fp16">16-bit (bf16 / fp16)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bnb-8-bit-quantization">BNB 8-bit Quantization</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bnb-4-bit-quantization">BNB 4-bit Quantization</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-gpus">Multiple GPUs</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inference-with-transformers">Inference with Transformers</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pure-text-conversation">Pure-text conversation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#single-image-single-round-conversation">Single-image single-round conversation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#single-image-multi-round-conversation">Single-image multi-round conversation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-image-multi-round-conversation-combined-images">Multi-image multi-round conversation, combined images</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-image-multi-round-conversation-separate-images">Multi-image multi-round conversation, separate images</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#batch-inference-single-image-per-sample">Batch inference, single image per sample</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#video-multi-round-conversation">Video multi-round conversation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#streaming-output">Streaming output</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproduce-internvl-chat-v1-2">Reproduce InternVL-Chat-V1-2</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-preparation">1. Model Preparation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training-datasets-preparation">2. Training Datasets Preparation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#start-training">3. Start Training</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fine-tune-on-a-custom-dataset">Fine-tune on a Custom Dataset</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1. Model Preparation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-your-customized-training-data">2. Prepare Your Customized Training Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#start-2nd-fine-tuning">3. Start 2nd Fine-tuning</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation">Evaluation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation-using-internvl-codebase">Evaluation using InternVL Codebase</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preparation">Data Preparation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mme">MME</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#okvqa">OKVQA</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#textvqa">TextVQA</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#vizwiz">VizWiz</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#chartqa">ChartQA</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#docvqa">DocVQA</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ai2d">AI2D</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#infographicvqa">InfographicVQA</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gqa">GQA</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#scienceqa">ScienceQA</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pope">POPE</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tiny-lvlm">Tiny LVLM</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mmmu">MMMU</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mmvet-gpt-4-0613">MMVet (GPT-4-0613)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mmbench">MMBench</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ccbench">CCBench</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#seed">SEED</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mmvp">MMVP</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mvbench">MVBench</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation-using-vlmevalkit-codebase">Evaluation using VLMEvalKit Codebase</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Data Preparation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mathvista">MathVista</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hallusionbench">HallusionBench</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mmstar">MMStar</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ocrbench">OCRBench</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">MMMU</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#realworldqa">RealWorldQA</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#llava-bench-gpt-4-turbo">LLaVA-Bench (GPT-4-Turbo)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#videomme">VideoMME</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citation">Citation</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By InternVL Authors
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, OpenGVLab.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+  Last updated on Jul 26, 2024.
+  <br/>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
