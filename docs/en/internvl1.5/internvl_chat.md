@@ -1,42 +1,33 @@
-# InternVL-Chat-V1-2
+# InternVL-Chat-V1-5
 
 ## Introduction
 
-We are excited to introduce [🤗 InternVL-Chat-V1-2](https://huggingface.co/OpenGVLab/InternVL-Chat-V1-2). Inspired by [LLaVA-NeXT-34B](https://llava-vl.github.io/blog/2024-01-30-llava-next/), we have also adopted [Nous-Hermes-2-Yi-34B](https://huggingface.co/NousResearch/Nous-Hermes-2-Yi-34B) as the language model. Below is the pipeline.
+![image](./figure1.png)
 
-<p align="center">
-    <img src="https://cdn-uploads.huggingface.co/production/uploads/64119264f0f81eb569e0d569/GIEKCvNc1Y5iMQqLv645p.png" style="width: 70%;">
-</p>
+We introduce InternVL 1.5, an open-source multimodal large language model (MLLM) to bridge the capability gap between open-source and proprietary commercial models in multimodal understanding. We introduce three simple designs:
 
-From the experimental results, we've observed that **a stronger language model (34B) can better leverage the powerful capabilities of our vision foundation model.**
+1. Strong Vision Encoder: we explored a continuous learning strategy for the large-scale vision foundation model——InternViT-6B, boosting its visual understanding capabilities, and making it can be transferred and reused in different LLMs.
 
-For better training reproducibility, we follow the minimalist design and data efficiency similar to LLaVA-NeXT. To reduce training costs, we provide a [pre-trained MLP projector](https://huggingface.co/OpenGVLab/InternViT-6B-448px-V1-2/blob/main/mlp_projector/hermes_2_yi_34b.pth) and only employ around 1.2 million visual instruction tuning samples for SFT. Our model has a total of 40 billion parameters and can be trained within 1.5 days using 32 A100 GPUs. The code, data, and model have been made publicly available.
+2. Dynamic High-Resolution: we divide images into tiles ranging from 1 to 40 of 448 × 448 pixels according to the aspect ratio and resolution of the input images, which supports up to 4K resolution input.
 
-Additionally, [🤗 InternVL-Chat-V1-2-Plus](https://huggingface.co/OpenGVLab/InternVL-Chat-V1-2-Plus) uses the same model architecture as InternVL-Chat-V1-2, but the difference lies in the SFT dataset. InternVL-Chat-V1-2 only utilizes an SFT dataset with 1.2M samples, while our plus version employs an SFT dataset with 12M samples.
+3. High-Quality Bilingual Dataset: we carefully collected a high-quality bilingual dataset that covers common scenes, document images, and annotated them with English and Chinese question-answer pairs, significantly enhancing performance in OCR- and Chinese-related tasks.
+
+![image](./figure2.png)
+
+As illustrated in Figure 3, InternVL 1.5 employs an architecture akin to widely-used open-source MLLMs, specifically the “ViT-MLP-LLM” configuration referenced in various existing studies. Our implementation of this architecture integrates a pre-trained InternViT-6B with a pre-trained InternLM2-20B using a randomly initialized MLP projector. 
+
+During training, we implemented a dynamic resolution strategy, dividing images into tiles of 448 × 448 pixels in sizes ranging from 1 to 12, based on the aspect ratio and resolution of the input images. During testing, this can be zero-shot scaled up to 40 tiles (i.e., 4K resolution). To enhance scalability for high resolution, we simply employed a pixel shuffle operation to reduce the number of visual tokens to one-quarter of the original. Therefore, in our model, a 448 × 448 image is represented by 256 visual tokens.
+
 
 ## Performance
 
-\* Proprietary Model          † Training Set Observed
+![performance](./performance1.png)
 
-| name                        | image size | MMMU<br>(val) | MMMU<br>(test) | MathVista<br>(testmini) | MMB<br>(test) | MMB−CN<br>(test) | MMVP | MME      | ScienceQA<br>(image) | POPE | TextVQA<br>(val) | SEEDv1<br>(image) | VizWiz<br>(test) | GQA<br>(test) |
-| --------------------------- | ---------- | ------------- | -------------- | ----------------------- | ------------- | ---------------- | ---- | -------- | -------------------- | ---- | ---------------- | ----------------- | ---------------- | ------------- |
-| GPT-4V\*                    | unknown    | 56.8          | 55.7           | 49.9                    | 77.0          | 74.4             | 38.7 | 1409/517 | -                    | -    | 78.0             | 71.6              | -                | -             |
-| Gemini Ultra\*              | unknown    | 59.4          | -              | 53.0                    | -             | -                | -    | -        | -                    | -    | 82.3             | -                 | -                | -             |
-| Gemini Pro\*                | unknown    | 47.9          | -              | 45.2                    | 73.6          | 74.3             | 40.7 | 1497/437 | -                    | -    | 74.6             | 70.7              | -                | -             |
-| Qwen−VL−Plus\*              | unknown    | 45.2          | 40.8           | 43.3                    | 67.0          | 70.7             | -    | 1681/502 | -                    | -    | 78.9             | 65.7              | -                | -             |
-| Qwen−VL−Max\*               | unknown    | 51.4          | 46.8           | 51.0                    | 77.6          | 75.7             | -    | -        | -                    | -    | 79.5             | -                 | -                | -             |
-|                             |            |               |                |                         |               |                  |      |          |                      |      |                  |                   |                  |               |
-| LLaVA−NeXT−34B              | 672x672    | 51.1          | 44.7           | 46.5                    | 79.3          | 79.0             | -    | 1631/397 | 81.8                 | 87.7 | 69.5             | 75.9              | 63.8             | 67.1†         |
-| InternVL−Chat<br>−V1-2      | 448x448    | 51.6          | 46.2           | 47.7                    | 82.2          | 81.2             | 56.7 | 1687/489 | 83.3                 | 88.0 | 72.5             | 75.6              | 60.0             | 64.0†         |
-| InternVL−Chat<br>−V1-2−Plus | 448x448    | 50.3          | 45.6           | 59.9                    | 83.8          | 82.0             | 58.7 | 1625/553 | 98.1†                | 88.7 | 74.1†            | 76.4              | -                | 66.9†         |
-
-- MMBench results are collected from the [leaderboard](https://mmbench.opencompass.org.cn/leaderboard).
-
-Here, we have conducted only a simple performance comparison. For more detailed performance information and additional evaluation metrics, please refer to our performance summary table.
+![performance](./performance2.png)
 
 ## Quick Start
 
-We provide an example code to run InternVL-Chat-V1-2-Plus using `transformers`.
+We provide an example code to run InternVL-Chat-V1-5 using `transformers`.
 
 We also welcome you to experience the InternVL2 series models in our [online demo](https://internvl.opengvlab.com/).
 
@@ -48,8 +39,8 @@ We also welcome you to experience the InternVL2 series models in our [online dem
 
 ```python
 import torch
-from transformers import AutoTokenizer, AutoModel, CLIPImageProcessor
-path = "OpenGVLab/InternVL-Chat-V1-2-Plus"
+from transformers import AutoTokenizer, AutoModel
+path = "OpenGVLab/InternVL-Chat-V1-5"
 model = AutoModel.from_pretrained(
     path,
     torch_dtype=torch.bfloat16,
@@ -61,8 +52,8 @@ model = AutoModel.from_pretrained(
 
 ```python
 import torch
-from transformers import AutoTokenizer, AutoModel, CLIPImageProcessor
-path = "OpenGVLab/InternVL-Chat-V1-2-Plus"
+from transformers import AutoTokenizer, AutoModel
+path = "OpenGVLab/InternVL-Chat-V1-5"
 model = AutoModel.from_pretrained(
     path,
     torch_dtype=torch.bfloat16,
@@ -87,7 +78,7 @@ from transformers import AutoTokenizer, AutoModel
 def split_model(model_name):
     device_map = {}
     world_size = torch.cuda.device_count()
-    num_layers = {'InternVL-Chat-V1-2': 60, 'InternVL-Chat-V1-2-Plus': 60}[model_name]
+    num_layers = {'Mini-InternVL-2B-V1-5': 24, 'Mini-InternVL-4B-V1-5': 32, 'InternVL-Chat-V1-5': 48}[model_name]
     # Since the first GPU will be used for ViT, treat it as half a GPU.
     num_layers_per_gpu = math.ceil(num_layers / (world_size - 0.5))
     num_layers_per_gpu = [num_layers_per_gpu] * world_size
@@ -108,8 +99,8 @@ def split_model(model_name):
 
     return device_map
 
-path = "OpenGVLab/InternVL-Chat-V1-2-Plus"
-device_map = split_model('InternVL-Chat-V1-2-Plus')
+path = "OpenGVLab/InternVL-Chat-V1-5"
+device_map = split_model('InternVL-Chat-V1-5')
 model = AutoModel.from_pretrained(
     path,
     torch_dtype=torch.bfloat16,
@@ -120,212 +111,174 @@ model = AutoModel.from_pretrained(
 
 ### Inference with Transformers
 
-#### Pure-text conversation
-
 ```python
-from transformers import AutoTokenizer, AutoModel
+import numpy as np
 import torch
+import torchvision.transforms as T
+from decord import VideoReader, cpu
+from PIL import Image
+from torchvision.transforms.functional import InterpolationMode
+from transformers import AutoModel, AutoTokenizer
 
-path = "OpenGVLab/InternVL-Chat-V1-2-Plus"
+IMAGENET_MEAN = (0.485, 0.456, 0.406)
+IMAGENET_STD = (0.229, 0.224, 0.225)
+
+def build_transform(input_size):
+    MEAN, STD = IMAGENET_MEAN, IMAGENET_STD
+    transform = T.Compose([
+        T.Lambda(lambda img: img.convert('RGB') if img.mode != 'RGB' else img),
+        T.Resize((input_size, input_size), interpolation=InterpolationMode.BICUBIC),
+        T.ToTensor(),
+        T.Normalize(mean=MEAN, std=STD)
+    ])
+    return transform
+
+def find_closest_aspect_ratio(aspect_ratio, target_ratios, width, height, image_size):
+    best_ratio_diff = float('inf')
+    best_ratio = (1, 1)
+    area = width * height
+    for ratio in target_ratios:
+        target_aspect_ratio = ratio[0] / ratio[1]
+        ratio_diff = abs(aspect_ratio - target_aspect_ratio)
+        if ratio_diff < best_ratio_diff:
+            best_ratio_diff = ratio_diff
+            best_ratio = ratio
+        elif ratio_diff == best_ratio_diff:
+            if area > 0.5 * image_size * image_size * ratio[0] * ratio[1]:
+                best_ratio = ratio
+    return best_ratio
+
+def dynamic_preprocess(image, min_num=1, max_num=12, image_size=448, use_thumbnail=False):
+    orig_width, orig_height = image.size
+    aspect_ratio = orig_width / orig_height
+
+    # calculate the existing image aspect ratio
+    target_ratios = set(
+        (i, j) for n in range(min_num, max_num + 1) for i in range(1, n + 1) for j in range(1, n + 1) if
+        i * j <= max_num and i * j >= min_num)
+    target_ratios = sorted(target_ratios, key=lambda x: x[0] * x[1])
+
+    # find the closest aspect ratio to the target
+    target_aspect_ratio = find_closest_aspect_ratio(
+        aspect_ratio, target_ratios, orig_width, orig_height, image_size)
+
+    # calculate the target width and height
+    target_width = image_size * target_aspect_ratio[0]
+    target_height = image_size * target_aspect_ratio[1]
+    blocks = target_aspect_ratio[0] * target_aspect_ratio[1]
+
+    # resize the image
+    resized_img = image.resize((target_width, target_height))
+    processed_images = []
+    for i in range(blocks):
+        box = (
+            (i % (target_width // image_size)) * image_size,
+            (i // (target_width // image_size)) * image_size,
+            ((i % (target_width // image_size)) + 1) * image_size,
+            ((i // (target_width // image_size)) + 1) * image_size
+        )
+        # split the image
+        split_img = resized_img.crop(box)
+        processed_images.append(split_img)
+    assert len(processed_images) == blocks
+    if use_thumbnail and len(processed_images) != 1:
+        thumbnail_img = image.resize((image_size, image_size))
+        processed_images.append(thumbnail_img)
+    return processed_images
+
+def load_image(image_file, input_size=448, max_num=12):
+    image = Image.open(image_file).convert('RGB')
+    transform = build_transform(input_size=input_size)
+    images = dynamic_preprocess(image, image_size=input_size, use_thumbnail=True, max_num=max_num)
+    pixel_values = [transform(image) for image in images]
+    pixel_values = torch.stack(pixel_values)
+    return pixel_values
+
+# If you have an 80G A100 GPU, you can put the entire model on a single GPU.
+# Otherwise, you need to load a model using multiple GPUs, please refer to the `Multiple GPUs` section.
+path = 'OpenGVLab/InternVL-Chat-V1-5'
 model = AutoModel.from_pretrained(
     path,
     torch_dtype=torch.bfloat16,
     low_cpu_mem_usage=True,
     trust_remote_code=True).eval().cuda()
-tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True)
+tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True, use_fast=False)
 
-generation_config = dict(num_beams=1, max_new_tokens=1024, do_sample=False)
+# set the max number of tiles in `max_num`
+pixel_values = load_image('./examples/image1.jpg', max_num=12).to(torch.bfloat16).cuda()
+generation_config = dict(max_new_tokens=1024, do_sample=False)
+
+# pure-text conversation (纯文本对话)
 question = 'Hello, who are you?'
 response, history = model.chat(tokenizer, None, question, generation_config, history=None, return_history=True)
-print(f'User: {question}')
-print(f'Assistant: {response}')
+print(f'User: {question}\nAssistant: {response}')
 
 question = 'Can you tell me a story?'
 response, history = model.chat(tokenizer, None, question, generation_config, history=history, return_history=True)
-print(f'User: {question}')
-print(f'Assistant: {response}')
-```
+print(f'User: {question}\nAssistant: {response}')
 
-#### Single-image single-round conversation
-
-```python
-from transformers import AutoTokenizer, AutoModel, CLIPImageProcessor
-from PIL import Image
-import torch
-
-path = "OpenGVLab/InternVL-Chat-V1-2-Plus"
-model = AutoModel.from_pretrained(
-    path,
-    torch_dtype=torch.bfloat16,
-    low_cpu_mem_usage=True,
-    trust_remote_code=True).eval().cuda()
-tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True)
-
-image_processor = CLIPImageProcessor.from_pretrained(path)
-image = Image.open('./examples/image2.jpg').resize((448, 448))
-pixel_values = image_processor(images=image, return_tensors='pt').pixel_values.to(torch.bfloat16).cuda()
-
-generation_config = dict(num_beams=1, max_new_tokens=1024, do_sample=False)
+# single-image single-round conversation (单图单轮对话)
 question = '<image>\nPlease describe the image shortly.'
 response = model.chat(tokenizer, pixel_values, question, generation_config)
-print(f'User: {question}')
-print(f'Assistant: {response}')
-```
+print(f'User: {question}\nAssistant: {response}')
 
-#### Single-image multi-round conversation
-
-```python
-from transformers import AutoTokenizer, AutoModel, CLIPImageProcessor
-from PIL import Image
-import torch
-
-path = "OpenGVLab/InternVL-Chat-V1-2-Plus"
-model = AutoModel.from_pretrained(
-    path,
-    torch_dtype=torch.bfloat16,
-    low_cpu_mem_usage=True,
-    trust_remote_code=True).eval().cuda()
-tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True)
-
-image_processor = CLIPImageProcessor.from_pretrained(path)
-image = Image.open('./examples/image2.jpg').resize((448, 448))
-pixel_values = image_processor(images=image, return_tensors='pt').pixel_values.to(torch.bfloat16).cuda()
-
-generation_config = dict(num_beams=1, max_new_tokens=1024, do_sample=False)
+# single-image multi-round conversation (单图多轮对话)
 question = '<image>\nPlease describe the image in detail.'
 response, history = model.chat(tokenizer, pixel_values, question, generation_config, history=None, return_history=True)
-print(f'User: {question}')
-print(f'Assistant: {response}')
+print(f'User: {question}\nAssistant: {response}')
 
 question = 'Please write a poem according to the image.'
 response, history = model.chat(tokenizer, pixel_values, question, generation_config, history=history, return_history=True)
-print(f'User: {question}')
-print(f'Assistant: {response}')
-```
+print(f'User: {question}\nAssistant: {response}')
 
-#### Multi-image multi-round conversation, combined images
-
-> **⚠️️ Warning:** Please note that for this model, we support multi-image chat in the interface, but the results are not very good due to the lack of training with multi-image data.
-
-```python
-from transformers import AutoTokenizer, AutoModel, CLIPImageProcessor
-from PIL import Image
-import torch
-
-path = "OpenGVLab/InternVL-Chat-V1-2-Plus"
-model = AutoModel.from_pretrained(
-    path,
-    torch_dtype=torch.bfloat16,
-    low_cpu_mem_usage=True,
-    trust_remote_code=True).eval().cuda()
-tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True)
-
-image_processor = CLIPImageProcessor.from_pretrained(path)
-image1 = Image.open('./examples/image1.jpg').resize((448, 448))
-pixel_values1 = image_processor(images=image1, return_tensors='pt').pixel_values.to(torch.bfloat16).cuda()
-image2 = Image.open('./examples/image2.jpg').resize((448, 448))
-pixel_values2 = image_processor(images=image2, return_tensors='pt').pixel_values.to(torch.bfloat16).cuda()
+# multi-image multi-round conversation, combined images (多图多轮对话，拼接图像)
+pixel_values1 = load_image('./examples/image1.jpg', max_num=12).to(torch.bfloat16).cuda()
+pixel_values2 = load_image('./examples/image2.jpg', max_num=12).to(torch.bfloat16).cuda()
 pixel_values = torch.cat((pixel_values1, pixel_values2), dim=0)
 
-generation_config = dict(num_beams=1, max_new_tokens=1024, do_sample=False)
 question = '<image>\nDescribe the two images in detail.'
 response, history = model.chat(tokenizer, pixel_values, question, generation_config,
                                history=None, return_history=True)
-print(f'User: {question}')
-print(f'Assistant: {response}')
+print(f'User: {question}\nAssistant: {response}')
 
 question = 'What are the similarities and differences between these two images.'
 response, history = model.chat(tokenizer, pixel_values, question, generation_config,
                                history=history, return_history=True)
-print(f'User: {question}')
-print(f'Assistant: {response}')
-```
+print(f'User: {question}\nAssistant: {response}')
 
-#### Multi-image multi-round conversation, separate images
-
-> **⚠️️ Warning:** Please note that for this model, we support multi-image chat in the interface, but the results are not very good due to the lack of training with multi-image data.
-
-```python
-from transformers import AutoTokenizer, AutoModel, CLIPImageProcessor
-from PIL import Image
-import torch
-
-path = "OpenGVLab/InternVL-Chat-V1-2-Plus"
-model = AutoModel.from_pretrained(
-    path,
-    torch_dtype=torch.bfloat16,
-    low_cpu_mem_usage=True,
-    trust_remote_code=True).eval().cuda()
-tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True)
-
-image_processor = CLIPImageProcessor.from_pretrained(path)
-image1 = Image.open('./examples/image1.jpg').resize((448, 448))
-pixel_values1 = image_processor(images=image1, return_tensors='pt').pixel_values.to(torch.bfloat16).cuda()
-image2 = Image.open('./examples/image2.jpg').resize((448, 448))
-pixel_values2 = image_processor(images=image2, return_tensors='pt').pixel_values.to(torch.bfloat16).cuda()
+# multi-image multi-round conversation, separate images (多图多轮对话，独立图像)
+pixel_values1 = load_image('./examples/image1.jpg', max_num=12).to(torch.bfloat16).cuda()
+pixel_values2 = load_image('./examples/image2.jpg', max_num=12).to(torch.bfloat16).cuda()
 pixel_values = torch.cat((pixel_values1, pixel_values2), dim=0)
 num_patches_list = [pixel_values1.size(0), pixel_values2.size(0)]
 
-generation_config = dict(num_beams=1, max_new_tokens=1024, do_sample=False)
 question = 'Image-1: <image>\nImage-2: <image>\nDescribe the two images in detail.'
 response, history = model.chat(tokenizer, pixel_values, question, generation_config,
-                               num_patches_list=num_patches_list, history=None, return_history=True)
-print(f'User: {question}')
-print(f'Assistant: {response}')
+                               num_patches_list=num_patches_list,
+                               history=None, return_history=True)
+print(f'User: {question}\nAssistant: {response}')
 
 question = 'What are the similarities and differences between these two images.'
 response, history = model.chat(tokenizer, pixel_values, question, generation_config,
-                               num_patches_list=num_patches_list, history=history, return_history=True)
-print(f'User: {question}')
-print(f'Assistant: {response}')
-```
+                               num_patches_list=num_patches_list,
+                               history=history, return_history=True)
+print(f'User: {question}\nAssistant: {response}')
 
-#### Batch inference, single image per sample
-
-```python
-from transformers import AutoTokenizer, AutoModel, CLIPImageProcessor
-from PIL import Image
-import torch
-
-path = "OpenGVLab/InternVL-Chat-V1-2-Plus"
-model = AutoModel.from_pretrained(
-    path,
-    torch_dtype=torch.bfloat16,
-    low_cpu_mem_usage=True,
-    trust_remote_code=True).eval().cuda()
-tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True)
-
-image_processor = CLIPImageProcessor.from_pretrained(path)
-image1 = Image.open('./examples/image1.jpg').resize((448, 448))
-pixel_values1 = image_processor(images=image1, return_tensors='pt').pixel_values.to(torch.bfloat16).cuda()
-image2 = Image.open('./examples/image2.jpg').resize((448, 448))
-pixel_values2 = image_processor(images=image2, return_tensors='pt').pixel_values.to(torch.bfloat16).cuda()
-pixel_values = torch.cat((pixel_values1, pixel_values2), dim=0)
+# batch inference, single image per sample (单图批处理)
+pixel_values1 = load_image('./examples/image1.jpg', max_num=12).to(torch.bfloat16).cuda()
+pixel_values2 = load_image('./examples/image2.jpg', max_num=12).to(torch.bfloat16).cuda()
 num_patches_list = [pixel_values1.size(0), pixel_values2.size(0)]
+pixel_values = torch.cat((pixel_values1, pixel_values2), dim=0)
 
-generation_config = dict(num_beams=1, max_new_tokens=1024, do_sample=False)
 questions = ['<image>\nDescribe the image in detail.'] * len(num_patches_list)
 responses = model.batch_chat(tokenizer, pixel_values,
                              num_patches_list=num_patches_list,
                              questions=questions,
                              generation_config=generation_config)
 for question, response in zip(questions, responses):
-    print(f'User: {question}')
-    print(f'Assistant: {response}')
-```
+    print(f'User: {question}\nAssistant: {response}')
 
-#### Video multi-round conversation
-
-> **⚠️️ Warning:** Please note that for this model, we support video chat in the interface, but the results are not very good due to the lack of training with video data.
-
-```python
-from transformers import AutoTokenizer, AutoModel, CLIPImageProcessor
-from decord import VideoReader, cpu
-from PIL import Image
-import numpy as np
-import torch
-
-
+# video multi-round conversation (视频多轮对话)
 def get_index(bound, fps, max_frame, first_idx=0, num_segments=32):
     if bound:
         start, end = bound[0], bound[1]
@@ -340,49 +293,38 @@ def get_index(bound, fps, max_frame, first_idx=0, num_segments=32):
     ])
     return frame_indices
 
-def load_video(video_path, bound=None, num_segments=32):
+def load_video(video_path, bound=None, input_size=448, max_num=1, num_segments=32):
     vr = VideoReader(video_path, ctx=cpu(0), num_threads=1)
     max_frame = len(vr) - 1
     fps = float(vr.get_avg_fps())
 
     pixel_values_list, num_patches_list = [], []
-    image_processor = CLIPImageProcessor.from_pretrained(path)
+    transform = build_transform(input_size=input_size)
     frame_indices = get_index(bound, fps, max_frame, first_idx=0, num_segments=num_segments)
     for frame_index in frame_indices:
-        img = Image.fromarray(vr[frame_index].asnumpy()).convert('RGB').resize((448, 448))
-        pixel_values = image_processor(images=img, return_tensors='pt').pixel_values
+        img = Image.fromarray(vr[frame_index].asnumpy()).convert('RGB')
+        img = dynamic_preprocess(img, image_size=input_size, use_thumbnail=True, max_num=max_num)
+        pixel_values = [transform(tile) for tile in img]
+        pixel_values = torch.stack(pixel_values)
         num_patches_list.append(pixel_values.shape[0])
         pixel_values_list.append(pixel_values)
     pixel_values = torch.cat(pixel_values_list)
     return pixel_values, num_patches_list
 
-
-path = "OpenGVLab/InternVL-Chat-V1-2-Plus"
-model = AutoModel.from_pretrained(
-    path,
-    torch_dtype=torch.bfloat16,
-    low_cpu_mem_usage=True,
-    trust_remote_code=True).eval().cuda()
-tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True)
-
-generation_config = dict(num_beams=1, max_new_tokens=1024, do_sample=False)
-
 video_path = './examples/red-panda.mp4'
-pixel_values, num_patches_list = load_video(video_path, num_segments=8)
+pixel_values, num_patches_list = load_video(video_path, num_segments=8, max_num=1)
 pixel_values = pixel_values.to(torch.bfloat16).cuda()
 video_prefix = ''.join([f'Frame{i+1}: <image>\n' for i in range(len(num_patches_list))])
 question = video_prefix + 'What is the red panda doing?'
 # Frame1: <image>\nFrame2: <image>\n...\nFrame8: <image>\n{question}
 response, history = model.chat(tokenizer, pixel_values, question, generation_config,
                                num_patches_list=num_patches_list, history=None, return_history=True)
-print(f'User: {question}')
-print(f'Assistant: {response}')
+print(f'User: {question}\nAssistant: {response}')
 
-question = 'Describe this video in detail.'
+question = 'Describe this video in detail. Don\'t repeat.'
 response, history = model.chat(tokenizer, pixel_values, question, generation_config,
                                num_patches_list=num_patches_list, history=history, return_history=True)
-print(f'User: {question}')
-print(f'Assistant: {response}')
+print(f'User: {question}\nAssistant: {response}')
 ```
 
 #### Streaming output
@@ -396,7 +338,7 @@ from threading import Thread
 # Initialize the streamer
 streamer = TextIteratorStreamer(tokenizer, skip_prompt=True, skip_special_tokens=True, timeout=10)
 # Define the generation configuration
-generation_config = dict(num_beams=1, max_new_tokens=1024, do_sample=False, streamer=streamer)
+generation_config = dict(max_new_tokens=1024, do_sample=False, streamer=streamer)
 # Start the model chat in a separate thread
 thread = Thread(target=model.chat, kwargs=dict(
     tokenizer=tokenizer, pixel_values=pixel_values, question=question,
