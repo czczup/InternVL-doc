@@ -426,7 +426,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fine-tune-on-a-custom-dataset">Fine-tune on a Custom Dataset</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1. Model Preparation</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-your-customized-training-data">2. Prepare Your Customized Training Data</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#start-fine-tuning">3. Start Fine-tuning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#start-2nd-fine-tuning">3. Start 2nd Fine-tuning</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation">Evaluation</a><ul class="visible nav section-nav flex-column">
@@ -1279,8 +1279,8 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
 </pre></div>
 </div>
 </section>
-<section id="start-fine-tuning">
-<h3>3. Start Fine-tuning<a class="headerlink" href="#start-fine-tuning" title="Permalink to this heading">#</a></h3>
+<section id="start-2nd-fine-tuning">
+<h3>3. Start 2nd Fine-tuning<a class="headerlink" href="#start-2nd-fine-tuning" title="Permalink to this heading">#</a></h3>
 <p>Fine-tune the pre-trained models using either the <a class="reference external" href="https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/shell/internvl1.2/2nd_finetune/internvl_chat_v1_2_hermes2_yi34b_448_res_2nd_finetune_full.sh">script for training the full LLM</a>
 or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/shell/internvl1.2/2nd_finetune/internvl_chat_v1_2_hermes2_yi34b_448_res_2nd_finetune_lora.sh">script for training the LoRA adapter</a>, depending on your available GPU resources.</p>
 <p>Before fine-tuning, set the <code class="docutils literal notranslate"><span class="pre">--meta_path</span></code> to the path of the JSON file you created in the previous step. The default pre-trained model path in these shell scripts is <code class="docutils literal notranslate"><span class="pre">./pretrained/InternVL-Chat-V1-2-Plus</span></code>.</p>
@@ -1288,10 +1288,10 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 <div><p>Note: Fine-tuning the full LLM requires 16 A100 80G GPUs, whereas fine-tuning the LoRA requires 2 A100 80G GPUs.</p>
 </div></blockquote>
 <p>Commands for fine-tuning:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># Using 16 GPUs with SLURM system, fine-tune the full LLM</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># Using 16 GPUs with SLURM system, fine-tune the full LLM, cost about 80G per GPU</span>
 <span class="nv">PARTITION</span><span class="o">=</span><span class="s1">&#39;your partition&#39;</span><span class="w"> </span><span class="nv">GPUS</span><span class="o">=</span><span class="m">16</span><span class="w"> </span>sh<span class="w"> </span>shell/internvl1.2/2nd_finetune/internvl_chat_v1_2_hermes2_yi34b_448_res_2nd_finetune_full.sh
-<span class="c1"># Using 2 GPUs, fine-tune the LoRA, without SLURM system</span>
-<span class="nv">CUDA_VISIBLE_DEVICES</span><span class="o">=</span><span class="m">0</span>,1<span class="w"> </span>sh<span class="w"> </span>shell/internvl1.2/2nd_finetune/internvl_chat_v1_2_hermes2_yi34b_448_res_2nd_finetune_lora.sh
+<span class="c1"># Using 2 GPUs, fine-tune the LoRA, without SLURM system, cost about 63G per GPU</span>
+<span class="nv">GPUS</span><span class="o">=</span><span class="m">2</span><span class="w"> </span>sh<span class="w"> </span>shell/internvl1.2/2nd_finetune/internvl_chat_v1_2_hermes2_yi34b_448_res_2nd_finetune_lora.sh
 </pre></div>
 </div>
 <p>If you encounter any issues, please let me know, and I will update the training guide to enhance its usability.</p>
@@ -1323,28 +1323,7 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 </pre></div>
 </div>
 <p>The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">===========</span> <span class="n">Perception</span> <span class="o">===========</span>
-<span class="n">total</span> <span class="n">score</span><span class="p">:</span> <span class="mf">1664.5088035214085</span>
-
-         <span class="n">existence</span>  <span class="n">score</span><span class="p">:</span> <span class="mf">185.0</span>
-         <span class="n">count</span>  <span class="n">score</span><span class="p">:</span> <span class="mf">173.33333333333334</span>
-         <span class="n">position</span>  <span class="n">score</span><span class="p">:</span> <span class="mf">163.33333333333334</span>
-         <span class="n">color</span>  <span class="n">score</span><span class="p">:</span> <span class="mf">190.0</span>
-         <span class="n">posters</span>  <span class="n">score</span><span class="p">:</span> <span class="mf">161.22448979591837</span>
-         <span class="n">celebrity</span>  <span class="n">score</span><span class="p">:</span> <span class="mf">149.11764705882354</span>
-         <span class="n">scene</span>  <span class="n">score</span><span class="p">:</span> <span class="mf">153.5</span>
-         <span class="n">landmark</span>  <span class="n">score</span><span class="p">:</span> <span class="mf">167.5</span>
-         <span class="n">artwork</span>  <span class="n">score</span><span class="p">:</span> <span class="mf">144.0</span>
-         <span class="n">OCR</span>  <span class="n">score</span><span class="p">:</span> <span class="mf">177.5</span>
-
-
-<span class="o">===========</span> <span class="n">Cognition</span> <span class="o">===========</span>
-<span class="n">total</span> <span class="n">score</span><span class="p">:</span> <span class="mf">360.7142857142857</span>
-
-         <span class="n">commonsense_reasoning</span>  <span class="n">score</span><span class="p">:</span> <span class="mf">130.71428571428572</span>
-         <span class="n">numerical_calculation</span>  <span class="n">score</span><span class="p">:</span> <span class="mf">70.0</span>
-         <span class="n">text_translation</span>  <span class="n">score</span><span class="p">:</span> <span class="mf">110.0</span>
-         <span class="n">code_reasoning</span>  <span class="n">score</span><span class="p">:</span> <span class="mf">50.0</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
 </pre></div>
 </div>
 </section>
@@ -1356,7 +1335,7 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 </pre></div>
 </div>
 <p>The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">okvqa_val</span> <span class="mf">0.6406262386048285</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
 </pre></div>
 </div>
 </section>
@@ -1368,7 +1347,7 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 </pre></div>
 </div>
 <p>The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">textvqa_val_ocr</span> <span class="mf">0.686240000000003</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
 </pre></div>
 </div>
 <p>If you do not want to input Rosetta OCR tokens, use this command:</p>
@@ -1376,7 +1355,7 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 </pre></div>
 </div>
 <p>The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">textvqa_val</span> <span class="mf">0.6420000000000028</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
 </pre></div>
 </div>
 </section>
@@ -1388,7 +1367,7 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 </pre></div>
 </div>
 <p>The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vizwiz_val</span> <span class="mf">0.5899899435054417</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
 </pre></div>
 </div>
 <p>For the test set, run:</p>
@@ -1397,7 +1376,7 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 </div>
 <p>For the test set, submit the results to the <a class="reference external" href="https://eval.ai/web/challenges/challenge-page/1911/my-submission">evaluation server</a>.</p>
 <p>The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">57.3</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
 </pre></div>
 </div>
 </section>
@@ -1409,9 +1388,7 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 </pre></div>
 </div>
 <p>The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;chartqa_test_human&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;relaxed_accuracy&#39;</span><span class="p">:</span> <span class="mf">0.4034</span><span class="p">}]</span>
-<span class="p">[</span><span class="s1">&#39;chartqa_test_augmented&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;relaxed_accuracy&#39;</span><span class="p">:</span> <span class="mf">0.795</span><span class="p">}]</span>
-<span class="n">average</span> <span class="n">score</span> <span class="o">=</span> <span class="p">(</span><span class="mf">40.34</span> <span class="o">+</span> <span class="mf">79.5</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">=</span> <span class="mf">59.9</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
 </pre></div>
 </div>
 </section>
@@ -1423,7 +1400,7 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 </pre></div>
 </div>
 <p>The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Overall</span> <span class="n">ANLS</span><span class="p">:</span> <span class="mf">0.476</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
 </pre></div>
 </div>
 <p>For the test set, run:</p>
@@ -1432,7 +1409,7 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 </div>
 <p>For the test set, submit the results to the <a class="reference external" href="https://rrc.cvc.uab.es/?ch=17">evaluation server</a>.</p>
 <p>The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Overall</span> <span class="n">ANLS</span><span class="p">:</span> <span class="mf">0.481</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
 </pre></div>
 </div>
 </section>
@@ -1443,7 +1420,7 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 </pre></div>
 </div>
 <p>The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ai2diagram_test</span> <span class="p">{</span><span class="s1">&#39;accuracy&#39;</span><span class="p">:</span> <span class="mf">0.7240140932642487</span><span class="p">}</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
 </pre></div>
 </div>
 </section>
@@ -1455,7 +1432,7 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 </pre></div>
 </div>
 <p>The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Overall</span> <span class="n">ANLS</span><span class="p">:</span> <span class="mf">0.3334</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
 </pre></div>
 </div>
 <p>For the test set, run:</p>
@@ -1464,7 +1441,7 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 </div>
 <p>For the test set, submit the results to the <a class="reference external" href="https://rrc.cvc.uab.es/?ch=17">evaluation server</a>.</p>
 <p>The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Overall</span> <span class="n">ANLS</span><span class="p">:</span> <span class="mf">0.320</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
 </pre></div>
 </div>
 </section>
@@ -1475,7 +1452,7 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 </pre></div>
 </div>
 <p>The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Accuracy</span><span class="p">:</span> <span class="mf">62.46</span><span class="o">%</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
 </pre></div>
 </div>
 </section>
@@ -1486,7 +1463,7 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 </pre></div>
 </div>
 <p>The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Acc</span><span class="o">@</span><span class="mi">1</span><span class="p">:</span> <span class="mf">0.90133019335647</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
 </pre></div>
 </div>
 </section>
@@ -1497,38 +1474,7 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 </pre></div>
 </div>
 <p>The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Category</span><span class="p">:</span> <span class="n">random</span><span class="p">,</span> <span class="c1"># samples: 2910</span>
-<span class="n">TP</span>      <span class="n">FP</span>      <span class="n">TN</span>      <span class="n">FN</span>
-<span class="mi">1196</span>    <span class="mi">14</span>      <span class="mi">1396</span>    <span class="mi">304</span>
-<span class="n">Accuracy</span><span class="p">:</span> <span class="mf">0.8907216494845361</span>
-<span class="n">Precision</span><span class="p">:</span> <span class="mf">0.9884297520661157</span>
-<span class="n">Recall</span><span class="p">:</span> <span class="mf">0.7973333333333333</span>
-<span class="n">F1</span> <span class="n">score</span><span class="p">:</span> <span class="mf">0.8826568265682657</span>
-<span class="n">Yes</span> <span class="n">ratio</span><span class="p">:</span> <span class="mf">0.41580756013745707</span>
-<span class="mf">0.883</span><span class="p">,</span> <span class="mf">0.891</span><span class="p">,</span> <span class="mf">0.988</span><span class="p">,</span> <span class="mf">0.797</span><span class="p">,</span> <span class="mf">0.416</span>
-<span class="o">====================================</span>
-<span class="n">Category</span><span class="p">:</span> <span class="n">popular</span><span class="p">,</span> <span class="c1"># samples: 3000</span>
-<span class="n">TP</span>      <span class="n">FP</span>      <span class="n">TN</span>      <span class="n">FN</span>
-<span class="mi">1196</span>    <span class="mi">47</span>      <span class="mi">1453</span>    <span class="mi">304</span>
-<span class="n">Accuracy</span><span class="p">:</span> <span class="mf">0.883</span>
-<span class="n">Precision</span><span class="p">:</span> <span class="mf">0.9621882542236525</span>
-<span class="n">Recall</span><span class="p">:</span> <span class="mf">0.7973333333333333</span>
-<span class="n">F1</span> <span class="n">score</span><span class="p">:</span> <span class="mf">0.8720379146919431</span>
-<span class="n">Yes</span> <span class="n">ratio</span><span class="p">:</span> <span class="mf">0.41433333333333333</span>
-<span class="mf">0.872</span><span class="p">,</span> <span class="mf">0.883</span><span class="p">,</span> <span class="mf">0.962</span><span class="p">,</span> <span class="mf">0.797</span><span class="p">,</span> <span class="mf">0.414</span>
-<span class="o">====================================</span>
-<span class="n">Category</span><span class="p">:</span> <span class="n">adversarial</span><span class="p">,</span> <span class="c1"># samples: 3000</span>
-<span class="n">TP</span>      <span class="n">FP</span>      <span class="n">TN</span>      <span class="n">FN</span>
-<span class="mi">1196</span>    <span class="mi">89</span>      <span class="mi">1411</span>    <span class="mi">304</span>
-<span class="n">Accuracy</span><span class="p">:</span> <span class="mf">0.869</span>
-<span class="n">Precision</span><span class="p">:</span> <span class="mf">0.930739299610895</span>
-<span class="n">Recall</span><span class="p">:</span> <span class="mf">0.7973333333333333</span>
-<span class="n">F1</span> <span class="n">score</span><span class="p">:</span> <span class="mf">0.858886894075404</span>
-<span class="n">Yes</span> <span class="n">ratio</span><span class="p">:</span> <span class="mf">0.42833333333333334</span>
-<span class="mf">0.859</span><span class="p">,</span> <span class="mf">0.869</span><span class="p">,</span> <span class="mf">0.931</span><span class="p">,</span> <span class="mf">0.797</span><span class="p">,</span> <span class="mf">0.428</span>
-<span class="o">====================================</span>
-
-<span class="p">(</span><span class="mf">0.883</span> <span class="o">+</span> <span class="mf">0.872</span> <span class="o">+</span> <span class="mf">0.859</span><span class="p">)</span> <span class="o">/</span> <span class="mi">3</span> <span class="o">=</span> <span class="mf">87.1</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
 </pre></div>
 </div>
 </section>
@@ -1539,12 +1485,7 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 </pre></div>
 </div>
 <p>The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Visual_Knowledge_Acquisition</span><span class="p">:</span> <span class="mf">0.74</span>
-<span class="n">Object_Hallucination</span><span class="p">:</span> <span class="mf">0.8966666666666666</span>
-<span class="n">Visual_Commonsense</span><span class="p">:</span> <span class="mf">0.6</span>
-<span class="n">Visual_Perception</span><span class="p">:</span> <span class="mf">0.574</span>
-<span class="n">Visual_Reasoning</span><span class="p">:</span> <span class="mf">0.6218181818181818</span>
-<span class="n">Overall</span><span class="p">:</span> <span class="mf">3.4324848484848486</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
 </pre></div>
 </div>
 </section>
@@ -1556,7 +1497,7 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 </pre></div>
 </div>
 <p>The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;Overall-Art and Design&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">120</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.558</span><span class="p">},</span> <span class="s1">&#39;Art&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.633</span><span class="p">},</span> <span class="s1">&#39;Art_Theory&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.7</span><span class="p">},</span> <span class="s1">&#39;Design&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.633</span><span class="p">},</span> <span class="s1">&#39;Music&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.267</span><span class="p">},</span> <span class="s1">&#39;Overall-Business&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">150</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.313</span><span class="p">},</span> <span class="s1">&#39;Accounting&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.333</span><span class="p">},</span> <span class="s1">&#39;Economics&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.4</span><span class="p">},</span> <span class="s1">&#39;Finance&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.133</span><span class="p">},</span> <span class="s1">&#39;Manage&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.433</span><span class="p">},</span> <span class="s1">&#39;Marketing&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.267</span><span class="p">},</span> <span class="s1">&#39;Overall-Science&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">150</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.333</span><span class="p">},</span> <span class="s1">&#39;Biology&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.367</span><span class="p">},</span> <span class="s1">&#39;Chemistry&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">},</span> <span class="s1">&#39;Geography&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.267</span><span class="p">},</span> <span class="s1">&#39;Math&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.4</span><span class="p">},</span> <span class="s1">&#39;Physics&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.333</span><span class="p">},</span> <span class="s1">&#39;Overall-Health and Medicine&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">150</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.393</span><span class="p">},</span> <span class="s1">&#39;Basic_Medical_Science&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.367</span><span class="p">},</span> <span class="s1">&#39;Clinical_Medicine&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.433</span><span class="p">},</span> <span class="s1">&#39;Diagnostics_and_Laboratory_Medicine&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.4</span><span class="p">},</span> <span class="s1">&#39;Pharmacy&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.367</span><span class="p">},</span> <span class="s1">&#39;Public_Health&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.4</span><span class="p">},</span> <span class="s1">&#39;Overall-Humanities and Social Science&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">120</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.542</span><span class="p">},</span> <span class="s1">&#39;History&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.567</span><span class="p">},</span> <span class="s1">&#39;Literature&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.767</span><span class="p">},</span> <span class="s1">&#39;Sociology&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.4</span><span class="p">},</span> <span class="s1">&#39;Psychology&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.433</span><span class="p">},</span> <span class="s1">&#39;Overall-Tech and Engineering&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">210</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.29</span><span class="p">},</span> <span class="s1">&#39;Agriculture&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.433</span><span class="p">},</span> <span class="s1">&#39;Architecture_and_Engineering&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.267</span><span class="p">},</span> <span class="s1">&#39;Computer_Science&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.233</span><span class="p">},</span> <span class="s1">&#39;Electronics&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.333</span><span class="p">},</span> <span class="s1">&#39;Energy_and_Power&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">},</span> <span class="s1">&#39;Materials&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.233</span><span class="p">},</span> <span class="s1">&#39;Mechanical_Engineering&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.333</span><span class="p">},</span> <span class="s1">&#39;Overall&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">900</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.388</span><span class="p">}}</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
 </pre></div>
 </div>
 <p>For the test set, run:</p>
@@ -1565,7 +1506,7 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 </div>
 <p>For the test set, submit the results to the <a class="reference external" href="https://eval.ai/web/challenges/challenge-page/2179/overview">evaluation server</a>.</p>
 <p>The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">35.3</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
 </pre></div>
 </div>
 </section>
@@ -1576,7 +1517,7 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 </pre></div>
 </div>
 <p>Then, submit the results to the <a class="reference external" href="https://huggingface.co/spaces/whyu/MM-Vet_Evaluator">evaluation server</a>. The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">46.7</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
 </pre></div>
 </div>
 </section>
@@ -1589,8 +1530,8 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 </pre></div>
 </div>
 <p>Then, submit the results to the <a class="reference external" href="https://mmbench.opencompass.org.cn/mmbench-submission">evaluation server</a>. The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mmbench</span><span class="o">-</span><span class="n">dev</span><span class="o">-</span><span class="n">en</span><span class="p">:</span> <span class="mf">76.7</span>
-<span class="n">mmbench</span><span class="o">-</span><span class="n">test</span><span class="o">-</span><span class="n">en</span><span class="p">:</span> <span class="mf">75.4</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mmbench</span><span class="o">-</span><span class="n">dev</span><span class="o">-</span><span class="n">en</span><span class="p">:</span> <span class="n">TODO</span>
+<span class="n">mmbench</span><span class="o">-</span><span class="n">test</span><span class="o">-</span><span class="n">en</span><span class="p">:</span> <span class="n">TODO</span>
 </pre></div>
 </div>
 <p>For the Chinese dev / test set, run:</p>
@@ -1599,8 +1540,8 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 </pre></div>
 </div>
 <p>Then, submit the results to the <a class="reference external" href="https://mmbench.opencompass.org.cn/mmbench-submission">evaluation server</a>. The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mmbench</span><span class="o">-</span><span class="n">dev</span><span class="o">-</span><span class="n">cn</span><span class="p">:</span> <span class="mf">71.9</span>
-<span class="n">mmbench</span><span class="o">-</span><span class="n">test</span><span class="o">-</span><span class="n">cn</span><span class="p">:</span> <span class="mf">70.3</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mmbench</span><span class="o">-</span><span class="n">dev</span><span class="o">-</span><span class="n">cn</span><span class="p">:</span> <span class="n">TODO</span>
+<span class="n">mmbench</span><span class="o">-</span><span class="n">test</span><span class="o">-</span><span class="n">cn</span><span class="p">:</span> <span class="n">TODO</span>
 </pre></div>
 </div>
 </section>
@@ -1610,7 +1551,7 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 </pre></div>
 </div>
 <p>Then, submit the results to the <a class="reference external" href="https://mmbench.opencompass.org.cn/mmbench-submission">evaluation server</a>. The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ccbench</span><span class="o">-</span><span class="n">dev</span><span class="p">:</span> <span class="mf">43.3</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ccbench</span><span class="o">-</span><span class="n">dev</span><span class="p">:</span> <span class="n">TODO</span>
 </pre></div>
 </div>
 </section>
@@ -1621,21 +1562,7 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 </pre></div>
 </div>
 <p>The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Data</span> <span class="nb">type</span> <span class="n">Scene</span> <span class="n">Understanding</span><span class="p">:</span> <span class="mf">78.63</span><span class="o">%</span>
-<span class="n">Data</span> <span class="nb">type</span> <span class="n">Instance</span> <span class="n">Identity</span><span class="p">:</span> <span class="mf">77.44</span><span class="o">%</span>
-<span class="n">Data</span> <span class="nb">type</span> <span class="n">Instance</span> <span class="n">Location</span><span class="p">:</span> <span class="mf">74.66</span><span class="o">%</span>
-<span class="n">Data</span> <span class="nb">type</span> <span class="n">Instance</span> <span class="n">Attributes</span><span class="p">:</span> <span class="mf">70.04</span><span class="o">%</span>
-<span class="n">Data</span> <span class="nb">type</span> <span class="n">Instances</span> <span class="n">Counting</span><span class="p">:</span> <span class="mf">65.79</span><span class="o">%</span>
-<span class="n">Data</span> <span class="nb">type</span> <span class="n">Spatial</span> <span class="n">Relation</span><span class="p">:</span> <span class="mf">58.90</span><span class="o">%</span>
-<span class="n">Data</span> <span class="nb">type</span> <span class="n">Instance</span> <span class="n">Interaction</span><span class="p">:</span> <span class="mf">77.32</span><span class="o">%</span>
-<span class="n">Data</span> <span class="nb">type</span> <span class="n">Visual</span> <span class="n">Reasoning</span><span class="p">:</span> <span class="mf">79.15</span><span class="o">%</span>
-<span class="n">Data</span> <span class="nb">type</span> <span class="n">Text</span> <span class="n">Understanding</span><span class="p">:</span> <span class="mf">39.53</span><span class="o">%</span>
-<span class="n">Data</span> <span class="nb">type</span> <span class="n">Action</span> <span class="n">Recognition</span><span class="p">:</span> <span class="mf">54.34</span><span class="o">%</span>
-<span class="n">Data</span> <span class="nb">type</span> <span class="n">Action</span> <span class="n">Prediction</span><span class="p">:</span> <span class="mf">40.82</span><span class="o">%</span>
-<span class="n">Data</span> <span class="nb">type</span> <span class="n">Procedure</span> <span class="n">Understanding</span><span class="p">:</span> <span class="mf">37.24</span><span class="o">%</span>
-<span class="n">Total</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">67.40</span><span class="o">%</span>
-<span class="n">Image</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">73.24</span><span class="o">%</span>
-<span class="n">Video</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">45.28</span><span class="o">%</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
 </pre></div>
 </div>
 </section>
@@ -1646,9 +1573,7 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 </pre></div>
 </div>
 <p>The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Evaluating</span> <span class="n">MMVP</span> <span class="o">...</span>
-<span class="n">Results</span> <span class="n">saved</span> <span class="n">to</span> <span class="n">results</span><span class="o">/</span><span class="n">MMVP_240725163208</span><span class="o">.</span><span class="n">jsonl</span>
-<span class="n">The</span> <span class="n">accuracy</span> <span class="ow">is</span> <span class="mf">0.4666666666666667</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
 </pre></div>
 </div>
 </section>
@@ -1678,21 +1603,7 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 </pre></div>
 </div>
 <p>The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span>  <span class="o">---------------------------</span>  <span class="o">----</span>  <span class="o">---</span>  <span class="o">---</span>  <span class="o">-------</span>  <span class="o">-------</span>
- <span class="mi">0</span>  <span class="n">Overall</span>                      <span class="mi">1000</span>  <span class="mi">594</span>  <span class="mi">363</span>  <span class="mf">59.4</span>     <span class="mf">36.3</span>
- <span class="mi">1</span>  <span class="n">scientific</span> <span class="n">reasoning</span>          <span class="mi">122</span>   <span class="mi">95</span>   <span class="mi">58</span>  <span class="mf">77.8689</span>  <span class="mf">47.541</span>
- <span class="mi">2</span>  <span class="n">textbook</span> <span class="n">question</span> <span class="n">answering</span>   <span class="mi">158</span>  <span class="mi">107</span>   <span class="mi">74</span>  <span class="mf">67.7215</span>  <span class="mf">46.8354</span>
- <span class="mi">3</span>  <span class="n">numeric</span> <span class="n">commonsense</span>           <span class="mi">144</span>   <span class="mi">67</span>   <span class="mi">56</span>  <span class="mf">46.5278</span>  <span class="mf">38.8889</span>
- <span class="mi">4</span>  <span class="n">arithmetic</span> <span class="n">reasoning</span>          <span class="mi">353</span>  <span class="mi">143</span>  <span class="mi">122</span>  <span class="mf">40.5099</span>  <span class="mf">34.5609</span>
- <span class="mi">5</span>  <span class="n">visual</span> <span class="n">question</span> <span class="n">answering</span>     <span class="mi">179</span>  <span class="mi">102</span>   <span class="mi">80</span>  <span class="mf">56.9832</span>  <span class="mf">44.6927</span>
- <span class="mi">6</span>  <span class="n">geometry</span> <span class="n">reasoning</span>            <span class="mi">239</span>  <span class="mi">198</span>   <span class="mi">63</span>  <span class="mf">82.8452</span>  <span class="mf">26.3598</span>
- <span class="mi">7</span>  <span class="n">algebraic</span> <span class="n">reasoning</span>           <span class="mi">281</span>  <span class="mi">217</span>   <span class="mi">74</span>  <span class="mf">77.2242</span>  <span class="mf">26.3345</span>
- <span class="mi">8</span>  <span class="n">geometry</span> <span class="n">problem</span> <span class="n">solving</span>      <span class="mi">208</span>  <span class="mi">181</span>   <span class="mi">50</span>  <span class="mf">87.0192</span>  <span class="mf">24.0385</span>
- <span class="mi">9</span>  <span class="n">math</span> <span class="n">word</span> <span class="n">problem</span>             <span class="mi">186</span>   <span class="mi">74</span>   <span class="mi">66</span>  <span class="mf">39.7849</span>  <span class="mf">35.4839</span>
-<span class="mi">10</span>  <span class="n">logical</span> <span class="n">reasoning</span>              <span class="mi">37</span>   <span class="mi">25</span>    <span class="mi">5</span>  <span class="mf">67.5676</span>  <span class="mf">13.5135</span>
-<span class="mi">11</span>  <span class="n">figure</span> <span class="n">question</span> <span class="n">answering</span>     <span class="mi">269</span>  <span class="mi">130</span>   <span class="mi">93</span>  <span class="mf">48.3271</span>  <span class="mf">34.5725</span>
-<span class="mi">12</span>  <span class="n">statistical</span> <span class="n">reasoning</span>         <span class="mi">301</span>  <span class="mi">126</span>  <span class="mi">109</span>  <span class="mf">41.8605</span>  <span class="mf">36.2126</span>
-<span class="o">--</span>  <span class="o">---------------------------</span>  <span class="o">----</span>  <span class="o">---</span>  <span class="o">---</span>  <span class="o">-------</span>  <span class="o">-------</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
 </pre></div>
 </div>
 </section>
@@ -1703,21 +1614,7 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 </pre></div>
 </div>
 <p>The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;split&quot;</span><span class="p">,</span><span class="s2">&quot;aAcc&quot;</span><span class="p">,</span><span class="s2">&quot;fAcc&quot;</span><span class="p">,</span><span class="s2">&quot;qAcc&quot;</span>
-<span class="s2">&quot;Overall&quot;</span><span class="p">,</span><span class="s2">&quot;56.256572029442694&quot;</span><span class="p">,</span><span class="s2">&quot;26.011560693641616&quot;</span><span class="p">,</span><span class="s2">&quot;26.153846153846157&quot;</span>
-<span class="s2">&quot;VD&quot;</span><span class="p">,</span><span class="s2">&quot;54.483925549915405&quot;</span><span class="p">,</span><span class="s2">&quot;29.565217391304348&quot;</span><span class="p">,</span><span class="s2">&quot;23.465703971119133&quot;</span>
-<span class="s2">&quot;VS&quot;</span><span class="p">,</span><span class="s2">&quot;59.166666666666664&quot;</span><span class="p">,</span><span class="s2">&quot;18.96551724137931&quot;</span><span class="p">,</span><span class="s2">&quot;30.337078651685395&quot;</span>
-<span class="s2">&quot;VD_figure&quot;</span><span class="p">,</span><span class="s2">&quot;70.0&quot;</span><span class="p">,</span><span class="s2">&quot;51.21951219512195&quot;</span><span class="p">,</span><span class="s2">&quot;41.02564102564102&quot;</span>
-<span class="s2">&quot;VD_ocr&quot;</span><span class="p">,</span><span class="s2">&quot;75.28089887640449&quot;</span><span class="p">,</span><span class="s2">&quot;53.48837209302325&quot;</span><span class="p">,</span><span class="s2">&quot;51.162790697674424&quot;</span>
-<span class="s2">&quot;VD_math&quot;</span><span class="p">,</span><span class="s2">&quot;47.22222222222222&quot;</span><span class="p">,</span><span class="s2">&quot;5.555555555555555&quot;</span><span class="p">,</span><span class="s2">&quot;18.51851851851852&quot;</span>
-<span class="s2">&quot;VS_ocr&quot;</span><span class="p">,</span><span class="s2">&quot;53.70370370370371&quot;</span><span class="p">,</span><span class="s2">&quot;23.076923076923077&quot;</span><span class="p">,</span><span class="s2">&quot;11.11111111111111&quot;</span>
-<span class="s2">&quot;VS_map&quot;</span><span class="p">,</span><span class="s2">&quot;54.6875&quot;</span><span class="p">,</span><span class="s2">&quot;13.636363636363635&quot;</span><span class="p">,</span><span class="s2">&quot;12.5&quot;</span>
-<span class="s2">&quot;VS_chart&quot;</span><span class="p">,</span><span class="s2">&quot;62.30769230769231&quot;</span><span class="p">,</span><span class="s2">&quot;17.5&quot;</span><span class="p">,</span><span class="s2">&quot;44.73684210526316&quot;</span>
-<span class="s2">&quot;VD_video&quot;</span><span class="p">,</span><span class="s2">&quot;42.35294117647059&quot;</span><span class="p">,</span><span class="s2">&quot;10.416666666666668&quot;</span><span class="p">,</span><span class="s2">&quot;5.797101449275362&quot;</span>
-<span class="s2">&quot;VD_illusion&quot;</span><span class="p">,</span><span class="s2">&quot;52.77777777777778&quot;</span><span class="p">,</span><span class="s2">&quot;27.419354838709676&quot;</span><span class="p">,</span><span class="s2">&quot;18.055555555555554&quot;</span>
-<span class="s2">&quot;VS_table&quot;</span><span class="p">,</span><span class="s2">&quot;60.71428571428571&quot;</span><span class="p">,</span><span class="s2">&quot;21.428571428571427&quot;</span><span class="p">,</span><span class="s2">&quot;30.23255813953488&quot;</span>
-
-<span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="mf">56.256572029442694</span> <span class="o">+</span> <span class="mf">26.011560693641616</span> <span class="o">+</span> <span class="mf">26.153846153846157</span><span class="p">)</span> <span class="o">/</span> <span class="mi">3</span> <span class="o">=</span> <span class="mf">36.1</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
 </pre></div>
 </div>
 </section>
@@ -1728,8 +1625,7 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 </pre></div>
 </div>
 <p>The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;split&quot;</span><span class="p">,</span><span class="s2">&quot;Overall&quot;</span><span class="p">,</span><span class="s2">&quot;coarse perception&quot;</span><span class="p">,</span><span class="s2">&quot;fine-grained perception&quot;</span><span class="p">,</span><span class="s2">&quot;instance reasoning&quot;</span><span class="p">,</span><span class="s2">&quot;logical reasoning&quot;</span><span class="p">,</span><span class="s2">&quot;math&quot;</span><span class="p">,</span><span class="s2">&quot;science &amp; technology&quot;</span>
-<span class="s2">&quot;none&quot;</span><span class="p">,</span><span class="s2">&quot;0.452&quot;</span><span class="p">,</span><span class="s2">&quot;0.652&quot;</span><span class="p">,</span><span class="s2">&quot;0.384&quot;</span><span class="p">,</span><span class="s2">&quot;0.612&quot;</span><span class="p">,</span><span class="s2">&quot;0.404&quot;</span><span class="p">,</span><span class="s2">&quot;0.292&quot;</span><span class="p">,</span><span class="s2">&quot;0.368&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
 </pre></div>
 </div>
 </section>
@@ -1740,15 +1636,7 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 </pre></div>
 </div>
 <p>The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-    <span class="s2">&quot;Text Recognition&quot;</span><span class="p">:</span> <span class="mi">230</span><span class="p">,</span>
-    <span class="s2">&quot;Scene Text-centric VQA&quot;</span><span class="p">:</span> <span class="mi">157</span><span class="p">,</span>
-    <span class="s2">&quot;Doc-oriented VQA&quot;</span><span class="p">:</span> <span class="mi">72</span><span class="p">,</span>
-    <span class="s2">&quot;Key Information Extraction&quot;</span><span class="p">:</span> <span class="mi">71</span><span class="p">,</span>
-    <span class="s2">&quot;Handwritten Mathematical Expression Recognition&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-    <span class="s2">&quot;Final Score&quot;</span><span class="p">:</span> <span class="mi">530</span><span class="p">,</span>
-    <span class="s2">&quot;Final Score Norm&quot;</span><span class="p">:</span> <span class="mf">53.0</span>
-<span class="p">}</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
 </pre></div>
 </div>
 </section>
@@ -1759,46 +1647,7 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 </pre></div>
 </div>
 <p>The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-----------------------------------</span>  <span class="o">-------------------</span>  <span class="o">-------------------</span>
-<span class="n">split</span>                                <span class="n">validation</span>           <span class="n">dev</span>
-<span class="n">Overall</span>                              <span class="mf">0.4022222222222222</span>   <span class="mf">0.47333333333333333</span>
-<span class="n">Accounting</span>                           <span class="mf">0.36666666666666664</span>  <span class="mf">0.2</span>
-<span class="n">Agriculture</span>                          <span class="mf">0.4666666666666667</span>   <span class="mf">0.2</span>
-<span class="n">Architecture_and_Engineering</span>         <span class="mf">0.23333333333333334</span>  <span class="mf">0.4</span>
-<span class="n">Art</span>                                  <span class="mf">0.6333333333333333</span>   <span class="mf">0.8</span>
-<span class="n">Art_Theory</span>                           <span class="mf">0.7333333333333333</span>   <span class="mf">0.6</span>
-<span class="n">Basic_Medical_Science</span>                <span class="mf">0.4</span>                  <span class="mf">0.6</span>
-<span class="n">Biology</span>                              <span class="mf">0.36666666666666664</span>  <span class="mf">0.4</span>
-<span class="n">Chemistry</span>                            <span class="mf">0.4666666666666667</span>   <span class="mf">0.8</span>
-<span class="n">Clinical_Medicine</span>                    <span class="mf">0.4</span>                  <span class="mf">0.4</span>
-<span class="n">Computer_Science</span>                     <span class="mf">0.26666666666666666</span>  <span class="mf">0.6</span>
-<span class="n">Design</span>                               <span class="mf">0.6333333333333333</span>   <span class="mf">0.6</span>
-<span class="n">Diagnostics_and_Laboratory_Medicine</span>  <span class="mf">0.4</span>                  <span class="mf">0.8</span>
-<span class="n">Economics</span>                            <span class="mf">0.43333333333333335</span>  <span class="mf">0.8</span>
-<span class="n">Electronics</span>                          <span class="mf">0.4</span>                  <span class="mf">0.4</span>
-<span class="n">Energy_and_Power</span>                     <span class="mf">0.2</span>                  <span class="mf">0.2</span>
-<span class="n">Finance</span>                              <span class="mf">0.3333333333333333</span>   <span class="mf">0.8</span>
-<span class="n">Geography</span>                            <span class="mf">0.26666666666666666</span>  <span class="mf">0.0</span>
-<span class="n">History</span>                              <span class="mf">0.5333333333333333</span>   <span class="mf">0.6</span>
-<span class="n">Literature</span>                           <span class="mf">0.7666666666666667</span>   <span class="mf">0.4</span>
-<span class="n">Manage</span>                               <span class="mf">0.4666666666666667</span>   <span class="mf">0.2</span>
-<span class="n">Marketing</span>                            <span class="mf">0.26666666666666666</span>  <span class="mf">0.8</span>
-<span class="n">Materials</span>                            <span class="mf">0.16666666666666666</span>  <span class="mf">0.2</span>
-<span class="n">Math</span>                                 <span class="mf">0.43333333333333335</span>  <span class="mf">0.4</span>
-<span class="n">Mechanical_Engineering</span>               <span class="mf">0.26666666666666666</span>  <span class="mf">0.2</span>
-<span class="n">Music</span>                                <span class="mf">0.26666666666666666</span>  <span class="mf">0.2</span>
-<span class="n">Pharmacy</span>                             <span class="mf">0.4</span>                  <span class="mf">0.6</span>
-<span class="n">Physics</span>                              <span class="mf">0.3333333333333333</span>   <span class="mf">0.2</span>
-<span class="n">Psychology</span>                           <span class="mf">0.43333333333333335</span>  <span class="mf">0.6</span>
-<span class="n">Public_Health</span>                        <span class="mf">0.36666666666666664</span>  <span class="mf">0.4</span>
-<span class="n">Sociology</span>                            <span class="mf">0.36666666666666664</span>  <span class="mf">0.8</span>
-<span class="n">Art</span> <span class="o">&amp;</span> <span class="n">Design</span>                         <span class="mf">0.5666666666666667</span>   <span class="mf">0.55</span>
-<span class="n">Business</span>                             <span class="mf">0.37333333333333335</span>  <span class="mf">0.56</span>
-<span class="n">Health</span> <span class="o">&amp;</span> <span class="n">Medicine</span>                    <span class="mf">0.3933333333333333</span>   <span class="mf">0.56</span>
-<span class="n">Humanities</span> <span class="o">&amp;</span> <span class="n">Social</span> <span class="n">Science</span>          <span class="mf">0.525</span>                <span class="mf">0.6</span>
-<span class="n">Science</span>                              <span class="mf">0.37333333333333335</span>  <span class="mf">0.36</span>
-<span class="n">Tech</span> <span class="o">&amp;</span> <span class="n">Engineering</span>                   <span class="mf">0.2857142857142857</span>   <span class="mf">0.3142857142857143</span>
-<span class="o">-----------------------------------</span>  <span class="o">-------------------</span>  <span class="o">-------------------</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
 </pre></div>
 </div>
 </section>
@@ -1809,8 +1658,7 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 </pre></div>
 </div>
 <p>The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;split&quot;</span><span class="p">,</span><span class="s2">&quot;Overall&quot;</span>
-<span class="s2">&quot;none&quot;</span><span class="p">,</span><span class="s2">&quot;0.5803921568627451&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
 </pre></div>
 </div>
 </section>
@@ -1821,15 +1669,7 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 </pre></div>
 </div>
 <p>The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>2024-07-25 16:11:27,640 - RUN - INFO - The evaluation of model InternVL-Chat-V1-2-Plus x dataset LLaVABench has finished!
-2024-07-25 16:11:27,640 - RUN - INFO - Evaluation Results:
-2024-07-25 16:11:27,641 - RUN - INFO -
--  -------  ----  ----  ----
-0  overall *64.8* 46.7  72
-1  complex  64.4  47.1  73.2
-2  conv     67.1  57.6  85.9
-3  detail   61.7  33.3  54
--  -------  ----  ----  ----
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
 </pre></div>
 </div>
 </section>
@@ -1944,7 +1784,7 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fine-tune-on-a-custom-dataset">Fine-tune on a Custom Dataset</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1. Model Preparation</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-your-customized-training-data">2. Prepare Your Customized Training Data</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#start-fine-tuning">3. Start Fine-tuning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#start-2nd-fine-tuning">3. Start 2nd Fine-tuning</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation">Evaluation</a><ul class="visible nav section-nav flex-column">

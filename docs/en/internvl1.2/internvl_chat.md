@@ -607,7 +607,7 @@ Example:
 }
 ```
 
-### 3. Start Fine-tuning
+### 3. Start 2nd Fine-tuning
 
 Fine-tune the pre-trained models using either the [script for training the full LLM](https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/shell/internvl1.2/2nd_finetune/internvl_chat_v1_2_hermes2_yi34b_448_res_2nd_finetune_full.sh)
 or the [script for training the LoRA adapter](https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/shell/internvl1.2/2nd_finetune/internvl_chat_v1_2_hermes2_yi34b_448_res_2nd_finetune_lora.sh), depending on your available GPU resources.
@@ -619,10 +619,10 @@ Before fine-tuning, set the `--meta_path` to the path of the JSON file you creat
 Commands for fine-tuning:
 
 ```sh
-# Using 16 GPUs with SLURM system, fine-tune the full LLM
+# Using 16 GPUs with SLURM system, fine-tune the full LLM, cost about 80G per GPU
 PARTITION='your partition' GPUS=16 sh shell/internvl1.2/2nd_finetune/internvl_chat_v1_2_hermes2_yi34b_448_res_2nd_finetune_full.sh
-# Using 2 GPUs, fine-tune the LoRA, without SLURM system
-CUDA_VISIBLE_DEVICES=0,1 sh shell/internvl1.2/2nd_finetune/internvl_chat_v1_2_hermes2_yi34b_448_res_2nd_finetune_lora.sh
+# Using 2 GPUs, fine-tune the LoRA, without SLURM system, cost about 63G per GPU
+GPUS=2 sh shell/internvl1.2/2nd_finetune/internvl_chat_v1_2_hermes2_yi34b_448_res_2nd_finetune_lora.sh
 ```
 
 If you encounter any issues, please let me know, and I will update the training guide to enhance its usability.
@@ -656,28 +656,7 @@ GPUS=1 sh evaluate.sh pretrained/InternVL-Chat-V1-2-Plus mme
 The expected test results are:
 
 ```
-=========== Perception ===========
-total score: 1664.5088035214085
-
-         existence  score: 185.0
-         count  score: 173.33333333333334
-         position  score: 163.33333333333334
-         color  score: 190.0
-         posters  score: 161.22448979591837
-         celebrity  score: 149.11764705882354
-         scene  score: 153.5
-         landmark  score: 167.5
-         artwork  score: 144.0
-         OCR  score: 177.5
-
-
-=========== Cognition ===========
-total score: 360.7142857142857
-
-         commonsense_reasoning  score: 130.71428571428572
-         numerical_calculation  score: 70.0
-         text_translation  score: 110.0
-         code_reasoning  score: 50.0
+TODO
 ```
 
 #### OKVQA
@@ -693,7 +672,7 @@ GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-2-Plus vqa-okvqa-val
 The expected test results are:
 
 ```
-okvqa_val 0.6406262386048285
+TODO
 ```
 
 #### TextVQA
@@ -709,7 +688,7 @@ GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-2-Plus vqa-textvqa-val-ocr
 The expected test results are:
 
 ```
-textvqa_val_ocr 0.686240000000003
+TODO
 ```
 
 If you do not want to input Rosetta OCR tokens, use this command:
@@ -721,7 +700,7 @@ GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-2-Plus vqa-textvqa-val
 The expected test results are:
 
 ```
-textvqa_val 0.6420000000000028
+TODO
 ```
 
 #### VizWiz
@@ -737,7 +716,7 @@ GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-2-Plus vqa-vizwiz-val
 The expected test results are:
 
 ```
-vizwiz_val 0.5899899435054417
+TODO
 ```
 
 For the test set, run:
@@ -751,7 +730,7 @@ For the test set, submit the results to the [evaluation server](https://eval.ai/
 The expected test results are:
 
 ```
-57.3
+TODO
 ```
 
 #### ChartQA
@@ -767,9 +746,7 @@ GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-2-Plus vqa-chartqa-test
 The expected test results are:
 
 ```
-['chartqa_test_human', {'relaxed_accuracy': 0.4034}]
-['chartqa_test_augmented', {'relaxed_accuracy': 0.795}]
-average score = (40.34 + 79.5) / 2 = 59.9
+TODO
 ```
 
 #### DocVQA
@@ -785,7 +762,7 @@ GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-2-Plus vqa-docvqa-val
 The expected test results are:
 
 ```
-Overall ANLS: 0.476
+TODO
 ```
 
 For the test set, run:
@@ -799,7 +776,7 @@ For the test set, submit the results to the [evaluation server](https://rrc.cvc.
 The expected test results are:
 
 ```
-Overall ANLS: 0.481
+TODO
 ```
 
 #### AI2D
@@ -813,7 +790,7 @@ GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-2-Plus vqa-ai2d-test
 The expected test results are:
 
 ```
-ai2diagram_test {'accuracy': 0.7240140932642487}
+TODO
 ```
 
 #### InfographicVQA
@@ -829,7 +806,7 @@ GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-2-Plus vqa-infovqa-val
 The expected test results are:
 
 ```
-Overall ANLS: 0.3334
+TODO
 ```
 
 For the test set, run:
@@ -843,7 +820,7 @@ For the test set, submit the results to the [evaluation server](https://rrc.cvc.
 The expected test results are:
 
 ```
-Overall ANLS: 0.320
+TODO
 ```
 
 #### GQA
@@ -857,7 +834,7 @@ GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-2-Plus vqa-gqa-testdev
 The expected test results are:
 
 ```
-Accuracy: 62.46%
+TODO
 ```
 
 #### ScienceQA
@@ -871,7 +848,7 @@ GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-2-Plus scienceqa
 The expected test results are:
 
 ```
-Acc@1: 0.90133019335647
+TODO
 ```
 
 #### POPE
@@ -885,38 +862,7 @@ GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-2-Plus pope
 The expected test results are:
 
 ```
-Category: random, # samples: 2910
-TP      FP      TN      FN
-1196    14      1396    304
-Accuracy: 0.8907216494845361
-Precision: 0.9884297520661157
-Recall: 0.7973333333333333
-F1 score: 0.8826568265682657
-Yes ratio: 0.41580756013745707
-0.883, 0.891, 0.988, 0.797, 0.416
-====================================
-Category: popular, # samples: 3000
-TP      FP      TN      FN
-1196    47      1453    304
-Accuracy: 0.883
-Precision: 0.9621882542236525
-Recall: 0.7973333333333333
-F1 score: 0.8720379146919431
-Yes ratio: 0.41433333333333333
-0.872, 0.883, 0.962, 0.797, 0.414
-====================================
-Category: adversarial, # samples: 3000
-TP      FP      TN      FN
-1196    89      1411    304
-Accuracy: 0.869
-Precision: 0.930739299610895
-Recall: 0.7973333333333333
-F1 score: 0.858886894075404
-Yes ratio: 0.42833333333333334
-0.859, 0.869, 0.931, 0.797, 0.428
-====================================
-
-(0.883 + 0.872 + 0.859) / 3 = 87.1
+TODO
 ```
 
 #### Tiny LVLM
@@ -930,12 +876,7 @@ GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-2-Plus tiny_lvlm
 The expected test results are:
 
 ```
-Visual_Knowledge_Acquisition: 0.74
-Object_Hallucination: 0.8966666666666666
-Visual_Commonsense: 0.6
-Visual_Perception: 0.574
-Visual_Reasoning: 0.6218181818181818
-Overall: 3.4324848484848486
+TODO
 ```
 
 #### MMMU
@@ -951,7 +892,7 @@ GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-2-Plus mmmu-val
 The expected test results are:
 
 ```
-{'Overall-Art and Design': {'num': 120, 'acc': 0.558}, 'Art': {'num': 30, 'acc': 0.633}, 'Art_Theory': {'num': 30, 'acc': 0.7}, 'Design': {'num': 30, 'acc': 0.633}, 'Music': {'num': 30, 'acc': 0.267}, 'Overall-Business': {'num': 150, 'acc': 0.313}, 'Accounting': {'num': 30, 'acc': 0.333}, 'Economics': {'num': 30, 'acc': 0.4}, 'Finance': {'num': 30, 'acc': 0.133}, 'Manage': {'num': 30, 'acc': 0.433}, 'Marketing': {'num': 30, 'acc': 0.267}, 'Overall-Science': {'num': 150, 'acc': 0.333}, 'Biology': {'num': 30, 'acc': 0.367}, 'Chemistry': {'num': 30, 'acc': 0.3}, 'Geography': {'num': 30, 'acc': 0.267}, 'Math': {'num': 30, 'acc': 0.4}, 'Physics': {'num': 30, 'acc': 0.333}, 'Overall-Health and Medicine': {'num': 150, 'acc': 0.393}, 'Basic_Medical_Science': {'num': 30, 'acc': 0.367}, 'Clinical_Medicine': {'num': 30, 'acc': 0.433}, 'Diagnostics_and_Laboratory_Medicine': {'num': 30, 'acc': 0.4}, 'Pharmacy': {'num': 30, 'acc': 0.367}, 'Public_Health': {'num': 30, 'acc': 0.4}, 'Overall-Humanities and Social Science': {'num': 120, 'acc': 0.542}, 'History': {'num': 30, 'acc': 0.567}, 'Literature': {'num': 30, 'acc': 0.767}, 'Sociology': {'num': 30, 'acc': 0.4}, 'Psychology': {'num': 30, 'acc': 0.433}, 'Overall-Tech and Engineering': {'num': 210, 'acc': 0.29}, 'Agriculture': {'num': 30, 'acc': 0.433}, 'Architecture_and_Engineering': {'num': 30, 'acc': 0.267}, 'Computer_Science': {'num': 30, 'acc': 0.233}, 'Electronics': {'num': 30, 'acc': 0.333}, 'Energy_and_Power': {'num': 30, 'acc': 0.2}, 'Materials': {'num': 30, 'acc': 0.233}, 'Mechanical_Engineering': {'num': 30, 'acc': 0.333}, 'Overall': {'num': 900, 'acc': 0.388}}
+TODO
 ```
 
 For the test set, run:
@@ -965,7 +906,7 @@ For the test set, submit the results to the [evaluation server](https://eval.ai/
 The expected test results are:
 
 ```
-35.3
+TODO
 ```
 
 #### MMVet (GPT-4-0613)
@@ -979,7 +920,7 @@ GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-2-Plus mmvet
 Then, submit the results to the [evaluation server](https://huggingface.co/spaces/whyu/MM-Vet_Evaluator). The expected test results are:
 
 ```
-46.7
+TODO
 ```
 
 #### MMBench
@@ -997,8 +938,8 @@ GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-2-Plus mmbench-test-en
 Then, submit the results to the [evaluation server](https://mmbench.opencompass.org.cn/mmbench-submission). The expected test results are:
 
 ```
-mmbench-dev-en: 76.7
-mmbench-test-en: 75.4
+mmbench-dev-en: TODO
+mmbench-test-en: TODO
 ```
 
 For the Chinese dev / test set, run:
@@ -1012,8 +953,8 @@ GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-2-Plus mmbench-test-cn
 Then, submit the results to the [evaluation server](https://mmbench.opencompass.org.cn/mmbench-submission). The expected test results are:
 
 ```
-mmbench-dev-cn: 71.9
-mmbench-test-cn: 70.3
+mmbench-dev-cn: TODO
+mmbench-test-cn: TODO
 ```
 
 #### CCBench
@@ -1025,7 +966,7 @@ GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-2-Plus ccbench-dev
 Then, submit the results to the [evaluation server](https://mmbench.opencompass.org.cn/mmbench-submission). The expected test results are:
 
 ```
-ccbench-dev: 43.3
+ccbench-dev: TODO
 ```
 
 #### SEED
@@ -1039,21 +980,7 @@ GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-2-Plus seed
 The expected test results are:
 
 ```
-Data type Scene Understanding: 78.63%
-Data type Instance Identity: 77.44%
-Data type Instance Location: 74.66%
-Data type Instance Attributes: 70.04%
-Data type Instances Counting: 65.79%
-Data type Spatial Relation: 58.90%
-Data type Instance Interaction: 77.32%
-Data type Visual Reasoning: 79.15%
-Data type Text Understanding: 39.53%
-Data type Action Recognition: 54.34%
-Data type Action Prediction: 40.82%
-Data type Procedure Understanding: 37.24%
-Total accuracy: 67.40%
-Image accuracy: 73.24%
-Video accuracy: 45.28%
+TODO
 ```
 
 #### MMVP
@@ -1067,9 +994,7 @@ GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-2-Plus mmvp
 The expected test results are:
 
 ```
-Evaluating MMVP ...
-Results saved to results/MMVP_240725163208.jsonl
-The accuracy is 0.4666666666666667
+TODO
 ```
 
 #### MVBench
@@ -1105,21 +1030,7 @@ torchrun --nproc-per-node=8 run.py --data MathVista --model InternVL-Chat-V1-2-P
 The expected test results are:
 
 ```
---  ---------------------------  ----  ---  ---  -------  -------
- 0  Overall                      1000  594  363  59.4     36.3
- 1  scientific reasoning          122   95   58  77.8689  47.541
- 2  textbook question answering   158  107   74  67.7215  46.8354
- 3  numeric commonsense           144   67   56  46.5278  38.8889
- 4  arithmetic reasoning          353  143  122  40.5099  34.5609
- 5  visual question answering     179  102   80  56.9832  44.6927
- 6  geometry reasoning            239  198   63  82.8452  26.3598
- 7  algebraic reasoning           281  217   74  77.2242  26.3345
- 8  geometry problem solving      208  181   50  87.0192  24.0385
- 9  math word problem             186   74   66  39.7849  35.4839
-10  logical reasoning              37   25    5  67.5676  13.5135
-11  figure question answering     269  130   93  48.3271  34.5725
-12  statistical reasoning         301  126  109  41.8605  36.2126
---  ---------------------------  ----  ---  ---  -------  -------
+TODO
 ```
 
 #### HallusionBench
@@ -1133,21 +1044,7 @@ torchrun --nproc-per-node=8 run.py --data HallusionBench --model InternVL-Chat-V
 The expected test results are:
 
 ```
-"split","aAcc","fAcc","qAcc"
-"Overall","56.256572029442694","26.011560693641616","26.153846153846157"
-"VD","54.483925549915405","29.565217391304348","23.465703971119133"
-"VS","59.166666666666664","18.96551724137931","30.337078651685395"
-"VD_figure","70.0","51.21951219512195","41.02564102564102"
-"VD_ocr","75.28089887640449","53.48837209302325","51.162790697674424"
-"VD_math","47.22222222222222","5.555555555555555","18.51851851851852"
-"VS_ocr","53.70370370370371","23.076923076923077","11.11111111111111"
-"VS_map","54.6875","13.636363636363635","12.5"
-"VS_chart","62.30769230769231","17.5","44.73684210526316"
-"VD_video","42.35294117647059","10.416666666666668","5.797101449275362"
-"VD_illusion","52.77777777777778","27.419354838709676","18.055555555555554"
-"VS_table","60.71428571428571","21.428571428571427","30.23255813953488"
-
-result = (56.256572029442694 + 26.011560693641616 + 26.153846153846157) / 3 = 36.1
+TODO
 ```
 
 #### MMStar
@@ -1161,8 +1058,7 @@ torchrun --nproc-per-node=8 run.py --data MMStar --model InternVL-Chat-V1-2-Plus
 The expected test results are:
 
 ```
-"split","Overall","coarse perception","fine-grained perception","instance reasoning","logical reasoning","math","science & technology"
-"none","0.452","0.652","0.384","0.612","0.404","0.292","0.368"
+TODO
 ```
 
 #### OCRBench
@@ -1176,15 +1072,7 @@ torchrun --nproc-per-node=8 run.py --data OCRBench --model InternVL-Chat-V1-2-Pl
 The expected test results are:
 
 ```
-{
-    "Text Recognition": 230,
-    "Scene Text-centric VQA": 157,
-    "Doc-oriented VQA": 72,
-    "Key Information Extraction": 71,
-    "Handwritten Mathematical Expression Recognition": 0,
-    "Final Score": 530,
-    "Final Score Norm": 53.0
-}
+TODO
 ```
 
 #### MMMU
@@ -1198,46 +1086,7 @@ torchrun --nproc-per-node=8 run.py --data MMMU_DEV_VAL --model InternVL-Chat-V1-
 The expected test results are:
 
 ```
------------------------------------  -------------------  -------------------
-split                                validation           dev
-Overall                              0.4022222222222222   0.47333333333333333
-Accounting                           0.36666666666666664  0.2
-Agriculture                          0.4666666666666667   0.2
-Architecture_and_Engineering         0.23333333333333334  0.4
-Art                                  0.6333333333333333   0.8
-Art_Theory                           0.7333333333333333   0.6
-Basic_Medical_Science                0.4                  0.6
-Biology                              0.36666666666666664  0.4
-Chemistry                            0.4666666666666667   0.8
-Clinical_Medicine                    0.4                  0.4
-Computer_Science                     0.26666666666666666  0.6
-Design                               0.6333333333333333   0.6
-Diagnostics_and_Laboratory_Medicine  0.4                  0.8
-Economics                            0.43333333333333335  0.8
-Electronics                          0.4                  0.4
-Energy_and_Power                     0.2                  0.2
-Finance                              0.3333333333333333   0.8
-Geography                            0.26666666666666666  0.0
-History                              0.5333333333333333   0.6
-Literature                           0.7666666666666667   0.4
-Manage                               0.4666666666666667   0.2
-Marketing                            0.26666666666666666  0.8
-Materials                            0.16666666666666666  0.2
-Math                                 0.43333333333333335  0.4
-Mechanical_Engineering               0.26666666666666666  0.2
-Music                                0.26666666666666666  0.2
-Pharmacy                             0.4                  0.6
-Physics                              0.3333333333333333   0.2
-Psychology                           0.43333333333333335  0.6
-Public_Health                        0.36666666666666664  0.4
-Sociology                            0.36666666666666664  0.8
-Art & Design                         0.5666666666666667   0.55
-Business                             0.37333333333333335  0.56
-Health & Medicine                    0.3933333333333333   0.56
-Humanities & Social Science          0.525                0.6
-Science                              0.37333333333333335  0.36
-Tech & Engineering                   0.2857142857142857   0.3142857142857143
------------------------------------  -------------------  -------------------
+TODO
 ```
 
 #### RealWorldQA
@@ -1251,8 +1100,7 @@ torchrun --nproc-per-node=8 run.py --data RealWorldQA --model InternVL-Chat-V1-2
 The expected test results are:
 
 ```
-"split","Overall"
-"none","0.5803921568627451"
+TODO
 ```
 
 #### LLaVA-Bench (GPT-4-Turbo)
@@ -1266,15 +1114,7 @@ torchrun --nproc-per-node=8 run.py --data LLaVABench --model InternVL-Chat-V1-2-
 The expected test results are:
 
 ```
-2024-07-25 16:11:27,640 - RUN - INFO - The evaluation of model InternVL-Chat-V1-2-Plus x dataset LLaVABench has finished!
-2024-07-25 16:11:27,640 - RUN - INFO - Evaluation Results:
-2024-07-25 16:11:27,641 - RUN - INFO -
--  -------  ----  ----  ----
-0  overall *64.8* 46.7  72
-1  complex  64.4  47.1  73.2
-2  conv     67.1  57.6  85.9
-3  detail   61.7  33.3  54
--  -------  ----  ----  ----
+TODO
 ```
 
 #### VideoMME
