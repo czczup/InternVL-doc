@@ -499,7 +499,7 @@ OKVQA (Outside Knowledge Visual Question Answering) is a dataset designed for vi
 Please use the following command to perform the test with 8 GPU:
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 vqa-okvqa-val
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 vqa-okvqa-val --dynamic
 ```
 
 The expected test results are:
@@ -533,7 +533,7 @@ The VizWiz VQA dataset is a visual question answering dataset created to help an
 For the validation set, run:
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 vqa-vizwiz-val
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 vqa-vizwiz-val --dynamic
 ```
 
 The expected test results are:
@@ -545,10 +545,10 @@ TODO
 For the test set, run:
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 vqa-vizwiz-test
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 vqa-vizwiz-test --dynamic
 ```
 
-For the test set, submit the results to the [evaluation server](https://eval.ai/web/challenges/challenge-page/1911/my-submission).
+For the test set, submit the results to the [evaluation server](https://eval.ai/web/challenges/challenge-page/2185/overview).
 
 The expected test results are:
 
@@ -563,7 +563,7 @@ The ChartQA dataset is a comprehensive benchmark for question answering about ch
 The ChartQA dataset includes two test sets: `chartqa_test_human` and `chartqa_test_augmented`. The final score for model evaluation is calculated as the average of the scores on these two test sets:
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 vqa-chartqa-test
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 vqa-chartqa-test --dynamic
 ```
 
 The expected test results are:
@@ -581,7 +581,7 @@ The DocVQA dataset consists of 50,000 questions on 12,000+ document images. It i
 For the validation set, run:
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 vqa-docvqa-val
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 vqa-docvqa-val --dynamic
 ```
 
 The expected test results are:
@@ -593,7 +593,7 @@ Overall ANLS: 0.9049
 For the test set, run:
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 vqa-docvqa-test
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 vqa-docvqa-test --dynamic
 ```
 
 For the test set, submit the results to the [evaluation server](https://rrc.cvc.uab.es/?ch=17).
@@ -625,7 +625,7 @@ The InfographicVQA dataset is a collection of infographics accompanied by natura
 For the validation set, run:
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 vqa-infovqa-val
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 vqa-infovqa-val --dynamic
 ```
 
 The expected test results are:
@@ -637,7 +637,7 @@ Overall ANLS: 0.7235
 For the test set, run:
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 vqa-infovqa-test
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 vqa-infovqa-test --dynamic
 ```
 
 For the test set, submit the results to the [evaluation server](https://rrc.cvc.uab.es/?ch=17).
@@ -653,7 +653,7 @@ Overall ANLS: 0.725
 The GQA dataset is a large-scale visual question answering dataset designed for real-world visual reasoning and compositional question answering. It contains over 22 million questions grounded in real images, each accompanied by detailed scene graphs that describe objects, their attributes, and relationships within the scene. The dataset includes images from the Visual Genome dataset, with questions that require various reasoning skills such as spatial understanding and multi-step inference.
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 vqa-gqa-testdev
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 vqa-gqa-testdev --dynamic
 ```
 
 The expected test results are:
@@ -667,7 +667,7 @@ TODO
 The ScienceQA dataset is a large-scale benchmark for multimodal science question answering, consisting of 21,208 multiple-choice questions derived from elementary and high school science curricula. This dataset features a diverse range of topics across natural science, social science, and language science. It includes questions with image context (48.7%), text context (48.2%), and both (30.8%).
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 scienceqa
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 scienceqa --dynamic
 ```
 
 The expected test results are:
@@ -681,7 +681,7 @@ TODO
 The POPE (Polling-based Object Probing Evaluation) dataset is designed to evaluate object hallucination in MLLMs. The dataset consists of 3,000 questions related to the captions of 500 images. By treating the MLLMs' answers to these questions as a binary classification task, the dataset allows researchers to measure accuracy, precision, recall, and F1 scores to determine the extent of hallucination in the models.
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 pope
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 pope --dynamic
 ```
 
 The expected test results are:
@@ -695,7 +695,7 @@ TODO
 The Tiny LVLM-eHub is a streamlined evaluation benchmark designed to assess the multimodal capabilities of MLLMs, including models like Bard. It focuses on six categories of multimodal abilities: visual perception, visual knowledge acquisition, visual reasoning, visual commonsense, object hallucination, and embodied intelligence.
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 tiny_lvlm
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 tiny_lvlm --dynamic
 ```
 
 The expected test results are:
@@ -711,7 +711,7 @@ The MMMU dataset is a comprehensive benchmark designed to evaluate multimodal mo
 For the validation set, run:
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 mmmu-val
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 mmmu-val --dynamic
 ```
 
 The expected test results are:
@@ -757,6 +757,8 @@ A_Overall (test)	0.8195067264573991
 ```
 
 #### MMVet (GPT-4-0613)
+
+> **⚠️ Warning:** Here, we use `GPT-4-0613` as the judge model, while in VLMEvalKit, `GPT-4-Turbo` is used as the judge model. Using different versions of GPT-4 can result in significant score variations. Therefore, testing the same model with the two codebases can lead to notable score differences.
 
 The MM-Vet dataset is a comprehensive benchmark designed to evaluate the integrated capabilities of MLLMs. It encompasses six core vision-language (VL) capabilities: recognition, knowledge, optical character recognition (OCR), spatial awareness, language generation, and math. The dataset includes 200 images and 218 questions, each requiring one or more of these capabilities to answer. The evaluation uses an open-ended LLM-based approach, allowing assessment across various answer styles and question types.
 
@@ -807,6 +809,8 @@ mmbench-test-cn: TODO
 
 #### CCBench
 
+CCBench, a multi-modal benchmark in the domain of Chinese Culture, is designed to evaluate the performance of MLLMs on tasks specifically related to Chinese cultural content.
+
 ```bash
 GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 ccbench-dev --dynamic
 ```
@@ -822,7 +826,7 @@ A_Overall (dev)	0.7
 CCBench is a multimodal benchmark specifically designed to evaluate models on tasks related to Chinese culture. It is part of the larger MMBench suite of benchmarks, developed by the OpenCompass Community, and aims to provide fine-grained evaluations across various capabilities of vision-language models. CCBench includes 510 questions in a multiple-choice format, focusing on cultural knowledge and understanding.
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 seed
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 seed --dynamic
 ```
 
 The expected test results are:
@@ -853,13 +857,30 @@ Video accuracy: 47.27%
 The MMVP dataset is designed to benchmark the performance of multimodal large language models (MLLMs) in visual question answering tasks. This dataset focuses on identifying "CLIP-blind pairs," which are images that appear similar to the CLIP model despite having clear visual differences. The MMVP dataset includes 300 images derived from ImageNet-1k and LAION-Aesthetics, each paired with straightforward questions to evaluate the models' visual capabilities. It highlights the challenges these systems face, often leading to incorrect responses and hallucinated explanations.
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 mmvp
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 mmvp --dynamic
 ```
 
 The expected test results are:
 
 ```
 TODO
+```
+
+#### LLaVA-Bench (GPT-4-0613)
+
+> **⚠️ Warning:** Here, we use `GPT-4-0613` as the judge model, while in VLMEvalKit, `GPT-4-Turbo` is used as the judge model. Using different versions of GPT-4 can result in significant score variations. Therefore, testing the same model with the two codebases can lead to notable score differences.
+
+The LLaVA-Bench-in-the-Wild dataset is designed to evaluate the capabilities of MLLMs in handling more complex and diverse visual tasks. It includes a set of 24 images with 60 associated questions, covering a range of indoor and outdoor scenes, memes, paintings, and sketches. Each image is paired with detailed, manually curated descriptions and questions that test the model's generalizability to novel domains.
+
+```bash
+export OPENAI_API_KEY='your openai key'
+GPUS=1 sh evaluate.sh pretrained/InternVL-Chat-V1-5 llava-bench --dynamic
+```
+
+The expected test results are:
+
+```
+
 ```
 
 #### MVBench
@@ -882,14 +903,14 @@ TODO
 
 #### Data Preparation
 
-VLMEvalKit will automatically download the necessary data for evaluation, so you do not need to prepare it manually.
+VLMEvalKit will automatically download the data for evaluation, so you do not need to prepare it manually.
 
 #### MathVista
 
 The MathVista dataset is a comprehensive benchmark for evaluating mathematical reasoning within visual contexts. It consists of three newly created datasets—IQTest, FunctionQA, and PaperQA—designed to address logical reasoning on puzzle test figures, algebraic reasoning over functional plots, and scientific reasoning with academic paper figures, respectively.
 
 ```bash
-torchrun --nproc-per-node=8 run.py --data MathVista --model InternVL-Chat-V1-5 --verbose
+torchrun --nproc-per-node=8 run.py --data MathVista_MINI --model InternVL-Chat-V1-5 --verbose
 ```
 
 The expected test results are:

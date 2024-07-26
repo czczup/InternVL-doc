@@ -30,7 +30,7 @@ Additionally, [🤗 InternVL-Chat-V1-2-Plus](https://huggingface.co/OpenGVLab/In
 | InternVL−Chat<br>−V1-2      | 448x448    | 51.6          | 46.2           | 47.7                    | 82.2          | 81.2             | 56.7 | 1687/489 | 83.3                 | 88.0 | 72.5             | 75.6              | 60.0             | 64.0†         |
 | InternVL−Chat<br>−V1-2−Plus | 448x448    | 50.3          | 45.6           | 59.9                    | 83.8          | 82.0             | 58.7 | 1625/553 | 98.1†                | 88.7 | 74.1†            | 76.4              | -                | 66.9†         |
 
-- MMBench results are collected from the [leaderboard](https://mmbench.opencompass.org.cn/leaderboard).
+- Note that we use the [official evaluation server](https://huggingface.co/spaces/whyu/MM-Vet_Evaluator) to test the MMVet scores, with `GPT-4-0613` serving as the judge model. Using different versions of GPT-4 as the judge can result in significant score variations.
 
 Here, we have conducted only a simple performance comparison. For more detailed performance information and additional evaluation metrics, please refer to our performance summary table.
 
@@ -48,7 +48,7 @@ We also welcome you to experience the InternVL2 series models in our [online dem
 
 ```python
 import torch
-from transformers import AutoTokenizer, AutoModel, CLIPImageProcessor
+from transformers import AutoTokenizer, AutoModel
 path = "OpenGVLab/InternVL-Chat-V1-2-Plus"
 model = AutoModel.from_pretrained(
     path,
@@ -61,7 +61,7 @@ model = AutoModel.from_pretrained(
 
 ```python
 import torch
-from transformers import AutoTokenizer, AutoModel, CLIPImageProcessor
+from transformers import AutoTokenizer, AutoModel
 path = "OpenGVLab/InternVL-Chat-V1-2-Plus"
 model = AutoModel.from_pretrained(
     path,
@@ -132,9 +132,9 @@ model = AutoModel.from_pretrained(
     torch_dtype=torch.bfloat16,
     low_cpu_mem_usage=True,
     trust_remote_code=True).eval().cuda()
-tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True)
+tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True, use_fast=False)
 
-generation_config = dict(num_beams=1, max_new_tokens=1024, do_sample=False)
+generation_config = dict(max_new_tokens=1024, do_sample=False)
 question = 'Hello, who are you?'
 response, history = model.chat(tokenizer, None, question, generation_config, history=None, return_history=True)
 print(f'User: {question}')
@@ -159,13 +159,13 @@ model = AutoModel.from_pretrained(
     torch_dtype=torch.bfloat16,
     low_cpu_mem_usage=True,
     trust_remote_code=True).eval().cuda()
-tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True)
+tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True, use_fast=False)
 
 image_processor = CLIPImageProcessor.from_pretrained(path)
 image = Image.open('./examples/image2.jpg').resize((448, 448))
 pixel_values = image_processor(images=image, return_tensors='pt').pixel_values.to(torch.bfloat16).cuda()
 
-generation_config = dict(num_beams=1, max_new_tokens=1024, do_sample=False)
+generation_config = dict(max_new_tokens=1024, do_sample=False)
 question = '<image>\nPlease describe the image shortly.'
 response = model.chat(tokenizer, pixel_values, question, generation_config)
 print(f'User: {question}')
@@ -185,13 +185,13 @@ model = AutoModel.from_pretrained(
     torch_dtype=torch.bfloat16,
     low_cpu_mem_usage=True,
     trust_remote_code=True).eval().cuda()
-tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True)
+tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True, use_fast=False)
 
 image_processor = CLIPImageProcessor.from_pretrained(path)
 image = Image.open('./examples/image2.jpg').resize((448, 448))
 pixel_values = image_processor(images=image, return_tensors='pt').pixel_values.to(torch.bfloat16).cuda()
 
-generation_config = dict(num_beams=1, max_new_tokens=1024, do_sample=False)
+generation_config = dict(max_new_tokens=1024, do_sample=False)
 question = '<image>\nPlease describe the image in detail.'
 response, history = model.chat(tokenizer, pixel_values, question, generation_config, history=None, return_history=True)
 print(f'User: {question}')
@@ -218,7 +218,7 @@ model = AutoModel.from_pretrained(
     torch_dtype=torch.bfloat16,
     low_cpu_mem_usage=True,
     trust_remote_code=True).eval().cuda()
-tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True)
+tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True, use_fast=False)
 
 image_processor = CLIPImageProcessor.from_pretrained(path)
 image1 = Image.open('./examples/image1.jpg').resize((448, 448))
@@ -227,7 +227,7 @@ image2 = Image.open('./examples/image2.jpg').resize((448, 448))
 pixel_values2 = image_processor(images=image2, return_tensors='pt').pixel_values.to(torch.bfloat16).cuda()
 pixel_values = torch.cat((pixel_values1, pixel_values2), dim=0)
 
-generation_config = dict(num_beams=1, max_new_tokens=1024, do_sample=False)
+generation_config = dict(max_new_tokens=1024, do_sample=False)
 question = '<image>\nDescribe the two images in detail.'
 response, history = model.chat(tokenizer, pixel_values, question, generation_config,
                                history=None, return_history=True)
@@ -256,7 +256,7 @@ model = AutoModel.from_pretrained(
     torch_dtype=torch.bfloat16,
     low_cpu_mem_usage=True,
     trust_remote_code=True).eval().cuda()
-tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True)
+tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True, use_fast=False)
 
 image_processor = CLIPImageProcessor.from_pretrained(path)
 image1 = Image.open('./examples/image1.jpg').resize((448, 448))
@@ -266,7 +266,7 @@ pixel_values2 = image_processor(images=image2, return_tensors='pt').pixel_values
 pixel_values = torch.cat((pixel_values1, pixel_values2), dim=0)
 num_patches_list = [pixel_values1.size(0), pixel_values2.size(0)]
 
-generation_config = dict(num_beams=1, max_new_tokens=1024, do_sample=False)
+generation_config = dict(max_new_tokens=1024, do_sample=False)
 question = 'Image-1: <image>\nImage-2: <image>\nDescribe the two images in detail.'
 response, history = model.chat(tokenizer, pixel_values, question, generation_config,
                                num_patches_list=num_patches_list, history=None, return_history=True)
@@ -293,7 +293,7 @@ model = AutoModel.from_pretrained(
     torch_dtype=torch.bfloat16,
     low_cpu_mem_usage=True,
     trust_remote_code=True).eval().cuda()
-tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True)
+tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True, use_fast=False)
 
 image_processor = CLIPImageProcessor.from_pretrained(path)
 image1 = Image.open('./examples/image1.jpg').resize((448, 448))
@@ -303,7 +303,7 @@ pixel_values2 = image_processor(images=image2, return_tensors='pt').pixel_values
 pixel_values = torch.cat((pixel_values1, pixel_values2), dim=0)
 num_patches_list = [pixel_values1.size(0), pixel_values2.size(0)]
 
-generation_config = dict(num_beams=1, max_new_tokens=1024, do_sample=False)
+generation_config = dict(max_new_tokens=1024, do_sample=False)
 questions = ['<image>\nDescribe the image in detail.'] * len(num_patches_list)
 responses = model.batch_chat(tokenizer, pixel_values,
                              num_patches_list=num_patches_list,
@@ -363,9 +363,9 @@ model = AutoModel.from_pretrained(
     torch_dtype=torch.bfloat16,
     low_cpu_mem_usage=True,
     trust_remote_code=True).eval().cuda()
-tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True)
+tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True, use_fast=False)
 
-generation_config = dict(num_beams=1, max_new_tokens=1024, do_sample=False)
+generation_config = dict(max_new_tokens=1024, do_sample=False)
 
 video_path = './examples/red-panda.mp4'
 pixel_values, num_patches_list = load_video(video_path, num_segments=8)
@@ -396,7 +396,7 @@ from threading import Thread
 # Initialize the streamer
 streamer = TextIteratorStreamer(tokenizer, skip_prompt=True, skip_special_tokens=True, timeout=10)
 # Define the generation configuration
-generation_config = dict(num_beams=1, max_new_tokens=1024, do_sample=False, streamer=streamer)
+generation_config = dict(max_new_tokens=1024, do_sample=False, streamer=streamer)
 # Start the model chat in a separate thread
 thread = Thread(target=model.chat, kwargs=dict(
     tokenizer=tokenizer, pixel_values=pixel_values, question=question,
@@ -607,6 +607,8 @@ Example:
 }
 ```
 
+My suggestion is to add new domain-specific data on top of the [general data from our open-sourced InternVL 1.2](../internvl1.2/internvl_chat.md#training-datasets-preparation). This will enhance downstream capabilities while retaining the foundational skills. Of course, you can also choose to fine-tune solely on the new data based on your requirements.
+
 ### 3. Start 2nd Fine-tuning
 
 Fine-tune the pre-trained models using either the [script for training the full LLM](https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/shell/internvl1.2/2nd_finetune/internvl_chat_v1_2_hermes2_yi34b_448_res_2nd_finetune_full.sh)
@@ -633,7 +635,7 @@ If you encounter any issues, please let me know, and I will update the training 
 
 To evaluate the performance of the InternVL-Chat-V1-2-Plus model across various tasks, follow the instructions for each specific dataset. Ensure that the appropriate number of GPUs is allocated as specified.
 
-> 1⃣️ We simultaneously use InternVL and VLMEvalKit repositories for model evaluation. Specifically, the results reported for DocVQA, ChartQA, InfoVQA, TextVQA, MME, AI2D, MMBench, CCBench, MMVet, and SEED-Image were tested using the InternVL repository. OCRBench, RealWorldQA, HallBench, and MathVista were evaluated using the VLMEvalKit.
+> 1⃣️ We simultaneously use InternVL and VLMEvalKit repositories for model evaluation. For certain datasets like MMVet and LLaVA-Bench, different GPT-4 versions used as judges cause significant result discrepancies between two codebases.
 
 > 2⃣️ Please note that evaluating the same model using different testing toolkits like InternVL and VLMEvalKit can result in slight differences, which is normal. Updates to code versions and variations in environment and hardware can also cause minor discrepancies in results.
 
@@ -727,7 +729,7 @@ For the test set, run:
 GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-2-Plus vqa-vizwiz-test
 ```
 
-For the test set, submit the results to the [evaluation server](https://eval.ai/web/challenges/challenge-page/1911/my-submission).
+For the test set, submit the results to the [evaluation server](https://eval.ai/web/challenges/challenge-page/2185/overview).
 
 The expected test results are:
 
@@ -748,7 +750,9 @@ GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-2-Plus vqa-chartqa-test
 The expected test results are:
 
 ```
-TODO
+['chartqa_test_human', {'relaxed_accuracy': }]
+['chartqa_test_augmented', {'relaxed_accuracy': }]
+average score = ( + ) / 2 = 
 ```
 
 #### DocVQA
@@ -764,7 +768,7 @@ GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-2-Plus vqa-docvqa-val
 The expected test results are:
 
 ```
-TODO
+Overall ANLS: 
 ```
 
 For the test set, run:
@@ -903,15 +907,15 @@ For the test set, run:
 GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-2-Plus mmmu-test
 ```
 
-For the test set, submit the results to the [evaluation server](https://eval.ai/web/challenges/challenge-page/2179/overview).
-
-The expected test results are:
+Then submit the results to the [evaluation server](https://eval.ai/web/challenges/challenge-page/2179/overview). The expected test results are:
 
 ```
 TODO
 ```
 
 #### MMVet (GPT-4-0613)
+
+> **⚠️ Warning:** Here, we use `GPT-4-0613` as the judge model, while in VLMEvalKit, `GPT-4-Turbo` is used as the judge model. Using different versions of GPT-4 can result in significant score variations. Therefore, testing the same model with the two codebases can lead to notable score differences.
 
 The MM-Vet dataset is a comprehensive benchmark designed to evaluate the integrated capabilities of MLLMs. It encompasses six core vision-language (VL) capabilities: recognition, knowledge, optical character recognition (OCR), spatial awareness, language generation, and math. The dataset includes 200 images and 218 questions, each requiring one or more of these capabilities to answer. The evaluation uses an open-ended LLM-based approach, allowing assessment across various answer styles and question types.
 
@@ -961,6 +965,8 @@ mmbench-test-cn: TODO
 
 #### CCBench
 
+CCBench, a multi-modal benchmark in the domain of Chinese Culture, is designed to evaluate the performance of MLLMs on tasks specifically related to Chinese cultural content.
+
 ```bash
 GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-2-Plus ccbench-dev
 ```
@@ -999,6 +1005,23 @@ The expected test results are:
 TODO
 ```
 
+#### LLaVA-Bench (GPT-4-0613)
+
+> **⚠️ Warning:** Here, we use `GPT-4-0613` as the judge model, while in VLMEvalKit, `GPT-4-Turbo` is used as the judge model. Using different versions of GPT-4 can result in significant score variations. Therefore, testing the same model with the two codebases can lead to notable score differences.
+
+The LLaVA-Bench-in-the-Wild dataset is designed to evaluate the capabilities of MLLMs in handling more complex and diverse visual tasks. It includes a set of 24 images with 60 associated questions, covering a range of indoor and outdoor scenes, memes, paintings, and sketches. Each image is paired with detailed, manually curated descriptions and questions that test the model's generalizability to novel domains.
+
+```bash
+export OPENAI_API_KEY='your openai key'
+GPUS=1 sh evaluate.sh pretrained/InternVL-Chat-V1-2-Plus llava-bench
+```
+
+The expected test results are:
+
+```
+
+```
+
 #### MVBench
 
 MVBench is a comprehensive multimodal video understanding benchmark developed to evaluate the temporal comprehension capabilities of MLLMs. It includes 20 challenging video tasks that require temporal understanding and cannot be effectively solved using a single frame. The benchmark uses a novel static-to-dynamic method, transforming static tasks into dynamic ones to systematically generate video tasks that demand a wide range of temporal skills, from perception to cognition.
@@ -1019,14 +1042,14 @@ TODO
 
 #### Data Preparation
 
-VLMEvalKit will automatically download the necessary data for evaluation, so you do not need to prepare it manually.
+VLMEvalKit will automatically download the data for evaluation, so you do not need to prepare it manually.
 
 #### MathVista
 
 The MathVista dataset is a comprehensive benchmark for evaluating mathematical reasoning within visual contexts. It consists of three newly created datasets—IQTest, FunctionQA, and PaperQA—designed to address logical reasoning on puzzle test figures, algebraic reasoning over functional plots, and scientific reasoning with academic paper figures, respectively.
 
 ```bash
-torchrun --nproc-per-node=8 run.py --data MathVista --model InternVL-Chat-V1-2-Plus --verbose
+torchrun --nproc-per-node=8 run.py --data MathVista_MINI --model InternVL-Chat-V1-2-Plus --verbose
 ```
 
 The expected test results are:
@@ -1110,7 +1133,7 @@ TODO
 The LLaVA-Bench-in-the-Wild dataset is designed to evaluate the capabilities of MLLMs in handling more complex and diverse visual tasks. It includes a set of 24 images with 60 associated questions, covering a range of indoor and outdoor scenes, memes, paintings, and sketches. Each image is paired with detailed, manually curated descriptions and questions that test the model's generalizability to novel domains.
 
 ```bash
-torchrun --nproc-per-node=8 run.py --data LLaVABench --model InternVL-Chat-V1-2-Plus --verbose
+torchrun --nproc-per-node=8 run.py --data LLaVABench --model InternVL-Chat-V1-5 --verbose
 ```
 
 The expected test results are:
@@ -1119,18 +1142,32 @@ The expected test results are:
 TODO
 ```
 
-#### VideoMME
+#### MMVet (GPT-4-Turbo)
 
-The Video-MME dataset is a comprehensive benchmark designed to evaluate the capabilities of MLLMs in video analysis. It is the first benchmark specifically tailored for this purpose, focusing on a high-quality assessment of models' performance in processing sequential visual data.
+The MM-Vet dataset is a comprehensive benchmark designed to evaluate the integrated capabilities of MLLMs. It encompasses six core vision-language (VL) capabilities: recognition, knowledge, optical character recognition (OCR), spatial awareness, language generation, and math. The dataset includes 200 images and 218 questions, each requiring one or more of these capabilities to answer. The evaluation uses an open-ended LLM-based approach, allowing assessment across various answer styles and question types.
 
 ```bash
-torchrun --nproc-per-node=8 run.py --data Video-MME --model InternVL-Chat-V1-2-Plus --verbose --nframe 16
+torchrun --nproc-per-node=8 run.py --data MMVet --model InternVL-Chat-V1-2-Plus --verbose
 ```
 
 The expected test results are:
 
 ```
-TODO
+
+```
+
+#### MMMU_DEV_VAL
+
+The MMMU dataset is a comprehensive benchmark designed to evaluate multimodal models on college-level tasks that require domain-specific knowledge and reasoning. It includes 11,500 questions sourced from college exams, quizzes, and textbooks, spanning six disciplines: Art & Design, Business, Science, Health & Medicine, Humanities & Social Science, and Tech & Engineering. These questions cover 30 subjects and feature 30 types of images, such as charts, diagrams, maps, tables, and more.
+
+```bash
+torchrun --nproc-per-node=8 run.py --data MMMU_DEV_VAL --model InternVL-Chat-V1-5 --verbose
+```
+
+The expected test results are:
+
+```
+
 ```
 
 ## Citation

@@ -443,6 +443,8 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ccbench">CCBench</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#seed">SEED</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mmvp">MMVP</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#llava-bench-gpt-4-0613">LLaVA-Bench (GPT-4-0613)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#refcoco-refcoco-refcoco-g">RefCOCO / RefCOCO+ / RefCOCO-g</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mvbench">MVBench</a></li>
 </ul>
 </li>
@@ -454,8 +456,8 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ocrbench">OCRBench</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">MMMU</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#realworldqa">RealWorldQA</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mmvet-gpt-4-turbo">MMVet (GPT-4-Turbo)</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#llava-bench-gpt-4-turbo">LLaVA-Bench (GPT-4-Turbo)</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#videomme">VideoMME</a></li>
 </ul>
 </li>
 </ul>
@@ -618,7 +620,10 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
 </tr>
 </tbody>
 </table>
-<p>Here, we have conducted only a simple performance comparison. For more detailed performance information and additional evaluation metrics, please refer to our performance summary table.</p>
+<ul class="simple">
+<li><p>Note that we use the <a class="reference external" href="https://huggingface.co/spaces/whyu/MM-Vet_Evaluator">official evaluation server</a> to test the MMVet scores, with <code class="docutils literal notranslate"><span class="pre">GPT-4-0613</span></code> serving as the judge model. Using different versions of GPT-4 as the judge can result in significant score variations.</p></li>
+</ul>
+<p>Here, we have conducted only a simple performance comparison. For more detailed performance information and additional evaluation metrics, please refer to our <a class="reference internal" href="#"><span class="xref myst">performance summary table</span></a>.</p>
 </section>
 <section id="quick-start">
 <h2>Quick Start<a class="headerlink" href="#quick-start" title="Permalink to this heading">#</a></h2>
@@ -718,9 +723,9 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
     <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">,</span>
     <span class="n">low_cpu_mem_usage</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
-<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">use_fast</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-<span class="n">generation_config</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">num_beams</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">do_sample</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">generation_config</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">do_sample</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">question</span> <span class="o">=</span> <span class="s1">&#39;Hello, who are you?&#39;</span>
 <span class="n">response</span><span class="p">,</span> <span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">chat</span><span class="p">(</span><span class="n">tokenizer</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">question</span><span class="p">,</span> <span class="n">generation_config</span><span class="p">,</span> <span class="n">history</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_history</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;User: </span><span class="si">{</span><span class="n">question</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
@@ -745,13 +750,13 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
     <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">,</span>
     <span class="n">low_cpu_mem_usage</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
-<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">use_fast</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="n">image_processor</span> <span class="o">=</span> <span class="n">CLIPImageProcessor</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
 <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;./examples/image2.jpg&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="mi">448</span><span class="p">,</span> <span class="mi">448</span><span class="p">))</span>
 <span class="n">pixel_values</span> <span class="o">=</span> <span class="n">image_processor</span><span class="p">(</span><span class="n">images</span><span class="o">=</span><span class="n">image</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s1">&#39;pt&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">pixel_values</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">)</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
 
-<span class="n">generation_config</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">num_beams</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">do_sample</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">generation_config</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">do_sample</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">question</span> <span class="o">=</span> <span class="s1">&#39;&lt;image&gt;</span><span class="se">\n</span><span class="s1">Please describe the image shortly.&#39;</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">chat</span><span class="p">(</span><span class="n">tokenizer</span><span class="p">,</span> <span class="n">pixel_values</span><span class="p">,</span> <span class="n">question</span><span class="p">,</span> <span class="n">generation_config</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;User: </span><span class="si">{</span><span class="n">question</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
@@ -771,13 +776,13 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
     <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">,</span>
     <span class="n">low_cpu_mem_usage</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
-<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">use_fast</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="n">image_processor</span> <span class="o">=</span> <span class="n">CLIPImageProcessor</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
 <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;./examples/image2.jpg&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="mi">448</span><span class="p">,</span> <span class="mi">448</span><span class="p">))</span>
 <span class="n">pixel_values</span> <span class="o">=</span> <span class="n">image_processor</span><span class="p">(</span><span class="n">images</span><span class="o">=</span><span class="n">image</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s1">&#39;pt&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">pixel_values</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">)</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
 
-<span class="n">generation_config</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">num_beams</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">do_sample</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">generation_config</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">do_sample</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">question</span> <span class="o">=</span> <span class="s1">&#39;&lt;image&gt;</span><span class="se">\n</span><span class="s1">Please describe the image in detail.&#39;</span>
 <span class="n">response</span><span class="p">,</span> <span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">chat</span><span class="p">(</span><span class="n">tokenizer</span><span class="p">,</span> <span class="n">pixel_values</span><span class="p">,</span> <span class="n">question</span><span class="p">,</span> <span class="n">generation_config</span><span class="p">,</span> <span class="n">history</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_history</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;User: </span><span class="si">{</span><span class="n">question</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
@@ -805,7 +810,7 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
     <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">,</span>
     <span class="n">low_cpu_mem_usage</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
-<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">use_fast</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="n">image_processor</span> <span class="o">=</span> <span class="n">CLIPImageProcessor</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
 <span class="n">image1</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;./examples/image1.jpg&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="mi">448</span><span class="p">,</span> <span class="mi">448</span><span class="p">))</span>
@@ -814,7 +819,7 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
 <span class="n">pixel_values2</span> <span class="o">=</span> <span class="n">image_processor</span><span class="p">(</span><span class="n">images</span><span class="o">=</span><span class="n">image2</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s1">&#39;pt&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">pixel_values</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">)</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
 <span class="n">pixel_values</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="n">pixel_values1</span><span class="p">,</span> <span class="n">pixel_values2</span><span class="p">),</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
-<span class="n">generation_config</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">num_beams</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">do_sample</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">generation_config</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">do_sample</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">question</span> <span class="o">=</span> <span class="s1">&#39;&lt;image&gt;</span><span class="se">\n</span><span class="s1">Describe the two images in detail.&#39;</span>
 <span class="n">response</span><span class="p">,</span> <span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">chat</span><span class="p">(</span><span class="n">tokenizer</span><span class="p">,</span> <span class="n">pixel_values</span><span class="p">,</span> <span class="n">question</span><span class="p">,</span> <span class="n">generation_config</span><span class="p">,</span>
                                <span class="n">history</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_history</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -844,7 +849,7 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
     <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">,</span>
     <span class="n">low_cpu_mem_usage</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
-<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">use_fast</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="n">image_processor</span> <span class="o">=</span> <span class="n">CLIPImageProcessor</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
 <span class="n">image1</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;./examples/image1.jpg&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="mi">448</span><span class="p">,</span> <span class="mi">448</span><span class="p">))</span>
@@ -854,7 +859,7 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
 <span class="n">pixel_values</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="n">pixel_values1</span><span class="p">,</span> <span class="n">pixel_values2</span><span class="p">),</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">num_patches_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">pixel_values1</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">pixel_values2</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)]</span>
 
-<span class="n">generation_config</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">num_beams</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">do_sample</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">generation_config</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">do_sample</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">question</span> <span class="o">=</span> <span class="s1">&#39;Image-1: &lt;image&gt;</span><span class="se">\n</span><span class="s1">Image-2: &lt;image&gt;</span><span class="se">\n</span><span class="s1">Describe the two images in detail.&#39;</span>
 <span class="n">response</span><span class="p">,</span> <span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">chat</span><span class="p">(</span><span class="n">tokenizer</span><span class="p">,</span> <span class="n">pixel_values</span><span class="p">,</span> <span class="n">question</span><span class="p">,</span> <span class="n">generation_config</span><span class="p">,</span>
                                <span class="n">num_patches_list</span><span class="o">=</span><span class="n">num_patches_list</span><span class="p">,</span> <span class="n">history</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_history</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -881,7 +886,7 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
     <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">,</span>
     <span class="n">low_cpu_mem_usage</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
-<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">use_fast</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="n">image_processor</span> <span class="o">=</span> <span class="n">CLIPImageProcessor</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
 <span class="n">image1</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;./examples/image1.jpg&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="mi">448</span><span class="p">,</span> <span class="mi">448</span><span class="p">))</span>
@@ -891,7 +896,7 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
 <span class="n">pixel_values</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="n">pixel_values1</span><span class="p">,</span> <span class="n">pixel_values2</span><span class="p">),</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">num_patches_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">pixel_values1</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">pixel_values2</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)]</span>
 
-<span class="n">generation_config</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">num_beams</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">do_sample</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">generation_config</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">do_sample</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">questions</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&lt;image&gt;</span><span class="se">\n</span><span class="s1">Describe the image in detail.&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">num_patches_list</span><span class="p">)</span>
 <span class="n">responses</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">batch_chat</span><span class="p">(</span><span class="n">tokenizer</span><span class="p">,</span> <span class="n">pixel_values</span><span class="p">,</span>
                              <span class="n">num_patches_list</span><span class="o">=</span><span class="n">num_patches_list</span><span class="p">,</span>
@@ -952,9 +957,9 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
     <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">,</span>
     <span class="n">low_cpu_mem_usage</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
-<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">use_fast</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-<span class="n">generation_config</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">num_beams</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">do_sample</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">generation_config</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">do_sample</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="n">video_path</span> <span class="o">=</span> <span class="s1">&#39;./examples/red-panda.mp4&#39;</span>
 <span class="n">pixel_values</span><span class="p">,</span> <span class="n">num_patches_list</span> <span class="o">=</span> <span class="n">load_video</span><span class="p">(</span><span class="n">video_path</span><span class="p">,</span> <span class="n">num_segments</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
@@ -984,7 +989,7 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
 <span class="c1"># Initialize the streamer</span>
 <span class="n">streamer</span> <span class="o">=</span> <span class="n">TextIteratorStreamer</span><span class="p">(</span><span class="n">tokenizer</span><span class="p">,</span> <span class="n">skip_prompt</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">skip_special_tokens</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="c1"># Define the generation configuration</span>
-<span class="n">generation_config</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">num_beams</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">do_sample</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">streamer</span><span class="o">=</span><span class="n">streamer</span><span class="p">)</span>
+<span class="n">generation_config</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">do_sample</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">streamer</span><span class="o">=</span><span class="n">streamer</span><span class="p">)</span>
 <span class="c1"># Start the model chat in a separate thread</span>
 <span class="n">thread</span> <span class="o">=</span> <span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">chat</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
     <span class="n">tokenizer</span><span class="o">=</span><span class="n">tokenizer</span><span class="p">,</span> <span class="n">pixel_values</span><span class="o">=</span><span class="n">pixel_values</span><span class="p">,</span> <span class="n">question</span><span class="o">=</span><span class="n">question</span><span class="p">,</span>
@@ -1009,7 +1014,7 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
 <h2>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this heading">#</a></h2>
 <p>To evaluate the performance of the InternVL-Chat-V1-1 model across various tasks, follow the instructions for each specific dataset. Ensure that the appropriate number of GPUs is allocated as specified.</p>
 <blockquote>
-<div><p>1⃣️ We simultaneously use InternVL and VLMEvalKit repositories for model evaluation. Specifically, the results reported for DocVQA, ChartQA, InfoVQA, TextVQA, MME, AI2D, MMBench, CCBench, MMVet, and SEED-Image were tested using the InternVL repository. OCRBench, RealWorldQA, HallBench, and MathVista were evaluated using the VLMEvalKit.</p>
+<div><p>1⃣️ We simultaneously use InternVL and VLMEvalKit repositories for model evaluation. For certain datasets like MMVet and LLaVA-Bench, different GPT-4 versions used as judges cause significant result discrepancies between two codebases.</p>
 </div></blockquote>
 <blockquote>
 <div><p>2⃣️ Please note that evaluating the same model using different testing toolkits like InternVL and VLMEvalKit can result in slight differences, which is normal. Updates to code versions and variations in environment and hardware can also cause minor discrepancies in results.</p>
@@ -1103,7 +1108,7 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-1<span class="w"> </span>vqa-vizwiz-test
 </pre></div>
 </div>
-<p>For the test set, submit the results to the <a class="reference external" href="https://eval.ai/web/challenges/challenge-page/1911/my-submission">evaluation server</a>.</p>
+<p>For the test set, submit the results to the <a class="reference external" href="https://eval.ai/web/challenges/challenge-page/2185/overview">evaluation server</a>.</p>
 <p>The expected test results are:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">57.3</span>
 </pre></div>
@@ -1271,20 +1276,26 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-1<span class="w"> </span>mmmu-test
 </pre></div>
 </div>
-<p>For the test set, submit the results to the <a class="reference external" href="https://eval.ai/web/challenges/challenge-page/2179/overview">evaluation server</a>.</p>
-<p>The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">35.3</span>
+<p>Then submit the results to the <a class="reference external" href="https://eval.ai/web/challenges/challenge-page/2179/overview">evaluation server</a>. The expected test results are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">All</span> <span class="n">subject</span> <span class="n">resultes</span>
+<span class="p">{</span><span class="s1">&#39;Overall-Art &amp; Design&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">1163</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.537</span><span class="p">},</span> <span class="s1">&#39;Art&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">231</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.606</span><span class="p">},</span> <span class="s1">&#39;Art_Theory&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">429</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.59</span><span class="p">},</span> <span class="s1">&#39;Design&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">169</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.746</span><span class="p">},</span> <span class="s1">&#39;Music&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">334</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.314</span><span class="p">},</span> <span class="s1">&#39;Overall-Business&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">1428</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.317</span><span class="p">},</span> <span class="s1">&#39;Accounting&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">380</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.345</span><span class="p">},</span> <span class="s1">&#39;Economics&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">267</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.345</span><span class="p">},</span> <span class="s1">&#39;Finance&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">355</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.245</span><span class="p">},</span> <span class="s1">&#39;Manage&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">245</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.29</span><span class="p">},</span> <span class="s1">&#39;Marketing&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">181</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.392</span><span class="p">},</span> <span class="s1">&#39;Overall-Science&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">2426</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.282</span><span class="p">},</span> <span class="s1">&#39;Biology&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">345</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.357</span><span class="p">},</span> <span class="s1">&#39;Chemistry&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">603</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.244</span><span class="p">},</span> <span class="s1">&#39;Geography&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">565</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.312</span><span class="p">},</span> <span class="s1">&#39;Math&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">505</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.275</span><span class="p">},</span> <span class="s1">&#39;Physics&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">408</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.24</span><span class="p">},</span> <span class="s1">&#39;Overall-Health &amp; Medicine&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">1752</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.365</span><span class="p">},</span> <span class="s1">&#39;Basic_Medical_Science&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">326</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.436</span><span class="p">},</span> <span class="s1">&#39;Clinical_Medicine&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">325</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.397</span><span class="p">},</span> <span class="s1">&#39;Diagnostics_and_Laboratory_Medicine&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">162</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.364</span><span class="p">},</span> <span class="s1">&#39;Pharmacy&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">430</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.309</span><span class="p">},</span> <span class="s1">&#39;Public_Health&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">509</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.346</span><span class="p">},</span> <span class="s1">&#39;Overall-Humanities &amp; Social Science&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">947</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.564</span><span class="p">},</span> <span class="s1">&#39;History&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">278</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.579</span><span class="p">},</span> <span class="s1">&#39;Literature&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">112</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.804</span><span class="p">},</span> <span class="s1">&#39;Sociology&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">252</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.556</span><span class="p">},</span> <span class="s1">&#39;Psychology&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">305</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.469</span><span class="p">},</span> <span class="s1">&#39;Overall-Tech &amp; Engineering&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">2784</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.28</span><span class="p">},</span> <span class="s1">&#39;Agriculture&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">287</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.369</span><span class="p">},</span> <span class="s1">&#39;Architecture_and_Engineering&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">551</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.272</span><span class="p">},</span> <span class="s1">&#39;Computer_Science&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">371</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.315</span><span class="p">},</span> <span class="s1">&#39;Electronics&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">256</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.152</span><span class="p">},</span> <span class="s1">&#39;Energy_and_Power&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">432</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.306</span><span class="p">},</span> <span class="s1">&#39;Materials&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">458</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.26</span><span class="p">},</span> <span class="s1">&#39;Mechanical_Engineering&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">429</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.27</span><span class="p">},</span> <span class="s1">&#39;Overall&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="mi">10500</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="mf">0.353</span><span class="p">}}</span>
+
+<span class="n">Leaderboard</span>
+<span class="p">[{</span><span class="s1">&#39;test_split&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;Art &amp; Design&#39;</span><span class="p">:</span> <span class="mf">0.537</span><span class="p">,</span> <span class="s1">&#39;Business&#39;</span><span class="p">:</span> <span class="mf">0.317</span><span class="p">,</span> <span class="s1">&#39;Science&#39;</span><span class="p">:</span> <span class="mf">0.282</span><span class="p">,</span> <span class="s1">&#39;Health &amp; Medicine&#39;</span><span class="p">:</span> <span class="mf">0.365</span><span class="p">,</span> <span class="s1">&#39;Humanities &amp; Social Science&#39;</span><span class="p">:</span> <span class="mf">0.564</span><span class="p">,</span> <span class="s1">&#39;Tech &amp; Engineering&#39;</span><span class="p">:</span> <span class="mf">0.28</span><span class="p">,</span> <span class="s1">&#39;Overall&#39;</span><span class="p">:</span> <span class="mf">0.353</span><span class="p">}}]</span>
 </pre></div>
 </div>
 </section>
 <section id="mmvet-gpt-4-0613">
 <h4>MMVet (GPT-4-0613)<a class="headerlink" href="#mmvet-gpt-4-0613" title="Permalink to this heading">#</a></h4>
+<blockquote>
+<div><p><strong>⚠️ Warning:</strong> Here, we use <code class="docutils literal notranslate"><span class="pre">GPT-4-0613</span></code> as the judge model, while in VLMEvalKit, <code class="docutils literal notranslate"><span class="pre">GPT-4-Turbo</span></code> is used as the judge model. Using different versions of GPT-4 can result in significant score variations. Therefore, testing the same model with the two codebases can lead to notable score differences.</p>
+</div></blockquote>
 <p>The MM-Vet dataset is a comprehensive benchmark designed to evaluate the integrated capabilities of MLLMs. It encompasses six core vision-language (VL) capabilities: recognition, knowledge, optical character recognition (OCR), spatial awareness, language generation, and math. The dataset includes 200 images and 218 questions, each requiring one or more of these capabilities to answer. The evaluation uses an open-ended LLM-based approach, allowing assessment across various answer styles and question types.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-1<span class="w"> </span>mmvet
 </pre></div>
 </div>
 <p>Then, submit the results to the <a class="reference external" href="https://huggingface.co/spaces/whyu/MM-Vet_Evaluator">evaluation server</a>. The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">46.7</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">runs</span><span class="p">:</span> <span class="p">[</span><span class="mf">46.7</span><span class="p">]</span>
 </pre></div>
 </div>
 </section>
@@ -1314,6 +1325,7 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
 </section>
 <section id="ccbench">
 <h4>CCBench<a class="headerlink" href="#ccbench" title="Permalink to this heading">#</a></h4>
+<p>CCBench, a multi-modal benchmark in the domain of Chinese Culture, is designed to evaluate the performance of MLLMs on tasks specifically related to Chinese cultural content.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-1<span class="w"> </span>ccbench-dev
 </pre></div>
 </div>
@@ -1342,7 +1354,7 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
 <span class="n">Data</span> <span class="nb">type</span> <span class="n">Action</span> <span class="n">Prediction</span><span class="p">:</span> <span class="mf">40.82</span><span class="o">%</span>
 <span class="n">Data</span> <span class="nb">type</span> <span class="n">Procedure</span> <span class="n">Understanding</span><span class="p">:</span> <span class="mf">37.24</span><span class="o">%</span>
 <span class="n">Total</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">67.40</span><span class="o">%</span>
-<span class="n">Image</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">73.24</span><span class="o">%</span>
+<span class="o">+</span> <span class="n">Image</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">73.24</span><span class="o">%</span>
 <span class="n">Video</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">45.28</span><span class="o">%</span>
 </pre></div>
 </div>
@@ -1356,7 +1368,46 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
 <p>The expected test results are:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Evaluating</span> <span class="n">MMVP</span> <span class="o">...</span>
 <span class="n">Results</span> <span class="n">saved</span> <span class="n">to</span> <span class="n">results</span><span class="o">/</span><span class="n">MMVP_240725163208</span><span class="o">.</span><span class="n">jsonl</span>
-<span class="n">The</span> <span class="n">accuracy</span> <span class="ow">is</span> <span class="mf">0.4666666666666667</span>
+<span class="n">The</span> <span class="n">accuracy</span> <span class="ow">is</span> <span class="mf">0.4466666666666667</span>
+</pre></div>
+</div>
+</section>
+<section id="llava-bench-gpt-4-0613">
+<h4>LLaVA-Bench (GPT-4-0613)<a class="headerlink" href="#llava-bench-gpt-4-0613" title="Permalink to this heading">#</a></h4>
+<blockquote>
+<div><p><strong>⚠️ Warning:</strong> Here, we use <code class="docutils literal notranslate"><span class="pre">GPT-4-0613</span></code> as the judge model, while in VLMEvalKit, <code class="docutils literal notranslate"><span class="pre">GPT-4-Turbo</span></code> is used as the judge model. Using different versions of GPT-4 can result in significant score variations. Therefore, testing the same model with the two codebases can lead to notable score differences.</p>
+</div></blockquote>
+<p>The LLaVA-Bench-in-the-Wild dataset is designed to evaluate the capabilities of MLLMs in handling more complex and diverse visual tasks. It includes a set of 24 images with 60 associated questions, covering a range of indoor and outdoor scenes, memes, paintings, and sketches. Each image is paired with detailed, manually curated descriptions and questions that test the model’s generalizability to novel domains.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">OPENAI_API_KEY</span><span class="o">=</span><span class="s1">&#39;your openai key&#39;</span>
+<span class="nv">GPUS</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-1<span class="w"> </span>llava-bench
+</pre></div>
+</div>
+<p>The expected test results are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">all</span> <span class="o">*</span><span class="mf">72.8</span><span class="o">*</span> <span class="mf">87.7</span> <span class="mf">63.8</span>
+<span class="n">llava_bench_complex</span> <span class="p">[</span><span class="mf">8.75</span><span class="p">,</span> <span class="mf">6.643</span><span class="p">]</span> <span class="mf">75.9</span>
+<span class="n">llava_bench_complex</span> <span class="mf">75.9</span> <span class="mf">87.5</span> <span class="mf">66.4</span>
+<span class="n">llava_bench_conv</span> <span class="p">[</span><span class="mf">9.0</span><span class="p">,</span> <span class="mf">6.118</span><span class="p">]</span> <span class="mf">68.0</span>
+<span class="n">llava_bench_conv</span> <span class="mf">68.0</span> <span class="mf">90.0</span> <span class="mf">61.2</span>
+<span class="n">llava_bench_detail</span> <span class="p">[</span><span class="mf">8.533</span><span class="p">,</span> <span class="mf">6.2</span><span class="p">]</span> <span class="mf">72.7</span>
+<span class="n">llava_bench_detail</span> <span class="mf">72.7</span> <span class="mf">85.3</span> <span class="mf">62.0</span>
+</pre></div>
+</div>
+</section>
+<section id="refcoco-refcoco-refcoco-g">
+<h4>RefCOCO / RefCOCO+ / RefCOCO-g<a class="headerlink" href="#refcoco-refcoco-refcoco-g" title="Permalink to this heading">#</a></h4>
+<p>RefCOCO, RefCOCO+, and RefCOCOg are datasets used for tasks involving referring expression comprehension, segmentation, and generation. These datasets are built upon the MSCOCO dataset, and they are essential for evaluating models in natural language processing and computer vision.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evalulate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-1<span class="w"> </span>refcoco
+</pre></div>
+</div>
+<p>The expected test results are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>RefCOCO val, 84.7
+RefCOCO testA, 89.9
+RefCOCO testB, 78.6
+RefCOCO+ val, 78.5
+RefCOCO+ testA, 85.6
+RefCOCO+ testB, 70.1
+RefCOCO‑g val, 81.0
+RefCOCO‑g test, 81.4
 </pre></div>
 </div>
 </section>
@@ -1372,9 +1423,9 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
 <span class="s2">&quot;Fine-grained Action&quot;</span><span class="p">:</span> <span class="mf">41.0</span><span class="p">,</span> <span class="s2">&quot;Unexpected Action&quot;</span><span class="p">:</span> <span class="mf">64.5</span><span class="p">,</span> <span class="s2">&quot;Object Existence&quot;</span><span class="p">:</span> <span class="mf">49.0</span><span class="p">,</span> 
 <span class="s2">&quot;Object Interaction&quot;</span><span class="p">:</span> <span class="mf">64.0</span><span class="p">,</span> <span class="s2">&quot;Object Shuffle&quot;</span><span class="p">:</span> <span class="mf">32.5</span><span class="p">,</span> <span class="s2">&quot;Moving Direction&quot;</span><span class="p">:</span> <span class="mf">39.5</span><span class="p">,</span> 
 <span class="s2">&quot;Action Localization&quot;</span><span class="p">:</span> <span class="mf">27.500000000000004</span><span class="p">,</span> <span class="s2">&quot;Scene Transition&quot;</span><span class="p">:</span> <span class="mf">88.5</span><span class="p">,</span> <span class="s2">&quot;Action Count&quot;</span><span class="p">:</span> <span class="mf">42.0</span><span class="p">,</span>
- <span class="s2">&quot;Moving Count&quot;</span><span class="p">:</span> <span class="mf">33.0</span><span class="p">,</span> <span class="s2">&quot;Moving Attribute&quot;</span><span class="p">:</span> <span class="mf">57.99999999999999</span><span class="p">,</span> <span class="s2">&quot;State Change&quot;</span><span class="p">:</span> <span class="mf">46.5</span><span class="p">,</span> 
- <span class="s2">&quot;Fine-grained Pose&quot;</span><span class="p">:</span> <span class="mf">44.0</span><span class="p">,</span> <span class="s2">&quot;Character Order&quot;</span><span class="p">:</span> <span class="mf">59.0</span><span class="p">,</span> <span class="s2">&quot;Egocentric Navigation&quot;</span><span class="p">:</span> <span class="mf">38.5</span><span class="p">,</span>
-  <span class="s2">&quot;Episodic Reasoning&quot;</span><span class="p">:</span> <span class="mf">44.5</span><span class="p">,</span> <span class="s2">&quot;Counterfactual Inference&quot;</span><span class="p">:</span> <span class="mf">39.0</span><span class="p">,</span> <span class="s2">&quot;Avg&quot;</span><span class="p">:</span> <span class="mf">48.949999999999996</span><span class="p">}</span>
+<span class="s2">&quot;Moving Count&quot;</span><span class="p">:</span> <span class="mf">33.0</span><span class="p">,</span> <span class="s2">&quot;Moving Attribute&quot;</span><span class="p">:</span> <span class="mf">57.99999999999999</span><span class="p">,</span> <span class="s2">&quot;State Change&quot;</span><span class="p">:</span> <span class="mf">46.5</span><span class="p">,</span> 
+<span class="s2">&quot;Fine-grained Pose&quot;</span><span class="p">:</span> <span class="mf">44.0</span><span class="p">,</span> <span class="s2">&quot;Character Order&quot;</span><span class="p">:</span> <span class="mf">59.0</span><span class="p">,</span> <span class="s2">&quot;Egocentric Navigation&quot;</span><span class="p">:</span> <span class="mf">38.5</span><span class="p">,</span>
+<span class="s2">&quot;Episodic Reasoning&quot;</span><span class="p">:</span> <span class="mf">44.5</span><span class="p">,</span> <span class="s2">&quot;Counterfactual Inference&quot;</span><span class="p">:</span> <span class="mf">39.0</span><span class="p">,</span> <span class="s2">&quot;Avg&quot;</span><span class="p">:</span> <span class="mf">48.949999999999996</span><span class="p">}</span>
 </pre></div>
 </div>
 </section>
@@ -1383,12 +1434,12 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
 <h3>Evaluation using VLMEvalKit Codebase<a class="headerlink" href="#evaluation-using-vlmevalkit-codebase" title="Permalink to this heading">#</a></h3>
 <section id="id1">
 <h4>Data Preparation<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h4>
-<p>VLMEvalKit will automatically download the necessary data for evaluation, so you do not need to prepare it manually.</p>
+<p>VLMEvalKit will automatically download the data for evaluation, so you do not need to prepare it manually.</p>
 </section>
 <section id="mathvista">
 <h4>MathVista<a class="headerlink" href="#mathvista" title="Permalink to this heading">#</a></h4>
 <p>The MathVista dataset is a comprehensive benchmark for evaluating mathematical reasoning within visual contexts. It consists of three newly created datasets—IQTest, FunctionQA, and PaperQA—designed to address logical reasoning on puzzle test figures, algebraic reasoning over functional plots, and scientific reasoning with academic paper figures, respectively.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>torchrun<span class="w"> </span>--nproc-per-node<span class="o">=</span><span class="m">8</span><span class="w"> </span>run.py<span class="w"> </span>--data<span class="w"> </span>MathVista<span class="w"> </span>--model<span class="w"> </span>InternVL-Chat-V1-1<span class="w"> </span>--verbose
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>torchrun<span class="w"> </span>--nproc-per-node<span class="o">=</span><span class="m">8</span><span class="w"> </span>run.py<span class="w"> </span>--data<span class="w"> </span>MathVista_MINI<span class="w"> </span>--model<span class="w"> </span>InternVL-Chat-V1-1<span class="w"> </span>--verbose
 </pre></div>
 </div>
 <p>The expected test results are:</p>
@@ -1528,6 +1579,28 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
 </pre></div>
 </div>
 </section>
+<section id="mmvet-gpt-4-turbo">
+<h4>MMVet (GPT-4-Turbo)<a class="headerlink" href="#mmvet-gpt-4-turbo" title="Permalink to this heading">#</a></h4>
+<p>The MM-Vet dataset is a comprehensive benchmark designed to evaluate the integrated capabilities of MLLMs. It encompasses six core vision-language (VL) capabilities: recognition, knowledge, optical character recognition (OCR), spatial awareness, language generation, and math. The dataset includes 200 images and 218 questions, each requiring one or more of these capabilities to answer. The evaluation uses an open-ended LLM-based approach, allowing assessment across various answer styles and question types.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>torchrun<span class="w"> </span>--nproc-per-node<span class="o">=</span><span class="m">8</span><span class="w"> </span>run.py<span class="w"> </span>--data<span class="w"> </span>MMVet<span class="w"> </span>--model<span class="w"> </span>InternVL-Chat-V1-1<span class="w"> </span>--verbose
+</pre></div>
+</div>
+<p>The expected test results are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>2024-07-26 17:28:10,536 - RUN - INFO - The evaluation of model InternVL-Chat-V1-1 x dataset MMVet has finished!
+2024-07-26 17:28:10,536 - RUN - INFO - Evaluation Results:
+2024-07-26 17:28:10,538 - RUN - INFO -
+-  -------  ---  -------
+0  rec      187  49.9465
+1  ocr      108  42.5
+2  know      84  36.4286
+3  gen       80  36.25
+4  spat      75  42.9333
+5  math      26  22.3077
+6  Overall  218  44.7706
+-  -------  ---  -------
+</pre></div>
+</div>
+</section>
 <section id="llava-bench-gpt-4-turbo">
 <h4>LLaVA-Bench (GPT-4-Turbo)<a class="headerlink" href="#llava-bench-gpt-4-turbo" title="Permalink to this heading">#</a></h4>
 <p>The LLaVA-Bench-in-the-Wild dataset is designed to evaluate the capabilities of MLLMs in handling more complex and diverse visual tasks. It includes a set of 24 images with 60 associated questions, covering a range of indoor and outdoor scenes, memes, paintings, and sketches. Each image is paired with detailed, manually curated descriptions and questions that test the model’s generalizability to novel domains.</p>
@@ -1544,17 +1617,6 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
 2  conv     67.1  57.6  85.9
 3  detail   61.7  33.3  54
 -  -------  ----  ----  ----
-</pre></div>
-</div>
-</section>
-<section id="videomme">
-<h4>VideoMME<a class="headerlink" href="#videomme" title="Permalink to this heading">#</a></h4>
-<p>The Video-MME dataset is a comprehensive benchmark designed to evaluate the capabilities of MLLMs in video analysis. It is the first benchmark specifically tailored for this purpose, focusing on a high-quality assessment of models’ performance in processing sequential visual data.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>torchrun<span class="w"> </span>--nproc-per-node<span class="o">=</span><span class="m">8</span><span class="w"> </span>run.py<span class="w"> </span>--data<span class="w"> </span>Video-MME<span class="w"> </span>--model<span class="w"> </span>InternVL-Chat-V1-1<span class="w"> </span>--verbose<span class="w"> </span>--nframe<span class="w"> </span><span class="m">16</span>
-</pre></div>
-</div>
-<p>The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
 </pre></div>
 </div>
 </section>
@@ -1671,6 +1733,8 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ccbench">CCBench</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#seed">SEED</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mmvp">MMVP</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#llava-bench-gpt-4-0613">LLaVA-Bench (GPT-4-0613)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#refcoco-refcoco-refcoco-g">RefCOCO / RefCOCO+ / RefCOCO-g</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mvbench">MVBench</a></li>
 </ul>
 </li>
@@ -1682,8 +1746,8 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ocrbench">OCRBench</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">MMMU</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#realworldqa">RealWorldQA</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mmvet-gpt-4-turbo">MMVet (GPT-4-Turbo)</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#llava-bench-gpt-4-turbo">LLaVA-Bench (GPT-4-Turbo)</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#videomme">VideoMME</a></li>
 </ul>
 </li>
 </ul>

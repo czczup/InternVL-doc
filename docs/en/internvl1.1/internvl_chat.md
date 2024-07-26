@@ -54,7 +54,9 @@ pretrained
 |     MMB-CN<sub>test</sub>      |     63.6     |        61.9        |        64.0        |        70.3        |
 |   MMVet<sub>GPT-4-0613</sub>   |     35.4     |        33.7        |        36.7        |        46.7        |
 
-Here, we have conducted only a simple performance comparison. For more detailed performance information and additional evaluation metrics, please refer to our performance summary table.
+- Note that we use the [official evaluation server](https://huggingface.co/spaces/whyu/MM-Vet_Evaluator) to test the MMVet scores, with `GPT-4-0613` serving as the judge model. Using different versions of GPT-4 as the judge can result in significant score variations.
+
+Here, we have conducted only a simple performance comparison. For more detailed performance information and additional evaluation metrics, please refer to our [performance summary table](<>).
 
 ## Quick Start
 
@@ -154,9 +156,9 @@ model = AutoModel.from_pretrained(
     torch_dtype=torch.bfloat16,
     low_cpu_mem_usage=True,
     trust_remote_code=True).eval().cuda()
-tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True)
+tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True, use_fast=False)
 
-generation_config = dict(num_beams=1, max_new_tokens=1024, do_sample=False)
+generation_config = dict(max_new_tokens=1024, do_sample=False)
 question = 'Hello, who are you?'
 response, history = model.chat(tokenizer, None, question, generation_config, history=None, return_history=True)
 print(f'User: {question}')
@@ -181,13 +183,13 @@ model = AutoModel.from_pretrained(
     torch_dtype=torch.bfloat16,
     low_cpu_mem_usage=True,
     trust_remote_code=True).eval().cuda()
-tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True)
+tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True, use_fast=False)
 
 image_processor = CLIPImageProcessor.from_pretrained(path)
 image = Image.open('./examples/image2.jpg').resize((448, 448))
 pixel_values = image_processor(images=image, return_tensors='pt').pixel_values.to(torch.bfloat16).cuda()
 
-generation_config = dict(num_beams=1, max_new_tokens=1024, do_sample=False)
+generation_config = dict(max_new_tokens=1024, do_sample=False)
 question = '<image>\nPlease describe the image shortly.'
 response = model.chat(tokenizer, pixel_values, question, generation_config)
 print(f'User: {question}')
@@ -207,13 +209,13 @@ model = AutoModel.from_pretrained(
     torch_dtype=torch.bfloat16,
     low_cpu_mem_usage=True,
     trust_remote_code=True).eval().cuda()
-tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True)
+tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True, use_fast=False)
 
 image_processor = CLIPImageProcessor.from_pretrained(path)
 image = Image.open('./examples/image2.jpg').resize((448, 448))
 pixel_values = image_processor(images=image, return_tensors='pt').pixel_values.to(torch.bfloat16).cuda()
 
-generation_config = dict(num_beams=1, max_new_tokens=1024, do_sample=False)
+generation_config = dict(max_new_tokens=1024, do_sample=False)
 question = '<image>\nPlease describe the image in detail.'
 response, history = model.chat(tokenizer, pixel_values, question, generation_config, history=None, return_history=True)
 print(f'User: {question}')
@@ -240,7 +242,7 @@ model = AutoModel.from_pretrained(
     torch_dtype=torch.bfloat16,
     low_cpu_mem_usage=True,
     trust_remote_code=True).eval().cuda()
-tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True)
+tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True, use_fast=False)
 
 image_processor = CLIPImageProcessor.from_pretrained(path)
 image1 = Image.open('./examples/image1.jpg').resize((448, 448))
@@ -249,7 +251,7 @@ image2 = Image.open('./examples/image2.jpg').resize((448, 448))
 pixel_values2 = image_processor(images=image2, return_tensors='pt').pixel_values.to(torch.bfloat16).cuda()
 pixel_values = torch.cat((pixel_values1, pixel_values2), dim=0)
 
-generation_config = dict(num_beams=1, max_new_tokens=1024, do_sample=False)
+generation_config = dict(max_new_tokens=1024, do_sample=False)
 question = '<image>\nDescribe the two images in detail.'
 response, history = model.chat(tokenizer, pixel_values, question, generation_config,
                                history=None, return_history=True)
@@ -278,7 +280,7 @@ model = AutoModel.from_pretrained(
     torch_dtype=torch.bfloat16,
     low_cpu_mem_usage=True,
     trust_remote_code=True).eval().cuda()
-tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True)
+tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True, use_fast=False)
 
 image_processor = CLIPImageProcessor.from_pretrained(path)
 image1 = Image.open('./examples/image1.jpg').resize((448, 448))
@@ -288,7 +290,7 @@ pixel_values2 = image_processor(images=image2, return_tensors='pt').pixel_values
 pixel_values = torch.cat((pixel_values1, pixel_values2), dim=0)
 num_patches_list = [pixel_values1.size(0), pixel_values2.size(0)]
 
-generation_config = dict(num_beams=1, max_new_tokens=1024, do_sample=False)
+generation_config = dict(max_new_tokens=1024, do_sample=False)
 question = 'Image-1: <image>\nImage-2: <image>\nDescribe the two images in detail.'
 response, history = model.chat(tokenizer, pixel_values, question, generation_config,
                                num_patches_list=num_patches_list, history=None, return_history=True)
@@ -315,7 +317,7 @@ model = AutoModel.from_pretrained(
     torch_dtype=torch.bfloat16,
     low_cpu_mem_usage=True,
     trust_remote_code=True).eval().cuda()
-tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True)
+tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True, use_fast=False)
 
 image_processor = CLIPImageProcessor.from_pretrained(path)
 image1 = Image.open('./examples/image1.jpg').resize((448, 448))
@@ -325,7 +327,7 @@ pixel_values2 = image_processor(images=image2, return_tensors='pt').pixel_values
 pixel_values = torch.cat((pixel_values1, pixel_values2), dim=0)
 num_patches_list = [pixel_values1.size(0), pixel_values2.size(0)]
 
-generation_config = dict(num_beams=1, max_new_tokens=1024, do_sample=False)
+generation_config = dict(max_new_tokens=1024, do_sample=False)
 questions = ['<image>\nDescribe the image in detail.'] * len(num_patches_list)
 responses = model.batch_chat(tokenizer, pixel_values,
                              num_patches_list=num_patches_list,
@@ -385,9 +387,9 @@ model = AutoModel.from_pretrained(
     torch_dtype=torch.bfloat16,
     low_cpu_mem_usage=True,
     trust_remote_code=True).eval().cuda()
-tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True)
+tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True, use_fast=False)
 
-generation_config = dict(num_beams=1, max_new_tokens=1024, do_sample=False)
+generation_config = dict(max_new_tokens=1024, do_sample=False)
 
 video_path = './examples/red-panda.mp4'
 pixel_values, num_patches_list = load_video(video_path, num_segments=8)
@@ -418,7 +420,7 @@ from threading import Thread
 # Initialize the streamer
 streamer = TextIteratorStreamer(tokenizer, skip_prompt=True, skip_special_tokens=True, timeout=10)
 # Define the generation configuration
-generation_config = dict(num_beams=1, max_new_tokens=1024, do_sample=False, streamer=streamer)
+generation_config = dict(max_new_tokens=1024, do_sample=False, streamer=streamer)
 # Start the model chat in a separate thread
 thread = Thread(target=model.chat, kwargs=dict(
     tokenizer=tokenizer, pixel_values=pixel_values, question=question,
@@ -440,7 +442,7 @@ for new_text in streamer:
 
 To evaluate the performance of the InternVL-Chat-V1-1 model across various tasks, follow the instructions for each specific dataset. Ensure that the appropriate number of GPUs is allocated as specified.
 
-> 1⃣️ We simultaneously use InternVL and VLMEvalKit repositories for model evaluation. Specifically, the results reported for DocVQA, ChartQA, InfoVQA, TextVQA, MME, AI2D, MMBench, CCBench, MMVet, and SEED-Image were tested using the InternVL repository. OCRBench, RealWorldQA, HallBench, and MathVista were evaluated using the VLMEvalKit.
+> 1⃣️ We simultaneously use InternVL and VLMEvalKit repositories for model evaluation. For certain datasets like MMVet and LLaVA-Bench, different GPT-4 versions used as judges cause significant result discrepancies between two codebases.
 
 > 2⃣️ Please note that evaluating the same model using different testing toolkits like InternVL and VLMEvalKit can result in slight differences, which is normal. Updates to code versions and variations in environment and hardware can also cause minor discrepancies in results.
 
@@ -555,7 +557,7 @@ For the test set, run:
 GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-1 vqa-vizwiz-test
 ```
 
-For the test set, submit the results to the [evaluation server](https://eval.ai/web/challenges/challenge-page/1911/my-submission).
+For the test set, submit the results to the [evaluation server](https://eval.ai/web/challenges/challenge-page/2185/overview).
 
 The expected test results are:
 
@@ -769,15 +771,19 @@ For the test set, run:
 GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-1 mmmu-test
 ```
 
-For the test set, submit the results to the [evaluation server](https://eval.ai/web/challenges/challenge-page/2179/overview).
-
-The expected test results are:
+Then submit the results to the [evaluation server](https://eval.ai/web/challenges/challenge-page/2179/overview). The expected test results are:
 
 ```
-35.3
+All subject resultes
+{'Overall-Art & Design': {'num': 1163, 'acc': 0.537}, 'Art': {'num': 231, 'acc': 0.606}, 'Art_Theory': {'num': 429, 'acc': 0.59}, 'Design': {'num': 169, 'acc': 0.746}, 'Music': {'num': 334, 'acc': 0.314}, 'Overall-Business': {'num': 1428, 'acc': 0.317}, 'Accounting': {'num': 380, 'acc': 0.345}, 'Economics': {'num': 267, 'acc': 0.345}, 'Finance': {'num': 355, 'acc': 0.245}, 'Manage': {'num': 245, 'acc': 0.29}, 'Marketing': {'num': 181, 'acc': 0.392}, 'Overall-Science': {'num': 2426, 'acc': 0.282}, 'Biology': {'num': 345, 'acc': 0.357}, 'Chemistry': {'num': 603, 'acc': 0.244}, 'Geography': {'num': 565, 'acc': 0.312}, 'Math': {'num': 505, 'acc': 0.275}, 'Physics': {'num': 408, 'acc': 0.24}, 'Overall-Health & Medicine': {'num': 1752, 'acc': 0.365}, 'Basic_Medical_Science': {'num': 326, 'acc': 0.436}, 'Clinical_Medicine': {'num': 325, 'acc': 0.397}, 'Diagnostics_and_Laboratory_Medicine': {'num': 162, 'acc': 0.364}, 'Pharmacy': {'num': 430, 'acc': 0.309}, 'Public_Health': {'num': 509, 'acc': 0.346}, 'Overall-Humanities & Social Science': {'num': 947, 'acc': 0.564}, 'History': {'num': 278, 'acc': 0.579}, 'Literature': {'num': 112, 'acc': 0.804}, 'Sociology': {'num': 252, 'acc': 0.556}, 'Psychology': {'num': 305, 'acc': 0.469}, 'Overall-Tech & Engineering': {'num': 2784, 'acc': 0.28}, 'Agriculture': {'num': 287, 'acc': 0.369}, 'Architecture_and_Engineering': {'num': 551, 'acc': 0.272}, 'Computer_Science': {'num': 371, 'acc': 0.315}, 'Electronics': {'num': 256, 'acc': 0.152}, 'Energy_and_Power': {'num': 432, 'acc': 0.306}, 'Materials': {'num': 458, 'acc': 0.26}, 'Mechanical_Engineering': {'num': 429, 'acc': 0.27}, 'Overall': {'num': 10500, 'acc': 0.353}}
+
+Leaderboard
+[{'test_split': {'Art & Design': 0.537, 'Business': 0.317, 'Science': 0.282, 'Health & Medicine': 0.365, 'Humanities & Social Science': 0.564, 'Tech & Engineering': 0.28, 'Overall': 0.353}}]
 ```
 
 #### MMVet (GPT-4-0613)
+
+> **⚠️ Warning:** Here, we use `GPT-4-0613` as the judge model, while in VLMEvalKit, `GPT-4-Turbo` is used as the judge model. Using different versions of GPT-4 can result in significant score variations. Therefore, testing the same model with the two codebases can lead to notable score differences.
 
 The MM-Vet dataset is a comprehensive benchmark designed to evaluate the integrated capabilities of MLLMs. It encompasses six core vision-language (VL) capabilities: recognition, knowledge, optical character recognition (OCR), spatial awareness, language generation, and math. The dataset includes 200 images and 218 questions, each requiring one or more of these capabilities to answer. The evaluation uses an open-ended LLM-based approach, allowing assessment across various answer styles and question types.
 
@@ -788,7 +794,7 @@ GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-1 mmvet
 Then, submit the results to the [evaluation server](https://huggingface.co/spaces/whyu/MM-Vet_Evaluator). The expected test results are:
 
 ```
-46.7
+runs: [46.7]
 ```
 
 #### MMBench
@@ -827,6 +833,8 @@ mmbench-test-cn: 70.3
 
 #### CCBench
 
+CCBench, a multi-modal benchmark in the domain of Chinese Culture, is designed to evaluate the performance of MLLMs on tasks specifically related to Chinese cultural content.
+
 ```bash
 GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-1 ccbench-dev
 ```
@@ -861,7 +869,7 @@ Data type Action Recognition: 54.34%
 Data type Action Prediction: 40.82%
 Data type Procedure Understanding: 37.24%
 Total accuracy: 67.40%
-Image accuracy: 73.24%
++ Image accuracy: 73.24%
 Video accuracy: 45.28%
 ```
 
@@ -878,7 +886,51 @@ The expected test results are:
 ```
 Evaluating MMVP ...
 Results saved to results/MMVP_240725163208.jsonl
-The accuracy is 0.4666666666666667
+The accuracy is 0.4466666666666667
+```
+
+#### LLaVA-Bench (GPT-4-0613)
+
+> **⚠️ Warning:** Here, we use `GPT-4-0613` as the judge model, while in VLMEvalKit, `GPT-4-Turbo` is used as the judge model. Using different versions of GPT-4 can result in significant score variations. Therefore, testing the same model with the two codebases can lead to notable score differences.
+
+The LLaVA-Bench-in-the-Wild dataset is designed to evaluate the capabilities of MLLMs in handling more complex and diverse visual tasks. It includes a set of 24 images with 60 associated questions, covering a range of indoor and outdoor scenes, memes, paintings, and sketches. Each image is paired with detailed, manually curated descriptions and questions that test the model's generalizability to novel domains.
+
+```bash
+export OPENAI_API_KEY='your openai key'
+GPUS=1 sh evaluate.sh pretrained/InternVL-Chat-V1-1 llava-bench
+```
+
+The expected test results are:
+
+```
+all *72.8* 87.7 63.8
+llava_bench_complex [8.75, 6.643] 75.9
+llava_bench_complex 75.9 87.5 66.4
+llava_bench_conv [9.0, 6.118] 68.0
+llava_bench_conv 68.0 90.0 61.2
+llava_bench_detail [8.533, 6.2] 72.7
+llava_bench_detail 72.7 85.3 62.0
+```
+
+#### RefCOCO / RefCOCO+ / RefCOCO-g
+
+RefCOCO, RefCOCO+, and RefCOCOg are datasets used for tasks involving referring expression comprehension, segmentation, and generation. These datasets are built upon the MSCOCO dataset, and they are essential for evaluating models in natural language processing and computer vision.
+
+```bash
+GPUS=8 sh evalulate.sh pretrained/InternVL-Chat-V1-1 refcoco
+```
+
+The expected test results are:
+
+```
+RefCOCO val, 84.7
+RefCOCO testA, 89.9
+RefCOCO testB, 78.6
+RefCOCO+ val, 78.5
+RefCOCO+ testA, 85.6
+RefCOCO+ testB, 70.1
+RefCOCO‑g val, 81.0
+RefCOCO‑g test, 81.4
 ```
 
 #### MVBench
@@ -898,23 +950,23 @@ The expected test results are:
 "Fine-grained Action": 41.0, "Unexpected Action": 64.5, "Object Existence": 49.0, 
 "Object Interaction": 64.0, "Object Shuffle": 32.5, "Moving Direction": 39.5, 
 "Action Localization": 27.500000000000004, "Scene Transition": 88.5, "Action Count": 42.0,
- "Moving Count": 33.0, "Moving Attribute": 57.99999999999999, "State Change": 46.5, 
- "Fine-grained Pose": 44.0, "Character Order": 59.0, "Egocentric Navigation": 38.5,
-  "Episodic Reasoning": 44.5, "Counterfactual Inference": 39.0, "Avg": 48.949999999999996}
+"Moving Count": 33.0, "Moving Attribute": 57.99999999999999, "State Change": 46.5, 
+"Fine-grained Pose": 44.0, "Character Order": 59.0, "Egocentric Navigation": 38.5,
+"Episodic Reasoning": 44.5, "Counterfactual Inference": 39.0, "Avg": 48.949999999999996}
 ```
 
 ### Evaluation using VLMEvalKit Codebase
 
 #### Data Preparation
 
-VLMEvalKit will automatically download the necessary data for evaluation, so you do not need to prepare it manually.
+VLMEvalKit will automatically download the data for evaluation, so you do not need to prepare it manually.
 
 #### MathVista
 
 The MathVista dataset is a comprehensive benchmark for evaluating mathematical reasoning within visual contexts. It consists of three newly created datasets—IQTest, FunctionQA, and PaperQA—designed to address logical reasoning on puzzle test figures, algebraic reasoning over functional plots, and scientific reasoning with academic paper figures, respectively.
 
 ```bash
-torchrun --nproc-per-node=8 run.py --data MathVista --model InternVL-Chat-V1-1 --verbose
+torchrun --nproc-per-node=8 run.py --data MathVista_MINI --model InternVL-Chat-V1-1 --verbose
 ```
 
 The expected test results are:
@@ -1070,6 +1122,31 @@ The expected test results are:
 "none","0.5803921568627451"
 ```
 
+#### MMVet (GPT-4-Turbo)
+
+The MM-Vet dataset is a comprehensive benchmark designed to evaluate the integrated capabilities of MLLMs. It encompasses six core vision-language (VL) capabilities: recognition, knowledge, optical character recognition (OCR), spatial awareness, language generation, and math. The dataset includes 200 images and 218 questions, each requiring one or more of these capabilities to answer. The evaluation uses an open-ended LLM-based approach, allowing assessment across various answer styles and question types.
+
+```bash
+torchrun --nproc-per-node=8 run.py --data MMVet --model InternVL-Chat-V1-1 --verbose
+```
+
+The expected test results are:
+
+```
+2024-07-26 17:28:10,536 - RUN - INFO - The evaluation of model InternVL-Chat-V1-1 x dataset MMVet has finished!
+2024-07-26 17:28:10,536 - RUN - INFO - Evaluation Results:
+2024-07-26 17:28:10,538 - RUN - INFO -
+-  -------  ---  -------
+0  rec      187  49.9465
+1  ocr      108  42.5
+2  know      84  36.4286
+3  gen       80  36.25
+4  spat      75  42.9333
+5  math      26  22.3077
+6  Overall  218  44.7706
+-  -------  ---  -------
+```
+
 #### LLaVA-Bench (GPT-4-Turbo)
 
 The LLaVA-Bench-in-the-Wild dataset is designed to evaluate the capabilities of MLLMs in handling more complex and diverse visual tasks. It includes a set of 24 images with 60 associated questions, covering a range of indoor and outdoor scenes, memes, paintings, and sketches. Each image is paired with detailed, manually curated descriptions and questions that test the model's generalizability to novel domains.
@@ -1090,20 +1167,6 @@ The expected test results are:
 2  conv     67.1  57.6  85.9
 3  detail   61.7  33.3  54
 -  -------  ----  ----  ----
-```
-
-#### VideoMME
-
-The Video-MME dataset is a comprehensive benchmark designed to evaluate the capabilities of MLLMs in video analysis. It is the first benchmark specifically tailored for this purpose, focusing on a high-quality assessment of models' performance in processing sequential visual data.
-
-```bash
-torchrun --nproc-per-node=8 run.py --data Video-MME --model InternVL-Chat-V1-1 --verbose --nframe 16
-```
-
-The expected test results are:
-
-```
-TODO
 ```
 
 ## Citation
