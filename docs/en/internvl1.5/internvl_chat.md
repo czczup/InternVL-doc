@@ -14,10 +14,9 @@ We introduce InternVL 1.5, an open-source multimodal large language model (MLLM)
 
 ![image](./figure2.png)
 
-As illustrated in Figure 3, InternVL 1.5 employs an architecture akin to widely-used open-source MLLMs, specifically the “ViT-MLP-LLM” configuration referenced in various existing studies. Our implementation of this architecture integrates a pre-trained InternViT-6B with a pre-trained InternLM2-20B using a randomly initialized MLP projector. 
+As illustrated in Figure 3, InternVL 1.5 employs an architecture akin to widely-used open-source MLLMs, specifically the “ViT-MLP-LLM” configuration referenced in various existing studies. Our implementation of this architecture integrates a pre-trained InternViT-6B with a pre-trained InternLM2-20B using a randomly initialized MLP projector.
 
 During training, we implemented a dynamic resolution strategy, dividing images into tiles of 448 × 448 pixels in sizes ranging from 1 to 12, based on the aspect ratio and resolution of the input images. During testing, this can be zero-shot scaled up to 40 tiles (i.e., 4K resolution). To enhance scalability for high resolution, we simply employed a pixel shuffle operation to reduce the number of visual tokens to one-quarter of the original. Therefore, in our model, a 448 × 448 image is represented by 256 visual tokens.
-
 
 ## Performance
 
@@ -356,164 +355,28 @@ for new_text in streamer:
     print(new_text, end='', flush=True)  # Print each new chunk of generated text on the same line
 ```
 
-## Reproduce InternVL-Chat-V1-2
-
-Here, we provide all the necessary code, data, and models to reproduce InternVL-Chat-V1-2. Please follow the guidelines below for preparation.
-
-### 1. Model Preparation
-
-| model name              | type | download                                                               |  size   |
-| ----------------------- | ---- | ---------------------------------------------------------------------- | :-----: |
-| InternViT-6B-448px-V1-2 | ViT  | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternViT-6B-448px-V1-2) | 11.1 GB |
-| Nous-Hermes-2-Yi-34B    | LLM  | 🤗 [HF link](https://huggingface.co/NousResearch/Nous-Hermes-2-Yi-34B) | 65.0 GB |
-
-If you want to replicate the training of `InternVL-Chat-V1-2`, please follow the commands below to download `InternViT-6B-448px-V1-2` and `Nous-Hermes-2-Yi-34B`.
-
-```sh
-cd pretrained/
-# pip install -U huggingface_hub
-huggingface-cli download --resume-download --local-dir-use-symlinks False OpenGVLab/InternViT-6B-448px-V1-2 --local-dir InternViT-6B-448px-V1-2
-huggingface-cli download --resume-download --local-dir-use-symlinks False OpenGVLab/Nous-Hermes-2-Yi-34B --local-dir Nous-Hermes-2-Yi-34B
-```
-
-The directory structure is:
-
-```sh
-pretrained
-├── InternViT-6B-448px-V1-2
-└── Nous-Hermes-2-Yi-34B
-```
-
-### 2. Training Datasets Preparation
-
-Inspired by LLaVA-NeXT, we adopted a data-efficient SFT strategy to train InternVL-Chat-V1-2, utilizing approximately 1.2M of visual instruction tuning samples in total, all of which are fully open-source. In a macro sense, we build upon [ShareGPT-4V](https://github.com/InternLM/InternLM-XComposer/blob/main/projects/ShareGPT4V/docs/Data.md#prepare-images) and additionally integrate [LLaVA-ZH](https://huggingface.co/datasets/openbmb/llava_zh), [DVQA](https://github.com/kushalkafle/DVQA_dataset), [ChartQA](https://github.com/vis-nlp/ChartQA), [AI2D](https://allenai.org/data/diagrams), [DocVQA](https://www.docvqa.org/datasets), [GeoQA+](https://github.com/SCNU203/GeoQA-Plus), and [SynthDoG-EN](https://huggingface.co/datasets/naver-clova-ix/synthdog-en). Most of the data remains consistent with LLaVA-NeXT.
-
-First, download the [annotation files](https://huggingface.co/OpenGVLab/InternVL/resolve/main/playground.zip) and place them in the `playground/opensource/` folder.
-
-Second, download all the images we used.
-
-- AI2D: [ai2d_images](https://drive.google.com/file/d/1dqqa3MnrxMXaU_K9JA6C83je32ibwdOY/view?usp=sharing) (provided by InternLM-XComposer)
-- ChartQA: [ChartQA Dataset](https://huggingface.co/datasets/ahmed-masry/ChartQA/resolve/main/ChartQA%20Dataset.zip)
-- COCO: [train2017](http://images.cocodataset.org/zips/train2017.zip)
-- DocVQA: [train](https://datasets.cvc.uab.es/rrc/DocVQA/train.tar.gz), [val](https://datasets.cvc.uab.es/rrc/DocVQA/val.tar.gz), [test](https://datasets.cvc.uab.es/rrc/DocVQA/test.tar.gz)
-- DVQA: [images](https://drive.google.com/file/d/1iKH2lTi1-QxtNUVRxTUWFvUvRHq6HAsZ/view)
-- GQA: [images](https://downloads.cs.stanford.edu/nlp/data/gqa/images.zip)
-- LLaVA-Pretrain: [images](https://huggingface.co/datasets/liuhaotian/LLaVA-Pretrain/resolve/main/images.zip)
-- OCR-VQA: [download script](https://drive.google.com/drive/folders/1_GYPY5UkUy7HIcR0zq3ZCFgeZN7BAfm_?usp=sharing). We save all files as `.jpg`
-- SAM: We only use 000000~000050.tar for now. You can quickly download 9K images from [here](https://drive.google.com/file/d/1dKumdOKSXtV7lIXdrG7jsIK_z2vZv2gs/view?usp=drive_link).
-- TextVQA: [trainvalimages](https://dl.fbaipublicfiles.com/textvqa/images/train_val_images.zip)
-- SynthDoG-EN: We only use 00000~00004 parquet files for now, with a total of 30K images. We provide the converted [images](https://huggingface.co/OpenGVLab/InternVL/resolve/main/synthdog-en-images.zip).
-- VisualGenome: [part1](https://cs.stanford.edu/people/rak248/VG_100K_2/images.zip), [part2](https://cs.stanford.edu/people/rak248/VG_100K_2/images2.zip)
-- WebData: [images](https://drive.google.com/drive/folders/1tCUQ-sq6vdshZVkF0ZeF3K4eztkXJgax?usp=sharing). Only for academic usage.
-- GeoQA+: [images](https://huggingface.co/OpenGVLab/InternVL/resolve/main/geoqa%2B_images.zip). We have converted the data format and redistributed it.
-
-> **⚠️ Warning:** Note that in the `sharegpt4v_mix665k_cap23k_coco-ap9k_lcs3k_sam9k_div2k.jsonl` file, the format of the RefCOCO data is consistent with LLaVA 1.5, which is `[x1, y1, x2, y2]` with coordinates ranging from `0-1`. During the training of InternVL-Chat-V1-2, we did not apply any special processing to this format. However, for the training of InternVL-Chat-V1-2-Plus, we converted the coordinate format to `<box>[[x1, y1, x2, y2]]</box>` and adjusted the coordinate range to `0-1000`.
-
-Then, organize the data as follows in `playground/data`:
-
-```none
-playground/
-├── opensource
-│   ├── ai2d_train_12k.jsonl
-│   ├── chartqa_train_18k.jsonl
-│   ├── docvqa_train_10k.jsonl
-│   ├── dvqa_train_200k.jsonl
-│   ├── geoqa+.jsonl
-│   ├── llava_instruct_150k_zh.jsonl
-│   ├── sharegpt4v_instruct_gpt4-vision_cap100k.jsonl
-│   ├── sharegpt4v_mix665k_cap23k_coco-ap9k_lcs3k_sam9k_div2k.jsonl
-│   └── synthdog_en.jsonl
-├── data
-│   ├── ai2d
-│   │   ├── abc_images
-│   │   └── images
-│   ├── chartqa
-│   │   ├── test
-│   │   ├── train
-│   │   └── val
-│   ├── coco
-│   │   └── train2017
-│   ├── docvqa
-│   │   ├── test
-│   │   ├── train
-│   │   └── val
-│   ├── dvqa
-│   │   └── images
-│   ├── gqa
-│   │   └── images
-│   ├── llava
-│   │   └── llava_pretrain
-│   │       └── images
-│   ├── ocr_vqa
-│   │   └── images
-│   ├── sam
-│   │   └── images
-│   ├── share_textvqa
-│   │   └── images
-│   ├── synthdog-en
-│   │   └── images
-│   ├── textvqa
-│   │   └── train_images
-│   ├── vg
-│   │   ├── VG_100K
-│   │   └── VG_100K_2
-│   ├── web-celebrity
-│   │   └── images
-│   ├── web-landmark
-│   │   └── images
-│   ├── wikiart
-│   │   └── images
-│   ├── geoqa+
-│   │   └── images
-```
-
-### 3. Start Training
-
-We provide slurm scripts for multi-node multi-GPU training. You can use either 32 or 64 GPUs to train this model. If you use 64 GPUs, training will take approximately 18 hours.
-
-- If you encounter an OOM error, you can decrease the `PER_DEVICE_BATCH_SIZE`, for example, set `PER_DEVICE_BATCH_SIZE=4`.
-
-```sh
-# using 32 GPUs
-PARTITION='your partition' GPUS=32 PER_DEVICE_BATCH_SIZE=8 sh shell/internvl1.2/hermes2_yi34b/internvl_chat_v1_2_hermes2_yi34b_448_res_finetune.sh
-# using 64 GPUs
-PARTITION='your partition' GPUS=64 PER_DEVICE_BATCH_SIZE=8 sh shell/internvl1.2/hermes2_yi34b/internvl_chat_v1_2_hermes2_yi34b_448_res_finetune.sh
-```
-
-The hyperparameters used for fine-tuning are listed in the following table. And, you can view the training logs in tensorboard at [here](https://huggingface.co/OpenGVLab/InternVL-Chat-V1-2/tensorboard).
-
-| Hyperparameter         | Trainable Param | Global Batch Size | Learning rate | Epoch | Max length | Weight decay |
-| ---------------------- | --------------- | ----------------- | ------------- | ----- | ---------- | ------------ |
-| InternVL-Chat-<br>V1-2 | 40B             | 512               | 1e-5          | 1     | 2048       | 0.05         |
-
 ## Fine-tune on a Custom Dataset
 
 ### 1. Model Preparation
 
-| model name              | type | download                                                               |  size   |
-| ----------------------- | ---- | ---------------------------------------------------------------------- | :-----: |
-| InternVL-Chat-V1-2      | MLLM | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL-Chat-V1-2)      | 75.0 GB |
-| InternVL-Chat-V1-2-Plus | MLLM | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL-Chat-V1-2-Plus) | 75.0 GB |
+| model name         | type | download                                                             |  size   |
+| ------------------ | ---- | -------------------------------------------------------------------- | :-----: |
+| InternVL-Chat-V1-5 | MLLM | 🤗 [HF link](https://huggingface.co/NousResearch/InternVL-Chat-V1-5) | 48.0 GB |
 
-Before starting the second fine-tuning, download the pre-trained model we provide. Two versions are available: [InternVL-Chat-V1-2](https://huggingface.co/OpenGVLab/InternVL-Chat-V1-2) and [InternVL-Chat-V1-2-Plus](https://huggingface.co/OpenGVLab/InternVL-Chat-V1-2-Plus). We recommend downloading the Plus version.
+Before starting the second fine-tuning, download the pre-trained model we provide.
 
-Use the following commands to download the desired model:
-
-```shell
+```sh
 cd pretrained/
 # pip install -U huggingface_hub
-# Download OpenGVLab/InternVL-Chat-V1-2
-huggingface-cli download --resume-download --local-dir-use-symlinks False OpenGVLab/InternVL-Chat-V1-2 --local-dir InternVL-Chat-V1-2
-# Download OpenGVLab/InternVL-Chat-V1-2-Plus
-huggingface-cli download --resume-download --local-dir-use-symlinks False OpenGVLab/InternVL-Chat-V1-2-Plus --local-dir InternVL-Chat-V1-2-Plus
+# Download OpenGVLab/InternVL-Chat-V1-5
+huggingface-cli download --resume-download --local-dir-use-symlinks False OpenGVLab/InternVL-Chat-V1-5 --local-dir InternVL-Chat-V1-5
 ```
 
 The directory structure is:
 
 ```sh
 pretrained
-├── InternVL-Chat-V1-2
-└── InternVL-Chat-V1-2-Plus
+└── InternVL-Chat-V1-5
 ```
 
 ### 2. Prepare Your Customized Training Data
@@ -549,31 +412,35 @@ Example:
 }
 ```
 
+My suggestion is to add new domain-specific data on top of the [general data from our open-sourced InternVL 1.2](../internvl1.2/internvl_chat.md#training-datasets-preparation). This will enhance downstream capabilities while retaining the foundational skills. Of course, you can also choose to fine-tune solely on the new data based on your requirements.
+
 ### 3. Start 2nd Fine-tuning
 
-Fine-tune the pre-trained models using either the [script for training the full LLM](https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/shell/internvl1.2/2nd_finetune/internvl_chat_v1_2_hermes2_yi34b_448_res_2nd_finetune_full.sh)
-or the [script for training the LoRA adapter](https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/shell/internvl1.2/2nd_finetune/internvl_chat_v1_2_hermes2_yi34b_448_res_2nd_finetune_lora.sh), depending on your available GPU resources.
+Fine-tune the pre-trained models using either the [script for training the full LLM](https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/shell/internvl1.5/2nd_finetune/internvl_chat_v1_5_internlm2_20b_dynamic_res_2nd_finetune_full.sh)
+or the [script for training the LoRA adapter](https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/shell/internvl1.5/2nd_finetune/internvl_chat_v1_5_internlm2_20b_dynamic_res_2nd_finetune_lora.sh), depending on your available GPU resources.
 
-Before fine-tuning, set the `--meta_path` to the path of the JSON file you created in the previous step. The default pre-trained model path in these shell scripts is `./pretrained/InternVL-Chat-V1-2-Plus`.
+Before fine-tuning, set the `--meta_path` to the path of the JSON file you created in the previous step. The default pre-trained model path in these shell scripts is `./pretrained/InternVL-Chat-V1-5`.
 
-> 💡 Fine-tuning the full LLM requires at least 16 A100 80G GPUs, whereas fine-tuning the LoRA requires 2 A100 80G GPUs.
+> 💡 Fine-tuning the full LLM requires at least 8 A100 80G GPUs, whereas fine-tuning the LoRA requires 2 A100 80G GPUs.
 
 > 💡 The number of GPUs and hyperparameters used here are just an example. To achieve optimal results, you may need to adjust these settings based on your available hardware and dataset size.
 
 Commands for fine-tuning:
 
 ```sh
-# Using 16 GPUs with SLURM system, fine-tune the full LLM, cost about 80G per GPU
-PARTITION='your partition' GPUS=16 sh shell/internvl1.2/2nd_finetune/internvl_chat_v1_2_hermes2_yi34b_448_res_2nd_finetune_full.sh
-# Using 2 GPUs, fine-tune the LoRA, without SLURM system, cost about 63G per GPU
-GPUS=2 sh shell/internvl1.2/2nd_finetune/internvl_chat_v1_2_hermes2_yi34b_448_res_2nd_finetune_lora.sh
+# Using 8 GPUs, fine-tune the full LLM, cost about 77G per GPU
+GPUS=8 sh shell/internvl1.5/2nd_finetune/internvl_chat_v1_5_internlm2_20b_dynamic_res_2nd_finetune_full.sh
+# Using 2 GPUs, fine-tune the LoRA, cost about 79G per GPU
+GPUS=2 sh shell/internvl1.5/2nd_finetune/internvl_chat_v1_5_internlm2_20b_dynamic_res_2nd_finetune_lora.sh
+# Using 8 GPUs, fine-tune the LoRA, cost about 60 per GPU
+GPUS=8 sh shell/internvl1.5/2nd_finetune/internvl_chat_v1_5_internlm2_20b_dynamic_res_2nd_finetune_lora.sh
 ```
 
 If you encounter any issues, please let me know, and I will update the training guide to enhance its usability.
 
 ## Evaluation
 
-To evaluate the performance of the InternVL-Chat-V1-2-Plus model across various tasks, follow the instructions for each specific dataset. Ensure that the appropriate number of GPUs is allocated as specified.
+To evaluate the performance of the InternVL-Chat-V1-5 model across various tasks, follow the instructions for each specific dataset. Ensure that the appropriate number of GPUs is allocated as specified.
 
 > 1⃣️ We simultaneously use InternVL and VLMEvalKit repositories for model evaluation. Specifically, the results reported for DocVQA, ChartQA, InfoVQA, TextVQA, MME, AI2D, MMBench, CCBench, MMVet, and SEED-Image were tested using the InternVL repository. OCRBench, RealWorldQA, HallBench, and MathVista were evaluated using the VLMEvalKit.
 
@@ -594,13 +461,35 @@ MME is a comprehensive benchmark designed to evaluate Multimodal Large Language 
 Please use the following command to perform the test with 1 GPU:
 
 ```bash
-GPUS=1 sh evaluate.sh pretrained/InternVL-Chat-V1-2-Plus mme
+GPUS=1 sh evaluate.sh pretrained/InternVL-Chat-V1-5 mme --dynamic --max-num 12
 ```
 
 The expected test results are:
 
 ```
-TODO
+total score: 1658.3683473389356
+
+   existence  score: 190.0
+   count  score: 175.0
+   position  score: 171.66666666666669
+   color  score: 178.33333333333331
+   posters  score: 173.8095238095238
+   celebrity  score: 142.05882352941177
+   scene  score: 156.5
+   landmark  score: 179.5
+   artwork  score: 144.0
+   OCR  score: 147.5
+
+
+=========== Cognition ===========
+total score: 533.5714285714286
+
+   commonsense_reasoning  score: 133.57142857142858
+   numerical_calculation  score: 117.5
+   text_translation  score: 185.0
+   code_reasoning  score: 97.5
+
+# 1658.3683473389356 + 533.5714285714286 = 2191.939775910364
 ```
 
 #### OKVQA
@@ -610,7 +499,7 @@ OKVQA (Outside Knowledge Visual Question Answering) is a dataset designed for vi
 Please use the following command to perform the test with 8 GPU:
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-2-Plus vqa-okvqa-val
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 vqa-okvqa-val
 ```
 
 The expected test results are:
@@ -625,26 +514,16 @@ TextVQA is a dataset designed to evaluate visual question answering models by re
 
 The TextVQA dataset provides official OCR results, specifically Rosetta OCR tokens. During testing with InstructBLIP and LLaVA 1.5, the OCR results are input to the LLM as a prompt. If you want to input Rosetta OCR tokens, use the following command:
 
+We do not use Rosetta OCR tokens, run this command:
+
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-2-Plus vqa-textvqa-val-ocr
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 vqa-textvqa-val --dynamic --max-num 24
 ```
 
 The expected test results are:
 
 ```
-TODO
-```
-
-If you do not want to input Rosetta OCR tokens, use this command:
-
-```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-2-Plus vqa-textvqa-val
-```
-
-The expected test results are:
-
-```
-TODO
+['pretrained/InternVL-Chat-V1-5', 'textvqa_val', 0.8061000000000043]
 ```
 
 #### VizWiz
@@ -654,7 +533,7 @@ The VizWiz VQA dataset is a visual question answering dataset created to help an
 For the validation set, run:
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-2-Plus vqa-vizwiz-val
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 vqa-vizwiz-val
 ```
 
 The expected test results are:
@@ -666,7 +545,7 @@ TODO
 For the test set, run:
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-2-Plus vqa-vizwiz-test
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 vqa-vizwiz-test
 ```
 
 For the test set, submit the results to the [evaluation server](https://eval.ai/web/challenges/challenge-page/1911/my-submission).
@@ -684,13 +563,15 @@ The ChartQA dataset is a comprehensive benchmark for question answering about ch
 The ChartQA dataset includes two test sets: `chartqa_test_human` and `chartqa_test_augmented`. The final score for model evaluation is calculated as the average of the scores on these two test sets:
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-2-Plus vqa-chartqa-test
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 vqa-chartqa-test
 ```
 
 The expected test results are:
 
 ```
-TODO
+['chartqa_test_human', {'relaxed_accuracy': 0.736}]
+['chartqa_test_augmented', {'relaxed_accuracy': 0.9408}]
+# the average score = (73.6 + 94.08) / 2 = 83.8
 ```
 
 #### DocVQA
@@ -700,19 +581,19 @@ The DocVQA dataset consists of 50,000 questions on 12,000+ document images. It i
 For the validation set, run:
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-2-Plus vqa-docvqa-val
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 vqa-docvqa-val
 ```
 
 The expected test results are:
 
 ```
-TODO
+Overall ANLS: 0.9049
 ```
 
 For the test set, run:
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-2-Plus vqa-docvqa-test
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 vqa-docvqa-test
 ```
 
 For the test set, submit the results to the [evaluation server](https://rrc.cvc.uab.es/?ch=17).
@@ -720,7 +601,7 @@ For the test set, submit the results to the [evaluation server](https://rrc.cvc.
 The expected test results are:
 
 ```
-TODO
+Overall ANLS: 0.909
 ```
 
 #### AI2D
@@ -728,13 +609,13 @@ TODO
 The AI2D dataset contains over 5,000 grade school science diagrams with extensive annotations and 15,000 multiple-choice questions for research on diagram understanding and question answering.
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-2-Plus vqa-ai2d-test
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 vqa-ai2d-test --dynamic
 ```
 
 The expected test results are:
 
 ```
-TODO
+ai2diagram_test {'accuracy': 0.8073186528497409}
 ```
 
 #### InfographicVQA
@@ -744,19 +625,19 @@ The InfographicVQA dataset is a collection of infographics accompanied by natura
 For the validation set, run:
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-2-Plus vqa-infovqa-val
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 vqa-infovqa-val
 ```
 
 The expected test results are:
 
 ```
-TODO
+Overall ANLS: 0.7235
 ```
 
 For the test set, run:
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-2-Plus vqa-infovqa-test
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 vqa-infovqa-test
 ```
 
 For the test set, submit the results to the [evaluation server](https://rrc.cvc.uab.es/?ch=17).
@@ -764,7 +645,7 @@ For the test set, submit the results to the [evaluation server](https://rrc.cvc.
 The expected test results are:
 
 ```
-TODO
+Overall ANLS: 0.725
 ```
 
 #### GQA
@@ -772,7 +653,7 @@ TODO
 The GQA dataset is a large-scale visual question answering dataset designed for real-world visual reasoning and compositional question answering. It contains over 22 million questions grounded in real images, each accompanied by detailed scene graphs that describe objects, their attributes, and relationships within the scene. The dataset includes images from the Visual Genome dataset, with questions that require various reasoning skills such as spatial understanding and multi-step inference.
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-2-Plus vqa-gqa-testdev
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 vqa-gqa-testdev
 ```
 
 The expected test results are:
@@ -786,7 +667,7 @@ TODO
 The ScienceQA dataset is a large-scale benchmark for multimodal science question answering, consisting of 21,208 multiple-choice questions derived from elementary and high school science curricula. This dataset features a diverse range of topics across natural science, social science, and language science. It includes questions with image context (48.7%), text context (48.2%), and both (30.8%).
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-2-Plus scienceqa
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 scienceqa
 ```
 
 The expected test results are:
@@ -800,7 +681,7 @@ TODO
 The POPE (Polling-based Object Probing Evaluation) dataset is designed to evaluate object hallucination in MLLMs. The dataset consists of 3,000 questions related to the captions of 500 images. By treating the MLLMs' answers to these questions as a binary classification task, the dataset allows researchers to measure accuracy, precision, recall, and F1 scores to determine the extent of hallucination in the models.
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-2-Plus pope
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 pope
 ```
 
 The expected test results are:
@@ -814,7 +695,7 @@ TODO
 The Tiny LVLM-eHub is a streamlined evaluation benchmark designed to assess the multimodal capabilities of MLLMs, including models like Bard. It focuses on six categories of multimodal abilities: visual perception, visual knowledge acquisition, visual reasoning, visual commonsense, object hallucination, and embodied intelligence.
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-2-Plus tiny_lvlm
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 tiny_lvlm
 ```
 
 The expected test results are:
@@ -830,19 +711,38 @@ The MMMU dataset is a comprehensive benchmark designed to evaluate multimodal mo
 For the validation set, run:
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-2-Plus mmmu-val
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 mmmu-val
 ```
 
 The expected test results are:
 
 ```
-TODO
+{'Overall-Art and Design': {'num': 120, 'acc': 0.608}, 'Art': {'num': 30, 'acc': 0.7}, 
+'Art_Theory': {'num': 30, 'acc': 0.8}, 'Design': {'num': 30, 'acc': 0.767},
+'Music': {'num': 30, 'acc': 0.167}, 'Overall-Business': {'num': 150, 'acc': 0.413}, 
+'Accounting': {'num': 30, 'acc': 0.467}, 'Economics': {'num': 30, 'acc': 0.4}, 
+'Finance': {'num': 30, 'acc': 0.4}, 'Manage': {'num': 30, 'acc': 0.4}, 
+'Marketing': {'num': 30, 'acc': 0.4}, 'Overall-Science': {'num': 150, 'acc': 0.38}, 
+'Biology': {'num': 30, 'acc': 0.6}, 'Chemistry': {'num': 30, 'acc': 0.233}, 
+'Geography': {'num': 30, 'acc': 0.4}, 'Math': {'num': 30, 'acc': 0.333}, 
+'Physics': {'num': 30, 'acc': 0.333}, 'Overall-Health and Medicine': {'num': 150, 'acc': 0.433}, 
+'Basic_Medical_Science': {'num': 30, 'acc': 0.5}, 'Clinical_Medicine': {'num': 30, 'acc': 0.5}, 
+'Diagnostics_and_Laboratory_Medicine': {'num': 30, 'acc': 0.333}, 
+'Pharmacy': {'num': 30, 'acc': 0.367}, 'Public_Health': {'num': 30, 'acc': 0.467}, 
+'Overall-Humanities and Social Science': {'num': 120, 'acc': 0.617}, 
+'History': {'num': 30, 'acc': 0.633}, 'Literature': {'num': 30, 'acc': 0.8},
+'Sociology': {'num': 30, 'acc': 0.567}, 'Psychology': {'num': 30, 'acc': 0.467},
+'Overall-Tech and Engineering': {'num': 210, 'acc': 0.362}, 'Agriculture': {'num': 30, 'acc': 0.567},
+'Architecture_and_Engineering': {'num': 30, 'acc': 0.267}, 'Computer_Science': {'num': 30, 'acc': 0.367},
+'Electronics': {'num': 30, 'acc': 0.3}, 'Energy_and_Power': {'num': 30, 'acc': 0.333}, 
+'Materials': {'num': 30, 'acc': 0.467}, 'Mechanical_Engineering': {'num': 30, 'acc': 0.233}, 
+'Overall': {'num': 900, 'acc': 0.452}}
 ```
 
 For the test set, run:
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-2-Plus mmmu-test
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 mmmu-test --dynamic
 ```
 
 For the test set, submit the results to the [evaluation server](https://eval.ai/web/challenges/challenge-page/2179/overview).
@@ -850,7 +750,10 @@ For the test set, submit the results to the [evaluation server](https://eval.ai/
 The expected test results are:
 
 ```
-TODO
+# result of the test-en set
+A_Overall (test)	0.8217488789237668
+# result of the test-cn set
+A_Overall (test)	0.8195067264573991
 ```
 
 #### MMVet (GPT-4-0613)
@@ -858,13 +761,14 @@ TODO
 The MM-Vet dataset is a comprehensive benchmark designed to evaluate the integrated capabilities of MLLMs. It encompasses six core vision-language (VL) capabilities: recognition, knowledge, optical character recognition (OCR), spatial awareness, language generation, and math. The dataset includes 200 images and 218 questions, each requiring one or more of these capabilities to answer. The evaluation uses an open-ended LLM-based approach, allowing assessment across various answer styles and question types.
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-2-Plus mmvet
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 mmvet --dynamic
 ```
 
 Then, submit the results to the [evaluation server](https://huggingface.co/spaces/whyu/MM-Vet_Evaluator). The expected test results are:
 
 ```
-TODO
+total
+62.7
 ```
 
 #### MMBench
@@ -874,8 +778,8 @@ The MMBench dataset is a comprehensive multi-modality benchmark designed to eval
 For the English dev / test set, run:
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-2-Plus mmbench-dev-en
-GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-2-Plus mmbench-test-en
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 mmbench-dev-en
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 mmbench-test-en
 
 ```
 
@@ -889,8 +793,8 @@ mmbench-test-en: TODO
 For the Chinese dev / test set, run:
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-2-Plus mmbench-dev-cn
-GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-2-Plus mmbench-test-cn
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 mmbench-dev-cn
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 mmbench-test-cn
 
 ```
 
@@ -904,13 +808,13 @@ mmbench-test-cn: TODO
 #### CCBench
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-2-Plus ccbench-dev
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 ccbench-dev --dynamic
 ```
 
 Then, submit the results to the [evaluation server](https://mmbench.opencompass.org.cn/mmbench-submission). The expected test results are:
 
 ```
-ccbench-dev: TODO
+A_Overall (dev)	0.7
 ```
 
 #### SEED
@@ -918,13 +822,30 @@ ccbench-dev: TODO
 CCBench is a multimodal benchmark specifically designed to evaluate models on tasks related to Chinese culture. It is part of the larger MMBench suite of benchmarks, developed by the OpenCompass Community, and aims to provide fine-grained evaluations across various capabilities of vision-language models. CCBench includes 510 questions in a multiple-choice format, focusing on cultural knowledge and understanding.
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-2-Plus seed
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 seed
 ```
 
 The expected test results are:
 
 ```
-TODO
+Acc@1: 0.6999444135630906
+length: 17990
+Accuracy for each data type:
+Data type Scene Understanding: 80.37%
+Data type Instance Identity: 80.45%
+Data type Instance Location: 78.03%
+Data type Instance Attributes: 72.39%
+Data type Instances Counting: 69.19%
+Data type Spatial Relation: 59.82%
+Data type Instance Interaction: 77.32%
+Data type Visual Reasoning: 78.85%
+Data type Text Understanding: 55.81%
+Data type Action Recognition: 54.08%
+Data type Action Prediction: 44.82%
+Data type Procedure Understanding: 40.18%
+Total accuracy: 69.99%
+Image accuracy: 75.99%
+Video accuracy: 47.27%
 ```
 
 #### MMVP
@@ -932,7 +853,7 @@ TODO
 The MMVP dataset is designed to benchmark the performance of multimodal large language models (MLLMs) in visual question answering tasks. This dataset focuses on identifying "CLIP-blind pairs," which are images that appear similar to the CLIP model despite having clear visual differences. The MMVP dataset includes 300 images derived from ImageNet-1k and LAION-Aesthetics, each paired with straightforward questions to evaluate the models' visual capabilities. It highlights the challenges these systems face, often leading to incorrect responses and hallucinated explanations.
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-2-Plus mmvp
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 mmvp
 ```
 
 The expected test results are:
@@ -948,7 +869,7 @@ MVBench is a comprehensive multimodal video understanding benchmark developed to
 We evaluate our models on MVBench by extracting 16 frames from each video, and each frame was resized to a 448x448 image.
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-2-Plus mvbench
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 mvbench
 ```
 
 The expected test results are:
@@ -968,7 +889,7 @@ VLMEvalKit will automatically download the necessary data for evaluation, so you
 The MathVista dataset is a comprehensive benchmark for evaluating mathematical reasoning within visual contexts. It consists of three newly created datasets—IQTest, FunctionQA, and PaperQA—designed to address logical reasoning on puzzle test figures, algebraic reasoning over functional plots, and scientific reasoning with academic paper figures, respectively.
 
 ```bash
-torchrun --nproc-per-node=8 run.py --data MathVista --model InternVL-Chat-V1-2-Plus --verbose
+torchrun --nproc-per-node=8 run.py --data MathVista --model InternVL-Chat-V1-5 --verbose
 ```
 
 The expected test results are:
@@ -982,27 +903,43 @@ TODO
 HallusionBench is a comprehensive benchmark designed to evaluate image-context reasoning in MLLMs, focusing on identifying issues related to language hallucination and visual illusion. The dataset consists of 346 images paired with 1,129 questions crafted by human experts. These questions are divided into two categories: Visual Dependent (VD) and Visual Supplement (VS), allowing the benchmark to assess the nuanced understanding and interpretation of visual data by MLLMs.
 
 ```bash
-torchrun --nproc-per-node=8 run.py --data HallusionBench --model InternVL-Chat-V1-2-Plus --verbose
+torchrun --nproc-per-node=8 run.py --data HallusionBench --model InternVL-Chat-V1-5 --verbose
 ```
 
 The expected test results are:
 
 ```
-TODO
+2024-04-29 00:46:23,688 - Evaluation - INFO - Score:
+2024-04-29 00:46:23,688 - Evaluation - INFO -           split       aAcc       fAcc       qAcc
+0       Overall  66.771819  40.173410  40.879121
+1            VD  63.620981  40.000000  34.296029
+2            VS  71.944444  40.517241  51.123596
+3     VD_figure  77.500000  65.853659  53.846154
+4        VS_map  56.250000  18.181818  18.750000
+5   VD_illusion  66.666667  41.935484  34.722222
+6      VS_table  75.892857  46.428571  55.813953
+7        VD_ocr  78.651685  58.139535  58.139535
+8        VS_ocr  59.259259  38.461538  22.222222
+9      VS_chart  81.538462  50.000000  72.368421
+10     VD_video  51.176471  10.416667  13.043478
+11      VD_math  56.481481  25.000000  27.777778
 ```
+
+The final score reported in our technical report is the average: (66.771819 + 40.173410 + 40.879121) / 3 = 49.3
 
 #### MMStar
 
 The MMStar dataset is an advanced multimodal benchmark designed to evaluate the capabilities of MLLMs. It comprises 1,500 carefully selected samples that are balanced and purified to ensure they exhibit visual dependency and minimal data leakage. The dataset evaluates models across six core capabilities and 18 detailed axes, focusing on complex multimodal tasks that require advanced reasoning and understanding of visual content.
 
 ```bash
-torchrun --nproc-per-node=8 run.py --data MMStar --model InternVL-Chat-V1-2-Plus --verbose
+torchrun --nproc-per-node=8 run.py --data MMStar --model InternVL-Chat-V1-5 --verbose
 ```
 
 The expected test results are:
 
 ```
-TODO
+2024-04-29 18:21:56,491 - Evaluation - INFO -   split   Overall  ...   math  science & technology
+0  none  0.572667  ...  0.564                 0.408
 ```
 
 #### OCRBench
@@ -1010,13 +947,20 @@ TODO
 OCRBench is a comprehensive evaluation benchmark designed to assess the OCR capabilities of MLLMs. It includes five components: Text Recognition, Scene Text-Centric Visual Question Answering (VQA), Document-Oriented VQA, Key Information Extraction (KIE), and Handwritten Mathematical Expression Recognition (HMER). The benchmark encompasses data from 29 datasets, making it one of the most thorough OCR evaluation tools available. OCRBench aims to reveal both the strengths and weaknesses of MLLMs, particularly in handling multilingual text, handwritten text, non-semantic text, and mathematical expressions. The benchmark includes 1,000 question-answer pairs, all manually verified for precision.
 
 ```bash
-torchrun --nproc-per-node=8 run.py --data OCRBench --model InternVL-Chat-V1-2-Plus --verbose
+torchrun --nproc-per-node=8 run.py --data OCRBench --model InternVL-Chat-V1-5 --verbose
 ```
 
 The expected test results are:
 
 ```
-TODO
+2024-04-29 00:28:29,681 - Evaluation - INFO - Score:
+2024-04-29 00:28:29,681 - Evaluation - INFO - Text Recognition:238
+2024-04-29 00:28:29,681 - Evaluation - INFO - Scene Text-centric VQA:178
+2024-04-29 00:28:29,681 - Evaluation - INFO - Doc-oriented VQA:151
+2024-04-29 00:28:29,681 - Evaluation - INFO - Key Information Extraction:153
+2024-04-29 00:28:29,681 - Evaluation - INFO - Handwritten Mathematical Expression Recognition:4
+2024-04-29 00:28:29,681 - Evaluation - INFO - Final Score:724
+2024-04-29 00:28:29,681 - Evaluation - INFO - Final Score Norm:72.4
 ```
 
 #### MMMU
@@ -1024,7 +968,7 @@ TODO
 The MMMU dataset is a comprehensive benchmark designed to evaluate multimodal models on college-level tasks that require domain-specific knowledge and reasoning. It includes 11,500 questions sourced from college exams, quizzes, and textbooks, spanning six disciplines: Art & Design, Business, Science, Health & Medicine, Humanities & Social Science, and Tech & Engineering. These questions cover 30 subjects and feature 30 types of images, such as charts, diagrams, maps, tables, and more.
 
 ```bash
-torchrun --nproc-per-node=8 run.py --data MMMU_DEV_VAL --model InternVL-Chat-V1-2-Plus --verbose
+torchrun --nproc-per-node=8 run.py --data MMMU_DEV_VAL --model InternVL-Chat-V1-5 --verbose
 ```
 
 The expected test results are:
@@ -1038,13 +982,15 @@ TODO
 The RealWorldQA dataset is a benchmark designed to evaluate the real-world spatial understanding capabilities of multimodal AI models. It consists of over 700 images, each accompanied by a question and a verifiable answer, focusing on various real-world scenarios, including those captured from vehicles. This dataset aims to test how well AI models comprehend physical environments and spatial relations, enhancing their ability to interpret and analyze real-world scenes.
 
 ```bash
-torchrun --nproc-per-node=8 run.py --data RealWorldQA --model InternVL-Chat-V1-2-Plus --verbose
+torchrun --nproc-per-node=8 run.py --data RealWorldQA --model InternVL-Chat-V1-5 --verbose
 ```
 
 The expected test results are:
 
 ```
-TODO
+2024-04-29 00:35:13,282 - Evaluation - INFO - Score:
+2024-04-29 00:35:13,282 - Evaluation - INFO -   split   Overall
+0  none  0.660131
 ```
 
 #### LLaVA-Bench (GPT-4-Turbo)
@@ -1052,7 +998,7 @@ TODO
 The LLaVA-Bench-in-the-Wild dataset is designed to evaluate the capabilities of MLLMs in handling more complex and diverse visual tasks. It includes a set of 24 images with 60 associated questions, covering a range of indoor and outdoor scenes, memes, paintings, and sketches. Each image is paired with detailed, manually curated descriptions and questions that test the model's generalizability to novel domains.
 
 ```bash
-torchrun --nproc-per-node=8 run.py --data LLaVABench --model InternVL-Chat-V1-2-Plus --verbose
+torchrun --nproc-per-node=8 run.py --data LLaVABench --model InternVL-Chat-V1-5 --verbose
 ```
 
 The expected test results are:
@@ -1061,12 +1007,52 @@ The expected test results are:
 TODO
 ```
 
+#### MMVet (GPT-4-Turbo)
+
+The MM-Vet dataset is a comprehensive benchmark designed to evaluate the integrated capabilities of MLLMs. It encompasses six core vision-language (VL) capabilities: recognition, knowledge, optical character recognition (OCR), spatial awareness, language generation, and math. The dataset includes 200 images and 218 questions, each requiring one or more of these capabilities to answer. The evaluation uses an open-ended LLM-based approach, allowing assessment across various answer styles and question types.
+
+```bash
+torchrun --nproc-per-node=8 run.py --data MMVet --model InternVL-Chat-V1-5 --verbose
+```
+
+The expected test results are:
+
+```
+2024-04-29 18:32:38,748 - Evaluation - INFO - Score:
+2024-04-29 18:32:38,748 - Evaluation - INFO -   Category  tot        acc
+0      rec  187  61.818182
+1      ocr  108  68.981481
+2     know   84  46.428571
+3      gen   80  44.875000
+4     spat   75  63.600000
+5     math   26  62.307692
+6  Overall  218  61.513761
+```
+
+Note that because the version of GPT-4 used for scoring differs from the official server, the scores tested by VLMEvalKit will be slightly different.
+
+#### MMMU_DEV_VAL
+
+The MMMU dataset is a comprehensive benchmark designed to evaluate multimodal models on college-level tasks that require domain-specific knowledge and reasoning. It includes 11,500 questions sourced from college exams, quizzes, and textbooks, spanning six disciplines: Art & Design, Business, Science, Health & Medicine, Humanities & Social Science, and Tech & Engineering. These questions cover 30 subjects and feature 30 types of images, such as charts, diagrams, maps, tables, and more.
+
+```bash
+torchrun --nproc-per-node=8 run.py --data MMMU_DEV_VAL --model InternVL-Chat-V1-5 --verbose
+```
+
+The expected test results are:
+
+```
+2024-04-29 18:20:04,977 - Evaluation - INFO -         split  Overall  ...  Science  Tech & Engineering
+0         dev     0.48  ...     0.36            0.428571
+1  validation     0.45  ...     0.38            0.371429
+```
+
 #### VideoMME
 
 The Video-MME dataset is a comprehensive benchmark designed to evaluate the capabilities of MLLMs in video analysis. It is the first benchmark specifically tailored for this purpose, focusing on a high-quality assessment of models' performance in processing sequential visual data.
 
 ```bash
-torchrun --nproc-per-node=8 run.py --data Video-MME --model InternVL-Chat-V1-2-Plus --verbose --nframe 16
+torchrun --nproc-per-node=8 run.py --data Video-MME --model InternVL-Chat-V1-5 --verbose --nframe 16
 ```
 
 The expected test results are:
