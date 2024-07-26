@@ -1285,7 +1285,10 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
 or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/shell/internvl1.2/2nd_finetune/internvl_chat_v1_2_hermes2_yi34b_448_res_2nd_finetune_lora.sh">script for training the LoRA adapter</a>, depending on your available GPU resources.</p>
 <p>Before fine-tuning, set the <code class="docutils literal notranslate"><span class="pre">--meta_path</span></code> to the path of the JSON file you created in the previous step. The default pre-trained model path in these shell scripts is <code class="docutils literal notranslate"><span class="pre">./pretrained/InternVL-Chat-V1-2-Plus</span></code>.</p>
 <blockquote>
-<div><p>Note: Fine-tuning the full LLM requires 16 A100 80G GPUs, whereas fine-tuning the LoRA requires 2 A100 80G GPUs.</p>
+<div><p>💡 Fine-tuning the full LLM requires at least 16 A100 80G GPUs, whereas fine-tuning the LoRA requires 2 A100 80G GPUs.</p>
+</div></blockquote>
+<blockquote>
+<div><p>💡 The number of GPUs and hyperparameters used here are just an example. To achieve optimal results, you may need to adjust these settings based on your available hardware and dataset size.</p>
 </div></blockquote>
 <p>Commands for fine-tuning:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># Using 16 GPUs with SLURM system, fine-tune the full LLM, cost about 80G per GPU</span>

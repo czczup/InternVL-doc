@@ -614,7 +614,9 @@ or the [script for training the LoRA adapter](https://github.com/OpenGVLab/Inter
 
 Before fine-tuning, set the `--meta_path` to the path of the JSON file you created in the previous step. The default pre-trained model path in these shell scripts is `./pretrained/InternVL-Chat-V1-2-Plus`.
 
-> Note: Fine-tuning the full LLM requires 16 A100 80G GPUs, whereas fine-tuning the LoRA requires 2 A100 80G GPUs.
+> 💡 Fine-tuning the full LLM requires at least 16 A100 80G GPUs, whereas fine-tuning the LoRA requires 2 A100 80G GPUs.
+
+> 💡 The number of GPUs and hyperparameters used here are just an example. To achieve optimal results, you may need to adjust these settings based on your available hardware and dataset size.
 
 Commands for fine-tuning:
 
