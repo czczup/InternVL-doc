@@ -420,10 +420,10 @@ Here, we provide all the necessary code, data, and models to reproduce InternVL-
 
 ### 1. Model Preparation
 
-| model name              | type | download                                                               |  size   |
-| ----------------------- | ---- | ---------------------------------------------------------------------- | :-----: |
-| InternViT-6B-448px-V1-2 | ViT  | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternViT-6B-448px-V1-2) | 11.1 GB |
-| Nous-Hermes-2-Yi-34B    | LLM  | 🤗 [HF link](https://huggingface.co/NousResearch/Nous-Hermes-2-Yi-34B) | 65.0 GB |
+| model name              | type | param | download                                                               |  size   |
+| ----------------------- | ---- | ----- | ---------------------------------------------------------------------- | :-----: |
+| InternViT-6B-448px-V1-2 | ViT  | 5.5B  | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternViT-6B-448px-V1-2) | 11.1 GB |
+| Nous-Hermes-2-Yi-34B    | LLM  | 34.4B | 🤗 [HF link](https://huggingface.co/NousResearch/Nous-Hermes-2-Yi-34B) | 65.0 GB |
 
 If you want to replicate the training of `InternVL-Chat-V1-2`, please follow the commands below to download `InternViT-6B-448px-V1-2` and `Nous-Hermes-2-Yi-34B`.
 
@@ -548,10 +548,10 @@ The hyperparameters used for fine-tuning are listed in the following table. And,
 
 ### 1. Model Preparation
 
-| model name              | type | download                                                               |  size   |
-| ----------------------- | ---- | ---------------------------------------------------------------------- | :-----: |
-| InternVL-Chat-V1-2      | MLLM | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL-Chat-V1-2)      | 75.0 GB |
-| InternVL-Chat-V1-2-Plus | MLLM | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL-Chat-V1-2-Plus) | 75.0 GB |
+| model name              | type | param | download                                                               |  size   |
+| ----------------------- | ---- | ----- | ---------------------------------------------------------------------- | :-----: |
+| InternVL-Chat-V1-2      | MLLM | 40.1B | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL-Chat-V1-2)      | 75.0 GB |
+| InternVL-Chat-V1-2-Plus | MLLM | 40.1B | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL-Chat-V1-2-Plus) | 75.0 GB |
 
 Before starting the second fine-tuning, download the pre-trained model we provide. Two versions are available: [InternVL-Chat-V1-2](https://huggingface.co/OpenGVLab/InternVL-Chat-V1-2) and [InternVL-Chat-V1-2-Plus](https://huggingface.co/OpenGVLab/InternVL-Chat-V1-2-Plus). We recommend downloading the Plus version.
 

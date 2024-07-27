@@ -15,9 +15,9 @@ For more detailed information about this model, please read our [blog](https://i
 
 ## Model Preparation
 
-| model name         | type | download                                                          |  size   |
-| ------------------ | ---- | ----------------------------------------------------------------- | :-----: |
-| InternVL-Chat-V1-1 | MLLM | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL-Chat-V1-1) | 35.0 GB |
+| model name         | type | param | download                                                          |  size   |
+| ------------------ | ---- | ----- | ----------------------------------------------------------------- | :-----: |
+| InternVL-Chat-V1-1 | MLLM | 19.1B | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL-Chat-V1-1) | 35.0 GB |
 
 Please download the above model weights and place them in the `pretrained/` folder.
 
