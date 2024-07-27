@@ -53,7 +53,7 @@
     <link rel="prev" title="InternVL-Chat-V1-2" href="../internvl1.2/internvl_chat.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-    <meta name="docbuild:last-update" content="Jul 26, 2024"/>
+    <meta name="docbuild:last-update" content="Jul 27, 2024"/>
   </head>
   
   
@@ -1241,7 +1241,7 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
 <span class="mf">0.859</span><span class="p">,</span> <span class="mf">0.869</span><span class="p">,</span> <span class="mf">0.931</span><span class="p">,</span> <span class="mf">0.797</span><span class="p">,</span> <span class="mf">0.428</span>
 <span class="o">====================================</span>
 
-<span class="p">(</span><span class="mf">0.883</span> <span class="o">+</span> <span class="mf">0.872</span> <span class="o">+</span> <span class="mf">0.859</span><span class="p">)</span> <span class="o">/</span> <span class="mi">3</span> <span class="o">=</span> <span class="mf">87.1</span>
+<span class="p">(</span><span class="mf">88.3</span> <span class="o">+</span> <span class="mf">87.2</span> <span class="o">+</span> <span class="mf">85.9</span><span class="p">)</span> <span class="o">/</span> <span class="mi">3</span> <span class="o">=</span> <span class="mf">87.1</span>
 </pre></div>
 </div>
 </section>
@@ -1415,7 +1415,7 @@ RefCOCO‑g test, 81.4
 <h4>MVBench<a class="headerlink" href="#mvbench" title="Permalink to this heading">#</a></h4>
 <p>MVBench is a comprehensive multimodal video understanding benchmark developed to evaluate the temporal comprehension capabilities of MLLMs. It includes 20 challenging video tasks that require temporal understanding and cannot be effectively solved using a single frame. The benchmark uses a novel static-to-dynamic method, transforming static tasks into dynamic ones to systematically generate video tasks that demand a wide range of temporal skills, from perception to cognition.</p>
 <p>We evaluate our models on MVBench by extracting 16 frames from each video, and each frame was resized to a 448x448 image.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-1<span class="w"> </span>mvbench
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-1<span class="w"> </span>mvbench<span class="w"> </span>--load-in-8bit
 </pre></div>
 </div>
 <p>The expected test results are:</p>
@@ -1586,18 +1586,15 @@ RefCOCO‑g test, 81.4
 </pre></div>
 </div>
 <p>The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>2024-07-26 17:28:10,536 - RUN - INFO - The evaluation of model InternVL-Chat-V1-1 x dataset MMVet has finished!
-2024-07-26 17:28:10,536 - RUN - INFO - Evaluation Results:
-2024-07-26 17:28:10,538 - RUN - INFO -
--  -------  ---  -------
-0  rec      187  49.9465
-1  ocr      108  42.5
-2  know      84  36.4286
-3  gen       80  36.25
-4  spat      75  42.9333
-5  math      26  22.3077
-6  Overall  218  44.7706
--  -------  ---  -------
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span>  <span class="o">-------</span>  <span class="o">---</span>  <span class="o">-------</span>
+<span class="mi">0</span>  <span class="n">rec</span>      <span class="mi">187</span>  <span class="mf">49.9465</span>
+<span class="mi">1</span>  <span class="n">ocr</span>      <span class="mi">108</span>  <span class="mf">42.5</span>
+<span class="mi">2</span>  <span class="n">know</span>      <span class="mi">84</span>  <span class="mf">36.4286</span>
+<span class="mi">3</span>  <span class="n">gen</span>       <span class="mi">80</span>  <span class="mf">36.25</span>
+<span class="mi">4</span>  <span class="n">spat</span>      <span class="mi">75</span>  <span class="mf">42.9333</span>
+<span class="mi">5</span>  <span class="n">math</span>      <span class="mi">26</span>  <span class="mf">22.3077</span>
+<span class="mi">6</span>  <span class="n">Overall</span>  <span class="mi">218</span>  <span class="mf">44.7706</span>
+<span class="o">-</span>  <span class="o">-------</span>  <span class="o">---</span>  <span class="o">-------</span>
 </pre></div>
 </div>
 </section>
@@ -1608,15 +1605,12 @@ RefCOCO‑g test, 81.4
 </pre></div>
 </div>
 <p>The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>2024-07-25 16:11:27,640 - RUN - INFO - The evaluation of model InternVL-Chat-V1-1 x dataset LLaVABench has finished!
-2024-07-25 16:11:27,640 - RUN - INFO - Evaluation Results:
-2024-07-25 16:11:27,641 - RUN - INFO -
--  -------  ----  ----  ----
-0  overall *64.8* 46.7  72
-1  complex  64.4  47.1  73.2
-2  conv     67.1  57.6  85.9
-3  detail   61.7  33.3  54
--  -------  ----  ----  ----
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span>  <span class="o">-------</span>  <span class="o">----</span>  <span class="o">----</span>  <span class="o">----</span>
+<span class="mi">0</span>  <span class="n">overall</span> <span class="o">*</span><span class="mf">64.8</span><span class="o">*</span> <span class="mf">46.7</span>  <span class="mi">72</span>
+<span class="mi">1</span>  <span class="nb">complex</span>  <span class="mf">64.4</span>  <span class="mf">47.1</span>  <span class="mf">73.2</span>
+<span class="mi">2</span>  <span class="n">conv</span>     <span class="mf">67.1</span>  <span class="mf">57.6</span>  <span class="mf">85.9</span>
+<span class="mi">3</span>  <span class="n">detail</span>   <span class="mf">61.7</span>  <span class="mf">33.3</span>  <span class="mi">54</span>
+<span class="o">-</span>  <span class="o">-------</span>  <span class="o">----</span>  <span class="o">----</span>  <span class="o">----</span>
 </pre></div>
 </div>
 </section>
@@ -1786,7 +1780,7 @@ By InternVL Authors
   
   <div class="footer-item">
     <p class="last-updated">
-  Last updated on Jul 26, 2024.
+  Last updated on Jul 27, 2024.
   <br/>
 </p>
   </div>

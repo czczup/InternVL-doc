@@ -727,7 +727,7 @@ Yes ratio: 0.42833333333333334
 0.859, 0.869, 0.931, 0.797, 0.428
 ====================================
 
-(0.883 + 0.872 + 0.859) / 3 = 87.1
+(88.3 + 87.2 + 85.9) / 3 = 87.1
 ```
 
 #### Tiny LVLM
@@ -940,7 +940,7 @@ MVBench is a comprehensive multimodal video understanding benchmark developed to
 We evaluate our models on MVBench by extracting 16 frames from each video, and each frame was resized to a 448x448 image.
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-1 mvbench
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-1 mvbench --load-in-8bit
 ```
 
 The expected test results are:
@@ -1133,9 +1133,6 @@ torchrun --nproc-per-node=8 run.py --data MMVet --model InternVL-Chat-V1-1 --ver
 The expected test results are:
 
 ```
-2024-07-26 17:28:10,536 - RUN - INFO - The evaluation of model InternVL-Chat-V1-1 x dataset MMVet has finished!
-2024-07-26 17:28:10,536 - RUN - INFO - Evaluation Results:
-2024-07-26 17:28:10,538 - RUN - INFO -
 -  -------  ---  -------
 0  rec      187  49.9465
 1  ocr      108  42.5
@@ -1158,9 +1155,6 @@ torchrun --nproc-per-node=8 run.py --data LLaVABench --model InternVL-Chat-V1-1 
 The expected test results are:
 
 ```
-2024-07-25 16:11:27,640 - RUN - INFO - The evaluation of model InternVL-Chat-V1-1 x dataset LLaVABench has finished!
-2024-07-25 16:11:27,640 - RUN - INFO - Evaluation Results:
-2024-07-25 16:11:27,641 - RUN - INFO -
 -  -------  ----  ----  ----
 0  overall *64.8* 46.7  72
 1  complex  64.4  47.1  73.2
