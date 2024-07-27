@@ -455,17 +455,18 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#seed">SEED</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mmvp">MMVP</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#llava-bench-gpt-4-0613">LLaVA-Bench (GPT-4-0613)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mathvista">MathVista</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#refcoco-refcoco-refcoco-g">RefCOCO / RefCOCO+ / RefCOCO-g</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mvbench">MVBench</a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation-using-vlmevalkit-codebase">Evaluation using VLMEvalKit Codebase</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Data Preparation</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mathvista">MathVista</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">MathVista</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hallusionbench">HallusionBench</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mmstar">MMStar</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ocrbench">OCRBench</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">MMMU</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">MMMU</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#realworldqa">RealWorldQA</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mmvet-gpt-4-turbo">MMVet (GPT-4-Turbo)</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#llava-bench-gpt-4-turbo">LLaVA-Bench (GPT-4-Turbo)</a></li>
@@ -1686,14 +1687,49 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 </pre></div>
 </div>
 <p>The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">all</span> <span class="o">*</span><span class="mf">85.0</span><span class="o">*</span> <span class="mf">87.0</span> <span class="mf">73.9</span>
+<span class="n">llava_bench_complex</span> <span class="p">[</span><span class="mf">8.75</span><span class="p">,</span> <span class="mf">7.429</span><span class="p">]</span> <span class="mf">84.9</span>
+<span class="n">llava_bench_complex</span> <span class="mf">84.9</span> <span class="mf">87.5</span> <span class="mf">74.3</span>
+<span class="n">llava_bench_conv</span> <span class="p">[</span><span class="mf">8.824</span><span class="p">,</span> <span class="mf">7.706</span><span class="p">]</span> <span class="mf">87.3</span>
+<span class="n">llava_bench_conv</span> <span class="mf">87.3</span> <span class="mf">88.2</span> <span class="mf">77.1</span>
+<span class="n">llava_bench_detail</span> <span class="p">[</span><span class="mf">8.467</span><span class="p">,</span> <span class="mf">6.967</span><span class="p">]</span> <span class="mf">82.3</span>
+<span class="n">llava_bench_detail</span> <span class="mf">82.3</span> <span class="mf">84.7</span> <span class="mf">69.7</span>
+</pre></div>
+</div>
+</section>
+<section id="mathvista">
+<h4>MathVista<a class="headerlink" href="#mathvista" title="Permalink to this heading">#</a></h4>
+<p>The MathVista dataset is a comprehensive benchmark for evaluating mathematical reasoning within visual contexts. It consists of three newly created datasets—IQTest, FunctionQA, and PaperQA—designed to address logical reasoning on puzzle test figures, algebraic reasoning over functional plots, and scientific reasoning with academic paper figures, respectively.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">OPENAI_API_KEY</span><span class="o">=</span><span class="s1">&#39;your-openai-key&#39;</span>
+<span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-2-Plus<span class="w"> </span>mathvista-testmini
+</pre></div>
+</div>
+<p>The expected test results are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Correct</span><span class="p">:</span> <span class="mi">597</span><span class="p">,</span> <span class="n">Total</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span> <span class="n">Accuracy</span><span class="p">:</span> <span class="mf">59.7</span><span class="o">%</span>
+<span class="mi">1000</span>
+<span class="n">Number</span> <span class="n">of</span> <span class="n">test</span> <span class="n">problems</span><span class="p">:</span> <span class="mi">1000</span>
+
+<span class="n">Type</span><span class="p">:</span> <span class="p">[</span><span class="n">question_type</span><span class="p">]</span>
+<span class="p">[</span><span class="n">free_form</span><span class="p">]:</span> <span class="mf">52.39</span><span class="o">%</span> <span class="p">(</span><span class="mi">241</span><span class="o">/</span><span class="mi">460</span><span class="p">)</span>
+<span class="p">[</span><span class="n">multi_choice</span><span class="p">]:</span> <span class="mf">65.93</span><span class="o">%</span> <span class="p">(</span><span class="mi">356</span><span class="o">/</span><span class="mi">540</span><span class="p">)</span>
+
+<span class="n">Type</span><span class="p">:</span> <span class="p">[</span><span class="n">answer_type</span><span class="p">]</span>
+<span class="p">[</span><span class="nb">float</span><span class="p">]:</span> <span class="mf">0.00</span><span class="o">%</span> <span class="p">(</span><span class="mi">0</span><span class="o">/</span><span class="mi">40</span><span class="p">)</span>
+<span class="p">[</span><span class="n">integer</span><span class="p">]:</span> <span class="mf">57.42</span><span class="o">%</span> <span class="p">(</span><span class="mi">240</span><span class="o">/</span><span class="mi">418</span><span class="p">)</span>
+<span class="p">[</span><span class="n">text</span><span class="p">]:</span> <span class="mf">65.93</span><span class="o">%</span> <span class="p">(</span><span class="mi">356</span><span class="o">/</span><span class="mi">540</span><span class="p">)</span>
+<span class="p">[</span><span class="nb">list</span><span class="p">]:</span> <span class="mf">50.00</span><span class="o">%</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">Type</span><span class="p">:</span> <span class="p">[</span><span class="n">language</span><span class="p">]</span>
+<span class="p">[</span><span class="n">english</span><span class="p">]:</span> <span class="mf">58.33</span><span class="o">%</span> <span class="p">(</span><span class="mi">546</span><span class="o">/</span><span class="mi">936</span><span class="p">)</span>
+<span class="p">[</span><span class="n">chinese</span><span class="p">]:</span> <span class="mf">82.26</span><span class="o">%</span> <span class="p">(</span><span class="mi">51</span><span class="o">/</span><span class="mi">62</span><span class="p">)</span>
+<span class="p">[</span><span class="n">persian</span><span class="p">]:</span> <span class="mf">0.00</span><span class="o">%</span> <span class="p">(</span><span class="mi">0</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
 <section id="refcoco-refcoco-refcoco-g">
 <h4>RefCOCO / RefCOCO+ / RefCOCO-g<a class="headerlink" href="#refcoco-refcoco-refcoco-g" title="Permalink to this heading">#</a></h4>
 <p>RefCOCO, RefCOCO+, and RefCOCOg are datasets used for tasks involving referring expression comprehension, segmentation, and generation. These datasets are built upon the MSCOCO dataset, and they are essential for evaluating models in natural language processing and computer vision.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evalulate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-1<span class="w"> </span>refcoco
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evalulate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-2-Plus<span class="w"> </span>refcoco
 </pre></div>
 </div>
 <p>The expected test results are:</p>
@@ -1732,8 +1768,8 @@ RefCOCO‑g test, 88.8
 <h4>Data Preparation<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h4>
 <p>VLMEvalKit will automatically download the data for evaluation, so you do not need to prepare it manually.</p>
 </section>
-<section id="mathvista">
-<h4>MathVista<a class="headerlink" href="#mathvista" title="Permalink to this heading">#</a></h4>
+<section id="id3">
+<h4>MathVista<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h4>
 <p>The MathVista dataset is a comprehensive benchmark for evaluating mathematical reasoning within visual contexts. It consists of three newly created datasets—IQTest, FunctionQA, and PaperQA—designed to address logical reasoning on puzzle test figures, algebraic reasoning over functional plots, and scientific reasoning with academic paper figures, respectively.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>torchrun<span class="w"> </span>--nproc-per-node<span class="o">=</span><span class="m">8</span><span class="w"> </span>run.py<span class="w"> </span>--data<span class="w"> </span>MathVista_MINI<span class="w"> </span>--model<span class="w"> </span>InternVL-Chat-V1-2-Plus<span class="w"> </span>--verbose
 </pre></div>
@@ -1822,8 +1858,8 @@ RefCOCO‑g test, 88.8
 </pre></div>
 </div>
 </section>
-<section id="id3">
-<h4>MMMU<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h4>
+<section id="id4">
+<h4>MMMU<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h4>
 <p>The MMMU dataset is a comprehensive benchmark designed to evaluate multimodal models on college-level tasks that require domain-specific knowledge and reasoning. It includes 11,500 questions sourced from college exams, quizzes, and textbooks, spanning six disciplines: Art &amp; Design, Business, Science, Health &amp; Medicine, Humanities &amp; Social Science, and Tech &amp; Engineering. These questions cover 30 subjects and feature 30 types of images, such as charts, diagrams, maps, tables, and more.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>torchrun<span class="w"> </span>--nproc-per-node<span class="o">=</span><span class="m">8</span><span class="w"> </span>run.py<span class="w"> </span>--data<span class="w"> </span>MMMU_DEV_VAL<span class="w"> </span>--model<span class="w"> </span>InternVL-Chat-V1-2-Plus<span class="w"> </span>--verbose
 </pre></div>
@@ -1904,6 +1940,7 @@ RefCOCO‑g test, 88.8
 <span class="o">-</span>  <span class="o">-------</span>  <span class="o">---</span>  <span class="o">-------</span>
 </pre></div>
 </div>
+<p>Note that because the version of GPT-4 used for scoring differs from the official server, the scores tested by VLMEvalKit will be slightly different.</p>
 </section>
 <section id="llava-bench-gpt-4-turbo">
 <h4>LLaVA-Bench (GPT-4-Turbo)<a class="headerlink" href="#llava-bench-gpt-4-turbo" title="Permalink to this heading">#</a></h4>
@@ -2046,17 +2083,18 @@ RefCOCO‑g test, 88.8
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#seed">SEED</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mmvp">MMVP</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#llava-bench-gpt-4-0613">LLaVA-Bench (GPT-4-0613)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mathvista">MathVista</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#refcoco-refcoco-refcoco-g">RefCOCO / RefCOCO+ / RefCOCO-g</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mvbench">MVBench</a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation-using-vlmevalkit-codebase">Evaluation using VLMEvalKit Codebase</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Data Preparation</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mathvista">MathVista</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">MathVista</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hallusionbench">HallusionBench</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mmstar">MMStar</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ocrbench">OCRBench</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">MMMU</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">MMMU</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#realworldqa">RealWorldQA</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mmvet-gpt-4-turbo">MMVet (GPT-4-Turbo)</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#llava-bench-gpt-4-turbo">LLaVA-Bench (GPT-4-Turbo)</a></li>

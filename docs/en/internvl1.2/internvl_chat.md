@@ -1096,7 +1096,45 @@ GPUS=1 sh evaluate.sh pretrained/InternVL-Chat-V1-2-Plus llava-bench
 The expected test results are:
 
 ```
+all *85.0* 87.0 73.9
+llava_bench_complex [8.75, 7.429] 84.9
+llava_bench_complex 84.9 87.5 74.3
+llava_bench_conv [8.824, 7.706] 87.3
+llava_bench_conv 87.3 88.2 77.1
+llava_bench_detail [8.467, 6.967] 82.3
+llava_bench_detail 82.3 84.7 69.7
+```
 
+#### MathVista
+
+The MathVista dataset is a comprehensive benchmark for evaluating mathematical reasoning within visual contexts. It consists of three newly created datasets—IQTest, FunctionQA, and PaperQA—designed to address logical reasoning on puzzle test figures, algebraic reasoning over functional plots, and scientific reasoning with academic paper figures, respectively.
+
+```bash
+export OPENAI_API_KEY='your-openai-key'
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-2-Plus mathvista-testmini
+```
+
+The expected test results are:
+
+```
+Correct: 597, Total: 1000, Accuracy: 59.7%
+1000
+Number of test problems: 1000
+
+Type: [question_type]
+[free_form]: 52.39% (241/460)
+[multi_choice]: 65.93% (356/540)
+
+Type: [answer_type]
+[float]: 0.00% (0/40)
+[integer]: 57.42% (240/418)
+[text]: 65.93% (356/540)
+[list]: 50.00% (1/2)
+
+Type: [language]
+[english]: 58.33% (546/936)
+[chinese]: 82.26% (51/62)
+[persian]: 0.00% (0/2)
 ```
 
 #### RefCOCO / RefCOCO+ / RefCOCO-g
@@ -1104,7 +1142,7 @@ The expected test results are:
 RefCOCO, RefCOCO+, and RefCOCOg are datasets used for tasks involving referring expression comprehension, segmentation, and generation. These datasets are built upon the MSCOCO dataset, and they are essential for evaluating models in natural language processing and computer vision.
 
 ```bash
-GPUS=8 sh evalulate.sh pretrained/InternVL-Chat-V1-1 refcoco
+GPUS=8 sh evalulate.sh pretrained/InternVL-Chat-V1-2-Plus refcoco
 ```
 
 The expected test results are:
@@ -1340,6 +1378,8 @@ The expected test results are:
 6  Overall  218  47.156
 -  -------  ---  -------
 ```
+
+Note that because the version of GPT-4 used for scoring differs from the official server, the scores tested by VLMEvalKit will be slightly different.
 
 #### LLaVA-Bench (GPT-4-Turbo)
 

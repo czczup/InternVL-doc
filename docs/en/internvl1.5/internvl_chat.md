@@ -359,9 +359,9 @@ for new_text in streamer:
 
 ### 1. Model Preparation
 
-| model name         | type | download                                                             |  size   |
-| ------------------ | ---- | -------------------------------------------------------------------- | :-----: |
-| InternVL-Chat-V1-5 | MLLM | 🤗 [HF link](https://huggingface.co/NousResearch/InternVL-Chat-V1-5) | 48.0 GB |
+| model name         | type | param | download                                                             |  size   |
+| ------------------ | ---- | ----- | -------------------------------------------------------------------- | :-----: |
+| InternVL-Chat-V1-5 | MLLM | 25.5B | 🤗 [HF link](https://huggingface.co/NousResearch/InternVL-Chat-V1-5) | 48.0 GB |
 
 Before starting the second fine-tuning, download the pre-trained model we provide.
 
@@ -432,7 +432,7 @@ Commands for fine-tuning:
 GPUS=8 sh shell/internvl1.5/2nd_finetune/internvl_chat_v1_5_internlm2_20b_dynamic_res_2nd_finetune_full.sh
 # Using 2 GPUs, fine-tune the LoRA, cost about 79G per GPU
 GPUS=2 sh shell/internvl1.5/2nd_finetune/internvl_chat_v1_5_internlm2_20b_dynamic_res_2nd_finetune_lora.sh
-# Using 8 GPUs, fine-tune the LoRA, cost about 60 per GPU
+# Using 8 GPUs, fine-tune the LoRA, cost about 60G per GPU
 GPUS=8 sh shell/internvl1.5/2nd_finetune/internvl_chat_v1_5_internlm2_20b_dynamic_res_2nd_finetune_lora.sh
 ```
 
@@ -505,7 +505,7 @@ GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 vqa-okvqa-val --dynamic
 The expected test results are:
 
 ```
-TODO
+okvqa_val 0.6203147047165996
 ```
 
 #### TextVQA
@@ -539,7 +539,7 @@ GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 vqa-vizwiz-val --dynamic
 The expected test results are:
 
 ```
-TODO
+vizwiz_val 0.6353929150266284
 ```
 
 For the test set, run:
@@ -550,12 +550,6 @@ GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 vqa-vizwiz-test --dynamic
 
 For the test set, submit the results to the [evaluation server](https://eval.ai/web/challenges/challenge-page/2185/overview).
 
-The expected test results are:
-
-```
-TODO
-```
-
 #### ChartQA
 
 The ChartQA dataset is a comprehensive benchmark for question answering about charts that involves both visual and logical reasoning. It includes a mix of 9.6K human-written questions and 23.1K machine-generated questions derived from chart summaries. This dataset is designed to evaluate models that can understand and analyze charts by answering complex questions that often require multiple logical and arithmetic operations, as well as referencing visual features of the charts.
@@ -563,7 +557,7 @@ The ChartQA dataset is a comprehensive benchmark for question answering about ch
 The ChartQA dataset includes two test sets: `chartqa_test_human` and `chartqa_test_augmented`. The final score for model evaluation is calculated as the average of the scores on these two test sets:
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 vqa-chartqa-test --dynamic
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 vqa-chartqa-test --dynamic --max-num 12
 ```
 
 The expected test results are:
@@ -571,7 +565,7 @@ The expected test results are:
 ```
 ['chartqa_test_human', {'relaxed_accuracy': 0.736}]
 ['chartqa_test_augmented', {'relaxed_accuracy': 0.9408}]
-# the average score = (73.6 + 94.08) / 2 = 83.8
+# average score = (73.6 + 94.08) / 2 = 83.8
 ```
 
 #### DocVQA
@@ -581,7 +575,7 @@ The DocVQA dataset consists of 50,000 questions on 12,000+ document images. It i
 For the validation set, run:
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 vqa-docvqa-val --dynamic
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 vqa-docvqa-val --dynamic --max-num 18
 ```
 
 The expected test results are:
@@ -593,7 +587,7 @@ Overall ANLS: 0.9049
 For the test set, run:
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 vqa-docvqa-test --dynamic
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 vqa-docvqa-test --dynamic --max-num 18
 ```
 
 For the test set, submit the results to the [evaluation server](https://rrc.cvc.uab.es/?ch=17).
@@ -625,7 +619,7 @@ The InfographicVQA dataset is a collection of infographics accompanied by natura
 For the validation set, run:
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 vqa-infovqa-val --dynamic
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 vqa-infovqa-val --dynamic --max-num 24
 ```
 
 The expected test results are:
@@ -637,7 +631,7 @@ Overall ANLS: 0.7235
 For the test set, run:
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 vqa-infovqa-test --dynamic
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 vqa-infovqa-test --dynamic --max-num 24
 ```
 
 For the test set, submit the results to the [evaluation server](https://rrc.cvc.uab.es/?ch=17).
@@ -659,7 +653,7 @@ GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 vqa-gqa-testdev --dynamic
 The expected test results are:
 
 ```
-TODO
+Accuracy: 65.76%
 ```
 
 #### ScienceQA
@@ -673,7 +667,7 @@ GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 scienceqa --dynamic
 The expected test results are:
 
 ```
-TODO
+Acc@1: 0.9404972731779871
 ```
 
 #### POPE
@@ -687,7 +681,38 @@ GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 pope --dynamic
 The expected test results are:
 
 ```
-TODO
+Category: random, # samples: 2910
+TP      FP      TN      FN
+1227    21      1389    273
+Accuracy: 0.8989690721649485
+Precision: 0.9831730769230769
+Recall: 0.818
+F1 score: 0.8930131004366811
+Yes ratio: 0.4288659793814433
+0.893, 0.899, 0.983, 0.818, 0.429
+====================================
+Category: popular, # samples: 3000
+TP      FP      TN      FN
+1227    48      1452    273
+Accuracy: 0.893
+Precision: 0.9623529411764706
+Recall: 0.818
+F1 score: 0.8843243243243243
+Yes ratio: 0.425
+0.884, 0.893, 0.962, 0.818, 0.425
+====================================
+Category: adversarial, # samples: 3000
+TP      FP      TN      FN
+1227    82      1418    273
+Accuracy: 0.8816666666666667
+Precision: 0.9373567608861727
+Recall: 0.818
+F1 score: 0.8736205055179779
+Yes ratio: 0.43633333333333335
+0.874, 0.882, 0.937, 0.818, 0.436
+====================================
+
+(89.3 + 88.4 + 87.4) / 3 = 88.3
 ```
 
 #### Tiny LVLM
@@ -701,7 +726,12 @@ GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 tiny_lvlm --dynamic
 The expected test results are:
 
 ```
-TODO
+Visual_Knowledge_Acquisition: 0.7542857142857143
+Object_Hallucination: 0.8933333333333333
+Visual_Commonsense: 0.634
+Visual_Perception: 0.5775
+Visual_Reasoning: 0.7236363636363636
+Overall: 3.582755411255411
 ```
 
 #### MMMU
@@ -780,31 +810,31 @@ The MMBench dataset is a comprehensive multi-modality benchmark designed to eval
 For the English dev / test set, run:
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 mmbench-dev-en
-GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 mmbench-test-en
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 mmbench-dev-en --dynamic
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 mmbench-test-en --dynamic
 
 ```
 
 Then, submit the results to the [evaluation server](https://mmbench.opencompass.org.cn/mmbench-submission). The expected test results are:
 
 ```
-mmbench-dev-en: TODO
-mmbench-test-en: TODO
+mmbench-dev-en: 80.8
+mmbench-test-en: 82.2
 ```
 
 For the Chinese dev / test set, run:
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 mmbench-dev-cn
-GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 mmbench-test-cn
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 mmbench-dev-cn --dynamic
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 mmbench-test-cn --dynamic
 
 ```
 
 Then, submit the results to the [evaluation server](https://mmbench.opencompass.org.cn/mmbench-submission). The expected test results are:
 
 ```
-mmbench-dev-cn: TODO
-mmbench-test-cn: TODO
+mmbench-dev-cn: 80.3
+mmbench-test-cn: 82.0
 ```
 
 #### CCBench
@@ -863,7 +893,9 @@ GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 mmvp --dynamic
 The expected test results are:
 
 ```
-TODO
+Evaluating MMVP ...
+Results saved to results/MMVP_240727104303.jsonl
+The accuracy is 0.5933333333333334
 ```
 
 #### LLaVA-Bench (GPT-4-0613)
@@ -880,7 +912,66 @@ GPUS=1 sh evaluate.sh pretrained/InternVL-Chat-V1-5 llava-bench --dynamic
 The expected test results are:
 
 ```
+all *93.8* 85.8 80.5
+llava_bench_complex [8.643, 8.286] 95.9
+llava_bench_complex 95.9 86.4 82.9
+llava_bench_conv [8.471, 8.029] 94.8
+llava_bench_conv 94.8 84.7 80.3
+llava_bench_detail [8.6, 7.633] 88.8
+llava_bench_detail 88.8 86.0 76.3
+```
 
+#### MathVista
+
+The MathVista dataset is a comprehensive benchmark for evaluating mathematical reasoning within visual contexts. It consists of three newly created datasets—IQTest, FunctionQA, and PaperQA—designed to address logical reasoning on puzzle test figures, algebraic reasoning over functional plots, and scientific reasoning with academic paper figures, respectively.
+
+```bash
+export OPENAI_API_KEY='your-openai-key'
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 mathvista-testmini --dynamic
+```
+
+The expected test results are:
+
+```
+Correct: 535, Total: 1000, Accuracy: 53.5%
+1000
+Number of test problems: 1000
+
+Type: [question_type]
+[free_form]: 47.17% (217/460)
+[multi_choice]: 58.89% (318/540)
+
+Type: [answer_type]
+[float]: 0.00% (0/40)
+[integer]: 51.67% (216/418)
+[text]: 58.89% (318/540)
+[list]: 50.00% (1/2)
+
+Type: [language]
+[english]: 53.31% (499/936)
+[chinese]: 56.45% (35/62)
+[persian]: 50.00% (1/2)
+```
+
+#### RefCOCO / RefCOCO+ / RefCOCO-g
+
+RefCOCO, RefCOCO+, and RefCOCOg are datasets used for tasks involving referring expression comprehension, segmentation, and generation. These datasets are built upon the MSCOCO dataset, and they are essential for evaluating models in natural language processing and computer vision.
+
+```bash
+GPUS=8 sh evalulate.sh pretrained/InternVL-Chat-V1-5 refcoco --dynamic
+```
+
+The expected test results are:
+
+```
+RefCOCO val, 91.4
+RefCOCO testA, 93.7
+RefCOCO testB, 87.1
+RefCOCO+ val, 87.0
+RefCOCO+ testA, 92.3
+RefCOCO+ testB, 80.9
+RefCOCO‑g val, 88.5
+RefCOCO‑g test, 89.3
 ```
 
 #### MVBench
@@ -890,13 +981,18 @@ MVBench is a comprehensive multimodal video understanding benchmark developed to
 We evaluate our models on MVBench by extracting 16 frames from each video, and each frame was resized to a 448x448 image.
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 mvbench
+GPUS=8 sh evaluate.sh pretrained/InternVL-Chat-V1-5 mvbench --dynamic --max-num 1
 ```
 
 The expected test results are:
 
 ```
-TODO
+{"Action Sequence": 63.0, "Action Prediction": 65.0, "Action Antonym": 51.0, "Fine-grained Action": 44.0, 
+"Unexpected Action": 74.5, "Object Existence": 48.5, "Object Interaction": 71.5, "Object Shuffle": 36.5, 
+"Moving Direction": 37.5, "Action Localization": 36.5, "Scene Transition": 85.5, "Action Count": 36.0, 
+"Moving Count": 39.5, "Moving Attribute": 61.5, "State Change": 50.0, "Fine-grained Pose": 58.5, 
+"Character Order": 62.0, "Egocentric Navigation": 35.0, "Episodic Reasoning": 44.5, 
+"Counterfactual Inference": 42.0, "Avg": 52.125}
 ```
 
 ### Evaluation using VLMEvalKit Codebase
@@ -916,7 +1012,20 @@ torchrun --nproc-per-node=8 run.py --data MathVista_MINI --model InternVL-Chat-V
 The expected test results are:
 
 ```
-TODO
+"Task&Skill","tot","prefetch","hit","prefetch_rate","acc"
+"Overall","1000","545","544","54.50000000000001","54.400000000000006"
+"scientific reasoning","122","89","69","72.95081967213115","56.557377049180324"
+"textbook question answering","158","102","85","64.55696202531645","53.79746835443038"
+"numeric commonsense","144","39","42","27.083333333333332","29.166666666666668"
+"arithmetic reasoning","353","145","208","41.07648725212464","58.92351274787535"
+"visual question answering","179","92","92","51.39664804469274","51.39664804469274"
+"geometry reasoning","239","150","98","62.76150627615063","41.00418410041841"
+"algebraic reasoning","281","178","114","63.345195729537366","40.569395017793596"
+"geometry problem solving","208","141","81","67.78846153846155","38.94230769230769"
+"math word problem","186","68","119","36.55913978494624","63.97849462365591"
+"logical reasoning","37","16","6","43.24324324324324","16.216216216216218"
+"figure question answering","269","142","167","52.78810408921933","62.0817843866171"
+"statistical reasoning","301","140","216","46.51162790697674","71.76079734219269"
 ```
 
 #### HallusionBench
@@ -944,9 +1053,10 @@ The expected test results are:
 9      VS_chart  81.538462  50.000000  72.368421
 10     VD_video  51.176471  10.416667  13.043478
 11      VD_math  56.481481  25.000000  27.777778
-```
 
-The final score reported in our technical report is the average: (66.771819 + 40.173410 + 40.879121) / 3 = 49.3
+
+result = (66.77 + 40.17 + 40.87) / 3 = 49.3
+```
 
 #### MMStar
 
@@ -995,7 +1105,9 @@ torchrun --nproc-per-node=8 run.py --data MMMU_DEV_VAL --model InternVL-Chat-V1-
 The expected test results are:
 
 ```
-TODO
+2024-04-29 18:20:04,977 - Evaluation - INFO -         split  Overall  ...  Science  Tech & Engineering
+0         dev     0.48  ...     0.36            0.428571
+1  validation     0.45  ...     0.38            0.371429
 ```
 
 #### RealWorldQA
@@ -1012,20 +1124,6 @@ The expected test results are:
 2024-04-29 00:35:13,282 - Evaluation - INFO - Score:
 2024-04-29 00:35:13,282 - Evaluation - INFO -   split   Overall
 0  none  0.660131
-```
-
-#### LLaVA-Bench (GPT-4-Turbo)
-
-The LLaVA-Bench-in-the-Wild dataset is designed to evaluate the capabilities of MLLMs in handling more complex and diverse visual tasks. It includes a set of 24 images with 60 associated questions, covering a range of indoor and outdoor scenes, memes, paintings, and sketches. Each image is paired with detailed, manually curated descriptions and questions that test the model's generalizability to novel domains.
-
-```bash
-torchrun --nproc-per-node=8 run.py --data LLaVABench --model InternVL-Chat-V1-5 --verbose
-```
-
-The expected test results are:
-
-```
-TODO
 ```
 
 #### MMVet (GPT-4-Turbo)
@@ -1052,20 +1150,22 @@ The expected test results are:
 
 Note that because the version of GPT-4 used for scoring differs from the official server, the scores tested by VLMEvalKit will be slightly different.
 
-#### MMMU_DEV_VAL
+#### LLaVA-Bench (GPT-4-Turbo)
 
-The MMMU dataset is a comprehensive benchmark designed to evaluate multimodal models on college-level tasks that require domain-specific knowledge and reasoning. It includes 11,500 questions sourced from college exams, quizzes, and textbooks, spanning six disciplines: Art & Design, Business, Science, Health & Medicine, Humanities & Social Science, and Tech & Engineering. These questions cover 30 subjects and feature 30 types of images, such as charts, diagrams, maps, tables, and more.
+The LLaVA-Bench-in-the-Wild dataset is designed to evaluate the capabilities of MLLMs in handling more complex and diverse visual tasks. It includes a set of 24 images with 60 associated questions, covering a range of indoor and outdoor scenes, memes, paintings, and sketches. Each image is paired with detailed, manually curated descriptions and questions that test the model's generalizability to novel domains.
 
 ```bash
-torchrun --nproc-per-node=8 run.py --data MMMU_DEV_VAL --model InternVL-Chat-V1-5 --verbose
+torchrun --nproc-per-node=8 run.py --data LLaVABench --model InternVL-Chat-V1-5 --verbose
 ```
 
 The expected test results are:
 
 ```
-2024-04-29 18:20:04,977 - Evaluation - INFO -         split  Overall  ...  Science  Tech & Engineering
-0         dev     0.48  ...     0.36            0.428571
-1  validation     0.45  ...     0.38            0.371429
+"split","Relative Score (main)","VLM Score","GPT4 Score"
+"overall","82.0","63.7","77.7"
+"conv","82.9","74.1","89.4"
+"detail","72.0","48.0","66.7"
+"complex","86.0","65.7","76.4"
 ```
 
 #### VideoMME
@@ -1079,7 +1179,18 @@ torchrun --nproc-per-node=8 run.py --data Video-MME --model InternVL-Chat-V1-5 -
 The expected test results are:
 
 ```
-TODO
+"overall": {
+    "overall": "0.5363",
+    "domain": {
+        "Knowledge": "0.5679",
+        "Film & Television": "0.5833",
+        "Sports Competition": "0.4756",
+        "Artistic Performance": "0.5444",
+        "Life Record": "0.5111",
+        "Multilingual": "0.5111"
+    },
+    ...
+}
 ```
 
 ## Citation

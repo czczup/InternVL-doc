@@ -442,20 +442,21 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#seed">SEED</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mmvp">MMVP</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#llava-bench-gpt-4-0613">LLaVA-Bench (GPT-4-0613)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mathvista">MathVista</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#refcoco-refcoco-refcoco-g">RefCOCO / RefCOCO+ / RefCOCO-g</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mvbench">MVBench</a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation-using-vlmevalkit-codebase">Evaluation using VLMEvalKit Codebase</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Data Preparation</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mathvista">MathVista</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">MathVista</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hallusionbench">HallusionBench</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mmstar">MMStar</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ocrbench">OCRBench</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">MMMU</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">MMMU</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#realworldqa">RealWorldQA</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#llava-bench-gpt-4-turbo">LLaVA-Bench (GPT-4-Turbo)</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mmvet-gpt-4-turbo">MMVet (GPT-4-Turbo)</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mmmu-dev-val">MMMU_DEV_VAL</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#llava-bench-gpt-4-turbo">LLaVA-Bench (GPT-4-Turbo)</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#videomme">VideoMME</a></li>
 </ul>
 </li>
@@ -833,6 +834,7 @@ document.write(`
 <thead>
 <tr class="row-odd"><th class="head"><p>model name</p></th>
 <th class="head"><p>type</p></th>
+<th class="head"><p>param</p></th>
 <th class="head"><p>download</p></th>
 <th class="head text-center"><p>size</p></th>
 </tr>
@@ -840,6 +842,7 @@ document.write(`
 <tbody>
 <tr class="row-even"><td><p>InternVL-Chat-V1-5</p></td>
 <td><p>MLLM</p></td>
+<td><p>25.5B</p></td>
 <td><p>🤗 <a class="reference external" href="https://huggingface.co/NousResearch/InternVL-Chat-V1-5">HF link</a></p></td>
 <td class="text-center"><p>48.0 GB</p></td>
 </tr>
@@ -904,7 +907,7 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 <span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>shell/internvl1.5/2nd_finetune/internvl_chat_v1_5_internlm2_20b_dynamic_res_2nd_finetune_full.sh
 <span class="c1"># Using 2 GPUs, fine-tune the LoRA, cost about 79G per GPU</span>
 <span class="nv">GPUS</span><span class="o">=</span><span class="m">2</span><span class="w"> </span>sh<span class="w"> </span>shell/internvl1.5/2nd_finetune/internvl_chat_v1_5_internlm2_20b_dynamic_res_2nd_finetune_lora.sh
-<span class="c1"># Using 8 GPUs, fine-tune the LoRA, cost about 60 per GPU</span>
+<span class="c1"># Using 8 GPUs, fine-tune the LoRA, cost about 60G per GPU</span>
 <span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>shell/internvl1.5/2nd_finetune/internvl_chat_v1_5_internlm2_20b_dynamic_res_2nd_finetune_lora.sh
 </pre></div>
 </div>
@@ -971,7 +974,7 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 </pre></div>
 </div>
 <p>The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">okvqa_val</span> <span class="mf">0.6203147047165996</span>
 </pre></div>
 </div>
 </section>
@@ -996,7 +999,7 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 </pre></div>
 </div>
 <p>The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vizwiz_val</span> <span class="mf">0.6353929150266284</span>
 </pre></div>
 </div>
 <p>For the test set, run:</p>
@@ -1004,22 +1007,18 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 </pre></div>
 </div>
 <p>For the test set, submit the results to the <a class="reference external" href="https://eval.ai/web/challenges/challenge-page/2185/overview">evaluation server</a>.</p>
-<p>The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
-</pre></div>
-</div>
 </section>
 <section id="chartqa">
 <h4>ChartQA<a class="headerlink" href="#chartqa" title="Permalink to this heading">#</a></h4>
 <p>The ChartQA dataset is a comprehensive benchmark for question answering about charts that involves both visual and logical reasoning. It includes a mix of 9.6K human-written questions and 23.1K machine-generated questions derived from chart summaries. This dataset is designed to evaluate models that can understand and analyze charts by answering complex questions that often require multiple logical and arithmetic operations, as well as referencing visual features of the charts.</p>
 <p>The ChartQA dataset includes two test sets: <code class="docutils literal notranslate"><span class="pre">chartqa_test_human</span></code> and <code class="docutils literal notranslate"><span class="pre">chartqa_test_augmented</span></code>. The final score for model evaluation is calculated as the average of the scores on these two test sets:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-5<span class="w"> </span>vqa-chartqa-test<span class="w"> </span>--dynamic
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-5<span class="w"> </span>vqa-chartqa-test<span class="w"> </span>--dynamic<span class="w"> </span>--max-num<span class="w"> </span><span class="m">12</span>
 </pre></div>
 </div>
 <p>The expected test results are:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;chartqa_test_human&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;relaxed_accuracy&#39;</span><span class="p">:</span> <span class="mf">0.736</span><span class="p">}]</span>
 <span class="p">[</span><span class="s1">&#39;chartqa_test_augmented&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;relaxed_accuracy&#39;</span><span class="p">:</span> <span class="mf">0.9408</span><span class="p">}]</span>
-<span class="c1"># the average score = (73.6 + 94.08) / 2 = 83.8</span>
+<span class="c1"># average score = (73.6 + 94.08) / 2 = 83.8</span>
 </pre></div>
 </div>
 </section>
@@ -1027,7 +1026,7 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 <h4>DocVQA<a class="headerlink" href="#docvqa" title="Permalink to this heading">#</a></h4>
 <p>The DocVQA dataset consists of 50,000 questions on 12,000+ document images. It is designed for visual question answering tasks where questions are answered using text within the document images. The dataset includes OCR transcriptions and ground truth answers, supporting evaluation of models that interpret and extract information from documents.</p>
 <p>For the validation set, run:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-5<span class="w"> </span>vqa-docvqa-val<span class="w"> </span>--dynamic
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-5<span class="w"> </span>vqa-docvqa-val<span class="w"> </span>--dynamic<span class="w"> </span>--max-num<span class="w"> </span><span class="m">18</span>
 </pre></div>
 </div>
 <p>The expected test results are:</p>
@@ -1035,7 +1034,7 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 </pre></div>
 </div>
 <p>For the test set, run:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-5<span class="w"> </span>vqa-docvqa-test<span class="w"> </span>--dynamic
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-5<span class="w"> </span>vqa-docvqa-test<span class="w"> </span>--dynamic<span class="w"> </span>--max-num<span class="w"> </span><span class="m">18</span>
 </pre></div>
 </div>
 <p>For the test set, submit the results to the <a class="reference external" href="https://rrc.cvc.uab.es/?ch=17">evaluation server</a>.</p>
@@ -1059,7 +1058,7 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 <h4>InfographicVQA<a class="headerlink" href="#infographicvqa" title="Permalink to this heading">#</a></h4>
 <p>The InfographicVQA dataset is a collection of infographics accompanied by natural language questions and answers. This dataset includes a diverse range of infographics sourced from thousands of different websites, ensuring a variety of layouts and designs. It comprises 30,035 questions across 5,485 images, split into training, validation, and test sets.</p>
 <p>For the validation set, run:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-5<span class="w"> </span>vqa-infovqa-val<span class="w"> </span>--dynamic
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-5<span class="w"> </span>vqa-infovqa-val<span class="w"> </span>--dynamic<span class="w"> </span>--max-num<span class="w"> </span><span class="m">24</span>
 </pre></div>
 </div>
 <p>The expected test results are:</p>
@@ -1067,7 +1066,7 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 </pre></div>
 </div>
 <p>For the test set, run:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-5<span class="w"> </span>vqa-infovqa-test<span class="w"> </span>--dynamic
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-5<span class="w"> </span>vqa-infovqa-test<span class="w"> </span>--dynamic<span class="w"> </span>--max-num<span class="w"> </span><span class="m">24</span>
 </pre></div>
 </div>
 <p>For the test set, submit the results to the <a class="reference external" href="https://rrc.cvc.uab.es/?ch=17">evaluation server</a>.</p>
@@ -1083,7 +1082,7 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 </pre></div>
 </div>
 <p>The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Accuracy</span><span class="p">:</span> <span class="mf">65.76</span><span class="o">%</span>
 </pre></div>
 </div>
 </section>
@@ -1094,7 +1093,7 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 </pre></div>
 </div>
 <p>The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Acc</span><span class="o">@</span><span class="mi">1</span><span class="p">:</span> <span class="mf">0.9404972731779871</span>
 </pre></div>
 </div>
 </section>
@@ -1105,7 +1104,38 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 </pre></div>
 </div>
 <p>The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Category</span><span class="p">:</span> <span class="n">random</span><span class="p">,</span> <span class="c1"># samples: 2910</span>
+<span class="n">TP</span>      <span class="n">FP</span>      <span class="n">TN</span>      <span class="n">FN</span>
+<span class="mi">1227</span>    <span class="mi">21</span>      <span class="mi">1389</span>    <span class="mi">273</span>
+<span class="n">Accuracy</span><span class="p">:</span> <span class="mf">0.8989690721649485</span>
+<span class="n">Precision</span><span class="p">:</span> <span class="mf">0.9831730769230769</span>
+<span class="n">Recall</span><span class="p">:</span> <span class="mf">0.818</span>
+<span class="n">F1</span> <span class="n">score</span><span class="p">:</span> <span class="mf">0.8930131004366811</span>
+<span class="n">Yes</span> <span class="n">ratio</span><span class="p">:</span> <span class="mf">0.4288659793814433</span>
+<span class="mf">0.893</span><span class="p">,</span> <span class="mf">0.899</span><span class="p">,</span> <span class="mf">0.983</span><span class="p">,</span> <span class="mf">0.818</span><span class="p">,</span> <span class="mf">0.429</span>
+<span class="o">====================================</span>
+<span class="n">Category</span><span class="p">:</span> <span class="n">popular</span><span class="p">,</span> <span class="c1"># samples: 3000</span>
+<span class="n">TP</span>      <span class="n">FP</span>      <span class="n">TN</span>      <span class="n">FN</span>
+<span class="mi">1227</span>    <span class="mi">48</span>      <span class="mi">1452</span>    <span class="mi">273</span>
+<span class="n">Accuracy</span><span class="p">:</span> <span class="mf">0.893</span>
+<span class="n">Precision</span><span class="p">:</span> <span class="mf">0.9623529411764706</span>
+<span class="n">Recall</span><span class="p">:</span> <span class="mf">0.818</span>
+<span class="n">F1</span> <span class="n">score</span><span class="p">:</span> <span class="mf">0.8843243243243243</span>
+<span class="n">Yes</span> <span class="n">ratio</span><span class="p">:</span> <span class="mf">0.425</span>
+<span class="mf">0.884</span><span class="p">,</span> <span class="mf">0.893</span><span class="p">,</span> <span class="mf">0.962</span><span class="p">,</span> <span class="mf">0.818</span><span class="p">,</span> <span class="mf">0.425</span>
+<span class="o">====================================</span>
+<span class="n">Category</span><span class="p">:</span> <span class="n">adversarial</span><span class="p">,</span> <span class="c1"># samples: 3000</span>
+<span class="n">TP</span>      <span class="n">FP</span>      <span class="n">TN</span>      <span class="n">FN</span>
+<span class="mi">1227</span>    <span class="mi">82</span>      <span class="mi">1418</span>    <span class="mi">273</span>
+<span class="n">Accuracy</span><span class="p">:</span> <span class="mf">0.8816666666666667</span>
+<span class="n">Precision</span><span class="p">:</span> <span class="mf">0.9373567608861727</span>
+<span class="n">Recall</span><span class="p">:</span> <span class="mf">0.818</span>
+<span class="n">F1</span> <span class="n">score</span><span class="p">:</span> <span class="mf">0.8736205055179779</span>
+<span class="n">Yes</span> <span class="n">ratio</span><span class="p">:</span> <span class="mf">0.43633333333333335</span>
+<span class="mf">0.874</span><span class="p">,</span> <span class="mf">0.882</span><span class="p">,</span> <span class="mf">0.937</span><span class="p">,</span> <span class="mf">0.818</span><span class="p">,</span> <span class="mf">0.436</span>
+<span class="o">====================================</span>
+
+<span class="p">(</span><span class="mf">89.3</span> <span class="o">+</span> <span class="mf">88.4</span> <span class="o">+</span> <span class="mf">87.4</span><span class="p">)</span> <span class="o">/</span> <span class="mi">3</span> <span class="o">=</span> <span class="mf">88.3</span>
 </pre></div>
 </div>
 </section>
@@ -1116,7 +1146,12 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 </pre></div>
 </div>
 <p>The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Visual_Knowledge_Acquisition</span><span class="p">:</span> <span class="mf">0.7542857142857143</span>
+<span class="n">Object_Hallucination</span><span class="p">:</span> <span class="mf">0.8933333333333333</span>
+<span class="n">Visual_Commonsense</span><span class="p">:</span> <span class="mf">0.634</span>
+<span class="n">Visual_Perception</span><span class="p">:</span> <span class="mf">0.5775</span>
+<span class="n">Visual_Reasoning</span><span class="p">:</span> <span class="mf">0.7236363636363636</span>
+<span class="n">Overall</span><span class="p">:</span> <span class="mf">3.582755411255411</span>
 </pre></div>
 </div>
 </section>
@@ -1182,23 +1217,23 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 <h4>MMBench<a class="headerlink" href="#mmbench" title="Permalink to this heading">#</a></h4>
 <p>The MMBench dataset is a comprehensive multi-modality benchmark designed to evaluate the fine-grained abilities of vision-language models. It contains around 3,000 multiple-choice questions covering 20 ability dimensions, structured into a hierarchical taxonomy. These dimensions include perception and reasoning abilities, further broken down into specific skills like coarse and fine-grained perception, attribute reasoning, and logic reasoning.</p>
 <p>For the English dev / test set, run:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-5<span class="w"> </span>mmbench-dev-en
-<span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-5<span class="w"> </span>mmbench-test-en
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-5<span class="w"> </span>mmbench-dev-en<span class="w"> </span>--dynamic
+<span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-5<span class="w"> </span>mmbench-test-en<span class="w"> </span>--dynamic
 </pre></div>
 </div>
 <p>Then, submit the results to the <a class="reference external" href="https://mmbench.opencompass.org.cn/mmbench-submission">evaluation server</a>. The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mmbench</span><span class="o">-</span><span class="n">dev</span><span class="o">-</span><span class="n">en</span><span class="p">:</span> <span class="n">TODO</span>
-<span class="n">mmbench</span><span class="o">-</span><span class="n">test</span><span class="o">-</span><span class="n">en</span><span class="p">:</span> <span class="n">TODO</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mmbench</span><span class="o">-</span><span class="n">dev</span><span class="o">-</span><span class="n">en</span><span class="p">:</span> <span class="mf">80.8</span>
+<span class="n">mmbench</span><span class="o">-</span><span class="n">test</span><span class="o">-</span><span class="n">en</span><span class="p">:</span> <span class="mf">82.2</span>
 </pre></div>
 </div>
 <p>For the Chinese dev / test set, run:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-5<span class="w"> </span>mmbench-dev-cn
-<span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-5<span class="w"> </span>mmbench-test-cn
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-5<span class="w"> </span>mmbench-dev-cn<span class="w"> </span>--dynamic
+<span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-5<span class="w"> </span>mmbench-test-cn<span class="w"> </span>--dynamic
 </pre></div>
 </div>
 <p>Then, submit the results to the <a class="reference external" href="https://mmbench.opencompass.org.cn/mmbench-submission">evaluation server</a>. The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mmbench</span><span class="o">-</span><span class="n">dev</span><span class="o">-</span><span class="n">cn</span><span class="p">:</span> <span class="n">TODO</span>
-<span class="n">mmbench</span><span class="o">-</span><span class="n">test</span><span class="o">-</span><span class="n">cn</span><span class="p">:</span> <span class="n">TODO</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mmbench</span><span class="o">-</span><span class="n">dev</span><span class="o">-</span><span class="n">cn</span><span class="p">:</span> <span class="mf">80.3</span>
+<span class="n">mmbench</span><span class="o">-</span><span class="n">test</span><span class="o">-</span><span class="n">cn</span><span class="p">:</span> <span class="mf">82.0</span>
 </pre></div>
 </div>
 </section>
@@ -1248,7 +1283,9 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 </pre></div>
 </div>
 <p>The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Evaluating</span> <span class="n">MMVP</span> <span class="o">...</span>
+<span class="n">Results</span> <span class="n">saved</span> <span class="n">to</span> <span class="n">results</span><span class="o">/</span><span class="n">MMVP_240727104303</span><span class="o">.</span><span class="n">jsonl</span>
+<span class="n">The</span> <span class="n">accuracy</span> <span class="ow">is</span> <span class="mf">0.5933333333333334</span>
 </pre></div>
 </div>
 </section>
@@ -1263,7 +1300,60 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 </pre></div>
 </div>
 <p>The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">all</span> <span class="o">*</span><span class="mf">93.8</span><span class="o">*</span> <span class="mf">85.8</span> <span class="mf">80.5</span>
+<span class="n">llava_bench_complex</span> <span class="p">[</span><span class="mf">8.643</span><span class="p">,</span> <span class="mf">8.286</span><span class="p">]</span> <span class="mf">95.9</span>
+<span class="n">llava_bench_complex</span> <span class="mf">95.9</span> <span class="mf">86.4</span> <span class="mf">82.9</span>
+<span class="n">llava_bench_conv</span> <span class="p">[</span><span class="mf">8.471</span><span class="p">,</span> <span class="mf">8.029</span><span class="p">]</span> <span class="mf">94.8</span>
+<span class="n">llava_bench_conv</span> <span class="mf">94.8</span> <span class="mf">84.7</span> <span class="mf">80.3</span>
+<span class="n">llava_bench_detail</span> <span class="p">[</span><span class="mf">8.6</span><span class="p">,</span> <span class="mf">7.633</span><span class="p">]</span> <span class="mf">88.8</span>
+<span class="n">llava_bench_detail</span> <span class="mf">88.8</span> <span class="mf">86.0</span> <span class="mf">76.3</span>
+</pre></div>
+</div>
+</section>
+<section id="mathvista">
+<h4>MathVista<a class="headerlink" href="#mathvista" title="Permalink to this heading">#</a></h4>
+<p>The MathVista dataset is a comprehensive benchmark for evaluating mathematical reasoning within visual contexts. It consists of three newly created datasets—IQTest, FunctionQA, and PaperQA—designed to address logical reasoning on puzzle test figures, algebraic reasoning over functional plots, and scientific reasoning with academic paper figures, respectively.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">OPENAI_API_KEY</span><span class="o">=</span><span class="s1">&#39;your-openai-key&#39;</span>
+<span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-5<span class="w"> </span>mathvista-testmini<span class="w"> </span>--dynamic
+</pre></div>
+</div>
+<p>The expected test results are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Correct</span><span class="p">:</span> <span class="mi">535</span><span class="p">,</span> <span class="n">Total</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span> <span class="n">Accuracy</span><span class="p">:</span> <span class="mf">53.5</span><span class="o">%</span>
+<span class="mi">1000</span>
+<span class="n">Number</span> <span class="n">of</span> <span class="n">test</span> <span class="n">problems</span><span class="p">:</span> <span class="mi">1000</span>
+
+<span class="n">Type</span><span class="p">:</span> <span class="p">[</span><span class="n">question_type</span><span class="p">]</span>
+<span class="p">[</span><span class="n">free_form</span><span class="p">]:</span> <span class="mf">47.17</span><span class="o">%</span> <span class="p">(</span><span class="mi">217</span><span class="o">/</span><span class="mi">460</span><span class="p">)</span>
+<span class="p">[</span><span class="n">multi_choice</span><span class="p">]:</span> <span class="mf">58.89</span><span class="o">%</span> <span class="p">(</span><span class="mi">318</span><span class="o">/</span><span class="mi">540</span><span class="p">)</span>
+
+<span class="n">Type</span><span class="p">:</span> <span class="p">[</span><span class="n">answer_type</span><span class="p">]</span>
+<span class="p">[</span><span class="nb">float</span><span class="p">]:</span> <span class="mf">0.00</span><span class="o">%</span> <span class="p">(</span><span class="mi">0</span><span class="o">/</span><span class="mi">40</span><span class="p">)</span>
+<span class="p">[</span><span class="n">integer</span><span class="p">]:</span> <span class="mf">51.67</span><span class="o">%</span> <span class="p">(</span><span class="mi">216</span><span class="o">/</span><span class="mi">418</span><span class="p">)</span>
+<span class="p">[</span><span class="n">text</span><span class="p">]:</span> <span class="mf">58.89</span><span class="o">%</span> <span class="p">(</span><span class="mi">318</span><span class="o">/</span><span class="mi">540</span><span class="p">)</span>
+<span class="p">[</span><span class="nb">list</span><span class="p">]:</span> <span class="mf">50.00</span><span class="o">%</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">Type</span><span class="p">:</span> <span class="p">[</span><span class="n">language</span><span class="p">]</span>
+<span class="p">[</span><span class="n">english</span><span class="p">]:</span> <span class="mf">53.31</span><span class="o">%</span> <span class="p">(</span><span class="mi">499</span><span class="o">/</span><span class="mi">936</span><span class="p">)</span>
+<span class="p">[</span><span class="n">chinese</span><span class="p">]:</span> <span class="mf">56.45</span><span class="o">%</span> <span class="p">(</span><span class="mi">35</span><span class="o">/</span><span class="mi">62</span><span class="p">)</span>
+<span class="p">[</span><span class="n">persian</span><span class="p">]:</span> <span class="mf">50.00</span><span class="o">%</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="refcoco-refcoco-refcoco-g">
+<h4>RefCOCO / RefCOCO+ / RefCOCO-g<a class="headerlink" href="#refcoco-refcoco-refcoco-g" title="Permalink to this heading">#</a></h4>
+<p>RefCOCO, RefCOCO+, and RefCOCOg are datasets used for tasks involving referring expression comprehension, segmentation, and generation. These datasets are built upon the MSCOCO dataset, and they are essential for evaluating models in natural language processing and computer vision.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evalulate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-5<span class="w"> </span>refcoco<span class="w"> </span>--dynamic
+</pre></div>
+</div>
+<p>The expected test results are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>RefCOCO val, 91.4
+RefCOCO testA, 93.7
+RefCOCO testB, 87.1
+RefCOCO+ val, 87.0
+RefCOCO+ testA, 92.3
+RefCOCO+ testB, 80.9
+RefCOCO‑g val, 88.5
+RefCOCO‑g test, 89.3
 </pre></div>
 </div>
 </section>
@@ -1271,11 +1361,16 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 <h4>MVBench<a class="headerlink" href="#mvbench" title="Permalink to this heading">#</a></h4>
 <p>MVBench is a comprehensive multimodal video understanding benchmark developed to evaluate the temporal comprehension capabilities of MLLMs. It includes 20 challenging video tasks that require temporal understanding and cannot be effectively solved using a single frame. The benchmark uses a novel static-to-dynamic method, transforming static tasks into dynamic ones to systematically generate video tasks that demand a wide range of temporal skills, from perception to cognition.</p>
 <p>We evaluate our models on MVBench by extracting 16 frames from each video, and each frame was resized to a 448x448 image.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-5<span class="w"> </span>mvbench
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-5<span class="w"> </span>mvbench<span class="w"> </span>--dynamic<span class="w"> </span>--max-num<span class="w"> </span><span class="m">1</span>
 </pre></div>
 </div>
 <p>The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;Action Sequence&quot;</span><span class="p">:</span> <span class="mf">63.0</span><span class="p">,</span> <span class="s2">&quot;Action Prediction&quot;</span><span class="p">:</span> <span class="mf">65.0</span><span class="p">,</span> <span class="s2">&quot;Action Antonym&quot;</span><span class="p">:</span> <span class="mf">51.0</span><span class="p">,</span> <span class="s2">&quot;Fine-grained Action&quot;</span><span class="p">:</span> <span class="mf">44.0</span><span class="p">,</span> 
+<span class="s2">&quot;Unexpected Action&quot;</span><span class="p">:</span> <span class="mf">74.5</span><span class="p">,</span> <span class="s2">&quot;Object Existence&quot;</span><span class="p">:</span> <span class="mf">48.5</span><span class="p">,</span> <span class="s2">&quot;Object Interaction&quot;</span><span class="p">:</span> <span class="mf">71.5</span><span class="p">,</span> <span class="s2">&quot;Object Shuffle&quot;</span><span class="p">:</span> <span class="mf">36.5</span><span class="p">,</span> 
+<span class="s2">&quot;Moving Direction&quot;</span><span class="p">:</span> <span class="mf">37.5</span><span class="p">,</span> <span class="s2">&quot;Action Localization&quot;</span><span class="p">:</span> <span class="mf">36.5</span><span class="p">,</span> <span class="s2">&quot;Scene Transition&quot;</span><span class="p">:</span> <span class="mf">85.5</span><span class="p">,</span> <span class="s2">&quot;Action Count&quot;</span><span class="p">:</span> <span class="mf">36.0</span><span class="p">,</span> 
+<span class="s2">&quot;Moving Count&quot;</span><span class="p">:</span> <span class="mf">39.5</span><span class="p">,</span> <span class="s2">&quot;Moving Attribute&quot;</span><span class="p">:</span> <span class="mf">61.5</span><span class="p">,</span> <span class="s2">&quot;State Change&quot;</span><span class="p">:</span> <span class="mf">50.0</span><span class="p">,</span> <span class="s2">&quot;Fine-grained Pose&quot;</span><span class="p">:</span> <span class="mf">58.5</span><span class="p">,</span> 
+<span class="s2">&quot;Character Order&quot;</span><span class="p">:</span> <span class="mf">62.0</span><span class="p">,</span> <span class="s2">&quot;Egocentric Navigation&quot;</span><span class="p">:</span> <span class="mf">35.0</span><span class="p">,</span> <span class="s2">&quot;Episodic Reasoning&quot;</span><span class="p">:</span> <span class="mf">44.5</span><span class="p">,</span> 
+<span class="s2">&quot;Counterfactual Inference&quot;</span><span class="p">:</span> <span class="mf">42.0</span><span class="p">,</span> <span class="s2">&quot;Avg&quot;</span><span class="p">:</span> <span class="mf">52.125</span><span class="p">}</span>
 </pre></div>
 </div>
 </section>
@@ -1286,14 +1381,27 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 <h4>Data Preparation<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h4>
 <p>VLMEvalKit will automatically download the data for evaluation, so you do not need to prepare it manually.</p>
 </section>
-<section id="mathvista">
-<h4>MathVista<a class="headerlink" href="#mathvista" title="Permalink to this heading">#</a></h4>
+<section id="id2">
+<h4>MathVista<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h4>
 <p>The MathVista dataset is a comprehensive benchmark for evaluating mathematical reasoning within visual contexts. It consists of three newly created datasets—IQTest, FunctionQA, and PaperQA—designed to address logical reasoning on puzzle test figures, algebraic reasoning over functional plots, and scientific reasoning with academic paper figures, respectively.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>torchrun<span class="w"> </span>--nproc-per-node<span class="o">=</span><span class="m">8</span><span class="w"> </span>run.py<span class="w"> </span>--data<span class="w"> </span>MathVista_MINI<span class="w"> </span>--model<span class="w"> </span>InternVL-Chat-V1-5<span class="w"> </span>--verbose
 </pre></div>
 </div>
 <p>The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;Task&amp;Skill&quot;</span><span class="p">,</span><span class="s2">&quot;tot&quot;</span><span class="p">,</span><span class="s2">&quot;prefetch&quot;</span><span class="p">,</span><span class="s2">&quot;hit&quot;</span><span class="p">,</span><span class="s2">&quot;prefetch_rate&quot;</span><span class="p">,</span><span class="s2">&quot;acc&quot;</span>
+<span class="s2">&quot;Overall&quot;</span><span class="p">,</span><span class="s2">&quot;1000&quot;</span><span class="p">,</span><span class="s2">&quot;545&quot;</span><span class="p">,</span><span class="s2">&quot;544&quot;</span><span class="p">,</span><span class="s2">&quot;54.50000000000001&quot;</span><span class="p">,</span><span class="s2">&quot;54.400000000000006&quot;</span>
+<span class="s2">&quot;scientific reasoning&quot;</span><span class="p">,</span><span class="s2">&quot;122&quot;</span><span class="p">,</span><span class="s2">&quot;89&quot;</span><span class="p">,</span><span class="s2">&quot;69&quot;</span><span class="p">,</span><span class="s2">&quot;72.95081967213115&quot;</span><span class="p">,</span><span class="s2">&quot;56.557377049180324&quot;</span>
+<span class="s2">&quot;textbook question answering&quot;</span><span class="p">,</span><span class="s2">&quot;158&quot;</span><span class="p">,</span><span class="s2">&quot;102&quot;</span><span class="p">,</span><span class="s2">&quot;85&quot;</span><span class="p">,</span><span class="s2">&quot;64.55696202531645&quot;</span><span class="p">,</span><span class="s2">&quot;53.79746835443038&quot;</span>
+<span class="s2">&quot;numeric commonsense&quot;</span><span class="p">,</span><span class="s2">&quot;144&quot;</span><span class="p">,</span><span class="s2">&quot;39&quot;</span><span class="p">,</span><span class="s2">&quot;42&quot;</span><span class="p">,</span><span class="s2">&quot;27.083333333333332&quot;</span><span class="p">,</span><span class="s2">&quot;29.166666666666668&quot;</span>
+<span class="s2">&quot;arithmetic reasoning&quot;</span><span class="p">,</span><span class="s2">&quot;353&quot;</span><span class="p">,</span><span class="s2">&quot;145&quot;</span><span class="p">,</span><span class="s2">&quot;208&quot;</span><span class="p">,</span><span class="s2">&quot;41.07648725212464&quot;</span><span class="p">,</span><span class="s2">&quot;58.92351274787535&quot;</span>
+<span class="s2">&quot;visual question answering&quot;</span><span class="p">,</span><span class="s2">&quot;179&quot;</span><span class="p">,</span><span class="s2">&quot;92&quot;</span><span class="p">,</span><span class="s2">&quot;92&quot;</span><span class="p">,</span><span class="s2">&quot;51.39664804469274&quot;</span><span class="p">,</span><span class="s2">&quot;51.39664804469274&quot;</span>
+<span class="s2">&quot;geometry reasoning&quot;</span><span class="p">,</span><span class="s2">&quot;239&quot;</span><span class="p">,</span><span class="s2">&quot;150&quot;</span><span class="p">,</span><span class="s2">&quot;98&quot;</span><span class="p">,</span><span class="s2">&quot;62.76150627615063&quot;</span><span class="p">,</span><span class="s2">&quot;41.00418410041841&quot;</span>
+<span class="s2">&quot;algebraic reasoning&quot;</span><span class="p">,</span><span class="s2">&quot;281&quot;</span><span class="p">,</span><span class="s2">&quot;178&quot;</span><span class="p">,</span><span class="s2">&quot;114&quot;</span><span class="p">,</span><span class="s2">&quot;63.345195729537366&quot;</span><span class="p">,</span><span class="s2">&quot;40.569395017793596&quot;</span>
+<span class="s2">&quot;geometry problem solving&quot;</span><span class="p">,</span><span class="s2">&quot;208&quot;</span><span class="p">,</span><span class="s2">&quot;141&quot;</span><span class="p">,</span><span class="s2">&quot;81&quot;</span><span class="p">,</span><span class="s2">&quot;67.78846153846155&quot;</span><span class="p">,</span><span class="s2">&quot;38.94230769230769&quot;</span>
+<span class="s2">&quot;math word problem&quot;</span><span class="p">,</span><span class="s2">&quot;186&quot;</span><span class="p">,</span><span class="s2">&quot;68&quot;</span><span class="p">,</span><span class="s2">&quot;119&quot;</span><span class="p">,</span><span class="s2">&quot;36.55913978494624&quot;</span><span class="p">,</span><span class="s2">&quot;63.97849462365591&quot;</span>
+<span class="s2">&quot;logical reasoning&quot;</span><span class="p">,</span><span class="s2">&quot;37&quot;</span><span class="p">,</span><span class="s2">&quot;16&quot;</span><span class="p">,</span><span class="s2">&quot;6&quot;</span><span class="p">,</span><span class="s2">&quot;43.24324324324324&quot;</span><span class="p">,</span><span class="s2">&quot;16.216216216216218&quot;</span>
+<span class="s2">&quot;figure question answering&quot;</span><span class="p">,</span><span class="s2">&quot;269&quot;</span><span class="p">,</span><span class="s2">&quot;142&quot;</span><span class="p">,</span><span class="s2">&quot;167&quot;</span><span class="p">,</span><span class="s2">&quot;52.78810408921933&quot;</span><span class="p">,</span><span class="s2">&quot;62.0817843866171&quot;</span>
+<span class="s2">&quot;statistical reasoning&quot;</span><span class="p">,</span><span class="s2">&quot;301&quot;</span><span class="p">,</span><span class="s2">&quot;140&quot;</span><span class="p">,</span><span class="s2">&quot;216&quot;</span><span class="p">,</span><span class="s2">&quot;46.51162790697674&quot;</span><span class="p">,</span><span class="s2">&quot;71.76079734219269&quot;</span>
 </pre></div>
 </div>
 </section>
@@ -1318,9 +1426,11 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 <span class="mi">9</span>      <span class="n">VS_chart</span>  <span class="mf">81.538462</span>  <span class="mf">50.000000</span>  <span class="mf">72.368421</span>
 <span class="mi">10</span>     <span class="n">VD_video</span>  <span class="mf">51.176471</span>  <span class="mf">10.416667</span>  <span class="mf">13.043478</span>
 <span class="mi">11</span>      <span class="n">VD_math</span>  <span class="mf">56.481481</span>  <span class="mf">25.000000</span>  <span class="mf">27.777778</span>
+
+
+<span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="mf">66.77</span> <span class="o">+</span> <span class="mf">40.17</span> <span class="o">+</span> <span class="mf">40.87</span><span class="p">)</span> <span class="o">/</span> <span class="mi">3</span> <span class="o">=</span> <span class="mf">49.3</span>
 </pre></div>
 </div>
-<p>The final score reported in our technical report is the average: (66.771819 + 40.173410 + 40.879121) / 3 = 49.3</p>
 </section>
 <section id="mmstar">
 <h4>MMStar<a class="headerlink" href="#mmstar" title="Permalink to this heading">#</a></h4>
@@ -1352,14 +1462,16 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 </pre></div>
 </div>
 </section>
-<section id="id2">
-<h4>MMMU<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h4>
+<section id="id3">
+<h4>MMMU<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h4>
 <p>The MMMU dataset is a comprehensive benchmark designed to evaluate multimodal models on college-level tasks that require domain-specific knowledge and reasoning. It includes 11,500 questions sourced from college exams, quizzes, and textbooks, spanning six disciplines: Art &amp; Design, Business, Science, Health &amp; Medicine, Humanities &amp; Social Science, and Tech &amp; Engineering. These questions cover 30 subjects and feature 30 types of images, such as charts, diagrams, maps, tables, and more.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>torchrun<span class="w"> </span>--nproc-per-node<span class="o">=</span><span class="m">8</span><span class="w"> </span>run.py<span class="w"> </span>--data<span class="w"> </span>MMMU_DEV_VAL<span class="w"> </span>--model<span class="w"> </span>InternVL-Chat-V1-5<span class="w"> </span>--verbose
 </pre></div>
 </div>
 <p>The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2024</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">29</span> <span class="mi">18</span><span class="p">:</span><span class="mi">20</span><span class="p">:</span><span class="mi">04</span><span class="p">,</span><span class="mi">977</span> <span class="o">-</span> <span class="n">Evaluation</span> <span class="o">-</span> <span class="n">INFO</span> <span class="o">-</span>         <span class="n">split</span>  <span class="n">Overall</span>  <span class="o">...</span>  <span class="n">Science</span>  <span class="n">Tech</span> <span class="o">&amp;</span> <span class="n">Engineering</span>
+<span class="mi">0</span>         <span class="n">dev</span>     <span class="mf">0.48</span>  <span class="o">...</span>     <span class="mf">0.36</span>            <span class="mf">0.428571</span>
+<span class="mi">1</span>  <span class="n">validation</span>     <span class="mf">0.45</span>  <span class="o">...</span>     <span class="mf">0.38</span>            <span class="mf">0.371429</span>
 </pre></div>
 </div>
 </section>
@@ -1373,17 +1485,6 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2024</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">29</span> <span class="mi">00</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span><span class="mi">13</span><span class="p">,</span><span class="mi">282</span> <span class="o">-</span> <span class="n">Evaluation</span> <span class="o">-</span> <span class="n">INFO</span> <span class="o">-</span> <span class="n">Score</span><span class="p">:</span>
 <span class="mi">2024</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">29</span> <span class="mi">00</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span><span class="mi">13</span><span class="p">,</span><span class="mi">282</span> <span class="o">-</span> <span class="n">Evaluation</span> <span class="o">-</span> <span class="n">INFO</span> <span class="o">-</span>   <span class="n">split</span>   <span class="n">Overall</span>
 <span class="mi">0</span>  <span class="n">none</span>  <span class="mf">0.660131</span>
-</pre></div>
-</div>
-</section>
-<section id="llava-bench-gpt-4-turbo">
-<h4>LLaVA-Bench (GPT-4-Turbo)<a class="headerlink" href="#llava-bench-gpt-4-turbo" title="Permalink to this heading">#</a></h4>
-<p>The LLaVA-Bench-in-the-Wild dataset is designed to evaluate the capabilities of MLLMs in handling more complex and diverse visual tasks. It includes a set of 24 images with 60 associated questions, covering a range of indoor and outdoor scenes, memes, paintings, and sketches. Each image is paired with detailed, manually curated descriptions and questions that test the model’s generalizability to novel domains.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>torchrun<span class="w"> </span>--nproc-per-node<span class="o">=</span><span class="m">8</span><span class="w"> </span>run.py<span class="w"> </span>--data<span class="w"> </span>LLaVABench<span class="w"> </span>--model<span class="w"> </span>InternVL-Chat-V1-5<span class="w"> </span>--verbose
-</pre></div>
-</div>
-<p>The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
 </pre></div>
 </div>
 </section>
@@ -1407,16 +1508,18 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 </div>
 <p>Note that because the version of GPT-4 used for scoring differs from the official server, the scores tested by VLMEvalKit will be slightly different.</p>
 </section>
-<section id="mmmu-dev-val">
-<h4>MMMU_DEV_VAL<a class="headerlink" href="#mmmu-dev-val" title="Permalink to this heading">#</a></h4>
-<p>The MMMU dataset is a comprehensive benchmark designed to evaluate multimodal models on college-level tasks that require domain-specific knowledge and reasoning. It includes 11,500 questions sourced from college exams, quizzes, and textbooks, spanning six disciplines: Art &amp; Design, Business, Science, Health &amp; Medicine, Humanities &amp; Social Science, and Tech &amp; Engineering. These questions cover 30 subjects and feature 30 types of images, such as charts, diagrams, maps, tables, and more.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>torchrun<span class="w"> </span>--nproc-per-node<span class="o">=</span><span class="m">8</span><span class="w"> </span>run.py<span class="w"> </span>--data<span class="w"> </span>MMMU_DEV_VAL<span class="w"> </span>--model<span class="w"> </span>InternVL-Chat-V1-5<span class="w"> </span>--verbose
+<section id="llava-bench-gpt-4-turbo">
+<h4>LLaVA-Bench (GPT-4-Turbo)<a class="headerlink" href="#llava-bench-gpt-4-turbo" title="Permalink to this heading">#</a></h4>
+<p>The LLaVA-Bench-in-the-Wild dataset is designed to evaluate the capabilities of MLLMs in handling more complex and diverse visual tasks. It includes a set of 24 images with 60 associated questions, covering a range of indoor and outdoor scenes, memes, paintings, and sketches. Each image is paired with detailed, manually curated descriptions and questions that test the model’s generalizability to novel domains.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>torchrun<span class="w"> </span>--nproc-per-node<span class="o">=</span><span class="m">8</span><span class="w"> </span>run.py<span class="w"> </span>--data<span class="w"> </span>LLaVABench<span class="w"> </span>--model<span class="w"> </span>InternVL-Chat-V1-5<span class="w"> </span>--verbose
 </pre></div>
 </div>
 <p>The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2024</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">29</span> <span class="mi">18</span><span class="p">:</span><span class="mi">20</span><span class="p">:</span><span class="mi">04</span><span class="p">,</span><span class="mi">977</span> <span class="o">-</span> <span class="n">Evaluation</span> <span class="o">-</span> <span class="n">INFO</span> <span class="o">-</span>         <span class="n">split</span>  <span class="n">Overall</span>  <span class="o">...</span>  <span class="n">Science</span>  <span class="n">Tech</span> <span class="o">&amp;</span> <span class="n">Engineering</span>
-<span class="mi">0</span>         <span class="n">dev</span>     <span class="mf">0.48</span>  <span class="o">...</span>     <span class="mf">0.36</span>            <span class="mf">0.428571</span>
-<span class="mi">1</span>  <span class="n">validation</span>     <span class="mf">0.45</span>  <span class="o">...</span>     <span class="mf">0.38</span>            <span class="mf">0.371429</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;split&quot;</span><span class="p">,</span><span class="s2">&quot;Relative Score (main)&quot;</span><span class="p">,</span><span class="s2">&quot;VLM Score&quot;</span><span class="p">,</span><span class="s2">&quot;GPT4 Score&quot;</span>
+<span class="s2">&quot;overall&quot;</span><span class="p">,</span><span class="s2">&quot;82.0&quot;</span><span class="p">,</span><span class="s2">&quot;63.7&quot;</span><span class="p">,</span><span class="s2">&quot;77.7&quot;</span>
+<span class="s2">&quot;conv&quot;</span><span class="p">,</span><span class="s2">&quot;82.9&quot;</span><span class="p">,</span><span class="s2">&quot;74.1&quot;</span><span class="p">,</span><span class="s2">&quot;89.4&quot;</span>
+<span class="s2">&quot;detail&quot;</span><span class="p">,</span><span class="s2">&quot;72.0&quot;</span><span class="p">,</span><span class="s2">&quot;48.0&quot;</span><span class="p">,</span><span class="s2">&quot;66.7&quot;</span>
+<span class="s2">&quot;complex&quot;</span><span class="p">,</span><span class="s2">&quot;86.0&quot;</span><span class="p">,</span><span class="s2">&quot;65.7&quot;</span><span class="p">,</span><span class="s2">&quot;76.4&quot;</span>
 </pre></div>
 </div>
 </section>
@@ -1427,7 +1530,18 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 </pre></div>
 </div>
 <p>The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;overall&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;overall&quot;</span><span class="p">:</span> <span class="s2">&quot;0.5363&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;domain&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;Knowledge&quot;</span><span class="p">:</span> <span class="s2">&quot;0.5679&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Film &amp; Television&quot;</span><span class="p">:</span> <span class="s2">&quot;0.5833&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Sports Competition&quot;</span><span class="p">:</span> <span class="s2">&quot;0.4756&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Artistic Performance&quot;</span><span class="p">:</span> <span class="s2">&quot;0.5444&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Life Record&quot;</span><span class="p">:</span> <span class="s2">&quot;0.5111&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Multilingual&quot;</span><span class="p">:</span> <span class="s2">&quot;0.5111&quot;</span>
+    <span class="p">},</span>
+    <span class="o">...</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </section>
@@ -1543,20 +1657,21 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#seed">SEED</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mmvp">MMVP</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#llava-bench-gpt-4-0613">LLaVA-Bench (GPT-4-0613)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mathvista">MathVista</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#refcoco-refcoco-refcoco-g">RefCOCO / RefCOCO+ / RefCOCO-g</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mvbench">MVBench</a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation-using-vlmevalkit-codebase">Evaluation using VLMEvalKit Codebase</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Data Preparation</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mathvista">MathVista</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">MathVista</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hallusionbench">HallusionBench</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mmstar">MMStar</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ocrbench">OCRBench</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">MMMU</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">MMMU</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#realworldqa">RealWorldQA</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#llava-bench-gpt-4-turbo">LLaVA-Bench (GPT-4-Turbo)</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mmvet-gpt-4-turbo">MMVet (GPT-4-Turbo)</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mmmu-dev-val">MMMU_DEV_VAL</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#llava-bench-gpt-4-turbo">LLaVA-Bench (GPT-4-Turbo)</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#videomme">VideoMME</a></li>
 </ul>
 </li>
