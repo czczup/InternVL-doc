@@ -29,10 +29,10 @@ This codebase will automatically download the required dataset. If the dataset f
 
 ## Model Preparation
 
-| model name               |    type     | download                                                                                   |  size   |
-| ------------------------ | :---------: | ------------------------------------------------------------------------------------------ | :-----: |
-| internvl_c_13b_224px.pth |   pytorch   | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL/blob/main/internvl_c_13b_224px.pth) | 25.4 GB |
-| InternVL-14B-224px       | huggingface | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL-14B-224px)                          | 27.7 GB |
+| model name               |    type     | param | download                                                                                   |  size   |
+| ------------------------ | :---------: | ----- | ------------------------------------------------------------------------------------------ | :-----: |
+| internvl_c_13b_224px.pth |   pytorch   | 13B   | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL/blob/main/internvl_c_13b_224px.pth) | 25.4 GB |
+| InternVL-14B-224px       | huggingface | 14B   | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL-14B-224px)                          | 27.7 GB |
 
 Please download the above model weights and place them in the `pretrained/` folder.
 
@@ -50,7 +50,7 @@ The directory structure is:
 ```sh
 pretrained
 ├── internvl_c_13b_224px.pth
-└── InternVL-14B-224px/
+└── InternVL-14B-224px
 ```
 
 ## Evaluation: Zero-Shot Image Classification

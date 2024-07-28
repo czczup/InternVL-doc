@@ -53,7 +53,7 @@
     <link rel="prev" title="InternViT-6B for Semantic Segmentation" href="segmentation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-    <meta name="docbuild:last-update" content="Jul 27, 2024"/>
+    <meta name="docbuild:last-update" content="Jul 28, 2024"/>
   </head>
   
   
@@ -152,15 +152,24 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL 1.5</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../internvl1.5/internvl_chat.html">internvl_chat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.5/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.5/quick_start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.5/finetune.html">Finetune</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.5/evaluation.html">Evaluation</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL 1.2</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../internvl1.2/internvl_chat.html">internvl_chat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.2/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.2/quick_start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.2/reproduce.html">Reproduce</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.2/finetune.html">Finetune</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.2/evaluation.html">Evaluation</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL 1.1</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL-Chat 1.1</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../internvl1.1/internvl_chat.html">internvl_chat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.1/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.1/quick_start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.1/evaluation.html">Evaluation</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL 1.0</span></p>
 <ul class="current nav bd-sidenav">
@@ -456,7 +465,7 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="internvl-for-multimodal-dialogue-using-llava-codebase">
 <h1>InternVL for Multimodal Dialogue using LLaVA Codebase<a class="headerlink" href="#internvl-for-multimodal-dialogue-using-llava-codebase" title="Permalink to this heading">#</a></h1>
 <p>This folder contains the implementation of the InternVL-Chat V1.0, which corresponds to Section 4.4 of our <a class="reference external" href="https://arxiv.org/pdf/2312.14238">InternVL 1.0 paper</a>.</p>
-<p>In this part, we mainly use the <a class="reference external" href="https://github.com/haotian-liu/LLaVA">LLaVA codebase</a> to evaluate InternVL in creating multimodal dialogue systems. Thanks for this great work.
+<p>In this part, we mainly use the <a class="reference external" href="https://github.com/haotian-liu/LLaVA">LLaVA codebase</a> to evaluate InternVL (InternViT-6B) in creating MLLMs. Thanks for this great work.
 We have retained the original documentation of LLaVA-1.5 as a more detailed manual. In most cases, you will only need to refer to the new documentation that we have added.</p>
 <blockquote>
 <div><p>Note: To unify the environment across different tasks, we have made some compatibility modifications to the LLaVA-1.5 code, allowing it to support <code class="docutils literal notranslate"><span class="pre">transformers==4.37.2</span></code> (originally locked at 4.31.0). Please note that <code class="docutils literal notranslate"><span class="pre">transformers==4.37.2</span></code> should be installed.</p>
@@ -480,6 +489,7 @@ pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </s
 <thead>
 <tr class="row-odd"><th class="head"><p>model name</p></th>
 <th class="head"><p>type</p></th>
+<th class="head"><p>param</p></th>
 <th class="head"><p>download</p></th>
 <th class="head text-center"><p>size</p></th>
 </tr>
@@ -487,21 +497,25 @@ pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </s
 <tbody>
 <tr class="row-even"><td><p>InternViT-6B-224px</p></td>
 <td><p>huggingface</p></td>
+<td><p>6B</p></td>
 <td><p>🤗 <a class="reference external" href="https://huggingface.co/OpenGVLab/InternViT-6B-224px">HF link</a></p></td>
 <td class="text-center"><p>12 GB</p></td>
 </tr>
 <tr class="row-odd"><td><p>InternViT-6B-448px-V1-0</p></td>
 <td><p>huggingface</p></td>
+<td><p>6B</p></td>
 <td><p>🤗 <a class="reference external" href="https://huggingface.co/OpenGVLab/InternViT-6B-448px-V1-0">HF link</a></p></td>
 <td class="text-center"><p>12 GB</p></td>
 </tr>
 <tr class="row-even"><td><p>vicuna-13b-v1.5</p></td>
 <td><p>huggingface</p></td>
+<td><p>13B</p></td>
 <td><p>🤗 <a class="reference external" href="https://huggingface.co/lmsys/vicuna-7b-v1.5">HF link</a></p></td>
 <td class="text-center"><p>13.5 GB</p></td>
 </tr>
 <tr class="row-odd"><td><p>vicuna-7b-v1.5</p></td>
 <td><p>huggingface</p></td>
+<td><p>7B</p></td>
 <td><p>🤗 <a class="reference external" href="https://huggingface.co/lmsys/vicuna-13b-v1.5">HF link</a></p></td>
 <td class="text-center"><p>26.1 GB</p></td>
 </tr>
@@ -690,7 +704,7 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
 </section>
 <section id="demo">
 <h2>Demo<a class="headerlink" href="#demo" title="Permalink to this heading">#</a></h2>
-<p>The method for deploying the demo is consistent with LLaVA-1.5. You only need to change the model path. The specific steps are as follows:</p>
+<p>The method for deploying the web demo is consistent with LLaVA-1.5. You only need to change the model path. The specific steps are as follows:</p>
 <p><strong>Launch a controller</strong></p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>llava.serve.controller<span class="w"> </span>--host<span class="w"> </span><span class="m">0</span>.0.0.0<span class="w"> </span>--port<span class="w"> </span><span class="m">10000</span>
 </pre></div>
@@ -1206,7 +1220,7 @@ By InternVL Authors
   
   <div class="footer-item">
     <p class="last-updated">
-  Last updated on Jul 27, 2024.
+  Last updated on Jul 28, 2024.
   <br/>
 </p>
   </div>

@@ -49,11 +49,9 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'internvl1.5/internvl_chat';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="InternVL-Chat-V1-2" href="../internvl1.2/internvl_chat.html" />
-    <link rel="prev" title="Evaluation Data Preparation" href="../get_started/eval_data_preparation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-    <meta name="docbuild:last-update" content="Jul 27, 2024"/>
+    <meta name="docbuild:last-update" content="Jul 28, 2024"/>
   </head>
   
   
@@ -151,16 +149,25 @@
 <li class="toctree-l1"><a class="reference internal" href="../get_started/eval_data_preparation.html">Evaluation Data Preparation</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL 1.5</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">internvl_chat</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quick_start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="finetune.html">Finetune</a></li>
+<li class="toctree-l1"><a class="reference internal" href="evaluation.html">Evaluation</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL 1.2</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../internvl1.2/internvl_chat.html">internvl_chat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.2/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.2/quick_start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.2/reproduce.html">Reproduce</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.2/finetune.html">Finetune</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.2/evaluation.html">Evaluation</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL 1.1</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL-Chat 1.1</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../internvl1.1/internvl_chat.html">internvl_chat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.1/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.1/quick_start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.1/evaluation.html">Evaluation</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL 1.0</span></p>
 <ul class="nav bd-sidenav">
@@ -443,7 +450,7 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mmvp">MMVP</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#llava-bench-gpt-4-0613">LLaVA-Bench (GPT-4-0613)</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mathvista">MathVista</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#refcoco-refcoco-refcoco-g">RefCOCO / RefCOCO+ / RefCOCO-g</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#refcoco-series">RefCOCO Series</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mvbench">MVBench</a></li>
 </ul>
 </li>
@@ -889,7 +896,7 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>My suggestion is to add new domain-specific data on top of the <a class="reference internal" href="../internvl1.2/internvl_chat.html#training-datasets-preparation"><span class="std std-ref">general data from our open-sourced InternVL 1.2</span></a>. This will enhance downstream capabilities while retaining the foundational skills. Of course, you can also choose to fine-tune solely on the new data based on your requirements.</p>
+<p>My suggestion is to add new domain-specific data on top of the <a class="reference internal" href="#../internvl1.2/internvl_chat.md#training-datasets-preparation"><span class="xref myst">general data from our open-sourced InternVL 1.2</span></a>. This will enhance downstream capabilities while retaining the foundational skills. Of course, you can also choose to fine-tune solely on the new data based on your requirements.</p>
 </section>
 <section id="start-2nd-fine-tuning">
 <h3>3. Start 2nd Fine-tuning<a class="headerlink" href="#start-2nd-fine-tuning" title="Permalink to this heading">#</a></h3>
@@ -1339,8 +1346,8 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 </pre></div>
 </div>
 </section>
-<section id="refcoco-refcoco-refcoco-g">
-<h4>RefCOCO / RefCOCO+ / RefCOCO-g<a class="headerlink" href="#refcoco-refcoco-refcoco-g" title="Permalink to this heading">#</a></h4>
+<section id="refcoco-series">
+<h4>RefCOCO Series<a class="headerlink" href="#refcoco-series" title="Permalink to this heading">#</a></h4>
 <p>RefCOCO, RefCOCO+, and RefCOCOg are datasets used for tasks involving referring expression comprehension, segmentation, and generation. These datasets are built upon the MSCOCO dataset, and they are essential for evaluating models in natural language processing and computer vision.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evalulate.sh<span class="w"> </span>pretrained/InternVL-Chat-V1-5<span class="w"> </span>refcoco<span class="w"> </span>--dynamic
 </pre></div>
@@ -1580,24 +1587,6 @@ RefCOCO‑g test, 89.3
                 <footer class="prev-next-footer">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="../get_started/eval_data_preparation.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Evaluation Data Preparation</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="../internvl1.2/internvl_chat.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">InternVL-Chat-V1-2</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
@@ -1658,7 +1647,7 @@ RefCOCO‑g test, 89.3
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mmvp">MMVP</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#llava-bench-gpt-4-0613">LLaVA-Bench (GPT-4-0613)</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mathvista">MathVista</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#refcoco-refcoco-refcoco-g">RefCOCO / RefCOCO+ / RefCOCO-g</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#refcoco-series">RefCOCO Series</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mvbench">MVBench</a></li>
 </ul>
 </li>
@@ -1711,7 +1700,7 @@ By InternVL Authors
   
   <div class="footer-item">
     <p class="last-updated">
-  Last updated on Jul 27, 2024.
+  Last updated on Jul 28, 2024.
   <br/>
 </p>
   </div>

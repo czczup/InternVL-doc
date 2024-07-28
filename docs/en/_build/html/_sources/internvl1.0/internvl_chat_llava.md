@@ -2,7 +2,7 @@
 
 This folder contains the implementation of the InternVL-Chat V1.0, which corresponds to Section 4.4 of our [InternVL 1.0 paper](https://arxiv.org/pdf/2312.14238).
 
-In this part, we mainly use the [LLaVA codebase](https://github.com/haotian-liu/LLaVA) to evaluate InternVL in creating multimodal dialogue systems. Thanks for this great work.
+In this part, we mainly use the [LLaVA codebase](https://github.com/haotian-liu/LLaVA) to evaluate InternVL (InternViT-6B) in creating MLLMs. Thanks for this great work.
 We have retained the original documentation of LLaVA-1.5 as a more detailed manual. In most cases, you will only need to refer to the new documentation that we have added.
 
 > Note: To unify the environment across different tasks, we have made some compatibility modifications to the LLaVA-1.5 code, allowing it to support `transformers==4.37.2` (originally locked at 4.31.0). Please note that `transformers==4.37.2` should be installed.
@@ -22,12 +22,12 @@ In addition, using this codebase requires executing the following steps:
 
 ## Model Preparation
 
-| model name              | type        | download                                                               |  size   |
-| ----------------------- | ----------- | ---------------------------------------------------------------------- | :-----: |
-| InternViT-6B-224px      | huggingface | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternViT-6B-224px)      |  12 GB  |
-| InternViT-6B-448px-V1-0 | huggingface | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternViT-6B-448px-V1-0) |  12 GB  |
-| vicuna-13b-v1.5         | huggingface | 🤗 [HF link](https://huggingface.co/lmsys/vicuna-7b-v1.5)              | 13.5 GB |
-| vicuna-7b-v1.5          | huggingface | 🤗 [HF link](https://huggingface.co/lmsys/vicuna-13b-v1.5)             | 26.1 GB |
+| model name              | type        | param | download                                                               |  size   |
+| ----------------------- | ----------- | ----- | ---------------------------------------------------------------------- | :-----: |
+| InternViT-6B-224px      | huggingface | 6B    | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternViT-6B-224px)      |  12 GB  |
+| InternViT-6B-448px-V1-0 | huggingface | 6B    | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternViT-6B-448px-V1-0) |  12 GB  |
+| vicuna-13b-v1.5         | huggingface | 13B   | 🤗 [HF link](https://huggingface.co/lmsys/vicuna-7b-v1.5)              | 13.5 GB |
+| vicuna-7b-v1.5          | huggingface | 7B    | 🤗 [HF link](https://huggingface.co/lmsys/vicuna-13b-v1.5)             | 26.1 GB |
 
 Please download the above model weights and place them in the `pretrained/` folder.
 
@@ -124,7 +124,7 @@ pretrained
 
 ## Demo
 
-The method for deploying the demo is consistent with LLaVA-1.5. You only need to change the model path. The specific steps are as follows:
+The method for deploying the web demo is consistent with LLaVA-1.5. You only need to change the model path. The specific steps are as follows:
 
 **Launch a controller**
 

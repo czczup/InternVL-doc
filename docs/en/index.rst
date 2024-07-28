@@ -47,21 +47,30 @@ Documentation
    :maxdepth: 1
    :caption: InternVL 1.5
 
-   internvl_chat <internvl1.5/internvl_chat.md>
+   Introduction <internvl1.5/introduction.md>
+   Quick Start <internvl1.5/quick_start.md>
+   Finetune <internvl1.5/finetune.md>
+   Evaluation <internvl1.5/evaluation.md>
 
 .. _internvl_1_2:
 .. toctree::
    :maxdepth: 1
    :caption: InternVL 1.2
 
-   internvl_chat <internvl1.2/internvl_chat.md>
+   Introduction <internvl1.2/introduction.md>
+   Quick Start <internvl1.2/quick_start.md>
+   Reproduce <internvl1.2/reproduce.md>
+   Finetune <internvl1.2/finetune.md>
+   Evaluation <internvl1.2/evaluation.md>
 
 .. _internvl_1_1:
 .. toctree::
    :maxdepth: 1
-   :caption: InternVL 1.1
+   :caption: InternVL-Chat 1.1
 
-   internvl_chat <internvl1.1/internvl_chat.md>
+   Introduction <internvl1.1/introduction.md>
+   Quick Start <internvl1.1/quick_start.md>
+   Evaluation <internvl1.1/evaluation.md>
 
 .. _internvl_1_0:
 .. toctree::

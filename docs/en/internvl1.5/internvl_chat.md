@@ -953,7 +953,7 @@ Type: [language]
 [persian]: 50.00% (1/2)
 ```
 
-#### RefCOCO / RefCOCO+ / RefCOCO-g
+#### RefCOCO Series
 
 RefCOCO, RefCOCO+, and RefCOCOg are datasets used for tasks involving referring expression comprehension, segmentation, and generation. These datasets are built upon the MSCOCO dataset, and they are essential for evaluating models in natural language processing and computer vision.
 

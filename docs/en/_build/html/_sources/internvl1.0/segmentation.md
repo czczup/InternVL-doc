@@ -28,9 +28,9 @@ If you want to use other datasets, please refer to the [guidelines](https://gith
 
 ## Model Preparation
 
-| model name              | type    | download                                                                                  | size  |
-| ----------------------- | ------- | ----------------------------------------------------------------------------------------- | :---: |
-| intern_vit_6b_224px.pth | pytorch | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL/blob/main/intern_vit_6b_224px.pth) | 12 GB |
+| model name              | type    | param | download                                                                                  | size  |
+| ----------------------- | ------- | ----- | ----------------------------------------------------------------------------------------- | :---: |
+| intern_vit_6b_224px.pth | pytorch | 6B    | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL/blob/main/intern_vit_6b_224px.pth) | 12 GB |
 
 Please download the above model weight and place it in the `pretrained/` folder:
 
@@ -49,6 +49,8 @@ pretrained
 ## Training
 
 > Please note, this open-source code does not include DeepSpeed in MMSegmentation, so it currently only supports training for linear probing and head tuning, and does not support full-parameter training.
+>
+> If you want to train a super-large segmentation model, please refer to [this codebase](https://github.com/OpenGVLab/InternVL-MMDetSeg).
 
 To train a linear classifier for `InternViT-6B` with 8 GPU on 1 node (total batch size 16), run:
 

@@ -94,9 +94,9 @@ data
 
 ## Model Preparation
 
-| model name         | type        | download                                                          |  size   |
-| ------------------ | ----------- | ----------------------------------------------------------------- | :-----: |
-| InternVL-14B-224px | huggingface | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL-14B-224px) | 27.7 GB |
+| model name         | type        | param | download                                                          |  size   |
+| ------------------ | ----------- | ----- | ----------------------------------------------------------------- | :-----: |
+| InternVL-14B-224px | huggingface | 13.8B | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL-14B-224px) | 27.7 GB |
 
 Please download the above model weights and place them in the `pretrained/` folder.
 
