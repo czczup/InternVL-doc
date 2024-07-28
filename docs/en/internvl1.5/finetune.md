@@ -2,9 +2,11 @@
 
 ## Model Preparation
 
-| model name         | type | param | download                                                             |  size   |
-| ------------------ | ---- | ----- | -------------------------------------------------------------------- | :-----: |
-| InternVL-Chat-V1-5 | MLLM | 25.5B | 🤗 [HF link](https://huggingface.co/NousResearch/InternVL-Chat-V1-5) | 48.0 GB |
+| model name                 | type | param | download                                                                  |  size   |
+| -------------------------- | ---- | ----- | ------------------------------------------------------------------------- | :-----: |
+| InternVL-Chat-V1-5         | MLLM | 25.5B | 🤗 [HF link](https://huggingface.co/OpenGVLab/Mini-InternVL-Chat-V1-5)    | 48.0 GB |
+| Mini-InternVL-Chat-2B-V1-5 | MLLM | 2.2B  | 🤗 [HF link](https://huggingface.co/OpenGVLab/Mini-InternVL-Chat-2B-V1-5) | 4.2 GB  |
+| Mini-InternVL-Chat-4B-V1-5 | MLLM | 4.2B  | 🤗 [HF link](https://huggingface.co/OpenGVLab/Mini-InternVL-Chat-4B-V1-5) | 7.8 GB  |
 
 Before starting the second fine-tuning, download the pre-trained model we provide.
 
@@ -13,12 +15,18 @@ cd pretrained/
 # pip install -U huggingface_hub
 # Download OpenGVLab/InternVL-Chat-V1-5
 huggingface-cli download --resume-download --local-dir-use-symlinks False OpenGVLab/InternVL-Chat-V1-5 --local-dir InternVL-Chat-V1-5
+# Download OpenGVLab/Mini-InternVL-Chat-2B-V1-5
+huggingface-cli download --resume-download --local-dir-use-symlinks False OpenGVLab/Mini-InternVL-Chat-2B-V1-5 --local-dir Mini-InternVL-Chat-2B-V1-5
+# Download OpenGVLab/Mini-InternVL-Chat-4B-V1-5
+huggingface-cli download --resume-download --local-dir-use-symlinks False OpenGVLab/Mini-InternVL-Chat-4B-V1-5 --local-dir Mini-InternVL-Chat-4B-V1-5
 ```
 
 The directory structure is:
 
 ```sh
 pretrained
+├── Mini-InternVL-Chat-2B-V1-5
+├── Mini-InternVL-Chat-4B-V1-5
 └── InternVL-Chat-V1-5
 ```
 
@@ -59,6 +67,10 @@ My suggestion is to add new domain-specific data on top of the [general data fro
 
 ## Start 2nd Fine-tuning
 
+`````{tabs}
+
+````{tab} InternVL-Chat-V1-5
+
 Fine-tune the pre-trained models using either the [script for training the full LLM](https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/shell/internvl1.5/2nd_finetune/internvl_chat_v1_5_internlm2_20b_dynamic_res_2nd_finetune_full.sh)
 or the [script for training the LoRA adapter](https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/shell/internvl1.5/2nd_finetune/internvl_chat_v1_5_internlm2_20b_dynamic_res_2nd_finetune_lora.sh), depending on your available GPU resources.
 
@@ -72,12 +84,64 @@ Commands for fine-tuning:
 
 ```sh
 # Using 8 GPUs, fine-tune the full LLM, cost about 77G per GPU
-GPUS=8 sh shell/internvl1.5/2nd_finetune/internvl_chat_v1_5_internlm2_20b_dynamic_res_2nd_finetune_full.sh
+GPUS=8 PER_DEVICE_BATCH_SIZE=2 sh shell/internvl1.5/2nd_finetune/internvl_chat_v1_5_internlm2_20b_dynamic_res_2nd_finetune_full.sh
 # Using 2 GPUs, fine-tune the LoRA, cost about 79G per GPU
-GPUS=2 sh shell/internvl1.5/2nd_finetune/internvl_chat_v1_5_internlm2_20b_dynamic_res_2nd_finetune_lora.sh
+GPUS=2 PER_DEVICE_BATCH_SIZE=2 sh shell/internvl1.5/2nd_finetune/internvl_chat_v1_5_internlm2_20b_dynamic_res_2nd_finetune_lora.sh
 # Using 8 GPUs, fine-tune the LoRA, cost about 60G per GPU
-GPUS=8 sh shell/internvl1.5/2nd_finetune/internvl_chat_v1_5_internlm2_20b_dynamic_res_2nd_finetune_lora.sh
+GPUS=8 PER_DEVICE_BATCH_SIZE=2 sh shell/internvl1.5/2nd_finetune/internvl_chat_v1_5_internlm2_20b_dynamic_res_2nd_finetune_lora.sh
 ```
+
+````
+
+````{tab} Mini-InternVL-Chat-2B-V1-5
+
+Fine-tune the pre-trained models using either the [script for training the full LLM](https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/shell/internvl1.5/2nd_finetune/internvl_chat_v1_5_internlm2_1_8b_dynamic_res_2nd_finetune_full.sh)
+or the [script for training the LoRA adapter](https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/shell/internvl1.5/2nd_finetune/internvl_chat_v1_5_internlm2_1_8b_dynamic_res_2nd_finetune_lora.sh), depending on your available GPU resources.
+
+Before fine-tuning, set the `--meta_path` to the path of the JSON file you created in the previous step. The default pre-trained model path in these shell scripts is `./pretrained/Mini-InternVL-Chat-2B-V1-5`.
+
+> 💡 Fine-tuning the full LLM requires at least 8x 32G/40G GPUs, whereas fine-tuning the LoRA requires 2x 32G/40G GPUs.
+
+> 💡 The number of GPUs and hyperparameters used here are just an example. To achieve optimal results, you may need to adjust these settings based on your available hardware and dataset size.
+
+Commands for fine-tuning:
+
+```sh
+# Using 8 GPUs, fine-tune the full LLM, cost about 30G per GPU
+GPUS=8 PER_DEVICE_BATCH_SIZE=1 sh shell/internvl1.5/2nd_finetune/internvl_chat_v1_5_internlm2_1_8b_dynamic_res_2nd_finetune_full.sh
+# Using 2 GPUs, fine-tune the LoRA, cost about 27G per GPU
+GPUS=2 PER_DEVICE_BATCH_SIZE=1 sh shell/internvl1.5/2nd_finetune/internvl_chat_v1_5_internlm2_1_8b_dynamic_res_2nd_finetune_lora.sh
+# Using 8 GPUs, fine-tune the LoRA, cost about 27G per GPU
+GPUS=8 PER_DEVICE_BATCH_SIZE=1 sh shell/internvl1.5/2nd_finetune/internvl_chat_v1_5_internlm2_1_8b_dynamic_res_2nd_finetune_lora.sh
+```
+
+````
+
+````{tab} Mini-InternVL-Chat-4B-V1-5
+
+Fine-tune the pre-trained models using either the [script for training the full LLM](https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/shell/internvl1.5/2nd_finetune/internvl_chat_v1_5_phi3_3_8b_dynamic_res_2nd_finetune_full.sh)
+or the [script for training the LoRA adapter](https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/shell/internvl1.5/2nd_finetune/internvl_chat_v1_5_phi3_3_8b_dynamic_res_2nd_finetune_lora.sh), depending on your available GPU resources.
+
+Before fine-tuning, set the `--meta_path` to the path of the JSON file you created in the previous step. The default pre-trained model path in these shell scripts is `./pretrained/Mini-InternVL-Chat-4B-V1-5`.
+
+> 💡 Fine-tuning the full LLM requires at least 8x 40G GPUs, whereas fine-tuning the LoRA requires 2x 24G GPUs.
+
+> 💡 The number of GPUs and hyperparameters used here are just an example. To achieve optimal results, you may need to adjust these settings based on your available hardware and dataset size.
+
+Commands for fine-tuning:
+
+```sh
+# Using 8 GPUs, fine-tune the full LLM, cost about 40G per GPU
+GPUS=8 PER_DEVICE_BATCH_SIZE=1 sh shell/internvl1.5/2nd_finetune/internvl_chat_v1_5_phi3_3_8b_dynamic_res_2nd_finetune_full.sh
+# Using 2 GPUs, fine-tune the LoRA, cost about 19G per GPU
+GPUS=2 PER_DEVICE_BATCH_SIZE=1 sh shell/internvl1.5/2nd_finetune/internvl_chat_v1_5_phi3_3_8b_dynamic_res_2nd_finetune_lora.sh
+# Using 8 GPUs, fine-tune the LoRA, cost about 19G per GPU
+GPUS=8 PER_DEVICE_BATCH_SIZE=1 sh shell/internvl1.5/2nd_finetune/internvl_chat_v1_5_phi3_3_8b_dynamic_res_2nd_finetune_lora.sh
+```
+
+````
+
+`````
 
 If you encounter any issues, please let me know, and I will update the training guide to enhance its usability.
 

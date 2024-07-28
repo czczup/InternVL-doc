@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Quick Start of InternVL-Chat-V1-5 &#8212; internvl</title>
+    <title>Quick Start of InternVL 1.5 Series &#8212; internvl</title>
   
   
   
@@ -45,15 +45,16 @@
     <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/tabs.js"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'internvl1.5/quick_start';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Fine-tune on a Custom Dataset" href="finetune.html" />
-    <link rel="prev" title="Introduction of InternVL-Chat-V1-5" href="introduction.html" />
+    <link rel="prev" title="Introduction of InternVL 1.5 Series" href="introduction.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-    <meta name="docbuild:last-update" content="Jul 28, 2024"/>
+    <meta name="docbuild:last-update" content="Jul 29, 2024"/>
   </head>
   
   
@@ -398,7 +399,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Quick Start of InternVL-Chat-V1-5</h1>
+    <h1>Quick Start of InternVL 1.5 Series</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -434,9 +435,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="quick-start-of-internvl-chat-v1-5">
-<h1>Quick Start of InternVL-Chat-V1-5<a class="headerlink" href="#quick-start-of-internvl-chat-v1-5" title="Permalink to this heading">#</a></h1>
-<p>We provide an example code to run InternVL-Chat-V1-5 using <code class="docutils literal notranslate"><span class="pre">transformers</span></code>.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="quick-start-of-internvl-1-5-series">
+<h1>Quick Start of InternVL 1.5 Series<a class="headerlink" href="#quick-start-of-internvl-1-5-series" title="Permalink to this heading">#</a></h1>
+<p>We provide an example code to run InternVL 1.5 Series using <code class="docutils literal notranslate"><span class="pre">transformers</span></code>.</p>
 <p>We also welcome you to experience the InternVL2 series models in our <a class="reference external" href="https://internvl.opengvlab.com/">online demo</a>.</p>
 <blockquote>
 <div><p>Please use transformers==4.37.2 to ensure the model works normally.</p>
@@ -456,8 +457,20 @@ document.write(`
 <tr class="row-even"><td><p>InternVL-Chat-V1-5</p></td>
 <td><p>MLLM</p></td>
 <td><p>25.5B</p></td>
-<td><p>🤗 <a class="reference external" href="https://huggingface.co/NousResearch/InternVL-Chat-V1-5">HF link</a></p></td>
+<td><p>🤗 <a class="reference external" href="https://huggingface.co/OpenGVLab/InternVL-Chat-V1-5">HF link</a></p></td>
 <td class="text-center"><p>48.0 GB</p></td>
+</tr>
+<tr class="row-odd"><td><p>Mini-InternVL-Chat-2B-V1-5</p></td>
+<td><p>MLLM</p></td>
+<td><p>2.2B</p></td>
+<td><p>🤗 <a class="reference external" href="https://huggingface.co/OpenGVLab/Mini-InternVL-Chat-2B-V1-5">HF link</a></p></td>
+<td class="text-center"><p>4.2 GB</p></td>
+</tr>
+<tr class="row-even"><td><p>Mini-InternVL-Chat-4B-V1-5</p></td>
+<td><p>MLLM</p></td>
+<td><p>4.2B</p></td>
+<td><p>🤗 <a class="reference external" href="https://huggingface.co/OpenGVLab/Mini-InternVL-Chat-4B-V1-5">HF link</a></p></td>
+<td class="text-center"><p>7.8 GB</p></td>
 </tr>
 </tbody>
 </table>
@@ -466,10 +479,16 @@ document.write(`
 <span class="c1"># pip install -U huggingface_hub</span>
 <span class="c1"># Download OpenGVLab/InternVL-Chat-V1-5</span>
 huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-download<span class="w"> </span>--local-dir-use-symlinks<span class="w"> </span>False<span class="w"> </span>OpenGVLab/InternVL-Chat-V1-5<span class="w"> </span>--local-dir<span class="w"> </span>InternVL-Chat-V1-5
+<span class="c1"># Download OpenGVLab/Mini-InternVL-Chat-2B-V1-5</span>
+huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-download<span class="w"> </span>--local-dir-use-symlinks<span class="w"> </span>False<span class="w"> </span>OpenGVLab/Mini-InternVL-Chat-2B-V1-5<span class="w"> </span>--local-dir<span class="w"> </span>Mini-InternVL-Chat-2B-V1-5
+<span class="c1"># Download OpenGVLab/Mini-InternVL-Chat-4B-V1-5</span>
+huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-download<span class="w"> </span>--local-dir-use-symlinks<span class="w"> </span>False<span class="w"> </span>OpenGVLab/Mini-InternVL-Chat-4B-V1-5<span class="w"> </span>--local-dir<span class="w"> </span>Mini-InternVL-Chat-4B-V1-5
 </pre></div>
 </div>
 <p>The directory structure is:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pretrained
+├──<span class="w"> </span>Mini-InternVL-Chat-2B-V1-5
+├──<span class="w"> </span>Mini-InternVL-Chat-4B-V1-5
 └──<span class="w"> </span>InternVL-Chat-V1-5
 </pre></div>
 </div>
@@ -477,7 +496,8 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
 <h3>Model Loading<a class="headerlink" href="#model-loading" title="Permalink to this heading">#</a></h3>
 <section id="bit-bf16-fp16">
 <h4>16-bit (bf16 / fp16)<a class="headerlink" href="#bit-bf16-fp16" title="Permalink to this heading">#</a></h4>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">InternVL-Chat-V1-5</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">Mini-InternVL-Chat-2B-V1-5</button><button aria-controls="panel-0-0-2" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-2" name="0-2" role="tab" tabindex="-1">Mini-InternVL-Chat-4B-V1-5</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoTokenizer</span><span class="p">,</span> <span class="n">AutoModel</span>
 <span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;OpenGVLab/InternVL-Chat-V1-5&quot;</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">AutoModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
@@ -487,10 +507,32 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
     <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
 </pre></div>
 </div>
+</div><div aria-labelledby="tab-0-0-1" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-1" name="0-1" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoTokenizer</span><span class="p">,</span> <span class="n">AutoModel</span>
+<span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;OpenGVLab/Mini-InternVL-Chat-2B-V1-5&quot;</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+    <span class="n">path</span><span class="p">,</span>
+    <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">,</span>
+    <span class="n">low_cpu_mem_usage</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-0-2" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-2" name="0-2" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoTokenizer</span><span class="p">,</span> <span class="n">AutoModel</span>
+<span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;OpenGVLab/Mini-InternVL-Chat-4B-V1-5&quot;</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+    <span class="n">path</span><span class="p">,</span>
+    <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">,</span>
+    <span class="n">low_cpu_mem_usage</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
+</pre></div>
+</div>
+</div></div>
 </section>
 <section id="bnb-8-bit-quantization">
 <h4>BNB 8-bit Quantization<a class="headerlink" href="#bnb-8-bit-quantization" title="Permalink to this heading">#</a></h4>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-1-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-1-1-0" name="1-0" role="tab" tabindex="0">InternVL-Chat-V1-5</button><button aria-controls="panel-1-1-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-1-1-1" name="1-1" role="tab" tabindex="-1">Mini-InternVL-Chat-2B-V1-5</button><button aria-controls="panel-1-1-2" aria-selected="false" class="sphinx-tabs-tab" id="tab-1-1-2" name="1-2" role="tab" tabindex="-1">Mini-InternVL-Chat-4B-V1-5</button></div><div aria-labelledby="tab-1-1-0" class="sphinx-tabs-panel" id="panel-1-1-0" name="1-0" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoTokenizer</span><span class="p">,</span> <span class="n">AutoModel</span>
 <span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;OpenGVLab/InternVL-Chat-V1-5&quot;</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">AutoModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
@@ -501,17 +543,65 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
     <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
 </pre></div>
 </div>
+</div><div aria-labelledby="tab-1-1-1" class="sphinx-tabs-panel" hidden="true" id="panel-1-1-1" name="1-1" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoTokenizer</span><span class="p">,</span> <span class="n">AutoModel</span>
+<span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;OpenGVLab/Mini-InternVL-Chat-2B-V1-5&quot;</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+    <span class="n">path</span><span class="p">,</span>
+    <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">,</span>
+    <span class="n">load_in_8bit</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">low_cpu_mem_usage</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-1-1-2" class="sphinx-tabs-panel" hidden="true" id="panel-1-1-2" name="1-2" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoTokenizer</span><span class="p">,</span> <span class="n">AutoModel</span>
+<span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;OpenGVLab/Mini-InternVL-Chat-4B-V1-5&quot;</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+    <span class="n">path</span><span class="p">,</span>
+    <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">,</span>
+    <span class="n">load_in_8bit</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">low_cpu_mem_usage</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+</pre></div>
+</div>
+</div></div>
 </section>
 <section id="bnb-4-bit-quantization">
 <h4>BNB 4-bit Quantization<a class="headerlink" href="#bnb-4-bit-quantization" title="Permalink to this heading">#</a></h4>
-<blockquote>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-2-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-2-2-0" name="2-0" role="tab" tabindex="0">InternVL-Chat-V1-5</button><button aria-controls="panel-2-2-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-2-2-1" name="2-1" role="tab" tabindex="-1">Mini-InternVL-Chat-2B-V1-5</button><button aria-controls="panel-2-2-2" aria-selected="false" class="sphinx-tabs-tab" id="tab-2-2-2" name="2-2" role="tab" tabindex="-1">Mini-InternVL-Chat-4B-V1-5</button></div><div aria-labelledby="tab-2-2-0" class="sphinx-tabs-panel" id="panel-2-2-0" name="2-0" role="tabpanel" tabindex="0"><blockquote>
 <div><p><strong>⚠️ Warning:</strong> Due to significant quantization errors with BNB 4-bit quantization on InternViT-6B, the model may produce nonsensical outputs and fail to understand images. Therefore, please avoid using BNB 4-bit quantization.</p>
 </div></blockquote>
+</div><div aria-labelledby="tab-2-2-1" class="sphinx-tabs-panel" hidden="true" id="panel-2-2-1" name="2-1" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoTokenizer</span><span class="p">,</span> <span class="n">AutoModel</span>
+<span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;OpenGVLab/Mini-InternVL-Chat-2B-V1-5&quot;</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+    <span class="n">path</span><span class="p">,</span>
+    <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">,</span>
+    <span class="n">load_in_4bit</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">low_cpu_mem_usage</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-2-2-2" class="sphinx-tabs-panel" hidden="true" id="panel-2-2-2" name="2-2" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoTokenizer</span><span class="p">,</span> <span class="n">AutoModel</span>
+<span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;OpenGVLab/Mini-InternVL-Chat-4B-V1-5&quot;</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+    <span class="n">path</span><span class="p">,</span>
+    <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">,</span>
+    <span class="n">load_in_4bit</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">low_cpu_mem_usage</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+</pre></div>
+</div>
+</div></div>
 </section>
 <section id="multiple-gpus">
 <h4>Multiple GPUs<a class="headerlink" href="#multiple-gpus" title="Permalink to this heading">#</a></h4>
 <p>The reason for writing the code this way is to avoid errors that occur during multi-GPU inference due to tensors not being on the same device. By ensuring that the first and last layers of the large language model (LLM) are on the same device, we prevent such errors.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-3-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-3-3-0" name="3-0" role="tab" tabindex="0">InternVL-Chat-V1-5</button><button aria-controls="panel-3-3-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-3-3-1" name="3-1" role="tab" tabindex="-1">Mini-InternVL-Chat-2B-V1-5</button><button aria-controls="panel-3-3-2" aria-selected="false" class="sphinx-tabs-tab" id="tab-3-3-2" name="3-2" role="tab" tabindex="-1">Mini-InternVL-Chat-4B-V1-5</button></div><div aria-labelledby="tab-3-3-0" class="sphinx-tabs-panel" id="panel-3-3-0" name="3-0" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoTokenizer</span><span class="p">,</span> <span class="n">AutoModel</span>
 
@@ -549,6 +639,83 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
     <span class="n">device_map</span><span class="o">=</span><span class="n">device_map</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
 </pre></div>
 </div>
+</div><div aria-labelledby="tab-3-3-1" class="sphinx-tabs-panel" hidden="true" id="panel-3-3-1" name="3-1" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoTokenizer</span><span class="p">,</span> <span class="n">AutoModel</span>
+
+<span class="k">def</span> <span class="nf">split_model</span><span class="p">(</span><span class="n">model_name</span><span class="p">):</span>
+    <span class="n">device_map</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">world_size</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_count</span><span class="p">()</span>
+    <span class="n">num_layers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Mini-InternVL-2B-V1-5&#39;</span><span class="p">:</span> <span class="mi">24</span><span class="p">,</span> <span class="s1">&#39;Mini-InternVL-4B-V1-5&#39;</span><span class="p">:</span> <span class="mi">32</span><span class="p">,</span> <span class="s1">&#39;InternVL-Chat-V1-5&#39;</span><span class="p">:</span> <span class="mi">48</span><span class="p">}[</span><span class="n">model_name</span><span class="p">]</span>
+    <span class="c1"># Since the first GPU will be used for ViT, treat it as half a GPU.</span>
+    <span class="n">num_layers_per_gpu</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">num_layers</span> <span class="o">/</span> <span class="p">(</span><span class="n">world_size</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">))</span>
+    <span class="n">num_layers_per_gpu</span> <span class="o">=</span> <span class="p">[</span><span class="n">num_layers_per_gpu</span><span class="p">]</span> <span class="o">*</span> <span class="n">world_size</span>
+    <span class="n">num_layers_per_gpu</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">num_layers_per_gpu</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">layer_cnt</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">num_layer</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">num_layers_per_gpu</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_layer</span><span class="p">):</span>
+            <span class="n">device_map</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;language_model.model.layers.</span><span class="si">{</span><span class="n">layer_cnt</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
+            <span class="n">layer_cnt</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">device_map</span><span class="p">[</span><span class="s1">&#39;vision_model&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">device_map</span><span class="p">[</span><span class="s1">&#39;mlp1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">device_map</span><span class="p">[</span><span class="s1">&#39;language_model.model.tok_embeddings&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">device_map</span><span class="p">[</span><span class="s1">&#39;language_model.model.embed_tokens&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">device_map</span><span class="p">[</span><span class="s1">&#39;language_model.output&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">device_map</span><span class="p">[</span><span class="s1">&#39;language_model.model.norm&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">device_map</span><span class="p">[</span><span class="s1">&#39;language_model.lm_head&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">device_map</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;language_model.model.layers.</span><span class="si">{</span><span class="n">num_layers</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">return</span> <span class="n">device_map</span>
+
+<span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;OpenGVLab/Mini-InternVL-Chat-2B-V1-5&quot;</span>
+<span class="n">device_map</span> <span class="o">=</span> <span class="n">split_model</span><span class="p">(</span><span class="s1">&#39;Mini-InternVL-Chat-2B-V1-5&#39;</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+    <span class="n">path</span><span class="p">,</span>
+    <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">,</span>
+    <span class="n">low_cpu_mem_usage</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">device_map</span><span class="o">=</span><span class="n">device_map</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-3-3-2" class="sphinx-tabs-panel" hidden="true" id="panel-3-3-2" name="3-2" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoTokenizer</span><span class="p">,</span> <span class="n">AutoModel</span>
+
+<span class="k">def</span> <span class="nf">split_model</span><span class="p">(</span><span class="n">model_name</span><span class="p">):</span>
+    <span class="n">device_map</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">world_size</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_count</span><span class="p">()</span>
+    <span class="n">num_layers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Mini-InternVL-2B-V1-5&#39;</span><span class="p">:</span> <span class="mi">24</span><span class="p">,</span> <span class="s1">&#39;Mini-InternVL-4B-V1-5&#39;</span><span class="p">:</span> <span class="mi">32</span><span class="p">,</span> <span class="s1">&#39;InternVL-Chat-V1-5&#39;</span><span class="p">:</span> <span class="mi">48</span><span class="p">}[</span><span class="n">model_name</span><span class="p">]</span>
+    <span class="c1"># Since the first GPU will be used for ViT, treat it as half a GPU.</span>
+    <span class="n">num_layers_per_gpu</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">num_layers</span> <span class="o">/</span> <span class="p">(</span><span class="n">world_size</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">))</span>
+    <span class="n">num_layers_per_gpu</span> <span class="o">=</span> <span class="p">[</span><span class="n">num_layers_per_gpu</span><span class="p">]</span> <span class="o">*</span> <span class="n">world_size</span>
+    <span class="n">num_layers_per_gpu</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">num_layers_per_gpu</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">layer_cnt</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">num_layer</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">num_layers_per_gpu</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_layer</span><span class="p">):</span>
+            <span class="n">device_map</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;language_model.model.layers.</span><span class="si">{</span><span class="n">layer_cnt</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
+            <span class="n">layer_cnt</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">device_map</span><span class="p">[</span><span class="s1">&#39;vision_model&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">device_map</span><span class="p">[</span><span class="s1">&#39;mlp1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">device_map</span><span class="p">[</span><span class="s1">&#39;language_model.model.tok_embeddings&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">device_map</span><span class="p">[</span><span class="s1">&#39;language_model.model.embed_tokens&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">device_map</span><span class="p">[</span><span class="s1">&#39;language_model.output&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">device_map</span><span class="p">[</span><span class="s1">&#39;language_model.model.norm&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">device_map</span><span class="p">[</span><span class="s1">&#39;language_model.lm_head&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">device_map</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;language_model.model.layers.</span><span class="si">{</span><span class="n">num_layers</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">return</span> <span class="n">device_map</span>
+
+<span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;OpenGVLab/Mini-InternVL-Chat-4B-V1-5&quot;</span>
+<span class="n">device_map</span> <span class="o">=</span> <span class="n">split_model</span><span class="p">(</span><span class="s1">&#39;Mini-InternVL-Chat-4B-V1-5&#39;</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+    <span class="n">path</span><span class="p">,</span>
+    <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">,</span>
+    <span class="n">low_cpu_mem_usage</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">device_map</span><span class="o">=</span><span class="n">device_map</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+</pre></div>
+</div>
+</div></div>
 </section>
 </section>
 <section id="inference-with-transformers">
@@ -837,7 +1004,7 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Introduction of InternVL-Chat-V1-5</p>
+        <p class="prev-next-title">Introduction of InternVL 1.5 Series</p>
       </div>
     </a>
     <a class="right-next"
@@ -912,7 +1079,7 @@ By InternVL Authors
   
   <div class="footer-item">
     <p class="last-updated">
-  Last updated on Jul 28, 2024.
+  Last updated on Jul 29, 2024.
   <br/>
 </p>
   </div>

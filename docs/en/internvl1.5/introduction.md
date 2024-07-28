@@ -1,4 +1,8 @@
-# Introduction of InternVL-Chat-V1-5
+# Introduction of InternVL 1.5 Series
+
+## InternVL-Chat-V1-5
+
+### Introduction
 
 ![image](./figure1.png)
 
@@ -16,11 +20,31 @@ As illustrated in Figure 3, InternVL 1.5 employs an architecture akin to widely-
 
 During training, we implemented a dynamic resolution strategy, dividing images into tiles of 448 × 448 pixels in sizes ranging from 1 to 12, based on the aspect ratio and resolution of the input images. During testing, this can be zero-shot scaled up to 40 tiles (i.e., 4K resolution). To enhance scalability for high resolution, we simply employed a pixel shuffle operation to reduce the number of visual tokens to one-quarter of the original. Therefore, in our model, a 448 × 448 image is represented by 256 visual tokens.
 
-## Performance
+### Performance
 
 ![performance](./performance1.png)
 
 ![performance](./performance2.png)
+
+## Mini-InternVL-Chat-2B/4B-V1-5
+
+### Introduction
+
+You can run multimodal large models using a 1080Ti now.
+
+We are delighted to introduce Mini-InternVL-Chat series. In the era of large language models, many researchers have started to focus on smaller language models, such as Gemma-2B, Qwen-1.8B, and InternLM2-1.8B. Inspired by their efforts, we have distilled our vision foundation model [InternViT-6B-448px-V1-5](https://huggingface.co/OpenGVLab/InternViT-6B-448px-V1-5) down to 300M and used [InternLM2-Chat-1.8B](https://huggingface.co/internlm/internlm2-chat-1_8b) or [Phi-3-mini-128k-instruct](https://huggingface.co/microsoft/Phi-3-mini-128k-instruct) as our language model. This resulted in a small multimodal model with excellent performance.
+
+As shown in the figure below, we adopted the same model architecture as InternVL 1.5. We simply replaced the original InternViT-6B with InternViT-300M and InternLM2-Chat-20B with InternLM2-Chat-1.8B or Phi-3-mini-128k-instruct. For training, we used the same data as InternVL 1.5 to train this smaller model. Additionally, due to the lower training costs of smaller models, we used a context length of 8K during training.
+
+![mini_internvl](./mini_internvl_arch.png)
+
+From the experimental results, we've observed that our distilled small vision model (InternViT-300M) is well-suited for a smaller language model (1.8B or 3.8B). This combination maximizes efficiency while maintaining impressive performance across various benchmarks, demonstrating the effectiveness of small models in handling complex tasks. Additionally, our small model significantly reduces memory requirements, making it more accessible and efficient for practical use.
+
+### Performance
+
+**Comparison with SoTA models on 16 multimodal benchmarks.** OCR-related benchmarks include: DocVQA test, ChartQA average test, InfographicVQA test, TextVQA val, and OCRBench. General multimodal benchmarks encompass: MME, RealWorldQA, AI2D test, MMMU val, MMBench-EN/CN test, CCBench dev, MMVet, SEED Image, and HallusionBench. Additionally, the math dataset includes MathVista testmini. The MME results we report are the sum of the perception and cognition scores. The results of OCRBench, MMBench, CCBench, and HallusionBench are collected from the OpenCompass leaderboard.
+
+![mini_internvl_performance](./mini_internvl_performance.png)
 
 ## Citation
 

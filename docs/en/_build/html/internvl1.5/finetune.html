@@ -45,15 +45,16 @@
     <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/tabs.js"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'internvl1.5/finetune';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Evaluation of InternVL-Chat-V1-5" href="evaluation.html" />
-    <link rel="prev" title="Quick Start of InternVL-Chat-V1-5" href="quick_start.html" />
+    <link rel="next" title="Evaluation of InternVL 1.5 Series" href="evaluation.html" />
+    <link rel="prev" title="Quick Start of InternVL 1.5 Series" href="quick_start.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-    <meta name="docbuild:last-update" content="Jul 28, 2024"/>
+    <meta name="docbuild:last-update" content="Jul 29, 2024"/>
   </head>
   
   
@@ -440,8 +441,20 @@ document.write(`
 <tr class="row-even"><td><p>InternVL-Chat-V1-5</p></td>
 <td><p>MLLM</p></td>
 <td><p>25.5B</p></td>
-<td><p>🤗 <a class="reference external" href="https://huggingface.co/NousResearch/InternVL-Chat-V1-5">HF link</a></p></td>
+<td><p>🤗 <a class="reference external" href="https://huggingface.co/OpenGVLab/Mini-InternVL-Chat-V1-5">HF link</a></p></td>
 <td class="text-center"><p>48.0 GB</p></td>
+</tr>
+<tr class="row-odd"><td><p>Mini-InternVL-Chat-2B-V1-5</p></td>
+<td><p>MLLM</p></td>
+<td><p>2.2B</p></td>
+<td><p>🤗 <a class="reference external" href="https://huggingface.co/OpenGVLab/Mini-InternVL-Chat-2B-V1-5">HF link</a></p></td>
+<td class="text-center"><p>4.2 GB</p></td>
+</tr>
+<tr class="row-even"><td><p>Mini-InternVL-Chat-4B-V1-5</p></td>
+<td><p>MLLM</p></td>
+<td><p>4.2B</p></td>
+<td><p>🤗 <a class="reference external" href="https://huggingface.co/OpenGVLab/Mini-InternVL-Chat-4B-V1-5">HF link</a></p></td>
+<td class="text-center"><p>7.8 GB</p></td>
 </tr>
 </tbody>
 </table>
@@ -450,10 +463,16 @@ document.write(`
 <span class="c1"># pip install -U huggingface_hub</span>
 <span class="c1"># Download OpenGVLab/InternVL-Chat-V1-5</span>
 huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-download<span class="w"> </span>--local-dir-use-symlinks<span class="w"> </span>False<span class="w"> </span>OpenGVLab/InternVL-Chat-V1-5<span class="w"> </span>--local-dir<span class="w"> </span>InternVL-Chat-V1-5
+<span class="c1"># Download OpenGVLab/Mini-InternVL-Chat-2B-V1-5</span>
+huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-download<span class="w"> </span>--local-dir-use-symlinks<span class="w"> </span>False<span class="w"> </span>OpenGVLab/Mini-InternVL-Chat-2B-V1-5<span class="w"> </span>--local-dir<span class="w"> </span>Mini-InternVL-Chat-2B-V1-5
+<span class="c1"># Download OpenGVLab/Mini-InternVL-Chat-4B-V1-5</span>
+huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-download<span class="w"> </span>--local-dir-use-symlinks<span class="w"> </span>False<span class="w"> </span>OpenGVLab/Mini-InternVL-Chat-4B-V1-5<span class="w"> </span>--local-dir<span class="w"> </span>Mini-InternVL-Chat-4B-V1-5
 </pre></div>
 </div>
 <p>The directory structure is:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pretrained
+├──<span class="w"> </span>Mini-InternVL-Chat-2B-V1-5
+├──<span class="w"> </span>Mini-InternVL-Chat-4B-V1-5
 └──<span class="w"> </span>InternVL-Chat-V1-5
 </pre></div>
 </div>
@@ -490,7 +509,8 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
 </section>
 <section id="start-2nd-fine-tuning">
 <h2>Start 2nd Fine-tuning<a class="headerlink" href="#start-2nd-fine-tuning" title="Permalink to this heading">#</a></h2>
-<p>Fine-tune the pre-trained models using either the <a class="reference external" href="https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/shell/internvl1.5/2nd_finetune/internvl_chat_v1_5_internlm2_20b_dynamic_res_2nd_finetune_full.sh">script for training the full LLM</a>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">InternVL-Chat-V1-5</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">Mini-InternVL-Chat-2B-V1-5</button><button aria-controls="panel-0-0-2" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-2" name="0-2" role="tab" tabindex="-1">Mini-InternVL-Chat-4B-V1-5</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><p>Fine-tune the pre-trained models using either the <a class="reference external" href="https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/shell/internvl1.5/2nd_finetune/internvl_chat_v1_5_internlm2_20b_dynamic_res_2nd_finetune_full.sh">script for training the full LLM</a>
 or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/shell/internvl1.5/2nd_finetune/internvl_chat_v1_5_internlm2_20b_dynamic_res_2nd_finetune_lora.sh">script for training the LoRA adapter</a>, depending on your available GPU resources.</p>
 <p>Before fine-tuning, set the <code class="docutils literal notranslate"><span class="pre">--meta_path</span></code> to the path of the JSON file you created in the previous step. The default pre-trained model path in these shell scripts is <code class="docutils literal notranslate"><span class="pre">./pretrained/InternVL-Chat-V1-5</span></code>.</p>
 <blockquote>
@@ -501,13 +521,50 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 </div></blockquote>
 <p>Commands for fine-tuning:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># Using 8 GPUs, fine-tune the full LLM, cost about 77G per GPU</span>
-<span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>shell/internvl1.5/2nd_finetune/internvl_chat_v1_5_internlm2_20b_dynamic_res_2nd_finetune_full.sh
+<span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span><span class="nv">PER_DEVICE_BATCH_SIZE</span><span class="o">=</span><span class="m">2</span><span class="w"> </span>sh<span class="w"> </span>shell/internvl1.5/2nd_finetune/internvl_chat_v1_5_internlm2_20b_dynamic_res_2nd_finetune_full.sh
 <span class="c1"># Using 2 GPUs, fine-tune the LoRA, cost about 79G per GPU</span>
-<span class="nv">GPUS</span><span class="o">=</span><span class="m">2</span><span class="w"> </span>sh<span class="w"> </span>shell/internvl1.5/2nd_finetune/internvl_chat_v1_5_internlm2_20b_dynamic_res_2nd_finetune_lora.sh
+<span class="nv">GPUS</span><span class="o">=</span><span class="m">2</span><span class="w"> </span><span class="nv">PER_DEVICE_BATCH_SIZE</span><span class="o">=</span><span class="m">2</span><span class="w"> </span>sh<span class="w"> </span>shell/internvl1.5/2nd_finetune/internvl_chat_v1_5_internlm2_20b_dynamic_res_2nd_finetune_lora.sh
 <span class="c1"># Using 8 GPUs, fine-tune the LoRA, cost about 60G per GPU</span>
-<span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>shell/internvl1.5/2nd_finetune/internvl_chat_v1_5_internlm2_20b_dynamic_res_2nd_finetune_lora.sh
+<span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span><span class="nv">PER_DEVICE_BATCH_SIZE</span><span class="o">=</span><span class="m">2</span><span class="w"> </span>sh<span class="w"> </span>shell/internvl1.5/2nd_finetune/internvl_chat_v1_5_internlm2_20b_dynamic_res_2nd_finetune_lora.sh
 </pre></div>
 </div>
+</div><div aria-labelledby="tab-0-0-1" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-1" name="0-1" role="tabpanel" tabindex="0"><p>Fine-tune the pre-trained models using either the <a class="reference external" href="https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/shell/internvl1.5/2nd_finetune/internvl_chat_v1_5_internlm2_1_8b_dynamic_res_2nd_finetune_full.sh">script for training the full LLM</a>
+or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/shell/internvl1.5/2nd_finetune/internvl_chat_v1_5_internlm2_1_8b_dynamic_res_2nd_finetune_lora.sh">script for training the LoRA adapter</a>, depending on your available GPU resources.</p>
+<p>Before fine-tuning, set the <code class="docutils literal notranslate"><span class="pre">--meta_path</span></code> to the path of the JSON file you created in the previous step. The default pre-trained model path in these shell scripts is <code class="docutils literal notranslate"><span class="pre">./pretrained/Mini-InternVL-Chat-2B-V1-5</span></code>.</p>
+<blockquote>
+<div><p>💡 Fine-tuning the full LLM requires at least 8x 32G/40G GPUs, whereas fine-tuning the LoRA requires 2x 32G/40G GPUs.</p>
+</div></blockquote>
+<blockquote>
+<div><p>💡 The number of GPUs and hyperparameters used here are just an example. To achieve optimal results, you may need to adjust these settings based on your available hardware and dataset size.</p>
+</div></blockquote>
+<p>Commands for fine-tuning:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># Using 8 GPUs, fine-tune the full LLM, cost about 30G per GPU</span>
+<span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span><span class="nv">PER_DEVICE_BATCH_SIZE</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>sh<span class="w"> </span>shell/internvl1.5/2nd_finetune/internvl_chat_v1_5_internlm2_1_8b_dynamic_res_2nd_finetune_full.sh
+<span class="c1"># Using 2 GPUs, fine-tune the LoRA, cost about 27G per GPU</span>
+<span class="nv">GPUS</span><span class="o">=</span><span class="m">2</span><span class="w"> </span><span class="nv">PER_DEVICE_BATCH_SIZE</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>sh<span class="w"> </span>shell/internvl1.5/2nd_finetune/internvl_chat_v1_5_internlm2_1_8b_dynamic_res_2nd_finetune_lora.sh
+<span class="c1"># Using 8 GPUs, fine-tune the LoRA, cost about 27G per GPU</span>
+<span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span><span class="nv">PER_DEVICE_BATCH_SIZE</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>sh<span class="w"> </span>shell/internvl1.5/2nd_finetune/internvl_chat_v1_5_internlm2_1_8b_dynamic_res_2nd_finetune_lora.sh
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-0-2" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-2" name="0-2" role="tabpanel" tabindex="0"><p>Fine-tune the pre-trained models using either the <a class="reference external" href="https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/shell/internvl1.5/2nd_finetune/internvl_chat_v1_5_phi3_3_8b_dynamic_res_2nd_finetune_full.sh">script for training the full LLM</a>
+or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/shell/internvl1.5/2nd_finetune/internvl_chat_v1_5_phi3_3_8b_dynamic_res_2nd_finetune_lora.sh">script for training the LoRA adapter</a>, depending on your available GPU resources.</p>
+<p>Before fine-tuning, set the <code class="docutils literal notranslate"><span class="pre">--meta_path</span></code> to the path of the JSON file you created in the previous step. The default pre-trained model path in these shell scripts is <code class="docutils literal notranslate"><span class="pre">./pretrained/Mini-InternVL-Chat-4B-V1-5</span></code>.</p>
+<blockquote>
+<div><p>💡 Fine-tuning the full LLM requires at least 8x 40G GPUs, whereas fine-tuning the LoRA requires 2x 24G GPUs.</p>
+</div></blockquote>
+<blockquote>
+<div><p>💡 The number of GPUs and hyperparameters used here are just an example. To achieve optimal results, you may need to adjust these settings based on your available hardware and dataset size.</p>
+</div></blockquote>
+<p>Commands for fine-tuning:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># Using 8 GPUs, fine-tune the full LLM, cost about 40G per GPU</span>
+<span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span><span class="nv">PER_DEVICE_BATCH_SIZE</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>sh<span class="w"> </span>shell/internvl1.5/2nd_finetune/internvl_chat_v1_5_phi3_3_8b_dynamic_res_2nd_finetune_full.sh
+<span class="c1"># Using 2 GPUs, fine-tune the LoRA, cost about 19G per GPU</span>
+<span class="nv">GPUS</span><span class="o">=</span><span class="m">2</span><span class="w"> </span><span class="nv">PER_DEVICE_BATCH_SIZE</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>sh<span class="w"> </span>shell/internvl1.5/2nd_finetune/internvl_chat_v1_5_phi3_3_8b_dynamic_res_2nd_finetune_lora.sh
+<span class="c1"># Using 8 GPUs, fine-tune the LoRA, cost about 19G per GPU</span>
+<span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span><span class="nv">PER_DEVICE_BATCH_SIZE</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>sh<span class="w"> </span>shell/internvl1.5/2nd_finetune/internvl_chat_v1_5_phi3_3_8b_dynamic_res_2nd_finetune_lora.sh
+</pre></div>
+</div>
+</div></div>
 <p>If you encounter any issues, please let me know, and I will update the training guide to enhance its usability.</p>
 </section>
 <section id="citation">
@@ -549,7 +606,7 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Quick Start of InternVL-Chat-V1-5</p>
+        <p class="prev-next-title">Quick Start of InternVL 1.5 Series</p>
       </div>
     </a>
     <a class="right-next"
@@ -557,7 +614,7 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Evaluation of InternVL-Chat-V1-5</p>
+        <p class="prev-next-title">Evaluation of InternVL 1.5 Series</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -613,7 +670,7 @@ By InternVL Authors
   
   <div class="footer-item">
     <p class="last-updated">
-  Last updated on Jul 28, 2024.
+  Last updated on Jul 29, 2024.
   <br/>
 </p>
   </div>

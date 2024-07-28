@@ -1,6 +1,6 @@
-# Quick Start of InternVL-Chat-V1-5
+# Quick Start of InternVL 1.5 Series
 
-We provide an example code to run InternVL-Chat-V1-5 using `transformers`.
+We provide an example code to run InternVL 1.5 Series using `transformers`.
 
 We also welcome you to experience the InternVL2 series models in our [online demo](https://internvl.opengvlab.com/).
 
@@ -8,9 +8,11 @@ We also welcome you to experience the InternVL2 series models in our [online dem
 
 ## Model Preparation
 
-| model name         | type | param | download                                                             |  size   |
-| ------------------ | ---- | ----- | -------------------------------------------------------------------- | :-----: |
-| InternVL-Chat-V1-5 | MLLM | 25.5B | 🤗 [HF link](https://huggingface.co/NousResearch/InternVL-Chat-V1-5) | 48.0 GB |
+| model name                 | type | param | download                                                                  |  size   |
+| -------------------------- | ---- | ----- | ------------------------------------------------------------------------- | :-----: |
+| InternVL-Chat-V1-5         | MLLM | 25.5B | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL-Chat-V1-5)         | 48.0 GB |
+| Mini-InternVL-Chat-2B-V1-5 | MLLM | 2.2B  | 🤗 [HF link](https://huggingface.co/OpenGVLab/Mini-InternVL-Chat-2B-V1-5) | 4.2 GB  |
+| Mini-InternVL-Chat-4B-V1-5 | MLLM | 4.2B  | 🤗 [HF link](https://huggingface.co/OpenGVLab/Mini-InternVL-Chat-4B-V1-5) | 7.8 GB  |
 
 Please download the above model weights and place them in the `pretrained/` folder.
 
@@ -19,18 +21,28 @@ cd pretrained/
 # pip install -U huggingface_hub
 # Download OpenGVLab/InternVL-Chat-V1-5
 huggingface-cli download --resume-download --local-dir-use-symlinks False OpenGVLab/InternVL-Chat-V1-5 --local-dir InternVL-Chat-V1-5
+# Download OpenGVLab/Mini-InternVL-Chat-2B-V1-5
+huggingface-cli download --resume-download --local-dir-use-symlinks False OpenGVLab/Mini-InternVL-Chat-2B-V1-5 --local-dir Mini-InternVL-Chat-2B-V1-5
+# Download OpenGVLab/Mini-InternVL-Chat-4B-V1-5
+huggingface-cli download --resume-download --local-dir-use-symlinks False OpenGVLab/Mini-InternVL-Chat-4B-V1-5 --local-dir Mini-InternVL-Chat-4B-V1-5
 ```
 
 The directory structure is:
 
 ```sh
 pretrained
+├── Mini-InternVL-Chat-2B-V1-5
+├── Mini-InternVL-Chat-4B-V1-5
 └── InternVL-Chat-V1-5
 ```
 
 ### Model Loading
 
 #### 16-bit (bf16 / fp16)
+
+`````{tabs}
+
+````{tab} InternVL-Chat-V1-5
 
 ```python
 import torch
@@ -42,8 +54,46 @@ model = AutoModel.from_pretrained(
     low_cpu_mem_usage=True,
     trust_remote_code=True).eval().cuda()
 ```
+````
+
+````{tab} Mini-InternVL-Chat-2B-V1-5
+
+```python
+import torch
+from transformers import AutoTokenizer, AutoModel
+path = "OpenGVLab/Mini-InternVL-Chat-2B-V1-5"
+model = AutoModel.from_pretrained(
+    path,
+    torch_dtype=torch.bfloat16,
+    low_cpu_mem_usage=True,
+    trust_remote_code=True).eval().cuda()
+```
+
+````
+
+````{tab} Mini-InternVL-Chat-4B-V1-5
+
+```python
+import torch
+from transformers import AutoTokenizer, AutoModel
+path = "OpenGVLab/Mini-InternVL-Chat-4B-V1-5"
+model = AutoModel.from_pretrained(
+    path,
+    torch_dtype=torch.bfloat16,
+    low_cpu_mem_usage=True,
+    trust_remote_code=True).eval().cuda()
+```
+
+````
+
+`````
 
 #### BNB 8-bit Quantization
+
+`````{tabs}
+
+````{tab} InternVL-Chat-V1-5
+
 
 ```python
 import torch
@@ -57,13 +107,95 @@ model = AutoModel.from_pretrained(
     trust_remote_code=True).eval()
 ```
 
+````
+
+````{tab} Mini-InternVL-Chat-2B-V1-5
+
+
+```python
+import torch
+from transformers import AutoTokenizer, AutoModel
+path = "OpenGVLab/Mini-InternVL-Chat-2B-V1-5"
+model = AutoModel.from_pretrained(
+    path,
+    torch_dtype=torch.bfloat16,
+    load_in_8bit=True,
+    low_cpu_mem_usage=True,
+    trust_remote_code=True).eval()
+```
+
+````
+
+````{tab} Mini-InternVL-Chat-4B-V1-5
+
+
+```python
+import torch
+from transformers import AutoTokenizer, AutoModel
+path = "OpenGVLab/Mini-InternVL-Chat-4B-V1-5"
+model = AutoModel.from_pretrained(
+    path,
+    torch_dtype=torch.bfloat16,
+    load_in_8bit=True,
+    low_cpu_mem_usage=True,
+    trust_remote_code=True).eval()
+```
+
+````
+
+`````
+
 #### BNB 4-bit Quantization
 
+`````{tabs}
+
+````{tab} InternVL-Chat-V1-5
+
 > **⚠️ Warning:** Due to significant quantization errors with BNB 4-bit quantization on InternViT-6B, the model may produce nonsensical outputs and fail to understand images. Therefore, please avoid using BNB 4-bit quantization.
+
+````
+
+````{tab} Mini-InternVL-Chat-2B-V1-5
+
+```python
+import torch
+from transformers import AutoTokenizer, AutoModel
+path = "OpenGVLab/Mini-InternVL-Chat-2B-V1-5"
+model = AutoModel.from_pretrained(
+    path,
+    torch_dtype=torch.bfloat16,
+    load_in_4bit=True,
+    low_cpu_mem_usage=True,
+    trust_remote_code=True).eval()
+```
+
+````
+
+````{tab} Mini-InternVL-Chat-4B-V1-5
+
+```python
+import torch
+from transformers import AutoTokenizer, AutoModel
+path = "OpenGVLab/Mini-InternVL-Chat-4B-V1-5"
+model = AutoModel.from_pretrained(
+    path,
+    torch_dtype=torch.bfloat16,
+    load_in_4bit=True,
+    low_cpu_mem_usage=True,
+    trust_remote_code=True).eval()
+```
+
+````
+
+`````
 
 #### Multiple GPUs
 
 The reason for writing the code this way is to avoid errors that occur during multi-GPU inference due to tensors not being on the same device. By ensuring that the first and last layers of the large language model (LLM) are on the same device, we prevent such errors.
+
+`````{tabs}
+
+````{tab} InternVL-Chat-V1-5
 
 ```python
 import math
@@ -103,6 +235,96 @@ model = AutoModel.from_pretrained(
     trust_remote_code=True,
     device_map=device_map).eval()
 ```
+
+````
+
+````{tab} Mini-InternVL-Chat-2B-V1-5
+
+```python
+import math
+import torch
+from transformers import AutoTokenizer, AutoModel
+
+def split_model(model_name):
+    device_map = {}
+    world_size = torch.cuda.device_count()
+    num_layers = {'Mini-InternVL-2B-V1-5': 24, 'Mini-InternVL-4B-V1-5': 32, 'InternVL-Chat-V1-5': 48}[model_name]
+    # Since the first GPU will be used for ViT, treat it as half a GPU.
+    num_layers_per_gpu = math.ceil(num_layers / (world_size - 0.5))
+    num_layers_per_gpu = [num_layers_per_gpu] * world_size
+    num_layers_per_gpu[0] = math.ceil(num_layers_per_gpu[0] * 0.5)
+    layer_cnt = 0
+    for i, num_layer in enumerate(num_layers_per_gpu):
+        for j in range(num_layer):
+            device_map[f'language_model.model.layers.{layer_cnt}'] = i
+            layer_cnt += 1
+    device_map['vision_model'] = 0
+    device_map['mlp1'] = 0
+    device_map['language_model.model.tok_embeddings'] = 0
+    device_map['language_model.model.embed_tokens'] = 0
+    device_map['language_model.output'] = 0
+    device_map['language_model.model.norm'] = 0
+    device_map['language_model.lm_head'] = 0
+    device_map[f'language_model.model.layers.{num_layers - 1}'] = 0
+
+    return device_map
+
+path = "OpenGVLab/Mini-InternVL-Chat-2B-V1-5"
+device_map = split_model('Mini-InternVL-Chat-2B-V1-5')
+model = AutoModel.from_pretrained(
+    path,
+    torch_dtype=torch.bfloat16,
+    low_cpu_mem_usage=True,
+    trust_remote_code=True,
+    device_map=device_map).eval()
+```
+
+````
+
+````{tab} Mini-InternVL-Chat-4B-V1-5
+
+```python
+import math
+import torch
+from transformers import AutoTokenizer, AutoModel
+
+def split_model(model_name):
+    device_map = {}
+    world_size = torch.cuda.device_count()
+    num_layers = {'Mini-InternVL-2B-V1-5': 24, 'Mini-InternVL-4B-V1-5': 32, 'InternVL-Chat-V1-5': 48}[model_name]
+    # Since the first GPU will be used for ViT, treat it as half a GPU.
+    num_layers_per_gpu = math.ceil(num_layers / (world_size - 0.5))
+    num_layers_per_gpu = [num_layers_per_gpu] * world_size
+    num_layers_per_gpu[0] = math.ceil(num_layers_per_gpu[0] * 0.5)
+    layer_cnt = 0
+    for i, num_layer in enumerate(num_layers_per_gpu):
+        for j in range(num_layer):
+            device_map[f'language_model.model.layers.{layer_cnt}'] = i
+            layer_cnt += 1
+    device_map['vision_model'] = 0
+    device_map['mlp1'] = 0
+    device_map['language_model.model.tok_embeddings'] = 0
+    device_map['language_model.model.embed_tokens'] = 0
+    device_map['language_model.output'] = 0
+    device_map['language_model.model.norm'] = 0
+    device_map['language_model.lm_head'] = 0
+    device_map[f'language_model.model.layers.{num_layers - 1}'] = 0
+
+    return device_map
+
+path = "OpenGVLab/Mini-InternVL-Chat-4B-V1-5"
+device_map = split_model('Mini-InternVL-Chat-4B-V1-5')
+model = AutoModel.from_pretrained(
+    path,
+    torch_dtype=torch.bfloat16,
+    low_cpu_mem_usage=True,
+    trust_remote_code=True,
+    device_map=device_map).eval()
+```
+
+````
+
+`````
 
 ### Inference with Transformers
 

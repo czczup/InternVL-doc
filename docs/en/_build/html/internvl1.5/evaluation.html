@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Evaluation of InternVL-Chat-V1-5 &#8212; internvl</title>
+    <title>Evaluation of InternVL 1.5 Series &#8212; internvl</title>
   
   
   
@@ -49,11 +49,11 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'internvl1.5/evaluation';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Deploy InternVL-Chat-V1-5" href="deployment.html" />
+    <link rel="next" title="Deploy InternVL 1.5 Series" href="deployment.html" />
     <link rel="prev" title="Fine-tune on a Custom Dataset" href="finetune.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-    <meta name="docbuild:last-update" content="Jul 28, 2024"/>
+    <meta name="docbuild:last-update" content="Jul 29, 2024"/>
   </head>
   
   
@@ -398,7 +398,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Evaluation of InternVL-Chat-V1-5</h1>
+    <h1>Evaluation of InternVL 1.5 Series</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -460,9 +460,10 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="evaluation-of-internvl-chat-v1-5">
-<h1>Evaluation of InternVL-Chat-V1-5<a class="headerlink" href="#evaluation-of-internvl-chat-v1-5" title="Permalink to this heading">#</a></h1>
-<p>To evaluate the performance of the InternVL-Chat-V1-5 model across various tasks, follow the instructions for each specific dataset. Ensure that the appropriate number of GPUs is allocated as specified.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="evaluation-of-internvl-1-5-series">
+<h1>Evaluation of InternVL 1.5 Series<a class="headerlink" href="#evaluation-of-internvl-1-5-series" title="Permalink to this heading">#</a></h1>
+<p>To evaluate the performance of the InternVL 1.5 series across various tasks, follow the instructions for each specific dataset. Ensure that the appropriate number of GPUs is allocated as specified.
+The following tests will primarily use <code class="docutils literal notranslate"><span class="pre">InternVL-Chat-V1-5</span></code> as an example.</p>
 <blockquote>
 <div><p>1⃣️ We simultaneously use InternVL and VLMEvalKit repositories for model evaluation. Specifically, the results reported for DocVQA, ChartQA, InfoVQA, TextVQA, MME, AI2D, MMBench, CCBench, MMVet, and SEED-Image were tested using the InternVL repository. OCRBench, RealWorldQA, HallBench, and MathVista were evaluated using the VLMEvalKit.</p>
 </div></blockquote>
@@ -487,8 +488,20 @@ document.write(`
 <tr class="row-even"><td><p>InternVL-Chat-V1-5</p></td>
 <td><p>MLLM</p></td>
 <td><p>25.5B</p></td>
-<td><p>🤗 <a class="reference external" href="https://huggingface.co/NousResearch/InternVL-Chat-V1-5">HF link</a></p></td>
+<td><p>🤗 <a class="reference external" href="https://huggingface.co/OpenGVLab/Mini-InternVL-Chat-V1-5">HF link</a></p></td>
 <td class="text-center"><p>48.0 GB</p></td>
+</tr>
+<tr class="row-odd"><td><p>Mini-InternVL-Chat-2B-V1-5</p></td>
+<td><p>MLLM</p></td>
+<td><p>2.2B</p></td>
+<td><p>🤗 <a class="reference external" href="https://huggingface.co/OpenGVLab/Mini-InternVL-Chat-2B-V1-5">HF link</a></p></td>
+<td class="text-center"><p>4.2 GB</p></td>
+</tr>
+<tr class="row-even"><td><p>Mini-InternVL-Chat-4B-V1-5</p></td>
+<td><p>MLLM</p></td>
+<td><p>4.2B</p></td>
+<td><p>🤗 <a class="reference external" href="https://huggingface.co/OpenGVLab/Mini-InternVL-Chat-4B-V1-5">HF link</a></p></td>
+<td class="text-center"><p>7.8 GB</p></td>
 </tr>
 </tbody>
 </table>
@@ -497,10 +510,16 @@ document.write(`
 <span class="c1"># pip install -U huggingface_hub</span>
 <span class="c1"># Download OpenGVLab/InternVL-Chat-V1-5</span>
 huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-download<span class="w"> </span>--local-dir-use-symlinks<span class="w"> </span>False<span class="w"> </span>OpenGVLab/InternVL-Chat-V1-5<span class="w"> </span>--local-dir<span class="w"> </span>InternVL-Chat-V1-5
+<span class="c1"># Download OpenGVLab/Mini-InternVL-Chat-2B-V1-5</span>
+huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-download<span class="w"> </span>--local-dir-use-symlinks<span class="w"> </span>False<span class="w"> </span>OpenGVLab/Mini-InternVL-Chat-2B-V1-5<span class="w"> </span>--local-dir<span class="w"> </span>Mini-InternVL-Chat-2B-V1-5
+<span class="c1"># Download OpenGVLab/Mini-InternVL-Chat-4B-V1-5</span>
+huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-download<span class="w"> </span>--local-dir-use-symlinks<span class="w"> </span>False<span class="w"> </span>OpenGVLab/Mini-InternVL-Chat-4B-V1-5<span class="w"> </span>--local-dir<span class="w"> </span>Mini-InternVL-Chat-4B-V1-5
 </pre></div>
 </div>
 <p>The directory structure is:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pretrained
+├──<span class="w"> </span>Mini-InternVL-Chat-2B-V1-5
+├──<span class="w"> </span>Mini-InternVL-Chat-4B-V1-5
 └──<span class="w"> </span>InternVL-Chat-V1-5
 </pre></div>
 </div>
@@ -1172,7 +1191,7 @@ RefCOCO‑g test, 89.3
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Deploy InternVL-Chat-V1-5</p>
+        <p class="prev-next-title">Deploy InternVL 1.5 Series</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1265,7 +1284,7 @@ By InternVL Authors
   
   <div class="footer-item">
     <p class="last-updated">
-  Last updated on Jul 28, 2024.
+  Last updated on Jul 29, 2024.
   <br/>
 </p>
   </div>

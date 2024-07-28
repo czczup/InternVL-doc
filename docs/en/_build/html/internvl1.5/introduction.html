@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Introduction of InternVL-Chat-V1-5 &#8212; internvl</title>
+    <title>Introduction of InternVL 1.5 Series &#8212; internvl</title>
   
   
   
@@ -49,11 +49,11 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'internvl1.5/introduction';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Quick Start of InternVL-Chat-V1-5" href="quick_start.html" />
+    <link rel="next" title="Quick Start of InternVL 1.5 Series" href="quick_start.html" />
     <link rel="prev" title="Evaluation Data Preparation" href="../get_started/eval_data_preparation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-    <meta name="docbuild:last-update" content="Jul 28, 2024"/>
+    <meta name="docbuild:last-update" content="Jul 29, 2024"/>
   </head>
   
   
@@ -398,7 +398,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Introduction of InternVL-Chat-V1-5</h1>
+    <h1>Introduction of InternVL 1.5 Series</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -408,7 +408,16 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance">Performance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#internvl-chat-v1-5">InternVL-Chat-V1-5</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performance">Performance</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mini-internvl-chat-2b-4b-v1-5">Mini-InternVL-Chat-2B/4B-V1-5</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Introduction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Performance</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citation">Citation</a></li>
 </ul>
             </nav>
@@ -421,8 +430,12 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="introduction-of-internvl-chat-v1-5">
-<h1>Introduction of InternVL-Chat-V1-5<a class="headerlink" href="#introduction-of-internvl-chat-v1-5" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="introduction-of-internvl-1-5-series">
+<h1>Introduction of InternVL 1.5 Series<a class="headerlink" href="#introduction-of-internvl-1-5-series" title="Permalink to this heading">#</a></h1>
+<section id="internvl-chat-v1-5">
+<h2>InternVL-Chat-V1-5<a class="headerlink" href="#internvl-chat-v1-5" title="Permalink to this heading">#</a></h2>
+<section id="introduction">
+<h3>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h3>
 <p><img alt="image" src="../_images/figure1.png" /></p>
 <p>We introduce InternVL 1.5, an open-source multimodal large language model (MLLM) to bridge the capability gap between open-source and proprietary commercial models in multimodal understanding. We introduce three simple designs:</p>
 <ol class="arabic simple">
@@ -433,10 +446,28 @@ document.write(`
 <p><img alt="image" src="../_images/figure2.png" /></p>
 <p>As illustrated in Figure 3, InternVL 1.5 employs an architecture akin to widely-used open-source MLLMs, specifically the “ViT-MLP-LLM” configuration referenced in various existing studies. Our implementation of this architecture integrates a pre-trained InternViT-6B with a pre-trained InternLM2-20B using a randomly initialized MLP projector.</p>
 <p>During training, we implemented a dynamic resolution strategy, dividing images into tiles of 448 × 448 pixels in sizes ranging from 1 to 12, based on the aspect ratio and resolution of the input images. During testing, this can be zero-shot scaled up to 40 tiles (i.e., 4K resolution). To enhance scalability for high resolution, we simply employed a pixel shuffle operation to reduce the number of visual tokens to one-quarter of the original. Therefore, in our model, a 448 × 448 image is represented by 256 visual tokens.</p>
+</section>
 <section id="performance">
-<h2>Performance<a class="headerlink" href="#performance" title="Permalink to this heading">#</a></h2>
+<h3>Performance<a class="headerlink" href="#performance" title="Permalink to this heading">#</a></h3>
 <p><img alt="performance" src="../_images/performance1.png" /></p>
 <p><img alt="performance" src="../_images/performance2.png" /></p>
+</section>
+</section>
+<section id="mini-internvl-chat-2b-4b-v1-5">
+<h2>Mini-InternVL-Chat-2B/4B-V1-5<a class="headerlink" href="#mini-internvl-chat-2b-4b-v1-5" title="Permalink to this heading">#</a></h2>
+<section id="id1">
+<h3>Introduction<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<p>You can run multimodal large models using a 1080Ti now.</p>
+<p>We are delighted to introduce Mini-InternVL-Chat series. In the era of large language models, many researchers have started to focus on smaller language models, such as Gemma-2B, Qwen-1.8B, and InternLM2-1.8B. Inspired by their efforts, we have distilled our vision foundation model <a class="reference external" href="https://huggingface.co/OpenGVLab/InternViT-6B-448px-V1-5">InternViT-6B-448px-V1-5</a> down to 300M and used <a class="reference external" href="https://huggingface.co/internlm/internlm2-chat-1_8b">InternLM2-Chat-1.8B</a> or <a class="reference external" href="https://huggingface.co/microsoft/Phi-3-mini-128k-instruct">Phi-3-mini-128k-instruct</a> as our language model. This resulted in a small multimodal model with excellent performance.</p>
+<p>As shown in the figure below, we adopted the same model architecture as InternVL 1.5. We simply replaced the original InternViT-6B with InternViT-300M and InternLM2-Chat-20B with InternLM2-Chat-1.8B or Phi-3-mini-128k-instruct. For training, we used the same data as InternVL 1.5 to train this smaller model. Additionally, due to the lower training costs of smaller models, we used a context length of 8K during training.</p>
+<p><img alt="mini_internvl" src="../_images/mini_internvl_arch.png" /></p>
+<p>From the experimental results, we’ve observed that our distilled small vision model (InternViT-300M) is well-suited for a smaller language model (1.8B or 3.8B). This combination maximizes efficiency while maintaining impressive performance across various benchmarks, demonstrating the effectiveness of small models in handling complex tasks. Additionally, our small model significantly reduces memory requirements, making it more accessible and efficient for practical use.</p>
+</section>
+<section id="id2">
+<h3>Performance<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<p><strong>Comparison with SoTA models on 16 multimodal benchmarks.</strong> OCR-related benchmarks include: DocVQA test, ChartQA average test, InfographicVQA test, TextVQA val, and OCRBench. General multimodal benchmarks encompass: MME, RealWorldQA, AI2D test, MMMU val, MMBench-EN/CN test, CCBench dev, MMVet, SEED Image, and HallusionBench. Additionally, the math dataset includes MathVista testmini. The MME results we report are the sum of the perception and cognition scores. The results of OCRBench, MMBench, CCBench, and HallusionBench are collected from the OpenCompass leaderboard.</p>
+<p><img alt="mini_internvl_performance" src="../_images/mini_internvl_performance.png" /></p>
+</section>
 </section>
 <section id="citation">
 <h2>Citation<a class="headerlink" href="#citation" title="Permalink to this heading">#</a></h2>
@@ -485,7 +516,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Quick Start of InternVL-Chat-V1-5</p>
+        <p class="prev-next-title">Quick Start of InternVL 1.5 Series</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -504,7 +535,16 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance">Performance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#internvl-chat-v1-5">InternVL-Chat-V1-5</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performance">Performance</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mini-internvl-chat-2b-4b-v1-5">Mini-InternVL-Chat-2B/4B-V1-5</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Introduction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Performance</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citation">Citation</a></li>
 </ul>
   </nav></div>
@@ -539,7 +579,7 @@ By InternVL Authors
   
   <div class="footer-item">
     <p class="last-updated">
-  Last updated on Jul 28, 2024.
+  Last updated on Jul 29, 2024.
   <br/>
 </p>
   </div>

@@ -1,6 +1,7 @@
-# Evaluation of InternVL-Chat-V1-5
+# Evaluation of InternVL 1.5 Series
 
-To evaluate the performance of the InternVL-Chat-V1-5 model across various tasks, follow the instructions for each specific dataset. Ensure that the appropriate number of GPUs is allocated as specified.
+To evaluate the performance of the InternVL 1.5 series across various tasks, follow the instructions for each specific dataset. Ensure that the appropriate number of GPUs is allocated as specified.
+The following tests will primarily use `InternVL-Chat-V1-5` as an example.
 
 > 1⃣️ We simultaneously use InternVL and VLMEvalKit repositories for model evaluation. Specifically, the results reported for DocVQA, ChartQA, InfoVQA, TextVQA, MME, AI2D, MMBench, CCBench, MMVet, and SEED-Image were tested using the InternVL repository. OCRBench, RealWorldQA, HallBench, and MathVista were evaluated using the VLMEvalKit.
 
@@ -10,9 +11,11 @@ To evaluate the performance of the InternVL-Chat-V1-5 model across various tasks
 
 ## Model Preparation
 
-| model name         | type | param | download                                                             |  size   |
-| ------------------ | ---- | ----- | -------------------------------------------------------------------- | :-----: |
-| InternVL-Chat-V1-5 | MLLM | 25.5B | 🤗 [HF link](https://huggingface.co/NousResearch/InternVL-Chat-V1-5) | 48.0 GB |
+| model name                 | type | param | download                                                                  |  size   |
+| -------------------------- | ---- | ----- | ------------------------------------------------------------------------- | :-----: |
+| InternVL-Chat-V1-5         | MLLM | 25.5B | 🤗 [HF link](https://huggingface.co/OpenGVLab/Mini-InternVL-Chat-V1-5)    | 48.0 GB |
+| Mini-InternVL-Chat-2B-V1-5 | MLLM | 2.2B  | 🤗 [HF link](https://huggingface.co/OpenGVLab/Mini-InternVL-Chat-2B-V1-5) | 4.2 GB  |
+| Mini-InternVL-Chat-4B-V1-5 | MLLM | 4.2B  | 🤗 [HF link](https://huggingface.co/OpenGVLab/Mini-InternVL-Chat-4B-V1-5) | 7.8 GB  |
 
 Before evaluation, download the trained model we provide.
 
@@ -21,12 +24,18 @@ cd pretrained/
 # pip install -U huggingface_hub
 # Download OpenGVLab/InternVL-Chat-V1-5
 huggingface-cli download --resume-download --local-dir-use-symlinks False OpenGVLab/InternVL-Chat-V1-5 --local-dir InternVL-Chat-V1-5
+# Download OpenGVLab/Mini-InternVL-Chat-2B-V1-5
+huggingface-cli download --resume-download --local-dir-use-symlinks False OpenGVLab/Mini-InternVL-Chat-2B-V1-5 --local-dir Mini-InternVL-Chat-2B-V1-5
+# Download OpenGVLab/Mini-InternVL-Chat-4B-V1-5
+huggingface-cli download --resume-download --local-dir-use-symlinks False OpenGVLab/Mini-InternVL-Chat-4B-V1-5 --local-dir Mini-InternVL-Chat-4B-V1-5
 ```
 
 The directory structure is:
 
 ```sh
 pretrained
+├── Mini-InternVL-Chat-2B-V1-5
+├── Mini-InternVL-Chat-4B-V1-5
 └── InternVL-Chat-V1-5
 ```
 
