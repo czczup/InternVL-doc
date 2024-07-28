@@ -433,11 +433,11 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multimodal-benchmarks">MultiModal Benchmarks</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mme">MME</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mmbench-dev-test">MMBench dev &amp; test</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mmbench-ccbench">MMBench &amp; CCBench</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pope">POPE</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mmmu">MMMU</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tiny-lvlm">Tiny LVLM</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mm-vet">MM-Vet</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mmvet">MMVet</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mmvp">MMVP</a></li>
 </ul>
 </li>
@@ -465,8 +465,7 @@ document.write(`
 <blockquote>
 <div><p>COCO images are used in VQAv2/OK-VQA/RefCOCO/RefCOCO+/RefCOCOg. Make sure you have already downloaded COCO images before evaluating on these benchmarks.</p>
 </div></blockquote>
-<details open>
-<summary>Data Preparation</summary>
+<p>Follow the instructions below to prepare the data：</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>data/coco<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/coco
 
 <span class="c1"># download coco images</span>
@@ -482,18 +481,20 @@ wget<span class="w"> </span>https://github.com/OpenGVLab/InternVL/releases/downl
 <span class="nb">cd</span><span class="w"> </span>../../../
 </pre></div>
 </div>
-</details>
-<details open>
-<summary>Evaluation</summary>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>&lt;checkpoint&gt;<span class="w"> </span>caption-coco<span class="w"> </span><span class="o">[</span>--dynamic<span class="o">]</span><span class="w"> </span><span class="o">[</span>--max-num<span class="w"> </span><span class="m">6</span><span class="o">]</span>
+<p>After preparation is complete, the directory structure is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>data/coco
+├── annotations
+│   ├── coco_karpathy_test.json
+│   └── coco_karpathy_test_gt.json
+├── train2014
+├── val2014
+└── test2015
 </pre></div>
 </div>
-</details>
 </section>
 <section id="flickr30k-karpathy-test">
 <h3>Flickr30K Karpathy test<a class="headerlink" href="#flickr30k-karpathy-test" title="Permalink to this heading">#</a></h3>
-<details open>
-<summary>Data Preparation</summary>
+<p>Follow the instructions below to prepare the data：</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>data/flickr30k<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/flickr30k
 
 <span class="c1"># download images from https://bryanplummer.com/Flickr30kEntities/</span>
@@ -506,18 +507,17 @@ wget<span class="w"> </span>https://github.com/OpenGVLab/InternVL/releases/downl
 <span class="nb">cd</span><span class="w"> </span>../..
 </pre></div>
 </div>
-</details>
-<details open>
-<summary>Evaluation</summary>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>&lt;checkpoint&gt;<span class="w"> </span>caption-flickr30k<span class="w"> </span><span class="o">[</span>--dynamic<span class="o">]</span><span class="w"> </span><span class="o">[</span>--max-num<span class="w"> </span><span class="m">6</span><span class="o">]</span>
+<p>After preparation is complete, the directory structure is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>data/flickr30k
+├── Images
+├── flickr30k_test_karpathy.txt
+└── flickr30k_test_karpathy.json
 </pre></div>
 </div>
-</details>
 </section>
 <section id="nocaps-val">
 <h3>NoCaps val<a class="headerlink" href="#nocaps-val" title="Permalink to this heading">#</a></h3>
-<details open>
-<summary>Data Preparation</summary>
+<p>Follow the instructions below to prepare the data：</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>data/nocaps<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/nocaps
 
 <span class="c1"># download images from https://nocaps.org/download</span>
@@ -527,21 +527,19 @@ wget<span class="w"> </span>https://nocaps.s3.amazonaws.com/nocaps_val_4500_capt
 <span class="nb">cd</span><span class="w"> </span>../..
 </pre></div>
 </div>
-</details>
-<details open>
-<summary>Evaluation</summary>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>&lt;checkpoint&gt;<span class="w"> </span>caption-nocaps<span class="w"> </span><span class="o">[</span>--dynamic<span class="o">]</span><span class="w"> </span><span class="o">[</span>--max-num<span class="w"> </span><span class="m">6</span><span class="o">]</span>
+<p>After preparation is complete, the directory structure is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>data/nocaps
+├── images
+└── nocaps_val_4500_captions.json
 </pre></div>
 </div>
-</details>
 </section>
 </section>
 <section id="general-vqa-benchmarks">
 <h2>General VQA Benchmarks<a class="headerlink" href="#general-vqa-benchmarks" title="Permalink to this heading">#</a></h2>
 <section id="vqav2-val-test-dev">
 <h3>VQAv2 val &amp; test-dev<a class="headerlink" href="#vqav2-val-test-dev" title="Permalink to this heading">#</a></h3>
-<details open>
-<summary>Data Preparation</summary>
+<p>Follow the instructions below to prepare the data：</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>data/vqav2<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/vqav2
 
 <span class="c1"># make sure you have downloaded COCO images</span>
@@ -564,22 +562,27 @@ wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Q
 <span class="nb">cd</span><span class="w"> </span>../..
 </pre></div>
 </div>
-</details>
-<details open>
-<summary>Evaluation</summary>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># VQAv2-val</span>
-<span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>&lt;checkpoint&gt;<span class="w"> </span>vqa-vqav2-val<span class="w"> </span><span class="o">[</span>--dynamic<span class="o">]</span><span class="w"> </span><span class="o">[</span>--max-num<span class="w"> </span><span class="m">6</span><span class="o">]</span>
-<span class="c1"># VQAv2-testdev</span>
-<span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>&lt;checkpoint&gt;<span class="w"> </span>vqa-vqav2-testdev<span class="w"> </span><span class="o">[</span>--dynamic<span class="o">]</span><span class="w"> </span><span class="o">[</span>--max-num<span class="w"> </span><span class="m">6</span><span class="o">]</span>
+<p>After preparation is complete, the directory structure is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>data/vqav2
+├── train2014 -&gt; ../coco/train2014
+├── val2014 -&gt; ../coco/val2014
+├── test2015 -&gt; ../coco/test2015
+├── v2_mscoco_train2014_annotations.json
+├── v2_mscoco_train2014_complementary_pairs.json
+├── v2_mscoco_val2014_annotations.json
+├── v2_OpenEnded_mscoco_test2015_questions.json
+├── v2_OpenEnded_mscoco_test-dev2015_questions.json
+├── v2_OpenEnded_mscoco_train2014_questions.json
+├── v2_OpenEnded_mscoco_val2014_questions.json
+├── vqav2_testdev.jsonl
+├── vqav2_train.jsonl
+└── vqav2_val.jsonl
 </pre></div>
 </div>
-<p>For the testdev set, submit the results to the <a class="reference external" href="https://eval.ai/web/challenges/challenge-page/830/my-submission">evaluation server</a>.</p>
-</details>
 </section>
 <section id="okvqa-val">
 <h3>OKVQA val<a class="headerlink" href="#okvqa-val" title="Permalink to this heading">#</a></h3>
-<details open>
-<summary>Data Preparation</summary>
+<p>Follow the instructions below to prepare the data：</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>data/okvqa<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/okvqa
 
 <span class="c1"># make sure you have downloaded COCO images</span>
@@ -599,18 +602,22 @@ wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Q
 <span class="nb">cd</span><span class="w"> </span>../..
 </pre></div>
 </div>
-</details>
-<details open>
-<summary>Evaluation</summary>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>&lt;checkpoint&gt;<span class="w"> </span>vqa-okvqa-val<span class="w"> </span><span class="o">[</span>--dynamic<span class="o">]</span><span class="w"> </span><span class="o">[</span>--max-num<span class="w"> </span><span class="m">6</span><span class="o">]</span>
+<p>After preparation is complete, the directory structure is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>data/okvqa
+├── mscoco_train2014_annotations.json
+├── mscoco_val2014_annotations.json
+├── okvqa_train.jsonl
+├── okvqa_val.jsonl
+├── OpenEnded_mscoco_train2014_questions.json
+├── OpenEnded_mscoco_val2014_questions.json
+├── test2014 -&gt; ../coco/test2014
+└── val2014 -&gt; ../coco/val2014
 </pre></div>
 </div>
-</details>
 </section>
 <section id="textvqa-val">
 <h3>TextVQA val<a class="headerlink" href="#textvqa-val" title="Permalink to this heading">#</a></h3>
-<details open>
-<summary>Data Preparation</summary>
+<p>Follow the instructions below to prepare the data：</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>data/textvqa<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/textvqa
 
 <span class="c1"># download images</span>
@@ -628,21 +635,25 @@ wget<span class="w"> </span>https://huggingface.co/OpenGVLab/InternVL/raw/main/t
 <span class="nb">cd</span><span class="w"> </span>../..
 </pre></div>
 </div>
-</details>
-<details open>
-<summary>Evaluation</summary>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># without ocr tokens</span>
-<span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>&lt;checkpoint&gt;<span class="w"> </span>vqa-textvqa-val<span class="w"> </span><span class="o">[</span>--dynamic<span class="o">]</span><span class="w"> </span><span class="o">[</span>--max-num<span class="w"> </span><span class="m">12</span><span class="o">]</span>
-<span class="c1"># with ocr tokens (hint: LLaVA use ocr tokens)</span>
-<span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>&lt;checkpoint&gt;<span class="w"> </span>vqa-textvqa-val-ocr<span class="w"> </span><span class="o">[</span>--dynamic<span class="o">]</span><span class="w"> </span><span class="o">[</span>--max-num<span class="w"> </span><span class="m">12</span><span class="o">]</span>
+<p>After preparation is complete, the directory structure is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>data/textvqa
+├── TextVQA_Rosetta_OCR_v0.2_test.json
+├── TextVQA_Rosetta_OCR_v0.2_train.json
+├── TextVQA_Rosetta_OCR_v0.2_val.json
+├── textvqa_train_annotations.json
+├── textvqa_train.jsonl
+├── textvqa_train_questions.json
+├── textvqa_val_annotations.json
+├── textvqa_val.jsonl
+├── textvqa_val_llava.jsonl
+├── textvqa_val_questions.json
+└── train_images
 </pre></div>
 </div>
-</details>
 </section>
 <section id="vizwiz-val-test">
 <h3>VizWiz val &amp; test<a class="headerlink" href="#vizwiz-val-test" title="Permalink to this heading">#</a></h3>
-<details open>
-<summary>Data Preparation</summary>
+<p>Follow the instructions below to prepare the data：</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>data/vizwiz<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/vizwiz
 
 <span class="c1"># download images</span>
@@ -667,22 +678,25 @@ wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Q
 <span class="nb">cd</span><span class="w"> </span>../..
 </pre></div>
 </div>
-</details>
-<details open>
-<summary>Evaluation</summary>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># VizWiz val</span>
-<span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>&lt;checkpoint&gt;<span class="w"> </span>vqa-vizwiz-val<span class="w"> </span><span class="o">[</span>--dynamic<span class="o">]</span><span class="w"> </span><span class="o">[</span>--max-num<span class="w"> </span><span class="m">6</span><span class="o">]</span>
-<span class="c1"># VizWiz test</span>
-<span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>&lt;checkpoint&gt;<span class="w"> </span>vqa-vizwiz-test<span class="w"> </span><span class="o">[</span>--dynamic<span class="o">]</span><span class="w"> </span><span class="o">[</span>--max-num<span class="w"> </span><span class="m">6</span><span class="o">]</span>
+<p>After preparation is complete, the directory structure is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>data/vizwiz
+├── annotations
+├── test
+├── train
+├── val
+├── vizwiz_test.jsonl
+├── vizwiz_train_annotations.json
+├── vizwiz_train.jsonl
+├── vizwiz_train_questions.json
+├── vizwiz_val_annotations.json
+├── vizwiz_val.jsonl
+└── vizwiz_val_questions.json
 </pre></div>
 </div>
-<p>For the test set, submit the results to the <a class="reference external" href="https://eval.ai/web/challenges/challenge-page/2185/overview">evaluation server</a>.</p>
-</details>
 </section>
 <section id="docvqa-val-test">
 <h3>DocVQA val &amp; test<a class="headerlink" href="#docvqa-val-test" title="Permalink to this heading">#</a></h3>
-<details open>
-<summary>Data Preparation</summary>
+<p>Follow the instructions below to prepare the data：</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>data/docvqa<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/docvqa
 
 <span class="c1"># download images and annotations</span>
@@ -703,51 +717,45 @@ wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Q
 </pre></div>
 </div>
 <p>After preparation is complete, the directory structure is:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>data
- ├── docvqa
- │   ├── test
- │   ├── test.jsonl
- │   ├── train
- │   ├── train.jsonl
- │   ├── val
- │   └── val.jsonl
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>data/docvqa
+├── test
+├── test.jsonl
+├── train
+├── train.jsonl
+├── val
+└── val.jsonl
 </pre></div>
 </div>
-</details>
-<details open>
-<summary>Evaluation</summary>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># DocVQA-val</span>
-<span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>&lt;checkpoint&gt;<span class="w"> </span>vqa-docvqa-val<span class="w"> </span><span class="o">[</span>--dynamic<span class="o">]</span><span class="w"> </span><span class="o">[</span>--max-num<span class="w"> </span><span class="m">18</span><span class="o">]</span>
-<span class="c1"># DocVQA-test</span>
-<span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>&lt;checkpoint&gt;<span class="w"> </span>vqa-docvqa-test<span class="w"> </span><span class="o">[</span>--dynamic<span class="o">]</span><span class="w"> </span><span class="o">[</span>--max-num<span class="w"> </span><span class="m">18</span><span class="o">]</span>
-</pre></div>
-</div>
-<p>For the test set, submit the results to the <a class="reference external" href="https://rrc.cvc.uab.es/?ch=17">evaluation server</a>.</p>
-</details>
 </section>
 <section id="infovqa-val-test">
 <h3>InfoVQA val &amp; test<a class="headerlink" href="#infovqa-val-test" title="Permalink to this heading">#</a></h3>
-<details open>
-<summary>Data Preparation</summary>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>TODO
+<p>Follow the instructions below to prepare the data：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>data/infographicsvqa<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/infographicsvqa
+
+<span class="c1"># download images and annotations from https://rrc.cvc.uab.es/?ch=17&amp;com=downloads</span>
+<span class="c1"># infographicsVQA_test_v1.0.json, infographicsVQA_val_v1.0_withQT.json, infographicVQA_train_v1.0.json</span>
+
+<span class="c1"># download converted files</span>
+wget<span class="w"> </span>https://huggingface.co/OpenGVLab/InternVL/raw/main/infographicsvqa_val.jsonl<span class="w"> </span>-O<span class="w"> </span>val.jsonl
+wget<span class="w"> </span>https://huggingface.co/OpenGVLab/InternVL/raw/main/infographicsvqa_test.jsonl<span class="w"> </span>-O<span class="w"> </span>test.jsonl
+
+<span class="nb">cd</span><span class="w"> </span>../..
 </pre></div>
 </div>
-</details>
-<details open>
-<summary>Evaluation</summary>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># InfoVQA-val</span>
-<span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>&lt;checkpoint&gt;<span class="w"> </span>vqa-infovqa-val<span class="w"> </span><span class="o">[</span>--dynamic<span class="o">]</span><span class="w"> </span><span class="o">[</span>--max-num<span class="w"> </span><span class="m">24</span><span class="o">]</span>
-<span class="c1"># InfoVQA-test</span>
-<span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>&lt;checkpoint&gt;<span class="w"> </span>vqa-infovqa-test<span class="w"> </span><span class="o">[</span>--dynamic<span class="o">]</span><span class="w"> </span><span class="o">[</span>--max-num<span class="w"> </span><span class="m">24</span><span class="o">]</span>
+<p>After preparation is complete, the directory structure is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>data/infographicsvqa
+├── infographicsvqa_images
+├── infographicsVQA_test_v1.0.json
+├── infographicsVQA_val_v1.0_withQT.json
+├── infographicVQA_train_v1.0.json
+├── test.jsonl
+└── val.jsonl
 </pre></div>
 </div>
-<p>For the test set, submit the results to the <a class="reference external" href="https://rrc.cvc.uab.es/?ch=17">evaluation server</a>.</p>
-</details>
 </section>
 <section id="chartqa-test-human-test-augmented">
 <h3>ChartQA test-human &amp; test-augmented<a class="headerlink" href="#chartqa-test-human-test-augmented" title="Permalink to this heading">#</a></h3>
-<details open>
-<summary>Data Preparation</summary>
+<p>Follow the instructions below to prepare the data：</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>data/chartqa<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/chartqa
 
 <span class="c1"># download images from https://drive.google.com/file/d/1Lm_w6zeET1Hyl_9ks6w5nEsgpoyPHalV/view</span>
@@ -761,19 +769,22 @@ wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Q
 <span class="nb">cd</span><span class="w"> </span>../..
 </pre></div>
 </div>
-</details>
-<details open>
-<summary>Evaluation</summary>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># test both ChartQA-test-human &amp; ChartQA-test-augmented</span>
-<span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>&lt;checkpoint&gt;<span class="w"> </span>vqa-chartqa-test<span class="w"> </span><span class="o">[</span>--dynamic<span class="o">]</span><span class="w"> </span><span class="o">[</span>--max-num<span class="w"> </span><span class="m">6</span><span class="o">]</span>
+<p>After preparation is complete, the directory structure is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>data/chartqa
+ ├── ChartQA Dataset
+ │    ├── test
+ │    ├── train
+ │    └── val
+ ├── test_augmented.jsonl
+ ├── test_human.jsonl
+ ├── train_augmented.jsonl
+ └── train_human.jsonl
 </pre></div>
 </div>
-</details>
 </section>
 <section id="gqa-testdev">
 <h3>GQA testdev<a class="headerlink" href="#gqa-testdev" title="Permalink to this heading">#</a></h3>
-<details open>
-<summary>Data Preparation</summary>
+<p>Follow the instructions below to prepare the data：</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>data/gqa<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/gqa
 
 <span class="c1"># download images</span>
@@ -788,18 +799,33 @@ wget<span class="w"> </span>https://github.com/OpenGVLab/InternVL/releases/downl
 <span class="nb">cd</span><span class="w"> </span>../..
 </pre></div>
 </div>
-</details>
-<details open>
-<summary>Evaluation</summary>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>&lt;checkpoint&gt;<span class="w"> </span>vqa-gqa-testdev<span class="w"> </span><span class="o">[</span>--dynamic<span class="o">]</span><span class="w"> </span><span class="o">[</span>--max-num<span class="w"> </span><span class="m">6</span><span class="o">]</span>
+<p>After preparation is complete, the directory structure is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>data/gqa
+├── challenge_all_questions.json
+├── challenge_balanced_questions.json
+├── eval.py
+├── images
+├── llava_gqa_testdev_balanced_qwen_format.jsonl
+├── readme.txt
+├── submission_all_questions.json
+├── test_all_questions.json
+├── test_balanced.jsonl
+├── test_balanced_questions.json
+├── testdev_all_questions.json
+├── testdev_balanced_all_questions.json
+├── testdev_balanced_predictions.json
+├── testdev_balanced_questions.json
+├── train_all_questions
+├── train_balanced.jsonl
+├── train_balanced_questions.json
+├── val_all_questions.json
+└── val_balanced_questions.json
 </pre></div>
 </div>
-</details>
 </section>
 <section id="ocrvqa-val-test">
 <h3>OCRVQA val &amp; test<a class="headerlink" href="#ocrvqa-val-test" title="Permalink to this heading">#</a></h3>
-<details open>
-<summary>Data Preparation</summary>
+<p>Follow the instructions below to prepare the data：</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>data/ocrvqa<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/ocrvqa
 
 <span class="c1"># download images by following instructions at https://ocr-vqa.github.io/kvqa_ProjectFiles/README.txt</span>
@@ -812,21 +838,18 @@ wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Q
 <span class="nb">cd</span><span class="w"> </span>../..
 </pre></div>
 </div>
-</details>
-<details open>
-<summary>Evaluation</summary>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># OCRVQA-val</span>
-<span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>&lt;checkpoint&gt;<span class="w"> </span>vqa-ocrvqa-val<span class="w"> </span><span class="o">[</span>--dynamic<span class="o">]</span><span class="w"> </span><span class="o">[</span>--max-num<span class="w"> </span><span class="m">6</span><span class="o">]</span>
-<span class="c1"># OCRVQA-test</span>
-<span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>&lt;checkpoint&gt;<span class="w"> </span>vqa-ocrvqa-test<span class="w"> </span><span class="o">[</span>--dynamic<span class="o">]</span><span class="w"> </span><span class="o">[</span>--max-num<span class="w"> </span><span class="m">6</span><span class="o">]</span>
+<p>After preparation is complete, the directory structure is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>data/ocrvqa
+├── images
+├── ocrvqa_test.jsonl
+├── ocrvqa_train.jsonl
+└── ocrvqa_val.jsonl
 </pre></div>
 </div>
-</details>
 </section>
 <section id="ai2d-test">
 <h3>AI2D test<a class="headerlink" href="#ai2d-test" title="Permalink to this heading">#</a></h3>
-<details open>
-<summary>Data Preparation</summary>
+<p>Follow the instructions below to prepare the data：</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>data/ai2diagram<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/ai2diagram
 <span class="c1"># download converted files</span>
 wget<span class="w"> </span>https://huggingface.co/OpenGVLab/InternVL/raw/main/ai2d_test_vlmevalkit.jsonl<span class="w"> </span>-O<span class="w"> </span>test_vlmevalkit.jsonl
@@ -838,18 +861,19 @@ wget<span class="w"> </span>https://huggingface.co/OpenGVLab/InternVL/resolve/ma
 <span class="nb">cd</span><span class="w"> </span>../..
 </pre></div>
 </div>
-</details>
-<details open>
-<summary>Evaluation</summary>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>&lt;checkpoint&gt;<span class="w"> </span>vqa-ai2d-test<span class="w"> </span><span class="o">[</span>--dynamic<span class="o">]</span><span class="w"> </span><span class="o">[</span>--max-num<span class="w"> </span><span class="m">6</span><span class="o">]</span>
+<p>After preparation is complete, the directory structure is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>data/ai2diagram
+ ├── test_vlmevalkit.jsonl
+ ├── ai2d # (optional)
+ │    ├── abc_images
+ │    └── images
+ └── AI2D_TEST
 </pre></div>
 </div>
-</details>
 </section>
 <section id="scienceqa-test">
 <h3>ScienceQA test<a class="headerlink" href="#scienceqa-test" title="Permalink to this heading">#</a></h3>
-<details open>
-<summary>Data Preparation</summary>
+<p>Follow the instructions below to prepare the data：</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>data/scienceqa/images<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/scienceqa/images
 
 <span class="c1"># download images</span>
@@ -866,21 +890,20 @@ wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Q
 <span class="nb">cd</span><span class="w"> </span>../..
 </pre></div>
 </div>
-</details>
-<details open>
-<summary>Evaluation</summary>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>&lt;checkpoint&gt;<span class="w"> </span>scienceqa<span class="w"> </span><span class="o">[</span>--dynamic<span class="o">]</span><span class="w"> </span><span class="o">[</span>--max-num<span class="w"> </span><span class="m">6</span><span class="o">]</span>
+<p>After preparation is complete, the directory structure is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>data/scienceqa
+├── images
+├── problems.json
+└── scienceqa_test_img.jsonl
 </pre></div>
 </div>
-</details>
 </section>
 </section>
 <section id="refer-expression-comprehension">
 <h2>Refer Expression Comprehension<a class="headerlink" href="#refer-expression-comprehension" title="Permalink to this heading">#</a></h2>
 <section id="refcoco-refcoco-refcoco-g">
 <h3>RefCOCO/RefCOCO+/RefCOCO-g<a class="headerlink" href="#refcoco-refcoco-refcoco-g" title="Permalink to this heading">#</a></h3>
-<details open>
-<summary>Data Preparation</summary>
+<p>Follow the instructions below to prepare the data：</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>data/refcoco<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/refcoco
 
 <span class="c1"># download converted files</span>
@@ -896,21 +919,25 @@ wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Q
 <span class="nb">cd</span><span class="w"> </span>../..
 </pre></div>
 </div>
-</details>
-<details open>
-<summary>Evaluation</summary>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>&lt;checkpoint&gt;<span class="w"> </span>refcoco<span class="w"> </span><span class="o">[</span>--dynamic<span class="o">]</span><span class="w"> </span><span class="o">[</span>--max-num<span class="w"> </span><span class="m">6</span><span class="o">]</span>
+<p>After preparation is complete, the directory structure is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>data/refcoco
+├── refcocog_test.jsonl
+├── refcocog_val.jsonl
+├── refcoco_testA.jsonl
+├── refcoco+_testA.jsonl
+├── refcoco_testB.jsonl
+├── refcoco+_testB.jsonl
+├── refcoco_val.jsonl
+└── refcoco+_val.jsonl
 </pre></div>
 </div>
-</details>
 </section>
 </section>
 <section id="multimodal-benchmarks">
 <h2>MultiModal Benchmarks<a class="headerlink" href="#multimodal-benchmarks" title="Permalink to this heading">#</a></h2>
 <section id="mme">
 <h3>MME<a class="headerlink" href="#mme" title="Permalink to this heading">#</a></h3>
-<details open>
-<summary>Data Preparation</summary>
+<p>Follow the instructions below to prepare the data：</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>data/mme<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/mme
 
 <span class="c1"># 1. Download the data following the official instructions [here](https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models/tree/Evaluation).</span>
@@ -919,19 +946,15 @@ wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Q
 <span class="nb">cd</span><span class="w"> </span>../..
 </pre></div>
 </div>
-</details>
-<details open>
-<summary>Evaluation</summary>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># single GPU testing</span>
-<span class="nv">CUDA_VISIBLE_DEVICES</span><span class="o">=</span><span class="m">0</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>&lt;checkpoint&gt;<span class="w"> </span>mme<span class="w"> </span><span class="o">[</span>--dynamic<span class="o">]</span><span class="w"> </span><span class="o">[</span>--max-num<span class="w"> </span><span class="m">6</span><span class="o">]</span>
+<p>After preparation is complete, the directory structure is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>data/mme
+ └── MME_Benchmark_release_version
 </pre></div>
 </div>
-</details>
 </section>
-<section id="mmbench-dev-test">
-<h3>MMBench dev &amp; test<a class="headerlink" href="#mmbench-dev-test" title="Permalink to this heading">#</a></h3>
-<details open>
-<summary>Data Preparation</summary>
+<section id="mmbench-ccbench">
+<h3>MMBench &amp; CCBench<a class="headerlink" href="#mmbench-ccbench" title="Permalink to this heading">#</a></h3>
+<p>Follow the instructions below to prepare the data：</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>data/mmbench<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/mmbench
 
 <span class="c1"># download csv files of mmbench</span>
@@ -945,28 +968,21 @@ wget<span class="w"> </span>https://download.openmmlab.com/mmclassification/data
 <span class="nb">cd</span><span class="w"> </span>../..
 </pre></div>
 </div>
-</details>
-<details open>
-<summary>Evaluation</summary>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># mmbench_dev_20230712</span>
-<span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>&lt;checkpoint&gt;<span class="w"> </span>mmbench-dev-en<span class="w"> </span><span class="o">[</span>--dynamic<span class="o">]</span><span class="w"> </span><span class="o">[</span>--max-num<span class="w"> </span><span class="m">6</span><span class="o">]</span>
-<span class="c1"># mmbench_dev_cn_20231003</span>
-<span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>&lt;checkpoint&gt;<span class="w"> </span>mmbench-dev-cn<span class="w"> </span><span class="o">[</span>--dynamic<span class="o">]</span><span class="w"> </span><span class="o">[</span>--max-num<span class="w"> </span><span class="m">6</span><span class="o">]</span>
-<span class="c1"># mmbench_test_en_20231003</span>
-<span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>&lt;checkpoint&gt;<span class="w"> </span>mmbench-test-en<span class="w"> </span><span class="o">[</span>--dynamic<span class="o">]</span><span class="w"> </span><span class="o">[</span>--max-num<span class="w"> </span><span class="m">6</span><span class="o">]</span>
-<span class="c1"># mmbench_test_cn_20231003</span>
-<span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>&lt;checkpoint&gt;<span class="w"> </span>mmbench-test-cn<span class="w"> </span><span class="o">[</span>--dynamic<span class="o">]</span><span class="w"> </span><span class="o">[</span>--max-num<span class="w"> </span><span class="m">6</span><span class="o">]</span>
-<span class="c1"># ccbench_dev</span>
-<span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>&lt;checkpoint&gt;<span class="w"> </span>ccbench-dev<span class="w"> </span><span class="o">[</span>--dynamic<span class="o">]</span><span class="w"> </span><span class="o">[</span>--max-num<span class="w"> </span><span class="m">6</span><span class="o">]</span>
+<p>After preparation is complete, the directory structure is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+data/mmbench
+ ├── CCBench_legacy.tsv
+ ├── mmbench_dev_20230712.tsv
+ ├── mmbench_dev_cn_20231003.tsv
+ ├── mmbench_dev_en_20231003.tsv
+ ├── mmbench_test_cn_20231003.tsv
+ └── mmbench_test_en_20231003.tsv
 </pre></div>
 </div>
-<p>Then, submit the results to the <a class="reference external" href="https://mmbench.opencompass.org.cn/mmbench-submission">evaluation server</a>.</p>
-</details>
 </section>
 <section id="pope">
 <h3>POPE<a class="headerlink" href="#pope" title="Permalink to this heading">#</a></h3>
-<details open>
-<summary>Data Preparation</summary>
+<p>Follow the instructions below to prepare the data：</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>data/pope<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/pope
 
 <span class="c1"># make sure you have downloaded COCO images</span>
@@ -981,37 +997,21 @@ wget<span class="w"> </span>https://github.com/AoiDragon/POPE/raw/e3e39262c85a6a
 <span class="nb">cd</span><span class="w"> </span>../../..
 </pre></div>
 </div>
-</details>
-<details open>
-<summary>Evaluation</summary>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>&lt;checkpoint&gt;<span class="w"> </span>pope<span class="w"> </span><span class="o">[</span>--dynamic<span class="o">]</span><span class="w"> </span><span class="o">[</span>--max-num<span class="w"> </span><span class="m">6</span><span class="o">]</span>
+<p>After preparation is complete, the directory structure is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>data/pope
+├── coco
+├── llava_pope_test.jsonl
+└── val2014
 </pre></div>
 </div>
-</details>
 </section>
 <section id="mmmu">
 <h3>MMMU<a class="headerlink" href="#mmmu" title="Permalink to this heading">#</a></h3>
-<details open>
-<summary>Data Preparation</summary>
 <p>The evaluation code will automatically download the dataset from hugging face.</p>
-</details>
-<details open>
-<summary>Evaluation</summary>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># dev set</span>
-<span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>&lt;checkpoint&gt;<span class="w"> </span>mmmu-dev<span class="w"> </span><span class="o">[</span>--dynamic<span class="o">]</span><span class="w"> </span><span class="o">[</span>--max-num<span class="w"> </span><span class="m">6</span><span class="o">]</span>
-<span class="c1"># val set</span>
-<span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>&lt;checkpoint&gt;<span class="w"> </span>mmmu-val<span class="w"> </span><span class="o">[</span>--dynamic<span class="o">]</span><span class="w"> </span><span class="o">[</span>--max-num<span class="w"> </span><span class="m">6</span><span class="o">]</span>
-<span class="c1"># test set</span>
-<span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>&lt;checkpoint&gt;<span class="w"> </span>mmmu-test<span class="w"> </span><span class="o">[</span>--dynamic<span class="o">]</span><span class="w"> </span><span class="o">[</span>--max-num<span class="w"> </span><span class="m">6</span><span class="o">]</span>
-</pre></div>
-</div>
-<p>For the test set, submit the results to the <a class="reference external" href="https://eval.ai/web/challenges/challenge-page/2179/overview">evaluation server</a>.</p>
-</details>
 </section>
 <section id="tiny-lvlm">
 <h3>Tiny LVLM<a class="headerlink" href="#tiny-lvlm" title="Permalink to this heading">#</a></h3>
-<details open>
-<summary>Data Preparation</summary>
+<p>Follow the instructions below to prepare the data：</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>data/tiny_lvlm<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/tiny_lvlm
 
 <span class="c1"># download dataset from https://github.com/OpenGVLab/Multi-Modality-Arena/tree/main/tiny_lvlm_evaluation</span>
@@ -1021,18 +1021,15 @@ tar<span class="w"> </span>-xzvf<span class="w"> </span>updated_datasets.tar.gz
 <span class="nb">cd</span><span class="w"> </span>../..
 </pre></div>
 </div>
-</details>
-<details open>
-<summary>Evaluation</summary>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>&lt;checkpoint&gt;<span class="w"> </span>tiny_lvlm<span class="w"> </span><span class="o">[</span>--dynamic<span class="o">]</span><span class="w"> </span><span class="o">[</span>--max-num<span class="w"> </span><span class="m">6</span><span class="o">]</span>
+<p>After preparation is complete, the directory structure is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>data/tiny_lvlm
+└── updated_datasets
 </pre></div>
 </div>
-</details>
 </section>
-<section id="mm-vet">
-<h3>MM-Vet<a class="headerlink" href="#mm-vet" title="Permalink to this heading">#</a></h3>
-<details open>
-<summary>Data Preparation</summary>
+<section id="mmvet">
+<h3>MMVet<a class="headerlink" href="#mmvet" title="Permalink to this heading">#</a></h3>
+<p>Follow the instructions below to prepare the data：</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>data/mm-vet<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/mm-vet
 wget<span class="w"> </span>https://github.com/yuweihao/MM-Vet/releases/download/v1/mm-vet.zip
 unzip<span class="w"> </span>mm-vet.zip
@@ -1040,60 +1037,50 @@ wget<span class="w"> </span>https://huggingface.co/OpenGVLab/InternVL/raw/main/l
 <span class="nb">cd</span><span class="w"> </span>../..
 </pre></div>
 </div>
-</details>
-<details open>
-<summary>Evaluation</summary>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>&lt;checkpoint&gt;<span class="w"> </span>mmvet<span class="w"> </span><span class="o">[</span>--dynamic<span class="o">]</span><span class="w"> </span><span class="o">[</span>--max-num<span class="w"> </span><span class="m">6</span><span class="o">]</span>
+<p>After preparation is complete, the directory structure is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>data/mm-vet
+ ├── images
+ └── llava-mm-vet.jsonl
 </pre></div>
 </div>
-</details>
 <section id="mmvp">
-<h4><a class="reference external" href="https://github.com/tsb0601/MMVP">MMVP</a><a class="headerlink" href="#mmvp" title="Permalink to this heading">#</a></h4>
-<details open>
-<summary>Data Preparation</summary>
+<h4>MMVP<a class="headerlink" href="#mmvp" title="Permalink to this heading">#</a></h4>
+<p>Follow the instructions below to prepare the data：</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>data
 git<span class="w"> </span>lfs<span class="w"> </span>install
 git<span class="w"> </span>clone<span class="w"> </span>https://huggingface.co/datasets/MMVP/MMVP
-git<span class="w"> </span>clone<span class="w"> </span>https://huggingface.co/datasets/MMVP/MMVP_VLM
 <span class="nb">cd</span><span class="w"> </span>..
 </pre></div>
 </div>
-</details>
-<details open>
-<summary>Evaluation</summary>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>&lt;checkpoint&gt;<span class="w"> </span>mmvp<span class="w"> </span><span class="o">[</span>--dynamic<span class="o">]</span><span class="w"> </span><span class="o">[</span>--max-num<span class="w"> </span><span class="m">6</span><span class="o">]</span>
+<p>After preparation is complete, the directory structure is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>data/MMVP
+├── MMVP\ Images
+├── Questions.csv
+├── Questions.xlsx
+└── README.md
 </pre></div>
 </div>
-</details>
 </section>
 </section>
 <section id="mathvista">
 <h3>MathVista<a class="headerlink" href="#mathvista" title="Permalink to this heading">#</a></h3>
-<details open>
-<summary>Data Preparation</summary>
+<p>Follow the instructions below to prepare the data：</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>data/MathVista<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/MathVista
 wget<span class="w"> </span>https://huggingface.co/datasets/AI4Math/MathVista/raw/main/annot_testmini.json
 <span class="nb">cd</span><span class="w"> </span>../..
 </pre></div>
 </div>
-</details>
-<details open>
-<summary>Evaluation</summary>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">OPENAI_API_KEY</span><span class="o">=</span><span class="s1">&#39;your-openai-key&#39;</span>
-<span class="c1"># testmini set</span>
-<span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>&lt;checkpoint&gt;<span class="w"> </span>mathvista-testmini<span class="w"> </span><span class="o">[</span>--dynamic<span class="o">]</span><span class="w"> </span><span class="o">[</span>--max-num<span class="w"> </span><span class="m">6</span><span class="o">]</span>
-<span class="c1"># test set</span>
-<span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>&lt;checkpoint&gt;<span class="w"> </span>mathvista-test<span class="w"> </span><span class="o">[</span>--dynamic<span class="o">]</span><span class="w"> </span><span class="o">[</span>--max-num<span class="w"> </span><span class="m">6</span><span class="o">]</span>
+<p>After preparation is complete, the directory structure is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>MathVista
+└── annot_testmini.json
 </pre></div>
 </div>
-</details>
 </section>
 <section id="seed">
 <h3>SEED<a class="headerlink" href="#seed" title="Permalink to this heading">#</a></h3>
-<details open>
-<summary>Data Preparation</summary>
+<p>Follow the instructions below to prepare the data：</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>data/SEED<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/SEED
-<span class="c1"># 1. Follow the official instructions [Data Preparation for SEED-Bench-1](https://github.com/AILab-CVC/SEED-Bench/blob/main/DATASET.md#data-preparation-for-seed-bench-1)</span>
+<span class="c1"># 1. Follow the official instructions [Follow the instructions below to prepare the data： for SEED-Bench-1](https://github.com/AILab-CVC/SEED-Bench/blob/main/DATASET.md#data-preparation-for-seed-bench-1)</span>
 <span class="c1">#    to download the images and the videos. Put images under `./data/SEED/SEED-Bench-image`.</span>
 <span class="c1"># 2. Extract the video frame in the middle from the downloaded videos, and put them under `./data/SEED/SEED-Bench-image`.</span>
 <span class="c1">#    LLaVA provided the script [`extract_video_frames.py`](../internvl_chat/tools/extract_video_frames.py) modified from the official one.</span>
@@ -1102,13 +1089,14 @@ wget<span class="w"> </span>https://huggingface.co/OpenGVLab/InternVL/raw/main/s
 <span class="nb">cd</span><span class="w"> </span>../..
 </pre></div>
 </div>
-</details>
-<details open>
-<summary>Evaluation</summary>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>&lt;checkpoint&gt;<span class="w"> </span>seed<span class="w"> </span><span class="o">[</span>--dynamic<span class="o">]</span><span class="w"> </span><span class="o">[</span>--max-num<span class="w"> </span><span class="m">6</span><span class="o">]</span>
+<p>After preparation is complete, the directory structure is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>data/SEED
+ ├── SEED-Bench-image
+ └── seed.jsonl
 </pre></div>
 </div>
-</details>
+<br>
+<br>
 </section>
 </section>
 </section>
@@ -1183,11 +1171,11 @@ wget<span class="w"> </span>https://huggingface.co/OpenGVLab/InternVL/raw/main/s
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multimodal-benchmarks">MultiModal Benchmarks</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mme">MME</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mmbench-dev-test">MMBench dev &amp; test</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mmbench-ccbench">MMBench &amp; CCBench</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pope">POPE</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mmmu">MMMU</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tiny-lvlm">Tiny LVLM</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mm-vet">MM-Vet</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mmvet">MMVet</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mmvp">MMVP</a></li>
 </ul>
 </li>

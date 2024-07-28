@@ -6,8 +6,7 @@
 
 > COCO images are used in VQAv2/OK-VQA/RefCOCO/RefCOCO+/RefCOCOg. Make sure you have already downloaded COCO images before evaluating on these benchmarks.
 
-<details open>
-<summary>Data Preparation</summary>
+Follow the instructions below to prepare the data：
 
 ```bash
 mkdir -p data/coco && cd data/coco
@@ -25,21 +24,21 @@ wget https://github.com/OpenGVLab/InternVL/releases/download/data/coco_karpathy_
 cd ../../../
 ```
 
-</details>
+After preparation is complete, the directory structure is:
 
-<details open>
-<summary>Evaluation</summary>
-
-```bash
-GPUS=8 sh evaluate.sh <checkpoint> caption-coco [--dynamic] [--max-num 6]
 ```
-
-</details>
+data/coco
+├── annotations
+│   ├── coco_karpathy_test.json
+│   └── coco_karpathy_test_gt.json
+├── train2014
+├── val2014
+└── test2015
+```
 
 ### Flickr30K Karpathy test
 
-<details open>
-<summary>Data Preparation</summary>
+Follow the instructions below to prepare the data：
 
 ```bash
 mkdir -p data/flickr30k && cd data/flickr30k
@@ -54,21 +53,18 @@ wget https://github.com/OpenGVLab/InternVL/releases/download/data/flickr30k_test
 cd ../..
 ```
 
-</details>
+After preparation is complete, the directory structure is:
 
-<details open>
-<summary>Evaluation</summary>
-
-```bash
-GPUS=8 sh evaluate.sh <checkpoint> caption-flickr30k [--dynamic] [--max-num 6]
 ```
-
-</details>
+data/flickr30k
+├── Images
+├── flickr30k_test_karpathy.txt
+└── flickr30k_test_karpathy.json
+```
 
 ### NoCaps val
 
-<details open>
-<summary>Data Preparation</summary>
+Follow the instructions below to prepare the data：
 
 ```bash
 mkdir -p data/nocaps && cd data/nocaps
@@ -80,23 +76,19 @@ wget https://nocaps.s3.amazonaws.com/nocaps_val_4500_captions.json
 cd ../..
 ```
 
-</details>
+After preparation is complete, the directory structure is:
 
-<details open>
-<summary>Evaluation</summary>
-
-```bash
-GPUS=8 sh evaluate.sh <checkpoint> caption-nocaps [--dynamic] [--max-num 6]
 ```
-
-</details>
+data/nocaps
+├── images
+└── nocaps_val_4500_captions.json
+```
 
 ## General VQA Benchmarks
 
 ### VQAv2 val & test-dev
 
-<details open>
-<summary>Data Preparation</summary>
+Follow the instructions below to prepare the data：
 
 ```bash
 mkdir -p data/vqav2 && cd data/vqav2
@@ -121,26 +113,28 @@ wget https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/vqav2
 cd ../..
 ```
 
-</details>
+After preparation is complete, the directory structure is:
 
-<details open>
-<summary>Evaluation</summary>
-
-```bash
-# VQAv2-val
-GPUS=8 sh evaluate.sh <checkpoint> vqa-vqav2-val [--dynamic] [--max-num 6]
-# VQAv2-testdev
-GPUS=8 sh evaluate.sh <checkpoint> vqa-vqav2-testdev [--dynamic] [--max-num 6]
 ```
-
-For the testdev set, submit the results to the [evaluation server](https://eval.ai/web/challenges/challenge-page/830/my-submission).
-
-</details>
+data/vqav2
+├── train2014 -> ../coco/train2014
+├── val2014 -> ../coco/val2014
+├── test2015 -> ../coco/test2015
+├── v2_mscoco_train2014_annotations.json
+├── v2_mscoco_train2014_complementary_pairs.json
+├── v2_mscoco_val2014_annotations.json
+├── v2_OpenEnded_mscoco_test2015_questions.json
+├── v2_OpenEnded_mscoco_test-dev2015_questions.json
+├── v2_OpenEnded_mscoco_train2014_questions.json
+├── v2_OpenEnded_mscoco_val2014_questions.json
+├── vqav2_testdev.jsonl
+├── vqav2_train.jsonl
+└── vqav2_val.jsonl
+```
 
 ### OKVQA val
 
-<details open>
-<summary>Data Preparation</summary>
+Follow the instructions below to prepare the data：
 
 ```bash
 mkdir -p data/okvqa && cd data/okvqa
@@ -162,21 +156,23 @@ wget https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/okvqa
 cd ../..
 ```
 
-</details>
+After preparation is complete, the directory structure is:
 
-<details open>
-<summary>Evaluation</summary>
-
-```bash
-GPUS=8 sh evaluate.sh <checkpoint> vqa-okvqa-val [--dynamic] [--max-num 6]
 ```
-
-</details>
+data/okvqa
+├── mscoco_train2014_annotations.json
+├── mscoco_val2014_annotations.json
+├── okvqa_train.jsonl
+├── okvqa_val.jsonl
+├── OpenEnded_mscoco_train2014_questions.json
+├── OpenEnded_mscoco_val2014_questions.json
+├── test2014 -> ../coco/test2014
+└── val2014 -> ../coco/val2014
+```
 
 ### TextVQA val
 
-<details open>
-<summary>Data Preparation</summary>
+Follow the instructions below to prepare the data：
 
 ```bash
 mkdir -p data/textvqa && cd data/textvqa
@@ -196,24 +192,26 @@ wget https://huggingface.co/OpenGVLab/InternVL/raw/main/textvqa_val_llava.jsonl
 cd ../..
 ```
 
-</details>
+After preparation is complete, the directory structure is:
 
-<details open>
-<summary>Evaluation</summary>
-
-```bash
-# without ocr tokens
-GPUS=8 sh evaluate.sh <checkpoint> vqa-textvqa-val [--dynamic] [--max-num 12]
-# with ocr tokens (hint: LLaVA use ocr tokens)
-GPUS=8 sh evaluate.sh <checkpoint> vqa-textvqa-val-ocr [--dynamic] [--max-num 12]
 ```
-
-</details>
+data/textvqa
+├── TextVQA_Rosetta_OCR_v0.2_test.json
+├── TextVQA_Rosetta_OCR_v0.2_train.json
+├── TextVQA_Rosetta_OCR_v0.2_val.json
+├── textvqa_train_annotations.json
+├── textvqa_train.jsonl
+├── textvqa_train_questions.json
+├── textvqa_val_annotations.json
+├── textvqa_val.jsonl
+├── textvqa_val_llava.jsonl
+├── textvqa_val_questions.json
+└── train_images
+```
 
 ### VizWiz val & test
 
-<details open>
-<summary>Data Preparation</summary>
+Follow the instructions below to prepare the data：
 
 ```bash
 mkdir -p data/vizwiz && cd data/vizwiz
@@ -240,26 +238,26 @@ wget https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/vizwi
 cd ../..
 ```
 
-</details>
+After preparation is complete, the directory structure is:
 
-<details open>
-<summary>Evaluation</summary>
-
-```bash
-# VizWiz val
-GPUS=8 sh evaluate.sh <checkpoint> vqa-vizwiz-val [--dynamic] [--max-num 6]
-# VizWiz test
-GPUS=8 sh evaluate.sh <checkpoint> vqa-vizwiz-test [--dynamic] [--max-num 6]
 ```
-
-For the test set, submit the results to the [evaluation server](https://eval.ai/web/challenges/challenge-page/2185/overview).
-
-</details>
+data/vizwiz
+├── annotations
+├── test
+├── train
+├── val
+├── vizwiz_test.jsonl
+├── vizwiz_train_annotations.json
+├── vizwiz_train.jsonl
+├── vizwiz_train_questions.json
+├── vizwiz_val_annotations.json
+├── vizwiz_val.jsonl
+└── vizwiz_val_questions.json
+```
 
 ### DocVQA val & test
 
-<details open>
-<summary>Data Preparation</summary>
+Follow the instructions below to prepare the data：
 
 ```bash
 mkdir -p data/docvqa && cd data/docvqa
@@ -284,61 +282,47 @@ cd ../..
 After preparation is complete, the directory structure is:
 
 ```
-data
- ├── docvqa
- │   ├── test
- │   ├── test.jsonl
- │   ├── train
- │   ├── train.jsonl
- │   ├── val
- │   └── val.jsonl
+data/docvqa
+├── test
+├── test.jsonl
+├── train
+├── train.jsonl
+├── val
+└── val.jsonl
 ```
-
-</details>
-
-<details open>
-<summary>Evaluation</summary>
-
-```bash
-# DocVQA-val
-GPUS=8 sh evaluate.sh <checkpoint> vqa-docvqa-val [--dynamic] [--max-num 18]
-# DocVQA-test
-GPUS=8 sh evaluate.sh <checkpoint> vqa-docvqa-test [--dynamic] [--max-num 18]
-```
-
-For the test set, submit the results to the [evaluation server](https://rrc.cvc.uab.es/?ch=17).
-
-</details>
 
 ### InfoVQA val & test
 
-<details open>
-<summary>Data Preparation</summary>
+Follow the instructions below to prepare the data：
 
 ```bash
-TODO
+mkdir -p data/infographicsvqa && cd data/infographicsvqa
+
+# download images and annotations from https://rrc.cvc.uab.es/?ch=17&com=downloads
+# infographicsVQA_test_v1.0.json, infographicsVQA_val_v1.0_withQT.json, infographicVQA_train_v1.0.json
+
+# download converted files
+wget https://huggingface.co/OpenGVLab/InternVL/raw/main/infographicsvqa_val.jsonl -O val.jsonl
+wget https://huggingface.co/OpenGVLab/InternVL/raw/main/infographicsvqa_test.jsonl -O test.jsonl
+
+cd ../..
 ```
 
-</details>
+After preparation is complete, the directory structure is:
 
-<details open>
-<summary>Evaluation</summary>
-
-```bash
-# InfoVQA-val
-GPUS=8 sh evaluate.sh <checkpoint> vqa-infovqa-val [--dynamic] [--max-num 24]
-# InfoVQA-test
-GPUS=8 sh evaluate.sh <checkpoint> vqa-infovqa-test [--dynamic] [--max-num 24]
 ```
-
-For the test set, submit the results to the [evaluation server](https://rrc.cvc.uab.es/?ch=17).
-
-</details>
+data/infographicsvqa
+├── infographicsvqa_images
+├── infographicsVQA_test_v1.0.json
+├── infographicsVQA_val_v1.0_withQT.json
+├── infographicVQA_train_v1.0.json
+├── test.jsonl
+└── val.jsonl
+```
 
 ### ChartQA test-human & test-augmented
 
-<details open>
-<summary>Data Preparation</summary>
+Follow the instructions below to prepare the data：
 
 ```bash
 mkdir -p data/chartqa && cd data/chartqa
@@ -354,22 +338,23 @@ wget https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/chart
 cd ../..
 ```
 
-</details>
+After preparation is complete, the directory structure is:
 
-<details open>
-<summary>Evaluation</summary>
-
-```bash
-# test both ChartQA-test-human & ChartQA-test-augmented
-GPUS=8 sh evaluate.sh <checkpoint> vqa-chartqa-test [--dynamic] [--max-num 6]
 ```
-
-</details>
+data/chartqa
+ ├── ChartQA Dataset
+ │    ├── test
+ │    ├── train
+ │    └── val
+ ├── test_augmented.jsonl
+ ├── test_human.jsonl
+ ├── train_augmented.jsonl
+ └── train_human.jsonl
+```
 
 ### GQA testdev
 
-<details open>
-<summary>Data Preparation</summary>
+Follow the instructions below to prepare the data：
 
 ```bash
 mkdir -p data/gqa && cd data/gqa
@@ -386,21 +371,34 @@ wget https://github.com/OpenGVLab/InternVL/releases/download/data/llava_gqa_test
 cd ../..
 ```
 
-</details>
+After preparation is complete, the directory structure is:
 
-<details open>
-<summary>Evaluation</summary>
-
-```bash
-GPUS=8 sh evaluate.sh <checkpoint> vqa-gqa-testdev [--dynamic] [--max-num 6]
 ```
-
-</details>
+data/gqa
+├── challenge_all_questions.json
+├── challenge_balanced_questions.json
+├── eval.py
+├── images
+├── llava_gqa_testdev_balanced_qwen_format.jsonl
+├── readme.txt
+├── submission_all_questions.json
+├── test_all_questions.json
+├── test_balanced.jsonl
+├── test_balanced_questions.json
+├── testdev_all_questions.json
+├── testdev_balanced_all_questions.json
+├── testdev_balanced_predictions.json
+├── testdev_balanced_questions.json
+├── train_all_questions
+├── train_balanced.jsonl
+├── train_balanced_questions.json
+├── val_all_questions.json
+└── val_balanced_questions.json
+```
 
 ### OCRVQA val & test
 
-<details open>
-<summary>Data Preparation</summary>
+Follow the instructions below to prepare the data：
 
 ```bash
 mkdir -p data/ocrvqa && cd data/ocrvqa
@@ -415,24 +413,19 @@ wget https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/ocrvq
 cd ../..
 ```
 
-</details>
+After preparation is complete, the directory structure is:
 
-<details open>
-<summary>Evaluation</summary>
-
-```bash
-# OCRVQA-val
-GPUS=8 sh evaluate.sh <checkpoint> vqa-ocrvqa-val [--dynamic] [--max-num 6]
-# OCRVQA-test
-GPUS=8 sh evaluate.sh <checkpoint> vqa-ocrvqa-test [--dynamic] [--max-num 6]
 ```
-
-</details>
+data/ocrvqa
+├── images
+├── ocrvqa_test.jsonl
+├── ocrvqa_train.jsonl
+└── ocrvqa_val.jsonl
+```
 
 ### AI2D test
 
-<details open>
-<summary>Data Preparation</summary>
+Follow the instructions below to prepare the data：
 
 ```bash
 mkdir -p data/ai2diagram && cd data/ai2diagram
@@ -446,21 +439,20 @@ wget https://huggingface.co/OpenGVLab/InternVL/resolve/main/AI2D_TEST.zip && unz
 cd ../..
 ```
 
-</details>
+After preparation is complete, the directory structure is:
 
-<details open>
-<summary>Evaluation</summary>
-
-```bash
-GPUS=8 sh evaluate.sh <checkpoint> vqa-ai2d-test [--dynamic] [--max-num 6]
 ```
-
-</details>
+data/ai2diagram
+ ├── test_vlmevalkit.jsonl
+ ├── ai2d # (optional)
+ │    ├── abc_images
+ │    └── images
+ └── AI2D_TEST
+```
 
 ### ScienceQA test
 
-<details open>
-<summary>Data Preparation</summary>
+Follow the instructions below to prepare the data：
 
 ```bash
 mkdir -p data/scienceqa/images && cd data/scienceqa/images
@@ -479,23 +471,20 @@ wget https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/scien
 cd ../..
 ```
 
-</details>
+After preparation is complete, the directory structure is:
 
-<details open>
-<summary>Evaluation</summary>
-
-```bash
-GPUS=8 sh evaluate.sh <checkpoint> scienceqa [--dynamic] [--max-num 6]
 ```
-
-</details>
+data/scienceqa
+├── images
+├── problems.json
+└── scienceqa_test_img.jsonl
+```
 
 ## Refer Expression Comprehension
 
 ### RefCOCO/RefCOCO+/RefCOCO-g
 
-<details open>
-<summary>Data Preparation</summary>
+Follow the instructions below to prepare the data：
 
 ```bash
 mkdir -p data/refcoco && cd data/refcoco
@@ -513,23 +502,25 @@ wget https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/refco
 cd ../..
 ```
 
-</details>
+After preparation is complete, the directory structure is:
 
-<details open>
-<summary>Evaluation</summary>
-
-```bash
-GPUS=8 sh evaluate.sh <checkpoint> refcoco [--dynamic] [--max-num 6]
 ```
-
-</details>
+data/refcoco
+├── refcocog_test.jsonl
+├── refcocog_val.jsonl
+├── refcoco_testA.jsonl
+├── refcoco+_testA.jsonl
+├── refcoco_testB.jsonl
+├── refcoco+_testB.jsonl
+├── refcoco_val.jsonl
+└── refcoco+_val.jsonl
+```
 
 ## MultiModal Benchmarks
 
 ### MME
 
-<details open>
-<summary>Data Preparation</summary>
+Follow the instructions below to prepare the data：
 
 ```bash
 mkdir -p data/mme && cd data/mme
@@ -540,22 +531,16 @@ mkdir -p data/mme && cd data/mme
 cd ../..
 ```
 
-</details>
+After preparation is complete, the directory structure is:
 
-<details open>
-<summary>Evaluation</summary>
-
-```bash
-# single GPU testing
-CUDA_VISIBLE_DEVICES=0 sh evaluate.sh <checkpoint> mme [--dynamic] [--max-num 6]
+```
+data/mme
+ └── MME_Benchmark_release_version
 ```
 
-</details>
+### MMBench & CCBench
 
-### MMBench dev & test
-
-<details open>
-<summary>Data Preparation</summary>
+Follow the instructions below to prepare the data：
 
 ```bash
 mkdir -p data/mmbench && cd data/mmbench
@@ -571,32 +556,22 @@ wget https://download.openmmlab.com/mmclassification/datasets/mmbench/mmbench_te
 cd ../..
 ```
 
-</details>
+After preparation is complete, the directory structure is:
 
-<details open>
-<summary>Evaluation</summary>
-
-```bash
-# mmbench_dev_20230712
-GPUS=8 sh evaluate.sh <checkpoint> mmbench-dev-en [--dynamic] [--max-num 6]
-# mmbench_dev_cn_20231003
-GPUS=8 sh evaluate.sh <checkpoint> mmbench-dev-cn [--dynamic] [--max-num 6]
-# mmbench_test_en_20231003
-GPUS=8 sh evaluate.sh <checkpoint> mmbench-test-en [--dynamic] [--max-num 6]
-# mmbench_test_cn_20231003
-GPUS=8 sh evaluate.sh <checkpoint> mmbench-test-cn [--dynamic] [--max-num 6]
-# ccbench_dev
-GPUS=8 sh evaluate.sh <checkpoint> ccbench-dev [--dynamic] [--max-num 6]
 ```
 
-Then, submit the results to the [evaluation server](https://mmbench.opencompass.org.cn/mmbench-submission).
-
-</details>
+data/mmbench
+ ├── CCBench_legacy.tsv
+ ├── mmbench_dev_20230712.tsv
+ ├── mmbench_dev_cn_20231003.tsv
+ ├── mmbench_dev_en_20231003.tsv
+ ├── mmbench_test_cn_20231003.tsv
+ └── mmbench_test_en_20231003.tsv
+```
 
 ### POPE
 
-<details open>
-<summary>Data Preparation</summary>
+Follow the instructions below to prepare the data：
 
 ```bash
 mkdir -p data/pope && cd data/pope
@@ -613,46 +588,22 @@ wget https://github.com/AoiDragon/POPE/raw/e3e39262c85a6a83f26cf5094022a782cb0df
 cd ../../..
 ```
 
-</details>
+After preparation is complete, the directory structure is:
 
-<details open>
-<summary>Evaluation</summary>
-
-```bash
-GPUS=8 sh evaluate.sh <checkpoint> pope [--dynamic] [--max-num 6]
 ```
-
-</details>
+data/pope
+├── coco
+├── llava_pope_test.jsonl
+└── val2014
+```
 
 ### MMMU
 
-<details open>
-<summary>Data Preparation</summary>
-
 The evaluation code will automatically download the dataset from hugging face.
-
-</details>
-
-<details open>
-<summary>Evaluation</summary>
-
-```bash
-# dev set
-GPUS=8 sh evaluate.sh <checkpoint> mmmu-dev [--dynamic] [--max-num 6]
-# val set
-GPUS=8 sh evaluate.sh <checkpoint> mmmu-val [--dynamic] [--max-num 6]
-# test set
-GPUS=8 sh evaluate.sh <checkpoint> mmmu-test [--dynamic] [--max-num 6]
-```
-
-For the test set, submit the results to the [evaluation server](https://eval.ai/web/challenges/challenge-page/2179/overview).
-
-</details>
 
 ### Tiny LVLM
 
-<details open>
-<summary>Data Preparation</summary>
+Follow the instructions below to prepare the data：
 
 ```bash
 mkdir -p data/tiny_lvlm && cd data/tiny_lvlm
@@ -664,21 +615,16 @@ tar -xzvf updated_datasets.tar.gz
 cd ../..
 ```
 
-</details>
+After preparation is complete, the directory structure is:
 
-<details open>
-<summary>Evaluation</summary>
-
-```bash
-GPUS=8 sh evaluate.sh <checkpoint> tiny_lvlm [--dynamic] [--max-num 6]
+```
+data/tiny_lvlm
+└── updated_datasets
 ```
 
-</details>
+### MMVet
 
-### MM-Vet
-
-<details open>
-<summary>Data Preparation</summary>
+Follow the instructions below to prepare the data：
 
 ```bash
 mkdir -p data/mm-vet && cd data/mm-vet
@@ -688,45 +634,38 @@ wget https://huggingface.co/OpenGVLab/InternVL/raw/main/llava-mm-vet.jsonl
 cd ../..
 ```
 
-</details>
+After preparation is complete, the directory structure is:
 
-<details open>
-<summary>Evaluation</summary>
-
-```bash
-GPUS=8 sh evaluate.sh <checkpoint> mmvet [--dynamic] [--max-num 6]
+```
+data/mm-vet
+ ├── images
+ └── llava-mm-vet.jsonl
 ```
 
-</details>
+#### MMVP
 
-#### [MMVP](https://github.com/tsb0601/MMVP)
-
-<details open>
-<summary>Data Preparation</summary>
+Follow the instructions below to prepare the data：
 
 ```bash
 cd data
 git lfs install
 git clone https://huggingface.co/datasets/MMVP/MMVP
-git clone https://huggingface.co/datasets/MMVP/MMVP_VLM
 cd ..
 ```
 
-</details>
+After preparation is complete, the directory structure is:
 
-<details open>
-<summary>Evaluation</summary>
-
-```bash
-GPUS=8 sh evaluate.sh <checkpoint> mmvp [--dynamic] [--max-num 6]
 ```
-
-</details>
+data/MMVP
+├── MMVP\ Images
+├── Questions.csv
+├── Questions.xlsx
+└── README.md
+```
 
 ### MathVista
 
-<details open>
-<summary>Data Preparation</summary>
+Follow the instructions below to prepare the data：
 
 ```bash
 mkdir -p data/MathVista && cd data/MathVista
@@ -734,29 +673,20 @@ wget https://huggingface.co/datasets/AI4Math/MathVista/raw/main/annot_testmini.j
 cd ../..
 ```
 
-</details>
+After preparation is complete, the directory structure is:
 
-<details open>
-<summary>Evaluation</summary>
-
-```bash
-export OPENAI_API_KEY='your-openai-key'
-# testmini set
-GPUS=8 sh evaluate.sh <checkpoint> mathvista-testmini [--dynamic] [--max-num 6]
-# test set
-GPUS=8 sh evaluate.sh <checkpoint> mathvista-test [--dynamic] [--max-num 6]
 ```
-
-</details>
+MathVista
+└── annot_testmini.json
+```
 
 ### SEED
 
-<details open>
-<summary>Data Preparation</summary>
+Follow the instructions below to prepare the data：
 
 ```bash
 mkdir -p data/SEED && cd data/SEED
-# 1. Follow the official instructions [Data Preparation for SEED-Bench-1](https://github.com/AILab-CVC/SEED-Bench/blob/main/DATASET.md#data-preparation-for-seed-bench-1)
+# 1. Follow the official instructions [Follow the instructions below to prepare the data： for SEED-Bench-1](https://github.com/AILab-CVC/SEED-Bench/blob/main/DATASET.md#data-preparation-for-seed-bench-1)
 #    to download the images and the videos. Put images under `./data/SEED/SEED-Bench-image`.
 # 2. Extract the video frame in the middle from the downloaded videos, and put them under `./data/SEED/SEED-Bench-image`.
 #    LLaVA provided the script [`extract_video_frames.py`](../internvl_chat/tools/extract_video_frames.py) modified from the official one.
@@ -765,13 +695,13 @@ wget https://huggingface.co/OpenGVLab/InternVL/raw/main/seed.jsonl
 cd ../..
 ```
 
-</details>
+After preparation is complete, the directory structure is:
 
-<details open>
-<summary>Evaluation</summary>
-
-```bash
-GPUS=8 sh evaluate.sh <checkpoint> seed [--dynamic] [--max-num 6]
+```
+data/SEED
+ ├── SEED-Bench-image
+ └── seed.jsonl
 ```
 
-</details>
+<br>
+<br>
