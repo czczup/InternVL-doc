@@ -40,7 +40,11 @@ Documentation
    :maxdepth: 1
    :caption: InternVL 2.0
 
-   internvl_chat <internvl2.0/internvl_chat.md>
+   Introduction <internvl2.0/introduction.md>
+   Quick Start <internvl2.0/quick_start.md>
+   Finetune <internvl2.0/finetune.md>
+   Evaluation <internvl2.0/evaluation.md>
+   Deployment <internvl2.0/deployment.md>
 
 .. _internvl_1_5:
 .. toctree::
@@ -51,6 +55,7 @@ Documentation
    Quick Start <internvl1.5/quick_start.md>
    Finetune <internvl1.5/finetune.md>
    Evaluation <internvl1.5/evaluation.md>
+   Deployment <internvl1.5/deployment.md>
 
 .. _internvl_1_2:
 .. toctree::
