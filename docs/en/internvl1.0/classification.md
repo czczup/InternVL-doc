@@ -67,7 +67,7 @@ unzip val.txt.zip
 ## Model Preparation
 
 | model name                   | type    | param | download                                                                                       |  size   |
-| ---------------------------- | ------- | ----- | ----------------------------------------------------------------------------------------- | :-----: |
+| ---------------------------- | ------- | ----- | ---------------------------------------------------------------------------------------------- | :-----: |
 | intern_vit_6b_224px.pth      | pytorch | 6B    | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL/blob/main/intern_vit_6b_224px.pth)      |  12 GB  |
 | intern_vit_6b_224px_head.pth | pytorch | 13M   | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL/blob/main/intern_vit_6b_224px_head.pth) | 25.7 MB |
 
