@@ -54,7 +54,7 @@
     <link rel="prev" title="Fine-tune on a Custom Dataset" href="finetune.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-    <meta name="docbuild:last-update" content="Jul 29, 2024"/>
+    <meta name="docbuild:last-update" content="Jul 30, 2024"/>
   </head>
   
   
@@ -447,7 +447,7 @@ document.write(`
 <section id="lmdeploy">
 <h2>LMDeploy<a class="headerlink" href="#lmdeploy" title="Permalink to this heading">#</a></h2>
 <p><a class="reference external" href="https://github.com/InternLM/lmdeploy">LMDeploy</a> is a toolkit for compressing, deploying, and serving LLM, developed by the MMRazor and MMDeploy teams.</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span><span class="nv">lmdeploy</span><span class="o">==</span><span class="m">0</span>.5.2
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>lmdeploy
 </pre></div>
 </div>
 <p>LMDeploy abstracts the complex inference process of multi-modal Vision-Language Models (VLM) into an easy-to-use pipeline, similar to the Large Language Model (LLM) inference pipeline.</p>
@@ -905,7 +905,7 @@ document.write(`
 </div>
 <p>The arguments of <code class="docutils literal notranslate"><span class="pre">api_server</span></code> can be viewed through the command <code class="docutils literal notranslate"><span class="pre">lmdeploy</span> <span class="pre">serve</span> <span class="pre">api_server</span> <span class="pre">-h</span></code>, for instance, <code class="docutils literal notranslate"><span class="pre">--tp</span></code> to set tensor parallelism, <code class="docutils literal notranslate"><span class="pre">--session-len</span></code> to specify the max length of the context window, <code class="docutils literal notranslate"><span class="pre">--cache-max-entry-count</span></code> to adjust the GPU mem ratio for k/v cache etc.</p>
 </div><div aria-labelledby="tab-4-4-5" class="sphinx-tabs-panel" hidden="true" id="panel-4-4-5" name="4-5" role="tabpanel" tabindex="0"><p>LMDeploy’s <code class="docutils literal notranslate"><span class="pre">api_server</span></code> enables models to be easily packed into services with a single command. The provided RESTful APIs are compatible with OpenAI’s interfaces. Below are an example of service startup:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>lmdeploy<span class="w"> </span>serve<span class="w"> </span>api_server<span class="w"> </span>OpenGVLab/InternVL2-Llama3-76B<span class="w"> </span>--model-name<span class="w"> </span>InternVL2-Llama3-76B<span class="w"> </span>--backend<span class="w"> </span>turbomind<span class="w"> </span>--server-port<span class="w"> </span><span class="m">23333</span><span class="w"> </span>--tp<span class="w"> </span><span class="m">4</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">CUDA_VISIBLE_DEVICES</span><span class="o">=</span><span class="m">0</span>,1,2,3<span class="w"> </span>lmdeploy<span class="w"> </span>serve<span class="w"> </span>api_server<span class="w"> </span>OpenGVLab/InternVL2-Llama3-76B<span class="w"> </span>--model-name<span class="w"> </span>InternVL2-Llama3-76B<span class="w"> </span>--backend<span class="w"> </span>turbomind<span class="w"> </span>--server-port<span class="w"> </span><span class="m">23333</span><span class="w"> </span>--tp<span class="w"> </span><span class="m">4</span>
 </pre></div>
 </div>
 <p>You can also load 4-bit AWQ quantized models to save memory:</p>
@@ -978,20 +978,30 @@ document.write(`
 <td class="text-center"><p>0.05</p></td>
 <td class="text-center"><p>9860 MB</p></td>
 </tr>
-<tr class="row-even"><td class="text-center"><p>1</p></td>
-<td class="text-center"><p>Yes</p></td>
-<td class="text-center"><p>0.05</p></td>
-<td class="text-center"><p>7850 MB</p></td>
-</tr>
-<tr class="row-odd"><td class="text-center"><p>2</p></td>
+<tr class="row-even"><td class="text-center"><p>2</p></td>
 <td class="text-center"><p>No</p></td>
 <td class="text-center"><p>0.05</p></td>
 <td class="text-center"><p>8612 MB</p></td>
 </tr>
-<tr class="row-even"><td class="text-center"><p>4</p></td>
+<tr class="row-odd"><td class="text-center"><p>4</p></td>
 <td class="text-center"><p>No</p></td>
 <td class="text-center"><p>0.05</p></td>
 <td class="text-center"><p>7916 MB</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p></p></td>
+<td class="text-center"><p></p></td>
+<td class="text-center"><p></p></td>
+<td class="text-center"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>1</p></td>
+<td class="text-center"><p>Yes</p></td>
+<td class="text-center"><p>0.2</p></td>
+<td class="text-center"><p>19242 MB</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>1</p></td>
+<td class="text-center"><p>Yes</p></td>
+<td class="text-center"><p>0.05</p></td>
+<td class="text-center"><p>7850 MB</p></td>
 </tr>
 </tbody>
 </table>
@@ -1065,25 +1075,35 @@ document.write(`
 <td class="text-center"><p>0.05</p></td>
 <td class="text-center"><p>20832 MB</p></td>
 </tr>
+<tr class="row-even"><td class="text-center"><p>2</p></td>
+<td class="text-center"><p>No</p></td>
+<td class="text-center"><p>0.05</p></td>
+<td class="text-center"><p>14570 MB</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>4</p></td>
+<td class="text-center"><p>No</p></td>
+<td class="text-center"><p>0.05</p></td>
+<td class="text-center"><p>11378 MB</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p></p></td>
+<td class="text-center"><p></p></td>
+<td class="text-center"><p></p></td>
+<td class="text-center"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>1</p></td>
+<td class="text-center"><p>Yes</p></td>
+<td class="text-center"><p>0.2</p></td>
+<td class="text-center"><p>22440 MB</p></td>
+</tr>
 <tr class="row-even"><td class="text-center"><p>1</p></td>
 <td class="text-center"><p>Yes</p></td>
 <td class="text-center"><p>0.05</p></td>
 <td class="text-center"><p>11528 MB</p></td>
 </tr>
-<tr class="row-odd"><td class="text-center"><p>2</p></td>
-<td class="text-center"><p>No</p></td>
-<td class="text-center"><p>0.05</p></td>
-<td class="text-center"><p>14570 MB</p></td>
-</tr>
-<tr class="row-even"><td class="text-center"><p>4</p></td>
-<td class="text-center"><p>No</p></td>
-<td class="text-center"><p>0.05</p></td>
-<td class="text-center"><p>11378 MB</p></td>
-</tr>
 </tbody>
 </table>
 </div><div aria-labelledby="tab-5-5-3" class="sphinx-tabs-panel" hidden="true" id="panel-5-5-3" name="5-3" role="tabpanel" tabindex="0"><blockquote>
-<div><p><strong>⚠️ Warning:</strong> It seems InternViT-6B still has some bugs working with <code class="docutils literal notranslate"><span class="pre">--tp</span></code>.</p>
+<div><p><strong>⚠️ Warning:</strong> Please make sure to install Flash Attention; otherwise, using <code class="docutils literal notranslate"><span class="pre">--tp</span></code> will cause errors.</p>
 </div></blockquote>
 <table class="table">
 <thead>
@@ -1103,6 +1123,26 @@ document.write(`
 <td class="text-center"><p>No</p></td>
 <td class="text-center"><p>0.2</p></td>
 <td class="text-center"><p>58302 MB</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>2</p></td>
+<td class="text-center"><p>No</p></td>
+<td class="text-center"><p>0.2</p></td>
+<td class="text-center"><p>39750 MB</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>4</p></td>
+<td class="text-center"><p>No</p></td>
+<td class="text-center"><p>0.2</p></td>
+<td class="text-center"><p>30512 MB</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>8</p></td>
+<td class="text-center"><p>No</p></td>
+<td class="text-center"><p>0.2</p></td>
+<td class="text-center"><p>25806 MB</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p></p></td>
+<td class="text-center"><p></p></td>
+<td class="text-center"><p></p></td>
+<td class="text-center"><p></p></td>
 </tr>
 <tr class="row-even"><td class="text-center"><p>1</p></td>
 <td class="text-center"><p>Yes</p></td>
@@ -1124,25 +1164,10 @@ document.write(`
 <td class="text-center"><p>0.05</p></td>
 <td class="text-center"><p>28712 MB</p></td>
 </tr>
-<tr class="row-even"><td class="text-center"><p>2</p></td>
-<td class="text-center"><p>Yes</p></td>
-<td class="text-center"><p>0.2</p></td>
-<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">CUDA</span> <span class="pre">error</span></code></p></td>
-</tr>
-<tr class="row-odd"><td class="text-center"><p>4</p></td>
-<td class="text-center"><p>Yes</p></td>
-<td class="text-center"><p>0.2</p></td>
-<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">CUDA</span> <span class="pre">error</span></code></p></td>
-</tr>
-<tr class="row-even"><td class="text-center"><p>8</p></td>
-<td class="text-center"><p>Yes</p></td>
-<td class="text-center"><p>0.2</p></td>
-<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">CUDA</span> <span class="pre">error</span></code></p></td>
-</tr>
 </tbody>
 </table>
 </div><div aria-labelledby="tab-5-5-4" class="sphinx-tabs-panel" hidden="true" id="panel-5-5-4" name="5-4" role="tabpanel" tabindex="0"><blockquote>
-<div><p><strong>⚠️ Warning:</strong> It seems InternViT-6B still has some bugs working with <code class="docutils literal notranslate"><span class="pre">--tp</span></code>.</p>
+<div><p><strong>⚠️ Warning:</strong> Please make sure to install Flash Attention; otherwise, using <code class="docutils literal notranslate"><span class="pre">--tp</span></code> will cause errors.</p>
 </div></blockquote>
 <table class="table">
 <thead>
@@ -1173,6 +1198,26 @@ document.write(`
 <td class="text-center"><p>0.05</p></td>
 <td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">No</span> <span class="pre">output</span></code></p></td>
 </tr>
+<tr class="row-even"><td class="text-center"><p>2</p></td>
+<td class="text-center"><p>No</p></td>
+<td class="text-center"><p>0.2</p></td>
+<td class="text-center"><p>50156 MB</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>4</p></td>
+<td class="text-center"><p>No</p></td>
+<td class="text-center"><p>0.2</p></td>
+<td class="text-center"><p>34990 MB</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>8</p></td>
+<td class="text-center"><p>No</p></td>
+<td class="text-center"><p>0.2</p></td>
+<td class="text-center"><p>28052 MB</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p></p></td>
+<td class="text-center"><p></p></td>
+<td class="text-center"><p></p></td>
+<td class="text-center"><p></p></td>
+</tr>
 <tr class="row-even"><td class="text-center"><p>1</p></td>
 <td class="text-center"><p>Yes</p></td>
 <td class="text-center"><p>0.8</p></td>
@@ -1193,25 +1238,10 @@ document.write(`
 <td class="text-center"><p>0.05</p></td>
 <td class="text-center"><p>33636 MB</p></td>
 </tr>
-<tr class="row-even"><td class="text-center"><p>2</p></td>
-<td class="text-center"><p>Yes</p></td>
-<td class="text-center"><p>0.2</p></td>
-<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">CUDA</span> <span class="pre">error</span></code></p></td>
-</tr>
-<tr class="row-odd"><td class="text-center"><p>4</p></td>
-<td class="text-center"><p>Yes</p></td>
-<td class="text-center"><p>0.2</p></td>
-<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">CUDA</span> <span class="pre">error</span></code></p></td>
-</tr>
-<tr class="row-even"><td class="text-center"><p>8</p></td>
-<td class="text-center"><p>Yes</p></td>
-<td class="text-center"><p>0.2</p></td>
-<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">CUDA</span> <span class="pre">error</span></code></p></td>
-</tr>
 </tbody>
 </table>
 </div><div aria-labelledby="tab-5-5-5" class="sphinx-tabs-panel" hidden="true" id="panel-5-5-5" name="5-5" role="tabpanel" tabindex="0"><blockquote>
-<div><p><strong>⚠️ Warning:</strong> It seems InternViT-6B still has some bugs working with <code class="docutils literal notranslate"><span class="pre">--tp</span></code>.</p>
+<div><p><strong>⚠️ Warning:</strong> Please make sure to install Flash Attention; otherwise, using <code class="docutils literal notranslate"><span class="pre">--tp</span></code> will cause errors.</p>
 </div></blockquote>
 <table class="table">
 <thead>
@@ -1232,6 +1262,26 @@ document.write(`
 <td class="text-center"><p>0.2</p></td>
 <td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">Out-Of-Memory</span></code></p></td>
 </tr>
+<tr class="row-even"><td class="text-center"><p>2</p></td>
+<td class="text-center"><p>No</p></td>
+<td class="text-center"><p>0.2</p></td>
+<td class="text-center"><p>78698 MB</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>4</p></td>
+<td class="text-center"><p>No</p></td>
+<td class="text-center"><p>0.2</p></td>
+<td class="text-center"><p>50477 MB</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>8</p></td>
+<td class="text-center"><p>No</p></td>
+<td class="text-center"><p>0.2</p></td>
+<td class="text-center"><p>36268 MB</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p></p></td>
+<td class="text-center"><p></p></td>
+<td class="text-center"><p></p></td>
+<td class="text-center"><p></p></td>
+</tr>
 <tr class="row-even"><td class="text-center"><p>1</p></td>
 <td class="text-center"><p>Yes</p></td>
 <td class="text-center"><p>0.8</p></td>
@@ -1251,21 +1301,6 @@ document.write(`
 <td class="text-center"><p>Yes</p></td>
 <td class="text-center"><p>0.05</p></td>
 <td class="text-center"><p>54130 MB</p></td>
-</tr>
-<tr class="row-even"><td class="text-center"><p>2</p></td>
-<td class="text-center"><p>Yes</p></td>
-<td class="text-center"><p>0.2</p></td>
-<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">CUDA</span> <span class="pre">error</span></code></p></td>
-</tr>
-<tr class="row-odd"><td class="text-center"><p>4</p></td>
-<td class="text-center"><p>Yes</p></td>
-<td class="text-center"><p>0.2</p></td>
-<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">CUDA</span> <span class="pre">error</span></code></p></td>
-</tr>
-<tr class="row-even"><td class="text-center"><p>8</p></td>
-<td class="text-center"><p>Yes</p></td>
-<td class="text-center"><p>0.2</p></td>
-<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">CUDA</span> <span class="pre">error</span></code></p></td>
 </tr>
 </tbody>
 </table>
@@ -1377,7 +1412,7 @@ By InternVL Authors
   
   <div class="footer-item">
     <p class="last-updated">
-  Last updated on Jul 29, 2024.
+  Last updated on Jul 30, 2024.
   <br/>
 </p>
   </div>

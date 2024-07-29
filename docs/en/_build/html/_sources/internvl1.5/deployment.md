@@ -5,7 +5,7 @@
 [LMDeploy](https://github.com/InternLM/lmdeploy) is a toolkit for compressing, deploying, and serving LLM, developed by the MMRazor and MMDeploy teams.
 
 ```sh
-pip install lmdeploy==0.5.2
+pip install lmdeploy
 ```
 
 LMDeploy abstracts the complex inference process of multi-modal Vision-Language Models (VLM) into an easy-to-use pipeline, similar to the Large Language Model (LLM) inference pipeline.

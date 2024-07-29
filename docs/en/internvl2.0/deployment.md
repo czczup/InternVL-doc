@@ -5,7 +5,7 @@
 [LMDeploy](https://github.com/InternLM/lmdeploy) is a toolkit for compressing, deploying, and serving LLM, developed by the MMRazor and MMDeploy teams.
 
 ```sh
-pip install lmdeploy==0.5.2
+pip install lmdeploy
 ```
 
 LMDeploy abstracts the complex inference process of multi-modal Vision-Language Models (VLM) into an easy-to-use pipeline, similar to the Large Language Model (LLM) inference pipeline.
@@ -633,7 +633,7 @@ The arguments of `api_server` can be viewed through the command `lmdeploy serve 
 LMDeploy's `api_server` enables models to be easily packed into services with a single command. The provided RESTful APIs are compatible with OpenAI's interfaces. Below are an example of service startup:
 
 ```shell
-lmdeploy serve api_server OpenGVLab/InternVL2-Llama3-76B --model-name InternVL2-Llama3-76B --backend turbomind --server-port 23333 --tp 4
+CUDA_VISIBLE_DEVICES=0,1,2,3 lmdeploy serve api_server OpenGVLab/InternVL2-Llama3-76B --model-name InternVL2-Llama3-76B --backend turbomind --server-port 23333 --tp 4
 ```
 
 You can also load 4-bit AWQ quantized models to save memory:
@@ -692,10 +692,12 @@ To test the memory usage with several A100 GPUs, we will consider the following 
 |   1   |    No     |          0.8          |      67140 MB        |
 |   1   |    No     |          0.2          |      21284 MB        |
 |   1   |    No     |          0.1          |      13700 MB        |
-|   1   |    No     |          0.05         |      9860 MB        |
-|   1   |    Yes    |          0.05         |      7850 MB        |
-|   2   |    No     |          0.05         |      8612 MB        |
-|   4   |    No     |          0.05         |      7916 MB        |
+|   1   |    No     |          0.05         |      9860 MB         |
+|   2   |    No     |          0.05         |      8612 MB         |
+|   4   |    No     |          0.05         |      7916 MB         |
+|       |           |                       |                      |
+|   1   |    Yes    |          0.2          |      19242 MB         |
+|   1   |    Yes    |          0.05         |      7850 MB         |
 
 ````
 
@@ -720,65 +722,70 @@ To test the memory usage with several A100 GPUs, we will consider the following 
 |   1   |    No     |          0.2          |      30624 MB        |
 |   1   |    No     |          0.1          |      24108 MB        |
 |   1   |    No     |          0.05         |      20832 MB        |
-|   1   |    Yes     |         0.05         |      11528 MB        |
 |   2   |    No     |          0.05         |      14570 MB        |
 |   4   |    No     |          0.05         |      11378 MB        |
+|       |           |                       |                      |
+|   1   |    Yes    |          0.2          |      22440 MB        |
+|   1   |    Yes    |          0.05         |      11528 MB        |
 
 ````
 
 ````{tab} 26B
 
-> **⚠️ Warning:** It seems InternViT-6B still has some bugs working with `--tp`.
+> **⚠️ Warning:** Please make sure to install Flash Attention; otherwise, using `--tp` will cause errors.
 
 | #GPUs | AWQ 4-bit | cache-max-entry-count | Memory Usage per GPU |
 | :---: | :-------: | :-------------------: | :------------------: |
 |   1   |    No     |          0.8          |       77310 MB       |
 |   1   |    No     |          0.2          |       58302 MB       |
+|   2   |    No     |          0.2          |       39750 MB       |
+|   4   |    No     |          0.2          |       30512 MB       |
+|   8   |    No     |          0.2          |       25806 MB       |
+|       |           |                       |                      |
 |   1   |    Yes    |          0.8          |       72104 MB       |
 |   1   |    Yes    |          0.2          |       37448 MB       |
 |   1   |    Yes    |          0.1          |       31656 MB       |
 |   1   |    Yes    |          0.05         |       28712 MB       |
-|   2   |    Yes    |          0.2          |     `CUDA error`     |
-|   4   |    Yes    |          0.2          |     `CUDA error`     |
-|   8   |    Yes    |          0.2          |     `CUDA error`     |
 
 ````
 
 ````{tab} 40B
 
-> **⚠️ Warning:** It seems InternViT-6B still has some bugs working with `--tp`.
+> **⚠️ Warning:** Please make sure to install Flash Attention; otherwise, using `--tp` will cause errors.
 
 | #GPUs | AWQ 4-bit | cache-max-entry-count | Memory Usage per GPU |
 | :---: | :-------: | :-------------------: | :------------------: |
 |   1   |    No     |          0.8          |   `Out-Of-Memory`    |
 |   1   |    No     |          0.2          |       79892 MB       |
-|   1   |    No     |          0.1          |      `No output`     |
-|   1   |    No     |          0.05         |      `No output`     |
+|   1   |    No     |          0.1          |     `No output`      |
+|   1   |    No     |          0.05         |     `No output`      |
+|   2   |    No     |          0.2          |       50156 MB       |
+|   4   |    No     |          0.2          |       34990 MB       |
+|   8   |    No     |          0.2          |       28052 MB       |
+|       |           |                       |                      |
 |   1   |    Yes    |          0.8          |       72964 MB       |
 |   1   |    Yes    |          0.2          |       42628 MB       |
 |   1   |    Yes    |          0.1          |       37572 MB       |
 |   1   |    Yes    |          0.05         |       33636 MB       |
-|   2   |    Yes    |          0.2          |     `CUDA error`     |
-|   4   |    Yes    |          0.2          |     `CUDA error`     |
-|   8   |    Yes    |          0.2          |     `CUDA error`     |
 
 ````
 
 ````{tab} 76B
 
-> **⚠️ Warning:** It seems InternViT-6B still has some bugs working with `--tp`.
+> **⚠️ Warning:** Please make sure to install Flash Attention; otherwise, using `--tp` will cause errors.
 
 | #GPUs | AWQ 4-bit | cache-max-entry-count | Memory Usage per GPU |
 | :---: | :-------: | :-------------------: | :------------------: |
 |   1   |    No     |          0.8          |   `Out-Of-Memory`    |
 |   1   |    No     |          0.2          |   `Out-Of-Memory`    |
+|   2   |    No     |          0.2          |       78698 MB       |
+|   4   |    No     |          0.2          |       50477 MB       |
+|   8   |    No     |          0.2          |       36268 MB       |
+|       |           |                       |                      |
 |   1   |    Yes    |          0.8          |       77138 MB       |
 |   1   |    Yes    |          0.2          |       58738 MB       |
 |   1   |    Yes    |          0.1          |       55698 MB       |
 |   1   |    Yes    |          0.05         |       54130 MB       |
-|   2   |    Yes    |          0.2          |     `CUDA error`     |
-|   4   |    Yes    |          0.2          |     `CUDA error`     |
-|   8   |    Yes    |          0.2          |     `CUDA error`     |
 
 ````
 
