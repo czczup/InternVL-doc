@@ -50,7 +50,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'internvl2.0/finetune';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Deploy InternVL2 Series" href="deployment.html" />
+    <link rel="next" title="Evaluation of InternVL2 Series" href="evaluation.html" />
     <link rel="prev" title="Quick Start of InternVL2 Series" href="quick_start.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -156,6 +156,7 @@
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quick_start.html">Quick Start</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Finetune</a></li>
+<li class="toctree-l1"><a class="reference internal" href="evaluation.html">Evaluation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL 1.5</span></p>
@@ -174,7 +175,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../internvl1.2/finetune.html">Finetune</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../internvl1.2/evaluation.html">Evaluation</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL-Chat 1.1</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL 1.1</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../internvl1.1/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../internvl1.1/quick_start.html">Quick Start</a></li>
@@ -611,7 +612,7 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/shell/internvl2.0/2nd_finetune/internvl2_26b_internlm2_20b_dynamic_res_2nd_finetune_lora.sh">script for training the LoRA adapter</a>, depending on your available GPU resources.</p>
 <p>Before fine-tuning, set the <code class="docutils literal notranslate"><span class="pre">--meta_path</span></code> to the path of the JSON file you created in the previous step. The default pre-trained model path in these shell scripts is <code class="docutils literal notranslate"><span class="pre">./pretrained/InternVL2-26B</span></code>.</p>
 <blockquote>
-<div><p>💡 Fine-tuning the full LLM requires at least 8 A100 80G GPUs, whereas fine-tuning the LoRA requires 2 A100 80G GPUs.</p>
+<div><p>💡 Fine-tuning the full LLM requires at least 16 A100 80G GPUs, whereas fine-tuning the LoRA requires 2 A100 80G GPUs.</p>
 </div></blockquote>
 <blockquote>
 <div><p>💡 The number of GPUs and hyperparameters used here are just an example. To achieve optimal results, you may need to adjust these settings based on your available hardware and dataset size.</p>
@@ -689,11 +690,11 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
       </div>
     </a>
     <a class="right-next"
-       href="deployment.html"
+       href="evaluation.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Deploy InternVL2 Series</p>
+        <p class="prev-next-title">Evaluation of InternVL2 Series</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
