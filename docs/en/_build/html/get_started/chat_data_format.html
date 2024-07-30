@@ -1,0 +1,673 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Chat Data Format &#8212; internvl</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/readthedocs.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'get_started/chat_data_format';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Introduction of InternVL2 Series" href="../internvl2.0/introduction.html" />
+    <link rel="prev" title="Evaluation Data Preparation" href="eval_data_preparation.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+    <meta name="docbuild:last-update" content="Jul 30, 2024"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/internvl-logo.svg" class="logo__image only-light" alt="internvl - Home"/>
+    <script>document.write(`<img src="../_static/internvl-logo.svg" class="logo__image only-dark" alt="internvl - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eval_data_preparation.html">Evaluation Data Preparation</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chat Data Format</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL 2.0</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../internvl2.0/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl2.0/quick_start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl2.0/finetune.html">Finetune</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl2.0/evaluation.html">Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl2.0/deployment.html">Deployment</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL 1.5</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.5/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.5/quick_start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.5/finetune.html">Finetune</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.5/evaluation.html">Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.5/deployment.html">Deployment</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL 1.2</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.2/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.2/quick_start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.2/reproduce.html">Reproduce</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.2/finetune.html">Finetune</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.2/evaluation.html">Evaluation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL 1.1</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.1/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.1/quick_start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.1/evaluation.html">Evaluation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL 1.0</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.0/classification.html">classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.0/clip_benchmark.html">clip_benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.0/segmentation.html">segmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.0/internvl_chat_llava.html">internvl_chat_llava</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.0/internvl_g.html">internvl_g</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/OpenGVLab/InternVL" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/OpenGVLab/InternVL/blob/main/docs/en/get_started/chat_data_format.md?plain=1" target="_blank"
+   class="btn btn-sm btn-source-file-button dropdown-item"
+   title="Show source"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">Show source</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/OpenGVLab/InternVL/edit/main/docs/en/get_started/chat_data_format.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/OpenGVLab/InternVL/issues/new?title=Issue%20on%20page%20%2Fget_started/chat_data_format.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/get_started/chat_data_format.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Chat Data Format</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pure-text-data">Pure Text Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#single-image-data">Single Image Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-image-data">Multi-Image Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#video-data">Video Data</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="chat-data-format">
+<h1>Chat Data Format<a class="headerlink" href="#chat-data-format" title="Permalink to this heading">#</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
+<p>In this document, we will detail the organization format of our conversation data. Currently, we use a JSON file to manage the meta information of all datasets. The format is as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;your-custom-dataset-1&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;root&quot;</span><span class="p">:</span> <span class="s2">&quot;path/to/the/image/&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;annotation&quot;</span><span class="p">:</span> <span class="s2">&quot;path/to/the/jsonl/annotation&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;data_augment&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;repeat_time&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;length&quot;</span><span class="p">:</span> <span class="s2">&quot;number of your data&quot;</span>
+  <span class="p">},</span>
+  <span class="o">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Here, <code class="docutils literal notranslate"><span class="pre">root</span></code> is the root directory of the dataset, <code class="docutils literal notranslate"><span class="pre">annotation</span></code> is the path to the annotation file, <code class="docutils literal notranslate"><span class="pre">data_augment</span></code> indicates whether data augmentation is needed, <code class="docutils literal notranslate"><span class="pre">repeat_time</span></code> is the number of times the dataset is repeated, and <code class="docutils literal notranslate"><span class="pre">length</span></code> is the number of samples in the dataset.</p>
+<p>For example, a file for the ShareGPT4V dataset looks like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;sharegpt4v_instruct_gpt4-vision_cap100k&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;root&quot;</span><span class="p">:</span> <span class="s2">&quot;playground/data/&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;annotation&quot;</span><span class="p">:</span> <span class="s2">&quot;playground/opensource/sharegpt4v_instruct_gpt4-vision_cap100k.jsonl&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;data_augment&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;repeat_time&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;length&quot;</span><span class="p">:</span> <span class="mi">102025</span>
+  <span class="p">},</span>
+  <span class="o">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>You can add multiple datasets in this JSON file, similar to <a class="reference external" href="https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/shell/data/internvl_1_2_finetune.json">this file</a>.</p>
+<p>We currently support the following four types of datasets: <code class="docutils literal notranslate"><span class="pre">pure</span> <span class="pre">text</span> <span class="pre">data</span></code>, <code class="docutils literal notranslate"><span class="pre">single</span> <span class="pre">image</span> <span class="pre">data</span></code>, <code class="docutils literal notranslate"><span class="pre">multi-image</span> <span class="pre">(interleaved)</span> <span class="pre">data</span></code>, and <code class="docutils literal notranslate"><span class="pre">video</span> <span class="pre">data</span></code>. We do not require all entries in a JSONL file to be of the same type, meaning your JSONL file can contain different types of data.</p>
+</section>
+<section id="pure-text-data">
+<h2>Pure Text Data<a class="headerlink" href="#pure-text-data" title="Permalink to this heading">#</a></h2>
+<p>For pure text data, we use a JSONL file to store the data. Each entry is a dictionary organized in the following format. Note that entries for pure text data should not contain an <code class="docutils literal notranslate"><span class="pre">image</span></code> field.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;conversations&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;from&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;human&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;user input&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;from&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gpt&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;assistant output&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;from&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;human&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;user input&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;from&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gpt&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;assistant output&quot;</span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Here, <code class="docutils literal notranslate"><span class="pre">id</span></code> is the unique identifier for the data, and <code class="docutils literal notranslate"><span class="pre">conversations</span></code> is a list containing multiple conversations. Each conversation is a dictionary with two key-value pairs: <code class="docutils literal notranslate"><span class="pre">from</span></code> and <code class="docutils literal notranslate"><span class="pre">value</span></code>. <code class="docutils literal notranslate"><span class="pre">from</span></code> indicates the speaker’s identity, and <code class="docutils literal notranslate"><span class="pre">value</span></code> indicates the speaker’s input.</p>
+<p>This data format is consistent with LLaVA 1.5, with the difference being that LLaVA 1.5 uses JSON, while we use JSONL.</p>
+<p>An example of pure text data:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;conversations&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="nt">&quot;from&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;human&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Find the length of the hypotenuse given two sides\n\&quot;side_length1 = 5, side_length2 = 6\&quot;&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;from&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gpt&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;To find the length of the hypotenuse given the two sides of a right triangle, you can use the Pythagorean theorem. The theorem states that the square of the length of the hypotenuse is equal to the sum of the squares of the lengths of the two other sides.\n \nIn this case, the length of one side is 5, and the length of the other side is 6. Plugging these values into the formula, we get:\n\nhypotenuse2 = 5^2 + 6^2\n                 = 25 + 36\n                 = 61\n\nTo get the length of the hypotenuse, take the square root of 61:\n\nhypotenuse = √61\n                 = 7.81 (rounded to two decimal places)\n\nTherefore, the length of the hypotenuse is approximately 7.81 units.&quot;</span><span class="p">}]}</span>
+</pre></div>
+</div>
+</section>
+<section id="single-image-data">
+<h2>Single Image Data<a class="headerlink" href="#single-image-data" title="Permalink to this heading">#</a></h2>
+<p>For single image data, we use a JSONL file to store the data. Each entry is a dictionary organized in the following format. Note that each entry for single image data must contain an <code class="docutils literal notranslate"><span class="pre">image</span></code> field, which is a string.</p>
+<p>The path in the <code class="docutils literal notranslate"><span class="pre">image</span></code> field is relative to the <code class="docutils literal notranslate"><span class="pre">root</span></code> field. Concatenating the <code class="docutils literal notranslate"><span class="pre">root</span></code> field and the <code class="docutils literal notranslate"><span class="pre">image</span></code> field gives the complete path to the image. It is recommended to include <code class="docutils literal notranslate"><span class="pre">width</span></code> and <code class="docutils literal notranslate"><span class="pre">height</span></code> information for each data sample for future use.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;path/to/image.jpg&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;width&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">111</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;height&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">222</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;conversations&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;from&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;human&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;image&gt;\nuser input&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;from&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gpt&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;assistant output&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;from&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;human&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;user input&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;from&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gpt&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;assistant output&quot;</span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Here, <code class="docutils literal notranslate"><span class="pre">&lt;image&gt;</span></code> indicates the position where the image is inserted, and the number of <code class="docutils literal notranslate"><span class="pre">&lt;image&gt;</span></code> placeholders should match the number of images. In single image data, the <code class="docutils literal notranslate"><span class="pre">&lt;image&gt;</span></code> placeholder should appear only once across all conversations.</p>
+<p>An example of single image data:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;images/00000000.jpg&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;conversations&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="nt">&quot;from&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;human&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;image&gt;\nCan you extract any readable text from the image?&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;from&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gpt&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Dares Wins Vol. 5 Tommy&#39;s Heroes Vol. 6: For Tomorrow Vol. 7: Closing Time miniseries. Clark Kent is being interviewed about Superman&#39;s connection to notorious killer Tommy Monaghan. Taking the conversation...&quot;</span><span class="p">}],</span><span class="w"> </span><span class="nt">&quot;width&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">897</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;height&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1152</span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="multi-image-data">
+<h2>Multi-Image Data<a class="headerlink" href="#multi-image-data" title="Permalink to this heading">#</a></h2>
+<p>For multi-image data, we use a JSONL file to store the data. Each entry is a dictionary organized in the following format. Note that each entry for multi-image data must contain an <code class="docutils literal notranslate"><span class="pre">image</span></code> field, which is a list of strings.</p>
+<p>Each element in the list is a path relative to the <code class="docutils literal notranslate"><span class="pre">root</span></code> field. Concatenating the <code class="docutils literal notranslate"><span class="pre">root</span></code> field and each element gives the complete path to the images. It is recommended to include <code class="docutils literal notranslate"><span class="pre">width_list</span></code> and <code class="docutils literal notranslate"><span class="pre">height_list</span></code> information for each data sample for future use.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;path/to/image1.jpg&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;path/to/image2.jpg&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;path/to/image3.jpg&quot;</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;width_list&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">111</span><span class="p">,</span><span class="w"> </span><span class="mi">222</span><span class="p">,</span><span class="w"> </span><span class="mi">333</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;height_list&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">111</span><span class="p">,</span><span class="w"> </span><span class="mi">222</span><span class="p">,</span><span class="w"> </span><span class="mi">333</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;conversations&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;from&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;human&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;image&gt;\nuser input &lt;image&gt;\nuser input&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;from&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gpt&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;assistant output&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;from&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;human&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;image&gt;\nuser input&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;from&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gpt&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;assistant output&quot;</span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Here, <code class="docutils literal notranslate"><span class="pre">&lt;image&gt;</span></code> indicates the position where the images are inserted, and the number of <code class="docutils literal notranslate"><span class="pre">&lt;image&gt;</span></code> placeholders should match the number of images.
+In this example, the <code class="docutils literal notranslate"><span class="pre">image</span></code> field list contains three elements, so the <code class="docutils literal notranslate"><span class="pre">&lt;image&gt;</span></code> placeholder also needs to appear three times.</p>
+<p>An example of multi-image data:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;cimages/multimages/16/5pc.png&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;cimages/multimages/16/5pd.png&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;cimages/multimages/16/1602207874_p5b.png&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;cimages/multimages/16/5pe.png&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;cimages/multimages/16/1473016381_p5a.png&quot;</span><span class="p">],</span><span class="w"> </span><span class="nt">&quot;height_list&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">23</span><span class="p">,</span><span class="w"> </span><span class="mi">22</span><span class="p">,</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w"> </span><span class="mi">41</span><span class="p">,</span><span class="w"> </span><span class="mi">52</span><span class="p">],</span><span class="w"> </span><span class="nt">&quot;width_list&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">240</span><span class="p">,</span><span class="w"> </span><span class="mi">240</span><span class="p">,</span><span class="w"> </span><span class="mi">240</span><span class="p">,</span><span class="w"> </span><span class="mi">240</span><span class="p">,</span><span class="w"> </span><span class="mi">240</span><span class="p">],</span><span class="w"> </span><span class="nt">&quot;conversations&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="nt">&quot;from&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;human&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Let F = {2, 5, 7, 9}\n\nLet G = {1, 4, 6, 8}\n\nWhich of the following is true?\nA. \n&lt;image&gt;\n\nB. /\n&lt;image&gt;\n\nC. /\n&lt;image&gt;\n\nD. /\n&lt;image&gt;\n\nE. /\n&lt;image&gt;\n\nAnswer with the option&#39;s letter from the given choices directly.&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;from&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gpt&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A&quot;</span><span class="p">}]}</span>
+</pre></div>
+</div>
+</section>
+<section id="video-data">
+<h2>Video Data<a class="headerlink" href="#video-data" title="Permalink to this heading">#</a></h2>
+<p>For video data, we use a JSONL file to store the data. Each entry is a dictionary organized in the following format. Note that each entry for video data must contain a <code class="docutils literal notranslate"><span class="pre">video</span></code> field, which is a string.</p>
+<p>The path in the <code class="docutils literal notranslate"><span class="pre">video</span></code> field is relative to the <code class="docutils literal notranslate"><span class="pre">root</span></code> field. Concatenating the <code class="docutils literal notranslate"><span class="pre">root</span></code> field and the <code class="docutils literal notranslate"><span class="pre">video</span></code> field gives the complete path to the video.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;video&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;path/to/video.mp4&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;conversations&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;from&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;human&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;video&gt;\nuser input&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;from&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gpt&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;assistant output&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;from&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;human&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;user input&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;from&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gpt&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;assistant output&quot;</span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Here, <code class="docutils literal notranslate"><span class="pre">&lt;video&gt;</span></code> indicates the position where the video is inserted, and the number of <code class="docutils literal notranslate"><span class="pre">&lt;video&gt;</span></code> placeholders should match the number of videos. In video data, the <code class="docutils literal notranslate"><span class="pre">&lt;video&gt;</span></code> placeholder should appear only once across all conversations.</p>
+<p>An example of video data:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;video&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;000001_000050/1066682446.mp4&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;conversations&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="nt">&quot;from&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;human&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;video&gt;\nWrite an exhaustive depiction of the given video, capturing its essence and key moments.&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;from&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gpt&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;First, the video shows a black clock with black numbers and a white background on the side of a building. Next, the numbers show the time. Then, the clock is shown in black and white, but the numbers still show the time. The clock now displays the time as 830. Finally, a black clock with numbers is on the side of a tower, displaying the date as January 28. Overall, the video is a 3D animation of a flip clock calendar for the date of January 28, showing the different stages of the clock&#39;s display as it flips through the time and date.&quot;</span><span class="p">}]}</span>
+</pre></div>
+</div>
+<p>We currently do not support datasets that interleave video, image, and text or datasets with multiple videos. Support for such datasets may be added in the future if there is a need.</p>
+<br>
+<br>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="eval_data_preparation.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Evaluation Data Preparation</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../internvl2.0/introduction.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Introduction of InternVL2 Series</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pure-text-data">Pure Text Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#single-image-data">Single Image Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-image-data">Multi-Image Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#video-data">Video Data</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By InternVL Authors
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, OpenGVLab.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+  Last updated on Jul 30, 2024.
+  <br/>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
