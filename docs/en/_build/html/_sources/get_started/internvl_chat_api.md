@@ -1,8 +1,8 @@
 # InternVL-Chat API
 
-## Official API of InternVL2
+## Official API of InternVL2-Pro
 
-We encourage everyone to use our API for research. For better management, please submit ([English application form](https://docs.google.com/forms/d/e/1FAIpQLSfMCzhPr1OOEKau_6jwTU0EiZMSFckDo-HMlc_hUudhF_97rw/viewform?usp=sf_link)) / ([中文申请表](https://wj.qq.com/s2/14910502/25a4/)) to obtain free API access.
+We welcome everyone to use our `InternVL2-Pro` API for research. For better management, please submit ([English application form](https://docs.google.com/forms/d/e/1FAIpQLSfMCzhPr1OOEKau_6jwTU0EiZMSFckDo-HMlc_hUudhF_97rw/viewform?usp=sf_link)) / ([中文申请表](https://wj.qq.com/s2/14910502/25a4/)) to obtain free API access.
 
 ### Examples
 
