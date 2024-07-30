@@ -1,6 +1,6 @@
 # Chat Data Format
 
-## Introduction
+## Meta File
 
 In this document, we will detail the organization format of our conversation data. Currently, we use a JSON file to manage the meta information of all datasets. The format is as follows:
 
