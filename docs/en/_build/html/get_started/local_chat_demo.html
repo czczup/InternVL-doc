@@ -419,7 +419,17 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#streamlit-demo">Streamlit Demo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#streamlit-demo">Streamlit Demo</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-set-variables">Step 1: Set Variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-start-the-streamlit-web-server">Step 2: Start the Streamlit Web Server</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-start-the-controller">Step 3: Start the Controller</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-start-the-model-workers">Step 4: Start the Model Workers</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-stable-diffusion-3-worker">(Optional) Stable Diffusion 3 Worker</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#internvl2-workers">InternVL2 Workers</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gradio-demo">Gradio Demo</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lmdeploy-demo">Lmdeploy Demo</a></li>
 </ul>
@@ -435,9 +445,92 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="local-chat-demo">
 <h1>Local Chat Demo<a class="headerlink" href="#local-chat-demo" title="Permalink to this heading">#</a></h1>
+<p>This document provides instructions for setting up the InternVL online demo. The system architecture includes a web server, a controller, and multiple model workers.</p>
 <section id="streamlit-demo">
 <h2>Streamlit Demo<a class="headerlink" href="#streamlit-demo" title="Permalink to this heading">#</a></h2>
-<p>TODO</p>
+<p>We have built a <a class="reference external" href="https://internvl.opengvlab.com/">new online demo</a> using <code class="docutils literal notranslate"><span class="pre">Streamlit</span></code>. It looks like as shown in the figure below.</p>
+<p><img alt="demo" src="../_images/streamlit_demo.png" /></p>
+<p>You can run it using the commands below. If you encounter any environment issues, please install the required dependencies:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements/streamlit_demo.txt
+</pre></div>
+</div>
+<section id="step-1-set-variables">
+<h3>Step 1: Set Variables<a class="headerlink" href="#step-1-set-variables" title="Permalink to this heading">#</a></h3>
+<p>In your terminal, set the following variables:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">SD_SERVER_PORT</span><span class="o">=</span><span class="m">39999</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">WEB_SERVER_PORT</span><span class="o">=</span><span class="m">10003</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">CONTROLLER_PORT</span><span class="o">=</span><span class="m">40000</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">CONTROLLER_URL</span><span class="o">=</span>http://0.0.0.0:<span class="nv">$CONTROLLER_PORT</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">SD_WORKER_URL</span><span class="o">=</span>http://0.0.0.0:<span class="nv">$SD_SERVER_PORT</span>
+</pre></div>
+</div>
+</section>
+<section id="step-2-start-the-streamlit-web-server">
+<h3>Step 2: Start the Streamlit Web Server<a class="headerlink" href="#step-2-start-the-streamlit-web-server" title="Permalink to this heading">#</a></h3>
+<p>Run the following command to start the Streamlit web server on port <code class="docutils literal notranslate"><span class="pre">$WEB_SERVER_PORT</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>streamlit<span class="w"> </span>run<span class="w"> </span>app.py<span class="w"> </span>--server.port<span class="w"> </span><span class="nv">$WEB_SERVER_PORT</span><span class="w"> </span>--<span class="w"> </span>--controller_url<span class="w"> </span><span class="nv">$CONTROLLER_URL</span><span class="w"> </span>--sd_worker_url<span class="w"> </span><span class="nv">$SD_WORKER_URL</span>
+</pre></div>
+</div>
+<p>Note: The <code class="docutils literal notranslate"><span class="pre">--</span> <span class="pre">--</span></code> is required and not a typo.</p>
+</section>
+<section id="step-3-start-the-controller">
+<h3>Step 3: Start the Controller<a class="headerlink" href="#step-3-start-the-controller" title="Permalink to this heading">#</a></h3>
+<p>Run the following command to start the controller on port <code class="docutils literal notranslate"><span class="pre">$CONTROLLER_PORT</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>controller.py<span class="w"> </span>--host<span class="w"> </span><span class="m">0</span>.0.0.0<span class="w"> </span>--port<span class="w"> </span><span class="nv">$CONTROLLER_PORT</span>
+</pre></div>
+</div>
+</section>
+<section id="step-4-start-the-model-workers">
+<h3>Step 4: Start the Model Workers<a class="headerlink" href="#step-4-start-the-model-workers" title="Permalink to this heading">#</a></h3>
+<section id="optional-stable-diffusion-3-worker">
+<h4>(Optional) Stable Diffusion 3 Worker<a class="headerlink" href="#optional-stable-diffusion-3-worker" title="Permalink to this heading">#</a></h4>
+<p>To enable the drawing functionality, run the following command to start the Stable Diffusion 3 worker on port <code class="docutils literal notranslate"><span class="pre">$SD_SERVER_PORT</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">CUDA_VISIBLE_DEVICES</span><span class="o">=</span><span class="m">0</span><span class="w"> </span>python<span class="w"> </span>sd_worker.py<span class="w"> </span>--port<span class="w"> </span><span class="nv">$SD_SERVER_PORT</span>
+</pre></div>
+</div>
+</section>
+<section id="internvl2-workers">
+<h4>InternVL2 Workers<a class="headerlink" href="#internvl2-workers" title="Permalink to this heading">#</a></h4>
+<p>Run the following commands to start different InternVL2 workers with varying model sizes:</p>
+<ul>
+<li><p><strong>InternVL2-1B Worker</strong> (port 40001):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">CUDA_VISIBLE_DEVICES</span><span class="o">=</span><span class="m">0</span><span class="w"> </span>python<span class="w"> </span>model_worker.py<span class="w"> </span>--host<span class="w"> </span><span class="m">0</span>.0.0.0<span class="w"> </span>--controller<span class="w"> </span><span class="nv">$CONTROLLER_URL</span><span class="w"> </span>--port<span class="w"> </span><span class="m">40001</span><span class="w"> </span>--worker<span class="w"> </span>http://0.0.0.0:40001<span class="w"> </span>--model-path<span class="w"> </span>OpenGVLab/InternVL2-1B
+</pre></div>
+</div>
+</li>
+<li><p><strong>InternVL2-2B Worker</strong> (port 40002):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">CUDA_VISIBLE_DEVICES</span><span class="o">=</span><span class="m">0</span><span class="w"> </span>python<span class="w"> </span>model_worker.py<span class="w"> </span>--host<span class="w"> </span><span class="m">0</span>.0.0.0<span class="w"> </span>--controller<span class="w"> </span><span class="nv">$CONTROLLER_URL</span><span class="w"> </span>--port<span class="w"> </span><span class="m">40002</span><span class="w"> </span>--worker<span class="w"> </span>http://0.0.0.0:40002<span class="w"> </span>--model-path<span class="w"> </span>OpenGVLab/InternVL2-2B
+</pre></div>
+</div>
+</li>
+<li><p><strong>InternVL2-4B Worker</strong> (port 40003):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">CUDA_VISIBLE_DEVICES</span><span class="o">=</span><span class="m">0</span><span class="w"> </span>python<span class="w"> </span>model_worker.py<span class="w"> </span>--host<span class="w"> </span><span class="m">0</span>.0.0.0<span class="w"> </span>--controller<span class="w"> </span><span class="nv">$CONTROLLER_URL</span><span class="w"> </span>--port<span class="w"> </span><span class="m">40003</span><span class="w"> </span>--worker<span class="w"> </span>http://0.0.0.0:40003<span class="w"> </span>--model-path<span class="w"> </span>OpenGVLab/InternVL2-4B
+</pre></div>
+</div>
+</li>
+<li><p><strong>InternVL2-8B Worker</strong> (port 40004):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">CUDA_VISIBLE_DEVICES</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>python<span class="w"> </span>model_worker.py<span class="w"> </span>--host<span class="w"> </span><span class="m">0</span>.0.0.0<span class="w"> </span>--controller<span class="w"> </span><span class="nv">$CONTROLLER_URL</span><span class="w"> </span>--port<span class="w"> </span><span class="m">40004</span><span class="w"> </span>--worker<span class="w"> </span>http://0.0.0.0:40004<span class="w"> </span>--model-path<span class="w"> </span>OpenGVLab/InternVL2-8B
+</pre></div>
+</div>
+</li>
+<li><p><strong>InternVL2-26B Worker</strong> (port 40005):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">CUDA_VISIBLE_DEVICES</span><span class="o">=</span><span class="m">2</span><span class="w"> </span>python<span class="w"> </span>model_worker.py<span class="w"> </span>--host<span class="w"> </span><span class="m">0</span>.0.0.0<span class="w"> </span>--controller<span class="w"> </span><span class="nv">$CONTROLLER_URL</span><span class="w"> </span>--port<span class="w"> </span><span class="m">40005</span><span class="w"> </span>--worker<span class="w"> </span>http://0.0.0.0:40005<span class="w"> </span>--model-path<span class="w"> </span>OpenGVLab/InternVL2-26B
+</pre></div>
+</div>
+</li>
+<li><p><strong>InternVL2-40B Worker</strong> (port 40006, using 2 GPUs):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">CUDA_VISIBLE_DEVICES</span><span class="o">=</span><span class="m">3</span>,4<span class="w"> </span>python<span class="w"> </span>model_worker.py<span class="w"> </span>--host<span class="w"> </span><span class="m">0</span>.0.0.0<span class="w"> </span>--controller<span class="w"> </span><span class="nv">$CONTROLLER_URL</span><span class="w"> </span>--port<span class="w"> </span><span class="m">40006</span><span class="w"> </span>--worker<span class="w"> </span>http://0.0.0.0:40006<span class="w"> </span>--model-path<span class="w"> </span>OpenGVLab/InternVL2-40B<span class="w"> </span>--device<span class="w"> </span>auto
+</pre></div>
+</div>
+</li>
+<li><p><strong>InternVL2-Llama3-76B Worker</strong> (port 40007, using 3 GPUs):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">CUDA_VISIBLE_DEVICES</span><span class="o">=</span><span class="m">5</span>,6,7<span class="w"> </span>python<span class="w"> </span>model_worker.py<span class="w"> </span>--host<span class="w"> </span><span class="m">0</span>.0.0.0<span class="w"> </span>--controller<span class="w"> </span><span class="nv">$CONTROLLER_URL</span><span class="w"> </span>--port<span class="w"> </span><span class="m">40007</span><span class="w"> </span>--worker<span class="w"> </span>http://0.0.0.0:40007<span class="w"> </span>--model-path<span class="w"> </span>OpenGVLab/InternVL2-Llama3-76B<span class="w"> </span>--device<span class="w"> </span>auto
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+</section>
 </section>
 <section id="gradio-demo">
 <h2>Gradio Demo<a class="headerlink" href="#gradio-demo" title="Permalink to this heading">#</a></h2>
@@ -493,7 +586,17 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#streamlit-demo">Streamlit Demo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#streamlit-demo">Streamlit Demo</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-set-variables">Step 1: Set Variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-start-the-streamlit-web-server">Step 2: Start the Streamlit Web Server</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-start-the-controller">Step 3: Start the Controller</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-start-the-model-workers">Step 4: Start the Model Workers</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-stable-diffusion-3-worker">(Optional) Stable Diffusion 3 Worker</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#internvl2-workers">InternVL2 Workers</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gradio-demo">Gradio Demo</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lmdeploy-demo">Lmdeploy Demo</a></li>
 </ul>
