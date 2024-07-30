@@ -35,6 +35,7 @@ Documentation
    get_started/installation.md
    get_started/eval_data_preparation.md
    get_started/chat_data_format.md
+   get_started/internvl_chat_api.md
 
 .. _internvl_2_0:
 .. toctree::
