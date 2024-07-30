@@ -104,6 +104,6 @@ Run the following commands to start different InternVL2 workers with varying mod
 
 TODO
 
-## Lmdeploy Demo
+## LMDeploy Demo
 
 TODO
