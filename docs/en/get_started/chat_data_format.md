@@ -36,7 +36,7 @@ For example, a file for the ShareGPT4V dataset looks like this:
 
 You can add multiple datasets in this JSON file, similar to [this file](https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/shell/data/internvl_1_2_finetune.json).
 
-We currently support the following four types of datasets: `pure text data`, `single image data`, `multi-image (interleaved) data`, and `video data`. We do not require all entries in a JSONL file to be of the same type, meaning your JSONL file can contain different types of data.
+We currently support the following four types of datasets: `pure text data`, `single-image data`, `multi-image (interleaved) data`, and `video data`. We do not require all entries in a JSONL file to be of the same type, meaning your JSONL file can contain different types of data.
 
 ## Pure Text Data
 
@@ -64,9 +64,9 @@ An example of pure text data:
 {"id": 0, "conversations": [{"from": "human", "value": "Find the length of the hypotenuse given two sides\n\"side_length1 = 5, side_length2 = 6\""}, {"from": "gpt", "value": "To find the length of the hypotenuse given the two sides of a right triangle, you can use the Pythagorean theorem. The theorem states that the square of the length of the hypotenuse is equal to the sum of the squares of the lengths of the two other sides.\n \nIn this case, the length of one side is 5, and the length of the other side is 6. Plugging these values into the formula, we get:\n\nhypotenuse2 = 5^2 + 6^2\n                 = 25 + 36\n                 = 61\n\nTo get the length of the hypotenuse, take the square root of 61:\n\nhypotenuse = √61\n                 = 7.81 (rounded to two decimal places)\n\nTherefore, the length of the hypotenuse is approximately 7.81 units."}]}
 ```
 
-## Single Image Data
+## Single-Image Data
 
-For single image data, we use a JSONL file to store the data. Each entry is a dictionary organized in the following format. Note that each entry for single image data must contain an `image` field, which is a string.
+For single-image data, we use a JSONL file to store the data. Each entry is a dictionary organized in the following format. Note that each entry for single-image data must contain an `image` field, which is a string.
 
 The path in the `image` field is relative to the `root` field. Concatenating the `root` field and the `image` field gives the complete path to the image. It is recommended to include `width` and `height` information for each data sample for future use.
 
@@ -85,9 +85,9 @@ The path in the `image` field is relative to the `root` field. Concatenating the
 }
 ```
 
-Here, `<image>` indicates the position where the image is inserted, and the number of `<image>` placeholders should match the number of images. In single image data, the `<image>` placeholder should appear only once across all conversations.
+Here, `<image>` indicates the position where the image is inserted, and the number of `<image>` placeholders should match the number of images. In single-image data, the `<image>` placeholder should appear only once across all conversations.
 
-An example of single image data:
+An example of single-image data:
 
 ```json
 {"id": 0, "image": "images/00000000.jpg", "conversations": [{"from": "human", "value": "<image>\nCan you extract any readable text from the image?"}, {"from": "gpt", "value": "Dares Wins Vol. 5 Tommy's Heroes Vol. 6: For Tomorrow Vol. 7: Closing Time miniseries. Clark Kent is being interviewed about Superman's connection to notorious killer Tommy Monaghan. Taking the conversation..."}], "width": 897, "height": 1152}

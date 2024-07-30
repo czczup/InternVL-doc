@@ -419,7 +419,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#meta-file">Meta File</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pure-text-data">Pure Text Data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#single-image-data">Single Image Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#single-image-data">Single-Image Data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-image-data">Multi-Image Data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#video-data">Video Data</a></li>
 </ul>
@@ -465,7 +465,7 @@ document.write(`
 </pre></div>
 </div>
 <p>You can add multiple datasets in this JSON file, similar to <a class="reference external" href="https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/shell/data/internvl_1_2_finetune.json">this file</a>.</p>
-<p>We currently support the following four types of datasets: <code class="docutils literal notranslate"><span class="pre">pure</span> <span class="pre">text</span> <span class="pre">data</span></code>, <code class="docutils literal notranslate"><span class="pre">single</span> <span class="pre">image</span> <span class="pre">data</span></code>, <code class="docutils literal notranslate"><span class="pre">multi-image</span> <span class="pre">(interleaved)</span> <span class="pre">data</span></code>, and <code class="docutils literal notranslate"><span class="pre">video</span> <span class="pre">data</span></code>. We do not require all entries in a JSONL file to be of the same type, meaning your JSONL file can contain different types of data.</p>
+<p>We currently support the following four types of datasets: <code class="docutils literal notranslate"><span class="pre">pure</span> <span class="pre">text</span> <span class="pre">data</span></code>, <code class="docutils literal notranslate"><span class="pre">single-image</span> <span class="pre">data</span></code>, <code class="docutils literal notranslate"><span class="pre">multi-image</span> <span class="pre">(interleaved)</span> <span class="pre">data</span></code>, and <code class="docutils literal notranslate"><span class="pre">video</span> <span class="pre">data</span></code>. We do not require all entries in a JSONL file to be of the same type, meaning your JSONL file can contain different types of data.</p>
 </section>
 <section id="pure-text-data">
 <h2>Pure Text Data<a class="headerlink" href="#pure-text-data" title="Permalink to this heading">#</a></h2>
@@ -489,8 +489,8 @@ document.write(`
 </div>
 </section>
 <section id="single-image-data">
-<h2>Single Image Data<a class="headerlink" href="#single-image-data" title="Permalink to this heading">#</a></h2>
-<p>For single image data, we use a JSONL file to store the data. Each entry is a dictionary organized in the following format. Note that each entry for single image data must contain an <code class="docutils literal notranslate"><span class="pre">image</span></code> field, which is a string.</p>
+<h2>Single-Image Data<a class="headerlink" href="#single-image-data" title="Permalink to this heading">#</a></h2>
+<p>For single-image data, we use a JSONL file to store the data. Each entry is a dictionary organized in the following format. Note that each entry for single-image data must contain an <code class="docutils literal notranslate"><span class="pre">image</span></code> field, which is a string.</p>
 <p>The path in the <code class="docutils literal notranslate"><span class="pre">image</span></code> field is relative to the <code class="docutils literal notranslate"><span class="pre">root</span></code> field. Concatenating the <code class="docutils literal notranslate"><span class="pre">root</span></code> field and the <code class="docutils literal notranslate"><span class="pre">image</span></code> field gives the complete path to the image. It is recommended to include <code class="docutils literal notranslate"><span class="pre">width</span></code> and <code class="docutils literal notranslate"><span class="pre">height</span></code> information for each data sample for future use.</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
@@ -506,8 +506,8 @@ document.write(`
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Here, <code class="docutils literal notranslate"><span class="pre">&lt;image&gt;</span></code> indicates the position where the image is inserted, and the number of <code class="docutils literal notranslate"><span class="pre">&lt;image&gt;</span></code> placeholders should match the number of images. In single image data, the <code class="docutils literal notranslate"><span class="pre">&lt;image&gt;</span></code> placeholder should appear only once across all conversations.</p>
-<p>An example of single image data:</p>
+<p>Here, <code class="docutils literal notranslate"><span class="pre">&lt;image&gt;</span></code> indicates the position where the image is inserted, and the number of <code class="docutils literal notranslate"><span class="pre">&lt;image&gt;</span></code> placeholders should match the number of images. In single-image data, the <code class="docutils literal notranslate"><span class="pre">&lt;image&gt;</span></code> placeholder should appear only once across all conversations.</p>
+<p>An example of single-image data:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;images/00000000.jpg&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;conversations&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="nt">&quot;from&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;human&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;image&gt;\nCan you extract any readable text from the image?&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;from&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gpt&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Dares Wins Vol. 5 Tommy&#39;s Heroes Vol. 6: For Tomorrow Vol. 7: Closing Time miniseries. Clark Kent is being interviewed about Superman&#39;s connection to notorious killer Tommy Monaghan. Taking the conversation...&quot;</span><span class="p">}],</span><span class="w"> </span><span class="nt">&quot;width&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">897</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;height&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1152</span><span class="p">}</span>
 </pre></div>
 </div>
@@ -610,7 +610,7 @@ In this example, the <code class="docutils literal notranslate"><span class="pre
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#meta-file">Meta File</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pure-text-data">Pure Text Data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#single-image-data">Single Image Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#single-image-data">Single-Image Data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-image-data">Multi-Image Data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#video-data">Video Data</a></li>
 </ul>
