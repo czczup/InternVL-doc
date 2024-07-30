@@ -6,7 +6,7 @@ We are excited to announce the release of InternVL 2.0, the latest addition to t
 
 Compared to the state-of-the-art open-source multimodal large language models, InternVL 2.0 surpasses most open-source models. It demonstrates competitive performance on par with proprietary commercial models across various capabilities, including document and chart comprehension, infographics QA, scene text understanding and OCR tasks, scientific and mathematical problem solving, as well as cultural understanding and integrated multimodal capabilities.
 
-InternVL 2.0 is trained with an 8k context window and utilizes training data consisting of **long texts, multiple images, medical data, and videos**, significantly improving its ability to handle these types of inputs compared to InternVL 1.5. For more details, please refer to our blog and GitHub.
+InternVL 2.0 is trained with an 8k context window and utilizes training data consisting of **long texts, multiple images, medical data, and videos**, significantly improving its ability to handle these types of inputs compared to InternVL 1.5. For more details, please refer to our [blog](https://internvl.github.io/blog/2024-07-02-InternVL-2.0/) and [GitHub](https://github.com/OpenGVLab/InternVL).
 
 ![image](./arch.png)
 
@@ -23,7 +23,7 @@ For the various sizes of the InternVL2 model, we employed different visual encod
 | InternVL2‑40B        | [InternViT‑6B‑448px‑V1‑5](https://huggingface.co/OpenGVLab/InternViT-6B-448px-V1-5) | [Nous‑Hermes‑2‑Yi‑34B](https://huggingface.co/NousResearch/Nous-Hermes-2-Yi-34B)             | [🤗 link](https://huggingface.co/OpenGVLab/InternVL2-40B)        | [🤖 link](https://modelscope.cn/models/OpenGVLab/InternVL2-40B)        |
 | InternVL2-Llama3-76B | [InternViT‑6B‑448px‑V1‑5](https://huggingface.co/OpenGVLab/InternViT-6B-448px-V1-5) | [Hermes‑2‑Theta‑Llama‑3‑70B](https://huggingface.co/NousResearch/Hermes-2-Theta-Llama-3-70B) | [🤗 link](https://huggingface.co/OpenGVLab/InternVL2-Llama3-76B) | [🤖 link](https://modelscope.cn/models/OpenGVLab/InternVL2-Llama3-76B) |
 
-During training, we implemented a dynamic resolution strategy, dividing images into tiles of 448 × 448 pixels in sizes ranging from 1 to 12, based on the aspect ratio and resolution of the input images. During testing, this can be zero-shot scaled up to 40 tiles (i.e., 4K resolution). To enhance scalability for high resolution, we simply employed a pixel shuffle operation to reduce the number of visual tokens to one-quarter of the original. Therefore, in our model, a 448 × 448 image is represented by 256 visual tokens.
+During training, we implemented a dynamic resolution strategy, dividing images into tiles of 448 × 448 pixels in sizes ranging from 1 to 12, based on the aspect ratio and resolution of the input images. During testing, this can be zero-shot scaled up to 40 tiles (i.e., 4K resolution). To enhance scalability for high resolution, we simply employed a pixel shuffle (unshuffle) operation to reduce the number of visual tokens to one-quarter of the original. Therefore, in our model, a 448 × 448 image is represented by 256 visual tokens.
 
 ### Performance
 

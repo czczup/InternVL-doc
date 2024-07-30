@@ -14,7 +14,7 @@ To evaluate the performance of the InternVL-Chat-V1-1 model across various tasks
 | ------------------ | ---- | ----- | ----------------------------------------------------------------- | :-----: |
 | InternVL-Chat-V1-1 | MLLM | 19.1B | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL-Chat-V1-1) | 35.0 GB |
 
-Please download the above model weights and place them in the `pretrained/` folder.
+Download the above model weights and place them in the `pretrained/` folder.
 
 ```sh
 cd pretrained/

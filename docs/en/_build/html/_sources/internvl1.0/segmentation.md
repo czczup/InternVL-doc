@@ -32,7 +32,7 @@ If you want to use other datasets, please refer to the [guidelines](https://gith
 | ----------------------- | ------- | ----- | ----------------------------------------------------------------------------------------- | :---: |
 | intern_vit_6b_224px.pth | pytorch | 6B    | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL/blob/main/intern_vit_6b_224px.pth) | 12 GB |
 
-Please download the above model weight and place it in the `pretrained/` folder:
+Download the above model weight and place it in the `pretrained/` folder:
 
 ```shell
 mkdir pretrained && cd pretrained

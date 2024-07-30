@@ -67,7 +67,7 @@ print(response.text)
 
 `````
 
-If `ImportError` occurs while executing this case, please install the required dependency packages as prompted.
+If `ImportError` occurs while executing this case, please install the required packages as prompted.
 
 ### Multi-images inference
 

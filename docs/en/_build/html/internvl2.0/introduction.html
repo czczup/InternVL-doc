@@ -438,7 +438,7 @@ document.write(`
 <p>We are excited to announce the release of InternVL 2.0, the latest addition to the InternVL series of multimodal large language models. InternVL 2.0 features a variety of instruction-tuned models, ranging from 1 billion to 108 billion parameters.</p>
 <p><img alt="image" src="../_images/internvl2.png" /></p>
 <p>Compared to the state-of-the-art open-source multimodal large language models, InternVL 2.0 surpasses most open-source models. It demonstrates competitive performance on par with proprietary commercial models across various capabilities, including document and chart comprehension, infographics QA, scene text understanding and OCR tasks, scientific and mathematical problem solving, as well as cultural understanding and integrated multimodal capabilities.</p>
-<p>InternVL 2.0 is trained with an 8k context window and utilizes training data consisting of <strong>long texts, multiple images, medical data, and videos</strong>, significantly improving its ability to handle these types of inputs compared to InternVL 1.5. For more details, please refer to our blog and GitHub.</p>
+<p>InternVL 2.0 is trained with an 8k context window and utilizes training data consisting of <strong>long texts, multiple images, medical data, and videos</strong>, significantly improving its ability to handle these types of inputs compared to InternVL 1.5. For more details, please refer to our <a class="reference external" href="https://internvl.github.io/blog/2024-07-02-InternVL-2.0/">blog</a> and <a class="reference external" href="https://github.com/OpenGVLab/InternVL">GitHub</a>.</p>
 <p><img alt="image" src="../_images/arch.png" /></p>
 <p>As shown in this figure, InternVL2 utilizes the same architecture as InternVL 1.5, specifically the <code class="docutils literal notranslate"><span class="pre">ViT-MLP-LLM</span></code> configuration referenced in various existing studies.
 For the various sizes of the InternVL2 model, we employed different visual encoders and large language models, as detailed in the table below.</p>
@@ -496,7 +496,7 @@ For the various sizes of the InternVL2 model, we employed different visual encod
 </tr>
 </tbody>
 </table>
-<p>During training, we implemented a dynamic resolution strategy, dividing images into tiles of 448 × 448 pixels in sizes ranging from 1 to 12, based on the aspect ratio and resolution of the input images. During testing, this can be zero-shot scaled up to 40 tiles (i.e., 4K resolution). To enhance scalability for high resolution, we simply employed a pixel shuffle operation to reduce the number of visual tokens to one-quarter of the original. Therefore, in our model, a 448 × 448 image is represented by 256 visual tokens.</p>
+<p>During training, we implemented a dynamic resolution strategy, dividing images into tiles of 448 × 448 pixels in sizes ranging from 1 to 12, based on the aspect ratio and resolution of the input images. During testing, this can be zero-shot scaled up to 40 tiles (i.e., 4K resolution). To enhance scalability for high resolution, we simply employed a pixel shuffle (unshuffle) operation to reduce the number of visual tokens to one-quarter of the original. Therefore, in our model, a 448 × 448 image is represented by 256 visual tokens.</p>
 <section id="performance">
 <h2>Performance<a class="headerlink" href="#performance" title="Permalink to this heading">#</a></h2>
 <section id="image-benchmarks">

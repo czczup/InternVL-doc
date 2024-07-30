@@ -14,7 +14,7 @@ We also welcome you to experience the InternVL2 series models in our [online dem
 | Mini-InternVL-Chat-2B-V1-5 | MLLM | 2.2B  | 🤗 [HF link](https://huggingface.co/OpenGVLab/Mini-InternVL-Chat-2B-V1-5) | 4.2 GB  |
 | Mini-InternVL-Chat-4B-V1-5 | MLLM | 4.2B  | 🤗 [HF link](https://huggingface.co/OpenGVLab/Mini-InternVL-Chat-4B-V1-5) | 7.8 GB  |
 
-Please download the above model weights and place them in the `pretrained/` folder.
+Download the above model weights and place them in the `pretrained/` folder.
 
 ```sh
 cd pretrained/

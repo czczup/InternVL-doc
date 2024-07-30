@@ -29,7 +29,7 @@ In addition, using this codebase requires executing the following steps:
 | vicuna-13b-v1.5         | huggingface | 13B   | 🤗 [HF link](https://huggingface.co/lmsys/vicuna-7b-v1.5)              | 13.5 GB |
 | vicuna-7b-v1.5          | huggingface | 7B    | 🤗 [HF link](https://huggingface.co/lmsys/vicuna-13b-v1.5)             | 26.1 GB |
 
-Please download the above model weights and place them in the `pretrained/` folder.
+Download the above model weights and place them in the `pretrained/` folder.
 
 ```sh
 cd pretrained/
@@ -98,7 +98,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 sh scripts_internvl/finetune_internvit6b_44
 | InternVL-Chat-1.0 | IViT-6B-224px  | V-13B | 336  | 80.2  | 63.9 |  54.6  | 70.1 |  58.7   | 87.1 | 1546.9 | 66.5 |       61.9       | 33.7  |    🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL-Chat-ViT-6B-Vicuna-13B)    |
 | InternVL-Chat-1.0 | IViT-6B-448px  | V-13B | 448  | 82.0  | 64.1 |  60.1  | 71.6 |  64.8   | 87.2 | 1579.0 | 68.2 |       64.0       | 36.7  | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL-Chat-ViT-6B-Vicuna-13B-448px) |
 
-Please download the above model weights and place them in the `pretrained/` folder.
+Download the above model weights and place them in the `pretrained/` folder.
 
 ```shell
 cd pretrained/

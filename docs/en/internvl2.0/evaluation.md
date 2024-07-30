@@ -2070,7 +2070,7 @@ GPUS=8 sh evaluate.sh pretrained/InternVL2-4B mmmu-val --dynamic
 The expected test results are:
 
 ```
-TODO
+'Overall': {'num': 900, 'acc': 0.470}
 ```
 
 For the test set, run:
@@ -3336,19 +3336,19 @@ The expected test results are:
 
 ```
 "Task&Skill","tot","prefetch","hit","prefetch_rate","acc"
-"Overall","1000","533","659","53.300000000000004","65.9"
-"scientific reasoning","122","89","78","72.95081967213115","63.934426229508205"
+"Overall","1000","534","655","53.400000000000006","65.5"
+"scientific reasoning","122","89","77","72.95081967213115","63.114754098360656"
 "textbook question answering","158","100","106","63.29113924050633","67.08860759493672"
-"numeric commonsense","144","42","63","29.166666666666668","43.75"
-"arithmetic reasoning","353","153","219","43.342776203966004","62.03966005665722"
+"numeric commonsense","144","42","64","29.166666666666668","44.44444444444444"
+"arithmetic reasoning","353","154","218","43.626062322946176","61.756373937677054"
 "visual question answering","179","95","89","53.072625698324025","49.72067039106145"
-"geometry reasoning","239","142","164","59.41422594142259","68.6192468619247"
-"algebraic reasoning","281","167","191","59.430604982206404","67.97153024911033"
-"geometry problem solving","208","133","146","63.942307692307686","70.1923076923077"
-"math word problem","186","71","142","38.17204301075269","76.34408602150538"
-"logical reasoning","37","9","6","24.324324324324326","16.216216216216218"
-"figure question answering","269","134","176","49.814126394052046","65.4275092936803"
-"statistical reasoning","301","139","233","46.179401993355484","77.40863787375415"
+"geometry reasoning","239","143","160","59.83263598326359","66.94560669456067"
+"algebraic reasoning","281","168","187","59.7864768683274","66.54804270462633"
+"geometry problem solving","208","134","142","64.42307692307693","68.26923076923077"
+"math word problem","186","73","143","39.247311827956985","76.88172043010752"
+"logical reasoning","37","7","6","18.91891891891892","16.216216216216218"
+"figure question answering","269","132","175","49.07063197026022","65.05576208178438"
+"statistical reasoning","301","139","232","46.179401993355484","77.0764119601329"
 ```
 
 ````
@@ -3946,7 +3946,7 @@ The expected test results are:
 
 ```
 "split","Overall","Accounting","Agriculture","Architecture_and_Engineering","Art","Art_Theory","Basic_Medical_Science","Biology","Chemistry","Clinical_Medicine","Computer_Science","Design","Diagnostics_and_Laboratory_Medicine","Economics","Electronics","Energy_and_Power","Finance","Geography","History","Literature","Manage","Marketing","Materials","Math","Mechanical_Engineering","Music","Pharmacy","Physics","Psychology","Public_Health","Sociology","Art & Design","Business","Health & Medicine","Humanities & Social Science","Science","Tech & Engineering"
-"validation","0.5855555555555556","0.5","0.6333333333333333","0.4666666666666667","0.7666666666666667","0.9666666666666667","0.5666666666666667","0.5333333333333333","0.5","0.6666666666666666","0.6333333333333333","0.7666666666666667","0.43333333333333335","0.5333333333333333","0.6","0.4","0.6333333333333333","0.4666666666666667","0.7","0.9","0.7333333333333333","0.6","0.3","0.3","0.4666666666666667","0.36666666666666664","0.5666666666666667","0.5333333333333333","0.7","0.7","0.6333333333333333","0.7166666666666667","0.6","0.5866666666666667","0.7333333333333333","0.4666666666666667","0.5"
+"validation","0.5822222222222222","0.5","0.6333333333333333","0.4666666666666667","0.7666666666666667","0.9666666666666667","0.5333333333333333","0.5","0.5","0.6666666666666666","0.6333333333333333","0.7666666666666667","0.43333333333333335","0.5333333333333333","0.6","0.4","0.6333333333333333","0.4666666666666667","0.7","0.9","0.7333333333333333","0.6","0.3","0.3","0.4666666666666667","0.3333333333333333","0.5666666666666667","0.5333333333333333","0.7","0.7","0.6333333333333333","0.7083333333333334","0.6","0.58","0.7333333333333333","0.46","0.5"
 "dev","0.5666666666666667","0.2","0.2","0.4","0.8","0.8","0.8","1.0","0.2","0.4","0.6","0.6","0.6","0.2","0.4","0.4","1.0","0.0","1.0","1.0","0.8","0.4","0.2","0.6","1.0","0.2","0.6","0.4","0.8","0.6","0.8","0.6","0.52","0.6","0.9","0.44","0.45714285714285713"
 ```
 
@@ -4209,13 +4209,13 @@ The expected test results are:
 
 ```
 "Category","tot","acc"
-"rec","187","66.09625668449203"
-"ocr","108","69.62962962962965"
-"know","84","55.59523809523807"
-"gen","80","55.74999999999998"
-"spat","75","63.06666666666666"
-"math","26","71.92307692307692"
-"Overall","218","65.27522935779822"
+"rec","187","65.66844919786104"
+"ocr","108","70.09259259259262"
+"know","84","58.3333333333333"
+"gen","80","58.49999999999997"
+"spat","75","60.79999999999999"
+"math","26","75.76923076923077"
+"Overall","218","65.7339449541285"
 ```
 
 ````
@@ -4367,6 +4367,7 @@ The Video-MME dataset is a comprehensive benchmark designed to evaluate the capa
 ````{tab} 1B
 
 ```bash
+# without subs
 torchrun --nproc-per-node=8 run.py --data Video-MME --model InternVL2-1B --verbose --nframe 16
 ```
 
@@ -4390,6 +4391,7 @@ The expected test results are:
 ````{tab} 2B
 
 ```bash
+# without subs
 torchrun --nproc-per-node=8 run.py --data Video-MME --model InternVL2-2B --verbose --nframe 16
 ```
 
@@ -4413,6 +4415,7 @@ The expected test results are:
 ````{tab} 4B
 
 ```bash
+# without subs
 torchrun --nproc-per-node=8 run.py --data Video-MME --model InternVL2-4B --verbose --nframe 16
 ```
 
@@ -4436,6 +4439,7 @@ The expected test results are:
 ````{tab} 8B
 
 ```bash
+# without subs
 torchrun --nproc-per-node=8 run.py --data Video-MME --model InternVL2-8B --verbose --nframe 16
 ```
 
@@ -4459,6 +4463,7 @@ The expected test results are:
 ````{tab} 26B
 
 ```bash
+# without subs
 torchrun --nproc-per-node=8 run.py --data Video-MME --model InternVL2-26B --verbose --nframe 16
 ```
 
@@ -4482,6 +4487,7 @@ The expected test results are:
 ````{tab} 40B
 
 ```bash
+# without subs
 torchrun --nproc-per-node=8 run.py --data Video-MME --model InternVL2-40B --verbose --nframe 16
 ```
 
@@ -4505,6 +4511,7 @@ The expected test results are:
 ````{tab} 76B
 
 ```bash
+# without subs
 torchrun --nproc-per-node=1 run.py --data Video-MME --model InternVL2-Llama3-76B --verbose --nframe 16
 ```
 

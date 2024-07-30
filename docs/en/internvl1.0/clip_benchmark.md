@@ -34,7 +34,7 @@ This codebase will automatically download the required dataset. If the dataset f
 | internvl_c_13b_224px.pth |   pytorch   | 13B   | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL/blob/main/internvl_c_13b_224px.pth) | 25.4 GB |
 | InternVL-14B-224px       | huggingface | 14B   | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL-14B-224px)                          | 27.7 GB |
 
-Please download the above model weights and place them in the `pretrained/` folder.
+Download the above model weights and place them in the `pretrained/` folder.
 
 You can download either the PyTorch version or the Hugging Face version based on your needs.
 

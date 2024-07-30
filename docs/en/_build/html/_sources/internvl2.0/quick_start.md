@@ -18,7 +18,7 @@ We also welcome you to experience the InternVL2 series models in our [online dem
 | InternVL2-40B        | MLLM | 40.1B | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL2-40B)        | 75 GB  |
 | InternVL2-Llama3-76B | MLLM | 76.3B | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL2-Llama3-76B) | 143 GB |
 
-Please download the above model weights according to your need and place them in the `pretrained/` folder.
+Download the above model weights according to your need and place them in the `pretrained/` folder.
 
 ```sh
 cd pretrained/

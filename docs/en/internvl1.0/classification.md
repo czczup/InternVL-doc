@@ -71,7 +71,7 @@ unzip val.txt.zip
 | intern_vit_6b_224px.pth      | pytorch | 6B    | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL/blob/main/intern_vit_6b_224px.pth)      |  12 GB  |
 | intern_vit_6b_224px_head.pth | pytorch | 13M   | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL/blob/main/intern_vit_6b_224px_head.pth) | 25.7 MB |
 
-Please download the above model weights and place them in the `pretrained/` folder.
+Download the above model weights and place them in the `pretrained/` folder.
 
 ```sh
 cd pretrained

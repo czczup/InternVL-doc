@@ -513,7 +513,7 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>My suggestion is to add new domain-specific data on top of the <a class="reference internal" href="#../internvl1.2/internvl_chat.md#training-datasets-preparation"><span class="xref myst">general data from our open-sourced InternVL 1.2</span></a>. This will enhance downstream capabilities while retaining the foundational skills. Of course, you can also choose to fine-tune solely on the new data based on your requirements.</p>
+<p>My suggestion is to add new domain-specific data on top of the <a class="reference internal" href="../internvl1.2/reproduce.html#training-datasets-preparation"><span class="std std-ref">general data from our open-sourced InternVL 1.2</span></a>. This will enhance downstream capabilities while retaining the foundational skills. Of course, you can also choose to fine-tune solely on the new data based on your requirements.</p>
 </section>
 <section id="start-2nd-fine-tuning">
 <h2>Start 2nd Fine-tuning<a class="headerlink" href="#start-2nd-fine-tuning" title="Permalink to this heading">#</a></h2>
@@ -522,7 +522,7 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
 or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/shell/internvl1.5/2nd_finetune/internvl_chat_v1_5_internlm2_20b_dynamic_res_2nd_finetune_lora.sh">script for training the LoRA adapter</a>, depending on your available GPU resources.</p>
 <p>Before fine-tuning, set the <code class="docutils literal notranslate"><span class="pre">--meta_path</span></code> to the path of the JSON file you created in the previous step. The default pre-trained model path in these shell scripts is <code class="docutils literal notranslate"><span class="pre">./pretrained/InternVL-Chat-V1-5</span></code>.</p>
 <blockquote>
-<div><p>💡 Fine-tuning the full LLM requires at least 8 A100 80G GPUs, whereas fine-tuning the LoRA requires 2 A100 80G GPUs.</p>
+<div><p>💡 Fine-tuning the full LLM requires 8 A100 80G GPUs, whereas fine-tuning the LoRA requires 2 A100 80G GPUs.</p>
 </div></blockquote>
 <blockquote>
 <div><p>💡 The number of GPUs and hyperparameters used here are just an example. To achieve optimal results, you may need to adjust these settings based on your available hardware and dataset size.</p>
@@ -540,7 +540,7 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/shell/internvl1.5/2nd_finetune/internvl_chat_v1_5_internlm2_1_8b_dynamic_res_2nd_finetune_lora.sh">script for training the LoRA adapter</a>, depending on your available GPU resources.</p>
 <p>Before fine-tuning, set the <code class="docutils literal notranslate"><span class="pre">--meta_path</span></code> to the path of the JSON file you created in the previous step. The default pre-trained model path in these shell scripts is <code class="docutils literal notranslate"><span class="pre">./pretrained/Mini-InternVL-Chat-2B-V1-5</span></code>.</p>
 <blockquote>
-<div><p>💡 Fine-tuning the full LLM requires at least 8x 32G/40G GPUs, whereas fine-tuning the LoRA requires 2x 32G/40G GPUs.</p>
+<div><p>💡 Fine-tuning the full LLM requires 8x 32G/40G GPUs, whereas fine-tuning the LoRA requires 2x 32G/40G GPUs.</p>
 </div></blockquote>
 <blockquote>
 <div><p>💡 The number of GPUs and hyperparameters used here are just an example. To achieve optimal results, you may need to adjust these settings based on your available hardware and dataset size.</p>
@@ -558,7 +558,7 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/shell/internvl1.5/2nd_finetune/internvl_chat_v1_5_phi3_3_8b_dynamic_res_2nd_finetune_lora.sh">script for training the LoRA adapter</a>, depending on your available GPU resources.</p>
 <p>Before fine-tuning, set the <code class="docutils literal notranslate"><span class="pre">--meta_path</span></code> to the path of the JSON file you created in the previous step. The default pre-trained model path in these shell scripts is <code class="docutils literal notranslate"><span class="pre">./pretrained/Mini-InternVL-Chat-4B-V1-5</span></code>.</p>
 <blockquote>
-<div><p>💡 Fine-tuning the full LLM requires at least 8x 40G GPUs, whereas fine-tuning the LoRA requires 2x 24G GPUs.</p>
+<div><p>💡 Fine-tuning the full LLM requires 8x 40G GPUs, whereas fine-tuning the LoRA requires 2x 24G GPUs.</p>
 </div></blockquote>
 <blockquote>
 <div><p>💡 The number of GPUs and hyperparameters used here are just an example. To achieve optimal results, you may need to adjust these settings based on your available hardware and dataset size.</p>

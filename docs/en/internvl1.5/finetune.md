@@ -63,7 +63,7 @@ Example:
 }
 ```
 
-My suggestion is to add new domain-specific data on top of the [general data from our open-sourced InternVL 1.2](../internvl1.2/internvl_chat.md#training-datasets-preparation). This will enhance downstream capabilities while retaining the foundational skills. Of course, you can also choose to fine-tune solely on the new data based on your requirements.
+My suggestion is to add new domain-specific data on top of the [general data from our open-sourced InternVL 1.2](../internvl1.2/reproduce.md#training-datasets-preparation). This will enhance downstream capabilities while retaining the foundational skills. Of course, you can also choose to fine-tune solely on the new data based on your requirements.
 
 ## Start 2nd Fine-tuning
 
@@ -76,7 +76,7 @@ or the [script for training the LoRA adapter](https://github.com/OpenGVLab/Inter
 
 Before fine-tuning, set the `--meta_path` to the path of the JSON file you created in the previous step. The default pre-trained model path in these shell scripts is `./pretrained/InternVL-Chat-V1-5`.
 
-> 💡 Fine-tuning the full LLM requires at least 8 A100 80G GPUs, whereas fine-tuning the LoRA requires 2 A100 80G GPUs.
+> 💡 Fine-tuning the full LLM requires 8 A100 80G GPUs, whereas fine-tuning the LoRA requires 2 A100 80G GPUs.
 
 > 💡 The number of GPUs and hyperparameters used here are just an example. To achieve optimal results, you may need to adjust these settings based on your available hardware and dataset size.
 
@@ -100,7 +100,7 @@ or the [script for training the LoRA adapter](https://github.com/OpenGVLab/Inter
 
 Before fine-tuning, set the `--meta_path` to the path of the JSON file you created in the previous step. The default pre-trained model path in these shell scripts is `./pretrained/Mini-InternVL-Chat-2B-V1-5`.
 
-> 💡 Fine-tuning the full LLM requires at least 8x 32G/40G GPUs, whereas fine-tuning the LoRA requires 2x 32G/40G GPUs.
+> 💡 Fine-tuning the full LLM requires 8x 32G/40G GPUs, whereas fine-tuning the LoRA requires 2x 32G/40G GPUs.
 
 > 💡 The number of GPUs and hyperparameters used here are just an example. To achieve optimal results, you may need to adjust these settings based on your available hardware and dataset size.
 
@@ -124,7 +124,7 @@ or the [script for training the LoRA adapter](https://github.com/OpenGVLab/Inter
 
 Before fine-tuning, set the `--meta_path` to the path of the JSON file you created in the previous step. The default pre-trained model path in these shell scripts is `./pretrained/Mini-InternVL-Chat-4B-V1-5`.
 
-> 💡 Fine-tuning the full LLM requires at least 8x 40G GPUs, whereas fine-tuning the LoRA requires 2x 24G GPUs.
+> 💡 Fine-tuning the full LLM requires 8x 40G GPUs, whereas fine-tuning the LoRA requires 2x 24G GPUs.
 
 > 💡 The number of GPUs and hyperparameters used here are just an example. To achieve optimal results, you may need to adjust these settings based on your available hardware and dataset size.
 

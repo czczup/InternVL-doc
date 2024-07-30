@@ -98,7 +98,7 @@ data
 | ------------------ | ----------- | ----- | ----------------------------------------------------------------- | :-----: |
 | InternVL-14B-224px | huggingface | 13.8B | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL-14B-224px) | 27.7 GB |
 
-Please download the above model weights and place them in the `pretrained/` folder.
+Download the above model weights and place them in the `pretrained/` folder.
 
 ```sh
 cd pretrained/

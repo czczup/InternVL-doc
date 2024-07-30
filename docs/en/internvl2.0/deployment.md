@@ -21,7 +21,7 @@ from lmdeploy import pipeline, TurbomindEngineConfig, ChatTemplateConfig
 from lmdeploy.vl import load_image
 
 model = 'OpenGVLab/InternVL2-2B'
-system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室及多家合作单位联合开发的多模态大语言模型。'
+system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室、清华大学及多家合作单位联合开发的多模态大语言模型。'
 image = load_image('https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/tests/data/tiger.jpeg')
 chat_template_config = ChatTemplateConfig('internvl-internlm2')
 chat_template_config.meta_instruction = system_prompt
@@ -40,7 +40,7 @@ from lmdeploy import pipeline, PytorchEngineConfig, ChatTemplateConfig
 from lmdeploy.vl import load_image
 
 model = 'OpenGVLab/InternVL2-4B'
-system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室及多家合作单位联合开发的多模态大语言模型。'
+system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室、清华大学及多家合作单位联合开发的多模态大语言模型。'
 image = load_image('https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/tests/data/tiger.jpeg')
 chat_template_config = ChatTemplateConfig('internvl-phi3')
 chat_template_config.meta_instruction = system_prompt
@@ -59,7 +59,7 @@ from lmdeploy import pipeline, TurbomindEngineConfig, ChatTemplateConfig
 from lmdeploy.vl import load_image
 
 model = 'OpenGVLab/InternVL2-8B'
-system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室及多家合作单位联合开发的多模态大语言模型。'
+system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室、清华大学及多家合作单位联合开发的多模态大语言模型。'
 image = load_image('https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/tests/data/tiger.jpeg')
 chat_template_config = ChatTemplateConfig('internvl-internlm2')
 chat_template_config.meta_instruction = system_prompt
@@ -78,7 +78,7 @@ from lmdeploy import pipeline, TurbomindEngineConfig, ChatTemplateConfig
 from lmdeploy.vl import load_image
 
 model = 'OpenGVLab/InternVL2-26B'
-system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室及多家合作单位联合开发的多模态大语言模型。'
+system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室、清华大学及多家合作单位联合开发的多模态大语言模型。'
 image = load_image('https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/tests/data/tiger.jpeg')
 chat_template_config = ChatTemplateConfig('internvl-internlm2')
 chat_template_config.meta_instruction = system_prompt
@@ -97,7 +97,7 @@ from lmdeploy import pipeline, TurbomindEngineConfig, ChatTemplateConfig
 from lmdeploy.vl import load_image
 
 model = 'OpenGVLab/InternVL2-40B'
-system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室及多家合作单位联合开发的多模态大语言模型。'
+system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室、清华大学及多家合作单位联合开发的多模态大语言模型。'
 image = load_image('https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/tests/data/tiger.jpeg')
 chat_template_config = ChatTemplateConfig('internvl-zh-hermes2')
 chat_template_config.meta_instruction = system_prompt
@@ -119,7 +119,7 @@ Coming soon...
 
 `````
 
-If `ImportError` occurs while executing this case, please install the required dependency packages as prompted.
+If `ImportError` occurs while executing this case, please install the required packages as prompted.
 
 ### Multi-images inference
 
@@ -137,7 +137,7 @@ from lmdeploy.vl import load_image
 from lmdeploy.vl.constants import IMAGE_TOKEN
 
 model = 'OpenGVLab/InternVL2-2B'
-system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室及多家合作单位联合开发的多模态大语言模型。'
+system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室、清华大学及多家合作单位联合开发的多模态大语言模型。'
 chat_template_config = ChatTemplateConfig('internvl-internlm2')
 chat_template_config.meta_instruction = system_prompt
 pipe = pipeline(model, chat_template_config=chat_template_config,
@@ -164,7 +164,7 @@ from lmdeploy.vl import load_image
 from lmdeploy.vl.constants import IMAGE_TOKEN
 
 model = 'OpenGVLab/InternVL2-4B'
-system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室及多家合作单位联合开发的多模态大语言模型。'
+system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室、清华大学及多家合作单位联合开发的多模态大语言模型。'
 chat_template_config = ChatTemplateConfig('internvl-phi3')
 chat_template_config.meta_instruction = system_prompt
 pipe = pipeline(model, chat_template_config=chat_template_config,
@@ -191,7 +191,7 @@ from lmdeploy.vl import load_image
 from lmdeploy.vl.constants import IMAGE_TOKEN
 
 model = 'OpenGVLab/InternVL2-8B'
-system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室及多家合作单位联合开发的多模态大语言模型。'
+system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室、清华大学及多家合作单位联合开发的多模态大语言模型。'
 chat_template_config = ChatTemplateConfig('internvl-internlm2')
 chat_template_config.meta_instruction = system_prompt
 pipe = pipeline(model, chat_template_config=chat_template_config,
@@ -218,7 +218,7 @@ from lmdeploy.vl import load_image
 from lmdeploy.vl.constants import IMAGE_TOKEN
 
 model = 'OpenGVLab/InternVL2-26B'
-system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室及多家合作单位联合开发的多模态大语言模型。'
+system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室、清华大学及多家合作单位联合开发的多模态大语言模型。'
 chat_template_config = ChatTemplateConfig('internvl-internlm2')
 chat_template_config.meta_instruction = system_prompt
 pipe = pipeline(model, chat_template_config=chat_template_config,
@@ -245,7 +245,7 @@ from lmdeploy.vl import load_image
 from lmdeploy.vl.constants import IMAGE_TOKEN
 
 model = 'OpenGVLab/InternVL2-40B'
-system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室及多家合作单位联合开发的多模态大语言模型。'
+system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室、清华大学及多家合作单位联合开发的多模态大语言模型。'
 chat_template_config = ChatTemplateConfig('internvl-zh-hermes2')
 chat_template_config.meta_instruction = system_prompt
 pipe = pipeline(model, chat_template_config=chat_template_config,
@@ -287,7 +287,7 @@ from lmdeploy import pipeline, TurbomindEngineConfig, ChatTemplateConfig
 from lmdeploy.vl import load_image
 
 model = 'OpenGVLab/InternVL2-2B'
-system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室及多家合作单位联合开发的多模态大语言模型。'
+system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室、清华大学及多家合作单位联合开发的多模态大语言模型。'
 chat_template_config = ChatTemplateConfig('internvl-internlm2')
 chat_template_config.meta_instruction = system_prompt
 pipe = pipeline(model, chat_template_config=chat_template_config,
@@ -311,7 +311,7 @@ from lmdeploy import pipeline, PytorchEngineConfig, ChatTemplateConfig
 from lmdeploy.vl import load_image
 
 model = 'OpenGVLab/InternVL2-4B'
-system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室及多家合作单位联合开发的多模态大语言模型。'
+system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室、清华大学及多家合作单位联合开发的多模态大语言模型。'
 chat_template_config = ChatTemplateConfig('internvl-phi3')
 chat_template_config.meta_instruction = system_prompt
 pipe = pipeline(model, chat_template_config=chat_template_config,
@@ -335,7 +335,7 @@ from lmdeploy import pipeline, TurbomindEngineConfig, ChatTemplateConfig
 from lmdeploy.vl import load_image
 
 model = 'OpenGVLab/InternVL2-8B'
-system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室及多家合作单位联合开发的多模态大语言模型。'
+system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室、清华大学及多家合作单位联合开发的多模态大语言模型。'
 chat_template_config = ChatTemplateConfig('internvl-internlm2')
 chat_template_config.meta_instruction = system_prompt
 pipe = pipeline(model, chat_template_config=chat_template_config,
@@ -359,7 +359,7 @@ from lmdeploy import pipeline, TurbomindEngineConfig, ChatTemplateConfig
 from lmdeploy.vl import load_image
 
 model = 'OpenGVLab/InternVL2-26B'
-system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室及多家合作单位联合开发的多模态大语言模型。'
+system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室、清华大学及多家合作单位联合开发的多模态大语言模型。'
 chat_template_config = ChatTemplateConfig('internvl-internlm2')
 chat_template_config.meta_instruction = system_prompt
 pipe = pipeline(model, chat_template_config=chat_template_config,
@@ -383,7 +383,7 @@ from lmdeploy import pipeline, TurbomindEngineConfig, ChatTemplateConfig
 from lmdeploy.vl import load_image
 
 model = 'OpenGVLab/InternVL2-40B'
-system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室及多家合作单位联合开发的多模态大语言模型。'
+system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室、清华大学及多家合作单位联合开发的多模态大语言模型。'
 chat_template_config = ChatTemplateConfig('internvl-zh-hermes2')
 chat_template_config.meta_instruction = system_prompt
 pipe = pipeline(model, chat_template_config=chat_template_config,
@@ -423,7 +423,7 @@ from lmdeploy import pipeline, TurbomindEngineConfig, ChatTemplateConfig, Genera
 from lmdeploy.vl import load_image
 
 model = 'OpenGVLab/InternVL2-2B'
-system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室及多家合作单位联合开发的多模态大语言模型。'
+system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室、清华大学及多家合作单位联合开发的多模态大语言模型。'
 chat_template_config = ChatTemplateConfig('internvl-internlm2')
 chat_template_config.meta_instruction = system_prompt
 pipe = pipeline(model, chat_template_config=chat_template_config,
@@ -446,7 +446,7 @@ from lmdeploy import pipeline, PytorchEngineConfig, ChatTemplateConfig, Generati
 from lmdeploy.vl import load_image
 
 model = 'OpenGVLab/InternVL2-4B'
-system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室及多家合作单位联合开发的多模态大语言模型。'
+system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室、清华大学及多家合作单位联合开发的多模态大语言模型。'
 chat_template_config = ChatTemplateConfig('internvl-phi3')
 chat_template_config.meta_instruction = system_prompt
 pipe = pipeline(model, chat_template_config=chat_template_config,
@@ -469,7 +469,7 @@ from lmdeploy import pipeline, TurbomindEngineConfig, ChatTemplateConfig, Genera
 from lmdeploy.vl import load_image
 
 model = 'OpenGVLab/InternVL2-8B'
-system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室及多家合作单位联合开发的多模态大语言模型。'
+system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室、清华大学及多家合作单位联合开发的多模态大语言模型。'
 chat_template_config = ChatTemplateConfig('internvl-internlm2')
 chat_template_config.meta_instruction = system_prompt
 pipe = pipeline(model, chat_template_config=chat_template_config,
@@ -492,7 +492,7 @@ from lmdeploy import pipeline, TurbomindEngineConfig, ChatTemplateConfig, Genera
 from lmdeploy.vl import load_image
 
 model = 'OpenGVLab/InternVL2-26B'
-system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室及多家合作单位联合开发的多模态大语言模型。'
+system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室、清华大学及多家合作单位联合开发的多模态大语言模型。'
 chat_template_config = ChatTemplateConfig('internvl-internlm2')
 chat_template_config.meta_instruction = system_prompt
 pipe = pipeline(model, chat_template_config=chat_template_config,
@@ -515,7 +515,7 @@ from lmdeploy import pipeline, TurbomindEngineConfig, ChatTemplateConfig, Genera
 from lmdeploy.vl import load_image
 
 model = 'OpenGVLab/InternVL2-40B'
-system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室及多家合作单位联合开发的多模态大语言模型。'
+system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室、清华大学及多家合作单位联合开发的多模态大语言模型。'
 chat_template_config = ChatTemplateConfig('internvl-zh-hermes2')
 chat_template_config.meta_instruction = system_prompt
 pipe = pipeline(model, chat_template_config=chat_template_config,
@@ -596,6 +596,8 @@ The arguments of `api_server` can be viewed through the command `lmdeploy serve 
 
 ````{tab} 26B
 
+> **⚠️ Warning:** Please make sure to install Flash Attention; otherwise, using `--tp` will cause errors.
+
 LMDeploy's `api_server` enables models to be easily packed into services with a single command. The provided RESTful APIs are compatible with OpenAI's interfaces. Below are an example of service startup:
 
 ```shell
@@ -613,6 +615,8 @@ The arguments of `api_server` can be viewed through the command `lmdeploy serve 
 
 ````{tab} 40B
 
+> **⚠️ Warning:** Please make sure to install Flash Attention; otherwise, using `--tp` will cause errors.
+
 LMDeploy's `api_server` enables models to be easily packed into services with a single command. The provided RESTful APIs are compatible with OpenAI's interfaces. Below are an example of service startup:
 
 ```shell
@@ -629,6 +633,8 @@ The arguments of `api_server` can be viewed through the command `lmdeploy serve 
 ````
 
 ````{tab} 76B
+
+> **⚠️ Warning:** Please make sure to install Flash Attention; otherwise, using `--tp` will cause errors.
 
 LMDeploy's `api_server` enables models to be easily packed into services with a single command. The provided RESTful APIs are compatible with OpenAI's interfaces. Below are an example of service startup:
 
