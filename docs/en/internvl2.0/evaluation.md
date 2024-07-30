@@ -77,7 +77,28 @@ GPUS=1 sh evaluate.sh pretrained/InternVL2-1B mme --dynamic
 The expected test results are:
 
 ```
-TODO
+=========== Perception ===========
+total score: 1346.1990796318528
+
+         existence  score: 175.0
+         count  score: 113.33333333333334
+         position  score: 135.0
+         color  score: 138.33333333333331
+         posters  score: 116.32653061224491
+         celebrity  score: 144.70588235294116
+         scene  score: 143.25
+         landmark  score: 128.5
+         artwork  score: 141.75
+         OCR  score: 110.0
+
+
+=========== Cognition ===========
+total score: 448.2142857142857
+
+         commonsense_reasoning  score: 95.71428571428571
+         numerical_calculation  score: 57.5
+         text_translation  score: 177.5
+         code_reasoning  score: 117.5
 ```
 
 ````
@@ -93,7 +114,28 @@ GPUS=1 sh evaluate.sh pretrained/InternVL2-2B mme --dynamic
 The expected test results are:
 
 ```
-TODO
+=========== Perception ===========
+total score: 1439.6688675470189
+
+         existence  score: 200.0
+         count  score: 128.33333333333334
+         position  score: 145.0
+         color  score: 163.33333333333334
+         posters  score: 131.97278911564626
+         celebrity  score: 118.52941176470588
+         scene  score: 157.0
+         landmark  score: 154.0
+         artwork  score: 146.5
+         OCR  score: 95.0
+
+
+=========== Cognition ===========
+total score: 437.1428571428571
+
+         commonsense_reasoning  score: 112.14285714285714
+         numerical_calculation  score: 45.0
+         text_translation  score: 177.5
+         code_reasoning  score: 102.5
 ```
 
 ````
@@ -109,7 +151,28 @@ GPUS=1 sh evaluate.sh pretrained/InternVL2-4B mme --dynamic
 The expected test results are:
 
 ```
-TODO
+=========== Perception ===========
+total score: 1532.31662665066
+
+         existence  score: 200.0
+         count  score: 123.33333333333333
+         position  score: 148.33333333333331
+         color  score: 165.0
+         posters  score: 155.78231292517006
+         celebrity  score: 124.11764705882354
+         scene  score: 158.75
+         landmark  score: 165.0
+         artwork  score: 144.5
+         OCR  score: 147.5
+
+
+=========== Cognition ===========
+total score: 531.7857142857142
+
+         commonsense_reasoning  score: 129.28571428571428
+         numerical_calculation  score: 115.0
+         text_translation  score: 170.0
+         code_reasoning  score: 117.5
 ```
 
 ````
@@ -125,7 +188,28 @@ GPUS=1 sh evaluate.sh pretrained/InternVL2-8B mme --dynamic
 The expected test results are:
 
 ```
-TODO
+=========== Perception ===========
+total score: 1648.1331532613044
+
+         existence  score: 190.0
+         count  score: 158.33333333333331
+         position  score: 163.33333333333334
+         color  score: 175.0
+         posters  score: 167.68707482993196
+         celebrity  score: 148.52941176470586
+         scene  score: 152.5
+         landmark  score: 176.5
+         artwork  score: 153.75
+         OCR  score: 162.5
+
+
+=========== Cognition ===========
+total score: 562.1428571428571
+
+         commonsense_reasoning  score: 147.14285714285714
+         numerical_calculation  score: 87.5
+         text_translation  score: 192.5
+         code_reasoning  score: 135.0
 ```
 
 ````
@@ -141,39 +225,102 @@ GPUS=1 sh evaluate.sh pretrained/InternVL2-26B mme --dynamic
 The expected test results are:
 
 ```
-TODO
+=========== Perception ===========
+total score: 1720.0325130052022
+
+         existence  score: 195.0
+         count  score: 170.0
+         position  score: 176.66666666666669
+         color  score: 168.33333333333331
+         posters  score: 176.87074829931973
+         celebrity  score: 159.41176470588235
+         scene  score: 154.0
+         landmark  score: 179.5
+         artwork  score: 162.75
+         OCR  score: 177.5
+
+
+=========== Cognition ===========
+total score: 540.7142857142858
+
+         commonsense_reasoning  score: 145.71428571428572
+         numerical_calculation  score: 95.0
+         text_translation  score: 185.0
+         code_reasoning  score: 115.0
 ```
 
 ````
 
 ````{tab} 40B
 
-Please use the following command to perform the test with 1 GPU:
+Please use the following command to perform the test with 8 GPU:
 
 ```bash
-GPUS=1 sh evaluate.sh pretrained/InternVL2-40B mme --dynamic
+GPUS=8 sh evaluate.sh pretrained/InternVL2-40B mme --dynamic --auto
 ```
 
 The expected test results are:
 
 ```
-TODO
+=========== Perception ===========
+total score: 1715.390456182473
+
+         existence  score: 185.0
+         count  score: 175.0
+         position  score: 158.33333333333331
+         color  score: 188.33333333333331
+         posters  score: 187.41496598639458
+         celebrity  score: 162.05882352941177
+         scene  score: 152.5
+         landmark  score: 180.25
+         artwork  score: 171.5
+         OCR  score: 155.0
+
+
+=========== Cognition ===========
+total score: 599.6428571428571
+
+         commonsense_reasoning  score: 152.14285714285714
+         numerical_calculation  score: 125.0
+         text_translation  score: 177.5
+         code_reasoning  score: 145.0
 ```
 
 ````
 
 ````{tab} 76B
 
-Please use the following command to perform the test with 1 GPU:
+Please use the following command to perform the test with 8 GPU:
 
 ```bash
-GPUS=1 sh evaluate.sh pretrained/InternVL2-Llama3-76B mme --dynamic
+GPUS=8 sh evaluate.sh pretrained/InternVL2-Llama3-76B mme --dynamic --auto
 ```
 
 The expected test results are:
 
 ```
-TODO
+=========== Perception ===========
+total score: 1731.095538215286
+
+         existence  score: 200.0
+         count  score: 175.0
+         position  score: 168.33333333333331
+         color  score: 185.0
+         posters  score: 186.39455782312925
+         celebrity  score: 169.11764705882354
+         scene  score: 152.0
+         landmark  score: 182.0
+         artwork  score: 173.25
+         OCR  score: 140.0
+
+
+=========== Cognition ===========
+total score: 683.5714285714286
+
+         commonsense_reasoning  score: 158.57142857142856
+         numerical_calculation  score: 185.0
+         text_translation  score: 177.5
+         code_reasoning  score: 162.5
 ```
 
 ````
@@ -197,7 +344,7 @@ GPUS=8 sh evaluate.sh pretrained/InternVL2-1B vqa-okvqa-val --dynamic
 The expected test results are:
 
 ```
-TODO
+okvqa_val 0.48513674197383483
 ```
 
 ````
@@ -213,7 +360,7 @@ GPUS=8 sh evaluate.sh pretrained/InternVL2-2B vqa-okvqa-val --dynamic
 The expected test results are:
 
 ```
-TODO
+okvqa_val 0.5316290130796605
 ```
 
 ````
@@ -230,7 +377,7 @@ GPUS=8 sh evaluate.sh pretrained/InternVL2-4B vqa-okvqa-val --dynamic
 The expected test results are:
 
 ```
-TODO
+okvqa_val 0.6007530717399846
 ```
 
 ````
@@ -247,7 +394,7 @@ GPUS=8 sh evaluate.sh pretrained/InternVL2-8B vqa-okvqa-val --dynamic
 The expected test results are:
 
 ```
-TODO
+okvqa_val 0.6289734443123187
 ```
 
 ````
@@ -264,7 +411,7 @@ GPUS=8 sh evaluate.sh pretrained/InternVL2-26B vqa-okvqa-val --dynamic
 The expected test results are:
 
 ```
-TODO
+okvqa_val 0.6594530321046287
 ```
 
 ````
@@ -275,13 +422,13 @@ TODO
 Please use the following command to perform the test with 8 GPU:
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL2-40B vqa-okvqa-val --dynamic
+GPUS=8 sh evaluate.sh pretrained/InternVL2-40B vqa-okvqa-val --dynamic --auto
 ```
 
 The expected test results are:
 
 ```
-TODO
+okvqa_val 0.664288545382473
 ```
 
 ````
@@ -292,13 +439,13 @@ TODO
 Please use the following command to perform the test with 8 GPU:
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL2-Llama3-76B vqa-okvqa-val --dynamic
+GPUS=8 sh evaluate.sh pretrained/InternVL2-Llama3-76B vqa-okvqa-val --dynamic --auto
 ```
 
 The expected test results are:
 
 ```
-TODO
+okvqa_val 0.683432421720166
 ```
 
 ````
@@ -324,7 +471,7 @@ GPUS=8 sh evaluate.sh pretrained/InternVL2-1B vqa-textvqa-val --dynamic
 The expected test results are:
 
 ```
-TODO
+textvqa_val 0.7052400000000033
 ```
 
 ````
@@ -340,7 +487,7 @@ GPUS=8 sh evaluate.sh pretrained/InternVL2-2B vqa-textvqa-val --dynamic
 The expected test results are:
 
 ```
-TODO
+textvqa_val 0.7335600000000035
 ```
 
 ````
@@ -356,7 +503,7 @@ GPUS=8 sh evaluate.sh pretrained/InternVL2-4B vqa-textvqa-val --dynamic
 The expected test results are:
 
 ```
-TODO
+textvqa_val 0.7437000000000039
 ```
 
 ````
@@ -372,7 +519,7 @@ GPUS=8 sh evaluate.sh pretrained/InternVL2-8B vqa-textvqa-val --dynamic
 The expected test results are:
 
 ```
-TODO
+textvqa_val 0.773740000000004
 ```
 
 ````
@@ -388,7 +535,7 @@ GPUS=8 sh evaluate.sh pretrained/InternVL2-26B vqa-textvqa-val --dynamic
 The expected test results are:
 
 ```
-TODO
+textvqa_val 0.8228200000000048
 ```
 
 ````
@@ -398,13 +545,13 @@ TODO
 We do not use Rosetta OCR tokens, run this command:
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL2-40B vqa-textvqa-val --dynamic
+GPUS=8 sh evaluate.sh pretrained/InternVL2-40B vqa-textvqa-val --dynamic --auto
 ```
 
 The expected test results are:
 
 ```
-TODO
+textvqa_val 0.8301600000000046
 ```
 
 ````
@@ -414,13 +561,13 @@ TODO
 We do not use Rosetta OCR tokens, run this command:
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL2-Llama3-76B vqa-textvqa-val --dynamic
+GPUS=8 sh evaluate.sh pretrained/InternVL2-Llama3-76B vqa-textvqa-val --dynamic --auto
 ```
 
 The expected test results are:
 
 ```
-TODO
+textvqa_val 0.844100000000004
 ```
 
 ````
@@ -444,7 +591,7 @@ GPUS=8 sh evaluate.sh pretrained/InternVL2-1B vqa-vizwiz-val --dynamic
 The expected test results are:
 
 ```
-TODO
+vizwiz_val 0.5306783977772626
 ```
 
 For the test set, run:
@@ -468,7 +615,7 @@ GPUS=8 sh evaluate.sh pretrained/InternVL2-2B vqa-vizwiz-val --dynamic
 The expected test results are:
 
 ```
-TODO
+vizwiz_val 0.47376707571196724
 ```
 
 For the test set, run:
@@ -492,7 +639,7 @@ GPUS=8 sh evaluate.sh pretrained/InternVL2-4B vqa-vizwiz-val --dynamic
 The expected test results are:
 
 ```
-TODO
+vizwiz_val 0.622088446399631
 ```
 
 For the test set, run:
@@ -516,7 +663,7 @@ GPUS=8 sh evaluate.sh pretrained/InternVL2-8B vqa-vizwiz-val --dynamic
 The expected test results are:
 
 ```
-TODO
+vizwiz_val 0.6290808057420708
 ```
 
 For the test set, run:
@@ -540,7 +687,7 @@ GPUS=8 sh evaluate.sh pretrained/InternVL2-26B vqa-vizwiz-val --dynamic
 The expected test results are:
 
 ```
-TODO
+vizwiz_val 0.6839083121092873
 ```
 
 For the test set, run:
@@ -558,43 +705,43 @@ For the test set, submit the results to the [evaluation server](https://eval.ai/
 For the validation set, run:
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL2-40B vqa-vizwiz-val --dynamic
+GPUS=8 sh evaluate.sh pretrained/InternVL2-40B vqa-vizwiz-val --dynamic --auto
 ```
 
 The expected test results are:
 
 ```
-TODO
+vizwiz_val 0.6521880064829846
 ```
 
 For the test set, run:
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL2-40B vqa-vizwiz-test --dynamic
+GPUS=8 sh evaluate.sh pretrained/InternVL2-40B vqa-vizwiz-test --dynamic --auto
 ```
 
 For the test set, submit the results to the [evaluation server](https://eval.ai/web/challenges/challenge-page/2185/overview).
 
 ````
 
-````{tab} 76BB
+````{tab} 76B
 
 For the validation set, run:
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL2-Llama3-76B vqa-vizwiz-val --dynamic
+GPUS=8 sh evaluate.sh pretrained/InternVL2-Llama3-76B vqa-vizwiz-val --dynamic --auto
 ```
 
 The expected test results are:
 
 ```
-TODO
+vizwiz_val 0.6767075711970381
 ```
 
 For the test set, run:
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL2-Llama3-76B vqa-vizwiz-test --dynamic
+GPUS=8 sh evaluate.sh pretrained/InternVL2-Llama3-76B vqa-vizwiz-test --dynamic --auto
 ```
 
 For the test set, submit the results to the [evaluation server](https://eval.ai/web/challenges/challenge-page/2185/overview).
@@ -620,7 +767,10 @@ GPUS=8 sh evaluate.sh pretrained/InternVL2-1B vqa-chartqa-test --dynamic --max-n
 The expected test results are:
 
 ```
-TODO
+['chartqa_test_human', {'relaxed_accuracy': 0.5392}]
+['chartqa_test_augmented', {'relaxed_accuracy': 0.9184}]
+
+result = (53.92 + 91.84) / 2 = 72.88
 ```
 
 ````
@@ -636,7 +786,10 @@ GPUS=8 sh evaluate.sh pretrained/InternVL2-2B vqa-chartqa-test --dynamic --max-n
 The expected test results are:
 
 ```
-TODO
+['chartqa_test_human', {'relaxed_accuracy': 0.5952}]
+['chartqa_test_augmented', {'relaxed_accuracy': 0.9296}]
+
+result = (59.52 + 92.96) / 2 = 76.24
 ```
 
 ````
@@ -652,7 +805,10 @@ GPUS=8 sh evaluate.sh pretrained/InternVL2-4B vqa-chartqa-test --dynamic --max-n
 The expected test results are:
 
 ```
-TODO
+['chartqa_test_human', {'relaxed_accuracy': 0.6992}]
+['chartqa_test_augmented', {'relaxed_accuracy': 0.9304}]
+
+result = (69.92 + 93.04) / 2 = 81.48
 ```
 
 ````
@@ -668,12 +824,15 @@ GPUS=8 sh evaluate.sh pretrained/InternVL2-8B vqa-chartqa-test --dynamic --max-n
 The expected test results are:
 
 ```
-TODO
+['chartqa_test_human', {'relaxed_accuracy': 0.7288}]
+['chartqa_test_augmented', {'relaxed_accuracy': 0.9368}]
+
+result = (72.88 + 93.68) / 2 = 83.28
 ```
 
 ````
 
-````{tab} 26BB
+````{tab} 26B
 
 The ChartQA dataset includes two test sets: `chartqa_test_human` and `chartqa_test_augmented`. The final score for model evaluation is calculated as the average of the scores on these two test sets:
 
@@ -684,7 +843,10 @@ GPUS=8 sh evaluate.sh pretrained/InternVL2-26B vqa-chartqa-test --dynamic --max-
 The expected test results are:
 
 ```
-TODO
+['chartqa_test_human', {'relaxed_accuracy': 0.7528}]
+['chartqa_test_augmented', {'relaxed_accuracy': 0.9448}]
+
+result = (75.28 + 94.48) / 2 = 84.88
 ```
 
 ````
@@ -694,13 +856,16 @@ TODO
 The ChartQA dataset includes two test sets: `chartqa_test_human` and `chartqa_test_augmented`. The final score for model evaluation is calculated as the average of the scores on these two test sets:
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL2-40B vqa-chartqa-test --dynamic --max-num 12
+GPUS=8 sh evaluate.sh pretrained/InternVL2-40B vqa-chartqa-test --dynamic --max-num 12 --auto
 ```
 
 The expected test results are:
 
 ```
-TODO
+['chartqa_test_human', {'relaxed_accuracy': 0.772}]
+['chartqa_test_augmented', {'relaxed_accuracy': 0.952}]
+
+result = (77.2 + 95.2) / 2 = 86.2
 ```
 
 ````
@@ -710,13 +875,16 @@ TODO
 The ChartQA dataset includes two test sets: `chartqa_test_human` and `chartqa_test_augmented`. The final score for model evaluation is calculated as the average of the scores on these two test sets:
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL2-Llama3-76B vqa-chartqa-test --dynamic --max-num 12
+GPUS=8 sh evaluate.sh pretrained/InternVL2-Llama3-76B vqa-chartqa-test --dynamic --max-num 12 --auto
 ```
 
 The expected test results are:
 
 ```
-TODO
+['chartqa_test_human', {'relaxed_accuracy': 0.816}]
+['chartqa_test_augmented', {'relaxed_accuracy': 0.952}]
+
+result = (81.6 + 95.2) / 2 = 88.4
 ```
 
 ````
@@ -740,7 +908,7 @@ GPUS=8 sh evaluate.sh pretrained/InternVL2-1B vqa-docvqa-val --dynamic --max-num
 The expected test results are:
 
 ```
-TODO
+Overall ANLS: 0.7999
 ```
 
 For the test set, run:
@@ -754,7 +922,187 @@ For the test set, submit the results to the [evaluation server](https://rrc.cvc.
 The expected test results are:
 
 ```
-TODO
+Overall ANLS: 0.8170
+```
+
+````
+
+````{tab} 2B
+
+For the validation set, run:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-2B vqa-docvqa-val --dynamic --max-num 18
+```
+
+The expected test results are:
+
+```
+Overall ANLS: 0.8590
+```
+
+For the test set, run:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-2B vqa-docvqa-test --dynamic --max-num 18
+```
+
+For the test set, submit the results to the [evaluation server](https://rrc.cvc.uab.es/?ch=17).
+
+The expected test results are:
+
+```
+Overall ANLS: 0.8690
+```
+
+````
+
+````{tab} 4B
+
+For the validation set, run:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-4B vqa-docvqa-val --dynamic --max-num 18
+```
+
+The expected test results are:
+
+```
+Overall ANLS: 0.8809
+```
+
+For the test set, run:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-4B vqa-docvqa-test --dynamic --max-num 18
+```
+
+For the test set, submit the results to the [evaluation server](https://rrc.cvc.uab.es/?ch=17).
+
+The expected test results are:
+
+```
+Overall ANLS: 0.8920
+```
+
+````
+
+````{tab} 8B
+
+For the validation set, run:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-8B vqa-docvqa-val --dynamic --max-num 18
+```
+
+The expected test results are:
+
+```
+Overall ANLS: 0.9081
+```
+
+For the test set, run:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-8B vqa-docvqa-test --dynamic --max-num 18
+```
+
+For the test set, submit the results to the [evaluation server](https://rrc.cvc.uab.es/?ch=17).
+
+The expected test results are:
+
+```
+Overall ANLS: 0.9160
+```
+
+````
+
+````{tab} 26B
+
+For the validation set, run:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-26B vqa-docvqa-val --dynamic --max-num 18
+```
+
+The expected test results are:
+
+```
+Overall ANLS: 0.9212
+```
+
+For the test set, run:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-26B vqa-docvqa-test --dynamic --max-num 18
+```
+
+For the test set, submit the results to the [evaluation server](https://rrc.cvc.uab.es/?ch=17).
+
+The expected test results are:
+
+```
+Overall ANLS: 0.9290
+```
+
+````
+
+````{tab} 40B
+
+For the validation set, run:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-40B vqa-docvqa-val --dynamic --max-num 18 --auto
+```
+
+The expected test results are:
+
+```
+Overall ANLS: 0.9373
+```
+
+For the test set, run:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-40B vqa-docvqa-test --dynamic --max-num 18 --auto
+```
+
+For the test set, submit the results to the [evaluation server](https://rrc.cvc.uab.es/?ch=17).
+
+The expected test results are:
+
+```
+Overall ANLS: 0.9390
+```
+
+````
+
+````{tab} 76B
+
+For the validation set, run:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-Llama3-76B vqa-docvqa-val --dynamic --max-num 18 --auto
+```
+
+The expected test results are:
+
+```
+Overall ANLS: 0.9417
+```
+
+For the test set, run:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-Llama3-76B vqa-docvqa-test --dynamic --max-num 18 --auto
+```
+
+For the test set, submit the results to the [evaluation server](https://rrc.cvc.uab.es/?ch=17).
+
+The expected test results are:
+
+```
+Overall ANLS: 0.9410
 ```
 
 ````
@@ -765,6 +1113,10 @@ TODO
 
 The AI2D dataset contains over 5,000 grade school science diagrams with extensive annotations and 15,000 multiple-choice questions for research on diagram understanding and question answering.
 
+`````{tabs}
+
+````{tab} 1B
+
 ```bash
 GPUS=8 sh evaluate.sh pretrained/InternVL2-1B vqa-ai2d-test --dynamic
 ```
@@ -772,12 +1124,104 @@ GPUS=8 sh evaluate.sh pretrained/InternVL2-1B vqa-ai2d-test --dynamic
 The expected test results are:
 
 ```
-TODO
+ai2diagram_test {'accuracy': 0.6408678756476683}
 ```
+
+````
+
+````{tab} 2B
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-2B vqa-ai2d-test --dynamic
+```
+
+The expected test results are:
+
+```
+ai2diagram_test {'accuracy': 0.7409326424870466}
+```
+
+````
+
+````{tab} 4B
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-4B vqa-ai2d-test --dynamic
+```
+
+The expected test results are:
+
+```
+ai2diagram_test {'accuracy': 0.788860103626943}
+```
+
+````
+
+````{tab} 8B
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-8B vqa-ai2d-test --dynamic
+```
+
+The expected test results are:
+
+```
+ai2diagram_test {'accuracy': 0.8377590673575129}
+```
+
+````
+
+````{tab} 26B
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-26B vqa-ai2d-test --dynamic
+```
+
+The expected test results are:
+
+```
+ai2diagram_test {'accuracy': 0.844559585492228}
+```
+
+````
+
+````{tab} 40B
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-40B vqa-ai2d-test --dynamic --auto
+```
+
+The expected test results are:
+
+```
+ai2diagram_test {'accuracy': 0.8711139896373057}
+```
+
+````
+
+````{tab} 76B
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-Llama3-76B vqa-ai2d-test --dynamic --auto
+```
+
+The expected test results are:
+
+```
+ai2diagram_test {'accuracy': 0.8762953367875648}
+```
+
+````
+
+`````
 
 ### InfographicVQA
 
 The InfographicVQA dataset is a collection of infographics accompanied by natural language questions and answers. This dataset includes a diverse range of infographics sourced from thousands of different websites, ensuring a variety of layouts and designs. It comprises 30,035 questions across 5,485 images, split into training, validation, and test sets.
+
+`````{tabs}
+
+````{tab} 1B
 
 For the validation set, run:
 
@@ -788,7 +1232,7 @@ GPUS=8 sh evaluate.sh pretrained/InternVL2-1B vqa-infovqa-val --dynamic --max-nu
 The expected test results are:
 
 ```
-TODO
+Overall ANLS: 0.5018
 ```
 
 For the test set, run:
@@ -802,12 +1246,200 @@ For the test set, submit the results to the [evaluation server](https://rrc.cvc.
 The expected test results are:
 
 ```
-TODO
+Overall ANLS: 0.5090
 ```
+
+````
+
+````{tab} 2B
+
+For the validation set, run:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-2B vqa-infovqa-val --dynamic --max-num 24
+```
+
+The expected test results are:
+
+```
+Overall ANLS: 0.5766
+```
+
+For the test set, run:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-2B vqa-infovqa-test --dynamic --max-num 24
+```
+
+For the test set, submit the results to the [evaluation server](https://rrc.cvc.uab.es/?ch=17).
+
+The expected test results are:
+
+```
+Overall ANLS: 0.5890
+```
+
+````
+
+````{tab} 4B
+
+For the validation set, run:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-4B vqa-infovqa-val --dynamic --max-num 24
+```
+
+The expected test results are:
+
+```
+Overall ANLS: 0.6625
+```
+
+For the test set, run:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-4B vqa-infovqa-test --dynamic --max-num 24
+```
+
+For the test set, submit the results to the [evaluation server](https://rrc.cvc.uab.es/?ch=17).
+
+The expected test results are:
+
+```
+Overall ANLS: 0.6700
+```
+
+````
+
+````{tab} 8B
+
+For the validation set, run:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-8B vqa-infovqa-val --dynamic --max-num 24
+```
+
+The expected test results are:
+
+```
+Overall ANLS: 0.7260
+```
+
+For the test set, run:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-8B vqa-infovqa-test --dynamic --max-num 24
+```
+
+For the test set, submit the results to the [evaluation server](https://rrc.cvc.uab.es/?ch=17).
+
+The expected test results are:
+
+```
+Overall ANLS: 0.7480
+```
+
+````
+
+````{tab} 26B
+
+For the validation set, run:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-26B vqa-infovqa-val --dynamic --max-num 24
+```
+
+The expected test results are:
+
+```
+Overall ANLS: 0.7601
+```
+
+For the test set, run:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-26B vqa-infovqa-test --dynamic --max-num 24
+```
+
+For the test set, submit the results to the [evaluation server](https://rrc.cvc.uab.es/?ch=17).
+
+The expected test results are:
+
+```
+Overall ANLS: 0.7590
+```
+
+````
+
+````{tab} 40B
+
+For the validation set, run:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-40B vqa-infovqa-val --dynamic --max-num 24 --auto
+```
+
+The expected test results are:
+
+```
+Overall ANLS: 0.7851
+```
+
+For the test set, run:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-40B vqa-infovqa-test --dynamic --max-num 24 --auto
+```
+
+For the test set, submit the results to the [evaluation server](https://rrc.cvc.uab.es/?ch=17).
+
+The expected test results are:
+
+```
+Overall ANLS: 0.7870
+```
+
+````
+
+````{tab} 76B
+
+For the validation set, run:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-Llama3-76B vqa-infovqa-val --dynamic --max-num 24 --auto
+```
+
+The expected test results are:
+
+```
+Overall ANLS: 0.8021
+```
+
+For the test set, run:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-Llama3-76B vqa-infovqa-test --dynamic --max-num 24 --auto
+```
+
+For the test set, submit the results to the [evaluation server](https://rrc.cvc.uab.es/?ch=17).
+
+The expected test results are:
+
+```
+Overall ANLS: 0.8200
+```
+
+````
+
+`````
 
 ### GQA
 
 The GQA dataset is a large-scale visual question answering dataset designed for real-world visual reasoning and compositional question answering. It contains over 22 million questions grounded in real images, each accompanied by detailed scene graphs that describe objects, their attributes, and relationships within the scene. The dataset includes images from the Visual Genome dataset, with questions that require various reasoning skills such as spatial understanding and multi-step inference.
+
+`````{tabs}
+
+````{tab} 1B
 
 ```bash
 GPUS=8 sh evaluate.sh pretrained/InternVL2-1B vqa-gqa-testdev --dynamic
@@ -816,26 +1448,104 @@ GPUS=8 sh evaluate.sh pretrained/InternVL2-1B vqa-gqa-testdev --dynamic
 The expected test results are:
 
 ```
-TODO
+Accuracy: 59.77%
 ```
 
-### ScienceQA
+````
 
-The ScienceQA dataset is a large-scale benchmark for multimodal science question answering, consisting of 21,208 multiple-choice questions derived from elementary and high school science curricula. This dataset features a diverse range of topics across natural science, social science, and language science. It includes questions with image context (48.7%), text context (48.2%), and both (30.8%).
+````{tab} 2B
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL2-1B scienceqa --dynamic
+GPUS=8 sh evaluate.sh pretrained/InternVL2-2B vqa-gqa-testdev --dynamic
 ```
 
 The expected test results are:
 
 ```
-TODO
+Accuracy: 61.03%
 ```
+
+````
+
+````{tab} 4B
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-4B vqa-gqa-testdev --dynamic
+```
+
+The expected test results are:
+
+```
+Accuracy: 62.07%
+```
+
+````
+
+````{tab} 8B
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-8B vqa-gqa-testdev --dynamic
+```
+
+The expected test results are:
+
+```
+Accuracy: 63.23%
+```
+
+````
+
+````{tab} 26B
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-26B vqa-gqa-testdev --dynamic
+```
+
+The expected test results are:
+
+```
+Accuracy: 64.89%
+```
+
+````
+
+````{tab} 40B
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-40B vqa-gqa-testdev --dynamic --auto
+```
+
+The expected test results are:
+
+```
+Accuracy: 64.89%
+```
+
+````
+
+````{tab} 76B
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-Llama3-76B vqa-gqa-testdev --dynamic --auto
+```
+
+The expected test results are:
+
+```
+Accuracy: 65.22%
+```
+
+````
+
+`````
 
 ### POPE
 
 The POPE (Polling-based Object Probing Evaluation) dataset is designed to evaluate object hallucination in MLLMs. The dataset consists of 3,000 questions related to the captions of 500 images. By treating the MLLMs' answers to these questions as a binary classification task, the dataset allows researchers to measure accuracy, precision, recall, and F1 scores to determine the extent of hallucination in the models.
+
+`````{tabs}
+
+````{tab} 1B
 
 ```bash
 GPUS=8 sh evaluate.sh pretrained/InternVL2-1B pope --dynamic
@@ -844,12 +1554,321 @@ GPUS=8 sh evaluate.sh pretrained/InternVL2-1B pope --dynamic
 The expected test results are:
 
 ```
-TODO
+Category: random, # samples: 2910
+TP      FP      TN      FN
+1239    51      1359    261
+Accuracy: 0.8927835051546392
+Precision: 0.9604651162790697
+Recall: 0.826
+F1 score: 0.8881720430107527
+Yes ratio: 0.44329896907216493
+0.888, 0.893, 0.960, 0.826, 0.443
+====================================
+Category: popular, # samples: 3000
+TP      FP      TN      FN
+1239    93      1407    261
+Accuracy: 0.882
+Precision: 0.9301801801801802
+Recall: 0.826
+F1 score: 0.875
+Yes ratio: 0.444
+0.875, 0.882, 0.930, 0.826, 0.444
+====================================
+Category: adversarial, # samples: 3000
+TP      FP      TN      FN
+1239    151     1349    261
+Accuracy: 0.8626666666666667
+Precision: 0.8913669064748202
+Recall: 0.826
+F1 score: 0.8574394463667819
+Yes ratio: 0.4633333333333333
+0.857, 0.863, 0.891, 0.826, 0.463
+====================================
+
+result = (88.8 + 87.5 + 85.7) / 3 = 87.3
 ```
+
+````
+
+````{tab} 2B
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-2B pope --dynamic
+```
+
+The expected test results are:
+
+```
+Category: random, # samples: 2910
+TP      FP      TN      FN
+1256    39      1371    244
+Accuracy: 0.9027491408934708
+Precision: 0.9698841698841699
+Recall: 0.8373333333333334
+F1 score: 0.898747763864043
+Yes ratio: 0.44501718213058417
+0.899, 0.903, 0.970, 0.837, 0.445
+====================================
+Category: popular, # samples: 3000
+TP      FP      TN      FN
+1256    89      1411    244
+Accuracy: 0.889
+Precision: 0.9338289962825279
+Recall: 0.8373333333333334
+F1 score: 0.8829525483304044
+Yes ratio: 0.4483333333333333
+0.883, 0.889, 0.934, 0.837, 0.448
+====================================
+Category: adversarial, # samples: 3000
+TP      FP      TN      FN
+1256    139     1361    244
+Accuracy: 0.8723333333333333
+Precision: 0.9003584229390681
+Recall: 0.8373333333333334
+F1 score: 0.8677029360967184
+Yes ratio: 0.465
+0.868, 0.872, 0.900, 0.837, 0.465
+====================================
+
+result = (89.9 + 88.3 + 86.8) / 3 = 88.3
+```
+
+````
+
+````{tab} 4B
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-4B pope --dynamic
+```
+
+The expected test results are:
+
+```
+Category: random, # samples: 2910
+TP      FP      TN      FN
+1247    54      1356    253
+Accuracy: 0.8945017182130585
+Precision: 0.9584934665641814
+Recall: 0.8313333333333334
+F1 score: 0.8903962870403428
+Yes ratio: 0.4470790378006873
+0.890, 0.895, 0.958, 0.831, 0.447
+====================================
+Category: popular, # samples: 3000
+TP      FP      TN      FN
+1247    116     1384    253
+Accuracy: 0.877
+Precision: 0.9148936170212766
+Recall: 0.8313333333333334
+F1 score: 0.8711142158574922
+Yes ratio: 0.4543333333333333
+0.871, 0.877, 0.915, 0.831, 0.454
+====================================
+Category: adversarial, # samples: 3000
+TP      FP      TN      FN
+1247    175     1325    253
+Accuracy: 0.8573333333333333
+Precision: 0.8769338959212377
+Recall: 0.8313333333333334
+F1 score: 0.8535249828884327
+Yes ratio: 0.474
+0.854, 0.857, 0.877, 0.831, 0.474
+====================================
+
+result = (89.0 + 87.1 + 85.4) / 3 = 87.2
+```
+
+````
+
+````{tab} 8B
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-8B pope --dynamic
+```
+
+The expected test results are:
+
+```
+Category: random, # samples: 2910
+TP      FP      TN      FN
+1204    29      1381    296
+Accuracy: 0.8883161512027491
+Precision: 0.9764801297648013
+Recall: 0.8026666666666666
+F1 score: 0.8810830589096232
+Yes ratio: 0.42371134020618556
+0.881, 0.888, 0.976, 0.803, 0.424
+====================================
+Category: popular, # samples: 3000
+TP      FP      TN      FN
+1204    67      1433    296
+Accuracy: 0.879
+Precision: 0.9472856018882769
+Recall: 0.8026666666666666
+F1 score: 0.8690003608805486
+Yes ratio: 0.4236666666666667
+0.869, 0.879, 0.947, 0.803, 0.424
+====================================
+Category: adversarial, # samples: 3000
+TP      FP      TN      FN
+1204    101     1399    296
+Accuracy: 0.8676666666666667
+Precision: 0.9226053639846743
+Recall: 0.8026666666666666
+F1 score: 0.8584670231729055
+Yes ratio: 0.435
+0.858, 0.868, 0.923, 0.803, 0.435
+====================================
+
+result = (88.1 + 86.9 + 85.8) / 3 = 86.9
+```
+
+````
+
+````{tab} 26B
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-26B pope --dynamic
+```
+
+The expected test results are:
+
+```
+Category: random, # samples: 2910
+TP      FP      TN      FN
+1221    25      1385    279
+Accuracy: 0.89553264604811
+Precision: 0.9799357945425361
+Recall: 0.814
+F1 score: 0.8892935178441369
+Yes ratio: 0.4281786941580756
+0.889, 0.896, 0.980, 0.814, 0.428
+====================================
+Category: popular, # samples: 3000
+TP      FP      TN      FN
+1221    57      1443    279
+Accuracy: 0.888
+Precision: 0.9553990610328639
+Recall: 0.814
+F1 score: 0.8790496760259179
+Yes ratio: 0.426
+0.879, 0.888, 0.955, 0.814, 0.426
+====================================
+Category: adversarial, # samples: 3000
+TP      FP      TN      FN
+1221    84      1416    279
+Accuracy: 0.879
+Precision: 0.9356321839080459
+Recall: 0.814
+F1 score: 0.8705882352941177
+Yes ratio: 0.435
+0.871, 0.879, 0.936, 0.814, 0.435
+====================================
+
+result = (88.9 + 87.9 + 87.1) / 3 = 88.0
+```
+
+````
+
+````{tab} 40B
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-40B pope --dynamic --auto
+```
+
+The expected test results are:
+
+```
+Category: random, # samples: 2910
+TP      FP      TN      FN
+1232    16      1394    268
+Accuracy: 0.902405498281787
+Precision: 0.9871794871794872
+Recall: 0.8213333333333334
+F1 score: 0.8966521106259098
+Yes ratio: 0.4288659793814433
+0.897, 0.902, 0.987, 0.821, 0.429
+====================================
+Category: popular, # samples: 3000
+TP      FP      TN      FN
+1232    65      1435    268
+Accuracy: 0.889
+Precision: 0.9498843484965305
+Recall: 0.8213333333333334
+F1 score: 0.8809438684304614
+Yes ratio: 0.43233333333333335
+0.881, 0.889, 0.950, 0.821, 0.432
+====================================
+Category: adversarial, # samples: 3000
+TP      FP      TN      FN
+1232    87      1413    268
+Accuracy: 0.8816666666666667
+Precision: 0.934040940106141
+Recall: 0.8213333333333334
+F1 score: 0.8740688187300462
+Yes ratio: 0.43966666666666665
+0.874, 0.882, 0.934, 0.821, 0.440
+====================================
+
+result = (89.7 + 88.1 + 87.4) / 3 = 88.4
+```
+
+````
+
+````{tab} 76B
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-Llama3-76B pope --dynamic --auto
+```
+
+The expected test results are:
+
+```
+Category: random, # samples: 2910
+TP      FP      TN      FN
+1251    26      1384    249
+Accuracy: 0.9054982817869416
+Precision: 0.9796397807361003
+Recall: 0.834
+F1 score: 0.9009722722362261
+Yes ratio: 0.4388316151202749
+0.901, 0.905, 0.980, 0.834, 0.439
+====================================
+Category: popular, # samples: 3000
+TP      FP      TN      FN
+1251    62      1438    249
+Accuracy: 0.8963333333333333
+Precision: 0.9527798933739527
+Recall: 0.834
+F1 score: 0.8894418769996445
+Yes ratio: 0.43766666666666665
+0.889, 0.896, 0.953, 0.834, 0.438
+====================================
+Category: adversarial, # samples: 3000
+TP      FP      TN      FN
+1251    91      1409    249
+Accuracy: 0.8866666666666667
+Precision: 0.9321907600596125
+Recall: 0.834
+F1 score: 0.8803659394792399
+Yes ratio: 0.44733333333333336
+0.880, 0.887, 0.932, 0.834, 0.447
+====================================
+
+result = (90.1 + 88.9 + 88.0) / 3 = 89.0
+```
+
+````
+
+`````
 
 ### Tiny LVLM
 
 The Tiny LVLM-eHub is a streamlined evaluation benchmark designed to assess the multimodal capabilities of MLLMs, including models like Bard. It focuses on six categories of multimodal abilities: visual perception, visual knowledge acquisition, visual reasoning, visual commonsense, object hallucination, and embodied intelligence.
+
+`````{tabs}
+
+````{tab} 1B
 
 ```bash
 GPUS=8 sh evaluate.sh pretrained/InternVL2-1B tiny_lvlm --dynamic
@@ -858,17 +1877,194 @@ GPUS=8 sh evaluate.sh pretrained/InternVL2-1B tiny_lvlm --dynamic
 The expected test results are:
 
 ```
-TODO
+Visual_Knowledge_Acquisition: 0.6857142857142857
+Object_Hallucination: 0.91
+Visual_Commonsense: 0.556
+Visual_Perception: 0.4875
+Visual_Reasoning: 0.6145454545454545
+Overall: 3.2537597402597402
 ```
+
+````
+
+````{tab} 2B
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-2B tiny_lvlm --dynamic
+```
+
+The expected test results are:
+
+```
+Visual_Knowledge_Acquisition: 0.71
+Object_Hallucination: 0.91
+Visual_Commonsense: 0.558
+Visual_Perception: 0.4675
+Visual_Reasoning: 0.649090909090909
+Overall: 3.294590909090909
+```
+
+````
+
+````{tab} 4B
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-4B tiny_lvlm --dynamic
+```
+
+The expected test results are:
+
+```
+Visual_Knowledge_Acquisition: 0.6814285714285714
+Object_Hallucination: 0.89
+Visual_Commonsense: 0.652
+Visual_Perception: 0.4875
+Visual_Reasoning: 0.6563636363636364
+Overall: 3.3672922077922074
+```
+
+````
+
+````{tab} 8B
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-8B tiny_lvlm --dynamic
+```
+
+The expected test results are:
+
+```
+Visual_Knowledge_Acquisition: 0.6985714285714286
+Object_Hallucination: 0.8966666666666666
+Visual_Commonsense: 0.652
+Visual_Perception: 0.485
+Visual_Reasoning: 0.6854545454545454
+Overall: 3.417692640692641
+```
+
+````
+
+````{tab} 26B
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-26B tiny_lvlm --dynamic
+```
+
+The expected test results are:
+
+```
+Visual_Knowledge_Acquisition: 0.7614285714285715
+Object_Hallucination: 0.9
+Visual_Commonsense: 0.652
+Visual_Perception: 0.555
+Visual_Reasoning: 0.7109090909090909
+Overall: 3.5793376623376627
+```
+
+````
+
+````{tab} 40B
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-40B tiny_lvlm --dynamic --auto
+```
+
+The expected test results are:
+
+```
+Visual_Knowledge_Acquisition: 0.75
+Object_Hallucination: 0.8966666666666666
+Visual_Commonsense: 0.674
+Visual_Perception: 0.5325
+Visual_Reasoning: 0.730909090909091
+Overall: 3.5840757575757576
+```
+
+````
+
+````{tab} 76B
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-Llama3-76B tiny_lvlm --dynamic --auto
+```
+
+The expected test results are:
+
+```
+Visual_Knowledge_Acquisition: 0.7557142857142857
+Object_Hallucination: 0.9166666666666666
+Visual_Commonsense: 0.69
+Visual_Perception: 0.525
+Visual_Reasoning: 0.7418181818181818
+Overall: 3.629199134199134
+```
+
+````
+
+`````
 
 ### MMMU
 
 The MMMU dataset is a comprehensive benchmark designed to evaluate multimodal models on college-level tasks that require domain-specific knowledge and reasoning. It includes 11,500 questions sourced from college exams, quizzes, and textbooks, spanning six disciplines: Art & Design, Business, Science, Health & Medicine, Humanities & Social Science, and Tech & Engineering. These questions cover 30 subjects and feature 30 types of images, such as charts, diagrams, maps, tables, and more.
 
+`````{tabs}
+
+````{tab} 1B
+
 For the validation set, run:
 
 ```bash
 GPUS=8 sh evaluate.sh pretrained/InternVL2-1B mmmu-val --dynamic
+```
+
+The expected test results are:
+
+```
+{'Overall-Art and Design': {'num': 120, 'acc': 0.383}, 'Art': {'num': 30, 'acc': 0.4}, 'Art_Theory': {'num': 30, 'acc': 0.4}, 'Design': {'num': 30, 'acc': 0.567}, 'Music': {'num': 30, 'acc': 0.167}, 'Overall-Business': {'num': 150, 'acc': 0.333}, 'Accounting': {'num': 30, 'acc': 0.333}, 'Economics': {'num': 30, 'acc': 0.433}, 'Finance': {'num': 30, 'acc': 0.067}, 'Manage': {'num': 30, 'acc': 0.367}, 'Marketing': {'num': 30, 'acc': 0.467}, 'Overall-Science': {'num': 150, 'acc': 0.3}, 'Biology': {'num': 30, 'acc': 0.267}, 'Chemistry': {'num': 30, 'acc': 0.233}, 'Geography': {'num': 30, 'acc': 0.367}, 'Math': {'num': 30, 'acc': 0.167}, 'Physics': {'num': 30, 'acc': 0.467}, 'Overall-Health and Medicine': {'num': 150, 'acc': 0.313}, 'Basic_Medical_Science': {'num': 30, 'acc': 0.433}, 'Clinical_Medicine': {'num': 30, 'acc': 0.233}, 'Diagnostics_and_Laboratory_Medicine': {'num': 30, 'acc': 0.4}, 'Pharmacy': {'num': 30, 'acc': 0.3}, 'Public_Health': {'num': 30, 'acc': 0.2}, 'Overall-Humanities and Social Science': {'num': 120, 'acc': 0.483}, 'History': {'num': 30, 'acc': 0.4}, 'Literature': {'num': 30, 'acc': 0.667}, 'Sociology': {'num': 30, 'acc': 0.467}, 'Psychology': {'num': 30, 'acc': 0.4}, 'Overall-Tech and Engineering': {'num': 210, 'acc': 0.348}, 'Agriculture': {'num': 30, 'acc': 0.233}, 'Architecture_and_Engineering': {'num': 30, 'acc': 0.367}, 'Computer_Science': {'num': 30, 'acc': 0.4}, 'Electronics': {'num': 30, 'acc': 0.4}, 'Energy_and_Power': {'num': 30, 'acc': 0.333}, 'Materials': {'num': 30, 'acc': 0.4}, 'Mechanical_Engineering': {'num': 30, 'acc': 0.3}, 
+'Overall': {'num': 900, 'acc': 0.354}}
+```
+
+For the test set, run:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-1B mmmu-test --dynamic
+```
+
+For the test set, submit the results to the [evaluation server](https://eval.ai/web/challenges/challenge-page/2179/overview).
+
+````
+
+````{tab} 2B
+
+For the validation set, run:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-2B mmmu-val --dynamic
+```
+
+The expected test results are:
+
+```
+{'Overall-Art and Design': {'num': 120, 'acc': 0.392}, 'Art': {'num': 30, 'acc': 0.467}, 'Art_Theory': {'num': 30, 'acc': 0.4}, 'Design': {'num': 30, 'acc': 0.5}, 'Music': {'num': 30, 'acc': 0.2}, 'Overall-Business': {'num': 150, 'acc': 0.347}, 'Accounting': {'num': 30, 'acc': 0.367}, 'Economics': {'num': 30, 'acc': 0.333}, 'Finance': {'num': 30, 'acc': 0.333}, 'Manage': {'num': 30, 'acc': 0.367}, 'Marketing': {'num': 30, 'acc': 0.333}, 'Overall-Science': {'num': 150, 'acc': 0.213}, 'Biology': {'num': 30, 'acc': 0.233}, 'Chemistry': {'num': 30, 'acc': 0.1}, 'Geography': {'num': 30, 'acc': 0.167}, 'Math': {'num': 30, 'acc': 0.367}, 'Physics': {'num': 30, 'acc': 0.2}, 'Overall-Health and Medicine': {'num': 150, 'acc': 0.373}, 'Basic_Medical_Science': {'num': 30, 'acc': 0.433}, 'Clinical_Medicine': {'num': 30, 'acc': 0.4}, 'Diagnostics_and_Laboratory_Medicine': {'num': 30, 'acc': 0.4}, 'Pharmacy': {'num': 30, 'acc': 0.267}, 'Public_Health': {'num': 30, 'acc': 0.367}, 'Overall-Humanities and Social Science': {'num': 120, 'acc': 0.492}, 'History': {'num': 30, 'acc': 0.4}, 'Literature': {'num': 30, 'acc': 0.767}, 'Sociology': {'num': 30, 'acc': 0.433}, 'Psychology': {'num': 30, 'acc': 0.367}, 'Overall-Tech and Engineering': {'num': 210, 'acc': 0.3}, 'Agriculture': {'num': 30, 'acc': 0.433}, 'Architecture_and_Engineering': {'num': 30, 'acc': 0.233}, 'Computer_Science': {'num': 30, 'acc': 0.233}, 'Electronics': {'num': 30, 'acc': 0.367}, 'Energy_and_Power': {'num': 30, 'acc': 0.233}, 'Materials': {'num': 30, 'acc': 0.4}, 'Mechanical_Engineering': {'num': 30, 'acc': 0.2}, 
+'Overall': {'num': 900, 'acc': 0.343}}
+```
+
+For the test set, run:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-2B mmmu-test --dynamic
+```
+
+For the test set, submit the results to the [evaluation server](https://eval.ai/web/challenges/challenge-page/2179/overview).
+
+````
+
+````{tab} 4B
+
+For the validation set, run:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-4B mmmu-val --dynamic
 ```
 
 The expected test results are:
@@ -880,22 +2076,124 @@ TODO
 For the test set, run:
 
 ```bash
-GPUS=8 sh evaluate.sh pretrained/InternVL2-1B mmmu-test --dynamic
+GPUS=8 sh evaluate.sh pretrained/InternVL2-4B mmmu-test --dynamic
 ```
 
 For the test set, submit the results to the [evaluation server](https://eval.ai/web/challenges/challenge-page/2179/overview).
 
+````
+
+````{tab} 8B
+
+For the validation set, run:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-8B mmmu-val --dynamic
+```
+
 The expected test results are:
 
 ```
-TODO
+{'Overall-Art and Design': {'num': 120, 'acc': 0.608}, 'Art': {'num': 30, 'acc': 0.733}, 'Art_Theory': {'num': 30, 'acc': 0.7}, 'Design': {'num': 30, 'acc': 0.733}, 'Music': {'num': 30, 'acc': 0.267}, 'Overall-Business': {'num': 150, 'acc': 0.453}, 'Accounting': {'num': 30, 'acc': 0.467}, 'Economics': {'num': 30, 'acc': 0.533}, 'Finance': {'num': 30, 'acc': 0.333}, 'Manage': {'num': 30, 'acc': 0.4}, 'Marketing': {'num': 30, 'acc': 0.533}, 'Overall-Science': {'num': 150, 'acc': 0.393}, 'Biology': {'num': 30, 'acc': 0.467}, 'Chemistry': {'num': 30, 'acc': 0.267}, 'Geography': {'num': 30, 'acc': 0.4}, 'Math': {'num': 30, 'acc': 0.5}, 'Physics': {'num': 30, 'acc': 0.333}, 'Overall-Health and Medicine': {'num': 150, 'acc': 0.507}, 'Basic_Medical_Science': {'num': 30, 'acc': 0.567}, 'Clinical_Medicine': {'num': 30, 'acc': 0.667}, 'Diagnostics_and_Laboratory_Medicine': {'num': 30, 'acc': 0.467}, 'Pharmacy': {'num': 30, 'acc': 0.367}, 'Public_Health': {'num': 30, 'acc': 0.467}, 'Overall-Humanities and Social Science': {'num': 120, 'acc': 0.717}, 'History': {'num': 30, 'acc': 0.767}, 'Literature': {'num': 30, 'acc': 0.9}, 'Sociology': {'num': 30, 'acc': 0.7}, 'Psychology': {'num': 30, 'acc': 0.5}, 'Overall-Tech and Engineering': {'num': 210, 'acc': 0.39}, 'Agriculture': {'num': 30, 'acc': 0.533}, 'Architecture_and_Engineering': {'num': 30, 'acc': 0.333}, 'Computer_Science': {'num': 30, 'acc': 0.5}, 'Electronics': {'num': 30, 'acc': 0.467}, 'Energy_and_Power': {'num': 30, 'acc': 0.4}, 'Materials': {'num': 30, 'acc': 0.233}, 'Mechanical_Engineering': {'num': 30, 'acc': 0.267}, 
+'Overall': {'num': 900, 'acc': 0.493}}
 ```
+
+For the test set, run:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-8B mmmu-test --dynamic
+```
+
+For the test set, submit the results to the [evaluation server](https://eval.ai/web/challenges/challenge-page/2179/overview).
+
+````
+
+````{tab} 26B
+
+For the validation set, run:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-26B mmmu-val --dynamic
+```
+
+The expected test results are:
+
+```
+{'Overall-Art and Design': {'num': 120, 'acc': 0.7}, 'Art': {'num': 30, 'acc': 0.767}, 'Art_Theory': {'num': 30, 'acc': 0.867}, 'Design': {'num': 30, 'acc': 0.867}, 'Music': {'num': 30, 'acc': 0.3}, 'Overall-Business': {'num': 150, 'acc': 0.407}, 'Accounting': {'num': 30, 'acc': 0.467}, 'Economics': {'num': 30, 'acc': 0.3}, 'Finance': {'num': 30, 'acc': 0.333}, 'Manage': {'num': 30, 'acc': 0.5}, 'Marketing': {'num': 30, 'acc': 0.433}, 'Overall-Science': {'num': 150, 'acc': 0.373}, 'Biology': {'num': 30, 'acc': 0.6}, 'Chemistry': {'num': 30, 'acc': 0.2}, 'Geography': {'num': 30, 'acc': 0.5}, 'Math': {'num': 30, 'acc': 0.233}, 'Physics': {'num': 30, 'acc': 0.333}, 'Overall-Health and Medicine': {'num': 150, 'acc': 0.453}, 'Basic_Medical_Science': {'num': 30, 'acc': 0.467}, 'Clinical_Medicine': {'num': 30, 'acc': 0.567}, 'Diagnostics_and_Laboratory_Medicine': {'num': 30, 'acc': 0.367}, 'Pharmacy': {'num': 30, 'acc': 0.367}, 'Public_Health': {'num': 30, 'acc': 0.5}, 'Overall-Humanities and Social Science': {'num': 120, 'acc': 0.7}, 'History': {'num': 30, 'acc': 0.7}, 'Literature': {'num': 30, 'acc': 0.9}, 'Sociology': {'num': 30, 'acc': 0.6}, 'Psychology': {'num': 30, 'acc': 0.6}, 'Overall-Tech and Engineering': {'num': 210, 'acc': 0.39}, 'Agriculture': {'num': 30, 'acc': 0.467}, 'Architecture_and_Engineering': {'num': 30, 'acc': 0.267}, 'Computer_Science': {'num': 30, 'acc': 0.367}, 'Electronics': {'num': 30, 'acc': 0.367}, 'Energy_and_Power': {'num': 30, 'acc': 0.5}, 'Materials': {'num': 30, 'acc': 0.433}, 'Mechanical_Engineering': {'num': 30, 'acc': 0.333}, 
+'Overall': {'num': 900, 'acc': 0.483}}
+```
+
+For the test set, run:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-26B mmmu-test --dynamic
+```
+
+For the test set, submit the results to the [evaluation server](https://eval.ai/web/challenges/challenge-page/2179/overview).
+
+````
+
+````{tab} 40B
+
+For the validation set, run:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-40B mmmu-val --dynamic --auto
+```
+
+The expected test results are:
+
+```
+{'Overall-Art and Design': {'num': 120, 'acc': 0.675}, 'Art': {'num': 30, 'acc': 0.733}, 'Art_Theory': {'num': 30, 'acc': 0.833}, 'Design': {'num': 30, 'acc': 0.767}, 'Music': {'num': 30, 'acc': 0.367}, 'Overall-Business': {'num': 150, 'acc': 0.44}, 'Accounting': {'num': 30, 'acc': 0.467}, 'Economics': {'num': 30, 'acc': 0.567}, 'Finance': {'num': 30, 'acc': 0.333}, 'Manage': {'num': 30, 'acc': 0.367}, 'Marketing': {'num': 30, 'acc': 0.467}, 'Overall-Science': {'num': 150, 'acc': 0.493}, 'Biology': {'num': 30, 'acc': 0.633}, 'Chemistry': {'num': 30, 'acc': 0.3}, 'Geography': {'num': 30, 'acc': 0.5}, 'Math': {'num': 30, 'acc': 0.5}, 'Physics': {'num': 30, 'acc': 0.533}, 'Overall-Health and Medicine': {'num': 150, 'acc': 0.593}, 'Basic_Medical_Science': {'num': 30, 'acc': 0.5}, 'Clinical_Medicine': {'num': 30, 'acc': 0.6}, 'Diagnostics_and_Laboratory_Medicine': {'num': 30, 'acc': 0.4}, 'Pharmacy': {'num': 30, 'acc': 0.667}, 'Public_Health': {'num': 30, 'acc': 0.8}, 'Overall-Humanities and Social Science': {'num': 120, 'acc': 0.717}, 'History': {'num': 30, 'acc': 0.767}, 'Literature': {'num': 30, 'acc': 0.833}, 'Sociology': {'num': 30, 'acc': 0.6}, 'Psychology': {'num': 30, 'acc': 0.667}, 'Overall-Tech and Engineering': {'num': 210, 'acc': 0.424}, 'Agriculture': {'num': 30, 'acc': 0.6}, 'Architecture_and_Engineering': {'num': 30, 'acc': 0.333}, 'Computer_Science': {'num': 30, 'acc': 0.467}, 'Electronics': {'num': 30, 'acc': 0.433}, 'Energy_and_Power': {'num': 30, 'acc': 0.467}, 'Materials': {'num': 30, 'acc': 0.3}, 'Mechanical_Engineering': {'num': 30, 'acc': 0.367}, 
+'Overall': {'num': 900, 'acc': 0.539}}
+```
+
+For the test set, run:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-40B mmmu-test --dynamic --auto
+```
+
+For the test set, submit the results to the [evaluation server](https://eval.ai/web/challenges/challenge-page/2179/overview).
+
+````
+
+````{tab} 76B
+
+For the validation set, run:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-Llama3-76B mmmu-val --dynamic --auto
+```
+
+The expected test results are:
+
+```
+{'Overall-Art and Design': {'num': 120, 'acc': 0.683}, 'Art': {'num': 30, 'acc': 0.767}, 'Art_Theory': {'num': 30, 'acc': 0.933}, 'Design': {'num': 30, 'acc': 0.7}, 'Music': {'num': 30, 'acc': 0.333}, 'Overall-Business': {'num': 150, 'acc': 0.567}, 'Accounting': {'num': 30, 'acc': 0.5}, 'Economics': {'num': 30, 'acc': 0.567}, 'Finance': {'num': 30, 'acc': 0.433}, 'Manage': {'num': 30, 'acc': 0.633}, 'Marketing': {'num': 30, 'acc': 0.7}, 'Overall-Science': {'num': 150, 'acc': 0.413}, 'Biology': {'num': 30, 'acc': 0.467}, 'Chemistry': {'num': 30, 'acc': 0.3}, 'Geography': {'num': 30, 'acc': 0.433}, 'Math': {'num': 30, 'acc': 0.367}, 'Physics': {'num': 30, 'acc': 0.5}, 'Overall-Health and Medicine': {'num': 150, 'acc': 0.587}, 'Basic_Medical_Science': {'num': 30, 'acc': 0.533}, 'Clinical_Medicine': {'num': 30, 'acc': 0.667}, 'Diagnostics_and_Laboratory_Medicine': {'num': 30, 'acc': 0.433}, 'Pharmacy': {'num': 30, 'acc': 0.6}, 'Public_Health': {'num': 30, 'acc': 0.7}, 'Overall-Humanities and Social Science': {'num': 120, 'acc': 0.725}, 'History': {'num': 30, 'acc': 0.733}, 'Literature': {'num': 30, 'acc': 0.867}, 'Sociology': {'num': 30, 'acc': 0.633}, 'Psychology': {'num': 30, 'acc': 0.667}, 'Overall-Tech and Engineering': {'num': 210, 'acc': 0.443}, 'Agriculture': {'num': 30, 'acc': 0.6}, 'Architecture_and_Engineering': {'num': 30, 'acc': 0.367}, 'Computer_Science': {'num': 30, 'acc': 0.567}, 'Electronics': {'num': 30, 'acc': 0.433}, 'Energy_and_Power': {'num': 30, 'acc': 0.367}, 'Materials': {'num': 30, 'acc': 0.267}, 'Mechanical_Engineering': {'num': 30, 'acc': 0.5}, 
+'Overall': {'num': 900, 'acc': 0.552}}
+```
+
+For the test set, run:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-Llama3-76B mmmu-test --dynamic --auto
+```
+
+For the test set, submit the results to the [evaluation server](https://eval.ai/web/challenges/challenge-page/2179/overview).
+
+````
+
+`````
 
 ### MMVet (GPT-4-0613)
 
 > **⚠️ Warning:** Here, we use `GPT-4-0613` as the judge model, while in VLMEvalKit, `GPT-4-Turbo` is used as the judge model. Using different versions of GPT-4 can result in significant score variations. Therefore, testing the same model with the two codebases can lead to notable score differences.
 
 The MM-Vet dataset is a comprehensive benchmark designed to evaluate the integrated capabilities of MLLMs. It encompasses six core vision-language (VL) capabilities: recognition, knowledge, optical character recognition (OCR), spatial awareness, language generation, and math. The dataset includes 200 images and 218 questions, each requiring one or more of these capabilities to answer. The evaluation uses an open-ended LLM-based approach, allowing assessment across various answer styles and question types.
+
+`````{tabs}
+
+````{tab} 1B
 
 ```bash
 GPUS=8 sh evaluate.sh pretrained/InternVL2-1B mmvet --dynamic
@@ -904,12 +2202,104 @@ GPUS=8 sh evaluate.sh pretrained/InternVL2-1B mmvet --dynamic
 Then, submit the results to the [evaluation server](https://huggingface.co/spaces/whyu/MM-Vet_Evaluator). The expected test results are:
 
 ```
-TODO
+runs: [37.8]
 ```
+
+````
+
+````{tab} 2B
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-2B mmvet --dynamic
+```
+
+Then, submit the results to the [evaluation server](https://huggingface.co/spaces/whyu/MM-Vet_Evaluator). The expected test results are:
+
+```
+runs: [44.6]
+```
+
+````
+
+````{tab} 4B
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-4B mmvet --dynamic
+```
+
+Then, submit the results to the [evaluation server](https://huggingface.co/spaces/whyu/MM-Vet_Evaluator). The expected test results are:
+
+```
+runs: [55.7]
+```
+
+````
+
+````{tab} 8B
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-8B mmvet --dynamic
+```
+
+Then, submit the results to the [evaluation server](https://huggingface.co/spaces/whyu/MM-Vet_Evaluator). The expected test results are:
+
+```
+runs: [60.0]
+```
+
+````
+
+````{tab} 26B
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-26B mmvet --dynamic
+```
+
+Then, submit the results to the [evaluation server](https://huggingface.co/spaces/whyu/MM-Vet_Evaluator). The expected test results are:
+
+```
+runs: [64.2]
+```
+
+````
+
+````{tab} 40B
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-40B mmvet --dynamic --auto
+```
+
+Then, submit the results to the [evaluation server](https://huggingface.co/spaces/whyu/MM-Vet_Evaluator). The expected test results are:
+
+```
+runs: [68.5]
+```
+
+````
+
+````{tab} 76B
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-Llama3-76B mmvet --dynamic --auto
+```
+
+Then, submit the results to the [evaluation server](https://huggingface.co/spaces/whyu/MM-Vet_Evaluator). The expected test results are:
+
+```
+runs: [69.8]
+```
+
+````
+
+`````
 
 ### MMBench
 
 The MMBench dataset is a comprehensive multi-modality benchmark designed to evaluate the fine-grained abilities of vision-language models. It contains around 3,000 multiple-choice questions covering 20 ability dimensions, structured into a hierarchical taxonomy. These dimensions include perception and reasoning abilities, further broken down into specific skills like coarse and fine-grained perception, attribute reasoning, and logic reasoning.
+
+`````{tabs}
+
+````{tab} 1B
 
 For the English dev / test set, run:
 
@@ -921,7 +2311,8 @@ GPUS=8 sh evaluate.sh pretrained/InternVL2-1B mmbench-test-en --dynamic
 Then, submit the results to the [evaluation server](https://mmbench.opencompass.org.cn/mmbench-submission). The expected test results are:
 
 ```
-TODO
+mmbench-dev-en: -
+mmbench-test-en: 65.4
 ```
 
 For the Chinese dev / test set, run:
@@ -935,12 +2326,219 @@ GPUS=8 sh evaluate.sh pretrained/InternVL2-1B mmbench-test-cn --dynamic
 Then, submit the results to the [evaluation server](https://mmbench.opencompass.org.cn/mmbench-submission). The expected test results are:
 
 ```
-TODO
+mmbench-dev-cn: -
+mmbench-test-cn: 60.7
 ```
+
+````
+
+````{tab} 2B
+
+For the English dev / test set, run:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-2B mmbench-dev-en --dynamic
+GPUS=8 sh evaluate.sh pretrained/InternVL2-2B mmbench-test-en --dynamic
+```
+
+Then, submit the results to the [evaluation server](https://mmbench.opencompass.org.cn/mmbench-submission). The expected test results are:
+
+```
+mmbench-dev-en: -
+mmbench-test-en: 73.2
+```
+
+For the Chinese dev / test set, run:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-2B mmbench-dev-cn --dynamic
+GPUS=8 sh evaluate.sh pretrained/InternVL2-2B mmbench-test-cn --dynamic
+
+```
+
+Then, submit the results to the [evaluation server](https://mmbench.opencompass.org.cn/mmbench-submission). The expected test results are:
+
+```
+mmbench-dev-cn: -
+mmbench-test-cn: 70.9
+```
+
+````
+
+````{tab} 4B
+
+For the English dev / test set, run:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-4B mmbench-dev-en --dynamic
+GPUS=8 sh evaluate.sh pretrained/InternVL2-4B mmbench-test-en --dynamic
+```
+
+Then, submit the results to the [evaluation server](https://mmbench.opencompass.org.cn/mmbench-submission). The expected test results are:
+
+```
+mmbench-dev-en: -
+mmbench-test-en: 78.6
+```
+
+For the Chinese dev / test set, run:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-4B mmbench-dev-cn --dynamic
+GPUS=8 sh evaluate.sh pretrained/InternVL2-4B mmbench-test-cn --dynamic
+
+```
+
+Then, submit the results to the [evaluation server](https://mmbench.opencompass.org.cn/mmbench-submission). The expected test results are:
+
+```
+mmbench-dev-cn: -
+mmbench-test-cn: 73.9
+```
+
+````
+
+````{tab} 8B
+
+For the English dev / test set, run:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-8B mmbench-dev-en --dynamic
+GPUS=8 sh evaluate.sh pretrained/InternVL2-8B mmbench-test-en --dynamic
+```
+
+Then, submit the results to the [evaluation server](https://mmbench.opencompass.org.cn/mmbench-submission). The expected test results are:
+
+```
+mmbench-dev-en: -
+mmbench-test-en: 81.7
+```
+
+For the Chinese dev / test set, run:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-8B mmbench-dev-cn --dynamic
+GPUS=8 sh evaluate.sh pretrained/InternVL2-8B mmbench-test-cn --dynamic
+
+```
+
+Then, submit the results to the [evaluation server](https://mmbench.opencompass.org.cn/mmbench-submission). The expected test results are:
+
+```
+mmbench-dev-cn: -
+mmbench-test-cn: 81.2
+```
+
+````
+
+````{tab} 26B
+
+For the English dev / test set, run:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-26B mmbench-dev-en --dynamic
+GPUS=8 sh evaluate.sh pretrained/InternVL2-26B mmbench-test-en --dynamic
+```
+
+Then, submit the results to the [evaluation server](https://mmbench.opencompass.org.cn/mmbench-submission). The expected test results are:
+
+```
+mmbench-dev-en: -
+mmbench-test-en: 83.4
+```
+
+For the Chinese dev / test set, run:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-26B mmbench-dev-cn --dynamic
+GPUS=8 sh evaluate.sh pretrained/InternVL2-26B mmbench-test-cn --dynamic
+
+```
+
+Then, submit the results to the [evaluation server](https://mmbench.opencompass.org.cn/mmbench-submission). The expected test results are:
+
+```
+mmbench-dev-cn: -
+mmbench-test-cn: 82.0
+```
+
+````
+
+````{tab} 40B
+
+For the English dev / test set, run:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-40B mmbench-dev-en --dynamic --auto
+GPUS=8 sh evaluate.sh pretrained/InternVL2-40B mmbench-test-en --dynamic --auto
+```
+
+Then, submit the results to the [evaluation server](https://mmbench.opencompass.org.cn/mmbench-submission). The expected test results are:
+
+```
+mmbench-dev-en: -
+mmbench-test-en: 86.8
+```
+
+For the Chinese dev / test set, run:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-40B mmbench-dev-cn --dynamic --auto
+GPUS=8 sh evaluate.sh pretrained/InternVL2-40B mmbench-test-cn --dynamic --auto
+
+```
+
+Then, submit the results to the [evaluation server](https://mmbench.opencompass.org.cn/mmbench-submission). The expected test results are:
+
+```
+mmbench-dev-cn: -
+mmbench-test-cn: 86.5
+```
+
+````
+
+````{tab} 76B
+
+For the English dev / test set, run:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-Llama3-76B mmbench-dev-en --dynamic --auto
+GPUS=8 sh evaluate.sh pretrained/InternVL2-Llama3-76B mmbench-test-en --dynamic --auto
+```
+
+Then, submit the results to the [evaluation server](https://mmbench.opencompass.org.cn/mmbench-submission). The expected test results are:
+
+```
+mmbench-dev-en: -
+mmbench-test-en: 86.5
+```
+
+For the Chinese dev / test set, run:
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-Llama3-76B mmbench-dev-cn --dynamic --auto
+GPUS=8 sh evaluate.sh pretrained/InternVL2-Llama3-76B mmbench-test-cn --dynamic --auto
+
+```
+
+Then, submit the results to the [evaluation server](https://mmbench.opencompass.org.cn/mmbench-submission). The expected test results are:
+
+```
+mmbench-dev-cn: -
+mmbench-test-cn: 86.3
+```
+
+````
+
+`````
 
 ### CCBench
 
 CCBench, a multi-modal benchmark in the domain of Chinese Culture, is designed to evaluate the performance of MLLMs on tasks specifically related to Chinese cultural content.
+
+`````{tabs}
+
+````{tab} 1B
 
 ```bash
 GPUS=8 sh evaluate.sh pretrained/InternVL2-1B ccbench-dev --dynamic
@@ -949,12 +2547,104 @@ GPUS=8 sh evaluate.sh pretrained/InternVL2-1B ccbench-dev --dynamic
 Then, submit the results to the [evaluation server](https://mmbench.opencompass.org.cn/mmbench-submission). The expected test results are:
 
 ```
-TODO
+ccbench-dev: 75.7
 ```
+
+````
+
+````{tab} 2B
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-2B ccbench-dev --dynamic
+```
+
+Then, submit the results to the [evaluation server](https://mmbench.opencompass.org.cn/mmbench-submission). The expected test results are:
+
+```
+ccbench-dev: 74.7
+```
+
+````
+
+````{tab} 4B
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-4B ccbench-dev --dynamic
+```
+
+Then, submit the results to the [evaluation server](https://mmbench.opencompass.org.cn/mmbench-submission). The expected test results are:
+
+```
+ccbench-dev: 66.5
+```
+
+````
+
+````{tab} 8B
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-8B ccbench-dev --dynamic
+```
+
+Then, submit the results to the [evaluation server](https://mmbench.opencompass.org.cn/mmbench-submission). The expected test results are:
+
+```
+ccbench-dev: 75.9
+```
+
+````
+
+````{tab} 26B
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-26B ccbench-dev --dynamic
+```
+
+Then, submit the results to the [evaluation server](https://mmbench.opencompass.org.cn/mmbench-submission). The expected test results are:
+
+```
+ccbench-dev: 73.5
+```
+
+````
+
+````{tab} 40B
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-40B ccbench-dev --dynamic --auto
+```
+
+Then, submit the results to the [evaluation server](https://mmbench.opencompass.org.cn/mmbench-submission). The expected test results are:
+
+```
+ccbench-dev: 80.6
+```
+
+````
+
+````{tab} 76B
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-Llama3-76B ccbench-dev --dynamic --auto
+```
+
+Then, submit the results to the [evaluation server](https://mmbench.opencompass.org.cn/mmbench-submission). The expected test results are:
+
+```
+ccbench-dev: 81.0
+```
+
+````
+
+`````
 
 ### SEED
 
 CCBench is a multimodal benchmark specifically designed to evaluate models on tasks related to Chinese culture. It is part of the larger MMBench suite of benchmarks, developed by the OpenCompass Community, and aims to provide fine-grained evaluations across various capabilities of vision-language models. CCBench includes 510 questions in a multiple-choice format, focusing on cultural knowledge and understanding.
+
+`````{tabs}
+
+````{tab} 1B
 
 ```bash
 GPUS=8 sh evaluate.sh pretrained/InternVL2-1B seed --dynamic
@@ -963,12 +2653,223 @@ GPUS=8 sh evaluate.sh pretrained/InternVL2-1B seed --dynamic
 The expected test results are:
 
 ```
-TODO
+Acc@1: 0.6074485825458588
+length: 17990
+Accuracy for each data type:
+Data type Scene Understanding: 73.05%
+Data type Instance Identity: 71.16%
+Data type Instance Location: 69.23%
+Data type Instance Attributes: 58.49%
+Data type Instances Counting: 52.55%
+Data type Spatial Relation: 43.53%
+Data type Instance Interaction: 71.13%
+Data type Visual Reasoning: 72.51%
+Data type Text Understanding: 68.60%
+Data type Action Recognition: 53.55%
+Data type Action Prediction: 39.92%
+Data type Procedure Understanding: 28.74%
+Total accuracy: 60.76%
+Image accuracy: 65.62%
+Video accuracy: 42.35%
 ```
+
+````
+
+````{tab} 2B
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-2B seed --dynamic
+```
+
+The expected test results are:
+
+```
+Acc@1: 0.6656475819899944
+length: 17990
+Accuracy for each data type:
+Data type Scene Understanding: 76.92%
+Data type Instance Identity: 76.79%
+Data type Instance Location: 75.04%
+Data type Instance Attributes: 65.44%
+Data type Instances Counting: 60.40%
+Data type Spatial Relation: 54.03%
+Data type Instance Interaction: 72.16%
+Data type Visual Reasoning: 76.74%
+Data type Text Understanding: 74.42%
+Data type Action Recognition: 60.04%
+Data type Action Prediction: 43.27%
+Data type Procedure Understanding: 34.70%
+Total accuracy: 66.56%
+Image accuracy: 71.55%
+Video accuracy: 47.67%
+```
+
+````
+
+````{tab} 4B
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-4B seed --dynamic
+```
+
+The expected test results are:
+
+```
+Acc@1: 0.6934408004446915
+length: 17990
+Accuracy for each data type:
+Data type Scene Understanding: 78.75%
+Data type Instance Identity: 76.79%
+Data type Instance Location: 77.45%
+Data type Instance Attributes: 66.36%
+Data type Instances Counting: 64.57%
+Data type Spatial Relation: 56.47%
+Data type Instance Interaction: 71.13%
+Data type Visual Reasoning: 78.25%
+Data type Text Understanding: 75.58%
+Data type Action Recognition: 60.57%
+Data type Action Prediction: 47.84%
+Data type Procedure Understanding: 47.80%
+Total accuracy: 69.34%
+Image accuracy: 73.67%
+Video accuracy: 52.94%
+```
+
+````
+
+````{tab} 8B
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-8B seed --dynamic
+```
+
+The expected test results are:
+
+```
+Acc@1: 0.7072262367982213
+length: 17990
+Accuracy for each data type:
+Data type Scene Understanding: 79.89%
+Data type Instance Identity: 78.97%
+Data type Instance Location: 79.50%
+Data type Instance Attributes: 69.84%
+Data type Instances Counting: 68.08%
+Data type Spatial Relation: 64.23%
+Data type Instance Interaction: 79.38%
+Data type Visual Reasoning: 78.85%
+Data type Text Understanding: 75.58%
+Data type Action Recognition: 60.70%
+Data type Action Prediction: 48.57%
+Data type Procedure Understanding: 36.56%
+Total accuracy: 70.72%
+Image accuracy: 76.15%
+Video accuracy: 50.17%
+```
+
+````
+
+````{tab} 26B
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-26B seed --dynamic
+```
+
+The expected test results are:
+
+```
+Acc@1: 0.7245136186770428
+length: 17990
+Accuracy for each data type:
+Data type Scene Understanding: 80.30%
+Data type Instance Identity: 80.39%
+Data type Instance Location: 79.88%
+Data type Instance Attributes: 71.78%
+Data type Instances Counting: 69.68%
+Data type Spatial Relation: 61.95%
+Data type Instance Interaction: 75.26%
+Data type Visual Reasoning: 79.15%
+Data type Text Understanding: 68.60%
+Data type Action Recognition: 65.47%
+Data type Action Prediction: 54.20%
+Data type Procedure Understanding: 44.28%
+Total accuracy: 72.45%
+Image accuracy: 76.79%
+Video accuracy: 56.03%
+```
+
+````
+
+````{tab} 40B
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-40B seed --dynamic --auto
+```
+
+The expected test results are:
+
+```
+Acc@1: 0.7464146748193441
+length: 17990
+Accuracy for each data type:
+Data type Scene Understanding: 80.62%
+Data type Instance Identity: 82.36%
+Data type Instance Location: 80.92%
+Data type Instance Attributes: 71.68%
+Data type Instances Counting: 72.46%
+Data type Spatial Relation: 66.36%
+Data type Instance Interaction: 78.35%
+Data type Visual Reasoning: 80.06%
+Data type Text Understanding: 66.28%
+Data type Action Recognition: 67.93%
+Data type Action Prediction: 57.47%
+Data type Procedure Understanding: 56.40%
+Total accuracy: 74.65%
+Image accuracy: 78.15%
+Video accuracy: 61.38%
+```
+
+````
+
+````{tab} 76B
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-Llama3-76B seed --dynamic --auto
+```
+
+The expected test results are:
+
+```
+Acc@1: 0.7446359088382435
+length: 17990
+Accuracy for each data type:
+Data type Scene Understanding: 80.40%
+Data type Instance Identity: 82.25%
+Data type Instance Location: 80.66%
+Data type Instance Attributes: 73.31%
+Data type Instances Counting: 72.78%
+Data type Spatial Relation: 65.14%
+Data type Instance Interaction: 79.38%
+Data type Visual Reasoning: 79.15%
+Data type Text Understanding: 77.91%
+Data type Action Recognition: 68.26%
+Data type Action Prediction: 55.10%
+Data type Procedure Understanding: 55.23%
+Total accuracy: 74.46%
+Image accuracy: 78.17%
+Video accuracy: 60.42%
+```
+
+````
+
+`````
 
 ### MMVP
 
 The MMVP dataset is designed to benchmark the performance of multimodal large language models (MLLMs) in visual question answering tasks. This dataset focuses on identifying "CLIP-blind pairs," which are images that appear similar to the CLIP model despite having clear visual differences. The MMVP dataset includes 300 images derived from ImageNet-1k and LAION-Aesthetics, each paired with straightforward questions to evaluate the models' visual capabilities. It highlights the challenges these systems face, often leading to incorrect responses and hallucinated explanations.
+
+`````{tabs}
+
+````{tab} 1B
 
 ```bash
 GPUS=8 sh evaluate.sh pretrained/InternVL2-1B mmvp --dynamic
@@ -977,60 +2878,181 @@ GPUS=8 sh evaluate.sh pretrained/InternVL2-1B mmvp --dynamic
 The expected test results are:
 
 ```
-TODO
+Evaluating MMVP ...
+Results saved to results/MMVP_240708020850.jsonl
+The accuracy is 0.2
 ```
 
-### LLaVA-Bench (GPT-4-0613)
+````
 
-> **⚠️ Warning:** Here, we use `GPT-4-0613` as the judge model, while in VLMEvalKit, `GPT-4-Turbo` is used as the judge model. Using different versions of GPT-4 can result in significant score variations. Therefore, testing the same model with the two codebases can lead to notable score differences.
-
-The LLaVA-Bench-in-the-Wild dataset is designed to evaluate the capabilities of MLLMs in handling more complex and diverse visual tasks. It includes a set of 24 images with 60 associated questions, covering a range of indoor and outdoor scenes, memes, paintings, and sketches. Each image is paired with detailed, manually curated descriptions and questions that test the model's generalizability to novel domains.
+````{tab} 2B
 
 ```bash
-export OPENAI_API_KEY='your openai key'
-GPUS=1 sh evaluate.sh pretrained/InternVL2-1B llava-bench --dynamic
+GPUS=8 sh evaluate.sh pretrained/InternVL2-2B mmvp --dynamic
 ```
 
 The expected test results are:
 
 ```
-TODO
+Evaluating MMVP ...
+Results saved to results/MMVP_240702122300.jsonl
+The accuracy is 0.35333333333333333
 ```
 
-### MathVista
+````
 
-The MathVista dataset is a comprehensive benchmark for evaluating mathematical reasoning within visual contexts. It consists of three newly created datasets—IQTest, FunctionQA, and PaperQA—designed to address logical reasoning on puzzle test figures, algebraic reasoning over functional plots, and scientific reasoning with academic paper figures, respectively.
+````{tab} 4B
 
 ```bash
-export OPENAI_API_KEY='your-openai-key'
-GPUS=8 sh evaluate.sh pretrained/InternVL2-1B mathvista-testmini --dynamic
+GPUS=8 sh evaluate.sh pretrained/InternVL2-4B mmvp --dynamic
 ```
 
 The expected test results are:
 
 ```
-TODO
+Evaluating MMVP ...
+Results saved to results/MMVP_240702144108.jsonl
+The accuracy is 0.4066666666666667
 ```
+
+````
+
+````{tab} 8B
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-8B mmvp --dynamic
+```
+
+The expected test results are:
+
+```
+Evaluating MMVP ...
+Results saved to results/MMVP_240703200956.jsonl
+The accuracy is 0.5133333333333333
+```
+
+````
+
+````{tab} 26B
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-26B mmvp --dynamic
+```
+
+The expected test results are:
+
+```
+Evaluating MMVP ...
+Results saved to results/MMVP_240704024433.jsonl
+The accuracy is 0.5466666666666666
+```
+
+````
+
+````{tab} 40B
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-40B mmvp --dynamic --auto
+```
+
+The expected test results are:
+
+```
+Evaluating MMVP ...
+Results saved to results/MMVP_240708045836.jsonl
+The accuracy is 0.5866666666666667
+```
+
+````
+
+````{tab} 76B
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-Llama3-76B mmvp --dynamic --auto
+```
+
+The expected test results are:
+
+```
+Evaluating MMVP ...
+Results saved to results/MMVP_240718203234.jsonl
+The accuracy is 0.5266666666666666
+```
+
+````
+
+`````
 
 ### RefCOCO Series
 
 RefCOCO, RefCOCO+, and RefCOCOg are datasets used for tasks involving referring expression comprehension, segmentation, and generation. These datasets are built upon the MSCOCO dataset, and they are essential for evaluating models in natural language processing and computer vision.
 
+`````{tabs}
+
+````{tab} 1B
 ```bash
 GPUS=8 sh evalulate.sh pretrained/InternVL2-1B refcoco --dynamic
 ```
+````
+
+````{tab} 2B
+```bash
+GPUS=8 sh evalulate.sh pretrained/InternVL2-2B refcoco --dynamic
+```
+````
+
+````{tab} 4B
+```bash
+GPUS=8 sh evalulate.sh pretrained/InternVL2-4B refcoco --dynamic
+```
+````
+
+````{tab} 8B
+```bash
+GPUS=8 sh evalulate.sh pretrained/InternVL2-8B refcoco --dynamic
+```
+````
+
+````{tab} 26B
+```bash
+GPUS=8 sh evalulate.sh pretrained/InternVL2-26B refcoco --dynamic
+```
+````
+
+````{tab} 40B
+```bash
+GPUS=8 sh evalulate.sh pretrained/InternVL2-40B refcoco --dynamic --auto
+```
+````
+
+````{tab} 76B
+```bash
+GPUS=8 sh evalulate.sh pretrained/InternVL2-Llama3-76B refcoco --dynamic --auto
+```
+````
+`````
 
 The expected test results are:
 
-```
-TODO
-```
+|          Model           | avg. | RefCOCO<br>(val) | RefCOCO<br>(testA) | RefCOCO<br>(testB) | RefCOCO+<br>(val) | RefCOCO+<br>(testA) | RefCOCO+<br>(testB) | RefCOCO‑g<br>(val) | RefCOCO‑g<br>(test) |
+| :----------------------: | :--: | :--------------: | :----------------: | :----------------: | :---------------: | :-----------------: | :-----------------: | :----------------: | :-----------------: |
+|       InternVL2‑1B       | 79.9 |       83.6       |        88.7        |        79.8        |       76.0        |        83.6         |        67.7         |        80.2        |        79.9         |
+|       InternVL2‑2B       | 77.7 |       82.3       |        88.2        |        75.9        |       73.5        |        82.8         |        63.3         |        77.6        |        78.3         |
+|       InternVL2‑4B       | 84.4 |       88.5       |        91.2        |        83.9        |       81.2        |        87.2         |        73.8         |        84.6        |        84.6         |
+|       InternVL2‑8B       | 82.9 |       87.1       |        91.1        |        80.7        |       79.8        |        87.9         |        71.4         |        82.7        |        82.7         |
+|      InternVL2‑26B       | 88.5 |       91.2       |        93.3        |        87.4        |       86.8        |        91.0         |        81.2         |        88.5        |        88.6         |
+|      InternVL2‑40B       | 90.3 |       93.0       |        94.7        |        89.2        |       88.5        |        92.8         |        83.6         |        90.3        |        90.6         |
+| InternVL2-<br>Llama3‑76B | 90.0 |       92.2       |        94.8        |        88.4        |       88.8        |        93.1         |        82.8         |        89.5        |        90.3         |
 
 ### MVBench
 
 MVBench is a comprehensive multimodal video understanding benchmark developed to evaluate the temporal comprehension capabilities of MLLMs. It includes 20 challenging video tasks that require temporal understanding and cannot be effectively solved using a single frame. The benchmark uses a novel static-to-dynamic method, transforming static tasks into dynamic ones to systematically generate video tasks that demand a wide range of temporal skills, from perception to cognition.
 
 We evaluate our models on MVBench by extracting 16 frames from each video, and each frame was resized to a 448x448 image.
+
+`````{tabs}
+
+````{tab} 1B
 
 ```bash
 GPUS=8 sh evaluate.sh pretrained/InternVL2-1B mvbench --dynamic --max-num 1
@@ -1039,8 +3061,96 @@ GPUS=8 sh evaluate.sh pretrained/InternVL2-1B mvbench --dynamic --max-num 1
 The expected test results are:
 
 ```
-TODO
+57.9
 ```
+
+````
+
+````{tab} 2B
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-2B mvbench --dynamic --max-num 1
+```
+
+The expected test results are:
+
+```
+60.2
+```
+
+````
+
+````{tab} 4B
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-4B mvbench --dynamic --max-num 1
+```
+
+The expected test results are:
+
+```
+63.7
+```
+
+````
+
+````{tab} 8B
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-8B mvbench --dynamic --max-num 1
+```
+
+The expected test results are:
+
+```
+66.4
+```
+
+````
+
+````{tab} 26B
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-26B mvbench --dynamic --max-num 1
+```
+
+The expected test results are:
+
+```
+67.5
+```
+
+````
+
+````{tab} 40B
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-40B mvbench --dynamic --max-num 1 --auto
+```
+
+The expected test results are:
+
+```
+72.5
+```
+
+````
+
+````{tab} 76B
+
+```bash
+GPUS=8 sh evaluate.sh pretrained/InternVL2-Llama3-76B mvbench --dynamic --max-num 1 --auto
+```
+
+The expected test results are:
+
+```
+69.6
+```
+
+````
+
+`````
 
 ## Evaluation using VLMEvalKit Codebase
 
@@ -1052,6 +3162,10 @@ VLMEvalKit will automatically download the data for evaluation, so you do not ne
 
 The MathVista dataset is a comprehensive benchmark for evaluating mathematical reasoning within visual contexts. It consists of three newly created datasets—IQTest, FunctionQA, and PaperQA—designed to address logical reasoning on puzzle test figures, algebraic reasoning over functional plots, and scientific reasoning with academic paper figures, respectively.
 
+`````{tabs}
+
+````{tab} 1B
+
 ```bash
 torchrun --nproc-per-node=8 run.py --data MathVista_MINI --model InternVL2-1B --verbose
 ```
@@ -1062,9 +3176,101 @@ The expected test results are:
 TODO
 ```
 
+````
+
+````{tab} 2B
+
+```bash
+torchrun --nproc-per-node=8 run.py --data MathVista_MINI --model InternVL2-2B --verbose
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+````{tab} 4B
+
+```bash
+torchrun --nproc-per-node=8 run.py --data MathVista_MINI --model InternVL2-4B --verbose
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+````{tab} 8B
+
+```bash
+torchrun --nproc-per-node=8 run.py --data MathVista_MINI --model InternVL2-8B --verbose
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+````{tab} 26B
+
+```bash
+torchrun --nproc-per-node=8 run.py --data MathVista_MINI --model InternVL2-26B --verbose
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+````{tab} 40B
+
+```bash
+torchrun --nproc-per-node=8 run.py --data MathVista_MINI --model InternVL2-40B --verbose
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+````{tab} 76B
+
+```bash
+torchrun --nproc-per-node=1 run.py --data MathVista_MINI --model InternVL2-Llama3-76B --verbose
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+`````
+
 ### HallusionBench
 
 HallusionBench is a comprehensive benchmark designed to evaluate image-context reasoning in MLLMs, focusing on identifying issues related to language hallucination and visual illusion. The dataset consists of 346 images paired with 1,129 questions crafted by human experts. These questions are divided into two categories: Visual Dependent (VD) and Visual Supplement (VS), allowing the benchmark to assess the nuanced understanding and interpretation of visual data by MLLMs.
+
+`````{tabs}
+
+````{tab} 1B
 
 ```bash
 torchrun --nproc-per-node=8 run.py --data HallusionBench --model InternVL2-1B --verbose
@@ -1076,9 +3282,101 @@ The expected test results are:
 TODO
 ```
 
+````
+
+````{tab} 2B
+
+```bash
+torchrun --nproc-per-node=8 run.py --data HallusionBench --model InternVL2-2B --verbose
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+````{tab} 4B
+
+```bash
+torchrun --nproc-per-node=8 run.py --data HallusionBench --model InternVL2-4B --verbose
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+````{tab} 8B
+
+```bash
+torchrun --nproc-per-node=8 run.py --data HallusionBench --model InternVL2-8B --verbose
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+````{tab} 26B
+
+```bash
+torchrun --nproc-per-node=8 run.py --data HallusionBench --model InternVL2-26B --verbose
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+````{tab} 40B
+
+```bash
+torchrun --nproc-per-node=8 run.py --data HallusionBench --model InternVL2-40B --verbose
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+````{tab} 76B
+
+```bash
+torchrun --nproc-per-node=1 run.py --data HallusionBench --model InternVL2-Llama3-76B --verbose
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+`````
+
 ### MMStar
 
 The MMStar dataset is an advanced multimodal benchmark designed to evaluate the capabilities of MLLMs. It comprises 1,500 carefully selected samples that are balanced and purified to ensure they exhibit visual dependency and minimal data leakage. The dataset evaluates models across six core capabilities and 18 detailed axes, focusing on complex multimodal tasks that require advanced reasoning and understanding of visual content.
+
+`````{tabs}
+
+````{tab} 1B
 
 ```bash
 torchrun --nproc-per-node=8 run.py --data MMStar --model InternVL2-1B --verbose
@@ -1090,9 +3388,101 @@ The expected test results are:
 TODO
 ```
 
+````
+
+````{tab} 2B
+
+```bash
+torchrun --nproc-per-node=8 run.py --data MMStar --model InternVL2-2B --verbose
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+````{tab} 4B
+
+```bash
+torchrun --nproc-per-node=8 run.py --data MMStar --model InternVL2-4B --verbose
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+````{tab} 8B
+
+```bash
+torchrun --nproc-per-node=8 run.py --data MMStar --model InternVL2-8B --verbose
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+````{tab} 26B
+
+```bash
+torchrun --nproc-per-node=8 run.py --data MMStar --model InternVL2-26B --verbose
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+````{tab} 40B
+
+```bash
+torchrun --nproc-per-node=8 run.py --data MMStar --model InternVL2-40B --verbose
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+````{tab} 76B
+
+```bash
+torchrun --nproc-per-node=1 run.py --data MMStar --model InternVL2-Llama3-76B --verbose
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+`````
+
 ### OCRBench
 
 OCRBench is a comprehensive evaluation benchmark designed to assess the OCR capabilities of MLLMs. It includes five components: Text Recognition, Scene Text-Centric Visual Question Answering (VQA), Document-Oriented VQA, Key Information Extraction (KIE), and Handwritten Mathematical Expression Recognition (HMER). The benchmark encompasses data from 29 datasets, making it one of the most thorough OCR evaluation tools available. OCRBench aims to reveal both the strengths and weaknesses of MLLMs, particularly in handling multilingual text, handwritten text, non-semantic text, and mathematical expressions. The benchmark includes 1,000 question-answer pairs, all manually verified for precision.
+
+`````{tabs}
+
+````{tab} 1B
 
 ```bash
 torchrun --nproc-per-node=8 run.py --data OCRBench --model InternVL2-1B --verbose
@@ -1104,9 +3494,101 @@ The expected test results are:
 TODO
 ```
 
+````
+
+````{tab} 2B
+
+```bash
+torchrun --nproc-per-node=8 run.py --data OCRBench --model InternVL2-2B --verbose
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+````{tab} 4B
+
+```bash
+torchrun --nproc-per-node=8 run.py --data OCRBench --model InternVL2-4B --verbose
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+````{tab} 8B
+
+```bash
+torchrun --nproc-per-node=8 run.py --data OCRBench --model InternVL2-8B --verbose
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+````{tab} 26B
+
+```bash
+torchrun --nproc-per-node=8 run.py --data OCRBench --model InternVL2-26B --verbose
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+````{tab} 40B
+
+```bash
+torchrun --nproc-per-node=8 run.py --data OCRBench --model InternVL2-40B --verbose
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+````{tab} 76B
+
+```bash
+torchrun --nproc-per-node=1 run.py --data OCRBench --model InternVL2-Llama3-76B --verbose
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+`````
+
 ### MMMU
 
 The MMMU dataset is a comprehensive benchmark designed to evaluate multimodal models on college-level tasks that require domain-specific knowledge and reasoning. It includes 11,500 questions sourced from college exams, quizzes, and textbooks, spanning six disciplines: Art & Design, Business, Science, Health & Medicine, Humanities & Social Science, and Tech & Engineering. These questions cover 30 subjects and feature 30 types of images, such as charts, diagrams, maps, tables, and more.
+
+`````{tabs}
+
+````{tab} 1B
 
 ```bash
 torchrun --nproc-per-node=8 run.py --data MMMU_DEV_VAL --model InternVL2-1B --verbose
@@ -1118,9 +3600,101 @@ The expected test results are:
 TODO
 ```
 
+````
+
+````{tab} 2B
+
+```bash
+torchrun --nproc-per-node=8 run.py --data MMMU_DEV_VAL --model InternVL2-2B --verbose
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+````{tab} 4B
+
+```bash
+torchrun --nproc-per-node=8 run.py --data MMMU_DEV_VAL --model InternVL2-4B --verbose
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+````{tab} 8B
+
+```bash
+torchrun --nproc-per-node=8 run.py --data MMMU_DEV_VAL --model InternVL2-8B --verbose
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+````{tab} 26B
+
+```bash
+torchrun --nproc-per-node=8 run.py --data MMMU_DEV_VAL --model InternVL2-26B --verbose
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+````{tab} 40B
+
+```bash
+torchrun --nproc-per-node=8 run.py --data MMMU_DEV_VAL --model InternVL2-40B --verbose
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+````{tab} 76B
+
+```bash
+torchrun --nproc-per-node=1 run.py --data MMMU_DEV_VAL --model InternVL2-Llama3-76B --verbose
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+`````
+
 ### RealWorldQA
 
 The RealWorldQA dataset is a benchmark designed to evaluate the real-world spatial understanding capabilities of multimodal AI models. It consists of over 700 images, each accompanied by a question and a verifiable answer, focusing on various real-world scenarios, including those captured from vehicles. This dataset aims to test how well AI models comprehend physical environments and spatial relations, enhancing their ability to interpret and analyze real-world scenes.
+
+`````{tabs}
+
+````{tab} 1B
 
 ```bash
 torchrun --nproc-per-node=8 run.py --data RealWorldQA --model InternVL2-1B --verbose
@@ -1132,9 +3706,101 @@ The expected test results are:
 TODO
 ```
 
+````
+
+````{tab} 2B
+
+```bash
+torchrun --nproc-per-node=8 run.py --data RealWorldQA --model InternVL2-2B --verbose
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+````{tab} 4B
+
+```bash
+torchrun --nproc-per-node=8 run.py --data RealWorldQA --model InternVL2-4B --verbose
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+````{tab} 8B
+
+```bash
+torchrun --nproc-per-node=8 run.py --data RealWorldQA --model InternVL2-8B --verbose
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+````{tab} 26B
+
+```bash
+torchrun --nproc-per-node=8 run.py --data RealWorldQA --model InternVL2-26B --verbose
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+````{tab} 40B
+
+```bash
+torchrun --nproc-per-node=8 run.py --data RealWorldQA --model InternVL2-40B --verbose
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+````{tab} 76B
+
+```bash
+torchrun --nproc-per-node=1 run.py --data RealWorldQA --model InternVL2-Llama3-76B --verbose
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+`````
+
 ### MMVet (GPT-4-Turbo)
 
 The MM-Vet dataset is a comprehensive benchmark designed to evaluate the integrated capabilities of MLLMs. It encompasses six core vision-language (VL) capabilities: recognition, knowledge, optical character recognition (OCR), spatial awareness, language generation, and math. The dataset includes 200 images and 218 questions, each requiring one or more of these capabilities to answer. The evaluation uses an open-ended LLM-based approach, allowing assessment across various answer styles and question types.
+
+`````{tabs}
+
+````{tab} 1B
 
 ```bash
 torchrun --nproc-per-node=8 run.py --data MMVet --model InternVL2-1B --verbose
@@ -1146,11 +3812,103 @@ The expected test results are:
 TODO
 ```
 
+````
+
+````{tab} 2B
+
+```bash
+torchrun --nproc-per-node=8 run.py --data MMVet --model InternVL2-2B --verbose
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+````{tab} 4B
+
+```bash
+torchrun --nproc-per-node=8 run.py --data MMVet --model InternVL2-4B --verbose
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+````{tab} 8B
+
+```bash
+torchrun --nproc-per-node=8 run.py --data MMVet --model InternVL2-8B --verbose
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+````{tab} 26B
+
+```bash
+torchrun --nproc-per-node=8 run.py --data MMVet --model InternVL2-26B --verbose
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+````{tab} 40B
+
+```bash
+torchrun --nproc-per-node=8 run.py --data MMVet --model InternVL2-40B --verbose
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+````{tab} 76B
+
+```bash
+torchrun --nproc-per-node=1 run.py --data MMVet --model InternVL2-Llama3-76B --verbose
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+`````
+
 Note that because the version of GPT-4 used for scoring differs from the official server, the scores tested by VLMEvalKit will be slightly different.
 
 ### LLaVA-Bench (GPT-4-Turbo)
 
 The LLaVA-Bench-in-the-Wild dataset is designed to evaluate the capabilities of MLLMs in handling more complex and diverse visual tasks. It includes a set of 24 images with 60 associated questions, covering a range of indoor and outdoor scenes, memes, paintings, and sketches. Each image is paired with detailed, manually curated descriptions and questions that test the model's generalizability to novel domains.
+
+`````{tabs}
+
+````{tab} 1B
 
 ```bash
 torchrun --nproc-per-node=8 run.py --data LLaVABench --model InternVL2-1B --verbose
@@ -1162,9 +3920,101 @@ The expected test results are:
 TODO
 ```
 
+````
+
+````{tab} 2B
+
+```bash
+torchrun --nproc-per-node=8 run.py --data LLaVABench --model InternVL2-2B --verbose
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+````{tab} 4B
+
+```bash
+torchrun --nproc-per-node=8 run.py --data LLaVABench --model InternVL2-4B --verbose
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+````{tab} 8B
+
+```bash
+torchrun --nproc-per-node=8 run.py --data LLaVABench --model InternVL2-8B --verbose
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+````{tab} 26B
+
+```bash
+torchrun --nproc-per-node=8 run.py --data LLaVABench --model InternVL2-26B --verbose
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+````{tab} 40B
+
+```bash
+torchrun --nproc-per-node=8 run.py --data LLaVABench --model InternVL2-40B --verbose
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+````{tab} 76B
+
+```bash
+torchrun --nproc-per-node=1 run.py --data LLaVABench --model InternVL2-Llama3-76B --verbose
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+`````
+
 ### VideoMME
 
 The Video-MME dataset is a comprehensive benchmark designed to evaluate the capabilities of MLLMs in video analysis. It is the first benchmark specifically tailored for this purpose, focusing on a high-quality assessment of models' performance in processing sequential visual data.
+
+`````{tabs}
+
+````{tab} 1B
 
 ```bash
 torchrun --nproc-per-node=8 run.py --data Video-MME --model InternVL2-1B --verbose --nframe 16
@@ -1175,6 +4025,94 @@ The expected test results are:
 ```
 TODO
 ```
+
+````
+
+````{tab} 2B
+
+```bash
+torchrun --nproc-per-node=8 run.py --data Video-MME --model InternVL2-2B --verbose --nframe 16
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+````{tab} 4B
+
+```bash
+torchrun --nproc-per-node=8 run.py --data Video-MME --model InternVL2-4B --verbose --nframe 16
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+````{tab} 8B
+
+```bash
+torchrun --nproc-per-node=8 run.py --data Video-MME --model InternVL2-8B --verbose --nframe 16
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+````{tab} 26B
+
+```bash
+torchrun --nproc-per-node=8 run.py --data Video-MME --model InternVL2-26B --verbose --nframe 16
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+````{tab} 40B
+
+```bash
+torchrun --nproc-per-node=8 run.py --data Video-MME --model InternVL2-40B --verbose --nframe 16
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+````{tab} 76B
+
+```bash
+torchrun --nproc-per-node=1 run.py --data Video-MME --model InternVL2-Llama3-76B --verbose --nframe 16
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+`````
 
 ## Citation
 
