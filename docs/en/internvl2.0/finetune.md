@@ -85,6 +85,29 @@ My suggestion is to add new domain-specific data on top of the [general data fro
 
 `````{tabs}
 
+````{tab} 1B
+
+Fine-tune the pre-trained models using either the [script for training the full LLM](https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/shell/internvl2.0/2nd_finetune/internvl2_1b_qwen2_0_5b_dynamic_res_2nd_finetune_full.sh)
+or the [script for training the LoRA adapter](https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/shell/internvl2.0/2nd_finetune/internvl2_1b_qwen2_0_5b_dynamic_res_2nd_finetune_lora.sh), depending on your available GPU resources.
+
+Before fine-tuning, set the `--meta_path` to the path of the JSON file you created in the previous step. The default pre-trained model path in these shell scripts is `./pretrained/InternVL2-2B`.
+
+> 💡 Fine-tuning the full LLM requires at least 8x 32G/40G GPUs, whereas fine-tuning the LoRA requires 2x 32G/40G GPUs.
+
+> 💡 The number of GPUs and hyperparameters used here are just an example. To achieve optimal results, you may need to adjust these settings based on your available hardware and dataset size.
+
+Commands for fine-tuning:
+
+```sh
+# Using 8 GPUs, fine-tune the full LLM, cost about 30G per GPU
+GPUS=8 PER_DEVICE_BATCH_SIZE=1 sh shell/internvl2.0/2nd_finetune/internvl2_1b_qwen2_0_5b_dynamic_res_2nd_finetune_full.sh
+# Using 2 GPUs, fine-tune the LoRA, cost about 27G per GPU
+GPUS=2 PER_DEVICE_BATCH_SIZE=1 sh shell/internvl2.0/2nd_finetune/internvl2_1b_qwen2_0_5b_dynamic_res_2nd_finetune_lora.sh
+# Using 8 GPUs, fine-tune the LoRA, cost about 27G per GPU
+GPUS=8 PER_DEVICE_BATCH_SIZE=1 sh shell/internvl2.0/2nd_finetune/internvl2_1b_qwen2_0_5b_dynamic_res_2nd_finetune_lora.sh
+```
+
+````
 
 ````{tab} 2B
 
@@ -154,6 +177,30 @@ GPUS=8 PER_DEVICE_BATCH_SIZE=2 sh shell/internvl2.0/2nd_finetune/internvl2_26b_i
 GPUS=2 PER_DEVICE_BATCH_SIZE=2 sh shell/internvl2.0/2nd_finetune/internvl2_26b_internlm2_20b_dynamic_res_2nd_finetune_lora.sh
 # Using 8 GPUs, fine-tune the LoRA, cost about 60G per GPU
 GPUS=8 PER_DEVICE_BATCH_SIZE=2 sh shell/internvl2.0/2nd_finetune/internvl2_26b_internlm2_20b_dynamic_res_2nd_finetune_lora.sh
+```
+
+````
+
+````{tab} 40B
+
+Fine-tune the pre-trained models using either the [script for training the full LLM](https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/shell/internvl2.0/2nd_finetune/internvl2_40b_hermes2_yi_34b_dynamic_res_2nd_finetune_full.sh)
+or the [script for training the LoRA adapter](https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/shell/internvl2.0/2nd_finetune/internvl2_40b_hermes2_yi_34b_dynamic_res_2nd_finetune_lora.sh), depending on your available GPU resources.
+
+Before fine-tuning, set the `--meta_path` to the path of the JSON file you created in the previous step. The default pre-trained model path in these shell scripts is `./pretrained/InternVL2-40B`.
+
+> 💡 Fine-tuning the full LLM requires at least 8 A100 80G GPUs, whereas fine-tuning the LoRA requires 2 A100 80G GPUs.
+
+> 💡 The number of GPUs and hyperparameters used here are just an example. To achieve optimal results, you may need to adjust these settings based on your available hardware and dataset size.
+
+Commands for fine-tuning:
+
+```sh
+# Using 16 GPUs with SLURM system, fine-tune the full LLM, cost about 77G per GPU
+PARTITION='your partition' GPUS=16 PER_DEVICE_BATCH_SIZE=2 sh shell/internvl2.0/2nd_finetune/internvl2_40b_hermes2_yi_34b_dynamic_res_2nd_finetune_full.sh
+# Using 2 GPUs, fine-tune the LoRA, cost about 74G per GPU
+GPUS=2 PER_DEVICE_BATCH_SIZE=2 sh shell/internvl2.0/2nd_finetune/internvl2_40b_hermes2_yi_34b_dynamic_res_2nd_finetune_lora.sh
+# Using 8 GPUs, fine-tune the LoRA, cost about 74G per GPU
+GPUS=8 PER_DEVICE_BATCH_SIZE=2 sh shell/internvl2.0/2nd_finetune/internvl2_40b_hermes2_yi_34b_dynamic_res_2nd_finetune_lora.sh
 ```
 
 ````

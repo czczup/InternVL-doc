@@ -553,7 +553,25 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
 <section id="start-2nd-fine-tuning">
 <h2>Start 2nd Fine-tuning<a class="headerlink" href="#start-2nd-fine-tuning" title="Permalink to this heading">#</a></h2>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">2B</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">4B</button><button aria-controls="panel-0-0-2" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-2" name="0-2" role="tab" tabindex="-1">26B</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><p>Fine-tune the pre-trained models using either the <a class="reference external" href="https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/shell/internvl2.0/2nd_finetune/internvl2_2b_internlm2_1_8b_dynamic_res_2nd_finetune_full.sh">script for training the full LLM</a>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">1B</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">2B</button><button aria-controls="panel-0-0-2" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-2" name="0-2" role="tab" tabindex="-1">4B</button><button aria-controls="panel-0-0-3" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-3" name="0-3" role="tab" tabindex="-1">26B</button><button aria-controls="panel-0-0-4" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-4" name="0-4" role="tab" tabindex="-1">40B</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><p>Fine-tune the pre-trained models using either the <a class="reference external" href="https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/shell/internvl2.0/2nd_finetune/internvl2_1b_qwen2_0_5b_dynamic_res_2nd_finetune_full.sh">script for training the full LLM</a>
+or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/shell/internvl2.0/2nd_finetune/internvl2_1b_qwen2_0_5b_dynamic_res_2nd_finetune_lora.sh">script for training the LoRA adapter</a>, depending on your available GPU resources.</p>
+<p>Before fine-tuning, set the <code class="docutils literal notranslate"><span class="pre">--meta_path</span></code> to the path of the JSON file you created in the previous step. The default pre-trained model path in these shell scripts is <code class="docutils literal notranslate"><span class="pre">./pretrained/InternVL2-2B</span></code>.</p>
+<blockquote>
+<div><p>💡 Fine-tuning the full LLM requires at least 8x 32G/40G GPUs, whereas fine-tuning the LoRA requires 2x 32G/40G GPUs.</p>
+</div></blockquote>
+<blockquote>
+<div><p>💡 The number of GPUs and hyperparameters used here are just an example. To achieve optimal results, you may need to adjust these settings based on your available hardware and dataset size.</p>
+</div></blockquote>
+<p>Commands for fine-tuning:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># Using 8 GPUs, fine-tune the full LLM, cost about 30G per GPU</span>
+<span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span><span class="nv">PER_DEVICE_BATCH_SIZE</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>sh<span class="w"> </span>shell/internvl2.0/2nd_finetune/internvl2_1b_qwen2_0_5b_dynamic_res_2nd_finetune_full.sh
+<span class="c1"># Using 2 GPUs, fine-tune the LoRA, cost about 27G per GPU</span>
+<span class="nv">GPUS</span><span class="o">=</span><span class="m">2</span><span class="w"> </span><span class="nv">PER_DEVICE_BATCH_SIZE</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>sh<span class="w"> </span>shell/internvl2.0/2nd_finetune/internvl2_1b_qwen2_0_5b_dynamic_res_2nd_finetune_lora.sh
+<span class="c1"># Using 8 GPUs, fine-tune the LoRA, cost about 27G per GPU</span>
+<span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span><span class="nv">PER_DEVICE_BATCH_SIZE</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>sh<span class="w"> </span>shell/internvl2.0/2nd_finetune/internvl2_1b_qwen2_0_5b_dynamic_res_2nd_finetune_lora.sh
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-0-1" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-1" name="0-1" role="tabpanel" tabindex="0"><p>Fine-tune the pre-trained models using either the <a class="reference external" href="https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/shell/internvl2.0/2nd_finetune/internvl2_2b_internlm2_1_8b_dynamic_res_2nd_finetune_full.sh">script for training the full LLM</a>
 or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/shell/internvl2.0/2nd_finetune/internvl2_2b_internlm2_1_8b_dynamic_res_2nd_finetune_lora.sh">script for training the LoRA adapter</a>, depending on your available GPU resources.</p>
 <p>Before fine-tuning, set the <code class="docutils literal notranslate"><span class="pre">--meta_path</span></code> to the path of the JSON file you created in the previous step. The default pre-trained model path in these shell scripts is <code class="docutils literal notranslate"><span class="pre">./pretrained/InternVL2-2B</span></code>.</p>
 <blockquote>
@@ -571,7 +589,7 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 <span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span><span class="nv">PER_DEVICE_BATCH_SIZE</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>sh<span class="w"> </span>shell/internvl2.0/2nd_finetune/internvl2_2b_internlm2_1_8b_dynamic_res_2nd_finetune_lora.sh
 </pre></div>
 </div>
-</div><div aria-labelledby="tab-0-0-1" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-1" name="0-1" role="tabpanel" tabindex="0"><p>Fine-tune the pre-trained models using either the <a class="reference external" href="https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/shell/internvl2.0/2nd_finetune/internvl2_4b_phi3_3_8b_dynamic_res_2nd_finetune_full.sh">script for training the full LLM</a>
+</div><div aria-labelledby="tab-0-0-2" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-2" name="0-2" role="tabpanel" tabindex="0"><p>Fine-tune the pre-trained models using either the <a class="reference external" href="https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/shell/internvl2.0/2nd_finetune/internvl2_4b_phi3_3_8b_dynamic_res_2nd_finetune_full.sh">script for training the full LLM</a>
 or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/shell/internvl2.0/2nd_finetune/internvl2_4b_phi3_3_8b_dynamic_res_2nd_finetune_lora.sh">script for training the LoRA adapter</a>, depending on your available GPU resources.</p>
 <p>Before fine-tuning, set the <code class="docutils literal notranslate"><span class="pre">--meta_path</span></code> to the path of the JSON file you created in the previous step. The default pre-trained model path in these shell scripts is <code class="docutils literal notranslate"><span class="pre">./pretrained/InternVL2-4B</span></code>.</p>
 <blockquote>
@@ -589,7 +607,7 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 <span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span><span class="nv">PER_DEVICE_BATCH_SIZE</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>sh<span class="w"> </span>shell/internvl2.0/2nd_finetune/internvl2_4b_phi3_3_8b_dynamic_res_2nd_finetune_lora.sh
 </pre></div>
 </div>
-</div><div aria-labelledby="tab-0-0-2" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-2" name="0-2" role="tabpanel" tabindex="0"><p>Fine-tune the pre-trained models using either the <a class="reference external" href="https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/shell/internvl2.0/2nd_finetune/internvl2_26b_internlm2_20b_dynamic_res_2nd_finetune_full.sh">script for training the full LLM</a>
+</div><div aria-labelledby="tab-0-0-3" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-3" name="0-3" role="tabpanel" tabindex="0"><p>Fine-tune the pre-trained models using either the <a class="reference external" href="https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/shell/internvl2.0/2nd_finetune/internvl2_26b_internlm2_20b_dynamic_res_2nd_finetune_full.sh">script for training the full LLM</a>
 or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/shell/internvl2.0/2nd_finetune/internvl2_26b_internlm2_20b_dynamic_res_2nd_finetune_lora.sh">script for training the LoRA adapter</a>, depending on your available GPU resources.</p>
 <p>Before fine-tuning, set the <code class="docutils literal notranslate"><span class="pre">--meta_path</span></code> to the path of the JSON file you created in the previous step. The default pre-trained model path in these shell scripts is <code class="docutils literal notranslate"><span class="pre">./pretrained/InternVL2-26B</span></code>.</p>
 <blockquote>
@@ -605,6 +623,24 @@ or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL
 <span class="nv">GPUS</span><span class="o">=</span><span class="m">2</span><span class="w"> </span><span class="nv">PER_DEVICE_BATCH_SIZE</span><span class="o">=</span><span class="m">2</span><span class="w"> </span>sh<span class="w"> </span>shell/internvl2.0/2nd_finetune/internvl2_26b_internlm2_20b_dynamic_res_2nd_finetune_lora.sh
 <span class="c1"># Using 8 GPUs, fine-tune the LoRA, cost about 60G per GPU</span>
 <span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span><span class="nv">PER_DEVICE_BATCH_SIZE</span><span class="o">=</span><span class="m">2</span><span class="w"> </span>sh<span class="w"> </span>shell/internvl2.0/2nd_finetune/internvl2_26b_internlm2_20b_dynamic_res_2nd_finetune_lora.sh
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-0-4" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-4" name="0-4" role="tabpanel" tabindex="0"><p>Fine-tune the pre-trained models using either the <a class="reference external" href="https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/shell/internvl2.0/2nd_finetune/internvl2_40b_hermes2_yi_34b_dynamic_res_2nd_finetune_full.sh">script for training the full LLM</a>
+or the <a class="reference external" href="https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/shell/internvl2.0/2nd_finetune/internvl2_40b_hermes2_yi_34b_dynamic_res_2nd_finetune_lora.sh">script for training the LoRA adapter</a>, depending on your available GPU resources.</p>
+<p>Before fine-tuning, set the <code class="docutils literal notranslate"><span class="pre">--meta_path</span></code> to the path of the JSON file you created in the previous step. The default pre-trained model path in these shell scripts is <code class="docutils literal notranslate"><span class="pre">./pretrained/InternVL2-40B</span></code>.</p>
+<blockquote>
+<div><p>💡 Fine-tuning the full LLM requires at least 8 A100 80G GPUs, whereas fine-tuning the LoRA requires 2 A100 80G GPUs.</p>
+</div></blockquote>
+<blockquote>
+<div><p>💡 The number of GPUs and hyperparameters used here are just an example. To achieve optimal results, you may need to adjust these settings based on your available hardware and dataset size.</p>
+</div></blockquote>
+<p>Commands for fine-tuning:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># Using 16 GPUs with SLURM system, fine-tune the full LLM, cost about 77G per GPU</span>
+<span class="nv">PARTITION</span><span class="o">=</span><span class="s1">&#39;your partition&#39;</span><span class="w"> </span><span class="nv">GPUS</span><span class="o">=</span><span class="m">16</span><span class="w"> </span><span class="nv">PER_DEVICE_BATCH_SIZE</span><span class="o">=</span><span class="m">2</span><span class="w"> </span>sh<span class="w"> </span>shell/internvl2.0/2nd_finetune/internvl2_40b_hermes2_yi_34b_dynamic_res_2nd_finetune_full.sh
+<span class="c1"># Using 2 GPUs, fine-tune the LoRA, cost about 74G per GPU</span>
+<span class="nv">GPUS</span><span class="o">=</span><span class="m">2</span><span class="w"> </span><span class="nv">PER_DEVICE_BATCH_SIZE</span><span class="o">=</span><span class="m">2</span><span class="w"> </span>sh<span class="w"> </span>shell/internvl2.0/2nd_finetune/internvl2_40b_hermes2_yi_34b_dynamic_res_2nd_finetune_lora.sh
+<span class="c1"># Using 8 GPUs, fine-tune the LoRA, cost about 74G per GPU</span>
+<span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span><span class="nv">PER_DEVICE_BATCH_SIZE</span><span class="o">=</span><span class="m">2</span><span class="w"> </span>sh<span class="w"> </span>shell/internvl2.0/2nd_finetune/internvl2_40b_hermes2_yi_34b_dynamic_res_2nd_finetune_lora.sh
 </pre></div>
 </div>
 </div></div>
