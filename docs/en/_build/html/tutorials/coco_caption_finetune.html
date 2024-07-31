@@ -1,0 +1,752 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Enhancing InternVL2 on COCO Caption Using LoRA Fine-Tuning &#8212; internvl</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/readthedocs.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/coco_caption_finetune';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Introduction of InternVL2 Series" href="../internvl2.0/introduction.html" />
+    <link rel="prev" title="Local Chat Demo" href="../get_started/local_chat_demo.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+    <meta name="docbuild:last-update" content="Aug 01, 2024"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/internvl-logo.svg" class="logo__image only-light" alt="internvl - Home"/>
+    <script>document.write(`<img src="../_static/internvl-logo.svg" class="logo__image only-dark" alt="internvl - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../get_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/eval_data_preparation.html">Evaluation Data Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/chat_data_format.html">Chat Data Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/internvl_chat_api.html">InternVL-Chat API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/local_chat_demo.html">Local Chat Demo</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Enhancing InternVL2 on COCO Caption Using LoRA Fine-Tuning</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL 2.0</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../internvl2.0/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl2.0/quick_start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl2.0/finetune.html">Finetune</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl2.0/evaluation.html">Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl2.0/deployment.html">Deployment</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL 1.5</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.5/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.5/quick_start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.5/finetune.html">Finetune</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.5/evaluation.html">Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.5/deployment.html">Deployment</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL 1.2</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.2/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.2/quick_start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.2/reproduce.html">Reproduce</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.2/finetune.html">Finetune</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.2/evaluation.html">Evaluation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL 1.1</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.1/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.1/quick_start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.1/evaluation.html">Evaluation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL 1.0</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.0/classification.html">classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.0/clip_benchmark.html">clip_benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.0/segmentation.html">segmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.0/internvl_chat_llava.html">internvl_chat_llava</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.0/internvl_g.html">internvl_g</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/OpenGVLab/InternVL" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/OpenGVLab/InternVL/blob/main/docs/en/tutorials/coco_caption_finetune.md?plain=1" target="_blank"
+   class="btn btn-sm btn-source-file-button dropdown-item"
+   title="Show source"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">Show source</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/OpenGVLab/InternVL/edit/main/docs/en/tutorials/coco_caption_finetune.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/OpenGVLab/InternVL/issues/new?title=Issue%20on%20page%20%2Ftutorials/coco_caption_finetune.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/tutorials/coco_caption_finetune.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Enhancing InternVL2 on COCO Caption Using LoRA Fine-Tuning</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparation">Preparation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-preparation">Model Preparation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preparation">Data Preparation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluating-the-original-model">Evaluating the Original Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lora-fine-tuning">LoRA Fine-Tuning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monitoring-with-tensorboard">Monitoring with TensorBoard</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluating-the-fine-tuned-model">Evaluating the Fine-Tuned Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="enhancing-internvl2-on-coco-caption-using-lora-fine-tuning">
+<h1>Enhancing InternVL2 on COCO Caption Using LoRA Fine-Tuning<a class="headerlink" href="#enhancing-internvl2-on-coco-caption-using-lora-fine-tuning" title="Permalink to this heading">#</a></h1>
+<p>In this tutorial, I will provide a detailed guide on how to use LoRA fine-tuning to improve the performance of a trained InternVL2 model on COCO Caption.</p>
+<section id="preparation">
+<h2>Preparation<a class="headerlink" href="#preparation" title="Permalink to this heading">#</a></h2>
+<p>Before starting, please prepare the InternVL training environment according to the <a class="reference internal" href="../get_started/installation.html"><span class="std std-doc">installation guide</span></a>. Note that <a class="reference external" href="http://localhost:8000/get_started/installation.html#additional-instructions">Flash Attention</a> requires manual installation following the steps provided. If you encounter any issues, check the issues section on their <a class="reference external" href="https://github.com/Dao-AILab/flash-attention/issues">official repository</a>.</p>
+<p>Optionally, you can install <code class="docutils literal notranslate"><span class="pre">apex</span></code> for efficiency improvements. Apex uses <code class="docutils literal notranslate"><span class="pre">FusedRMSNorm</span></code> to replace PyTorch’s <code class="docutils literal notranslate"><span class="pre">RMSNorm</span></code>, which can enhance training speed and save memory. However, installing apex can be challenging, so it is optional.</p>
+</section>
+<section id="model-preparation">
+<h2>Model Preparation<a class="headerlink" href="#model-preparation" title="Permalink to this heading">#</a></h2>
+<p>After setting up the environment, navigate to the <code class="docutils literal notranslate"><span class="pre">internvl_chat</span></code> directory. You will need to download a pre-trained InternVL2 model. The table below lists all available models in the InternVL2 series.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Model Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Params</p></th>
+<th class="head"><p>Download Link</p></th>
+<th class="head text-center"><p>Size</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>InternVL2-1B</p></td>
+<td><p>MLLM</p></td>
+<td><p>0.9B</p></td>
+<td><p>🤗 <a class="reference external" href="https://huggingface.co/OpenGVLab/InternVL2-1B">HF link</a></p></td>
+<td class="text-center"><p>1.8 GB</p></td>
+</tr>
+<tr class="row-odd"><td><p>InternVL2-2B</p></td>
+<td><p>MLLM</p></td>
+<td><p>2.2B</p></td>
+<td><p>🤗 <a class="reference external" href="https://huggingface.co/OpenGVLab/InternVL2-2B">HF link</a></p></td>
+<td class="text-center"><p>4.2 GB</p></td>
+</tr>
+<tr class="row-even"><td><p>InternVL2-4B</p></td>
+<td><p>MLLM</p></td>
+<td><p>4.2B</p></td>
+<td><p>🤗 <a class="reference external" href="https://huggingface.co/OpenGVLab/InternVL2-4B">HF link</a></p></td>
+<td class="text-center"><p>7.8 GB</p></td>
+</tr>
+<tr class="row-odd"><td><p>InternVL2-8B</p></td>
+<td><p>MLLM</p></td>
+<td><p>8.1B</p></td>
+<td><p>🤗 <a class="reference external" href="https://huggingface.co/OpenGVLab/InternVL2-8B">HF link</a></p></td>
+<td class="text-center"><p>16 GB</p></td>
+</tr>
+<tr class="row-even"><td><p>InternVL2-26B</p></td>
+<td><p>MLLM</p></td>
+<td><p>25.5B</p></td>
+<td><p>🤗 <a class="reference external" href="https://huggingface.co/OpenGVLab/InternVL2-26B">HF link</a></p></td>
+<td class="text-center"><p>48 GB</p></td>
+</tr>
+<tr class="row-odd"><td><p>InternVL2-40B</p></td>
+<td><p>MLLM</p></td>
+<td><p>40.1B</p></td>
+<td><p>🤗 <a class="reference external" href="https://huggingface.co/OpenGVLab/InternVL2-40B">HF link</a></p></td>
+<td class="text-center"><p>75 GB</p></td>
+</tr>
+<tr class="row-even"><td><p>InternVL2-Llama3-76B</p></td>
+<td><p>MLLM</p></td>
+<td><p>76.3B</p></td>
+<td><p>🤗 <a class="reference external" href="https://huggingface.co/OpenGVLab/InternVL2-Llama3-76B">HF link</a></p></td>
+<td class="text-center"><p>143 GB</p></td>
+</tr>
+</tbody>
+</table>
+<p>Below are the commands to download these models using <code class="docutils literal notranslate"><span class="pre">huggingface_hub</span></code>. Choose the model that suits your needs.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>pretrained/
+<span class="c1"># pip install -U huggingface_hub</span>
+<span class="c1"># Download OpenGVLab/InternVL2-1B</span>
+huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-download<span class="w"> </span>--local-dir-use-symlinks<span class="w"> </span>False<span class="w"> </span>OpenGVLab/InternVL2-1B<span class="w"> </span>--local-dir<span class="w"> </span>InternVL2-1B
+<span class="c1"># Download OpenGVLab/InternVL2-2B</span>
+huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-download<span class="w"> </span>--local-dir-use-symlinks<span class="w"> </span>False<span class="w"> </span>OpenGVLab/InternVL2-2B<span class="w"> </span>--local-dir<span class="w"> </span>InternVL2-2B
+<span class="c1"># Download OpenGVLab/InternVL2-4B</span>
+huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-download<span class="w"> </span>--local-dir-use-symlinks<span class="w"> </span>False<span class="w"> </span>OpenGVLab/InternVL2-4B<span class="w"> </span>--local-dir<span class="w"> </span>InternVL2-4B
+<span class="c1"># Download OpenGVLab/InternVL2-8B</span>
+huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-download<span class="w"> </span>--local-dir-use-symlinks<span class="w"> </span>False<span class="w"> </span>OpenGVLab/InternVL2-8B<span class="w"> </span>--local-dir<span class="w"> </span>InternVL2-8B
+<span class="c1"># Download OpenGVLab/InternVL2-26B</span>
+huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-download<span class="w"> </span>--local-dir-use-symlinks<span class="w"> </span>False<span class="w"> </span>OpenGVLab/InternVL2-26B<span class="w"> </span>--local-dir<span class="w"> </span>InternVL2-26B
+<span class="c1"># Download OpenGVLab/InternVL2-40B</span>
+huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-download<span class="w"> </span>--local-dir-use-symlinks<span class="w"> </span>False<span class="w"> </span>OpenGVLab/InternVL2-40B<span class="w"> </span>--local-dir<span class="w"> </span>InternVL2-40B
+<span class="c1"># Download OpenGVLab/InternVL2-Llama3-76B</span>
+huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-download<span class="w"> </span>--local-dir-use-symlinks<span class="w"> </span>False<span class="w"> </span>OpenGVLab/InternVL2-Llama3-76B<span class="w"> </span>--local-dir<span class="w"> </span>InternVL2-Llama3-76B
+</pre></div>
+</div>
+<p>For this tutorial, we’ll download the InternVL2-2B model. Navigate to the <code class="docutils literal notranslate"><span class="pre">pretrained</span></code> directory and execute the second command above. After downloading, the directory structure should look like this:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pretrained
+└──<span class="w"> </span>InternVL2-2B
+</pre></div>
+</div>
+</section>
+<section id="data-preparation">
+<h2>Data Preparation<a class="headerlink" href="#data-preparation" title="Permalink to this heading">#</a></h2>
+<p>To enhance the InternVL2 model on COCO Caption, we need to prepare the COCO Caption dataset for both training and testing.</p>
+<p>Follow these instructions to prepare the COCO Caption data:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>data/coco<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/coco
+
+<span class="c1"># Download COCO images</span>
+wget<span class="w"> </span>http://images.cocodataset.org/zips/train2014.zip<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>unzip<span class="w"> </span>train2014.zip
+wget<span class="w"> </span>http://images.cocodataset.org/zips/val2014.zip<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>unzip<span class="w"> </span>val2014.zip
+wget<span class="w"> </span>http://images.cocodataset.org/zips/test2015.zip<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>unzip<span class="w"> </span>test2015.zip
+
+mkdir<span class="w"> </span>-p<span class="w"> </span>annotations<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>annotations/
+<span class="c1"># Download converted annotation files</span>
+wget<span class="w"> </span>https://github.com/OpenGVLab/InternVL/releases/download/data/coco_karpathy_test.json
+wget<span class="w"> </span>https://github.com/OpenGVLab/InternVL/releases/download/data/coco_karpathy_test_gt.json
+wget<span class="w"> </span>https://github.com/OpenGVLab/InternVL/releases/download/data/coco_karpathy_train_567k.zip
+unzip<span class="w"> </span>coco_karpathy_train_567k.zip
+<span class="nb">cd</span><span class="w"> </span>../../../
+</pre></div>
+</div>
+<p>After downloading, the directory structure should be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>data/coco
+├── annotations
+│   ├── coco_karpathy_test.json
+│   ├── coco_karpathy_test_gt.json
+│   └── coco_karpathy_train_567k.jsonl
+├── train2014
+├── val2014
+└── test2015
+</pre></div>
+</div>
+</section>
+<section id="evaluating-the-original-model">
+<h2>Evaluating the Original Model<a class="headerlink" href="#evaluating-the-original-model" title="Permalink to this heading">#</a></h2>
+<p>With the data and model prepared, we can evaluate the InternVL2-2B model on COCO Caption.</p>
+<p>Use the following command to test the model with 4 GPUs. Adjust the number of GPUs based on your setup:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">4</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL2-2B<span class="w"> </span>caption-coco<span class="w"> </span>--dynamic
+</pre></div>
+</div>
+<p>Initial evaluation results might be low since the InternVL2’s SFT data does not include COCO Caption. Here are some expected results:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Bleu_1</span><span class="p">:</span> <span class="mf">0.640</span>
+<span class="n">Bleu_2</span><span class="p">:</span> <span class="mf">0.463</span>
+<span class="n">Bleu_3</span><span class="p">:</span> <span class="mf">0.320</span>
+<span class="n">Bleu_4</span><span class="p">:</span> <span class="mf">0.214</span>
+<span class="n">computing</span> <span class="n">METEOR</span> <span class="n">score</span><span class="o">...</span>
+<span class="n">METEOR</span><span class="p">:</span> <span class="mf">0.267</span>
+<span class="n">computing</span> <span class="n">Rouge</span> <span class="n">score</span><span class="o">...</span>
+<span class="n">ROUGE_L</span><span class="p">:</span> <span class="mf">0.504</span>
+<span class="n">computing</span> <span class="n">CIDEr</span> <span class="n">score</span><span class="o">...</span>
+<span class="n">CIDEr</span><span class="p">:</span> <span class="mf">0.793</span>
+</pre></div>
+</div>
+</section>
+<section id="lora-fine-tuning">
+<h2>LoRA Fine-Tuning<a class="headerlink" href="#lora-fine-tuning" title="Permalink to this heading">#</a></h2>
+<p>Next, we’ll fine-tune the InternVL2-2B model using LoRA. Execute the following command for fine-tuning:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span><span class="nv">PER_DEVICE_BATCH_SIZE</span><span class="o">=</span><span class="m">4</span><span class="w"> </span>sh<span class="w"> </span>shell/internvl2.0/2nd_finetune/internvl2_2b_internlm2_1_8b_dynamic_res_2nd_finetune_lora.sh
+</pre></div>
+</div>
+<p>In <a class="reference internal" href="#"><span class="xref myst">this script</span></a>, we set the LoRA rank to 128, which means 6.24% of InternLM2-Chat-1.8B’s parameters will be trainable, totaling 125.8M parameters:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>trainable<span class="w"> </span>params:<span class="w"> </span><span class="m">125</span>,829,120<span class="w"> </span><span class="o">||</span><span class="w"> </span>all<span class="w"> </span>params:<span class="w"> </span><span class="m">2</span>,014,976,000<span class="w"> </span><span class="o">||</span><span class="w"> </span>trainable%:<span class="w"> </span><span class="m">6</span>.244695718460171
+</pre></div>
+</div>
+<p>The total batch size is set to 512, with a per-device batch size of 4, consuming about 32G of memory. Training one epoch on the COCO Caption dataset (566k entries) will require approximately 1100 iterations.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>INFO<span class="p">|</span>trainer.py:1721<span class="o">]</span><span class="w"> </span><span class="m">2024</span>-07-31<span class="w"> </span><span class="m">22</span>:44:12,436<span class="w"> </span>&gt;&gt;<span class="w"> </span>*****<span class="w"> </span>Running<span class="w"> </span>training<span class="w"> </span>*****
+<span class="o">[</span>INFO<span class="p">|</span>trainer.py:1722<span class="o">]</span><span class="w"> </span><span class="m">2024</span>-07-31<span class="w"> </span><span class="m">22</span>:44:12,436<span class="w"> </span>&gt;&gt;<span class="w">   </span>Num<span class="w"> </span><span class="nv">examples</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">566</span>,747
+<span class="o">[</span>INFO<span class="p">|</span>trainer.py:1723<span class="o">]</span><span class="w"> </span><span class="m">2024</span>-07-31<span class="w"> </span><span class="m">22</span>:44:12,436<span class="w"> </span>&gt;&gt;<span class="w">   </span>Num<span class="w"> </span><span class="nv">Epochs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span>
+<span class="o">[</span>INFO<span class="p">|</span>trainer.py:1724<span class="o">]</span><span class="w"> </span><span class="m">2024</span>-07-31<span class="w"> </span><span class="m">22</span>:44:12,436<span class="w"> </span>&gt;&gt;<span class="w">   </span>Instantaneous<span class="w"> </span>batch<span class="w"> </span>size<span class="w"> </span>per<span class="w"> </span><span class="nv">device</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span>
+<span class="o">[</span>INFO<span class="p">|</span>trainer.py:1727<span class="o">]</span><span class="w"> </span><span class="m">2024</span>-07-31<span class="w"> </span><span class="m">22</span>:44:12,436<span class="w"> </span>&gt;&gt;<span class="w">   </span>Total<span class="w"> </span>train<span class="w"> </span>batch<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>w.<span class="w"> </span>parallel,<span class="w"> </span>distributed<span class="w"> </span><span class="p">&amp;</span><span class="w"> </span>accumulation<span class="o">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">512</span>
+<span class="o">[</span>INFO<span class="p">|</span>trainer.py:1728<span class="o">]</span><span class="w"> </span><span class="m">2024</span>-07-31<span class="w"> </span><span class="m">22</span>:44:12,436<span class="w"> </span>&gt;&gt;<span class="w">   </span>Gradient<span class="w"> </span>Accumulation<span class="w"> </span><span class="nv">steps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">16</span>
+<span class="o">[</span>INFO<span class="p">|</span>trainer.py:1729<span class="o">]</span><span class="w"> </span><span class="m">2024</span>-07-31<span class="w"> </span><span class="m">22</span>:44:12,436<span class="w"> </span>&gt;&gt;<span class="w">   </span>Total<span class="w"> </span>optimization<span class="w"> </span><span class="nv">steps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span>,106
+<span class="o">[</span>INFO<span class="p">|</span>trainer.py:1730<span class="o">]</span><span class="w"> </span><span class="m">2024</span>-07-31<span class="w"> </span><span class="m">22</span>:44:12,440<span class="w"> </span>&gt;&gt;<span class="w">   </span>Number<span class="w"> </span>of<span class="w"> </span>trainable<span class="w"> </span><span class="nv">parameters</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">125</span>,829,120
+</pre></div>
+</div>
+<p>Training with 8 A100 GPUs will take approximately 4 hours. If you encounter memory issues, try reducing <code class="docutils literal notranslate"><span class="pre">PER_DEVICE_BATCH_SIZE</span></code> to 2 or 1.</p>
+<p>Please note that the hyperparameters provided here are arbitrary and may not be optimal. You can achieve better performance by tuning the parameters.</p>
+</section>
+<section id="monitoring-with-tensorboard">
+<h2>Monitoring with TensorBoard<a class="headerlink" href="#monitoring-with-tensorboard" title="Permalink to this heading">#</a></h2>
+<p>After starting the training, navigate to the directory:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>work_dirs/internvl_chat_v2_0/internvl2_2b_internlm2_1_8b_dynamic_res_2nd_finetune_lora_coco
+</pre></div>
+</div>
+<p>Start TensorBoard with the following command:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>tensorboard<span class="w"> </span>--logdir<span class="w"> </span>./<span class="w"> </span>--port<span class="w"> </span><span class="m">10097</span><span class="w"> </span>--host<span class="w"> </span><span class="m">0</span>.0.0.0
+</pre></div>
+</div>
+<p>Then, open your web browser and navigate to <code class="docutils literal notranslate"><span class="pre">http://localhost:10097/</span></code> to view the training loss curves and other metrics.</p>
+</section>
+<section id="evaluating-the-fine-tuned-model">
+<h2>Evaluating the Fine-Tuned Model<a class="headerlink" href="#evaluating-the-fine-tuned-model" title="Permalink to this heading">#</a></h2>
+<p>After fine-tuning, evaluate the model on COCO Caption again using the following command with 4 GPUs. Adjust the number of GPUs based on your setup:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">4</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>work_dirs/internvl_chat_v2_0/internvl2_2b_internlm2_1_8b_dynamic_res_2nd_finetune_lora_coco<span class="w"> </span>caption-coco<span class="w"> </span>--dynamic
+</pre></div>
+</div>
+<p>The fine-tuned model should show significant improvement in COCO Caption evaluation metrics:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
+</pre></div>
+</div>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h2>
+<p>This guide provided a step-by-step approach to enhancing the InternVL2 model on COCO Caption using LoRA fine-tuning. By following these instructions, you should be able to achieve improved performance in captioning tasks. COCO Caption is just one example; you can replace it with other downstream datasets for fine-tuning. Happy fine-tuning!</p>
+<br>
+<br>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../get_started/local_chat_demo.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Local Chat Demo</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../internvl2.0/introduction.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Introduction of InternVL2 Series</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparation">Preparation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-preparation">Model Preparation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preparation">Data Preparation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluating-the-original-model">Evaluating the Original Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lora-fine-tuning">LoRA Fine-Tuning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monitoring-with-tensorboard">Monitoring with TensorBoard</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluating-the-fine-tuned-model">Evaluating the Fine-Tuned Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By InternVL Authors
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, OpenGVLab.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+  Last updated on Aug 01, 2024.
+  <br/>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

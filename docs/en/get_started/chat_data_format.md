@@ -83,7 +83,6 @@ Here is the more readable version:
 
 ```
 
-
 ## Single-Image Data
 
 For single-image data, we use a JSONL file to store the data. Each entry is a dictionary organized in the following format. Note that each entry for single-image data must contain an `image` field, which is a string.
@@ -133,7 +132,6 @@ Here is the more readable version:
   ]
 }
 ```
-
 
 ### Grounding / Detection Data
 
@@ -198,9 +196,9 @@ Here is the more readable version:
 
 An example of the V3Det dataset:
 
-```json
+````json
 {"id": 78281, "image": "images/x00001541/000106464.jpg", "width": 800, "height": 800, "conversations": [{"from": "human", "value": "<image>\nPlease detect and label all objects in the following image and mark their positions."}, {"from": "gpt", "value": "Sure, I will detect and label all objects in the image and mark their positions.\n\n```\n<ref>Bulletproof Helmet</ref><box>[[1, 2, 269, 235]]</box>\n<ref>Bulletproof Clothing</ref><box>[[650, 619, 990, 993]]</box>\n<ref>Gun Model</ref><box>[[32, 231, 977, 662]]</box>\n<ref>screw</ref><box>[[754, 376, 851, 429]]</box>\n<ref>handcuff</ref><box>[[698, 228, 931, 386]]</box>\n<ref>95 Type Assault Rifle</ref><box>[[39, 229, 983, 667]]</box>\n<ref>shield</ref><box>[[30, 597, 273, 993]]</box>\n<ref>telescope</ref><box>[[666, 38, 890, 217]]</box>\n<ref>Wireless Walkie-Talkie</ref><box>[[295, 2, 370, 226], [374, 0, 447, 226]]</box>\n<ref>bomb</ref><box>[[473, 61, 552, 181], [569, 61, 648, 183]]</box>\n<ref>weapon</ref><box>[[302, 617, 342, 993]]</box>\n<ref>vessel</ref><box>[[355, 653, 644, 991]]</box>\n<ref>artifact</ref><box>[[915, 0, 981, 294]]</box>\n```\n"}]}
-```
+````
 
 Here is the more readable version:
 

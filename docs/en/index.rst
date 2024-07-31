@@ -38,6 +38,13 @@ Documentation
    get_started/internvl_chat_api.md
    get_started/local_chat_demo.md
 
+.. _tutorials:
+.. toctree::
+   :maxdepth: 1
+   :caption: Tutorials
+
+   tutorials/coco_caption_finetune.md
+
 .. _internvl_2_0:
 .. toctree::
    :maxdepth: 1
