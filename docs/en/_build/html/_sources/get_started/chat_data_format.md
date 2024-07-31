@@ -93,6 +93,36 @@ An example of single-image data:
 {"id": 0, "image": "images/00000000.jpg", "conversations": [{"from": "human", "value": "<image>\nCan you extract any readable text from the image?"}, {"from": "gpt", "value": "Dares Wins Vol. 5 Tommy's Heroes Vol. 6: For Tomorrow Vol. 7: Closing Time miniseries. Clark Kent is being interviewed about Superman's connection to notorious killer Tommy Monaghan. Taking the conversation..."}], "width": 897, "height": 1152}
 ```
 
+### Grounding / Detection Data
+
+For grounding or detection data, we normalize each coordinate box to the range `[0, 1000]` using the width and height of the image, and round the normalized coordinates to integers:
+
+```python
+def normalize_coordinates(box, image_width, image_height):
+    x1, y1, x2, y2 = box
+    normalized_box = [
+        round((x1 / image_width) * 1000),
+        round((y1 / image_height) * 1000),
+        round((x2 / image_width) * 1000),
+        round((y2 / image_height) * 1000)
+    ]
+    return normalized_box
+```
+
+We organize the model's responses in the following format: `<ref>class name</ref><box>[[x1, y1, x2, y2], ...]</box>`
+
+An example of the RefCOCO dataset:
+
+```json
+{"id": 2324, "image": "COCO_train2014_000000581857.jpg", "width": 427, "height": 640, "conversations": [{"from": "human", "value": "<image>\nPlease provide the bounding box coordinate of the region this sentence describes: <ref>the lady with the blue shirt</ref>"}, {"from": "gpt", "value": "<ref>the lady with the blue shirt</ref><box>[[243, 469, 558, 746]]</box>"}, {"from": "human", "value": "Please provide the bounding box coordinate of the region this sentence describes: <ref>woman in gray shirt facing camera on right</ref>"}, {"from": "gpt", "value": "<ref>woman in gray shirt facing camera on right</ref><box>[[507, 409, 698, 740]]</box>"}, {"from": "human", "value": "Please provide the bounding box coordinate of the region this sentence describes: <ref>a woman in glasses shops in an open air fruit market</ref>"}, {"from": "gpt", "value": "<ref>a woman in glasses shops in an open air fruit market</ref><box>[[196, 422, 395, 708]]</box>"}]}
+```
+
+An example of the V3Det dataset:
+
+```json
+{"id": 78281, "image": "images/x00001541/000106464.jpg", "width": 800, "height": 800, "conversations": [{"from": "human", "value": "<image>\nPlease detect and label all objects in the following image and mark their positions."}, {"from": "gpt", "value": "Sure, I will detect and label all objects in the image and mark their positions.\n\n```\n<ref>Bulletproof Helmet</ref><box>[[1, 2, 269, 235]]</box>\n<ref>Bulletproof Clothing</ref><box>[[650, 619, 990, 993]]</box>\n<ref>Gun Model</ref><box>[[32, 231, 977, 662]]</box>\n<ref>screw</ref><box>[[754, 376, 851, 429]]</box>\n<ref>handcuff</ref><box>[[698, 228, 931, 386]]</box>\n<ref>95 Type Assault Rifle</ref><box>[[39, 229, 983, 667]]</box>\n<ref>shield</ref><box>[[30, 597, 273, 993]]</box>\n<ref>telescope</ref><box>[[666, 38, 890, 217]]</box>\n<ref>Wireless Walkie-Talkie</ref><box>[[295, 2, 370, 226], [374, 0, 447, 226]]</box>\n<ref>bomb</ref><box>[[473, 61, 552, 181], [569, 61, 648, 183]]</box>\n<ref>weapon</ref><box>[[302, 617, 342, 993]]</box>\n<ref>vessel</ref><box>[[355, 653, 644, 991]]</box>\n<ref>artifact</ref><box>[[915, 0, 981, 294]]</box>\n```\n"}]}
+```
+
 ## Multi-Image Data
 
 For multi-image data, we use a JSONL file to store the data. Each entry is a dictionary organized in the following format. Note that each entry for multi-image data must contain an `image` field, which is a list of strings.
