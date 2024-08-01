@@ -9163,6 +9163,29 @@ The expected test results are:
 
 `````
 
+### MathVision
+
+The MathVision (MATH-V) dataset is a comprehensive benchmark designed to evaluate the mathematical reasoning capabilities of multimodal large models. This dataset includes 3,040 high-quality mathematical problems, each paired with visual contexts sourced from real math competitions. It spans 16 distinct mathematical disciplines, including algebra, geometry, topology, and graph theory, and is graded across five levels of difficulty. This setup provides a diverse set of challenges that assess both the visual perception and reasoning abilities of models.
+
+`````{tabs}
+
+````{tab} 1B
+
+```python
+TODO
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+`````
+
+
 ## Citation
 
 If you find this project useful in your research, please consider citing:

@@ -3329,7 +3329,7 @@ The expected test results are:
 ````{tab} 76B
 
 ```bash
-torchrun --nproc-per-node=1 run.py --data MathVista_MINI --model InternVL2-Llama3-76B --verbose
+torchrun --nproc-per-node=1 run.py --data MathVista_MINI --model InternVL2-76B --verbose
 ```
 
 The expected test results are:
@@ -3532,7 +3532,7 @@ result = (71.39852786540484 + 51.73410404624278 + 47.69230769230769) / 3 = 56.9
 ````{tab} 76B
 
 ```bash
-torchrun --nproc-per-node=1 run.py --data HallusionBench --model InternVL2-Llama3-76B --verbose
+torchrun --nproc-per-node=1 run.py --data HallusionBench --model InternVL2-76B --verbose
 ```
 
 The expected test results are:
@@ -3658,7 +3658,7 @@ The expected test results are:
 ````{tab} 76B
 
 ```bash
-torchrun --nproc-per-node=1 run.py --data MMStar --model InternVL2-Llama3-76B --verbose
+torchrun --nproc-per-node=1 run.py --data MMStar --model InternVL2-76B --verbose
 ```
 
 The expected test results are:
@@ -3813,7 +3813,7 @@ The expected test results are:
 ````{tab} 76B
 
 ```bash
-torchrun --nproc-per-node=1 run.py --data OCRBench --model InternVL2-Llama3-76B --verbose
+torchrun --nproc-per-node=1 run.py --data OCRBench --model InternVL2-76B --verbose
 ```
 
 The expected test results are:
@@ -3939,7 +3939,7 @@ The expected test results are:
 ````{tab} 76B
 
 ```bash
-torchrun --nproc-per-node=1 run.py --data MMMU_DEV_VAL --model InternVL2-Llama3-76B --verbose
+torchrun --nproc-per-node=1 run.py --data MMMU_DEV_VAL --model InternVL2-76B --verbose
 ```
 
 The expected test results are:
@@ -4053,7 +4053,7 @@ The expected test results are:
 ````{tab} 76B
 
 ```bash
-torchrun --nproc-per-node=1 run.py --data RealWorldQA --model InternVL2-Llama3-76B --verbose
+torchrun --nproc-per-node=1 run.py --data RealWorldQA --model InternVL2-76B --verbose
 ```
 
 The expected test results are:
@@ -4202,7 +4202,7 @@ The expected test results are:
 ````{tab} 76B
 
 ```bash
-torchrun --nproc-per-node=1 run.py --data MMVet --model InternVL2-Llama3-76B --verbose
+torchrun --nproc-per-node=1 run.py --data MMVet --model InternVL2-76B --verbose
 ```
 
 The expected test results are:
@@ -4341,7 +4341,7 @@ The expected test results are:
 ````{tab} 76B
 
 ```bash
-torchrun --nproc-per-node=1 run.py --data LLaVABench --model InternVL2-Llama3-76B --verbose
+torchrun --nproc-per-node=1 run.py --data LLaVABench --model InternVL2-76B --verbose
 ```
 
 The expected test results are:
@@ -7286,7 +7286,7 @@ The expected test results are:
 When testing without subtitles:
 
 ```bash
-torchrun --nproc-per-node=1 run.py --data Video-MME --model InternVL2-Llama3-76B --verbose --nframe 16
+torchrun --nproc-per-node=1 run.py --data Video-MME --model InternVL2-76B --verbose --nframe 16
 ```
 
 The expected test results are:
@@ -7527,7 +7527,7 @@ The expected test results are:
 When testing with subtitles:
 
 ```bash
-torchrun --nproc-per-node=1 run.py --data Video-MME --model InternVL2-Llama3-76B --verbose --nframe 16 --use-subtitle
+torchrun --nproc-per-node=1 run.py --data Video-MME --model InternVL2-76B --verbose --nframe 16 --use-subtitle
 ```
 
 The expected test results are:
@@ -8968,7 +8968,7 @@ The expected test results are:
 When testing with 8 frames:
 
 ```bash
-torchrun --nproc-per-node=1 run.py --data MMBench-Video --model InternVL2-Llama3-76B --verbose --nframe 8
+torchrun --nproc-per-node=1 run.py --data MMBench-Video --model InternVL2-76B --verbose --nframe 8
 ```
 
 The expected test results are:
@@ -9065,7 +9065,7 @@ The expected test results are:
 When testing with 16 frames:
 
 ```bash
-torchrun --nproc-per-node=1 run.py --data MMBench-Video --model InternVL2-Llama3-76B --verbose --nframe 16
+torchrun --nproc-per-node=1 run.py --data MMBench-Video --model InternVL2-76B --verbose --nframe 16
 ```
 
 The expected test results are:
@@ -9162,6 +9162,29 @@ The expected test results are:
 ````
 
 `````
+
+### MathVision
+
+The MathVision (MATH-V) dataset is a comprehensive benchmark designed to evaluate the mathematical reasoning capabilities of multimodal large models. This dataset includes 3,040 high-quality mathematical problems, each paired with visual contexts sourced from real math competitions. It spans 16 distinct mathematical disciplines, including algebra, geometry, topology, and graph theory, and is graded across five levels of difficulty. This setup provides a diverse set of challenges that assess both the visual perception and reasoning abilities of models.
+
+`````{tabs}
+
+````{tab} 1B
+
+```python
+TODO
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+`````
+
 
 ## Citation
 
