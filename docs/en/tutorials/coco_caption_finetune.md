@@ -158,6 +158,8 @@ tensorboard --logdir ./ --port 10097 --host 0.0.0.0
 
 Then, open your web browser and navigate to `http://localhost:10097/` to view the training loss curves and other metrics.
 
+![tensorboard](./tensorboard.png)
+
 ## Evaluating the Fine-Tuned Model
 
 After fine-tuning, evaluate the model on COCO Caption again using the following command with 4 GPUs. Adjust the number of GPUs based on your setup:
