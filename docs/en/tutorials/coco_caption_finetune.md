@@ -183,6 +183,51 @@ computing CIDEr score...
 CIDEr: 1.312
 ```
 
+## Merging LoRA Weights
+
+After evaluating the fine-tuned model, you may want to merge the LoRA weights back into the original InternVL2 model. Follow these steps to accomplish this.
+
+Use the provided script to merge the LoRA weights into the base model. The script takes two arguments: the input path of the fine-tuned model and the output path for the merged model.
+
+```shell
+python tools/merge_lora.py <input_path> <output_path>
+```
+
+For example:
+
+```shell
+python tools/merge_lora.py work_dirs/internvl_chat_v2_0/internvl2_2b_internlm2_1_8b_dynamic_res_2nd_finetune_lora_coco/ work_dirs/internvl_chat_v2_0/internvl2_2b_internlm2_1_8b_dynamic_res_2nd_finetune_lora_coco_merge
+```
+
+The script will output the following:
+
+```shell
+Loading model...
+trainable params: 125,829,120 || all params: 2,014,976,000 || trainable%: 6.244695718460171
+Loading tokenizer...
+Saving model...
+Saving tokenizer...
+Done!
+```
+
+## Wrapping into AutoModel
+
+After merging the LoRA weights, you can wrap the fine-tuned InternVL2 model into an AutoModel for easier inference or deployment.
+
+First, copy all the Python scripts from the original InternVL2-2B directory to the new merged model directory:
+
+```shell
+cp pretrained/InternVL2-2B/*.py work_dirs/internvl_chat_v2_0/internvl2_2b_internlm2_1_8b_dynamic_res_2nd_finetune_lora_coco_merge
+```
+
+Next, copy the `config.json` file from the original InternVL2-2B directory to the new merged model directory:
+
+```shell
+cp pretrained/InternVL2-2B/config.json work_dirs/internvl_chat_v2_0/internvl2_2b_internlm2_1_8b_dynamic_res_2nd_finetune_lora_coco_merge
+```
+
+After copying the necessary files, you can now load and use the fine-tuned InternVL2 model with AutoModel for inference or deployment.
+
 ## Conclusion
 
 This guide provided a step-by-step approach to enhancing the InternVL2 model on COCO Caption using LoRA fine-tuning. By following these instructions, you should be able to achieve improved performance in captioning tasks. COCO Caption is just one example; you can replace it with other downstream datasets for fine-tuning. Happy fine-tuning!

@@ -430,6 +430,8 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lora-fine-tuning">LoRA Fine-Tuning</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monitoring-with-tensorboard">Monitoring with TensorBoard</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluating-the-fine-tuned-model">Evaluating the Fine-Tuned Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merging-lora-weights">Merging LoRA Weights</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wrapping-into-automodel">Wrapping into AutoModel</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
 </ul>
             </nav>
@@ -642,6 +644,40 @@ unzip<span class="w"> </span>coco_karpathy_train_567k.zip
 </pre></div>
 </div>
 </section>
+<section id="merging-lora-weights">
+<h2>Merging LoRA Weights<a class="headerlink" href="#merging-lora-weights" title="Permalink to this heading">#</a></h2>
+<p>After evaluating the fine-tuned model, you may want to merge the LoRA weights back into the original InternVL2 model. Follow these steps to accomplish this.</p>
+<p>Use the provided script to merge the LoRA weights into the base model. The script takes two arguments: the input path of the fine-tuned model and the output path for the merged model.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>tools/merge_lora.py<span class="w"> </span>&lt;input_path&gt;<span class="w"> </span>&lt;output_path&gt;
+</pre></div>
+</div>
+<p>For example:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>tools/merge_lora.py<span class="w"> </span>work_dirs/internvl_chat_v2_0/internvl2_2b_internlm2_1_8b_dynamic_res_2nd_finetune_lora_coco/<span class="w"> </span>work_dirs/internvl_chat_v2_0/internvl2_2b_internlm2_1_8b_dynamic_res_2nd_finetune_lora_coco_merge
+</pre></div>
+</div>
+<p>The script will output the following:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>Loading<span class="w"> </span>model...
+trainable<span class="w"> </span>params:<span class="w"> </span><span class="m">125</span>,829,120<span class="w"> </span><span class="o">||</span><span class="w"> </span>all<span class="w"> </span>params:<span class="w"> </span><span class="m">2</span>,014,976,000<span class="w"> </span><span class="o">||</span><span class="w"> </span>trainable%:<span class="w"> </span><span class="m">6</span>.244695718460171
+Loading<span class="w"> </span>tokenizer...
+Saving<span class="w"> </span>model...
+Saving<span class="w"> </span>tokenizer...
+Done!
+</pre></div>
+</div>
+</section>
+<section id="wrapping-into-automodel">
+<h2>Wrapping into AutoModel<a class="headerlink" href="#wrapping-into-automodel" title="Permalink to this heading">#</a></h2>
+<p>After merging the LoRA weights, you can wrap the fine-tuned InternVL2 model into an AutoModel for easier inference or deployment.</p>
+<p>First, copy all the Python scripts from the original InternVL2-2B directory to the new merged model directory:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cp<span class="w"> </span>pretrained/InternVL2-2B/*.py<span class="w"> </span>work_dirs/internvl_chat_v2_0/internvl2_2b_internlm2_1_8b_dynamic_res_2nd_finetune_lora_coco_merge
+</pre></div>
+</div>
+<p>Next, copy the <code class="docutils literal notranslate"><span class="pre">config.json</span></code> file from the original InternVL2-2B directory to the new merged model directory:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cp<span class="w"> </span>pretrained/InternVL2-2B/config.json<span class="w"> </span>work_dirs/internvl_chat_v2_0/internvl2_2b_internlm2_1_8b_dynamic_res_2nd_finetune_lora_coco_merge
+</pre></div>
+</div>
+<p>After copying the necessary files, you can now load and use the fine-tuned InternVL2 model with AutoModel for inference or deployment.</p>
+</section>
 <section id="conclusion">
 <h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h2>
 <p>This guide provided a step-by-step approach to enhancing the InternVL2 model on COCO Caption using LoRA fine-tuning. By following these instructions, you should be able to achieve improved performance in captioning tasks. COCO Caption is just one example; you can replace it with other downstream datasets for fine-tuning. Happy fine-tuning!</p>
@@ -701,6 +737,8 @@ unzip<span class="w"> </span>coco_karpathy_train_567k.zip
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lora-fine-tuning">LoRA Fine-Tuning</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monitoring-with-tensorboard">Monitoring with TensorBoard</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluating-the-fine-tuned-model">Evaluating the Fine-Tuned Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merging-lora-weights">Merging LoRA Weights</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wrapping-into-automodel">Wrapping into AutoModel</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
 </ul>
   </nav></div>
