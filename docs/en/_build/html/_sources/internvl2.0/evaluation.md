@@ -4366,168 +4366,4797 @@ The Video-MME dataset is a comprehensive benchmark designed to evaluate the capa
 
 ````{tab} 1B
 
+When testing without subtitles:
+
 ```bash
-# without subs
 torchrun --nproc-per-node=8 run.py --data Video-MME --model InternVL2-1B --verbose --nframe 16
 ```
 
 The expected test results are:
 
 ```
-"overall": {
-    "overall": "0.4256",
-    "domain": {
-        "Knowledge": "0.4123",
-        "Film & Television": "0.4889",
-        "Sports Competition": "0.3867",
-        "Artistic Performance": "0.4417",
-        "Life Record": "0.4286",
-        "Multilingual": "0.4000"
+{
+    "short": {
+        "overall": "0.5289",
+        "domain": {
+            "Knowledge": "0.5481",
+            "Film & Television": "0.6167",
+            "Sports Competition": "0.4667",
+            "Artistic Performance": "0.5333",
+            "Life Record": "0.5143",
+            "Multilingual": "0.4000"
+        },
+        "sub_category": {
+            "Humanity & History": "0.3333",
+            "Literature & Art": "0.4000",
+            "Biology & Medicine": "0.7000",
+            "Finance & Commerce": "0.6333",
+            "Astronomy": "0.5667",
+            "Geography": "0.5333",
+            "Law": "0.6000",
+            "Life Tip": "0.5333",
+            "Technology": "0.6333",
+            "Animation": "0.6000",
+            "Movie & TV Show": "0.7333",
+            "Documentary": "0.5333",
+            "News Report": "0.6000",
+            "Esports": "0.3667",
+            "Basketball": "0.3667",
+            "Football": "0.5333",
+            "Athletics": "0.5333",
+            "Other Sports": "0.5333",
+            "Stage Play": "0.7333",
+            "Magic Show": "0.3333",
+            "Variety Show": "0.6333",
+            "Acrobatics": "0.4333",
+            "Handicraft": "0.4667",
+            "Food": "0.5000",
+            "Fashion": "0.6333",
+            "Daily Life": "0.4000",
+            "Travel": "0.6333",
+            "Pet & Animal": "0.6667",
+            "Exercise": "0.3000",
+            "Multilingual": "0.4000"
+        },
+        "task_type": {
+            "Temporal Perception": "0.6667",
+            "Spatial Perception": "0.6000",
+            "Attribute Perception": "0.6721",
+            "Action Recognition": "0.4427",
+            "Object Recognition": "0.4821",
+            "OCR Problems": "0.6316",
+            "Counting Problem": "0.3040",
+            "Temporal Reasoning": "0.6154",
+            "Spatial Reasoning": "0.6667",
+            "Action Reasoning": "0.6170",
+            "Object Reasoning": "0.4750",
+            "Information Synopsis": "0.7073"
+        }
     },
+    "medium": {
+        "overall": "0.4144",
+        "domain": {
+            "Knowledge": "0.3630",
+            "Film & Television": "0.5250",
+            "Sports Competition": "0.3933",
+            "Artistic Performance": "0.4750",
+            "Life Record": "0.3952",
+            "Multilingual": "0.4333"
+        },
+        "sub_category": {
+            "Humanity & History": "0.2000",
+            "Literature & Art": "0.4000",
+            "Biology & Medicine": "0.5000",
+            "Finance & Commerce": "0.4333",
+            "Astronomy": "0.4333",
+            "Geography": "0.2333",
+            "Law": "0.4000",
+            "Life Tip": "0.4333",
+            "Technology": "0.2333",
+            "Animation": "0.3333",
+            "Movie & TV Show": "0.5333",
+            "Documentary": "0.6000",
+            "News Report": "0.6333",
+            "Esports": "0.5000",
+            "Basketball": "0.1333",
+            "Football": "0.4333",
+            "Athletics": "0.3333",
+            "Other Sports": "0.5667",
+            "Stage Play": "0.5667",
+            "Magic Show": "0.3333",
+            "Variety Show": "0.5000",
+            "Acrobatics": "0.5000",
+            "Handicraft": "0.4667",
+            "Food": "0.3000",
+            "Fashion": "0.3667",
+            "Daily Life": "0.3333",
+            "Travel": "0.4333",
+            "Pet & Animal": "0.4000",
+            "Exercise": "0.4667",
+            "Multilingual": "0.4333"
+        },
+        "task_type": {
+            "Temporal Perception": "0.3871",
+            "Spatial Perception": "0.6190",
+            "Attribute Perception": "0.4110",
+            "Action Recognition": "0.3613",
+            "Object Recognition": "0.5000",
+            "OCR Problems": "0.4706",
+            "Counting Problem": "0.2526",
+            "Temporal Reasoning": "0.2740",
+            "Spatial Reasoning": "0.6667",
+            "Action Reasoning": "0.3276",
+            "Object Reasoning": "0.4179",
+            "Information Synopsis": "0.5897"
+        }
+    },
+    "long": {
+        "overall": "0.3333",
+        "domain": {
+            "Knowledge": "0.3259",
+            "Film & Television": "0.3250",
+            "Sports Competition": "0.3000",
+            "Artistic Performance": "0.3167",
+            "Life Record": "0.3762",
+            "Multilingual": "0.3667"
+        },
+        "sub_category": {
+            "Humanity & History": "0.3333",
+            "Literature & Art": "0.3667",
+            "Biology & Medicine": "0.3333",
+            "Finance & Commerce": "0.4667",
+            "Astronomy": "0.2000",
+            "Geography": "0.3000",
+            "Law": "0.2667",
+            "Life Tip": "0.3000",
+            "Technology": "0.3667",
+            "Animation": "0.2000",
+            "Movie & TV Show": "0.4667",
+            "Documentary": "0.4000",
+            "News Report": "0.2333",
+            "Esports": "0.4000",
+            "Basketball": "0.3333",
+            "Football": "0.2333",
+            "Athletics": "0.1333",
+            "Other Sports": "0.4000",
+            "Stage Play": "0.4000",
+            "Magic Show": "0.2667",
+            "Variety Show": "0.1333",
+            "Acrobatics": "0.4667",
+            "Handicraft": "0.5333",
+            "Food": "0.4333",
+            "Fashion": "0.3333",
+            "Daily Life": "0.3667",
+            "Travel": "0.2000",
+            "Pet & Animal": "0.4333",
+            "Exercise": "0.3333",
+            "Multilingual": "0.3667"
+        },
+        "task_type": {
+            "Temporal Perception": "0.3333",
+            "Spatial Perception": "0.0000",
+            "Attribute Perception": "0.5185",
+            "Action Recognition": "0.3016",
+            "Object Recognition": "0.2963",
+            "OCR Problems": "0.5000",
+            "Counting Problem": "0.1250",
+            "Temporal Reasoning": "0.2857",
+            "Spatial Reasoning": "0.6364",
+            "Action Reasoning": "0.2556",
+            "Object Reasoning": "0.3042",
+            "Information Synopsis": "0.5153"
+        }
+    },
+    "overall": {
+        "overall": "0.4256",
+        "domain": {
+            "Knowledge": "0.4123",
+            "Film & Television": "0.4889",
+            "Sports Competition": "0.3867",
+            "Artistic Performance": "0.4417",
+            "Life Record": "0.4286",
+            "Multilingual": "0.4000"
+        },
+        "sub_category": {
+            "Humanity & History": "0.2889",
+            "Literature & Art": "0.3889",
+            "Biology & Medicine": "0.5111",
+            "Finance & Commerce": "0.5111",
+            "Astronomy": "0.4000",
+            "Geography": "0.3556",
+            "Law": "0.4222",
+            "Life Tip": "0.4222",
+            "Technology": "0.4111",
+            "Animation": "0.3778",
+            "Movie & TV Show": "0.5778",
+            "Documentary": "0.5111",
+            "News Report": "0.4889",
+            "Esports": "0.4222",
+            "Basketball": "0.2778",
+            "Football": "0.4000",
+            "Athletics": "0.3333",
+            "Other Sports": "0.5000",
+            "Stage Play": "0.5667",
+            "Magic Show": "0.3111",
+            "Variety Show": "0.4222",
+            "Acrobatics": "0.4667",
+            "Handicraft": "0.4889",
+            "Food": "0.4111",
+            "Fashion": "0.4444",
+            "Daily Life": "0.3667",
+            "Travel": "0.4222",
+            "Pet & Animal": "0.5000",
+            "Exercise": "0.3667",
+            "Multilingual": "0.4000"
+        },
+        "task_type": {
+            "Temporal Perception": "0.4727",
+            "Spatial Perception": "0.5741",
+            "Attribute Perception": "0.5676",
+            "Action Recognition": "0.3834",
+            "Object Recognition": "0.4605",
+            "OCR Problems": "0.5396",
+            "Counting Problem": "0.2537",
+            "Temporal Reasoning": "0.3051",
+            "Spatial Reasoning": "0.6607",
+            "Action Reasoning": "0.3298",
+            "Object Reasoning": "0.3678",
+            "Information Synopsis": "0.5820"
+        }
+    }
+}
+```
+
+When testing with subtitles:
+
+```bash
+torchrun --nproc-per-node=8 run.py --data Video-MME --model InternVL2-1B --verbose --nframe 16 --use-subtitle
+```
+
+The expected test results are:
+
+```
+{
+    "short": {
+        "overall": "0.5433",
+        "domain": {
+            "Knowledge": "0.5630",
+            "Film & Television": "0.6000",
+            "Sports Competition": "0.4933",
+            "Artistic Performance": "0.5167",
+            "Life Record": "0.5571",
+            "Multilingual": "0.4000"
+        },
+        "sub_category": {
+            "Humanity & History": "0.3333",
+            "Literature & Art": "0.4000",
+            "Biology & Medicine": "0.7667",
+            "Finance & Commerce": "0.6000",
+            "Astronomy": "0.6000",
+            "Geography": "0.5000",
+            "Law": "0.6667",
+            "Life Tip": "0.6000",
+            "Technology": "0.6000",
+            "Animation": "0.5667",
+            "Movie & TV Show": "0.7333",
+            "Documentary": "0.5000",
+            "News Report": "0.6000",
+            "Esports": "0.4333",
+            "Basketball": "0.4000",
+            "Football": "0.5000",
+            "Athletics": "0.5000",
+            "Other Sports": "0.6333",
+            "Stage Play": "0.7667",
+            "Magic Show": "0.3333",
+            "Variety Show": "0.5333",
+            "Acrobatics": "0.4333",
+            "Handicraft": "0.5000",
+            "Food": "0.6000",
+            "Fashion": "0.6333",
+            "Daily Life": "0.4333",
+            "Travel": "0.7333",
+            "Pet & Animal": "0.6667",
+            "Exercise": "0.3333",
+            "Multilingual": "0.4000"
+        },
+        "task_type": {
+            "Temporal Perception": "0.5556",
+            "Spatial Perception": "0.5667",
+            "Attribute Perception": "0.6557",
+            "Action Recognition": "0.4656",
+            "Object Recognition": "0.5238",
+            "OCR Problems": "0.6667",
+            "Counting Problem": "0.3120",
+            "Temporal Reasoning": "0.4615",
+            "Spatial Reasoning": "0.6296",
+            "Action Reasoning": "0.5957",
+            "Object Reasoning": "0.5375",
+            "Information Synopsis": "0.7561"
+        }
+    },
+    "medium": {
+        "overall": "0.4289",
+        "domain": {
+            "Knowledge": "0.4111",
+            "Film & Television": "0.5250",
+            "Sports Competition": "0.4000",
+            "Artistic Performance": "0.4917",
+            "Life Record": "0.3714",
+            "Multilingual": "0.5000"
+        },
+        "sub_category": {
+            "Humanity & History": "0.3667",
+            "Literature & Art": "0.4333",
+            "Biology & Medicine": "0.5667",
+            "Finance & Commerce": "0.5000",
+            "Astronomy": "0.5333",
+            "Geography": "0.3333",
+            "Law": "0.3333",
+            "Life Tip": "0.4000",
+            "Technology": "0.2333",
+            "Animation": "0.2667",
+            "Movie & TV Show": "0.5000",
+            "Documentary": "0.6333",
+            "News Report": "0.7000",
+            "Esports": "0.5000",
+            "Basketball": "0.1667",
+            "Football": "0.4333",
+            "Athletics": "0.3667",
+            "Other Sports": "0.5333",
+            "Stage Play": "0.6333",
+            "Magic Show": "0.4333",
+            "Variety Show": "0.4333",
+            "Acrobatics": "0.4667",
+            "Handicraft": "0.5000",
+            "Food": "0.3333",
+            "Fashion": "0.3333",
+            "Daily Life": "0.3000",
+            "Travel": "0.4000",
+            "Pet & Animal": "0.3000",
+            "Exercise": "0.4333",
+            "Multilingual": "0.5000"
+        },
+        "task_type": {
+            "Temporal Perception": "0.4194",
+            "Spatial Perception": "0.6667",
+            "Attribute Perception": "0.4658",
+            "Action Recognition": "0.3613",
+            "Object Recognition": "0.4924",
+            "OCR Problems": "0.4265",
+            "Counting Problem": "0.2632",
+            "Temporal Reasoning": "0.2877",
+            "Spatial Reasoning": "0.7222",
+            "Action Reasoning": "0.3276",
+            "Object Reasoning": "0.4403",
+            "Information Synopsis": "0.6538"
+        }
+    },
+    "long": {
+        "overall": "0.3689",
+        "domain": {
+            "Knowledge": "0.3852",
+            "Film & Television": "0.3833",
+            "Sports Competition": "0.3267",
+            "Artistic Performance": "0.3417",
+            "Life Record": "0.3905",
+            "Multilingual": "0.3333"
+        },
+        "sub_category": {
+            "Humanity & History": "0.2333",
+            "Literature & Art": "0.4333",
+            "Biology & Medicine": "0.4333",
+            "Finance & Commerce": "0.6000",
+            "Astronomy": "0.2667",
+            "Geography": "0.2667",
+            "Law": "0.5000",
+            "Life Tip": "0.4333",
+            "Technology": "0.3000",
+            "Animation": "0.2667",
+            "Movie & TV Show": "0.4667",
+            "Documentary": "0.5000",
+            "News Report": "0.3000",
+            "Esports": "0.3667",
+            "Basketball": "0.2667",
+            "Football": "0.3667",
+            "Athletics": "0.2000",
+            "Other Sports": "0.4333",
+            "Stage Play": "0.4333",
+            "Magic Show": "0.2333",
+            "Variety Show": "0.2333",
+            "Acrobatics": "0.4667",
+            "Handicraft": "0.4667",
+            "Food": "0.4333",
+            "Fashion": "0.3667",
+            "Daily Life": "0.4000",
+            "Travel": "0.1667",
+            "Pet & Animal": "0.5333",
+            "Exercise": "0.3667",
+            "Multilingual": "0.3333"
+        },
+        "task_type": {
+            "Temporal Perception": "0.3333",
+            "Spatial Perception": "0.0000",
+            "Attribute Perception": "0.5185",
+            "Action Recognition": "0.3016",
+            "Object Recognition": "0.3148",
+            "OCR Problems": "0.2857",
+            "Counting Problem": "0.1875",
+            "Temporal Reasoning": "0.2637",
+            "Spatial Reasoning": "0.5455",
+            "Action Reasoning": "0.3278",
+            "Object Reasoning": "0.3667",
+            "Information Synopsis": "0.5521"
+        }
+    },
+    "overall": {
+        "overall": "0.4470",
+        "domain": {
+            "Knowledge": "0.4531",
+            "Film & Television": "0.5028",
+            "Sports Competition": "0.4067",
+            "Artistic Performance": "0.4500",
+            "Life Record": "0.4397",
+            "Multilingual": "0.4111"
+        },
+        "sub_category": {
+            "Humanity & History": "0.3111",
+            "Literature & Art": "0.4222",
+            "Biology & Medicine": "0.5889",
+            "Finance & Commerce": "0.5667",
+            "Astronomy": "0.4667",
+            "Geography": "0.3667",
+            "Law": "0.5000",
+            "Life Tip": "0.4778",
+            "Technology": "0.3778",
+            "Animation": "0.3667",
+            "Movie & TV Show": "0.5667",
+            "Documentary": "0.5444",
+            "News Report": "0.5333",
+            "Esports": "0.4333",
+            "Basketball": "0.2778",
+            "Football": "0.4333",
+            "Athletics": "0.3556",
+            "Other Sports": "0.5333",
+            "Stage Play": "0.6111",
+            "Magic Show": "0.3333",
+            "Variety Show": "0.4000",
+            "Acrobatics": "0.4556",
+            "Handicraft": "0.4889",
+            "Food": "0.4556",
+            "Fashion": "0.4444",
+            "Daily Life": "0.3778",
+            "Travel": "0.4333",
+            "Pet & Animal": "0.5000",
+            "Exercise": "0.3778",
+            "Multilingual": "0.4111"
+        },
+        "task_type": {
+            "Temporal Perception": "0.4545",
+            "Spatial Perception": "0.5741",
+            "Attribute Perception": "0.5766",
+            "Action Recognition": "0.3930",
+            "Object Recognition": "0.4802",
+            "OCR Problems": "0.5108",
+            "Counting Problem": "0.2724",
+            "Temporal Reasoning": "0.2881",
+            "Spatial Reasoning": "0.6429",
+            "Action Reasoning": "0.3719",
+            "Object Reasoning": "0.4185",
+            "Information Synopsis": "0.6285"
+        }
+    }
+}
 ```
 
 ````
 
 ````{tab} 2B
 
+When testing without subtitles:
+
 ```bash
-# without subs
 torchrun --nproc-per-node=8 run.py --data Video-MME --model InternVL2-2B --verbose --nframe 16
 ```
 
 The expected test results are:
 
 ```
-"overall": {
-    "overall": "0.4504",
-    "domain": {
-        "Knowledge": "0.4259",
-        "Film & Television": "0.4944",
-        "Sports Competition": "0.4356",
-        "Artistic Performance": "0.4917",
-        "Life Record": "0.4524",
-        "Multilingual": "0.3889"
+{
+    "short": {
+        "overall": "0.5756",
+        "domain": {
+            "Knowledge": "0.5593",
+            "Film & Television": "0.6417",
+            "Sports Competition": "0.5800",
+            "Artistic Performance": "0.5917",
+            "Life Record": "0.5810",
+            "Multilingual": "0.3333"
+        },
+        "sub_category": {
+            "Humanity & History": "0.5333",
+            "Literature & Art": "0.4333",
+            "Biology & Medicine": "0.6667",
+            "Finance & Commerce": "0.4667",
+            "Astronomy": "0.5333",
+            "Geography": "0.6000",
+            "Law": "0.5667",
+            "Life Tip": "0.6667",
+            "Technology": "0.5667",
+            "Animation": "0.6000",
+            "Movie & TV Show": "0.6000",
+            "Documentary": "0.6000",
+            "News Report": "0.7667",
+            "Esports": "0.5667",
+            "Basketball": "0.4667",
+            "Football": "0.6333",
+            "Athletics": "0.5667",
+            "Other Sports": "0.6667",
+            "Stage Play": "0.7333",
+            "Magic Show": "0.4333",
+            "Variety Show": "0.6667",
+            "Acrobatics": "0.5333",
+            "Handicraft": "0.4000",
+            "Food": "0.6000",
+            "Fashion": "0.5333",
+            "Daily Life": "0.6667",
+            "Travel": "0.6000",
+            "Pet & Animal": "0.7667",
+            "Exercise": "0.5000",
+            "Multilingual": "0.3333"
+        },
+        "task_type": {
+            "Temporal Perception": "0.7222",
+            "Spatial Perception": "0.7333",
+            "Attribute Perception": "0.6967",
+            "Action Recognition": "0.5115",
+            "Object Recognition": "0.5536",
+            "OCR Problems": "0.7368",
+            "Counting Problem": "0.3120",
+            "Temporal Reasoning": "0.3846",
+            "Spatial Reasoning": "0.7407",
+            "Action Reasoning": "0.6809",
+            "Object Reasoning": "0.5375",
+            "Information Synopsis": "0.6951"
+        }
     },
+    "medium": {
+        "overall": "0.4067",
+        "domain": {
+            "Knowledge": "0.3741",
+            "Film & Television": "0.4917",
+            "Sports Competition": "0.3333",
+            "Artistic Performance": "0.5417",
+            "Life Record": "0.3762",
+            "Multilingual": "0.4000"
+        },
+        "sub_category": {
+            "Humanity & History": "0.2000",
+            "Literature & Art": "0.4333",
+            "Biology & Medicine": "0.4000",
+            "Finance & Commerce": "0.3667",
+            "Astronomy": "0.4000",
+            "Geography": "0.3000",
+            "Law": "0.5333",
+            "Life Tip": "0.5000",
+            "Technology": "0.2333",
+            "Animation": "0.3000",
+            "Movie & TV Show": "0.5667",
+            "Documentary": "0.5000",
+            "News Report": "0.6000",
+            "Esports": "0.3333",
+            "Basketball": "0.2000",
+            "Football": "0.2667",
+            "Athletics": "0.5000",
+            "Other Sports": "0.3667",
+            "Stage Play": "0.6667",
+            "Magic Show": "0.5000",
+            "Variety Show": "0.5000",
+            "Acrobatics": "0.5000",
+            "Handicraft": "0.4333",
+            "Food": "0.2000",
+            "Fashion": "0.2667",
+            "Daily Life": "0.3333",
+            "Travel": "0.4333",
+            "Pet & Animal": "0.3667",
+            "Exercise": "0.6000",
+            "Multilingual": "0.4000"
+        },
+        "task_type": {
+            "Temporal Perception": "0.2903",
+            "Spatial Perception": "0.5238",
+            "Attribute Perception": "0.4932",
+            "Action Recognition": "0.3025",
+            "Object Recognition": "0.4924",
+            "OCR Problems": "0.3676",
+            "Counting Problem": "0.2737",
+            "Temporal Reasoning": "0.3151",
+            "Spatial Reasoning": "0.6667",
+            "Action Reasoning": "0.3966",
+            "Object Reasoning": "0.4104",
+            "Information Synopsis": "0.5769"
+        }
+    },
+    "long": {
+        "overall": "0.3689",
+        "domain": {
+            "Knowledge": "0.3444",
+            "Film & Television": "0.3500",
+            "Sports Competition": "0.3933",
+            "Artistic Performance": "0.3417",
+            "Life Record": "0.4000",
+            "Multilingual": "0.4333"
+        },
+        "sub_category": {
+            "Humanity & History": "0.3000",
+            "Literature & Art": "0.4667",
+            "Biology & Medicine": "0.3667",
+            "Finance & Commerce": "0.3667",
+            "Astronomy": "0.2333",
+            "Geography": "0.2333",
+            "Law": "0.4667",
+            "Life Tip": "0.3000",
+            "Technology": "0.3667",
+            "Animation": "0.2333",
+            "Movie & TV Show": "0.4333",
+            "Documentary": "0.4333",
+            "News Report": "0.3000",
+            "Esports": "0.4333",
+            "Basketball": "0.3000",
+            "Football": "0.3333",
+            "Athletics": "0.3667",
+            "Other Sports": "0.5333",
+            "Stage Play": "0.3333",
+            "Magic Show": "0.3667",
+            "Variety Show": "0.1667",
+            "Acrobatics": "0.5000",
+            "Handicraft": "0.5000",
+            "Food": "0.2000",
+            "Fashion": "0.3667",
+            "Daily Life": "0.4000",
+            "Travel": "0.2667",
+            "Pet & Animal": "0.6667",
+            "Exercise": "0.4000",
+            "Multilingual": "0.4333"
+        },
+        "task_type": {
+            "Temporal Perception": "0.0000",
+            "Spatial Perception": "0.3333",
+            "Attribute Perception": "0.3704",
+            "Action Recognition": "0.3968",
+            "Object Recognition": "0.4074",
+            "OCR Problems": "0.3571",
+            "Counting Problem": "0.2292",
+            "Temporal Reasoning": "0.3077",
+            "Spatial Reasoning": "0.5455",
+            "Action Reasoning": "0.3056",
+            "Object Reasoning": "0.3375",
+            "Information Synopsis": "0.5399"
+        }
+    },
+    "overall": {
+        "overall": "0.4504",
+        "domain": {
+            "Knowledge": "0.4259",
+            "Film & Television": "0.4944",
+            "Sports Competition": "0.4356",
+            "Artistic Performance": "0.4917",
+            "Life Record": "0.4524",
+            "Multilingual": "0.3889"
+        },
+        "sub_category": {
+            "Humanity & History": "0.3444",
+            "Literature & Art": "0.4444",
+            "Biology & Medicine": "0.4778",
+            "Finance & Commerce": "0.4000",
+            "Astronomy": "0.3889",
+            "Geography": "0.3778",
+            "Law": "0.5222",
+            "Life Tip": "0.4889",
+            "Technology": "0.3889",
+            "Animation": "0.3778",
+            "Movie & TV Show": "0.5333",
+            "Documentary": "0.5111",
+            "News Report": "0.5556",
+            "Esports": "0.4444",
+            "Basketball": "0.3222",
+            "Football": "0.4111",
+            "Athletics": "0.4778",
+            "Other Sports": "0.5222",
+            "Stage Play": "0.5778",
+            "Magic Show": "0.4333",
+            "Variety Show": "0.4444",
+            "Acrobatics": "0.5111",
+            "Handicraft": "0.4444",
+            "Food": "0.3333",
+            "Fashion": "0.3889",
+            "Daily Life": "0.4667",
+            "Travel": "0.4333",
+            "Pet & Animal": "0.6000",
+            "Exercise": "0.5000",
+            "Multilingual": "0.3889"
+        },
+        "task_type": {
+            "Temporal Perception": "0.4000",
+            "Spatial Perception": "0.6296",
+            "Attribute Perception": "0.5901",
+            "Action Recognition": "0.4089",
+            "Object Recognition": "0.5085",
+            "OCR Problems": "0.5180",
+            "Counting Problem": "0.2836",
+            "Temporal Reasoning": "0.3164",
+            "Spatial Reasoning": "0.6786",
+            "Action Reasoning": "0.3860",
+            "Object Reasoning": "0.3943",
+            "Information Synopsis": "0.5882"
+        }
+    }
+}
+```
+
+When testing with subtitles:
+
+```bash
+torchrun --nproc-per-node=8 run.py --data Video-MME --model InternVL2-2B --verbose --nframe 16 --use-subtitle
+```
+
+The expected test results are:
+
+```
+{
+    "short": {
+        "overall": "0.5978",
+        "domain": {
+            "Knowledge": "0.5926",
+            "Film & Television": "0.6583",
+            "Sports Competition": "0.5867",
+            "Artistic Performance": "0.6083",
+            "Life Record": "0.5952",
+            "Multilingual": "0.4333"
+        },
+        "sub_category": {
+            "Humanity & History": "0.4667",
+            "Literature & Art": "0.5333",
+            "Biology & Medicine": "0.8000",
+            "Finance & Commerce": "0.5333",
+            "Astronomy": "0.5667",
+            "Geography": "0.6333",
+            "Law": "0.6000",
+            "Life Tip": "0.6333",
+            "Technology": "0.5667",
+            "Animation": "0.5667",
+            "Movie & TV Show": "0.6333",
+            "Documentary": "0.6333",
+            "News Report": "0.8000",
+            "Esports": "0.5667",
+            "Basketball": "0.4333",
+            "Football": "0.6667",
+            "Athletics": "0.6333",
+            "Other Sports": "0.6333",
+            "Stage Play": "0.7000",
+            "Magic Show": "0.5000",
+            "Variety Show": "0.7000",
+            "Acrobatics": "0.5333",
+            "Handicraft": "0.4000",
+            "Food": "0.6667",
+            "Fashion": "0.5333",
+            "Daily Life": "0.6667",
+            "Travel": "0.5667",
+            "Pet & Animal": "0.7333",
+            "Exercise": "0.6000",
+            "Multilingual": "0.4333"
+        },
+        "task_type": {
+            "Temporal Perception": "0.8333",
+            "Spatial Perception": "0.6333",
+            "Attribute Perception": "0.7213",
+            "Action Recognition": "0.5496",
+            "Object Recognition": "0.5536",
+            "OCR Problems": "0.7368",
+            "Counting Problem": "0.3440",
+            "Temporal Reasoning": "0.3077",
+            "Spatial Reasoning": "0.8148",
+            "Action Reasoning": "0.7021",
+            "Object Reasoning": "0.5500",
+            "Information Synopsis": "0.7683"
+        }
+    },
+    "medium": {
+        "overall": "0.4367",
+        "domain": {
+            "Knowledge": "0.4444",
+            "Film & Television": "0.4833",
+            "Sports Competition": "0.3600",
+            "Artistic Performance": "0.5833",
+            "Life Record": "0.3714",
+            "Multilingual": "0.4333"
+        },
+        "sub_category": {
+            "Humanity & History": "0.3000",
+            "Literature & Art": "0.5000",
+            "Biology & Medicine": "0.5333",
+            "Finance & Commerce": "0.5333",
+            "Astronomy": "0.4667",
+            "Geography": "0.3667",
+            "Law": "0.5000",
+            "Life Tip": "0.6000",
+            "Technology": "0.2000",
+            "Animation": "0.3000",
+            "Movie & TV Show": "0.5667",
+            "Documentary": "0.5333",
+            "News Report": "0.5333",
+            "Esports": "0.3333",
+            "Basketball": "0.2333",
+            "Football": "0.3667",
+            "Athletics": "0.4667",
+            "Other Sports": "0.4000",
+            "Stage Play": "0.6667",
+            "Magic Show": "0.6000",
+            "Variety Show": "0.5667",
+            "Acrobatics": "0.5000",
+            "Handicraft": "0.5000",
+            "Food": "0.2000",
+            "Fashion": "0.3000",
+            "Daily Life": "0.2667",
+            "Travel": "0.4333",
+            "Pet & Animal": "0.3333",
+            "Exercise": "0.5667",
+            "Multilingual": "0.4333"
+        },
+        "task_type": {
+            "Temporal Perception": "0.3226",
+            "Spatial Perception": "0.5238",
+            "Attribute Perception": "0.5068",
+            "Action Recognition": "0.3277",
+            "Object Recognition": "0.4924",
+            "OCR Problems": "0.4118",
+            "Counting Problem": "0.3053",
+            "Temporal Reasoning": "0.3288",
+            "Spatial Reasoning": "0.6667",
+            "Action Reasoning": "0.4655",
+            "Object Reasoning": "0.4478",
+            "Information Synopsis": "0.6538"
+        }
+    },
+    "long": {
+        "overall": "0.3856",
+        "domain": {
+            "Knowledge": "0.3889",
+            "Film & Television": "0.3750",
+            "Sports Competition": "0.3867",
+            "Artistic Performance": "0.3417",
+            "Life Record": "0.4048",
+            "Multilingual": "0.4333"
+        },
+        "sub_category": {
+            "Humanity & History": "0.3000",
+            "Literature & Art": "0.5000",
+            "Biology & Medicine": "0.4333",
+            "Finance & Commerce": "0.5000",
+            "Astronomy": "0.3000",
+            "Geography": "0.3000",
+            "Law": "0.4333",
+            "Life Tip": "0.3333",
+            "Technology": "0.4000",
+            "Animation": "0.2333",
+            "Movie & TV Show": "0.4667",
+            "Documentary": "0.4333",
+            "News Report": "0.3667",
+            "Esports": "0.4667",
+            "Basketball": "0.2667",
+            "Football": "0.3000",
+            "Athletics": "0.3333",
+            "Other Sports": "0.5667",
+            "Stage Play": "0.4000",
+            "Magic Show": "0.3000",
+            "Variety Show": "0.2000",
+            "Acrobatics": "0.4667",
+            "Handicraft": "0.5000",
+            "Food": "0.2000",
+            "Fashion": "0.4000",
+            "Daily Life": "0.4333",
+            "Travel": "0.2333",
+            "Pet & Animal": "0.7000",
+            "Exercise": "0.3667",
+            "Multilingual": "0.4333"
+        },
+        "task_type": {
+            "Temporal Perception": "0.0000",
+            "Spatial Perception": "0.3333",
+            "Attribute Perception": "0.4444",
+            "Action Recognition": "0.4603",
+            "Object Recognition": "0.3519",
+            "OCR Problems": "0.4286",
+            "Counting Problem": "0.2292",
+            "Temporal Reasoning": "0.3187",
+            "Spatial Reasoning": "0.5455",
+            "Action Reasoning": "0.3222",
+            "Object Reasoning": "0.3625",
+            "Information Synopsis": "0.5460"
+        }
+    },
+    "overall": {
+        "overall": "0.4733",
+        "domain": {
+            "Knowledge": "0.4753",
+            "Film & Television": "0.5056",
+            "Sports Competition": "0.4444",
+            "Artistic Performance": "0.5111",
+            "Life Record": "0.4571",
+            "Multilingual": "0.4333"
+        },
+        "sub_category": {
+            "Humanity & History": "0.3556",
+            "Literature & Art": "0.5111",
+            "Biology & Medicine": "0.5889",
+            "Finance & Commerce": "0.5222",
+            "Astronomy": "0.4444",
+            "Geography": "0.4333",
+            "Law": "0.5111",
+            "Life Tip": "0.5222",
+            "Technology": "0.3889",
+            "Animation": "0.3667",
+            "Movie & TV Show": "0.5556",
+            "Documentary": "0.5333",
+            "News Report": "0.5667",
+            "Esports": "0.4556",
+            "Basketball": "0.3111",
+            "Football": "0.4444",
+            "Athletics": "0.4778",
+            "Other Sports": "0.5333",
+            "Stage Play": "0.5889",
+            "Magic Show": "0.4667",
+            "Variety Show": "0.4889",
+            "Acrobatics": "0.5000",
+            "Handicraft": "0.4667",
+            "Food": "0.3556",
+            "Fashion": "0.4111",
+            "Daily Life": "0.4556",
+            "Travel": "0.4111",
+            "Pet & Animal": "0.5889",
+            "Exercise": "0.5111",
+            "Multilingual": "0.4333"
+        },
+        "task_type": {
+            "Temporal Perception": "0.4545",
+            "Spatial Perception": "0.5741",
+            "Attribute Perception": "0.6171",
+            "Action Recognition": "0.4473",
+            "Object Recognition": "0.5000",
+            "OCR Problems": "0.5468",
+            "Counting Problem": "0.3097",
+            "Temporal Reasoning": "0.3220",
+            "Spatial Reasoning": "0.7143",
+            "Action Reasoning": "0.4140",
+            "Object Reasoning": "0.4207",
+            "Information Synopsis": "0.6285"
+        }
+    }
+}
 ```
 
 ````
 
 ````{tab} 4B
 
+When testing without subtitles:
+
 ```bash
-# without subs
 torchrun --nproc-per-node=8 run.py --data Video-MME --model InternVL2-4B --verbose --nframe 16
 ```
 
 The expected test results are:
 
 ```
-"overall": {
-    "overall": "0.5144",
-    "domain": {
-        "Knowledge": "0.5346",
-        "Film & Television": "0.5472",
-        "Sports Competition": "0.4733",
-        "Artistic Performance": "0.5333",
-        "Life Record": "0.4937",
-        "Multilingual": "0.4778"
+{
+    "short": {
+        "overall": "0.6289",
+        "domain": {
+            "Knowledge": "0.6519",
+            "Film & Television": "0.7000",
+            "Sports Competition": "0.5800",
+            "Artistic Performance": "0.6417",
+            "Life Record": "0.6095",
+            "Multilingual": "0.4667"
+        },
+        "sub_category": {
+            "Humanity & History": "0.5333",
+            "Literature & Art": "0.6000",
+            "Biology & Medicine": "0.7667",
+            "Finance & Commerce": "0.6000",
+            "Astronomy": "0.6333",
+            "Geography": "0.5667",
+            "Law": "0.7333",
+            "Life Tip": "0.7667",
+            "Technology": "0.6667",
+            "Animation": "0.6000",
+            "Movie & TV Show": "0.6667",
+            "Documentary": "0.6333",
+            "News Report": "0.9000",
+            "Esports": "0.5333",
+            "Basketball": "0.4667",
+            "Football": "0.6667",
+            "Athletics": "0.6333",
+            "Other Sports": "0.6000",
+            "Stage Play": "0.8000",
+            "Magic Show": "0.6000",
+            "Variety Show": "0.5667",
+            "Acrobatics": "0.6000",
+            "Handicraft": "0.5667",
+            "Food": "0.5667",
+            "Fashion": "0.5333",
+            "Daily Life": "0.6000",
+            "Travel": "0.7000",
+            "Pet & Animal": "0.7667",
+            "Exercise": "0.5333",
+            "Multilingual": "0.4667"
+        },
+        "task_type": {
+            "Temporal Perception": "0.8889",
+            "Spatial Perception": "0.6333",
+            "Attribute Perception": "0.7459",
+            "Action Recognition": "0.6183",
+            "Object Recognition": "0.6369",
+            "OCR Problems": "0.6140",
+            "Counting Problem": "0.3200",
+            "Temporal Reasoning": "0.4615",
+            "Spatial Reasoning": "0.7778",
+            "Action Reasoning": "0.7021",
+            "Object Reasoning": "0.6250",
+            "Information Synopsis": "0.8171"
+        }
     },
+    "medium": {
+        "overall": "0.4678",
+        "domain": {
+            "Knowledge": "0.4704",
+            "Film & Television": "0.5083",
+            "Sports Competition": "0.4133",
+            "Artistic Performance": "0.5333",
+            "Life Record": "0.4381",
+            "Multilingual": "0.5000"
+        },
+        "sub_category": {
+            "Humanity & History": "0.2667",
+            "Literature & Art": "0.6000",
+            "Biology & Medicine": "0.5333",
+            "Finance & Commerce": "0.5333",
+            "Astronomy": "0.5000",
+            "Geography": "0.4000",
+            "Law": "0.5000",
+            "Life Tip": "0.5333",
+            "Technology": "0.3667",
+            "Animation": "0.2333",
+            "Movie & TV Show": "0.6333",
+            "Documentary": "0.6000",
+            "News Report": "0.5667",
+            "Esports": "0.3667",
+            "Basketball": "0.3667",
+            "Football": "0.4333",
+            "Athletics": "0.4333",
+            "Other Sports": "0.4667",
+            "Stage Play": "0.6000",
+            "Magic Show": "0.4000",
+            "Variety Show": "0.5000",
+            "Acrobatics": "0.6333",
+            "Handicraft": "0.7000",
+            "Food": "0.3667",
+            "Fashion": "0.3333",
+            "Daily Life": "0.3000",
+            "Travel": "0.4333",
+            "Pet & Animal": "0.3667",
+            "Exercise": "0.5667",
+            "Multilingual": "0.5000"
+        },
+        "task_type": {
+            "Temporal Perception": "0.4839",
+            "Spatial Perception": "0.4762",
+            "Attribute Perception": "0.5205",
+            "Action Recognition": "0.3866",
+            "Object Recognition": "0.5530",
+            "OCR Problems": "0.4559",
+            "Counting Problem": "0.3053",
+            "Temporal Reasoning": "0.3014",
+            "Spatial Reasoning": "0.7222",
+            "Action Reasoning": "0.5172",
+            "Object Reasoning": "0.4925",
+            "Information Synopsis": "0.6154"
+        }
+    },
+    "long": {
+        "overall": "0.4467",
+        "domain": {
+            "Knowledge": "0.4815",
+            "Film & Television": "0.4333",
+            "Sports Competition": "0.4267",
+            "Artistic Performance": "0.4250",
+            "Life Record": "0.4333",
+            "Multilingual": "0.4667"
+        },
+        "sub_category": {
+            "Humanity & History": "0.3333",
+            "Literature & Art": "0.5000",
+            "Biology & Medicine": "0.5000",
+            "Finance & Commerce": "0.5333",
+            "Astronomy": "0.5333",
+            "Geography": "0.3333",
+            "Law": "0.5000",
+            "Life Tip": "0.5333",
+            "Technology": "0.5667",
+            "Animation": "0.2667",
+            "Movie & TV Show": "0.5333",
+            "Documentary": "0.5000",
+            "News Report": "0.4333",
+            "Esports": "0.4667",
+            "Basketball": "0.4000",
+            "Football": "0.4333",
+            "Athletics": "0.3667",
+            "Other Sports": "0.4667",
+            "Stage Play": "0.6000",
+            "Magic Show": "0.4333",
+            "Variety Show": "0.2667",
+            "Acrobatics": "0.4000",
+            "Handicraft": "0.5000",
+            "Food": "0.3000",
+            "Fashion": "0.4667",
+            "Daily Life": "0.3000",
+            "Travel": "0.3000",
+            "Pet & Animal": "0.6667",
+            "Exercise": "0.5000",
+            "Multilingual": "0.4667"
+        },
+        "task_type": {
+            "Temporal Perception": "0.5000",
+            "Spatial Perception": "0.6667",
+            "Attribute Perception": "0.5185",
+            "Action Recognition": "0.3810",
+            "Object Recognition": "0.4815",
+            "OCR Problems": "0.3571",
+            "Counting Problem": "0.2708",
+            "Temporal Reasoning": "0.2637",
+            "Spatial Reasoning": "0.5455",
+            "Action Reasoning": "0.4556",
+            "Object Reasoning": "0.4500",
+            "Information Synopsis": "0.5828"
+        }
+    },
+    "overall": {
+        "overall": "0.5144",
+        "domain": {
+            "Knowledge": "0.5346",
+            "Film & Television": "0.5472",
+            "Sports Competition": "0.4733",
+            "Artistic Performance": "0.5333",
+            "Life Record": "0.4937",
+            "Multilingual": "0.4778"
+        },
+        "sub_category": {
+            "Humanity & History": "0.3778",
+            "Literature & Art": "0.5667",
+            "Biology & Medicine": "0.6000",
+            "Finance & Commerce": "0.5556",
+            "Astronomy": "0.5556",
+            "Geography": "0.4333",
+            "Law": "0.5778",
+            "Life Tip": "0.6111",
+            "Technology": "0.5333",
+            "Animation": "0.3667",
+            "Movie & TV Show": "0.6111",
+            "Documentary": "0.5778",
+            "News Report": "0.6333",
+            "Esports": "0.4556",
+            "Basketball": "0.4111",
+            "Football": "0.5111",
+            "Athletics": "0.4778",
+            "Other Sports": "0.5111",
+            "Stage Play": "0.6667",
+            "Magic Show": "0.4778",
+            "Variety Show": "0.4444",
+            "Acrobatics": "0.5444",
+            "Handicraft": "0.5889",
+            "Food": "0.4111",
+            "Fashion": "0.4444",
+            "Daily Life": "0.4000",
+            "Travel": "0.4778",
+            "Pet & Animal": "0.6000",
+            "Exercise": "0.5333",
+            "Multilingual": "0.4778"
+        },
+        "task_type": {
+            "Temporal Perception": "0.6182",
+            "Spatial Perception": "0.5741",
+            "Attribute Perception": "0.6441",
+            "Action Recognition": "0.4824",
+            "Object Recognition": "0.5819",
+            "OCR Problems": "0.5108",
+            "Counting Problem": "0.3060",
+            "Temporal Reasoning": "0.2938",
+            "Spatial Reasoning": "0.7143",
+            "Action Reasoning": "0.5088",
+            "Object Reasoning": "0.4934",
+            "Information Synopsis": "0.6502"
+        }
+    }
+}
+```
+
+When testing with subtitles:
+
+```bash
+torchrun --nproc-per-node=8 run.py --data Video-MME --model InternVL2-4B --verbose --nframe 16 --use-subtitle
+```
+
+The expected test results are:
+
+```
+{
+    "short": {
+        "overall": "0.6511",
+        "domain": {
+            "Knowledge": "0.6852",
+            "Film & Television": "0.7083",
+            "Sports Competition": "0.5933",
+            "Artistic Performance": "0.6750",
+            "Life Record": "0.6286",
+            "Multilingual": "0.4667"
+        },
+        "sub_category": {
+            "Humanity & History": "0.5333",
+            "Literature & Art": "0.5667",
+            "Biology & Medicine": "0.8333",
+            "Finance & Commerce": "0.6667",
+            "Astronomy": "0.7000",
+            "Geography": "0.6333",
+            "Law": "0.7667",
+            "Life Tip": "0.7667",
+            "Technology": "0.7000",
+            "Animation": "0.4667",
+            "Movie & TV Show": "0.7333",
+            "Documentary": "0.7000",
+            "News Report": "0.9333",
+            "Esports": "0.5000",
+            "Basketball": "0.5000",
+            "Football": "0.6333",
+            "Athletics": "0.7000",
+            "Other Sports": "0.6333",
+            "Stage Play": "0.7667",
+            "Magic Show": "0.7000",
+            "Variety Show": "0.5667",
+            "Acrobatics": "0.6667",
+            "Handicraft": "0.6333",
+            "Food": "0.6000",
+            "Fashion": "0.5333",
+            "Daily Life": "0.6667",
+            "Travel": "0.7000",
+            "Pet & Animal": "0.7333",
+            "Exercise": "0.5333",
+            "Multilingual": "0.4667"
+        },
+        "task_type": {
+            "Temporal Perception": "0.8333",
+            "Spatial Perception": "0.6667",
+            "Attribute Perception": "0.7787",
+            "Action Recognition": "0.6260",
+            "Object Recognition": "0.6429",
+            "OCR Problems": "0.6667",
+            "Counting Problem": "0.3360",
+            "Temporal Reasoning": "0.6154",
+            "Spatial Reasoning": "0.8148",
+            "Action Reasoning": "0.7234",
+            "Object Reasoning": "0.6375",
+            "Information Synopsis": "0.8659"
+        }
+    },
+    "medium": {
+        "overall": "0.4878",
+        "domain": {
+            "Knowledge": "0.5148",
+            "Film & Television": "0.5417",
+            "Sports Competition": "0.4067",
+            "Artistic Performance": "0.5417",
+            "Life Record": "0.4619",
+            "Multilingual": "0.4000"
+        },
+        "sub_category": {
+            "Humanity & History": "0.3667",
+            "Literature & Art": "0.5667",
+            "Biology & Medicine": "0.5667",
+            "Finance & Commerce": "0.5667",
+            "Astronomy": "0.7000",
+            "Geography": "0.3667",
+            "Law": "0.6000",
+            "Life Tip": "0.4667",
+            "Technology": "0.4333",
+            "Animation": "0.2667",
+            "Movie & TV Show": "0.6667",
+            "Documentary": "0.5667",
+            "News Report": "0.6667",
+            "Esports": "0.4667",
+            "Basketball": "0.2333",
+            "Football": "0.4333",
+            "Athletics": "0.4333",
+            "Other Sports": "0.4667",
+            "Stage Play": "0.6333",
+            "Magic Show": "0.4333",
+            "Variety Show": "0.5000",
+            "Acrobatics": "0.6000",
+            "Handicraft": "0.7000",
+            "Food": "0.3333",
+            "Fashion": "0.3667",
+            "Daily Life": "0.3667",
+            "Travel": "0.5000",
+            "Pet & Animal": "0.4000",
+            "Exercise": "0.5667",
+            "Multilingual": "0.4000"
+        },
+        "task_type": {
+            "Temporal Perception": "0.4194",
+            "Spatial Perception": "0.4286",
+            "Attribute Perception": "0.5479",
+            "Action Recognition": "0.3950",
+            "Object Recognition": "0.5606",
+            "OCR Problems": "0.4559",
+            "Counting Problem": "0.3474",
+            "Temporal Reasoning": "0.2877",
+            "Spatial Reasoning": "0.8333",
+            "Action Reasoning": "0.4655",
+            "Object Reasoning": "0.5522",
+            "Information Synopsis": "0.7051"
+        }
+    },
+    "long": {
+        "overall": "0.4622",
+        "domain": {
+            "Knowledge": "0.4889",
+            "Film & Television": "0.4750",
+            "Sports Competition": "0.4267",
+            "Artistic Performance": "0.4500",
+            "Life Record": "0.4476",
+            "Multilingual": "0.5000"
+        },
+        "sub_category": {
+            "Humanity & History": "0.2667",
+            "Literature & Art": "0.5667",
+            "Biology & Medicine": "0.5333",
+            "Finance & Commerce": "0.6000",
+            "Astronomy": "0.5333",
+            "Geography": "0.3333",
+            "Law": "0.6000",
+            "Life Tip": "0.5000",
+            "Technology": "0.4667",
+            "Animation": "0.3333",
+            "Movie & TV Show": "0.5000",
+            "Documentary": "0.6000",
+            "News Report": "0.4667",
+            "Esports": "0.5000",
+            "Basketball": "0.4000",
+            "Football": "0.5333",
+            "Athletics": "0.3000",
+            "Other Sports": "0.4000",
+            "Stage Play": "0.7333",
+            "Magic Show": "0.4333",
+            "Variety Show": "0.2333",
+            "Acrobatics": "0.4000",
+            "Handicraft": "0.5667",
+            "Food": "0.2667",
+            "Fashion": "0.4667",
+            "Daily Life": "0.3333",
+            "Travel": "0.3000",
+            "Pet & Animal": "0.7000",
+            "Exercise": "0.5000",
+            "Multilingual": "0.5000"
+        },
+        "task_type": {
+            "Temporal Perception": "0.3333",
+            "Spatial Perception": "0.3333",
+            "Attribute Perception": "0.5185",
+            "Action Recognition": "0.4444",
+            "Object Recognition": "0.4815",
+            "OCR Problems": "0.2857",
+            "Counting Problem": "0.2708",
+            "Temporal Reasoning": "0.2418",
+            "Spatial Reasoning": "0.5455",
+            "Action Reasoning": "0.4444",
+            "Object Reasoning": "0.4708",
+            "Information Synopsis": "0.6564"
+        }
+    },
+    "overall": {
+        "overall": "0.5337",
+        "domain": {
+            "Knowledge": "0.5630",
+            "Film & Television": "0.5750",
+            "Sports Competition": "0.4756",
+            "Artistic Performance": "0.5556",
+            "Life Record": "0.5127",
+            "Multilingual": "0.4556"
+        },
+        "sub_category": {
+            "Humanity & History": "0.3889",
+            "Literature & Art": "0.5667",
+            "Biology & Medicine": "0.6444",
+            "Finance & Commerce": "0.6111",
+            "Astronomy": "0.6444",
+            "Geography": "0.4444",
+            "Law": "0.6556",
+            "Life Tip": "0.5778",
+            "Technology": "0.5333",
+            "Animation": "0.3556",
+            "Movie & TV Show": "0.6333",
+            "Documentary": "0.6222",
+            "News Report": "0.6889",
+            "Esports": "0.4889",
+            "Basketball": "0.3778",
+            "Football": "0.5333",
+            "Athletics": "0.4778",
+            "Other Sports": "0.5000",
+            "Stage Play": "0.7111",
+            "Magic Show": "0.5222",
+            "Variety Show": "0.4333",
+            "Acrobatics": "0.5556",
+            "Handicraft": "0.6333",
+            "Food": "0.4000",
+            "Fashion": "0.4556",
+            "Daily Life": "0.4556",
+            "Travel": "0.5000",
+            "Pet & Animal": "0.6111",
+            "Exercise": "0.5333",
+            "Multilingual": "0.4556"
+        },
+        "task_type": {
+            "Temporal Perception": "0.5455",
+            "Spatial Perception": "0.5556",
+            "Attribute Perception": "0.6712",
+            "Action Recognition": "0.5016",
+            "Object Recognition": "0.5876",
+            "OCR Problems": "0.5252",
+            "Counting Problem": "0.3284",
+            "Temporal Reasoning": "0.2881",
+            "Spatial Reasoning": "0.7679",
+            "Action Reasoning": "0.4947",
+            "Object Reasoning": "0.5242",
+            "Information Synopsis": "0.7214"
+        }
+    }
+}
 ```
 
 ````
 
 ````{tab} 8B
 
+When testing without subtitles:
+
 ```bash
-# without subs
 torchrun --nproc-per-node=8 run.py --data Video-MME --model InternVL2-8B --verbose --nframe 16
 ```
 
 The expected test results are:
 
 ```
-"overall": {
-    "overall": "0.5400",
-    "domain": {
-        "Knowledge": "0.5630",
-        "Film & Television": "0.5778",
-        "Sports Competition": "0.5067",
-        "Artistic Performance": "0.5778",
-        "Life Record": "0.5032",
-        "Multilingual": "0.4556"
+{
+    "short": {
+        "overall": "0.6567",
+        "domain": {
+            "Knowledge": "0.6704",
+            "Film & Television": "0.7083",
+            "Sports Competition": "0.5933",
+            "Artistic Performance": "0.7000",
+            "Life Record": "0.6619",
+            "Multilingual": "0.4333"
+        },
+        "sub_category": {
+            "Humanity & History": "0.6000",
+            "Literature & Art": "0.6000",
+            "Biology & Medicine": "0.7667",
+            "Finance & Commerce": "0.7000",
+            "Astronomy": "0.6000",
+            "Geography": "0.7000",
+            "Law": "0.7000",
+            "Life Tip": "0.7000",
+            "Technology": "0.6667",
+            "Animation": "0.8000",
+            "Movie & TV Show": "0.6000",
+            "Documentary": "0.6333",
+            "News Report": "0.8000",
+            "Esports": "0.5333",
+            "Basketball": "0.3667",
+            "Football": "0.7000",
+            "Athletics": "0.7333",
+            "Other Sports": "0.6333",
+            "Stage Play": "0.8333",
+            "Magic Show": "0.6667",
+            "Variety Show": "0.6333",
+            "Acrobatics": "0.6667",
+            "Handicraft": "0.7000",
+            "Food": "0.6667",
+            "Fashion": "0.5333",
+            "Daily Life": "0.6667",
+            "Travel": "0.7667",
+            "Pet & Animal": "0.7667",
+            "Exercise": "0.5333",
+            "Multilingual": "0.4333"
+        },
+        "task_type": {
+            "Temporal Perception": "0.7222",
+            "Spatial Perception": "0.7667",
+            "Attribute Perception": "0.7623",
+            "Action Recognition": "0.5954",
+            "Object Recognition": "0.6845",
+            "OCR Problems": "0.7719",
+            "Counting Problem": "0.4080",
+            "Temporal Reasoning": "0.6154",
+            "Spatial Reasoning": "0.8148",
+            "Action Reasoning": "0.6596",
+            "Object Reasoning": "0.6250",
+            "Information Synopsis": "0.7683"
+        }
     },
+    "medium": {
+        "overall": "0.5044",
+        "domain": {
+            "Knowledge": "0.5148",
+            "Film & Television": "0.5750",
+            "Sports Competition": "0.4533",
+            "Artistic Performance": "0.5917",
+            "Life Record": "0.4429",
+            "Multilingual": "0.4667"
+        },
+        "sub_category": {
+            "Humanity & History": "0.4333",
+            "Literature & Art": "0.6333",
+            "Biology & Medicine": "0.5667",
+            "Finance & Commerce": "0.6000",
+            "Astronomy": "0.4333",
+            "Geography": "0.3333",
+            "Law": "0.5667",
+            "Life Tip": "0.6333",
+            "Technology": "0.4333",
+            "Animation": "0.4000",
+            "Movie & TV Show": "0.6667",
+            "Documentary": "0.5667",
+            "News Report": "0.6667",
+            "Esports": "0.5667",
+            "Basketball": "0.2667",
+            "Football": "0.4667",
+            "Athletics": "0.4333",
+            "Other Sports": "0.5333",
+            "Stage Play": "0.8000",
+            "Magic Show": "0.4667",
+            "Variety Show": "0.5667",
+            "Acrobatics": "0.5333",
+            "Handicraft": "0.5667",
+            "Food": "0.4000",
+            "Fashion": "0.5000",
+            "Daily Life": "0.3333",
+            "Travel": "0.4333",
+            "Pet & Animal": "0.3667",
+            "Exercise": "0.5000",
+            "Multilingual": "0.4667"
+        },
+        "task_type": {
+            "Temporal Perception": "0.4516",
+            "Spatial Perception": "0.5714",
+            "Attribute Perception": "0.4932",
+            "Action Recognition": "0.3782",
+            "Object Recognition": "0.6212",
+            "OCR Problems": "0.4706",
+            "Counting Problem": "0.3053",
+            "Temporal Reasoning": "0.3836",
+            "Spatial Reasoning": "0.6111",
+            "Action Reasoning": "0.5172",
+            "Object Reasoning": "0.5970",
+            "Information Synopsis": "0.7051"
+        }
+    },
+    "long": {
+        "overall": "0.4589",
+        "domain": {
+            "Knowledge": "0.5037",
+            "Film & Television": "0.4500",
+            "Sports Competition": "0.4733",
+            "Artistic Performance": "0.4417",
+            "Life Record": "0.4048",
+            "Multilingual": "0.4667"
+        },
+        "sub_category": {
+            "Humanity & History": "0.5333",
+            "Literature & Art": "0.5000",
+            "Biology & Medicine": "0.6000",
+            "Finance & Commerce": "0.5000",
+            "Astronomy": "0.5000",
+            "Geography": "0.3667",
+            "Law": "0.5333",
+            "Life Tip": "0.5667",
+            "Technology": "0.4333",
+            "Animation": "0.2667",
+            "Movie & TV Show": "0.5667",
+            "Documentary": "0.4667",
+            "News Report": "0.5000",
+            "Esports": "0.5000",
+            "Basketball": "0.3667",
+            "Football": "0.5000",
+            "Athletics": "0.5000",
+            "Other Sports": "0.5000",
+            "Stage Play": "0.6333",
+            "Magic Show": "0.3333",
+            "Variety Show": "0.3000",
+            "Acrobatics": "0.5000",
+            "Handicraft": "0.4667",
+            "Food": "0.2667",
+            "Fashion": "0.4000",
+            "Daily Life": "0.3333",
+            "Travel": "0.3667",
+            "Pet & Animal": "0.6333",
+            "Exercise": "0.3667",
+            "Multilingual": "0.4667"
+        },
+        "task_type": {
+            "Temporal Perception": "0.1667",
+            "Spatial Perception": "0.0000",
+            "Attribute Perception": "0.6296",
+            "Action Recognition": "0.4127",
+            "Object Recognition": "0.5000",
+            "OCR Problems": "0.5000",
+            "Counting Problem": "0.3542",
+            "Temporal Reasoning": "0.3297",
+            "Spatial Reasoning": "0.6364",
+            "Action Reasoning": "0.4000",
+            "Object Reasoning": "0.4625",
+            "Information Synopsis": "0.6012"
+        }
+    },
+    "overall": {
+        "overall": "0.5400",
+        "domain": {
+            "Knowledge": "0.5630",
+            "Film & Television": "0.5778",
+            "Sports Competition": "0.5067",
+            "Artistic Performance": "0.5778",
+            "Life Record": "0.5032",
+            "Multilingual": "0.4556"
+        },
+        "sub_category": {
+            "Humanity & History": "0.5222",
+            "Literature & Art": "0.5778",
+            "Biology & Medicine": "0.6444",
+            "Finance & Commerce": "0.6000",
+            "Astronomy": "0.5111",
+            "Geography": "0.4667",
+            "Law": "0.6000",
+            "Life Tip": "0.6333",
+            "Technology": "0.5111",
+            "Animation": "0.4889",
+            "Movie & TV Show": "0.6111",
+            "Documentary": "0.5556",
+            "News Report": "0.6556",
+            "Esports": "0.5333",
+            "Basketball": "0.3333",
+            "Football": "0.5556",
+            "Athletics": "0.5556",
+            "Other Sports": "0.5556",
+            "Stage Play": "0.7556",
+            "Magic Show": "0.4889",
+            "Variety Show": "0.5000",
+            "Acrobatics": "0.5667",
+            "Handicraft": "0.5778",
+            "Food": "0.4444",
+            "Fashion": "0.4778",
+            "Daily Life": "0.4444",
+            "Travel": "0.5222",
+            "Pet & Animal": "0.5889",
+            "Exercise": "0.4667",
+            "Multilingual": "0.4556"
+        },
+        "task_type": {
+            "Temporal Perception": "0.5091",
+            "Spatial Perception": "0.6481",
+            "Attribute Perception": "0.6577",
+            "Action Recognition": "0.4760",
+            "Object Recognition": "0.6328",
+            "OCR Problems": "0.5971",
+            "Counting Problem": "0.3619",
+            "Temporal Reasoning": "0.3729",
+            "Spatial Reasoning": "0.7143",
+            "Action Reasoning": "0.4667",
+            "Object Reasoning": "0.5308",
+            "Information Synopsis": "0.6687"
+        }
+    }
+}
+```
+
+When testing with subtitles:
+
+```bash
+torchrun --nproc-per-node=8 run.py --data Video-MME --model InternVL2-8B --verbose --nframe 16 --use-subtitle
+```
+
+The expected test results are:
+
+```
+{
+    "short": {
+        "overall": "0.6900",
+        "domain": {
+            "Knowledge": "0.7148",
+            "Film & Television": "0.7500",
+            "Sports Competition": "0.5933",
+            "Artistic Performance": "0.7250",
+            "Life Record": "0.7000",
+            "Multilingual": "0.5000"
+        },
+        "sub_category": {
+            "Humanity & History": "0.5667",
+            "Literature & Art": "0.6333",
+            "Biology & Medicine": "0.8333",
+            "Finance & Commerce": "0.8333",
+            "Astronomy": "0.6667",
+            "Geography": "0.7000",
+            "Law": "0.7000",
+            "Life Tip": "0.8000",
+            "Technology": "0.7000",
+            "Animation": "0.7667",
+            "Movie & TV Show": "0.6667",
+            "Documentary": "0.6667",
+            "News Report": "0.9000",
+            "Esports": "0.5333",
+            "Basketball": "0.4000",
+            "Football": "0.6333",
+            "Athletics": "0.7667",
+            "Other Sports": "0.6333",
+            "Stage Play": "0.8000",
+            "Magic Show": "0.6667",
+            "Variety Show": "0.7667",
+            "Acrobatics": "0.6667",
+            "Handicraft": "0.6667",
+            "Food": "0.7000",
+            "Fashion": "0.5667",
+            "Daily Life": "0.7000",
+            "Travel": "0.8333",
+            "Pet & Animal": "0.8333",
+            "Exercise": "0.6000",
+            "Multilingual": "0.5000"
+        },
+        "task_type": {
+            "Temporal Perception": "0.6667",
+            "Spatial Perception": "0.7667",
+            "Attribute Perception": "0.7951",
+            "Action Recognition": "0.6412",
+            "Object Recognition": "0.6964",
+            "OCR Problems": "0.7895",
+            "Counting Problem": "0.4240",
+            "Temporal Reasoning": "0.6923",
+            "Spatial Reasoning": "0.8519",
+            "Action Reasoning": "0.7021",
+            "Object Reasoning": "0.6875",
+            "Information Synopsis": "0.8537"
+        }
+    },
+    "medium": {
+        "overall": "0.5256",
+        "domain": {
+            "Knowledge": "0.5593",
+            "Film & Television": "0.6167",
+            "Sports Competition": "0.4400",
+            "Artistic Performance": "0.6167",
+            "Life Record": "0.4429",
+            "Multilingual": "0.5000"
+        },
+        "sub_category": {
+            "Humanity & History": "0.4667",
+            "Literature & Art": "0.6000",
+            "Biology & Medicine": "0.5667",
+            "Finance & Commerce": "0.6667",
+            "Astronomy": "0.5667",
+            "Geography": "0.4667",
+            "Law": "0.5667",
+            "Life Tip": "0.6667",
+            "Technology": "0.4667",
+            "Animation": "0.3667",
+            "Movie & TV Show": "0.6667",
+            "Documentary": "0.6667",
+            "News Report": "0.7667",
+            "Esports": "0.5667",
+            "Basketball": "0.2667",
+            "Football": "0.4333",
+            "Athletics": "0.4333",
+            "Other Sports": "0.5000",
+            "Stage Play": "0.8333",
+            "Magic Show": "0.5333",
+            "Variety Show": "0.5667",
+            "Acrobatics": "0.5333",
+            "Handicraft": "0.5667",
+            "Food": "0.3667",
+            "Fashion": "0.4000",
+            "Daily Life": "0.4333",
+            "Travel": "0.4333",
+            "Pet & Animal": "0.4000",
+            "Exercise": "0.5000",
+            "Multilingual": "0.5000"
+        },
+        "task_type": {
+            "Temporal Perception": "0.4516",
+            "Spatial Perception": "0.5238",
+            "Attribute Perception": "0.5068",
+            "Action Recognition": "0.4034",
+            "Object Recognition": "0.6515",
+            "OCR Problems": "0.4118",
+            "Counting Problem": "0.3053",
+            "Temporal Reasoning": "0.3973",
+            "Spatial Reasoning": "0.7778",
+            "Action Reasoning": "0.5517",
+            "Object Reasoning": "0.6194",
+            "Information Synopsis": "0.7949"
+        }
+    },
+    "long": {
+        "overall": "0.4922",
+        "domain": {
+            "Knowledge": "0.5667",
+            "Film & Television": "0.4917",
+            "Sports Competition": "0.4800",
+            "Artistic Performance": "0.4583",
+            "Life Record": "0.4381",
+            "Multilingual": "0.4000"
+        },
+        "sub_category": {
+            "Humanity & History": "0.5667",
+            "Literature & Art": "0.5667",
+            "Biology & Medicine": "0.7333",
+            "Finance & Commerce": "0.5333",
+            "Astronomy": "0.5667",
+            "Geography": "0.4000",
+            "Law": "0.6667",
+            "Life Tip": "0.6000",
+            "Technology": "0.4667",
+            "Animation": "0.3333",
+            "Movie & TV Show": "0.5000",
+            "Documentary": "0.6000",
+            "News Report": "0.5333",
+            "Esports": "0.4333",
+            "Basketball": "0.4000",
+            "Football": "0.5333",
+            "Athletics": "0.4667",
+            "Other Sports": "0.5667",
+            "Stage Play": "0.7333",
+            "Magic Show": "0.3333",
+            "Variety Show": "0.3000",
+            "Acrobatics": "0.4667",
+            "Handicraft": "0.5667",
+            "Food": "0.3333",
+            "Fashion": "0.4333",
+            "Daily Life": "0.2667",
+            "Travel": "0.3667",
+            "Pet & Animal": "0.7333",
+            "Exercise": "0.3667",
+            "Multilingual": "0.4000"
+        },
+        "task_type": {
+            "Temporal Perception": "0.1667",
+            "Spatial Perception": "0.0000",
+            "Attribute Perception": "0.7037",
+            "Action Recognition": "0.4286",
+            "Object Recognition": "0.5000",
+            "OCR Problems": "0.5714",
+            "Counting Problem": "0.2917",
+            "Temporal Reasoning": "0.3077",
+            "Spatial Reasoning": "0.7273",
+            "Action Reasoning": "0.4278",
+            "Object Reasoning": "0.4917",
+            "Information Synopsis": "0.7117"
+        }
+    },
+    "overall": {
+        "overall": "0.5693",
+        "domain": {
+            "Knowledge": "0.6136",
+            "Film & Television": "0.6194",
+            "Sports Competition": "0.5044",
+            "Artistic Performance": "0.6000",
+            "Life Record": "0.5270",
+            "Multilingual": "0.4667"
+        },
+        "sub_category": {
+            "Humanity & History": "0.5333",
+            "Literature & Art": "0.6000",
+            "Biology & Medicine": "0.7111",
+            "Finance & Commerce": "0.6778",
+            "Astronomy": "0.6000",
+            "Geography": "0.5222",
+            "Law": "0.6444",
+            "Life Tip": "0.6889",
+            "Technology": "0.5444",
+            "Animation": "0.4889",
+            "Movie & TV Show": "0.6111",
+            "Documentary": "0.6444",
+            "News Report": "0.7333",
+            "Esports": "0.5111",
+            "Basketball": "0.3556",
+            "Football": "0.5333",
+            "Athletics": "0.5556",
+            "Other Sports": "0.5667",
+            "Stage Play": "0.7889",
+            "Magic Show": "0.5111",
+            "Variety Show": "0.5444",
+            "Acrobatics": "0.5556",
+            "Handicraft": "0.6000",
+            "Food": "0.4667",
+            "Fashion": "0.4667",
+            "Daily Life": "0.4667",
+            "Travel": "0.5444",
+            "Pet & Animal": "0.6556",
+            "Exercise": "0.4889",
+            "Multilingual": "0.4667"
+        },
+        "task_type": {
+            "Temporal Perception": "0.4909",
+            "Spatial Perception": "0.6296",
+            "Attribute Perception": "0.6892",
+            "Action Recognition": "0.5080",
+            "Object Recognition": "0.6497",
+            "OCR Problems": "0.5827",
+            "Counting Problem": "0.3582",
+            "Temporal Reasoning": "0.3729",
+            "Spatial Reasoning": "0.8036",
+            "Action Reasoning": "0.4982",
+            "Object Reasoning": "0.5639",
+            "Information Synopsis": "0.7678"
+        }
+    }
+}
 ```
 
 ````
 
 ````{tab} 26B
 
+When testing without subtitles:
+
 ```bash
-# without subs
 torchrun --nproc-per-node=8 run.py --data Video-MME --model InternVL2-26B --verbose --nframe 16
 ```
 
 The expected test results are:
 
 ```
-"overall": {
-    "overall": "0.5481",
-    "domain": {
-        "Knowledge": "0.5679",
-        "Film & Television": "0.5917",
-        "Sports Competition": "0.4867",
-        "Artistic Performance": "0.5694",
-        "Life Record": "0.5381",
-        "Multilingual": "0.4889"
+{
+    "short": {
+        "overall": "0.6667",
+        "domain": {
+            "Knowledge": "0.6741",
+            "Film & Television": "0.7333",
+            "Sports Competition": "0.6133",
+            "Artistic Performance": "0.6750",
+            "Life Record": "0.6762",
+            "Multilingual": "0.5000"
+        },
+        "sub_category": {
+            "Humanity & History": "0.4000",
+            "Literature & Art": "0.5667",
+            "Biology & Medicine": "0.8667",
+            "Finance & Commerce": "0.7000",
+            "Astronomy": "0.6667",
+            "Geography": "0.6333",
+            "Law": "0.8000",
+            "Life Tip": "0.8000",
+            "Technology": "0.6333",
+            "Animation": "0.8000",
+            "Movie & TV Show": "0.7000",
+            "Documentary": "0.5667",
+            "News Report": "0.8667",
+            "Esports": "0.5333",
+            "Basketball": "0.4667",
+            "Football": "0.6333",
+            "Athletics": "0.7667",
+            "Other Sports": "0.6667",
+            "Stage Play": "0.8667",
+            "Magic Show": "0.5333",
+            "Variety Show": "0.6333",
+            "Acrobatics": "0.6667",
+            "Handicraft": "0.7000",
+            "Food": "0.7667",
+            "Fashion": "0.6667",
+            "Daily Life": "0.6667",
+            "Travel": "0.7667",
+            "Pet & Animal": "0.7333",
+            "Exercise": "0.4333",
+            "Multilingual": "0.5000"
+        },
+        "task_type": {
+            "Temporal Perception": "0.8333",
+            "Spatial Perception": "0.7333",
+            "Attribute Perception": "0.7541",
+            "Action Recognition": "0.6489",
+            "Object Recognition": "0.6548",
+            "OCR Problems": "0.7719",
+            "Counting Problem": "0.4080",
+            "Temporal Reasoning": "0.6154",
+            "Spatial Reasoning": "0.7778",
+            "Action Reasoning": "0.7234",
+            "Object Reasoning": "0.6500",
+            "Information Synopsis": "0.8049"
+        }
     },
+    "medium": {
+        "overall": "0.5200",
+        "domain": {
+            "Knowledge": "0.5481",
+            "Film & Television": "0.5833",
+            "Sports Competition": "0.4267",
+            "Artistic Performance": "0.6167",
+            "Life Record": "0.4524",
+            "Multilingual": "0.5667"
+        },
+        "sub_category": {
+            "Humanity & History": "0.4000",
+            "Literature & Art": "0.6000",
+            "Biology & Medicine": "0.6667",
+            "Finance & Commerce": "0.5667",
+            "Astronomy": "0.5333",
+            "Geography": "0.4667",
+            "Law": "0.6667",
+            "Life Tip": "0.5333",
+            "Technology": "0.5000",
+            "Animation": "0.3667",
+            "Movie & TV Show": "0.6000",
+            "Documentary": "0.7000",
+            "News Report": "0.6667",
+            "Esports": "0.4667",
+            "Basketball": "0.3000",
+            "Football": "0.5000",
+            "Athletics": "0.3667",
+            "Other Sports": "0.5000",
+            "Stage Play": "0.6667",
+            "Magic Show": "0.6333",
+            "Variety Show": "0.6000",
+            "Acrobatics": "0.5667",
+            "Handicraft": "0.6667",
+            "Food": "0.3000",
+            "Fashion": "0.4000",
+            "Daily Life": "0.4000",
+            "Travel": "0.5333",
+            "Pet & Animal": "0.4667",
+            "Exercise": "0.4000",
+            "Multilingual": "0.5667"
+        },
+        "task_type": {
+            "Temporal Perception": "0.4839",
+            "Spatial Perception": "0.5238",
+            "Attribute Perception": "0.5890",
+            "Action Recognition": "0.4454",
+            "Object Recognition": "0.6364",
+            "OCR Problems": "0.4412",
+            "Counting Problem": "0.3474",
+            "Temporal Reasoning": "0.3836",
+            "Spatial Reasoning": "0.7222",
+            "Action Reasoning": "0.4655",
+            "Object Reasoning": "0.5448",
+            "Information Synopsis": "0.7436"
+        }
+    },
+    "long": {
+        "overall": "0.4578",
+        "domain": {
+            "Knowledge": "0.4815",
+            "Film & Television": "0.4583",
+            "Sports Competition": "0.4200",
+            "Artistic Performance": "0.4167",
+            "Life Record": "0.4857",
+            "Multilingual": "0.4000"
+        },
+        "sub_category": {
+            "Humanity & History": "0.5000",
+            "Literature & Art": "0.5667",
+            "Biology & Medicine": "0.5333",
+            "Finance & Commerce": "0.6000",
+            "Astronomy": "0.4667",
+            "Geography": "0.3000",
+            "Law": "0.5000",
+            "Life Tip": "0.4667",
+            "Technology": "0.4000",
+            "Animation": "0.3667",
+            "Movie & TV Show": "0.4667",
+            "Documentary": "0.5000",
+            "News Report": "0.5000",
+            "Esports": "0.4667",
+            "Basketball": "0.4000",
+            "Football": "0.4667",
+            "Athletics": "0.4000",
+            "Other Sports": "0.3667",
+            "Stage Play": "0.5667",
+            "Magic Show": "0.4667",
+            "Variety Show": "0.1333",
+            "Acrobatics": "0.5000",
+            "Handicraft": "0.6333",
+            "Food": "0.4333",
+            "Fashion": "0.3667",
+            "Daily Life": "0.5333",
+            "Travel": "0.3667",
+            "Pet & Animal": "0.6667",
+            "Exercise": "0.4000",
+            "Multilingual": "0.4000"
+        },
+        "task_type": {
+            "Temporal Perception": "0.0000",
+            "Spatial Perception": "0.3333",
+            "Attribute Perception": "0.5926",
+            "Action Recognition": "0.3968",
+            "Object Recognition": "0.5741",
+            "OCR Problems": "0.5000",
+            "Counting Problem": "0.2917",
+            "Temporal Reasoning": "0.2967",
+            "Spatial Reasoning": "0.6364",
+            "Action Reasoning": "0.4111",
+            "Object Reasoning": "0.4583",
+            "Information Synopsis": "0.6135"
+        }
+    },
+    "overall": {
+        "overall": "0.5481",
+        "domain": {
+            "Knowledge": "0.5679",
+            "Film & Television": "0.5917",
+            "Sports Competition": "0.4867",
+            "Artistic Performance": "0.5694",
+            "Life Record": "0.5381",
+            "Multilingual": "0.4889"
+        },
+        "sub_category": {
+            "Humanity & History": "0.4333",
+            "Literature & Art": "0.5778",
+            "Biology & Medicine": "0.6889",
+            "Finance & Commerce": "0.6222",
+            "Astronomy": "0.5556",
+            "Geography": "0.4667",
+            "Law": "0.6556",
+            "Life Tip": "0.6000",
+            "Technology": "0.5111",
+            "Animation": "0.5111",
+            "Movie & TV Show": "0.5889",
+            "Documentary": "0.5889",
+            "News Report": "0.6778",
+            "Esports": "0.4889",
+            "Basketball": "0.3889",
+            "Football": "0.5333",
+            "Athletics": "0.5111",
+            "Other Sports": "0.5111",
+            "Stage Play": "0.7000",
+            "Magic Show": "0.5444",
+            "Variety Show": "0.4556",
+            "Acrobatics": "0.5778",
+            "Handicraft": "0.6667",
+            "Food": "0.5000",
+            "Fashion": "0.4778",
+            "Daily Life": "0.5333",
+            "Travel": "0.5556",
+            "Pet & Animal": "0.6222",
+            "Exercise": "0.4111",
+            "Multilingual": "0.4889"
+        },
+        "task_type": {
+            "Temporal Perception": "0.5455",
+            "Spatial Perception": "0.6296",
+            "Attribute Perception": "0.6802",
+            "Action Recognition": "0.5208",
+            "Object Recognition": "0.6356",
+            "OCR Problems": "0.5827",
+            "Counting Problem": "0.3657",
+            "Temporal Reasoning": "0.3559",
+            "Spatial Reasoning": "0.7321",
+            "Action Reasoning": "0.4737",
+            "Object Reasoning": "0.5176",
+            "Information Synopsis": "0.6935"
+        }
+    }
+}
+```
+
+When testing with subtitles:
+
+```bash
+torchrun --nproc-per-node=8 run.py --data Video-MME --model InternVL2-26B --verbose --nframe 16 --use-subtitle
+```
+
+The expected test results are:
+
+```
+{
+    "short": {
+        "overall": "0.6844",
+        "domain": {
+            "Knowledge": "0.6889",
+            "Film & Television": "0.7250",
+            "Sports Competition": "0.6200",
+            "Artistic Performance": "0.7167",
+            "Life Record": "0.7000",
+            "Multilingual": "0.5667"
+        },
+        "sub_category": {
+            "Humanity & History": "0.3667",
+            "Literature & Art": "0.6000",
+            "Biology & Medicine": "0.9000",
+            "Finance & Commerce": "0.7333",
+            "Astronomy": "0.7000",
+            "Geography": "0.7333",
+            "Law": "0.8333",
+            "Life Tip": "0.7000",
+            "Technology": "0.6333",
+            "Animation": "0.7333",
+            "Movie & TV Show": "0.7333",
+            "Documentary": "0.5667",
+            "News Report": "0.8667",
+            "Esports": "0.6667",
+            "Basketball": "0.4333",
+            "Football": "0.6667",
+            "Athletics": "0.7333",
+            "Other Sports": "0.6000",
+            "Stage Play": "0.8333",
+            "Magic Show": "0.6000",
+            "Variety Show": "0.7667",
+            "Acrobatics": "0.6667",
+            "Handicraft": "0.6667",
+            "Food": "0.8333",
+            "Fashion": "0.6667",
+            "Daily Life": "0.7667",
+            "Travel": "0.7667",
+            "Pet & Animal": "0.7333",
+            "Exercise": "0.4667",
+            "Multilingual": "0.5667"
+        },
+        "task_type": {
+            "Temporal Perception": "0.7778",
+            "Spatial Perception": "0.7000",
+            "Attribute Perception": "0.7869",
+            "Action Recognition": "0.6336",
+            "Object Recognition": "0.6905",
+            "OCR Problems": "0.8070",
+            "Counting Problem": "0.4080",
+            "Temporal Reasoning": "0.7692",
+            "Spatial Reasoning": "0.8519",
+            "Action Reasoning": "0.7021",
+            "Object Reasoning": "0.7125",
+            "Information Synopsis": "0.8049"
+        }
+    },
+    "medium": {
+        "overall": "0.5456",
+        "domain": {
+            "Knowledge": "0.5852",
+            "Film & Television": "0.6167",
+            "Sports Competition": "0.4400",
+            "Artistic Performance": "0.6333",
+            "Life Record": "0.4714",
+            "Multilingual": "0.6000"
+        },
+        "sub_category": {
+            "Humanity & History": "0.5333",
+            "Literature & Art": "0.5667",
+            "Biology & Medicine": "0.6333",
+            "Finance & Commerce": "0.6667",
+            "Astronomy": "0.6667",
+            "Geography": "0.5000",
+            "Law": "0.6333",
+            "Life Tip": "0.5667",
+            "Technology": "0.5000",
+            "Animation": "0.3333",
+            "Movie & TV Show": "0.6333",
+            "Documentary": "0.7000",
+            "News Report": "0.8000",
+            "Esports": "0.4333",
+            "Basketball": "0.2667",
+            "Football": "0.6000",
+            "Athletics": "0.3667",
+            "Other Sports": "0.5333",
+            "Stage Play": "0.7667",
+            "Magic Show": "0.6000",
+            "Variety Show": "0.6000",
+            "Acrobatics": "0.5667",
+            "Handicraft": "0.6333",
+            "Food": "0.3000",
+            "Fashion": "0.4333",
+            "Daily Life": "0.3667",
+            "Travel": "0.6000",
+            "Pet & Animal": "0.4667",
+            "Exercise": "0.5000",
+            "Multilingual": "0.6000"
+        },
+        "task_type": {
+            "Temporal Perception": "0.4839",
+            "Spatial Perception": "0.4762",
+            "Attribute Perception": "0.5890",
+            "Action Recognition": "0.4622",
+            "Object Recognition": "0.6591",
+            "OCR Problems": "0.4706",
+            "Counting Problem": "0.3474",
+            "Temporal Reasoning": "0.4247",
+            "Spatial Reasoning": "0.8333",
+            "Action Reasoning": "0.4310",
+            "Object Reasoning": "0.6194",
+            "Information Synopsis": "0.7949"
+        }
+    },
+    "long": {
+        "overall": "0.4833",
+        "domain": {
+            "Knowledge": "0.5296",
+            "Film & Television": "0.5083",
+            "Sports Competition": "0.4333",
+            "Artistic Performance": "0.4583",
+            "Life Record": "0.4667",
+            "Multilingual": "0.4333"
+        },
+        "sub_category": {
+            "Humanity & History": "0.4667",
+            "Literature & Art": "0.5000",
+            "Biology & Medicine": "0.7000",
+            "Finance & Commerce": "0.6667",
+            "Astronomy": "0.6000",
+            "Geography": "0.3333",
+            "Law": "0.5667",
+            "Life Tip": "0.5000",
+            "Technology": "0.4333",
+            "Animation": "0.4000",
+            "Movie & TV Show": "0.4667",
+            "Documentary": "0.6667",
+            "News Report": "0.5000",
+            "Esports": "0.4667",
+            "Basketball": "0.3667",
+            "Football": "0.5667",
+            "Athletics": "0.3333",
+            "Other Sports": "0.4333",
+            "Stage Play": "0.7667",
+            "Magic Show": "0.4000",
+            "Variety Show": "0.2000",
+            "Acrobatics": "0.4667",
+            "Handicraft": "0.6333",
+            "Food": "0.3333",
+            "Fashion": "0.4333",
+            "Daily Life": "0.4667",
+            "Travel": "0.3000",
+            "Pet & Animal": "0.7000",
+            "Exercise": "0.4000",
+            "Multilingual": "0.4333"
+        },
+        "task_type": {
+            "Temporal Perception": "0.0000",
+            "Spatial Perception": "0.3333",
+            "Attribute Perception": "0.5556",
+            "Action Recognition": "0.4444",
+            "Object Recognition": "0.4815",
+            "OCR Problems": "0.6429",
+            "Counting Problem": "0.3333",
+            "Temporal Reasoning": "0.2967",
+            "Spatial Reasoning": "0.7273",
+            "Action Reasoning": "0.4611",
+            "Object Reasoning": "0.4667",
+            "Information Synopsis": "0.6748"
+        }
+    },
+    "overall": {
+        "overall": "0.5711",
+        "domain": {
+            "Knowledge": "0.6012",
+            "Film & Television": "0.6167",
+            "Sports Competition": "0.4978",
+            "Artistic Performance": "0.6028",
+            "Life Record": "0.5460",
+            "Multilingual": "0.5333"
+        },
+        "sub_category": {
+            "Humanity & History": "0.4556",
+            "Literature & Art": "0.5556",
+            "Biology & Medicine": "0.7444",
+            "Finance & Commerce": "0.6889",
+            "Astronomy": "0.6556",
+            "Geography": "0.5222",
+            "Law": "0.6778",
+            "Life Tip": "0.5889",
+            "Technology": "0.5222",
+            "Animation": "0.4889",
+            "Movie & TV Show": "0.6111",
+            "Documentary": "0.6444",
+            "News Report": "0.7222",
+            "Esports": "0.5222",
+            "Basketball": "0.3556",
+            "Football": "0.6111",
+            "Athletics": "0.4778",
+            "Other Sports": "0.5222",
+            "Stage Play": "0.7889",
+            "Magic Show": "0.5333",
+            "Variety Show": "0.5222",
+            "Acrobatics": "0.5667",
+            "Handicraft": "0.6444",
+            "Food": "0.4889",
+            "Fashion": "0.5111",
+            "Daily Life": "0.5333",
+            "Travel": "0.5556",
+            "Pet & Animal": "0.6333",
+            "Exercise": "0.4556",
+            "Multilingual": "0.5333"
+        },
+        "task_type": {
+            "Temporal Perception": "0.5273",
+            "Spatial Perception": "0.5926",
+            "Attribute Perception": "0.6937",
+            "Action Recognition": "0.5304",
+            "Object Recognition": "0.6469",
+            "OCR Problems": "0.6259",
+            "Counting Problem": "0.3731",
+            "Temporal Reasoning": "0.3842",
+            "Spatial Reasoning": "0.8214",
+            "Action Reasoning": "0.4947",
+            "Object Reasoning": "0.5551",
+            "Information Synopsis": "0.7368"
+        }
+    }
+}
 ```
 
 ````
 
 ````{tab} 40B
 
+When testing without subtitles:
+
 ```bash
-# without subs
 torchrun --nproc-per-node=8 run.py --data Video-MME --model InternVL2-40B --verbose --nframe 16
 ```
 
 The expected test results are:
 
 ```
-"overall": {
-    "overall": "0.6122",
-    "domain": {
-        "Knowledge": "0.6407",
-        "Film & Television": "0.6139",
-        "Sports Competition": "0.5667",
-        "Artistic Performance": "0.6528",
-        "Life Record": "0.5889",
-        "Multilingual": "0.5778"
+{
+    "short": {
+        "overall": "0.7200",
+        "domain": {
+            "Knowledge": "0.7222",
+            "Film & Television": "0.7417",
+            "Sports Competition": "0.6667",
+            "Artistic Performance": "0.7583",
+            "Life Record": "0.7476",
+            "Multilingual": "0.5333"
+        },
+        "sub_category": {
+            "Humanity & History": "0.4333",
+            "Literature & Art": "0.6667",
+            "Biology & Medicine": "0.9667",
+            "Finance & Commerce": "0.8000",
+            "Astronomy": "0.8000",
+            "Geography": "0.6333",
+            "Law": "0.7333",
+            "Life Tip": "0.7333",
+            "Technology": "0.7333",
+            "Animation": "0.8000",
+            "Movie & TV Show": "0.7333",
+            "Documentary": "0.5667",
+            "News Report": "0.8667",
+            "Esports": "0.6667",
+            "Basketball": "0.4333",
+            "Football": "0.7667",
+            "Athletics": "0.8000",
+            "Other Sports": "0.6667",
+            "Stage Play": "0.9000",
+            "Magic Show": "0.6667",
+            "Variety Show": "0.7667",
+            "Acrobatics": "0.7000",
+            "Handicraft": "0.8667",
+            "Food": "0.7333",
+            "Fashion": "0.7333",
+            "Daily Life": "0.7333",
+            "Travel": "0.7667",
+            "Pet & Animal": "0.8000",
+            "Exercise": "0.6000",
+            "Multilingual": "0.5333"
+        },
+        "task_type": {
+            "Temporal Perception": "0.8889",
+            "Spatial Perception": "0.7333",
+            "Attribute Perception": "0.8033",
+            "Action Recognition": "0.6718",
+            "Object Recognition": "0.7262",
+            "OCR Problems": "0.8596",
+            "Counting Problem": "0.4400",
+            "Temporal Reasoning": "0.8462",
+            "Spatial Reasoning": "0.8889",
+            "Action Reasoning": "0.7660",
+            "Object Reasoning": "0.7250",
+            "Information Synopsis": "0.8415"
+        }
     },
+    "medium": {
+        "overall": "0.5911",
+        "domain": {
+            "Knowledge": "0.6074",
+            "Film & Television": "0.6417",
+            "Sports Competition": "0.5067",
+            "Artistic Performance": "0.6583",
+            "Life Record": "0.5429",
+            "Multilingual": "0.7333"
+        },
+        "sub_category": {
+            "Humanity & History": "0.5333",
+            "Literature & Art": "0.6333",
+            "Biology & Medicine": "0.6000",
+            "Finance & Commerce": "0.6000",
+            "Astronomy": "0.5667",
+            "Geography": "0.5333",
+            "Law": "0.8000",
+            "Life Tip": "0.5667",
+            "Technology": "0.6333",
+            "Animation": "0.4000",
+            "Movie & TV Show": "0.7000",
+            "Documentary": "0.8000",
+            "News Report": "0.6667",
+            "Esports": "0.6333",
+            "Basketball": "0.1667",
+            "Football": "0.5333",
+            "Athletics": "0.6000",
+            "Other Sports": "0.6000",
+            "Stage Play": "0.7667",
+            "Magic Show": "0.6333",
+            "Variety Show": "0.5667",
+            "Acrobatics": "0.6667",
+            "Handicraft": "0.7000",
+            "Food": "0.3667",
+            "Fashion": "0.4333",
+            "Daily Life": "0.5333",
+            "Travel": "0.6333",
+            "Pet & Animal": "0.4000",
+            "Exercise": "0.7333",
+            "Multilingual": "0.7333"
+        },
+        "task_type": {
+            "Temporal Perception": "0.5484",
+            "Spatial Perception": "0.6190",
+            "Attribute Perception": "0.6712",
+            "Action Recognition": "0.5126",
+            "Object Recognition": "0.6667",
+            "OCR Problems": "0.5000",
+            "Counting Problem": "0.3579",
+            "Temporal Reasoning": "0.5068",
+            "Spatial Reasoning": "0.7778",
+            "Action Reasoning": "0.5345",
+            "Object Reasoning": "0.6716",
+            "Information Synopsis": "0.8205"
+        }
+    },
+    "long": {
+        "overall": "0.5256",
+        "domain": {
+            "Knowledge": "0.5926",
+            "Film & Television": "0.4583",
+            "Sports Competition": "0.5267",
+            "Artistic Performance": "0.5417",
+            "Life Record": "0.4762",
+            "Multilingual": "0.4667"
+        },
+        "sub_category": {
+            "Humanity & History": "0.5333",
+            "Literature & Art": "0.6000",
+            "Biology & Medicine": "0.7000",
+            "Finance & Commerce": "0.7667",
+            "Astronomy": "0.5667",
+            "Geography": "0.4333",
+            "Law": "0.5000",
+            "Life Tip": "0.6333",
+            "Technology": "0.6000",
+            "Animation": "0.3000",
+            "Movie & TV Show": "0.5333",
+            "Documentary": "0.5333",
+            "News Report": "0.4667",
+            "Esports": "0.6667",
+            "Basketball": "0.3667",
+            "Football": "0.6000",
+            "Athletics": "0.4000",
+            "Other Sports": "0.6000",
+            "Stage Play": "0.7000",
+            "Magic Show": "0.5667",
+            "Variety Show": "0.3667",
+            "Acrobatics": "0.5333",
+            "Handicraft": "0.5667",
+            "Food": "0.3667",
+            "Fashion": "0.4000",
+            "Daily Life": "0.4333",
+            "Travel": "0.3667",
+            "Pet & Animal": "0.6333",
+            "Exercise": "0.5667",
+            "Multilingual": "0.4667"
+        },
+        "task_type": {
+            "Temporal Perception": "0.3333",
+            "Spatial Perception": "0.3333",
+            "Attribute Perception": "0.6667",
+            "Action Recognition": "0.5397",
+            "Object Recognition": "0.5185",
+            "OCR Problems": "0.4286",
+            "Counting Problem": "0.2917",
+            "Temporal Reasoning": "0.3297",
+            "Spatial Reasoning": "0.6364",
+            "Action Reasoning": "0.5000",
+            "Object Reasoning": "0.5292",
+            "Information Synopsis": "0.7117"
+        }
+    },
+    "overall": {
+        "overall": "0.6122",
+        "domain": {
+            "Knowledge": "0.6407",
+            "Film & Television": "0.6139",
+            "Sports Competition": "0.5667",
+            "Artistic Performance": "0.6528",
+            "Life Record": "0.5889",
+            "Multilingual": "0.5778"
+        },
+        "sub_category": {
+            "Humanity & History": "0.5000",
+            "Literature & Art": "0.6333",
+            "Biology & Medicine": "0.7556",
+            "Finance & Commerce": "0.7222",
+            "Astronomy": "0.6444",
+            "Geography": "0.5333",
+            "Law": "0.6778",
+            "Life Tip": "0.6444",
+            "Technology": "0.6556",
+            "Animation": "0.5000",
+            "Movie & TV Show": "0.6556",
+            "Documentary": "0.6333",
+            "News Report": "0.6667",
+            "Esports": "0.6556",
+            "Basketball": "0.3222",
+            "Football": "0.6333",
+            "Athletics": "0.6000",
+            "Other Sports": "0.6222",
+            "Stage Play": "0.7889",
+            "Magic Show": "0.6222",
+            "Variety Show": "0.5667",
+            "Acrobatics": "0.6333",
+            "Handicraft": "0.7111",
+            "Food": "0.4889",
+            "Fashion": "0.5222",
+            "Daily Life": "0.5667",
+            "Travel": "0.5889",
+            "Pet & Animal": "0.6111",
+            "Exercise": "0.6333",
+            "Multilingual": "0.5778"
+        },
+        "task_type": {
+            "Temporal Perception": "0.6364",
+            "Spatial Perception": "0.6667",
+            "Attribute Perception": "0.7432",
+            "Action Recognition": "0.5847",
+            "Object Recognition": "0.6723",
+            "OCR Problems": "0.6403",
+            "Counting Problem": "0.3843",
+            "Temporal Reasoning": "0.4407",
+            "Spatial Reasoning": "0.8036",
+            "Action Reasoning": "0.5509",
+            "Object Reasoning": "0.6057",
+            "Information Synopsis": "0.7709"
+        }
+    }
+}
+```
+
+When testing with subtitles:
+
+```bash
+torchrun --nproc-per-node=8 run.py --data Video-MME --model InternVL2-40B --verbose --nframe 16 --use-subtitle
+```
+
+The expected test results are:
+
+```
+{
+    "short": {
+        "overall": "0.7278",
+        "domain": {
+            "Knowledge": "0.7370",
+            "Film & Television": "0.7583",
+            "Sports Competition": "0.6800",
+            "Artistic Performance": "0.7750",
+            "Life Record": "0.7286",
+            "Multilingual": "0.5667"
+        },
+        "sub_category": {
+            "Humanity & History": "0.4333",
+            "Literature & Art": "0.6333",
+            "Biology & Medicine": "0.9667",
+            "Finance & Commerce": "0.8667",
+            "Astronomy": "0.8333",
+            "Geography": "0.7000",
+            "Law": "0.7667",
+            "Life Tip": "0.7000",
+            "Technology": "0.7333",
+            "Animation": "0.7667",
+            "Movie & TV Show": "0.7000",
+            "Documentary": "0.6667",
+            "News Report": "0.9000",
+            "Esports": "0.6667",
+            "Basketball": "0.3667",
+            "Football": "0.8000",
+            "Athletics": "0.8333",
+            "Other Sports": "0.7333",
+            "Stage Play": "0.8667",
+            "Magic Show": "0.7333",
+            "Variety Show": "0.8000",
+            "Acrobatics": "0.7000",
+            "Handicraft": "0.7667",
+            "Food": "0.8000",
+            "Fashion": "0.6667",
+            "Daily Life": "0.7333",
+            "Travel": "0.7667",
+            "Pet & Animal": "0.8000",
+            "Exercise": "0.5667",
+            "Multilingual": "0.5667"
+        },
+        "task_type": {
+            "Temporal Perception": "0.8889",
+            "Spatial Perception": "0.7333",
+            "Attribute Perception": "0.8115",
+            "Action Recognition": "0.6870",
+            "Object Recognition": "0.7202",
+            "OCR Problems": "0.8596",
+            "Counting Problem": "0.4640",
+            "Temporal Reasoning": "0.6923",
+            "Spatial Reasoning": "0.8889",
+            "Action Reasoning": "0.7234",
+            "Object Reasoning": "0.7625",
+            "Information Synopsis": "0.8780"
+        }
+    },
+    "medium": {
+        "overall": "0.6133",
+        "domain": {
+            "Knowledge": "0.6630",
+            "Film & Television": "0.6583",
+            "Sports Competition": "0.5133",
+            "Artistic Performance": "0.6917",
+            "Life Record": "0.5333",
+            "Multilingual": "0.7333"
+        },
+        "sub_category": {
+            "Humanity & History": "0.6000",
+            "Literature & Art": "0.7000",
+            "Biology & Medicine": "0.5667",
+            "Finance & Commerce": "0.7333",
+            "Astronomy": "0.7000",
+            "Geography": "0.5667",
+            "Law": "0.8333",
+            "Life Tip": "0.6667",
+            "Technology": "0.6000",
+            "Animation": "0.4333",
+            "Movie & TV Show": "0.7667",
+            "Documentary": "0.7333",
+            "News Report": "0.7000",
+            "Esports": "0.5667",
+            "Basketball": "0.2667",
+            "Football": "0.5667",
+            "Athletics": "0.5667",
+            "Other Sports": "0.6000",
+            "Stage Play": "0.8000",
+            "Magic Show": "0.6333",
+            "Variety Show": "0.6667",
+            "Acrobatics": "0.6667",
+            "Handicraft": "0.7000",
+            "Food": "0.3333",
+            "Fashion": "0.4000",
+            "Daily Life": "0.5333",
+            "Travel": "0.6333",
+            "Pet & Animal": "0.4667",
+            "Exercise": "0.6667",
+            "Multilingual": "0.7333"
+        },
+        "task_type": {
+            "Temporal Perception": "0.5484",
+            "Spatial Perception": "0.5238",
+            "Attribute Perception": "0.6438",
+            "Action Recognition": "0.5798",
+            "Object Recognition": "0.7121",
+            "OCR Problems": "0.4706",
+            "Counting Problem": "0.3684",
+            "Temporal Reasoning": "0.5479",
+            "Spatial Reasoning": "0.8333",
+            "Action Reasoning": "0.6034",
+            "Object Reasoning": "0.6791",
+            "Information Synopsis": "0.8462"
+        }
+    },
+    "long": {
+        "overall": "0.5300",
+        "domain": {
+            "Knowledge": "0.5889",
+            "Film & Television": "0.5000",
+            "Sports Competition": "0.5000",
+            "Artistic Performance": "0.6000",
+            "Life Record": "0.4571",
+            "Multilingual": "0.5000"
+        },
+        "sub_category": {
+            "Humanity & History": "0.5333",
+            "Literature & Art": "0.6000",
+            "Biology & Medicine": "0.6333",
+            "Finance & Commerce": "0.6333",
+            "Astronomy": "0.6667",
+            "Geography": "0.4000",
+            "Law": "0.7000",
+            "Life Tip": "0.6000",
+            "Technology": "0.5333",
+            "Animation": "0.3667",
+            "Movie & TV Show": "0.5000",
+            "Documentary": "0.5333",
+            "News Report": "0.6000",
+            "Esports": "0.6000",
+            "Basketball": "0.3333",
+            "Football": "0.6333",
+            "Athletics": "0.4000",
+            "Other Sports": "0.5333",
+            "Stage Play": "0.8667",
+            "Magic Show": "0.5667",
+            "Variety Show": "0.4333",
+            "Acrobatics": "0.5333",
+            "Handicraft": "0.5667",
+            "Food": "0.3333",
+            "Fashion": "0.3667",
+            "Daily Life": "0.4333",
+            "Travel": "0.4000",
+            "Pet & Animal": "0.6667",
+            "Exercise": "0.4333",
+            "Multilingual": "0.5000"
+        },
+        "task_type": {
+            "Temporal Perception": "0.1667",
+            "Spatial Perception": "0.3333",
+            "Attribute Perception": "0.6296",
+            "Action Recognition": "0.5714",
+            "Object Recognition": "0.5185",
+            "OCR Problems": "0.5714",
+            "Counting Problem": "0.2708",
+            "Temporal Reasoning": "0.3187",
+            "Spatial Reasoning": "0.6364",
+            "Action Reasoning": "0.4889",
+            "Object Reasoning": "0.5417",
+            "Information Synopsis": "0.7301"
+        }
+    },
+    "overall": {
+        "overall": "0.6237",
+        "domain": {
+            "Knowledge": "0.6630",
+            "Film & Television": "0.6389",
+            "Sports Competition": "0.5644",
+            "Artistic Performance": "0.6889",
+            "Life Record": "0.5730",
+            "Multilingual": "0.6000"
+        },
+        "sub_category": {
+            "Humanity & History": "0.5222",
+            "Literature & Art": "0.6444",
+            "Biology & Medicine": "0.7222",
+            "Finance & Commerce": "0.7444",
+            "Astronomy": "0.7333",
+            "Geography": "0.5556",
+            "Law": "0.7667",
+            "Life Tip": "0.6556",
+            "Technology": "0.6222",
+            "Animation": "0.5222",
+            "Movie & TV Show": "0.6556",
+            "Documentary": "0.6444",
+            "News Report": "0.7333",
+            "Esports": "0.6111",
+            "Basketball": "0.3222",
+            "Football": "0.6667",
+            "Athletics": "0.6000",
+            "Other Sports": "0.6222",
+            "Stage Play": "0.8444",
+            "Magic Show": "0.6444",
+            "Variety Show": "0.6333",
+            "Acrobatics": "0.6333",
+            "Handicraft": "0.6778",
+            "Food": "0.4889",
+            "Fashion": "0.4778",
+            "Daily Life": "0.5667",
+            "Travel": "0.6000",
+            "Pet & Animal": "0.6444",
+            "Exercise": "0.5556",
+            "Multilingual": "0.6000"
+        },
+        "task_type": {
+            "Temporal Perception": "0.6182",
+            "Spatial Perception": "0.6296",
+            "Attribute Perception": "0.7342",
+            "Action Recognition": "0.6230",
+            "Object Recognition": "0.6864",
+            "OCR Problems": "0.6403",
+            "Counting Problem": "0.3955",
+            "Temporal Reasoning": "0.4407",
+            "Spatial Reasoning": "0.8214",
+            "Action Reasoning": "0.5509",
+            "Object Reasoning": "0.6211",
+            "Information Synopsis": "0.7957"
+        }
+    }
+}
 ```
 
 ````
 
 ````{tab} 76B
 
+
+When testing without subtitles:
+
 ```bash
-# without subs
 torchrun --nproc-per-node=1 run.py --data Video-MME --model InternVL2-Llama3-76B --verbose --nframe 16
 ```
 
 The expected test results are:
 
 ```
-"overall": {
-    "overall": "0.6119",
-    "domain": {
-        "Knowledge": "0.6420",
-        "Film & Television": "0.6222",
-        "Sports Competition": "0.5733",
-        "Artistic Performance": "0.6694",
-        "Life Record": "0.5683",
-        "Multilingual": "0.5667"
+{
+    "short": {
+        "overall": "0.7222",
+        "domain": {
+            "Knowledge": "0.7593",
+            "Film & Television": "0.7167",
+            "Sports Competition": "0.6800",
+            "Artistic Performance": "0.7500",
+            "Life Record": "0.7143",
+            "Multilingual": "0.5667"
+        },
+        "sub_category": {
+            "Humanity & History": "0.5333",
+            "Literature & Art": "0.6667",
+            "Biology & Medicine": "0.9333",
+            "Finance & Commerce": "0.8333",
+            "Astronomy": "0.7667",
+            "Geography": "0.7333",
+            "Law": "0.8000",
+            "Life Tip": "0.7667",
+            "Technology": "0.8000",
+            "Animation": "0.8000",
+            "Movie & TV Show": "0.6333",
+            "Documentary": "0.5667",
+            "News Report": "0.8667",
+            "Esports": "0.6667",
+            "Basketball": "0.6000",
+            "Football": "0.7667",
+            "Athletics": "0.7333",
+            "Other Sports": "0.6333",
+            "Stage Play": "0.8667",
+            "Magic Show": "0.6667",
+            "Variety Show": "0.7333",
+            "Acrobatics": "0.7333",
+            "Handicraft": "0.8000",
+            "Food": "0.7333",
+            "Fashion": "0.6000",
+            "Daily Life": "0.7333",
+            "Travel": "0.8667",
+            "Pet & Animal": "0.7667",
+            "Exercise": "0.5000",
+            "Multilingual": "0.5667"
+        },
+        "task_type": {
+            "Temporal Perception": "0.9444",
+            "Spatial Perception": "0.8333",
+            "Attribute Perception": "0.7869",
+            "Action Recognition": "0.6870",
+            "Object Recognition": "0.6786",
+            "OCR Problems": "0.8596",
+            "Counting Problem": "0.4400",
+            "Temporal Reasoning": "0.6923",
+            "Spatial Reasoning": "0.8519",
+            "Action Reasoning": "0.8085",
+            "Object Reasoning": "0.8000",
+            "Information Synopsis": "0.8537"
+        }
     },
+    "medium": {
+        "overall": "0.5800",
+        "domain": {
+            "Knowledge": "0.5741",
+            "Film & Television": "0.6833",
+            "Sports Competition": "0.5200",
+            "Artistic Performance": "0.6833",
+            "Life Record": "0.5095",
+            "Multilingual": "0.6000"
+        },
+        "sub_category": {
+            "Humanity & History": "0.5000",
+            "Literature & Art": "0.6000",
+            "Biology & Medicine": "0.5667",
+            "Finance & Commerce": "0.6333",
+            "Astronomy": "0.6000",
+            "Geography": "0.5000",
+            "Law": "0.6333",
+            "Life Tip": "0.6000",
+            "Technology": "0.5333",
+            "Animation": "0.6000",
+            "Movie & TV Show": "0.7667",
+            "Documentary": "0.7667",
+            "News Report": "0.6000",
+            "Esports": "0.5000",
+            "Basketball": "0.4000",
+            "Football": "0.6000",
+            "Athletics": "0.4667",
+            "Other Sports": "0.6333",
+            "Stage Play": "0.8000",
+            "Magic Show": "0.6333",
+            "Variety Show": "0.6000",
+            "Acrobatics": "0.7000",
+            "Handicraft": "0.7333",
+            "Food": "0.3000",
+            "Fashion": "0.4000",
+            "Daily Life": "0.3667",
+            "Travel": "0.5667",
+            "Pet & Animal": "0.6333",
+            "Exercise": "0.5667",
+            "Multilingual": "0.6000"
+        },
+        "task_type": {
+            "Temporal Perception": "0.5806",
+            "Spatial Perception": "0.5238",
+            "Attribute Perception": "0.6027",
+            "Action Recognition": "0.5546",
+            "Object Recognition": "0.6212",
+            "OCR Problems": "0.5000",
+            "Counting Problem": "0.4000",
+            "Temporal Reasoning": "0.3836",
+            "Spatial Reasoning": "0.7222",
+            "Action Reasoning": "0.6207",
+            "Object Reasoning": "0.6642",
+            "Information Synopsis": "0.8077"
+        }
+    },
+    "long": {
+        "overall": "0.5333",
+        "domain": {
+            "Knowledge": "0.5926",
+            "Film & Television": "0.4667",
+            "Sports Competition": "0.5200",
+            "Artistic Performance": "0.5750",
+            "Life Record": "0.4810",
+            "Multilingual": "0.5333"
+        },
+        "sub_category": {
+            "Humanity & History": "0.5333",
+            "Literature & Art": "0.6000",
+            "Biology & Medicine": "0.5667",
+            "Finance & Commerce": "0.6667",
+            "Astronomy": "0.7333",
+            "Geography": "0.5000",
+            "Law": "0.5333",
+            "Life Tip": "0.7000",
+            "Technology": "0.5000",
+            "Animation": "0.4000",
+            "Movie & TV Show": "0.4000",
+            "Documentary": "0.4667",
+            "News Report": "0.6000",
+            "Esports": "0.4333",
+            "Basketball": "0.5333",
+            "Football": "0.5667",
+            "Athletics": "0.5000",
+            "Other Sports": "0.5667",
+            "Stage Play": "0.7333",
+            "Magic Show": "0.5667",
+            "Variety Show": "0.3333",
+            "Acrobatics": "0.6667",
+            "Handicraft": "0.5667",
+            "Food": "0.3667",
+            "Fashion": "0.5000",
+            "Daily Life": "0.4667",
+            "Travel": "0.3667",
+            "Pet & Animal": "0.7000",
+            "Exercise": "0.4000",
+            "Multilingual": "0.5333"
+        },
+        "task_type": {
+            "Temporal Perception": "0.5000",
+            "Spatial Perception": "0.3333",
+            "Attribute Perception": "0.5185",
+            "Action Recognition": "0.5556",
+            "Object Recognition": "0.5741",
+            "OCR Problems": "0.3571",
+            "Counting Problem": "0.3750",
+            "Temporal Reasoning": "0.4835",
+            "Spatial Reasoning": "0.6364",
+            "Action Reasoning": "0.4778",
+            "Object Reasoning": "0.5250",
+            "Information Synopsis": "0.6748"
+        }
+    },
+    "overall": {
+        "overall": "0.6119",
+        "domain": {
+            "Knowledge": "0.6420",
+            "Film & Television": "0.6222",
+            "Sports Competition": "0.5733",
+            "Artistic Performance": "0.6694",
+            "Life Record": "0.5683",
+            "Multilingual": "0.5667"
+        },
+        "sub_category": {
+            "Humanity & History": "0.5222",
+            "Literature & Art": "0.6222",
+            "Biology & Medicine": "0.6889",
+            "Finance & Commerce": "0.7111",
+            "Astronomy": "0.7000",
+            "Geography": "0.5778",
+            "Law": "0.6556",
+            "Life Tip": "0.6889",
+            "Technology": "0.6111",
+            "Animation": "0.6000",
+            "Movie & TV Show": "0.6000",
+            "Documentary": "0.6000",
+            "News Report": "0.6889",
+            "Esports": "0.5333",
+            "Basketball": "0.5111",
+            "Football": "0.6444",
+            "Athletics": "0.5667",
+            "Other Sports": "0.6111",
+            "Stage Play": "0.8000",
+            "Magic Show": "0.6222",
+            "Variety Show": "0.5556",
+            "Acrobatics": "0.7000",
+            "Handicraft": "0.7000",
+            "Food": "0.4667",
+            "Fashion": "0.5000",
+            "Daily Life": "0.5222",
+            "Travel": "0.6000",
+            "Pet & Animal": "0.7000",
+            "Exercise": "0.4889",
+            "Multilingual": "0.5667"
+        },
+        "task_type": {
+            "Temporal Perception": "0.6909",
+            "Spatial Perception": "0.6852",
+            "Attribute Perception": "0.6937",
+            "Action Recognition": "0.6102",
+            "Object Recognition": "0.6412",
+            "OCR Problems": "0.6331",
+            "Counting Problem": "0.4142",
+            "Temporal Reasoning": "0.4576",
+            "Spatial Reasoning": "0.7679",
+            "Action Reasoning": "0.5614",
+            "Object Reasoning": "0.6145",
+            "Information Synopsis": "0.7523"
+        }
+    }
+}
+```
+
+When testing with subtitles:
+
+```bash
+torchrun --nproc-per-node=1 run.py --data Video-MME --model InternVL2-Llama3-76B --verbose --nframe 16 --use-subtitle
+```
+
+The expected test results are:
+
+```
+{
+    "short": {
+        "overall": "0.7422",
+        "domain": {
+            "Knowledge": "0.7667",
+            "Film & Television": "0.7583",
+            "Sports Competition": "0.7067",
+            "Artistic Performance": "0.7833",
+            "Life Record": "0.7286",
+            "Multilingual": "0.5667"
+        },
+        "sub_category": {
+            "Humanity & History": "0.5000",
+            "Literature & Art": "0.6667",
+            "Biology & Medicine": "0.9667",
+            "Finance & Commerce": "0.8667",
+            "Astronomy": "0.8000",
+            "Geography": "0.7667",
+            "Law": "0.8000",
+            "Life Tip": "0.7667",
+            "Technology": "0.7667",
+            "Animation": "0.7667",
+            "Movie & TV Show": "0.7000",
+            "Documentary": "0.6667",
+            "News Report": "0.9000",
+            "Esports": "0.7000",
+            "Basketball": "0.5000",
+            "Football": "0.7667",
+            "Athletics": "0.8333",
+            "Other Sports": "0.7333",
+            "Stage Play": "0.8333",
+            "Magic Show": "0.7667",
+            "Variety Show": "0.8000",
+            "Acrobatics": "0.7333",
+            "Handicraft": "0.8000",
+            "Food": "0.8000",
+            "Fashion": "0.6333",
+            "Daily Life": "0.7333",
+            "Travel": "0.8667",
+            "Pet & Animal": "0.7333",
+            "Exercise": "0.5333",
+            "Multilingual": "0.5667"
+        },
+        "task_type": {
+            "Temporal Perception": "0.8889",
+            "Spatial Perception": "0.8000",
+            "Attribute Perception": "0.8115",
+            "Action Recognition": "0.7023",
+            "Object Recognition": "0.6964",
+            "OCR Problems": "0.9123",
+            "Counting Problem": "0.4720",
+            "Temporal Reasoning": "0.7692",
+            "Spatial Reasoning": "0.8519",
+            "Action Reasoning": "0.8511",
+            "Object Reasoning": "0.7875",
+            "Information Synopsis": "0.8902"
+        }
+    },
+    "medium": {
+        "overall": "0.5900",
+        "domain": {
+            "Knowledge": "0.6111",
+            "Film & Television": "0.7083",
+            "Sports Competition": "0.4800",
+            "Artistic Performance": "0.7083",
+            "Life Record": "0.5048",
+            "Multilingual": "0.6000"
+        },
+        "sub_category": {
+            "Humanity & History": "0.6000",
+            "Literature & Art": "0.6333",
+            "Biology & Medicine": "0.5667",
+            "Finance & Commerce": "0.6333",
+            "Astronomy": "0.6333",
+            "Geography": "0.6000",
+            "Law": "0.6667",
+            "Life Tip": "0.6333",
+            "Technology": "0.5333",
+            "Animation": "0.5333",
+            "Movie & TV Show": "0.8000",
+            "Documentary": "0.7667",
+            "News Report": "0.7333",
+            "Esports": "0.5000",
+            "Basketball": "0.3000",
+            "Football": "0.5667",
+            "Athletics": "0.4667",
+            "Other Sports": "0.5667",
+            "Stage Play": "0.8333",
+            "Magic Show": "0.6667",
+            "Variety Show": "0.6000",
+            "Acrobatics": "0.7333",
+            "Handicraft": "0.7333",
+            "Food": "0.3333",
+            "Fashion": "0.3333",
+            "Daily Life": "0.4333",
+            "Travel": "0.5333",
+            "Pet & Animal": "0.6333",
+            "Exercise": "0.5333",
+            "Multilingual": "0.6000"
+        },
+        "task_type": {
+            "Temporal Perception": "0.5161",
+            "Spatial Perception": "0.5238",
+            "Attribute Perception": "0.6027",
+            "Action Recognition": "0.5546",
+            "Object Recognition": "0.6439",
+            "OCR Problems": "0.5147",
+            "Counting Problem": "0.3579",
+            "Temporal Reasoning": "0.3973",
+            "Spatial Reasoning": "0.8889",
+            "Action Reasoning": "0.6207",
+            "Object Reasoning": "0.6791",
+            "Information Synopsis": "0.8718"
+        }
+    },
+    "long": {
+        "overall": "0.5522",
+        "domain": {
+            "Knowledge": "0.6222",
+            "Film & Television": "0.5167",
+            "Sports Competition": "0.5267",
+            "Artistic Performance": "0.5750",
+            "Life Record": "0.4905",
+            "Multilingual": "0.5333"
+        },
+        "sub_category": {
+            "Humanity & History": "0.6333",
+            "Literature & Art": "0.7000",
+            "Biology & Medicine": "0.6000",
+            "Finance & Commerce": "0.7667",
+            "Astronomy": "0.6000",
+            "Geography": "0.5333",
+            "Law": "0.6667",
+            "Life Tip": "0.6333",
+            "Technology": "0.4667",
+            "Animation": "0.4667",
+            "Movie & TV Show": "0.4333",
+            "Documentary": "0.5333",
+            "News Report": "0.6333",
+            "Esports": "0.5333",
+            "Basketball": "0.4333",
+            "Football": "0.6333",
+            "Athletics": "0.5000",
+            "Other Sports": "0.5333",
+            "Stage Play": "0.7333",
+            "Magic Show": "0.5667",
+            "Variety Show": "0.3667",
+            "Acrobatics": "0.6333",
+            "Handicraft": "0.5667",
+            "Food": "0.3667",
+            "Fashion": "0.4667",
+            "Daily Life": "0.4667",
+            "Travel": "0.4333",
+            "Pet & Animal": "0.7000",
+            "Exercise": "0.4333",
+            "Multilingual": "0.5333"
+        },
+        "task_type": {
+            "Temporal Perception": "0.5000",
+            "Spatial Perception": "0.6667",
+            "Attribute Perception": "0.6667",
+            "Action Recognition": "0.5238",
+            "Object Recognition": "0.5000",
+            "OCR Problems": "0.5714",
+            "Counting Problem": "0.2917",
+            "Temporal Reasoning": "0.5165",
+            "Spatial Reasoning": "0.6364",
+            "Action Reasoning": "0.4944",
+            "Object Reasoning": "0.5458",
+            "Information Synopsis": "0.7239"
+        }
+    },
+    "overall": {
+        "overall": "0.6281",
+        "domain": {
+            "Knowledge": "0.6667",
+            "Film & Television": "0.6611",
+            "Sports Competition": "0.5711",
+            "Artistic Performance": "0.6889",
+            "Life Record": "0.5746",
+            "Multilingual": "0.5667"
+        },
+        "sub_category": {
+            "Humanity & History": "0.5778",
+            "Literature & Art": "0.6667",
+            "Biology & Medicine": "0.7111",
+            "Finance & Commerce": "0.7556",
+            "Astronomy": "0.6778",
+            "Geography": "0.6333",
+            "Law": "0.7111",
+            "Life Tip": "0.6778",
+            "Technology": "0.5889",
+            "Animation": "0.5889",
+            "Movie & TV Show": "0.6444",
+            "Documentary": "0.6556",
+            "News Report": "0.7556",
+            "Esports": "0.5778",
+            "Basketball": "0.4111",
+            "Football": "0.6556",
+            "Athletics": "0.6000",
+            "Other Sports": "0.6111",
+            "Stage Play": "0.8000",
+            "Magic Show": "0.6667",
+            "Variety Show": "0.5889",
+            "Acrobatics": "0.7000",
+            "Handicraft": "0.7000",
+            "Food": "0.5000",
+            "Fashion": "0.4778",
+            "Daily Life": "0.5444",
+            "Travel": "0.6111",
+            "Pet & Animal": "0.6889",
+            "Exercise": "0.5000",
+            "Multilingual": "0.5667"
+        },
+        "task_type": {
+            "Temporal Perception": "0.6364",
+            "Spatial Perception": "0.6852",
+            "Attribute Perception": "0.7252",
+            "Action Recognition": "0.6102",
+            "Object Recognition": "0.6469",
+            "OCR Problems": "0.6835",
+            "Counting Problem": "0.3993",
+            "Temporal Reasoning": "0.4859",
+            "Spatial Reasoning": "0.8214",
+            "Action Reasoning": "0.5789",
+            "Object Reasoning": "0.6278",
+            "Information Synopsis": "0.8019"
+        }
+    }
+}
+```
+
+````
+
+`````
+
+### MMBench-Video
+
+MMBench-Video is a benchmark designed to evaluate the proficiency of MLLMs in understanding video content. It addresses the limitations of traditional VideoQA benchmarks by incorporating long-form videos sourced from YouTube, which better reflect real-world scenarios. The benchmark uses free-form questions that require temporal reasoning, which are human-annotated based on a comprehensive capability taxonomy.
+
+`````{tabs}
+
+````{tab} 1B
+
+When testing with 8 frames:
+
+```bash
+torchrun --nproc-per-node=8 run.py --data MMBench-Video --model InternVL2-1B --verbose --nframe 8
+```
+
+The expected test results are:
+
+```
+{
+    "coarse_all": {
+        "CP": "1.11",
+        "FP-S": "1.00",
+        "FP-C": "0.84",
+        "HL": "0.27",
+        "LR": "0.71",
+        "AR": "1.01",
+        "RR": "1.17",
+        "CSR": "0.77",
+        "TR": "0.71",
+        "Perception": "0.97",
+        "Reasoning": "0.88",
+        "Overall": "0.95"
+    },
+    "coarse_valid": {
+        "CP": "1.11",
+        "FP-S": "1.00",
+        "FP-C": "0.84",
+        "HL": "0.27",
+        "LR": "0.71",
+        "AR": "1.01",
+        "RR": "1.17",
+        "CSR": "0.77",
+        "TR": "0.71",
+        "Perception": "0.97",
+        "Reasoning": "0.88",
+        "Overall": "0.95"
+    },
+    "fine_all": {
+        "Video Topic": "1.05",
+        "Video Emotion": "1.27",
+        "Video Scene": "0.84",
+        "Video Style": "1.38",
+        "OCR": "0.87",
+        "Object Recognition": "1.07",
+        "Attribute Recognition": "1.41",
+        "Event Recognition": "0.93",
+        "Human Motion": "0.84",
+        "Counting": "0.99",
+        "Spatial Relationship": "1.16",
+        "Human-object Interaction": "0.80",
+        "Human Interaction": "0.70",
+        "Hallucination": "0.27",
+        "Structuralized Image-Text Understanding": "0.97",
+        "Mathematical Calculation": "0.31",
+        "Physical Property": "0.78",
+        "Function Reasoning": "0.95",
+        "Identity Reasoning": "1.30",
+        "Natural Relation": "1.04",
+        "Physical Relation": "0.92",
+        "Social Relation": "1.48",
+        "Common Sense Reasoning": "0.77",
+        "Counterfactual Reasoning": "0.80",
+        "Causal Reasoning": "0.67",
+        "Future Prediction": "0.77"
+    },
+    "fine_valid": {
+        "Video Topic": "1.05",
+        "Video Emotion": "1.27",
+        "Video Scene": "0.84",
+        "Video Style": "1.38",
+        "OCR": "0.87",
+        "Object Recognition": "1.07",
+        "Attribute Recognition": "1.41",
+        "Event Recognition": "0.93",
+        "Human Motion": "0.84",
+        "Counting": "0.99",
+        "Spatial Relationship": "1.16",
+        "Human-object Interaction": "0.80",
+        "Human Interaction": "0.70",
+        "Hallucination": "0.27",
+        "Structuralized Image-Text Understanding": "0.97",
+        "Mathematical Calculation": "0.31",
+        "Physical Property": "0.78",
+        "Function Reasoning": "0.95",
+        "Identity Reasoning": "1.30",
+        "Natural Relation": "1.04",
+        "Physical Relation": "0.92",
+        "Social Relation": "1.48",
+        "Common Sense Reasoning": "0.77",
+        "Counterfactual Reasoning": "0.80",
+        "Causal Reasoning": "0.67",
+        "Future Prediction": "0.77"
+    }
+}
+```
+
+When testing with 16 frames:
+
+```bash
+torchrun --nproc-per-node=8 run.py --data MMBench-Video --model InternVL2-1B --verbose --nframe 16
+```
+
+The expected test results are:
+
+```
+{
+    "coarse_all": {
+        "CP": "1.21",
+        "FP-S": "1.03",
+        "FP-C": "0.85",
+        "HL": "0.29",
+        "LR": "0.73",
+        "AR": "1.00",
+        "RR": "1.26",
+        "CSR": "0.70",
+        "TR": "0.74",
+        "Perception": "1.00",
+        "Reasoning": "0.90",
+        "Overall": "0.98"
+    },
+    "coarse_valid": {
+        "CP": "1.21",
+        "FP-S": "1.03",
+        "FP-C": "0.85",
+        "HL": "0.29",
+        "LR": "0.73",
+        "AR": "1.00",
+        "RR": "1.26",
+        "CSR": "0.70",
+        "TR": "0.74",
+        "Perception": "1.00",
+        "Reasoning": "0.90",
+        "Overall": "0.98"
+    },
+    "fine_all": {
+        "Video Topic": "1.15",
+        "Video Emotion": "1.37",
+        "Video Scene": "0.96",
+        "Video Style": "1.43",
+        "OCR": "0.96",
+        "Object Recognition": "1.08",
+        "Attribute Recognition": "1.47",
+        "Event Recognition": "0.86",
+        "Human Motion": "0.77",
+        "Counting": "0.94",
+        "Spatial Relationship": "1.09",
+        "Human-object Interaction": "0.85",
+        "Human Interaction": "0.64",
+        "Hallucination": "0.29",
+        "Structuralized Image-Text Understanding": "0.96",
+        "Mathematical Calculation": "0.38",
+        "Physical Property": "0.76",
+        "Function Reasoning": "0.89",
+        "Identity Reasoning": "1.36",
+        "Natural Relation": "1.00",
+        "Physical Relation": "1.10",
+        "Social Relation": "1.54",
+        "Common Sense Reasoning": "0.70",
+        "Counterfactual Reasoning": "0.88",
+        "Causal Reasoning": "0.72",
+        "Future Prediction": "0.74"
+    },
+    "fine_valid": {
+        "Video Topic": "1.15",
+        "Video Emotion": "1.37",
+        "Video Scene": "0.96",
+        "Video Style": "1.43",
+        "OCR": "0.96",
+        "Object Recognition": "1.08",
+        "Attribute Recognition": "1.47",
+        "Event Recognition": "0.86",
+        "Human Motion": "0.77",
+        "Counting": "0.94",
+        "Spatial Relationship": "1.09",
+        "Human-object Interaction": "0.85",
+        "Human Interaction": "0.64",
+        "Hallucination": "0.29",
+        "Structuralized Image-Text Understanding": "0.96",
+        "Mathematical Calculation": "0.38",
+        "Physical Property": "0.76",
+        "Function Reasoning": "0.89",
+        "Identity Reasoning": "1.36",
+        "Natural Relation": "1.00",
+        "Physical Relation": "1.10",
+        "Social Relation": "1.54",
+        "Common Sense Reasoning": "0.70",
+        "Counterfactual Reasoning": "0.88",
+        "Causal Reasoning": "0.72",
+        "Future Prediction": "0.74"
+    }
+}
+```
+
+````
+
+````{tab} 2B
+
+When testing with 8 frames:
+
+```bash
+torchrun --nproc-per-node=8 run.py --data MMBench-Video --model InternVL2-2B --verbose --nframe 8
+```
+
+The expected test results are:
+
+```
+{
+    "coarse_all": {
+        "CP": "1.16",
+        "FP-S": "1.05",
+        "FP-C": "0.81",
+        "HL": "0.26",
+        "LR": "0.50",
+        "AR": "1.12",
+        "RR": "1.11",
+        "CSR": "0.81",
+        "TR": "0.83",
+        "Perception": "1.00",
+        "Reasoning": "0.91",
+        "Overall": "0.97"
+    },
+    "coarse_valid": {
+        "CP": "1.16",
+        "FP-S": "1.05",
+        "FP-C": "0.81",
+        "HL": "0.26",
+        "LR": "0.50",
+        "AR": "1.12",
+        "RR": "1.11",
+        "CSR": "0.81",
+        "TR": "0.83",
+        "Perception": "1.00",
+        "Reasoning": "0.91",
+        "Overall": "0.97"
+    },
+    "fine_all": {
+        "Video Topic": "1.12",
+        "Video Emotion": "1.29",
+        "Video Scene": "0.99",
+        "Video Style": "1.24",
+        "OCR": "0.94",
+        "Object Recognition": "1.04",
+        "Attribute Recognition": "1.46",
+        "Event Recognition": "1.02",
+        "Human Motion": "0.66",
+        "Counting": "1.16",
+        "Spatial Relationship": "0.93",
+        "Human-object Interaction": "0.77",
+        "Human Interaction": "0.77",
+        "Hallucination": "0.26",
+        "Structuralized Image-Text Understanding": "0.69",
+        "Mathematical Calculation": "0.22",
+        "Physical Property": "0.94",
+        "Function Reasoning": "1.09",
+        "Identity Reasoning": "1.32",
+        "Natural Relation": "0.93",
+        "Physical Relation": "0.98",
+        "Social Relation": "1.33",
+        "Common Sense Reasoning": "0.81",
+        "Counterfactual Reasoning": "1.00",
+        "Causal Reasoning": "0.76",
+        "Future Prediction": "0.87"
+    },
+    "fine_valid": {
+        "Video Topic": "1.12",
+        "Video Emotion": "1.29",
+        "Video Scene": "0.99",
+        "Video Style": "1.24",
+        "OCR": "0.94",
+        "Object Recognition": "1.04",
+        "Attribute Recognition": "1.46",
+        "Event Recognition": "1.02",
+        "Human Motion": "0.66",
+        "Counting": "1.16",
+        "Spatial Relationship": "0.93",
+        "Human-object Interaction": "0.77",
+        "Human Interaction": "0.77",
+        "Hallucination": "0.26",
+        "Structuralized Image-Text Understanding": "0.69",
+        "Mathematical Calculation": "0.22",
+        "Physical Property": "0.94",
+        "Function Reasoning": "1.09",
+        "Identity Reasoning": "1.32",
+        "Natural Relation": "0.93",
+        "Physical Relation": "0.98",
+        "Social Relation": "1.33",
+        "Common Sense Reasoning": "0.81",
+        "Counterfactual Reasoning": "1.00",
+        "Causal Reasoning": "0.76",
+        "Future Prediction": "0.87"
+    }
+}
+```
+
+When testing with 16 frames:
+
+```bash
+torchrun --nproc-per-node=8 run.py --data MMBench-Video --model InternVL2-2B --verbose --nframe 16
+```
+
+The expected test results are:
+
+```
+{
+    "coarse_all": {
+        "CP": "1.22",
+        "FP-S": "1.13",
+        "FP-C": "0.80",
+        "HL": "0.34",
+        "LR": "0.64",
+        "AR": "1.01",
+        "RR": "1.23",
+        "CSR": "0.88",
+        "TR": "0.87",
+        "Perception": "1.06",
+        "Reasoning": "0.95",
+        "Overall": "1.03"
+    },
+    "coarse_valid": {
+        "CP": "1.22",
+        "FP-S": "1.13",
+        "FP-C": "0.80",
+        "HL": "0.34",
+        "LR": "0.64",
+        "AR": "1.01",
+        "RR": "1.23",
+        "CSR": "0.88",
+        "TR": "0.87",
+        "Perception": "1.06",
+        "Reasoning": "0.95",
+        "Overall": "1.03"
+    },
+    "fine_all": {
+        "Video Topic": "1.14",
+        "Video Emotion": "1.29",
+        "Video Scene": "1.17",
+        "Video Style": "1.21",
+        "OCR": "1.02",
+        "Object Recognition": "1.13",
+        "Attribute Recognition": "1.59",
+        "Event Recognition": "0.99",
+        "Human Motion": "0.72",
+        "Counting": "1.24",
+        "Spatial Relationship": "1.02",
+        "Human-object Interaction": "0.67",
+        "Human Interaction": "0.85",
+        "Hallucination": "0.34",
+        "Structuralized Image-Text Understanding": "0.79",
+        "Mathematical Calculation": "0.40",
+        "Physical Property": "0.85",
+        "Function Reasoning": "1.07",
+        "Identity Reasoning": "1.11",
+        "Natural Relation": "1.15",
+        "Physical Relation": "1.00",
+        "Social Relation": "1.48",
+        "Common Sense Reasoning": "0.88",
+        "Counterfactual Reasoning": "1.10",
+        "Causal Reasoning": "0.82",
+        "Future Prediction": "0.81"
+    },
+    "fine_valid": {
+        "Video Topic": "1.14",
+        "Video Emotion": "1.29",
+        "Video Scene": "1.17",
+        "Video Style": "1.21",
+        "OCR": "1.02",
+        "Object Recognition": "1.13",
+        "Attribute Recognition": "1.59",
+        "Event Recognition": "0.99",
+        "Human Motion": "0.72",
+        "Counting": "1.24",
+        "Spatial Relationship": "1.02",
+        "Human-object Interaction": "0.67",
+        "Human Interaction": "0.85",
+        "Hallucination": "0.34",
+        "Structuralized Image-Text Understanding": "0.79",
+        "Mathematical Calculation": "0.40",
+        "Physical Property": "0.85",
+        "Function Reasoning": "1.07",
+        "Identity Reasoning": "1.11",
+        "Natural Relation": "1.15",
+        "Physical Relation": "1.00",
+        "Social Relation": "1.48",
+        "Common Sense Reasoning": "0.88",
+        "Counterfactual Reasoning": "1.10",
+        "Causal Reasoning": "0.82",
+        "Future Prediction": "0.81"
+    }
+}
+```
+
+````
+
+````{tab} 4B
+
+When testing with 8 frames:
+
+```bash
+torchrun --nproc-per-node=8 run.py --data MMBench-Video --model InternVL2-4B --verbose --nframe 8
+```
+
+The expected test results are:
+
+```
+{
+    "coarse_all": {
+        "CP": "1.34",
+        "FP-S": "1.16",
+        "FP-C": "0.97",
+        "HL": "0.13",
+        "LR": "0.58",
+        "AR": "1.16",
+        "RR": "1.26",
+        "CSR": "1.02",
+        "TR": "0.99",
+        "Perception": "1.13",
+        "Reasoning": "1.03",
+        "Overall": "1.10"
+    },
+    "coarse_valid": {
+        "CP": "1.34",
+        "FP-S": "1.16",
+        "FP-C": "0.97",
+        "HL": "0.13",
+        "LR": "0.58",
+        "AR": "1.16",
+        "RR": "1.26",
+        "CSR": "1.02",
+        "TR": "0.99",
+        "Perception": "1.13",
+        "Reasoning": "1.03",
+        "Overall": "1.10"
+    },
+    "fine_all": {
+        "Video Topic": "1.30",
+        "Video Emotion": "1.43",
+        "Video Scene": "1.18",
+        "Video Style": "1.62",
+        "OCR": "0.98",
+        "Object Recognition": "1.24",
+        "Attribute Recognition": "1.53",
+        "Event Recognition": "1.11",
+        "Human Motion": "0.95",
+        "Counting": "1.31",
+        "Spatial Relationship": "1.07",
+        "Human-object Interaction": "0.95",
+        "Human Interaction": "0.95",
+        "Hallucination": "0.13",
+        "Structuralized Image-Text Understanding": "0.75",
+        "Mathematical Calculation": "0.33",
+        "Physical Property": "1.11",
+        "Function Reasoning": "1.07",
+        "Identity Reasoning": "1.30",
+        "Natural Relation": "0.96",
+        "Physical Relation": "1.25",
+        "Social Relation": "1.41",
+        "Common Sense Reasoning": "1.02",
+        "Counterfactual Reasoning": "0.97",
+        "Causal Reasoning": "0.98",
+        "Future Prediction": "1.02"
+    },
+    "fine_valid": {
+        "Video Topic": "1.30",
+        "Video Emotion": "1.43",
+        "Video Scene": "1.18",
+        "Video Style": "1.62",
+        "OCR": "0.98",
+        "Object Recognition": "1.24",
+        "Attribute Recognition": "1.53",
+        "Event Recognition": "1.11",
+        "Human Motion": "0.95",
+        "Counting": "1.31",
+        "Spatial Relationship": "1.07",
+        "Human-object Interaction": "0.95",
+        "Human Interaction": "0.95",
+        "Hallucination": "0.13",
+        "Structuralized Image-Text Understanding": "0.75",
+        "Mathematical Calculation": "0.33",
+        "Physical Property": "1.11",
+        "Function Reasoning": "1.07",
+        "Identity Reasoning": "1.30",
+        "Natural Relation": "0.96",
+        "Physical Relation": "1.25",
+        "Social Relation": "1.41",
+        "Common Sense Reasoning": "1.02",
+        "Counterfactual Reasoning": "0.97",
+        "Causal Reasoning": "0.98",
+        "Future Prediction": "1.02"
+    }
+}
+```
+
+When testing with 16 frames:
+
+```bash
+torchrun --nproc-per-node=8 run.py --data MMBench-Video --model InternVL2-4B --verbose --nframe 16
+```
+
+The expected test results are:
+
+```
+{
+    "coarse_all": {
+        "CP": "1.38",
+        "FP-S": "1.27",
+        "FP-C": "1.03",
+        "HL": "0.15",
+        "LR": "0.73",
+        "AR": "1.24",
+        "RR": "1.29",
+        "CSR": "1.17",
+        "TR": "0.99",
+        "Perception": "1.22",
+        "Reasoning": "1.09",
+        "Overall": "1.18"
+    },
+    "coarse_valid": {
+        "CP": "1.38",
+        "FP-S": "1.27",
+        "FP-C": "1.03",
+        "HL": "0.15",
+        "LR": "0.73",
+        "AR": "1.24",
+        "RR": "1.29",
+        "CSR": "1.17",
+        "TR": "0.99",
+        "Perception": "1.22",
+        "Reasoning": "1.09",
+        "Overall": "1.18"
+    },
+    "fine_all": {
+        "Video Topic": "1.31",
+        "Video Emotion": "1.47",
+        "Video Scene": "1.22",
+        "Video Style": "1.74",
+        "OCR": "1.19",
+        "Object Recognition": "1.29",
+        "Attribute Recognition": "1.62",
+        "Event Recognition": "1.13",
+        "Human Motion": "1.02",
+        "Counting": "1.25",
+        "Spatial Relationship": "1.16",
+        "Human-object Interaction": "0.99",
+        "Human Interaction": "1.00",
+        "Hallucination": "0.15",
+        "Structuralized Image-Text Understanding": "0.87",
+        "Mathematical Calculation": "0.51",
+        "Physical Property": "1.17",
+        "Function Reasoning": "1.05",
+        "Identity Reasoning": "1.49",
+        "Natural Relation": "1.00",
+        "Physical Relation": "1.25",
+        "Social Relation": "1.46",
+        "Common Sense Reasoning": "1.17",
+        "Counterfactual Reasoning": "1.05",
+        "Causal Reasoning": "0.96",
+        "Future Prediction": "1.04"
+    },
+    "fine_valid": {
+        "Video Topic": "1.31",
+        "Video Emotion": "1.47",
+        "Video Scene": "1.22",
+        "Video Style": "1.74",
+        "OCR": "1.19",
+        "Object Recognition": "1.29",
+        "Attribute Recognition": "1.62",
+        "Event Recognition": "1.13",
+        "Human Motion": "1.02",
+        "Counting": "1.25",
+        "Spatial Relationship": "1.16",
+        "Human-object Interaction": "0.99",
+        "Human Interaction": "1.00",
+        "Hallucination": "0.15",
+        "Structuralized Image-Text Understanding": "0.87",
+        "Mathematical Calculation": "0.51",
+        "Physical Property": "1.17",
+        "Function Reasoning": "1.05",
+        "Identity Reasoning": "1.49",
+        "Natural Relation": "1.00",
+        "Physical Relation": "1.25",
+        "Social Relation": "1.46",
+        "Common Sense Reasoning": "1.17",
+        "Counterfactual Reasoning": "1.05",
+        "Causal Reasoning": "0.96",
+        "Future Prediction": "1.04"
+    }
+}
+```
+
+````
+
+````{tab} 8B
+
+When testing with 8 frames:
+
+```bash
+torchrun --nproc-per-node=8 run.py --data MMBench-Video --model InternVL2-8B --verbose --nframe 8
+```
+
+The expected test results are:
+
+```
+{
+    "coarse_all": {
+        "CP": "1.36",
+        "FP-S": "1.26",
+        "FP-C": "1.07",
+        "HL": "0.32",
+        "LR": "0.83",
+        "AR": "1.19",
+        "RR": "1.33",
+        "CSR": "1.14",
+        "TR": "1.02",
+        "Perception": "1.22",
+        "Reasoning": "1.12",
+        "Overall": "1.19"
+    },
+    "coarse_valid": {
+        "CP": "1.36",
+        "FP-S": "1.26",
+        "FP-C": "1.07",
+        "HL": "0.32",
+        "LR": "0.83",
+        "AR": "1.19",
+        "RR": "1.33",
+        "CSR": "1.14",
+        "TR": "1.02",
+        "Perception": "1.22",
+        "Reasoning": "1.12",
+        "Overall": "1.19"
+    },
+    "fine_all": {
+        "Video Topic": "1.23",
+        "Video Emotion": "1.49",
+        "Video Scene": "1.22",
+        "Video Style": "1.67",
+        "OCR": "1.14",
+        "Object Recognition": "1.35",
+        "Attribute Recognition": "1.66",
+        "Event Recognition": "1.18",
+        "Human Motion": "0.90",
+        "Counting": "1.31",
+        "Spatial Relationship": "1.24",
+        "Human-object Interaction": "1.05",
+        "Human Interaction": "1.02",
+        "Hallucination": "0.32",
+        "Structuralized Image-Text Understanding": "1.03",
+        "Mathematical Calculation": "0.53",
+        "Physical Property": "1.24",
+        "Function Reasoning": "1.05",
+        "Identity Reasoning": "1.26",
+        "Natural Relation": "1.00",
+        "Physical Relation": "1.27",
+        "Social Relation": "1.56",
+        "Common Sense Reasoning": "1.14",
+        "Counterfactual Reasoning": "0.95",
+        "Causal Reasoning": "1.07",
+        "Future Prediction": "0.98"
+    },
+    "fine_valid": {
+        "Video Topic": "1.23",
+        "Video Emotion": "1.49",
+        "Video Scene": "1.22",
+        "Video Style": "1.67",
+        "OCR": "1.14",
+        "Object Recognition": "1.35",
+        "Attribute Recognition": "1.66",
+        "Event Recognition": "1.18",
+        "Human Motion": "0.90",
+        "Counting": "1.31",
+        "Spatial Relationship": "1.24",
+        "Human-object Interaction": "1.05",
+        "Human Interaction": "1.02",
+        "Hallucination": "0.32",
+        "Structuralized Image-Text Understanding": "1.03",
+        "Mathematical Calculation": "0.53",
+        "Physical Property": "1.24",
+        "Function Reasoning": "1.05",
+        "Identity Reasoning": "1.26",
+        "Natural Relation": "1.00",
+        "Physical Relation": "1.27",
+        "Social Relation": "1.56",
+        "Common Sense Reasoning": "1.14",
+        "Counterfactual Reasoning": "0.95",
+        "Causal Reasoning": "1.07",
+        "Future Prediction": "0.98"
+    }
+}
+```
+
+When testing with 16 frames:
+
+```bash
+torchrun --nproc-per-node=8 run.py --data MMBench-Video --model InternVL2-8B --verbose --nframe 16
+```
+
+The expected test results are:
+
+```
+{
+    "coarse_all": {
+        "CP": "1.45",
+        "FP-S": "1.40",
+        "FP-C": "1.13",
+        "HL": "0.18",
+        "LR": "0.90",
+        "AR": "1.32",
+        "RR": "1.45",
+        "CSR": "1.19",
+        "TR": "1.04",
+        "Perception": "1.32",
+        "Reasoning": "1.18",
+        "Overall": "1.28"
+    },
+    "coarse_valid": {
+        "CP": "1.45",
+        "FP-S": "1.40",
+        "FP-C": "1.13",
+        "HL": "0.18",
+        "LR": "0.90",
+        "AR": "1.32",
+        "RR": "1.45",
+        "CSR": "1.19",
+        "TR": "1.04",
+        "Perception": "1.32",
+        "Reasoning": "1.18",
+        "Overall": "1.28"
+    },
+    "fine_all": {
+        "Video Topic": "1.38",
+        "Video Emotion": "1.57",
+        "Video Scene": "1.27",
+        "Video Style": "1.69",
+        "OCR": "1.32",
+        "Object Recognition": "1.40",
+        "Attribute Recognition": "1.80",
+        "Event Recognition": "1.18",
+        "Human Motion": "1.15",
+        "Counting": "1.44",
+        "Spatial Relationship": "1.22",
+        "Human-object Interaction": "1.15",
+        "Human Interaction": "1.03",
+        "Hallucination": "0.18",
+        "Structuralized Image-Text Understanding": "1.13",
+        "Mathematical Calculation": "0.56",
+        "Physical Property": "1.20",
+        "Function Reasoning": "1.05",
+        "Identity Reasoning": "1.72",
+        "Natural Relation": "0.93",
+        "Physical Relation": "1.45",
+        "Social Relation": "1.70",
+        "Common Sense Reasoning": "1.19",
+        "Counterfactual Reasoning": "1.07",
+        "Causal Reasoning": "1.04",
+        "Future Prediction": "1.06"
+    },
+    "fine_valid": {
+        "Video Topic": "1.38",
+        "Video Emotion": "1.57",
+        "Video Scene": "1.27",
+        "Video Style": "1.69",
+        "OCR": "1.32",
+        "Object Recognition": "1.40",
+        "Attribute Recognition": "1.80",
+        "Event Recognition": "1.18",
+        "Human Motion": "1.15",
+        "Counting": "1.44",
+        "Spatial Relationship": "1.22",
+        "Human-object Interaction": "1.15",
+        "Human Interaction": "1.03",
+        "Hallucination": "0.18",
+        "Structuralized Image-Text Understanding": "1.13",
+        "Mathematical Calculation": "0.56",
+        "Physical Property": "1.20",
+        "Function Reasoning": "1.05",
+        "Identity Reasoning": "1.72",
+        "Natural Relation": "0.93",
+        "Physical Relation": "1.45",
+        "Social Relation": "1.70",
+        "Common Sense Reasoning": "1.19",
+        "Counterfactual Reasoning": "1.07",
+        "Causal Reasoning": "1.04",
+        "Future Prediction": "1.06"
+    }
+}
+```
+
+````
+
+````{tab} 26B
+
+When testing with 8 frames:
+
+```bash
+torchrun --nproc-per-node=8 run.py --data MMBench-Video --model InternVL2-26B --verbose --nframe 8
+```
+
+The expected test results are:
+
+```
+{
+    "coarse_all": {
+        "CP": "1.47",
+        "FP-S": "1.32",
+        "FP-C": "1.07",
+        "HL": "0.35",
+        "LR": "1.04",
+        "AR": "1.42",
+        "RR": "1.43",
+        "CSR": "1.16",
+        "TR": "1.04",
+        "Perception": "1.28",
+        "Reasoning": "1.22",
+        "Overall": "1.27"
+    },
+    "coarse_valid": {
+        "CP": "1.47",
+        "FP-S": "1.32",
+        "FP-C": "1.07",
+        "HL": "0.35",
+        "LR": "1.04",
+        "AR": "1.42",
+        "RR": "1.43",
+        "CSR": "1.16",
+        "TR": "1.04",
+        "Perception": "1.28",
+        "Reasoning": "1.22",
+        "Overall": "1.27"
+    },
+    "fine_all": {
+        "Video Topic": "1.35",
+        "Video Emotion": "1.47",
+        "Video Scene": "1.51",
+        "Video Style": "1.69",
+        "OCR": "1.21",
+        "Object Recognition": "1.37",
+        "Attribute Recognition": "1.82",
+        "Event Recognition": "1.16",
+        "Human Motion": "0.97",
+        "Counting": "1.43",
+        "Spatial Relationship": "1.20",
+        "Human-object Interaction": "1.05",
+        "Human Interaction": "1.02",
+        "Hallucination": "0.35",
+        "Structuralized Image-Text Understanding": "1.22",
+        "Mathematical Calculation": "0.76",
+        "Physical Property": "1.43",
+        "Function Reasoning": "1.29",
+        "Identity Reasoning": "1.55",
+        "Natural Relation": "1.33",
+        "Physical Relation": "1.12",
+        "Social Relation": "1.78",
+        "Common Sense Reasoning": "1.16",
+        "Counterfactual Reasoning": "1.05",
+        "Causal Reasoning": "1.05",
+        "Future Prediction": "1.06"
+    },
+    "fine_valid": {
+        "Video Topic": "1.35",
+        "Video Emotion": "1.47",
+        "Video Scene": "1.51",
+        "Video Style": "1.69",
+        "OCR": "1.21",
+        "Object Recognition": "1.37",
+        "Attribute Recognition": "1.82",
+        "Event Recognition": "1.16",
+        "Human Motion": "0.97",
+        "Counting": "1.43",
+        "Spatial Relationship": "1.20",
+        "Human-object Interaction": "1.05",
+        "Human Interaction": "1.02",
+        "Hallucination": "0.35",
+        "Structuralized Image-Text Understanding": "1.22",
+        "Mathematical Calculation": "0.76",
+        "Physical Property": "1.43",
+        "Function Reasoning": "1.29",
+        "Identity Reasoning": "1.55",
+        "Natural Relation": "1.33",
+        "Physical Relation": "1.12",
+        "Social Relation": "1.78",
+        "Common Sense Reasoning": "1.16",
+        "Counterfactual Reasoning": "1.05",
+        "Causal Reasoning": "1.06",
+        "Future Prediction": "1.06"
+    }
+}
+```
+
+When testing with 16 frames:
+
+```bash
+torchrun --nproc-per-node=8 run.py --data MMBench-Video --model InternVL2-26B --verbose --nframe 16
+```
+
+The expected test results are:
+
+```
+{
+    "coarse_all": {
+        "CP": "1.56",
+        "FP-S": "1.48",
+        "FP-C": "1.23",
+        "HL": "0.52",
+        "LR": "1.06",
+        "AR": "1.61",
+        "RR": "1.45",
+        "CSR": "1.38",
+        "TR": "1.23",
+        "Perception": "1.42",
+        "Reasoning": "1.35",
+        "Overall": "1.41"
+    },
+    "coarse_valid": {
+        "CP": "1.56",
+        "FP-S": "1.48",
+        "FP-C": "1.23",
+        "HL": "0.52",
+        "LR": "1.06",
+        "AR": "1.61",
+        "RR": "1.47",
+        "CSR": "1.38",
+        "TR": "1.23",
+        "Perception": "1.42",
+        "Reasoning": "1.35",
+        "Overall": "1.41"
+    },
+    "fine_all": {
+        "Video Topic": "1.52",
+        "Video Emotion": "1.48",
+        "Video Scene": "1.59",
+        "Video Style": "1.76",
+        "OCR": "1.37",
+        "Object Recognition": "1.55",
+        "Attribute Recognition": "1.91",
+        "Event Recognition": "1.30",
+        "Human Motion": "1.15",
+        "Counting": "1.46",
+        "Spatial Relationship": "1.18",
+        "Human-object Interaction": "1.35",
+        "Human Interaction": "1.08",
+        "Hallucination": "0.52",
+        "Structuralized Image-Text Understanding": "1.25",
+        "Mathematical Calculation": "0.78",
+        "Physical Property": "1.46",
+        "Function Reasoning": "1.42",
+        "Identity Reasoning": "1.96",
+        "Natural Relation": "1.44",
+        "Physical Relation": "1.06",
+        "Social Relation": "1.83",
+        "Common Sense Reasoning": "1.38",
+        "Counterfactual Reasoning": "1.25",
+        "Causal Reasoning": "1.23",
+        "Future Prediction": "1.17"
+    },
+    "fine_valid": {
+        "Video Topic": "1.52",
+        "Video Emotion": "1.48",
+        "Video Scene": "1.59",
+        "Video Style": "1.76",
+        "OCR": "1.38",
+        "Object Recognition": "1.56",
+        "Attribute Recognition": "1.91",
+        "Event Recognition": "1.30",
+        "Human Motion": "1.15",
+        "Counting": "1.46",
+        "Spatial Relationship": "1.18",
+        "Human-object Interaction": "1.35",
+        "Human Interaction": "1.08",
+        "Hallucination": "0.52",
+        "Structuralized Image-Text Understanding": "1.25",
+        "Mathematical Calculation": "0.78",
+        "Physical Property": "1.46",
+        "Function Reasoning": "1.42",
+        "Identity Reasoning": "1.96",
+        "Natural Relation": "1.50",
+        "Physical Relation": "1.06",
+        "Social Relation": "1.83",
+        "Common Sense Reasoning": "1.38",
+        "Counterfactual Reasoning": "1.25",
+        "Causal Reasoning": "1.24",
+        "Future Prediction": "1.17"
+    }
+}
+```
+
+````
+
+````{tab} 40B
+
+When testing with 8 frames:
+
+```bash
+torchrun --nproc-per-node=8 run.py --data MMBench-Video --model InternVL2-40B --verbose --nframe 8
+```
+
+The expected test results are:
+
+```
+{
+    "coarse_all": {
+        "CP": "1.53",
+        "FP-S": "1.39",
+        "FP-C": "1.12",
+        "HL": "0.32",
+        "LR": "0.88",
+        "AR": "1.45",
+        "RR": "1.52",
+        "CSR": "1.15",
+        "TR": "1.13",
+        "Perception": "1.34",
+        "Reasoning": "1.25",
+        "Overall": "1.32"
+    },
+    "coarse_valid": {
+        "CP": "1.53",
+        "FP-S": "1.39",
+        "FP-C": "1.12",
+        "HL": "0.32",
+        "LR": "0.88",
+        "AR": "1.45",
+        "RR": "1.52",
+        "CSR": "1.15",
+        "TR": "1.13",
+        "Perception": "1.34",
+        "Reasoning": "1.25",
+        "Overall": "1.32"
+    },
+    "fine_all": {
+        "Video Topic": "1.57",
+        "Video Emotion": "1.65",
+        "Video Scene": "1.24",
+        "Video Style": "1.81",
+        "OCR": "1.29",
+        "Object Recognition": "1.40",
+        "Attribute Recognition": "1.80",
+        "Event Recognition": "1.21",
+        "Human Motion": "1.36",
+        "Counting": "1.45",
+        "Spatial Relationship": "1.22",
+        "Human-object Interaction": "1.14",
+        "Human Interaction": "1.02",
+        "Hallucination": "0.32",
+        "Structuralized Image-Text Understanding": "1.04",
+        "Mathematical Calculation": "0.62",
+        "Physical Property": "1.30",
+        "Function Reasoning": "1.33",
+        "Identity Reasoning": "1.74",
+        "Natural Relation": "1.30",
+        "Physical Relation": "1.35",
+        "Social Relation": "1.78",
+        "Common Sense Reasoning": "1.15",
+        "Counterfactual Reasoning": "1.18",
+        "Causal Reasoning": "1.14",
+        "Future Prediction": "1.13"
+    },
+    "fine_valid": {
+        "Video Topic": "1.57",
+        "Video Emotion": "1.65",
+        "Video Scene": "1.24",
+        "Video Style": "1.81",
+        "OCR": "1.29",
+        "Object Recognition": "1.40",
+        "Attribute Recognition": "1.80",
+        "Event Recognition": "1.21",
+        "Human Motion": "1.36",
+        "Counting": "1.45",
+        "Spatial Relationship": "1.22",
+        "Human-object Interaction": "1.14",
+        "Human Interaction": "1.02",
+        "Hallucination": "0.32",
+        "Structuralized Image-Text Understanding": "1.04",
+        "Mathematical Calculation": "0.62",
+        "Physical Property": "1.30",
+        "Function Reasoning": "1.33",
+        "Identity Reasoning": "1.74",
+        "Natural Relation": "1.30",
+        "Physical Relation": "1.35",
+        "Social Relation": "1.78",
+        "Common Sense Reasoning": "1.15",
+        "Counterfactual Reasoning": "1.18",
+        "Causal Reasoning": "1.14",
+        "Future Prediction": "1.13"
+    }
+}
+```
+
+When testing with 16 frames:
+
+```bash
+torchrun --nproc-per-node=8 run.py --data MMBench-Video --model InternVL2-40B --verbose --nframe 16
+```
+
+The expected test results are:
+
+```
+{
+    "coarse_all": {
+        "CP": "1.58",
+        "FP-S": "1.56",
+        "FP-C": "1.28",
+        "HL": "0.39",
+        "LR": "1.10",
+        "AR": "1.61",
+        "RR": "1.53",
+        "CSR": "1.25",
+        "TR": "1.20",
+        "Perception": "1.48",
+        "Reasoning": "1.35",
+        "Overall": "1.45"
+    },
+    "coarse_valid": {
+        "CP": "1.58",
+        "FP-S": "1.56",
+        "FP-C": "1.28",
+        "HL": "0.39",
+        "LR": "1.10",
+        "AR": "1.61",
+        "RR": "1.53",
+        "CSR": "1.25",
+        "TR": "1.20",
+        "Perception": "1.48",
+        "Reasoning": "1.35",
+        "Overall": "1.45"
+    },
+    "fine_all": {
+        "Video Topic": "1.57",
+        "Video Emotion": "1.67",
+        "Video Scene": "1.39",
+        "Video Style": "1.83",
+        "OCR": "1.47",
+        "Object Recognition": "1.64",
+        "Attribute Recognition": "2.03",
+        "Event Recognition": "1.32",
+        "Human Motion": "1.26",
+        "Counting": "1.49",
+        "Spatial Relationship": "1.31",
+        "Human-object Interaction": "1.30",
+        "Human Interaction": "1.26",
+        "Hallucination": "0.39",
+        "Structuralized Image-Text Understanding": "1.26",
+        "Mathematical Calculation": "0.84",
+        "Physical Property": "1.43",
+        "Function Reasoning": "1.49",
+        "Identity Reasoning": "1.92",
+        "Natural Relation": "1.56",
+        "Physical Relation": "1.27",
+        "Social Relation": "1.76",
+        "Common Sense Reasoning": "1.25",
+        "Counterfactual Reasoning": "1.27",
+        "Causal Reasoning": "1.19",
+        "Future Prediction": "1.15"
+    },
+    "fine_valid": {
+        "Video Topic": "1.57",
+        "Video Emotion": "1.67",
+        "Video Scene": "1.39",
+        "Video Style": "1.83",
+        "OCR": "1.47",
+        "Object Recognition": "1.64",
+        "Attribute Recognition": "2.03",
+        "Event Recognition": "1.32",
+        "Human Motion": "1.26",
+        "Counting": "1.49",
+        "Spatial Relationship": "1.31",
+        "Human-object Interaction": "1.30",
+        "Human Interaction": "1.26",
+        "Hallucination": "0.39",
+        "Structuralized Image-Text Understanding": "1.26",
+        "Mathematical Calculation": "0.84",
+        "Physical Property": "1.43",
+        "Function Reasoning": "1.49",
+        "Identity Reasoning": "1.92",
+        "Natural Relation": "1.56",
+        "Physical Relation": "1.27",
+        "Social Relation": "1.76",
+        "Common Sense Reasoning": "1.25",
+        "Counterfactual Reasoning": "1.27",
+        "Causal Reasoning": "1.19",
+        "Future Prediction": "1.15"
+    }
+}
+```
+
+````
+
+````{tab} 76B
+
+When testing with 8 frames:
+
+```bash
+torchrun --nproc-per-node=1 run.py --data MMBench-Video --model InternVL2-Llama3-76B --verbose --nframe 8
+```
+
+The expected test results are:
+
+```
+{
+    "coarse_all": {
+        "CP": "1.59",
+        "FP-S": "1.41",
+        "FP-C": "1.25",
+        "HL": "0.42",
+        "LR": "0.98",
+        "AR": "1.60",
+        "RR": "1.41",
+        "CSR": "1.44",
+        "TR": "1.27",
+        "Perception": "1.38",
+        "Reasoning": "1.35",
+        "Overall": "1.37"
+    },
+    "coarse_valid": {
+        "CP": "1.59",
+        "FP-S": "1.41",
+        "FP-C": "1.25",
+        "HL": "0.42",
+        "LR": "0.98",
+        "AR": "1.60",
+        "RR": "1.41",
+        "CSR": "1.44",
+        "TR": "1.27",
+        "Perception": "1.38",
+        "Reasoning": "1.35",
+        "Overall": "1.37"
+    },
+    "fine_all": {
+        "Video Topic": "1.51",
+        "Video Emotion": "1.66",
+        "Video Scene": "1.46",
+        "Video Style": "1.90",
+        "OCR": "1.32",
+        "Object Recognition": "1.45",
+        "Attribute Recognition": "1.78",
+        "Event Recognition": "1.30",
+        "Human Motion": "1.07",
+        "Counting": "1.49",
+        "Spatial Relationship": "1.36",
+        "Human-object Interaction": "1.27",
+        "Human Interaction": "1.21",
+        "Hallucination": "0.42",
+        "Structuralized Image-Text Understanding": "1.21",
+        "Mathematical Calculation": "0.64",
+        "Physical Property": "1.57",
+        "Function Reasoning": "1.51",
+        "Identity Reasoning": "1.72",
+        "Natural Relation": "1.33",
+        "Physical Relation": "1.33",
+        "Social Relation": "1.52",
+        "Common Sense Reasoning": "1.44",
+        "Counterfactual Reasoning": "1.27",
+        "Causal Reasoning": "1.33",
+        "Future Prediction": "1.17"
+    },
+    "fine_valid": {
+        "Video Topic": "1.51",
+        "Video Emotion": "1.66",
+        "Video Scene": "1.46",
+        "Video Style": "1.90",
+        "OCR": "1.32",
+        "Object Recognition": "1.45",
+        "Attribute Recognition": "1.78",
+        "Event Recognition": "1.30",
+        "Human Motion": "1.07",
+        "Counting": "1.49",
+        "Spatial Relationship": "1.36",
+        "Human-object Interaction": "1.27",
+        "Human Interaction": "1.21",
+        "Hallucination": "0.42",
+        "Structuralized Image-Text Understanding": "1.21",
+        "Mathematical Calculation": "0.64",
+        "Physical Property": "1.57",
+        "Function Reasoning": "1.51",
+        "Identity Reasoning": "1.72",
+        "Natural Relation": "1.33",
+        "Physical Relation": "1.33",
+        "Social Relation": "1.52",
+        "Common Sense Reasoning": "1.44",
+        "Counterfactual Reasoning": "1.27",
+        "Causal Reasoning": "1.33",
+        "Future Prediction": "1.17"
+    }
+}
+```
+
+When testing with 16 frames:
+
+```bash
+torchrun --nproc-per-node=1 run.py --data MMBench-Video --model InternVL2-Llama3-76B --verbose --nframe 16
+```
+
+The expected test results are:
+
+```
+{
+    "coarse_all": {
+        "CP": "1.69",
+        "FP-S": "1.60",
+        "FP-C": "1.34",
+        "HL": "0.44",
+        "LR": "1.19",
+        "AR": "1.77",
+        "RR": "1.48",
+        "CSR": "1.51",
+        "TR": "1.36",
+        "Perception": "1.54",
+        "Reasoning": "1.46",
+        "Overall": "1.52"
+    },
+    "coarse_valid": {
+        "CP": "1.69",
+        "FP-S": "1.60",
+        "FP-C": "1.34",
+        "HL": "0.44",
+        "LR": "1.19",
+        "AR": "1.77",
+        "RR": "1.48",
+        "CSR": "1.51",
+        "TR": "1.36",
+        "Perception": "1.54",
+        "Reasoning": "1.46",
+        "Overall": "1.52"
+    },
+    "fine_all": {
+        "Video Topic": "1.64",
+        "Video Emotion": "1.73",
+        "Video Scene": "1.60",
+        "Video Style": "1.93",
+        "OCR": "1.48",
+        "Object Recognition": "1.65",
+        "Attribute Recognition": "2.06",
+        "Event Recognition": "1.42",
+        "Human Motion": "1.39",
+        "Counting": "1.69",
+        "Spatial Relationship": "1.36",
+        "Human-object Interaction": "1.44",
+        "Human Interaction": "1.20",
+        "Hallucination": "0.44",
+        "Structuralized Image-Text Understanding": "1.40",
+        "Mathematical Calculation": "0.89",
+        "Physical Property": "1.65",
+        "Function Reasoning": "1.49",
+        "Identity Reasoning": "2.17",
+        "Natural Relation": "1.30",
+        "Physical Relation": "1.47",
+        "Social Relation": "1.59",
+        "Common Sense Reasoning": "1.51",
+        "Counterfactual Reasoning": "1.43",
+        "Causal Reasoning": "1.36",
+        "Future Prediction": "1.34"
+    },
+    "fine_valid": {
+        "Video Topic": "1.64",
+        "Video Emotion": "1.73",
+        "Video Scene": "1.60",
+        "Video Style": "1.93",
+        "OCR": "1.48",
+        "Object Recognition": "1.65",
+        "Attribute Recognition": "2.06",
+        "Event Recognition": "1.42",
+        "Human Motion": "1.39",
+        "Counting": "1.69",
+        "Spatial Relationship": "1.36",
+        "Human-object Interaction": "1.44",
+        "Human Interaction": "1.20",
+        "Hallucination": "0.44",
+        "Structuralized Image-Text Understanding": "1.40",
+        "Mathematical Calculation": "0.89",
+        "Physical Property": "1.65",
+        "Function Reasoning": "1.49",
+        "Identity Reasoning": "2.17",
+        "Natural Relation": "1.30",
+        "Physical Relation": "1.47",
+        "Social Relation": "1.59",
+        "Common Sense Reasoning": "1.51",
+        "Counterfactual Reasoning": "1.43",
+        "Causal Reasoning": "1.36",
+        "Future Prediction": "1.34"
+    }
+}
 ```
 
 ````
