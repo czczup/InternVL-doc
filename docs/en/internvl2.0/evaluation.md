@@ -9172,7 +9172,7 @@ The MathVision (MATH-V) dataset is a comprehensive benchmark designed to evaluat
 ````{tab} 1B
 
 ```python
-TODO
+torchrun --nproc-per-node=8 run.py --model InternVL2-1B --data MathVision_MINI
 ```
 
 The expected test results are:
@@ -9183,6 +9183,88 @@ TODO
 
 ````
 
+````{tab} 2B
+
+```python
+torchrun --nproc-per-node=8 run.py --model InternVL2-2B --data MathVision_MINI
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+````{tab} 4B
+
+```python
+torchrun --nproc-per-node=8 run.py --model InternVL2-4B --data MathVision_MINI
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+````{tab} 8B
+
+```python
+torchrun --nproc-per-node=8 run.py --model InternVL2-8B --data MathVision_MINI
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+````{tab} 26B
+
+```python
+torchrun --nproc-per-node=8 run.py --model InternVL2-26B --data MathVision_MINI
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+````{tab} 40B
+
+```python
+torchrun --nproc-per-node=8 run.py --model InternVL2-40B --data MathVision_MINI
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+````{tab} 76B
+
+```python
+torchrun --nproc-per-node=8 run.py --model InternVL2-76B --data MathVision_MINI
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
 `````
 
 

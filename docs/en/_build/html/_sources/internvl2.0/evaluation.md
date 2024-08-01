@@ -3329,7 +3329,7 @@ The expected test results are:
 ````{tab} 76B
 
 ```bash
-torchrun --nproc-per-node=1 run.py --data MathVista_MINI --model InternVL2-Llama3-76B --verbose
+torchrun --nproc-per-node=1 run.py --data MathVista_MINI --model InternVL2-76B --verbose
 ```
 
 The expected test results are:
@@ -3532,7 +3532,7 @@ result = (71.39852786540484 + 51.73410404624278 + 47.69230769230769) / 3 = 56.9
 ````{tab} 76B
 
 ```bash
-torchrun --nproc-per-node=1 run.py --data HallusionBench --model InternVL2-Llama3-76B --verbose
+torchrun --nproc-per-node=1 run.py --data HallusionBench --model InternVL2-76B --verbose
 ```
 
 The expected test results are:
@@ -3658,7 +3658,7 @@ The expected test results are:
 ````{tab} 76B
 
 ```bash
-torchrun --nproc-per-node=1 run.py --data MMStar --model InternVL2-Llama3-76B --verbose
+torchrun --nproc-per-node=1 run.py --data MMStar --model InternVL2-76B --verbose
 ```
 
 The expected test results are:
@@ -3813,7 +3813,7 @@ The expected test results are:
 ````{tab} 76B
 
 ```bash
-torchrun --nproc-per-node=1 run.py --data OCRBench --model InternVL2-Llama3-76B --verbose
+torchrun --nproc-per-node=1 run.py --data OCRBench --model InternVL2-76B --verbose
 ```
 
 The expected test results are:
@@ -3939,7 +3939,7 @@ The expected test results are:
 ````{tab} 76B
 
 ```bash
-torchrun --nproc-per-node=1 run.py --data MMMU_DEV_VAL --model InternVL2-Llama3-76B --verbose
+torchrun --nproc-per-node=1 run.py --data MMMU_DEV_VAL --model InternVL2-76B --verbose
 ```
 
 The expected test results are:
@@ -4053,7 +4053,7 @@ The expected test results are:
 ````{tab} 76B
 
 ```bash
-torchrun --nproc-per-node=1 run.py --data RealWorldQA --model InternVL2-Llama3-76B --verbose
+torchrun --nproc-per-node=1 run.py --data RealWorldQA --model InternVL2-76B --verbose
 ```
 
 The expected test results are:
@@ -4202,7 +4202,7 @@ The expected test results are:
 ````{tab} 76B
 
 ```bash
-torchrun --nproc-per-node=1 run.py --data MMVet --model InternVL2-Llama3-76B --verbose
+torchrun --nproc-per-node=1 run.py --data MMVet --model InternVL2-76B --verbose
 ```
 
 The expected test results are:
@@ -4341,7 +4341,7 @@ The expected test results are:
 ````{tab} 76B
 
 ```bash
-torchrun --nproc-per-node=1 run.py --data LLaVABench --model InternVL2-Llama3-76B --verbose
+torchrun --nproc-per-node=1 run.py --data LLaVABench --model InternVL2-76B --verbose
 ```
 
 The expected test results are:
@@ -7286,7 +7286,7 @@ The expected test results are:
 When testing without subtitles:
 
 ```bash
-torchrun --nproc-per-node=1 run.py --data Video-MME --model InternVL2-Llama3-76B --verbose --nframe 16
+torchrun --nproc-per-node=1 run.py --data Video-MME --model InternVL2-76B --verbose --nframe 16
 ```
 
 The expected test results are:
@@ -7527,7 +7527,7 @@ The expected test results are:
 When testing with subtitles:
 
 ```bash
-torchrun --nproc-per-node=1 run.py --data Video-MME --model InternVL2-Llama3-76B --verbose --nframe 16 --use-subtitle
+torchrun --nproc-per-node=1 run.py --data Video-MME --model InternVL2-76B --verbose --nframe 16 --use-subtitle
 ```
 
 The expected test results are:
@@ -8968,7 +8968,7 @@ The expected test results are:
 When testing with 8 frames:
 
 ```bash
-torchrun --nproc-per-node=1 run.py --data MMBench-Video --model InternVL2-Llama3-76B --verbose --nframe 8
+torchrun --nproc-per-node=1 run.py --data MMBench-Video --model InternVL2-76B --verbose --nframe 8
 ```
 
 The expected test results are:
@@ -9065,7 +9065,7 @@ The expected test results are:
 When testing with 16 frames:
 
 ```bash
-torchrun --nproc-per-node=1 run.py --data MMBench-Video --model InternVL2-Llama3-76B --verbose --nframe 16
+torchrun --nproc-per-node=1 run.py --data MMBench-Video --model InternVL2-76B --verbose --nframe 16
 ```
 
 The expected test results are:
@@ -9172,7 +9172,7 @@ The MathVision (MATH-V) dataset is a comprehensive benchmark designed to evaluat
 ````{tab} 1B
 
 ```python
-TODO
+torchrun --nproc-per-node=8 run.py --model InternVL2-1B --data MathVision_MINI
 ```
 
 The expected test results are:
@@ -9183,6 +9183,88 @@ TODO
 
 ````
 
+````{tab} 2B
+
+```python
+torchrun --nproc-per-node=8 run.py --model InternVL2-2B --data MathVision_MINI
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+````{tab} 4B
+
+```python
+torchrun --nproc-per-node=8 run.py --model InternVL2-4B --data MathVision_MINI
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+````{tab} 8B
+
+```python
+torchrun --nproc-per-node=8 run.py --model InternVL2-8B --data MathVision_MINI
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+````{tab} 26B
+
+```python
+torchrun --nproc-per-node=8 run.py --model InternVL2-26B --data MathVision_MINI
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+````{tab} 40B
+
+```python
+torchrun --nproc-per-node=8 run.py --model InternVL2-40B --data MathVision_MINI
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
+
+````{tab} 76B
+
+```python
+torchrun --nproc-per-node=8 run.py --model InternVL2-76B --data MathVision_MINI
+```
+
+The expected test results are:
+
+```
+TODO
+```
+
+````
 `````
 
 
