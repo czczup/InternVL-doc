@@ -119,7 +119,7 @@ Next, we'll fine-tune the InternVL2-2B model using LoRA. Execute the following c
 GPUS=8 PER_DEVICE_BATCH_SIZE=4 sh shell/internvl2.0/2nd_finetune/internvl2_2b_internlm2_1_8b_dynamic_res_2nd_finetune_lora.sh
 ```
 
-In [this script](<>), we set the LoRA rank to 128, which means 6.24% of InternLM2-Chat-1.8B's parameters will be trainable, totaling 125.8M parameters:
+In [this script](https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/shell/internvl2.0/2nd_finetune/internvl2_2b_internlm2_1_8b_dynamic_res_2nd_finetune_lora_coco.sh), we set the LoRA rank to 128, which means 6.24% of InternLM2-Chat-1.8B's parameters will be trainable, totaling 125.8M parameters:
 
 ```shell
 trainable params: 125,829,120 || all params: 2,014,976,000 || trainable%: 6.244695718460171
@@ -169,7 +169,16 @@ GPUS=4 sh evaluate.sh work_dirs/internvl_chat_v2_0/internvl2_2b_internlm2_1_8b_d
 The fine-tuned model should show significant improvement in COCO Caption evaluation metrics:
 
 ```
-TODO
+Bleu_1: 0.805
+Bleu_2: 0.649
+Bleu_3: 0.504
+Bleu_4: 0.385
+computing METEOR score...
+METEOR: 0.300
+computing Rouge score...
+ROUGE_L: 0.595
+computing CIDEr score...
+CIDEr: 1.312
 ```
 
 ## Conclusion

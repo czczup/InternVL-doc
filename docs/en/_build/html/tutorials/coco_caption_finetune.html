@@ -591,7 +591,7 @@ unzip<span class="w"> </span>coco_karpathy_train_567k.zip
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span><span class="nv">PER_DEVICE_BATCH_SIZE</span><span class="o">=</span><span class="m">4</span><span class="w"> </span>sh<span class="w"> </span>shell/internvl2.0/2nd_finetune/internvl2_2b_internlm2_1_8b_dynamic_res_2nd_finetune_lora.sh
 </pre></div>
 </div>
-<p>In <a class="reference internal" href="#"><span class="xref myst">this script</span></a>, we set the LoRA rank to 128, which means 6.24% of InternLM2-Chat-1.8B’s parameters will be trainable, totaling 125.8M parameters:</p>
+<p>In <a class="reference external" href="https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/shell/internvl2.0/2nd_finetune/internvl2_2b_internlm2_1_8b_dynamic_res_2nd_finetune_lora_coco.sh">this script</a>, we set the LoRA rank to 128, which means 6.24% of InternLM2-Chat-1.8B’s parameters will be trainable, totaling 125.8M parameters:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>trainable<span class="w"> </span>params:<span class="w"> </span><span class="m">125</span>,829,120<span class="w"> </span><span class="o">||</span><span class="w"> </span>all<span class="w"> </span>params:<span class="w"> </span><span class="m">2</span>,014,976,000<span class="w"> </span><span class="o">||</span><span class="w"> </span>trainable%:<span class="w"> </span><span class="m">6</span>.244695718460171
 </pre></div>
 </div>
@@ -628,7 +628,16 @@ unzip<span class="w"> </span>coco_karpathy_train_567k.zip
 </pre></div>
 </div>
 <p>The fine-tuned model should show significant improvement in COCO Caption evaluation metrics:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Bleu_1</span><span class="p">:</span> <span class="mf">0.805</span>
+<span class="n">Bleu_2</span><span class="p">:</span> <span class="mf">0.649</span>
+<span class="n">Bleu_3</span><span class="p">:</span> <span class="mf">0.504</span>
+<span class="n">Bleu_4</span><span class="p">:</span> <span class="mf">0.385</span>
+<span class="n">computing</span> <span class="n">METEOR</span> <span class="n">score</span><span class="o">...</span>
+<span class="n">METEOR</span><span class="p">:</span> <span class="mf">0.300</span>
+<span class="n">computing</span> <span class="n">Rouge</span> <span class="n">score</span><span class="o">...</span>
+<span class="n">ROUGE_L</span><span class="p">:</span> <span class="mf">0.595</span>
+<span class="n">computing</span> <span class="n">CIDEr</span> <span class="n">score</span><span class="o">...</span>
+<span class="n">CIDEr</span><span class="p">:</span> <span class="mf">1.312</span>
 </pre></div>
 </div>
 </section>
