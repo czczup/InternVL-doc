@@ -461,6 +461,8 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#videomme">VideoMME</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mmbench-video">MMBench-Video</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathvision">MathVision</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#blink">BLINK</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mtvqa">MTVQA</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citation">Citation</a></li>
@@ -8037,45 +8039,487 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
 </pre></div>
 </div>
 <p>The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span>  <span class="o">------------------------</span>  <span class="o">---</span>  <span class="o">---</span>  <span class="o">--</span>  <span class="o">--------</span>  <span class="o">--------</span>
+ <span class="mi">0</span>  <span class="n">Overall</span>                   <span class="mi">304</span>  <span class="mi">100</span>  <span class="mi">37</span>  <span class="mf">32.8947</span>   <span class="mf">12.1711</span>
+ <span class="mi">1</span>  <span class="n">algebra</span>                    <span class="mi">19</span>    <span class="mi">5</span>   <span class="mi">1</span>  <span class="mf">26.3158</span>    <span class="mf">5.26316</span>
+ <span class="mi">2</span>  <span class="n">analytic</span> <span class="n">geometry</span>          <span class="mi">19</span>    <span class="mi">5</span>   <span class="mi">3</span>  <span class="mf">26.3158</span>   <span class="mf">15.7895</span>
+ <span class="mi">3</span>  <span class="n">arithmetic</span>                 <span class="mi">19</span>    <span class="mi">4</span>   <span class="mi">2</span>  <span class="mf">21.0526</span>   <span class="mf">10.5263</span>
+ <span class="mi">4</span>  <span class="n">combinatorial</span> <span class="n">geometry</span>     <span class="mi">19</span>    <span class="mi">7</span>   <span class="mi">2</span>  <span class="mf">36.8421</span>   <span class="mf">10.5263</span>
+ <span class="mi">5</span>  <span class="n">combinatorics</span>              <span class="mi">19</span>    <span class="mi">1</span>   <span class="mi">3</span>   <span class="mf">5.26316</span>  <span class="mf">15.7895</span>
+ <span class="mi">6</span>  <span class="n">counting</span>                   <span class="mi">19</span>    <span class="mi">1</span>   <span class="mi">2</span>   <span class="mf">5.26316</span>  <span class="mf">10.5263</span>
+ <span class="mi">7</span>  <span class="n">descriptive</span> <span class="n">geometry</span>       <span class="mi">19</span>   <span class="mi">10</span>   <span class="mi">4</span>  <span class="mf">52.6316</span>   <span class="mf">21.0526</span>
+ <span class="mi">8</span>  <span class="n">graph</span> <span class="n">theory</span>               <span class="mi">19</span>    <span class="mi">7</span>   <span class="mi">2</span>  <span class="mf">36.8421</span>   <span class="mf">10.5263</span>
+ <span class="mi">9</span>  <span class="n">logic</span>                      <span class="mi">19</span>    <span class="mi">6</span>   <span class="mi">3</span>  <span class="mf">31.5789</span>   <span class="mf">15.7895</span>
+<span class="mi">10</span>  <span class="n">metric</span> <span class="n">geometry</span> <span class="o">-</span> <span class="n">angle</span>    <span class="mi">19</span>   <span class="mi">10</span>   <span class="mi">4</span>  <span class="mf">52.6316</span>   <span class="mf">21.0526</span>
+<span class="mi">11</span>  <span class="n">metric</span> <span class="n">geometry</span> <span class="o">-</span> <span class="n">area</span>     <span class="mi">19</span>    <span class="mi">8</span>   <span class="mi">1</span>  <span class="mf">42.1053</span>    <span class="mf">5.26316</span>
+<span class="mi">12</span>  <span class="n">metric</span> <span class="n">geometry</span> <span class="o">-</span> <span class="n">length</span>   <span class="mi">19</span>    <span class="mi">8</span>   <span class="mi">3</span>  <span class="mf">42.1053</span>   <span class="mf">15.7895</span>
+<span class="mi">13</span>  <span class="n">solid</span> <span class="n">geometry</span>             <span class="mi">19</span>    <span class="mi">6</span>   <span class="mi">0</span>  <span class="mf">31.5789</span>    <span class="mi">0</span>
+<span class="mi">14</span>  <span class="n">statistics</span>                 <span class="mi">19</span>    <span class="mi">6</span>   <span class="mi">2</span>  <span class="mf">31.5789</span>   <span class="mf">10.5263</span>
+<span class="mi">15</span>  <span class="n">topology</span>                   <span class="mi">19</span>    <span class="mi">8</span>   <span class="mi">2</span>  <span class="mf">42.1053</span>   <span class="mf">10.5263</span>
+<span class="mi">16</span>  <span class="n">transformation</span> <span class="n">geometry</span>    <span class="mi">19</span>    <span class="mi">8</span>   <span class="mi">3</span>  <span class="mf">42.1053</span>   <span class="mf">15.7895</span>
+<span class="o">--</span>  <span class="o">------------------------</span>  <span class="o">---</span>  <span class="o">---</span>  <span class="o">--</span>  <span class="o">--------</span>  <span class="o">--------</span>
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-29-29-1" class="sphinx-tabs-panel" hidden="true" id="panel-29-29-1" name="29-1" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">torchrun</span> <span class="o">--</span><span class="n">nproc</span><span class="o">-</span><span class="n">per</span><span class="o">-</span><span class="n">node</span><span class="o">=</span><span class="mi">8</span> <span class="n">run</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">model</span> <span class="n">InternVL2</span><span class="o">-</span><span class="mi">2</span><span class="n">B</span> <span class="o">--</span><span class="n">data</span> <span class="n">MathVision_MINI</span>
 </pre></div>
 </div>
 <p>The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span>  <span class="o">------------------------</span>  <span class="o">---</span>  <span class="o">---</span>  <span class="o">--</span>  <span class="o">--------</span>  <span class="o">--------</span>
+ <span class="mi">0</span>  <span class="n">Overall</span>                   <span class="mi">304</span>  <span class="mi">100</span>  <span class="mi">48</span>  <span class="mf">32.8947</span>   <span class="mf">15.7895</span>
+ <span class="mi">1</span>  <span class="n">algebra</span>                    <span class="mi">19</span>    <span class="mi">6</span>   <span class="mi">1</span>  <span class="mf">31.5789</span>    <span class="mf">5.26316</span>
+ <span class="mi">2</span>  <span class="n">analytic</span> <span class="n">geometry</span>          <span class="mi">19</span>    <span class="mi">7</span>   <span class="mi">2</span>  <span class="mf">36.8421</span>   <span class="mf">10.5263</span>
+ <span class="mi">3</span>  <span class="n">arithmetic</span>                 <span class="mi">19</span>    <span class="mi">4</span>   <span class="mi">1</span>  <span class="mf">21.0526</span>    <span class="mf">5.26316</span>
+ <span class="mi">4</span>  <span class="n">combinatorial</span> <span class="n">geometry</span>     <span class="mi">19</span>    <span class="mi">5</span>   <span class="mi">5</span>  <span class="mf">26.3158</span>   <span class="mf">26.3158</span>
+ <span class="mi">5</span>  <span class="n">combinatorics</span>              <span class="mi">19</span>    <span class="mi">1</span>   <span class="mi">1</span>   <span class="mf">5.26316</span>   <span class="mf">5.26316</span>
+ <span class="mi">6</span>  <span class="n">counting</span>                   <span class="mi">19</span>    <span class="mi">0</span>   <span class="mi">2</span>   <span class="mi">0</span>        <span class="mf">10.5263</span>
+ <span class="mi">7</span>  <span class="n">descriptive</span> <span class="n">geometry</span>       <span class="mi">19</span>    <span class="mi">8</span>   <span class="mi">4</span>  <span class="mf">42.1053</span>   <span class="mf">21.0526</span>
+ <span class="mi">8</span>  <span class="n">graph</span> <span class="n">theory</span>               <span class="mi">19</span>    <span class="mi">3</span>   <span class="mi">4</span>  <span class="mf">15.7895</span>   <span class="mf">21.0526</span>
+ <span class="mi">9</span>  <span class="n">logic</span>                      <span class="mi">19</span>    <span class="mi">9</span>   <span class="mi">5</span>  <span class="mf">47.3684</span>   <span class="mf">26.3158</span>
+<span class="mi">10</span>  <span class="n">metric</span> <span class="n">geometry</span> <span class="o">-</span> <span class="n">angle</span>    <span class="mi">19</span>   <span class="mi">11</span>   <span class="mi">4</span>  <span class="mf">57.8947</span>   <span class="mf">21.0526</span>
+<span class="mi">11</span>  <span class="n">metric</span> <span class="n">geometry</span> <span class="o">-</span> <span class="n">area</span>     <span class="mi">19</span>    <span class="mi">8</span>   <span class="mi">3</span>  <span class="mf">42.1053</span>   <span class="mf">15.7895</span>
+<span class="mi">12</span>  <span class="n">metric</span> <span class="n">geometry</span> <span class="o">-</span> <span class="n">length</span>   <span class="mi">19</span>   <span class="mi">10</span>   <span class="mi">4</span>  <span class="mf">52.6316</span>   <span class="mf">21.0526</span>
+<span class="mi">13</span>  <span class="n">solid</span> <span class="n">geometry</span>             <span class="mi">19</span>    <span class="mi">6</span>   <span class="mi">1</span>  <span class="mf">31.5789</span>    <span class="mf">5.26316</span>
+<span class="mi">14</span>  <span class="n">statistics</span>                 <span class="mi">19</span>    <span class="mi">7</span>   <span class="mi">5</span>  <span class="mf">36.8421</span>   <span class="mf">26.3158</span>
+<span class="mi">15</span>  <span class="n">topology</span>                   <span class="mi">19</span>    <span class="mi">5</span>   <span class="mi">1</span>  <span class="mf">26.3158</span>    <span class="mf">5.26316</span>
+<span class="mi">16</span>  <span class="n">transformation</span> <span class="n">geometry</span>    <span class="mi">19</span>   <span class="mi">10</span>   <span class="mi">5</span>  <span class="mf">52.6316</span>   <span class="mf">26.3158</span>
+<span class="o">--</span>  <span class="o">------------------------</span>  <span class="o">---</span>  <span class="o">---</span>  <span class="o">--</span>  <span class="o">--------</span>  <span class="o">--------</span>
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-29-29-2" class="sphinx-tabs-panel" hidden="true" id="panel-29-29-2" name="29-2" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">torchrun</span> <span class="o">--</span><span class="n">nproc</span><span class="o">-</span><span class="n">per</span><span class="o">-</span><span class="n">node</span><span class="o">=</span><span class="mi">8</span> <span class="n">run</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">model</span> <span class="n">InternVL2</span><span class="o">-</span><span class="mi">4</span><span class="n">B</span> <span class="o">--</span><span class="n">data</span> <span class="n">MathVision_MINI</span>
 </pre></div>
 </div>
 <p>The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span>  <span class="o">------------------------</span>  <span class="o">---</span>  <span class="o">--</span>  <span class="o">--</span>  <span class="o">--------</span>  <span class="o">--------</span>
+ <span class="mi">0</span>  <span class="n">Overall</span>                   <span class="mi">304</span>  <span class="mi">89</span>  <span class="mi">54</span>  <span class="mf">29.2763</span>   <span class="mf">17.7632</span>
+ <span class="mi">1</span>  <span class="n">algebra</span>                    <span class="mi">19</span>   <span class="mi">4</span>   <span class="mi">4</span>  <span class="mf">21.0526</span>   <span class="mf">21.0526</span>
+ <span class="mi">2</span>  <span class="n">analytic</span> <span class="n">geometry</span>          <span class="mi">19</span>   <span class="mi">7</span>   <span class="mi">4</span>  <span class="mf">36.8421</span>   <span class="mf">21.0526</span>
+ <span class="mi">3</span>  <span class="n">arithmetic</span>                 <span class="mi">19</span>   <span class="mi">1</span>   <span class="mi">4</span>   <span class="mf">5.26316</span>  <span class="mf">21.0526</span>
+ <span class="mi">4</span>  <span class="n">combinatorial</span> <span class="n">geometry</span>     <span class="mi">19</span>   <span class="mi">6</span>   <span class="mi">2</span>  <span class="mf">31.5789</span>   <span class="mf">10.5263</span>
+ <span class="mi">5</span>  <span class="n">combinatorics</span>              <span class="mi">19</span>   <span class="mi">1</span>   <span class="mi">2</span>   <span class="mf">5.26316</span>  <span class="mf">10.5263</span>
+ <span class="mi">6</span>  <span class="n">counting</span>                   <span class="mi">19</span>   <span class="mi">0</span>   <span class="mi">5</span>   <span class="mi">0</span>        <span class="mf">26.3158</span>
+ <span class="mi">7</span>  <span class="n">descriptive</span> <span class="n">geometry</span>       <span class="mi">19</span>   <span class="mi">8</span>   <span class="mi">5</span>  <span class="mf">42.1053</span>   <span class="mf">26.3158</span>
+ <span class="mi">8</span>  <span class="n">graph</span> <span class="n">theory</span>               <span class="mi">19</span>   <span class="mi">6</span>   <span class="mi">2</span>  <span class="mf">31.5789</span>   <span class="mf">10.5263</span>
+ <span class="mi">9</span>  <span class="n">logic</span>                      <span class="mi">19</span>   <span class="mi">8</span>   <span class="mi">2</span>  <span class="mf">42.1053</span>   <span class="mf">10.5263</span>
+<span class="mi">10</span>  <span class="n">metric</span> <span class="n">geometry</span> <span class="o">-</span> <span class="n">angle</span>    <span class="mi">19</span>  <span class="mi">10</span>   <span class="mi">6</span>  <span class="mf">52.6316</span>   <span class="mf">31.5789</span>
+<span class="mi">11</span>  <span class="n">metric</span> <span class="n">geometry</span> <span class="o">-</span> <span class="n">area</span>     <span class="mi">19</span>   <span class="mi">7</span>   <span class="mi">5</span>  <span class="mf">36.8421</span>   <span class="mf">26.3158</span>
+<span class="mi">12</span>  <span class="n">metric</span> <span class="n">geometry</span> <span class="o">-</span> <span class="n">length</span>   <span class="mi">19</span>  <span class="mi">11</span>   <span class="mi">2</span>  <span class="mf">57.8947</span>   <span class="mf">10.5263</span>
+<span class="mi">13</span>  <span class="n">solid</span> <span class="n">geometry</span>             <span class="mi">19</span>   <span class="mi">7</span>   <span class="mi">2</span>  <span class="mf">36.8421</span>   <span class="mf">10.5263</span>
+<span class="mi">14</span>  <span class="n">statistics</span>                 <span class="mi">19</span>   <span class="mi">4</span>   <span class="mi">5</span>  <span class="mf">21.0526</span>   <span class="mf">26.3158</span>
+<span class="mi">15</span>  <span class="n">topology</span>                   <span class="mi">19</span>   <span class="mi">6</span>   <span class="mi">1</span>  <span class="mf">31.5789</span>    <span class="mf">5.26316</span>
+<span class="mi">16</span>  <span class="n">transformation</span> <span class="n">geometry</span>    <span class="mi">19</span>   <span class="mi">3</span>   <span class="mi">3</span>  <span class="mf">15.7895</span>   <span class="mf">15.7895</span>
+<span class="o">--</span>  <span class="o">------------------------</span>  <span class="o">---</span>  <span class="o">--</span>  <span class="o">--</span>  <span class="o">--------</span>  <span class="o">--------</span>
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-29-29-3" class="sphinx-tabs-panel" hidden="true" id="panel-29-29-3" name="29-3" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">torchrun</span> <span class="o">--</span><span class="n">nproc</span><span class="o">-</span><span class="n">per</span><span class="o">-</span><span class="n">node</span><span class="o">=</span><span class="mi">8</span> <span class="n">run</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">model</span> <span class="n">InternVL2</span><span class="o">-</span><span class="mi">8</span><span class="n">B</span> <span class="o">--</span><span class="n">data</span> <span class="n">MathVision_MINI</span>
 </pre></div>
 </div>
 <p>The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span>  <span class="o">------------------------</span>  <span class="o">---</span>  <span class="o">---</span>  <span class="o">--</span>  <span class="o">--------</span>  <span class="o">-------</span>
+ <span class="mi">0</span>  <span class="n">Overall</span>                   <span class="mi">304</span>  <span class="mi">104</span>  <span class="mi">62</span>  <span class="mf">34.2105</span>   <span class="mf">20.3947</span>
+ <span class="mi">1</span>  <span class="n">algebra</span>                    <span class="mi">19</span>    <span class="mi">4</span>   <span class="mi">4</span>  <span class="mf">21.0526</span>   <span class="mf">21.0526</span>
+ <span class="mi">2</span>  <span class="n">analytic</span> <span class="n">geometry</span>          <span class="mi">19</span>    <span class="mi">4</span>   <span class="mi">3</span>  <span class="mf">21.0526</span>   <span class="mf">15.7895</span>
+ <span class="mi">3</span>  <span class="n">arithmetic</span>                 <span class="mi">19</span>    <span class="mi">2</span>   <span class="mi">4</span>  <span class="mf">10.5263</span>   <span class="mf">21.0526</span>
+ <span class="mi">4</span>  <span class="n">combinatorial</span> <span class="n">geometry</span>     <span class="mi">19</span>    <span class="mi">9</span>   <span class="mi">6</span>  <span class="mf">47.3684</span>   <span class="mf">31.5789</span>
+ <span class="mi">5</span>  <span class="n">combinatorics</span>              <span class="mi">19</span>    <span class="mi">1</span>   <span class="mi">3</span>   <span class="mf">5.26316</span>  <span class="mf">15.7895</span>
+ <span class="mi">6</span>  <span class="n">counting</span>                   <span class="mi">19</span>    <span class="mi">2</span>   <span class="mi">4</span>  <span class="mf">10.5263</span>   <span class="mf">21.0526</span>
+ <span class="mi">7</span>  <span class="n">descriptive</span> <span class="n">geometry</span>       <span class="mi">19</span>   <span class="mi">11</span>   <span class="mi">4</span>  <span class="mf">57.8947</span>   <span class="mf">21.0526</span>
+ <span class="mi">8</span>  <span class="n">graph</span> <span class="n">theory</span>               <span class="mi">19</span>    <span class="mi">6</span>   <span class="mi">2</span>  <span class="mf">31.5789</span>   <span class="mf">10.5263</span>
+ <span class="mi">9</span>  <span class="n">logic</span>                      <span class="mi">19</span>   <span class="mi">10</span>   <span class="mi">2</span>  <span class="mf">52.6316</span>   <span class="mf">10.5263</span>
+<span class="mi">10</span>  <span class="n">metric</span> <span class="n">geometry</span> <span class="o">-</span> <span class="n">angle</span>    <span class="mi">19</span>    <span class="mi">7</span>   <span class="mi">4</span>  <span class="mf">36.8421</span>   <span class="mf">21.0526</span>
+<span class="mi">11</span>  <span class="n">metric</span> <span class="n">geometry</span> <span class="o">-</span> <span class="n">area</span>     <span class="mi">19</span>    <span class="mi">7</span>   <span class="mi">7</span>  <span class="mf">36.8421</span>   <span class="mf">36.8421</span>
+<span class="mi">12</span>  <span class="n">metric</span> <span class="n">geometry</span> <span class="o">-</span> <span class="n">length</span>   <span class="mi">19</span>    <span class="mi">7</span>   <span class="mi">2</span>  <span class="mf">36.8421</span>   <span class="mf">10.5263</span>
+<span class="mi">13</span>  <span class="n">solid</span> <span class="n">geometry</span>             <span class="mi">19</span>    <span class="mi">8</span>   <span class="mi">4</span>  <span class="mf">42.1053</span>   <span class="mf">21.0526</span>
+<span class="mi">14</span>  <span class="n">statistics</span>                 <span class="mi">19</span>    <span class="mi">6</span>   <span class="mi">4</span>  <span class="mf">31.5789</span>   <span class="mf">21.0526</span>
+<span class="mi">15</span>  <span class="n">topology</span>                   <span class="mi">19</span>   <span class="mi">11</span>   <span class="mi">5</span>  <span class="mf">57.8947</span>   <span class="mf">26.3158</span>
+<span class="mi">16</span>  <span class="n">transformation</span> <span class="n">geometry</span>    <span class="mi">19</span>    <span class="mi">9</span>   <span class="mi">4</span>  <span class="mf">47.3684</span>   <span class="mf">21.0526</span>
+<span class="o">--</span>  <span class="o">------------------------</span>  <span class="o">---</span>  <span class="o">---</span>  <span class="o">--</span>  <span class="o">--------</span>  <span class="o">-------</span>
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-29-29-4" class="sphinx-tabs-panel" hidden="true" id="panel-29-29-4" name="29-4" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">torchrun</span> <span class="o">--</span><span class="n">nproc</span><span class="o">-</span><span class="n">per</span><span class="o">-</span><span class="n">node</span><span class="o">=</span><span class="mi">8</span> <span class="n">run</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">model</span> <span class="n">InternVL2</span><span class="o">-</span><span class="mi">26</span><span class="n">B</span> <span class="o">--</span><span class="n">data</span> <span class="n">MathVision_MINI</span>
 </pre></div>
 </div>
 <p>The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span>  <span class="o">------------------------</span>  <span class="o">---</span>  <span class="o">---</span>  <span class="o">--</span>  <span class="o">--------</span>  <span class="o">--------</span>
+ <span class="mi">0</span>  <span class="n">Overall</span>                   <span class="mi">304</span>  <span class="mi">105</span>  <span class="mi">71</span>  <span class="mf">34.5395</span>   <span class="mf">23.3553</span>
+ <span class="mi">1</span>  <span class="n">algebra</span>                    <span class="mi">19</span>    <span class="mi">6</span>   <span class="mi">3</span>  <span class="mf">31.5789</span>   <span class="mf">15.7895</span>
+ <span class="mi">2</span>  <span class="n">analytic</span> <span class="n">geometry</span>          <span class="mi">19</span>    <span class="mi">6</span>   <span class="mi">7</span>  <span class="mf">31.5789</span>   <span class="mf">36.8421</span>
+ <span class="mi">3</span>  <span class="n">arithmetic</span>                 <span class="mi">19</span>    <span class="mi">4</span>   <span class="mi">4</span>  <span class="mf">21.0526</span>   <span class="mf">21.0526</span>
+ <span class="mi">4</span>  <span class="n">combinatorial</span> <span class="n">geometry</span>     <span class="mi">19</span>    <span class="mi">4</span>   <span class="mi">3</span>  <span class="mf">21.0526</span>   <span class="mf">15.7895</span>
+ <span class="mi">5</span>  <span class="n">combinatorics</span>              <span class="mi">19</span>    <span class="mi">4</span>   <span class="mi">6</span>  <span class="mf">21.0526</span>   <span class="mf">31.5789</span>
+ <span class="mi">6</span>  <span class="n">counting</span>                   <span class="mi">19</span>    <span class="mi">1</span>   <span class="mi">3</span>   <span class="mf">5.26316</span>  <span class="mf">15.7895</span>
+ <span class="mi">7</span>  <span class="n">descriptive</span> <span class="n">geometry</span>       <span class="mi">19</span>    <span class="mi">7</span>   <span class="mi">4</span>  <span class="mf">36.8421</span>   <span class="mf">21.0526</span>
+ <span class="mi">8</span>  <span class="n">graph</span> <span class="n">theory</span>               <span class="mi">19</span>    <span class="mi">5</span>   <span class="mi">5</span>  <span class="mf">26.3158</span>   <span class="mf">26.3158</span>
+ <span class="mi">9</span>  <span class="n">logic</span>                      <span class="mi">19</span>   <span class="mi">11</span>   <span class="mi">7</span>  <span class="mf">57.8947</span>   <span class="mf">36.8421</span>
+<span class="mi">10</span>  <span class="n">metric</span> <span class="n">geometry</span> <span class="o">-</span> <span class="n">angle</span>    <span class="mi">19</span>    <span class="mi">9</span>   <span class="mi">3</span>  <span class="mf">47.3684</span>   <span class="mf">15.7895</span>
+<span class="mi">11</span>  <span class="n">metric</span> <span class="n">geometry</span> <span class="o">-</span> <span class="n">area</span>     <span class="mi">19</span>    <span class="mi">9</span>   <span class="mi">7</span>  <span class="mf">47.3684</span>   <span class="mf">36.8421</span>
+<span class="mi">12</span>  <span class="n">metric</span> <span class="n">geometry</span> <span class="o">-</span> <span class="n">length</span>   <span class="mi">19</span>   <span class="mi">10</span>   <span class="mi">3</span>  <span class="mf">52.6316</span>   <span class="mf">15.7895</span>
+<span class="mi">13</span>  <span class="n">solid</span> <span class="n">geometry</span>             <span class="mi">19</span>    <span class="mi">6</span>   <span class="mi">1</span>  <span class="mf">31.5789</span>    <span class="mf">5.26316</span>
+<span class="mi">14</span>  <span class="n">statistics</span>                 <span class="mi">19</span>    <span class="mi">8</span>   <span class="mi">7</span>  <span class="mf">42.1053</span>   <span class="mf">36.8421</span>
+<span class="mi">15</span>  <span class="n">topology</span>                   <span class="mi">19</span>   <span class="mi">10</span>   <span class="mi">5</span>  <span class="mf">52.6316</span>   <span class="mf">26.3158</span>
+<span class="mi">16</span>  <span class="n">transformation</span> <span class="n">geometry</span>    <span class="mi">19</span>    <span class="mi">5</span>   <span class="mi">3</span>  <span class="mf">26.3158</span>   <span class="mf">15.7895</span>
+<span class="o">--</span>  <span class="o">------------------------</span>  <span class="o">---</span>  <span class="o">---</span>  <span class="o">--</span>  <span class="o">--------</span>  <span class="o">--------</span>
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-29-29-5" class="sphinx-tabs-panel" hidden="true" id="panel-29-29-5" name="29-5" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">torchrun</span> <span class="o">--</span><span class="n">nproc</span><span class="o">-</span><span class="n">per</span><span class="o">-</span><span class="n">node</span><span class="o">=</span><span class="mi">8</span> <span class="n">run</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">model</span> <span class="n">InternVL2</span><span class="o">-</span><span class="mi">40</span><span class="n">B</span> <span class="o">--</span><span class="n">data</span> <span class="n">MathVision_MINI</span>
 </pre></div>
 </div>
 <p>The expected test results are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span>  <span class="o">------------------------</span>  <span class="o">---</span>  <span class="o">---</span>  <span class="o">--</span>  <span class="o">--------</span>  <span class="o">-------</span>
+ <span class="mi">0</span>  <span class="n">Overall</span>                   <span class="mi">304</span>  <span class="mi">100</span>  <span class="mi">65</span>  <span class="mf">32.8947</span>   <span class="mf">21.3816</span>
+ <span class="mi">1</span>  <span class="n">algebra</span>                    <span class="mi">19</span>    <span class="mi">6</span>   <span class="mi">4</span>  <span class="mf">31.5789</span>   <span class="mf">21.0526</span>
+ <span class="mi">2</span>  <span class="n">analytic</span> <span class="n">geometry</span>          <span class="mi">19</span>    <span class="mi">7</span>   <span class="mi">5</span>  <span class="mf">36.8421</span>   <span class="mf">26.3158</span>
+ <span class="mi">3</span>  <span class="n">arithmetic</span>                 <span class="mi">19</span>    <span class="mi">4</span>   <span class="mi">8</span>  <span class="mf">21.0526</span>   <span class="mf">42.1053</span>
+ <span class="mi">4</span>  <span class="n">combinatorial</span> <span class="n">geometry</span>     <span class="mi">19</span>    <span class="mi">3</span>   <span class="mi">6</span>  <span class="mf">15.7895</span>   <span class="mf">31.5789</span>
+ <span class="mi">5</span>  <span class="n">combinatorics</span>              <span class="mi">19</span>    <span class="mi">0</span>   <span class="mi">4</span>   <span class="mi">0</span>        <span class="mf">21.0526</span>
+ <span class="mi">6</span>  <span class="n">counting</span>                   <span class="mi">19</span>    <span class="mi">1</span>   <span class="mi">2</span>   <span class="mf">5.26316</span>  <span class="mf">10.5263</span>
+ <span class="mi">7</span>  <span class="n">descriptive</span> <span class="n">geometry</span>       <span class="mi">19</span>    <span class="mi">8</span>   <span class="mi">2</span>  <span class="mf">42.1053</span>   <span class="mf">10.5263</span>
+ <span class="mi">8</span>  <span class="n">graph</span> <span class="n">theory</span>               <span class="mi">19</span>    <span class="mi">6</span>   <span class="mi">3</span>  <span class="mf">31.5789</span>   <span class="mf">15.7895</span>
+ <span class="mi">9</span>  <span class="n">logic</span>                      <span class="mi">19</span>    <span class="mi">8</span>   <span class="mi">4</span>  <span class="mf">42.1053</span>   <span class="mf">21.0526</span>
+<span class="mi">10</span>  <span class="n">metric</span> <span class="n">geometry</span> <span class="o">-</span> <span class="n">angle</span>    <span class="mi">19</span>   <span class="mi">10</span>   <span class="mi">5</span>  <span class="mf">52.6316</span>   <span class="mf">26.3158</span>
+<span class="mi">11</span>  <span class="n">metric</span> <span class="n">geometry</span> <span class="o">-</span> <span class="n">area</span>     <span class="mi">19</span>    <span class="mi">8</span>   <span class="mi">2</span>  <span class="mf">42.1053</span>   <span class="mf">10.5263</span>
+<span class="mi">12</span>  <span class="n">metric</span> <span class="n">geometry</span> <span class="o">-</span> <span class="n">length</span>   <span class="mi">19</span>   <span class="mi">10</span>   <span class="mi">3</span>  <span class="mf">52.6316</span>   <span class="mf">15.7895</span>
+<span class="mi">13</span>  <span class="n">solid</span> <span class="n">geometry</span>             <span class="mi">19</span>    <span class="mi">6</span>   <span class="mi">3</span>  <span class="mf">31.5789</span>   <span class="mf">15.7895</span>
+<span class="mi">14</span>  <span class="n">statistics</span>                 <span class="mi">19</span>   <span class="mi">10</span>   <span class="mi">6</span>  <span class="mf">52.6316</span>   <span class="mf">31.5789</span>
+<span class="mi">15</span>  <span class="n">topology</span>                   <span class="mi">19</span>    <span class="mi">7</span>   <span class="mi">4</span>  <span class="mf">36.8421</span>   <span class="mf">21.0526</span>
+<span class="mi">16</span>  <span class="n">transformation</span> <span class="n">geometry</span>    <span class="mi">19</span>    <span class="mi">6</span>   <span class="mi">4</span>  <span class="mf">31.5789</span>   <span class="mf">21.0526</span>
+<span class="o">--</span>  <span class="o">------------------------</span>  <span class="o">---</span>  <span class="o">---</span>  <span class="o">--</span>  <span class="o">--------</span>  <span class="o">-------</span>
 </pre></div>
 </div>
-</div><div aria-labelledby="tab-29-29-6" class="sphinx-tabs-panel" hidden="true" id="panel-29-29-6" name="29-6" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">torchrun</span> <span class="o">--</span><span class="n">nproc</span><span class="o">-</span><span class="n">per</span><span class="o">-</span><span class="n">node</span><span class="o">=</span><span class="mi">8</span> <span class="n">run</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">model</span> <span class="n">InternVL2</span><span class="o">-</span><span class="mi">76</span><span class="n">B</span> <span class="o">--</span><span class="n">data</span> <span class="n">MathVision_MINI</span>
+</div><div aria-labelledby="tab-29-29-6" class="sphinx-tabs-panel" hidden="true" id="panel-29-29-6" name="29-6" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">torchrun</span> <span class="o">--</span><span class="n">nproc</span><span class="o">-</span><span class="n">per</span><span class="o">-</span><span class="n">node</span><span class="o">=</span><span class="mi">1</span> <span class="n">run</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">model</span> <span class="n">InternVL2</span><span class="o">-</span><span class="mi">76</span><span class="n">B</span> <span class="o">--</span><span class="n">data</span> <span class="n">MathVision_MINI</span>
+</pre></div>
+</div>
+<p>The expected test results are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span>  <span class="o">------------------------</span>  <span class="o">---</span>  <span class="o">---</span>  <span class="o">--</span>  <span class="o">--------</span>  <span class="o">-------</span>
+ <span class="mi">0</span>  <span class="n">Overall</span>                   <span class="mi">304</span>  <span class="mi">102</span>  <span class="mi">72</span>  <span class="mf">33.5526</span>   <span class="mf">23.6842</span>
+ <span class="mi">1</span>  <span class="n">algebra</span>                    <span class="mi">19</span>    <span class="mi">1</span>   <span class="mi">3</span>   <span class="mf">5.26316</span>  <span class="mf">15.7895</span>
+ <span class="mi">2</span>  <span class="n">analytic</span> <span class="n">geometry</span>          <span class="mi">19</span>    <span class="mi">6</span>   <span class="mi">8</span>  <span class="mf">31.5789</span>   <span class="mf">42.1053</span>
+ <span class="mi">3</span>  <span class="n">arithmetic</span>                 <span class="mi">19</span>    <span class="mi">5</span>   <span class="mi">7</span>  <span class="mf">26.3158</span>   <span class="mf">36.8421</span>
+ <span class="mi">4</span>  <span class="n">combinatorial</span> <span class="n">geometry</span>     <span class="mi">19</span>    <span class="mi">7</span>   <span class="mi">2</span>  <span class="mf">36.8421</span>   <span class="mf">10.5263</span>
+ <span class="mi">5</span>  <span class="n">combinatorics</span>              <span class="mi">19</span>    <span class="mi">1</span>   <span class="mi">4</span>   <span class="mf">5.26316</span>  <span class="mf">21.0526</span>
+ <span class="mi">6</span>  <span class="n">counting</span>                   <span class="mi">19</span>    <span class="mi">0</span>   <span class="mi">3</span>   <span class="mi">0</span>        <span class="mf">15.7895</span>
+ <span class="mi">7</span>  <span class="n">descriptive</span> <span class="n">geometry</span>       <span class="mi">19</span>    <span class="mi">9</span>   <span class="mi">2</span>  <span class="mf">47.3684</span>   <span class="mf">10.5263</span>
+ <span class="mi">8</span>  <span class="n">graph</span> <span class="n">theory</span>               <span class="mi">19</span>    <span class="mi">6</span>   <span class="mi">3</span>  <span class="mf">31.5789</span>   <span class="mf">15.7895</span>
+ <span class="mi">9</span>  <span class="n">logic</span>                      <span class="mi">19</span>    <span class="mi">8</span>   <span class="mi">5</span>  <span class="mf">42.1053</span>   <span class="mf">26.3158</span>
+<span class="mi">10</span>  <span class="n">metric</span> <span class="n">geometry</span> <span class="o">-</span> <span class="n">angle</span>    <span class="mi">19</span>   <span class="mi">11</span>   <span class="mi">5</span>  <span class="mf">57.8947</span>   <span class="mf">26.3158</span>
+<span class="mi">11</span>  <span class="n">metric</span> <span class="n">geometry</span> <span class="o">-</span> <span class="n">area</span>     <span class="mi">19</span>    <span class="mi">9</span>   <span class="mi">5</span>  <span class="mf">47.3684</span>   <span class="mf">26.3158</span>
+<span class="mi">12</span>  <span class="n">metric</span> <span class="n">geometry</span> <span class="o">-</span> <span class="n">length</span>   <span class="mi">19</span>   <span class="mi">10</span>   <span class="mi">5</span>  <span class="mf">52.6316</span>   <span class="mf">26.3158</span>
+<span class="mi">13</span>  <span class="n">solid</span> <span class="n">geometry</span>             <span class="mi">19</span>    <span class="mi">6</span>   <span class="mi">5</span>  <span class="mf">31.5789</span>   <span class="mf">26.3158</span>
+<span class="mi">14</span>  <span class="n">statistics</span>                 <span class="mi">19</span>    <span class="mi">6</span>   <span class="mi">8</span>  <span class="mf">31.5789</span>   <span class="mf">42.1053</span>
+<span class="mi">15</span>  <span class="n">topology</span>                   <span class="mi">19</span>    <span class="mi">7</span>   <span class="mi">4</span>  <span class="mf">36.8421</span>   <span class="mf">21.0526</span>
+<span class="mi">16</span>  <span class="n">transformation</span> <span class="n">geometry</span>    <span class="mi">19</span>   <span class="mi">10</span>   <span class="mi">3</span>  <span class="mf">52.6316</span>   <span class="mf">15.7895</span>
+<span class="o">--</span>  <span class="o">------------------------</span>  <span class="o">---</span>  <span class="o">---</span>  <span class="o">--</span>  <span class="o">--------</span>  <span class="o">-------</span>
+</pre></div>
+</div>
+</div></div>
+</section>
+<section id="blink">
+<h3>BLINK<a class="headerlink" href="#blink" title="Permalink to this heading">#</a></h3>
+<p>The BLINK dataset is a new benchmark designed to challenge MLLMs by focusing on core visual perception tasks that are not typically covered by other benchmarks. It reformats 14 classic computer vision tasks into 3,807 multiple-choice questions, paired with single or multiple images and visual prompts. These tasks include relative depth estimation, visual correspondence, forensics detection, and multi-view reasoning, which humans can generally solve quickly but are significantly challenging for current multimodal LLMs.</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-30-30-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-30-30-0" name="30-0" role="tab" tabindex="0">1B</button><button aria-controls="panel-30-30-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-30-30-1" name="30-1" role="tab" tabindex="-1">2B</button><button aria-controls="panel-30-30-2" aria-selected="false" class="sphinx-tabs-tab" id="tab-30-30-2" name="30-2" role="tab" tabindex="-1">4B</button><button aria-controls="panel-30-30-3" aria-selected="false" class="sphinx-tabs-tab" id="tab-30-30-3" name="30-3" role="tab" tabindex="-1">8B</button><button aria-controls="panel-30-30-4" aria-selected="false" class="sphinx-tabs-tab" id="tab-30-30-4" name="30-4" role="tab" tabindex="-1">26B</button><button aria-controls="panel-30-30-5" aria-selected="false" class="sphinx-tabs-tab" id="tab-30-30-5" name="30-5" role="tab" tabindex="-1">40B</button><button aria-controls="panel-30-30-6" aria-selected="false" class="sphinx-tabs-tab" id="tab-30-30-6" name="30-6" role="tab" tabindex="-1">76B</button></div><div aria-labelledby="tab-30-30-0" class="sphinx-tabs-panel" id="panel-30-30-0" name="30-0" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">torchrun</span> <span class="o">--</span><span class="n">nproc</span><span class="o">-</span><span class="n">per</span><span class="o">-</span><span class="n">node</span><span class="o">=</span><span class="mi">8</span> <span class="n">run</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">model</span> <span class="n">InternVL2</span><span class="o">-</span><span class="mi">1</span><span class="n">B</span> <span class="o">--</span><span class="n">data</span> <span class="n">BLINK</span>
+</pre></div>
+</div>
+<p>The expected test results are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>2024-08-02 13:47:04,164 - RUN - INFO - The evaluation of model InternVL2-1B x dataset BLINK has finished!
+2024-08-02 13:47:04,164 - RUN - INFO - Evaluation Results:
+2024-08-02 13:47:04,166 - RUN - INFO -
+-------------------------  -------------------
+split                      none
+Overall                    0.3855865334034719
+Art_Style                  0.4700854700854701
+Counting                   0.325
+Forensic_Detection         0.25
+Functional_Correspondence  0.26153846153846155
+IQ_Test                    0.2866666666666667
+Jigsaw                     0.5266666666666666
+Multi-view_Reasoning       0.44360902255639095
+Object_Localization        0.4918032786885246
+Relative_Depth             0.49193548387096775
+Relative_Reflectance       0.3283582089552239
+Semantic_Correspondence    0.2446043165467626
+Spatial_Relation           0.5664335664335665
+Visual_Correspondence      0.27325581395348836
+Visual_Similarity          0.4740740740740741
+-------------------------  -------------------
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-30-30-1" class="sphinx-tabs-panel" hidden="true" id="panel-30-30-1" name="30-1" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">torchrun</span> <span class="o">--</span><span class="n">nproc</span><span class="o">-</span><span class="n">per</span><span class="o">-</span><span class="n">node</span><span class="o">=</span><span class="mi">8</span> <span class="n">run</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">model</span> <span class="n">InternVL2</span><span class="o">-</span><span class="mi">2</span><span class="n">B</span> <span class="o">--</span><span class="n">data</span> <span class="n">BLINK</span>
+</pre></div>
+</div>
+<p>The expected test results are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>2024-08-02 13:46:22,686 - RUN - INFO - The evaluation of model InternVL2-2B x dataset BLINK has finished!
+2024-08-02 13:46:22,686 - RUN - INFO - Evaluation Results:
+2024-08-02 13:46:22,689 - RUN - INFO -
+-------------------------  -------------------
+split                      none
+Overall                    0.43766438716465017
+Art_Style                  0.5299145299145299
+Counting                   0.4666666666666667
+Forensic_Detection         0.2803030303030303
+Functional_Correspondence  0.23076923076923078
+IQ_Test                    0.2866666666666667
+Jigsaw                     0.47333333333333333
+Multi-view_Reasoning       0.556390977443609
+Object_Localization        0.36885245901639346
+Relative_Depth             0.6048387096774194
+Relative_Reflectance       0.39552238805970147
+Semantic_Correspondence    0.3669064748201439
+Spatial_Relation           0.7622377622377622
+Visual_Correspondence      0.3313953488372093
+Visual_Similarity          0.5111111111111111
+-------------------------  -------------------
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-30-30-2" class="sphinx-tabs-panel" hidden="true" id="panel-30-30-2" name="30-2" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">torchrun</span> <span class="o">--</span><span class="n">nproc</span><span class="o">-</span><span class="n">per</span><span class="o">-</span><span class="n">node</span><span class="o">=</span><span class="mi">8</span> <span class="n">run</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">model</span> <span class="n">InternVL2</span><span class="o">-</span><span class="mi">4</span><span class="n">B</span> <span class="o">--</span><span class="n">data</span> <span class="n">BLINK</span>
+</pre></div>
+</div>
+<p>The expected test results are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>2024-08-02 13:34:06,982 - RUN - INFO - The evaluation of model InternVL2-4B x dataset BLINK has finished!
+2024-08-02 13:34:06,982 - RUN - INFO - Evaluation Results:
+2024-08-02 13:34:06,984 - RUN - INFO -
+-------------------------  -------------------
+split                      none
+Overall                    0.46081009994739613
+Art_Style                  0.5897435897435898
+Counting                   0.55
+Forensic_Detection         0.32575757575757575
+Functional_Correspondence  0.25384615384615383
+IQ_Test                    0.23333333333333334
+Jigsaw                     0.48
+Multi-view_Reasoning       0.556390977443609
+Object_Localization        0.5245901639344263
+Relative_Depth             0.6370967741935484
+Relative_Reflectance       0.3283582089552239
+Semantic_Correspondence    0.2805755395683453
+Spatial_Relation           0.8111888111888111
+Visual_Correspondence      0.36046511627906974
+Visual_Similarity          0.5925925925925926
+-------------------------  -------------------
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-30-30-3" class="sphinx-tabs-panel" hidden="true" id="panel-30-30-3" name="30-3" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">torchrun</span> <span class="o">--</span><span class="n">nproc</span><span class="o">-</span><span class="n">per</span><span class="o">-</span><span class="n">node</span><span class="o">=</span><span class="mi">8</span> <span class="n">run</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">model</span> <span class="n">InternVL2</span><span class="o">-</span><span class="mi">8</span><span class="n">B</span> <span class="o">--</span><span class="n">data</span> <span class="n">BLINK</span>
+</pre></div>
+</div>
+<p>The expected test results are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>2024-08-02 13:28:10,915 - RUN - INFO - The evaluation of model InternVL2-8B x dataset BLINK has finished!
+2024-08-02 13:28:10,915 - RUN - INFO - Evaluation Results:
+2024-08-02 13:28:10,917 - RUN - INFO -
+-------------------------  -------------------
+split                      none
+Overall                    0.5086796422935297
+Art_Style                  0.7094017094017094
+Counting                   0.75
+Forensic_Detection         0.3484848484848485
+Functional_Correspondence  0.17692307692307693
+IQ_Test                    0.30666666666666664
+Jigsaw                     0.5466666666666666
+Multi-view_Reasoning       0.48872180451127817
+Object_Localization        0.5573770491803278
+Relative_Depth             0.7419354838709677
+Relative_Reflectance       0.39552238805970147
+Semantic_Correspondence    0.26618705035971224
+Spatial_Relation           0.7972027972027972
+Visual_Correspondence      0.36046511627906974
+Visual_Similarity          0.7851851851851852
+-------------------------  -------------------
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-30-30-4" class="sphinx-tabs-panel" hidden="true" id="panel-30-30-4" name="30-4" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">torchrun</span> <span class="o">--</span><span class="n">nproc</span><span class="o">-</span><span class="n">per</span><span class="o">-</span><span class="n">node</span><span class="o">=</span><span class="mi">8</span> <span class="n">run</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">model</span> <span class="n">InternVL2</span><span class="o">-</span><span class="mi">26</span><span class="n">B</span> <span class="o">--</span><span class="n">data</span> <span class="n">BLINK</span>
+</pre></div>
+</div>
+<p>The expected test results are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>2024-08-02 13:00:51,453 - RUN - INFO - The evaluation of model InternVL2-26B x dataset BLINK has finished!
+2024-08-02 13:00:51,453 - RUN - INFO - Evaluation Results:
+2024-08-02 13:00:51,455 - RUN - INFO -
+-------------------------  -------------------
+split                      none
+Overall                    0.5623356128353498
+Art_Style                  0.7606837606837606
+Counting                   0.675
+Forensic_Detection         0.45454545454545453
+Functional_Correspondence  0.3
+IQ_Test                    0.30666666666666664
+Jigsaw                     0.7466666666666667
+Multi-view_Reasoning       0.41353383458646614
+Object_Localization        0.5737704918032787
+Relative_Depth             0.782258064516129
+Relative_Reflectance       0.3582089552238806
+Semantic_Correspondence    0.4172661870503597
+Spatial_Relation           0.8461538461538461
+Visual_Correspondence      0.47674418604651164
+Visual_Similarity          0.8222222222222222
+-------------------------  -------------------
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-30-30-5" class="sphinx-tabs-panel" hidden="true" id="panel-30-30-5" name="30-5" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">torchrun</span> <span class="o">--</span><span class="n">nproc</span><span class="o">-</span><span class="n">per</span><span class="o">-</span><span class="n">node</span><span class="o">=</span><span class="mi">8</span> <span class="n">run</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">model</span> <span class="n">InternVL2</span><span class="o">-</span><span class="mi">40</span><span class="n">B</span> <span class="o">--</span><span class="n">data</span> <span class="n">BLINK</span>
+</pre></div>
+</div>
+<p>The expected test results are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>2024-08-02 14:03:54,291 - RUN - INFO - The evaluation of model InternVL2-40B x dataset BLINK has finished!
+2024-08-02 14:03:54,291 - RUN - INFO - Evaluation Results:
+2024-08-02 14:03:54,292 - RUN - INFO -
+-------------------------  -------------------
+split                      none
+Overall                    0.5718043135192005
+Art_Style                  0.6923076923076923
+Counting                   0.7166666666666667
+Forensic_Detection         0.44696969696969696
+Functional_Correspondence  0.25384615384615383
+IQ_Test                    0.22666666666666666
+Jigsaw                     0.8
+Multi-view_Reasoning       0.5639097744360902
+Object_Localization        0.5819672131147541
+Relative_Depth             0.7903225806451613
+Relative_Reflectance       0.3880597014925373
+Semantic_Correspondence    0.41007194244604317
+Spatial_Relation           0.8461538461538461
+Visual_Correspondence      0.4941860465116279
+Visual_Similarity          0.8518518518518519
+-------------------------  -------------------
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-30-30-6" class="sphinx-tabs-panel" hidden="true" id="panel-30-30-6" name="30-6" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">torchrun</span> <span class="o">--</span><span class="n">nproc</span><span class="o">-</span><span class="n">per</span><span class="o">-</span><span class="n">node</span><span class="o">=</span><span class="mi">1</span> <span class="n">run</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">model</span> <span class="n">InternVL2</span><span class="o">-</span><span class="mi">76</span><span class="n">B</span> <span class="o">--</span><span class="n">data</span> <span class="n">BLINK</span>
+</pre></div>
+</div>
+<p>The expected test results are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>2024-08-02 16:08:58,199 - RUN - INFO - The evaluation of model InternVL2-76B x dataset BLINK has finished!
+2024-08-02 16:08:58,199 - RUN - INFO - Evaluation Results:
+2024-08-02 16:08:58,200 - RUN - INFO -
+-------------------------  -------------------
+split                      none
+Overall                    0.5681220410310363
+Art_Style                  0.6581196581196581
+Counting                   0.7
+Forensic_Detection         0.42424242424242425
+Functional_Correspondence  0.3
+IQ_Test                    0.2733333333333333
+Jigsaw                     0.74
+Multi-view_Reasoning       0.5639097744360902
+Object_Localization        0.5245901639344263
+Relative_Depth             0.782258064516129
+Relative_Reflectance       0.30597014925373134
+Semantic_Correspondence    0.4028776978417266
+Spatial_Relation           0.8391608391608392
+Visual_Correspondence      0.6802325581395349
+Visual_Similarity          0.7555555555555555
+-------------------------  -------------------
+</pre></div>
+</div>
+</div></div>
+</section>
+<section id="mtvqa">
+<h3>MTVQA<a class="headerlink" href="#mtvqa" title="Permalink to this heading">#</a></h3>
+<p>MTVQA (Multilingual Text-Centric Visual Question Answering) introduces high-quality human expert annotations across nine diverse languages to address multilingual TEC-VQA challenges, enhancing AI models’ performance in text-centric visual environments.</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-31-31-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-31-31-0" name="31-0" role="tab" tabindex="0">1B</button><button aria-controls="panel-31-31-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-31-31-1" name="31-1" role="tab" tabindex="-1">2B</button><button aria-controls="panel-31-31-2" aria-selected="false" class="sphinx-tabs-tab" id="tab-31-31-2" name="31-2" role="tab" tabindex="-1">4B</button><button aria-controls="panel-31-31-3" aria-selected="false" class="sphinx-tabs-tab" id="tab-31-31-3" name="31-3" role="tab" tabindex="-1">8B</button><button aria-controls="panel-31-31-4" aria-selected="false" class="sphinx-tabs-tab" id="tab-31-31-4" name="31-4" role="tab" tabindex="-1">26B</button><button aria-controls="panel-31-31-5" aria-selected="false" class="sphinx-tabs-tab" id="tab-31-31-5" name="31-5" role="tab" tabindex="-1">40B</button><button aria-controls="panel-31-31-6" aria-selected="false" class="sphinx-tabs-tab" id="tab-31-31-6" name="31-6" role="tab" tabindex="-1">76B</button></div><div aria-labelledby="tab-31-31-0" class="sphinx-tabs-panel" id="panel-31-31-0" name="31-0" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">torchrun</span> <span class="o">--</span><span class="n">nproc</span><span class="o">-</span><span class="n">per</span><span class="o">-</span><span class="n">node</span><span class="o">=</span><span class="mi">8</span> <span class="n">run</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">model</span> <span class="n">InternVL2</span><span class="o">-</span><span class="mi">1</span><span class="n">B</span> <span class="o">--</span><span class="n">data</span> <span class="n">MTVQA_TEST</span>
+</pre></div>
+</div>
+<p>The expected test results are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;AR&quot;</span><span class="p">:</span> <span class="mf">1.991465149359886</span><span class="p">,</span>
+    <span class="s2">&quot;Average&quot;</span><span class="p">:</span> <span class="mf">12.570079669519032</span><span class="p">,</span>
+    <span class="s2">&quot;DE&quot;</span><span class="p">:</span> <span class="mf">21.85114503816794</span><span class="p">,</span>
+    <span class="s2">&quot;FR&quot;</span><span class="p">:</span> <span class="mf">20.54176072234763</span><span class="p">,</span>
+    <span class="s2">&quot;IT&quot;</span><span class="p">:</span> <span class="mf">22.39819004524887</span><span class="p">,</span>
+    <span class="s2">&quot;JA&quot;</span><span class="p">:</span> <span class="mf">6.159420289855073</span><span class="p">,</span>
+    <span class="s2">&quot;KR&quot;</span><span class="p">:</span> <span class="mf">8.422939068100359</span><span class="p">,</span>
+    <span class="s2">&quot;RU&quot;</span><span class="p">:</span> <span class="mf">3.571428571428571</span><span class="p">,</span>
+    <span class="s2">&quot;TH&quot;</span><span class="p">:</span> <span class="mf">2.1645021645021645</span><span class="p">,</span>
+    <span class="s2">&quot;VI&quot;</span><span class="p">:</span> <span class="mf">11.199095022624435</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-31-31-1" class="sphinx-tabs-panel" hidden="true" id="panel-31-31-1" name="31-1" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">torchrun</span> <span class="o">--</span><span class="n">nproc</span><span class="o">-</span><span class="n">per</span><span class="o">-</span><span class="n">node</span><span class="o">=</span><span class="mi">8</span> <span class="n">run</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">model</span> <span class="n">InternVL2</span><span class="o">-</span><span class="mi">2</span><span class="n">B</span> <span class="o">--</span><span class="n">data</span> <span class="n">MTVQA_TEST</span>
+</pre></div>
+</div>
+<p>The expected test results are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;AR&quot;</span><span class="p">:</span> <span class="mf">1.422475106685633</span><span class="p">,</span>
+    <span class="s2">&quot;Average&quot;</span><span class="p">:</span> <span class="mf">10.88816760106226</span><span class="p">,</span>
+    <span class="s2">&quot;DE&quot;</span><span class="p">:</span> <span class="mf">15.744274809160306</span><span class="p">,</span>
+    <span class="s2">&quot;FR&quot;</span><span class="p">:</span> <span class="mf">19.751693002257337</span><span class="p">,</span>
+    <span class="s2">&quot;IT&quot;</span><span class="p">:</span> <span class="mf">21.380090497737555</span><span class="p">,</span>
+    <span class="s2">&quot;JA&quot;</span><span class="p">:</span> <span class="mf">7.367149758454106</span><span class="p">,</span>
+    <span class="s2">&quot;KR&quot;</span><span class="p">:</span> <span class="mf">5.913978494623656</span><span class="p">,</span>
+    <span class="s2">&quot;RU&quot;</span><span class="p">:</span> <span class="mf">3.0423280423280423</span><span class="p">,</span>
+    <span class="s2">&quot;TH&quot;</span><span class="p">:</span> <span class="mf">0.8658008658008658</span><span class="p">,</span>
+    <span class="s2">&quot;VI&quot;</span><span class="p">:</span> <span class="mf">9.049773755656108</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-31-31-2" class="sphinx-tabs-panel" hidden="true" id="panel-31-31-2" name="31-2" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">torchrun</span> <span class="o">--</span><span class="n">nproc</span><span class="o">-</span><span class="n">per</span><span class="o">-</span><span class="n">node</span><span class="o">=</span><span class="mi">8</span> <span class="n">run</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">model</span> <span class="n">InternVL2</span><span class="o">-</span><span class="mi">4</span><span class="n">B</span> <span class="o">--</span><span class="n">data</span> <span class="n">MTVQA_TEST</span>
+</pre></div>
+</div>
+<p>The expected test results are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;AR&quot;</span><span class="p">:</span> <span class="mf">1.849217638691323</span><span class="p">,</span>
+    <span class="s2">&quot;Average&quot;</span><span class="p">:</span> <span class="mf">15.34375922100915</span><span class="p">,</span>
+    <span class="s2">&quot;DE&quot;</span><span class="p">:</span> <span class="mf">24.904580152671755</span><span class="p">,</span>
+    <span class="s2">&quot;FR&quot;</span><span class="p">:</span> <span class="mf">30.81264108352145</span><span class="p">,</span>
+    <span class="s2">&quot;IT&quot;</span><span class="p">:</span> <span class="mf">26.923076923076923</span><span class="p">,</span>
+    <span class="s2">&quot;JA&quot;</span><span class="p">:</span> <span class="mf">8.091787439613526</span><span class="p">,</span>
+    <span class="s2">&quot;KR&quot;</span><span class="p">:</span> <span class="mf">8.064516129032258</span><span class="p">,</span>
+    <span class="s2">&quot;RU&quot;</span><span class="p">:</span> <span class="mf">3.7037037037037033</span><span class="p">,</span>
+    <span class="s2">&quot;TH&quot;</span><span class="p">:</span> <span class="mf">3.463203463203463</span><span class="p">,</span>
+    <span class="s2">&quot;VI&quot;</span><span class="p">:</span> <span class="mf">12.104072398190045</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-31-31-3" class="sphinx-tabs-panel" hidden="true" id="panel-31-31-3" name="31-3" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">torchrun</span> <span class="o">--</span><span class="n">nproc</span><span class="o">-</span><span class="n">per</span><span class="o">-</span><span class="n">node</span><span class="o">=</span><span class="mi">8</span> <span class="n">run</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">model</span> <span class="n">InternVL2</span><span class="o">-</span><span class="mi">8</span><span class="n">B</span> <span class="o">--</span><span class="n">data</span> <span class="n">MTVQA_TEST</span>
+</pre></div>
+</div>
+<p>The expected test results are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;AR&quot;</span><span class="p">:</span> <span class="mf">2.418207681365576</span><span class="p">,</span>
+    <span class="s2">&quot;Average&quot;</span><span class="p">:</span> <span class="mf">18.102685157863675</span><span class="p">,</span>
+    <span class="s2">&quot;DE&quot;</span><span class="p">:</span> <span class="mf">28.435114503816795</span><span class="p">,</span>
+    <span class="s2">&quot;FR&quot;</span><span class="p">:</span> <span class="mf">33.972911963882616</span><span class="p">,</span>
+    <span class="s2">&quot;IT&quot;</span><span class="p">:</span> <span class="mf">30.20361990950226</span><span class="p">,</span>
+    <span class="s2">&quot;JA&quot;</span><span class="p">:</span> <span class="mf">8.57487922705314</span><span class="p">,</span>
+    <span class="s2">&quot;KR&quot;</span><span class="p">:</span> <span class="mf">10.931899641577061</span><span class="p">,</span>
+    <span class="s2">&quot;RU&quot;</span><span class="p">:</span> <span class="mf">5.158730158730158</span><span class="p">,</span>
+    <span class="s2">&quot;TH&quot;</span><span class="p">:</span> <span class="mf">6.926406926406926</span><span class="p">,</span>
+    <span class="s2">&quot;VI&quot;</span><span class="p">:</span> <span class="mf">17.760180995475114</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-31-31-4" class="sphinx-tabs-panel" hidden="true" id="panel-31-31-4" name="31-4" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">torchrun</span> <span class="o">--</span><span class="n">nproc</span><span class="o">-</span><span class="n">per</span><span class="o">-</span><span class="n">node</span><span class="o">=</span><span class="mi">8</span> <span class="n">run</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">model</span> <span class="n">InternVL2</span><span class="o">-</span><span class="mi">26</span><span class="n">B</span> <span class="o">--</span><span class="n">data</span> <span class="n">MTVQA_TEST</span>
+</pre></div>
+</div>
+<p>The expected test results are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;AR&quot;</span><span class="p">:</span> <span class="mf">3.982930298719772</span><span class="p">,</span>
+    <span class="s2">&quot;Average&quot;</span><span class="p">:</span> <span class="mf">17.71909117733845</span><span class="p">,</span>
+    <span class="s2">&quot;DE&quot;</span><span class="p">:</span> <span class="mf">28.053435114503817</span><span class="p">,</span>
+    <span class="s2">&quot;FR&quot;</span><span class="p">:</span> <span class="mf">26.52370203160271</span><span class="p">,</span>
+    <span class="s2">&quot;IT&quot;</span><span class="p">:</span> <span class="mf">30.316742081447963</span><span class="p">,</span>
+    <span class="s2">&quot;JA&quot;</span><span class="p">:</span> <span class="mf">9.903381642512077</span><span class="p">,</span>
+    <span class="s2">&quot;KR&quot;</span><span class="p">:</span> <span class="mf">11.29032258064516</span><span class="p">,</span>
+    <span class="s2">&quot;RU&quot;</span><span class="p">:</span> <span class="mf">6.613756613756613</span><span class="p">,</span>
+    <span class="s2">&quot;TH&quot;</span><span class="p">:</span> <span class="mf">8.225108225108226</span><span class="p">,</span>
+    <span class="s2">&quot;VI&quot;</span><span class="p">:</span> <span class="mf">18.32579185520362</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-31-31-5" class="sphinx-tabs-panel" hidden="true" id="panel-31-31-5" name="31-5" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">torchrun</span> <span class="o">--</span><span class="n">nproc</span><span class="o">-</span><span class="n">per</span><span class="o">-</span><span class="n">node</span><span class="o">=</span><span class="mi">8</span> <span class="n">run</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">model</span> <span class="n">InternVL2</span><span class="o">-</span><span class="mi">40</span><span class="n">B</span> <span class="o">--</span><span class="n">data</span> <span class="n">MTVQA_TEST</span>
+</pre></div>
+</div>
+<p>The expected test results are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;AR&quot;</span><span class="p">:</span> <span class="mf">4.551920341394026</span><span class="p">,</span>
+    <span class="s2">&quot;Average&quot;</span><span class="p">:</span> <span class="mf">20.61079964591325</span><span class="p">,</span>
+    <span class="s2">&quot;DE&quot;</span><span class="p">:</span> <span class="mf">30.62977099236641</span><span class="p">,</span>
+    <span class="s2">&quot;FR&quot;</span><span class="p">:</span> <span class="mf">36.455981941309254</span><span class="p">,</span>
+    <span class="s2">&quot;IT&quot;</span><span class="p">:</span> <span class="mf">34.61538461538461</span><span class="p">,</span>
+    <span class="s2">&quot;JA&quot;</span><span class="p">:</span> <span class="mf">10.748792270531402</span><span class="p">,</span>
+    <span class="s2">&quot;KR&quot;</span><span class="p">:</span> <span class="mf">13.261648745519713</span><span class="p">,</span>
+    <span class="s2">&quot;RU&quot;</span><span class="p">:</span> <span class="mf">6.481481481481481</span><span class="p">,</span>
+    <span class="s2">&quot;TH&quot;</span><span class="p">:</span> <span class="mf">5.627705627705628</span><span class="p">,</span>
+    <span class="s2">&quot;VI&quot;</span><span class="p">:</span> <span class="mf">21.49321266968326</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-31-31-6" class="sphinx-tabs-panel" hidden="true" id="panel-31-31-6" name="31-6" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">torchrun</span> <span class="o">--</span><span class="n">nproc</span><span class="o">-</span><span class="n">per</span><span class="o">-</span><span class="n">node</span><span class="o">=</span><span class="mi">1</span> <span class="n">run</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">model</span> <span class="n">InternVL2</span><span class="o">-</span><span class="mi">76</span><span class="n">B</span> <span class="o">--</span><span class="n">data</span> <span class="n">MTVQA_TEST</span>
 </pre></div>
 </div>
 <p>The expected test results are:</p>
@@ -8188,6 +8632,8 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#videomme">VideoMME</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mmbench-video">MMBench-Video</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathvision">MathVision</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#blink">BLINK</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mtvqa">MTVQA</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citation">Citation</a></li>

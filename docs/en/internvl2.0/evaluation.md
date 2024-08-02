@@ -9178,7 +9178,25 @@ torchrun --nproc-per-node=8 run.py --model InternVL2-1B --data MathVision_MINI
 The expected test results are:
 
 ```
-TODO
+--  ------------------------  ---  ---  --  --------  --------
+ 0  Overall                   304  100  37  32.8947   12.1711
+ 1  algebra                    19    5   1  26.3158    5.26316
+ 2  analytic geometry          19    5   3  26.3158   15.7895
+ 3  arithmetic                 19    4   2  21.0526   10.5263
+ 4  combinatorial geometry     19    7   2  36.8421   10.5263
+ 5  combinatorics              19    1   3   5.26316  15.7895
+ 6  counting                   19    1   2   5.26316  10.5263
+ 7  descriptive geometry       19   10   4  52.6316   21.0526
+ 8  graph theory               19    7   2  36.8421   10.5263
+ 9  logic                      19    6   3  31.5789   15.7895
+10  metric geometry - angle    19   10   4  52.6316   21.0526
+11  metric geometry - area     19    8   1  42.1053    5.26316
+12  metric geometry - length   19    8   3  42.1053   15.7895
+13  solid geometry             19    6   0  31.5789    0
+14  statistics                 19    6   2  31.5789   10.5263
+15  topology                   19    8   2  42.1053   10.5263
+16  transformation geometry    19    8   3  42.1053   15.7895
+--  ------------------------  ---  ---  --  --------  --------
 ```
 
 ````
@@ -9192,7 +9210,25 @@ torchrun --nproc-per-node=8 run.py --model InternVL2-2B --data MathVision_MINI
 The expected test results are:
 
 ```
-TODO
+--  ------------------------  ---  ---  --  --------  --------
+ 0  Overall                   304  100  48  32.8947   15.7895
+ 1  algebra                    19    6   1  31.5789    5.26316
+ 2  analytic geometry          19    7   2  36.8421   10.5263
+ 3  arithmetic                 19    4   1  21.0526    5.26316
+ 4  combinatorial geometry     19    5   5  26.3158   26.3158
+ 5  combinatorics              19    1   1   5.26316   5.26316
+ 6  counting                   19    0   2   0        10.5263
+ 7  descriptive geometry       19    8   4  42.1053   21.0526
+ 8  graph theory               19    3   4  15.7895   21.0526
+ 9  logic                      19    9   5  47.3684   26.3158
+10  metric geometry - angle    19   11   4  57.8947   21.0526
+11  metric geometry - area     19    8   3  42.1053   15.7895
+12  metric geometry - length   19   10   4  52.6316   21.0526
+13  solid geometry             19    6   1  31.5789    5.26316
+14  statistics                 19    7   5  36.8421   26.3158
+15  topology                   19    5   1  26.3158    5.26316
+16  transformation geometry    19   10   5  52.6316   26.3158
+--  ------------------------  ---  ---  --  --------  --------
 ```
 
 ````
@@ -9205,7 +9241,25 @@ torchrun --nproc-per-node=8 run.py --model InternVL2-4B --data MathVision_MINI
 The expected test results are:
 
 ```
-TODO
+--  ------------------------  ---  --  --  --------  --------
+ 0  Overall                   304  89  54  29.2763   17.7632
+ 1  algebra                    19   4   4  21.0526   21.0526
+ 2  analytic geometry          19   7   4  36.8421   21.0526
+ 3  arithmetic                 19   1   4   5.26316  21.0526
+ 4  combinatorial geometry     19   6   2  31.5789   10.5263
+ 5  combinatorics              19   1   2   5.26316  10.5263
+ 6  counting                   19   0   5   0        26.3158
+ 7  descriptive geometry       19   8   5  42.1053   26.3158
+ 8  graph theory               19   6   2  31.5789   10.5263
+ 9  logic                      19   8   2  42.1053   10.5263
+10  metric geometry - angle    19  10   6  52.6316   31.5789
+11  metric geometry - area     19   7   5  36.8421   26.3158
+12  metric geometry - length   19  11   2  57.8947   10.5263
+13  solid geometry             19   7   2  36.8421   10.5263
+14  statistics                 19   4   5  21.0526   26.3158
+15  topology                   19   6   1  31.5789    5.26316
+16  transformation geometry    19   3   3  15.7895   15.7895
+--  ------------------------  ---  --  --  --------  --------
 ```
 
 ````
@@ -9219,7 +9273,25 @@ torchrun --nproc-per-node=8 run.py --model InternVL2-8B --data MathVision_MINI
 The expected test results are:
 
 ```
-TODO
+--  ------------------------  ---  ---  --  --------  -------
+ 0  Overall                   304  104  62  34.2105   20.3947
+ 1  algebra                    19    4   4  21.0526   21.0526
+ 2  analytic geometry          19    4   3  21.0526   15.7895
+ 3  arithmetic                 19    2   4  10.5263   21.0526
+ 4  combinatorial geometry     19    9   6  47.3684   31.5789
+ 5  combinatorics              19    1   3   5.26316  15.7895
+ 6  counting                   19    2   4  10.5263   21.0526
+ 7  descriptive geometry       19   11   4  57.8947   21.0526
+ 8  graph theory               19    6   2  31.5789   10.5263
+ 9  logic                      19   10   2  52.6316   10.5263
+10  metric geometry - angle    19    7   4  36.8421   21.0526
+11  metric geometry - area     19    7   7  36.8421   36.8421
+12  metric geometry - length   19    7   2  36.8421   10.5263
+13  solid geometry             19    8   4  42.1053   21.0526
+14  statistics                 19    6   4  31.5789   21.0526
+15  topology                   19   11   5  57.8947   26.3158
+16  transformation geometry    19    9   4  47.3684   21.0526
+--  ------------------------  ---  ---  --  --------  -------
 ```
 
 ````
@@ -9233,7 +9305,25 @@ torchrun --nproc-per-node=8 run.py --model InternVL2-26B --data MathVision_MINI
 The expected test results are:
 
 ```
-TODO
+--  ------------------------  ---  ---  --  --------  --------
+ 0  Overall                   304  105  71  34.5395   23.3553
+ 1  algebra                    19    6   3  31.5789   15.7895
+ 2  analytic geometry          19    6   7  31.5789   36.8421
+ 3  arithmetic                 19    4   4  21.0526   21.0526
+ 4  combinatorial geometry     19    4   3  21.0526   15.7895
+ 5  combinatorics              19    4   6  21.0526   31.5789
+ 6  counting                   19    1   3   5.26316  15.7895
+ 7  descriptive geometry       19    7   4  36.8421   21.0526
+ 8  graph theory               19    5   5  26.3158   26.3158
+ 9  logic                      19   11   7  57.8947   36.8421
+10  metric geometry - angle    19    9   3  47.3684   15.7895
+11  metric geometry - area     19    9   7  47.3684   36.8421
+12  metric geometry - length   19   10   3  52.6316   15.7895
+13  solid geometry             19    6   1  31.5789    5.26316
+14  statistics                 19    8   7  42.1053   36.8421
+15  topology                   19   10   5  52.6316   26.3158
+16  transformation geometry    19    5   3  26.3158   15.7895
+--  ------------------------  ---  ---  --  --------  --------
 ```
 
 ````
@@ -9247,7 +9337,25 @@ torchrun --nproc-per-node=8 run.py --model InternVL2-40B --data MathVision_MINI
 The expected test results are:
 
 ```
-TODO
+--  ------------------------  ---  ---  --  --------  -------
+ 0  Overall                   304  100  65  32.8947   21.3816
+ 1  algebra                    19    6   4  31.5789   21.0526
+ 2  analytic geometry          19    7   5  36.8421   26.3158
+ 3  arithmetic                 19    4   8  21.0526   42.1053
+ 4  combinatorial geometry     19    3   6  15.7895   31.5789
+ 5  combinatorics              19    0   4   0        21.0526
+ 6  counting                   19    1   2   5.26316  10.5263
+ 7  descriptive geometry       19    8   2  42.1053   10.5263
+ 8  graph theory               19    6   3  31.5789   15.7895
+ 9  logic                      19    8   4  42.1053   21.0526
+10  metric geometry - angle    19   10   5  52.6316   26.3158
+11  metric geometry - area     19    8   2  42.1053   10.5263
+12  metric geometry - length   19   10   3  52.6316   15.7895
+13  solid geometry             19    6   3  31.5789   15.7895
+14  statistics                 19   10   6  52.6316   31.5789
+15  topology                   19    7   4  36.8421   21.0526
+16  transformation geometry    19    6   4  31.5789   21.0526
+--  ------------------------  ---  ---  --  --------  -------
 ```
 
 ````
@@ -9255,7 +9363,444 @@ TODO
 ````{tab} 76B
 
 ```python
-torchrun --nproc-per-node=8 run.py --model InternVL2-76B --data MathVision_MINI
+torchrun --nproc-per-node=1 run.py --model InternVL2-76B --data MathVision_MINI
+```
+
+The expected test results are:
+
+```
+--  ------------------------  ---  ---  --  --------  -------
+ 0  Overall                   304  102  72  33.5526   23.6842
+ 1  algebra                    19    1   3   5.26316  15.7895
+ 2  analytic geometry          19    6   8  31.5789   42.1053
+ 3  arithmetic                 19    5   7  26.3158   36.8421
+ 4  combinatorial geometry     19    7   2  36.8421   10.5263
+ 5  combinatorics              19    1   4   5.26316  21.0526
+ 6  counting                   19    0   3   0        15.7895
+ 7  descriptive geometry       19    9   2  47.3684   10.5263
+ 8  graph theory               19    6   3  31.5789   15.7895
+ 9  logic                      19    8   5  42.1053   26.3158
+10  metric geometry - angle    19   11   5  57.8947   26.3158
+11  metric geometry - area     19    9   5  47.3684   26.3158
+12  metric geometry - length   19   10   5  52.6316   26.3158
+13  solid geometry             19    6   5  31.5789   26.3158
+14  statistics                 19    6   8  31.5789   42.1053
+15  topology                   19    7   4  36.8421   21.0526
+16  transformation geometry    19   10   3  52.6316   15.7895
+--  ------------------------  ---  ---  --  --------  -------
+```
+
+````
+`````
+
+### BLINK
+
+The BLINK dataset is a new benchmark designed to challenge MLLMs by focusing on core visual perception tasks that are not typically covered by other benchmarks. It reformats 14 classic computer vision tasks into 3,807 multiple-choice questions, paired with single or multiple images and visual prompts. These tasks include relative depth estimation, visual correspondence, forensics detection, and multi-view reasoning, which humans can generally solve quickly but are significantly challenging for current multimodal LLMs.
+
+`````{tabs}
+
+````{tab} 1B
+
+```python
+torchrun --nproc-per-node=8 run.py --model InternVL2-1B --data BLINK
+```
+
+The expected test results are:
+
+```
+2024-08-02 13:47:04,164 - RUN - INFO - The evaluation of model InternVL2-1B x dataset BLINK has finished!
+2024-08-02 13:47:04,164 - RUN - INFO - Evaluation Results:
+2024-08-02 13:47:04,166 - RUN - INFO -
+-------------------------  -------------------
+split                      none
+Overall                    0.3855865334034719
+Art_Style                  0.4700854700854701
+Counting                   0.325
+Forensic_Detection         0.25
+Functional_Correspondence  0.26153846153846155
+IQ_Test                    0.2866666666666667
+Jigsaw                     0.5266666666666666
+Multi-view_Reasoning       0.44360902255639095
+Object_Localization        0.4918032786885246
+Relative_Depth             0.49193548387096775
+Relative_Reflectance       0.3283582089552239
+Semantic_Correspondence    0.2446043165467626
+Spatial_Relation           0.5664335664335665
+Visual_Correspondence      0.27325581395348836
+Visual_Similarity          0.4740740740740741
+-------------------------  -------------------
+```
+
+````
+
+````{tab} 2B
+
+```python
+torchrun --nproc-per-node=8 run.py --model InternVL2-2B --data BLINK
+```
+
+The expected test results are:
+
+```
+2024-08-02 13:46:22,686 - RUN - INFO - The evaluation of model InternVL2-2B x dataset BLINK has finished!
+2024-08-02 13:46:22,686 - RUN - INFO - Evaluation Results:
+2024-08-02 13:46:22,689 - RUN - INFO -
+-------------------------  -------------------
+split                      none
+Overall                    0.43766438716465017
+Art_Style                  0.5299145299145299
+Counting                   0.4666666666666667
+Forensic_Detection         0.2803030303030303
+Functional_Correspondence  0.23076923076923078
+IQ_Test                    0.2866666666666667
+Jigsaw                     0.47333333333333333
+Multi-view_Reasoning       0.556390977443609
+Object_Localization        0.36885245901639346
+Relative_Depth             0.6048387096774194
+Relative_Reflectance       0.39552238805970147
+Semantic_Correspondence    0.3669064748201439
+Spatial_Relation           0.7622377622377622
+Visual_Correspondence      0.3313953488372093
+Visual_Similarity          0.5111111111111111
+-------------------------  -------------------
+```
+
+````
+
+````{tab} 4B
+
+```python
+torchrun --nproc-per-node=8 run.py --model InternVL2-4B --data BLINK
+```
+
+The expected test results are:
+
+```
+2024-08-02 13:34:06,982 - RUN - INFO - The evaluation of model InternVL2-4B x dataset BLINK has finished!
+2024-08-02 13:34:06,982 - RUN - INFO - Evaluation Results:
+2024-08-02 13:34:06,984 - RUN - INFO -
+-------------------------  -------------------
+split                      none
+Overall                    0.46081009994739613
+Art_Style                  0.5897435897435898
+Counting                   0.55
+Forensic_Detection         0.32575757575757575
+Functional_Correspondence  0.25384615384615383
+IQ_Test                    0.23333333333333334
+Jigsaw                     0.48
+Multi-view_Reasoning       0.556390977443609
+Object_Localization        0.5245901639344263
+Relative_Depth             0.6370967741935484
+Relative_Reflectance       0.3283582089552239
+Semantic_Correspondence    0.2805755395683453
+Spatial_Relation           0.8111888111888111
+Visual_Correspondence      0.36046511627906974
+Visual_Similarity          0.5925925925925926
+-------------------------  -------------------
+```
+
+````
+
+````{tab} 8B
+
+```python
+torchrun --nproc-per-node=8 run.py --model InternVL2-8B --data BLINK
+```
+
+The expected test results are:
+
+```
+2024-08-02 13:28:10,915 - RUN - INFO - The evaluation of model InternVL2-8B x dataset BLINK has finished!
+2024-08-02 13:28:10,915 - RUN - INFO - Evaluation Results:
+2024-08-02 13:28:10,917 - RUN - INFO -
+-------------------------  -------------------
+split                      none
+Overall                    0.5086796422935297
+Art_Style                  0.7094017094017094
+Counting                   0.75
+Forensic_Detection         0.3484848484848485
+Functional_Correspondence  0.17692307692307693
+IQ_Test                    0.30666666666666664
+Jigsaw                     0.5466666666666666
+Multi-view_Reasoning       0.48872180451127817
+Object_Localization        0.5573770491803278
+Relative_Depth             0.7419354838709677
+Relative_Reflectance       0.39552238805970147
+Semantic_Correspondence    0.26618705035971224
+Spatial_Relation           0.7972027972027972
+Visual_Correspondence      0.36046511627906974
+Visual_Similarity          0.7851851851851852
+-------------------------  -------------------
+```
+
+````
+
+````{tab} 26B
+
+```python
+torchrun --nproc-per-node=8 run.py --model InternVL2-26B --data BLINK
+```
+
+The expected test results are:
+
+```
+2024-08-02 13:00:51,453 - RUN - INFO - The evaluation of model InternVL2-26B x dataset BLINK has finished!
+2024-08-02 13:00:51,453 - RUN - INFO - Evaluation Results:
+2024-08-02 13:00:51,455 - RUN - INFO -
+-------------------------  -------------------
+split                      none
+Overall                    0.5623356128353498
+Art_Style                  0.7606837606837606
+Counting                   0.675
+Forensic_Detection         0.45454545454545453
+Functional_Correspondence  0.3
+IQ_Test                    0.30666666666666664
+Jigsaw                     0.7466666666666667
+Multi-view_Reasoning       0.41353383458646614
+Object_Localization        0.5737704918032787
+Relative_Depth             0.782258064516129
+Relative_Reflectance       0.3582089552238806
+Semantic_Correspondence    0.4172661870503597
+Spatial_Relation           0.8461538461538461
+Visual_Correspondence      0.47674418604651164
+Visual_Similarity          0.8222222222222222
+-------------------------  -------------------
+```
+
+````
+
+````{tab} 40B
+
+```python
+torchrun --nproc-per-node=8 run.py --model InternVL2-40B --data BLINK
+```
+
+The expected test results are:
+
+```
+2024-08-02 14:03:54,291 - RUN - INFO - The evaluation of model InternVL2-40B x dataset BLINK has finished!
+2024-08-02 14:03:54,291 - RUN - INFO - Evaluation Results:
+2024-08-02 14:03:54,292 - RUN - INFO -
+-------------------------  -------------------
+split                      none
+Overall                    0.5718043135192005
+Art_Style                  0.6923076923076923
+Counting                   0.7166666666666667
+Forensic_Detection         0.44696969696969696
+Functional_Correspondence  0.25384615384615383
+IQ_Test                    0.22666666666666666
+Jigsaw                     0.8
+Multi-view_Reasoning       0.5639097744360902
+Object_Localization        0.5819672131147541
+Relative_Depth             0.7903225806451613
+Relative_Reflectance       0.3880597014925373
+Semantic_Correspondence    0.41007194244604317
+Spatial_Relation           0.8461538461538461
+Visual_Correspondence      0.4941860465116279
+Visual_Similarity          0.8518518518518519
+-------------------------  -------------------
+```
+
+````
+
+````{tab} 76B
+
+```python
+torchrun --nproc-per-node=1 run.py --model InternVL2-76B --data BLINK
+```
+
+The expected test results are:
+
+```
+2024-08-02 16:08:58,199 - RUN - INFO - The evaluation of model InternVL2-76B x dataset BLINK has finished!
+2024-08-02 16:08:58,199 - RUN - INFO - Evaluation Results:
+2024-08-02 16:08:58,200 - RUN - INFO -
+-------------------------  -------------------
+split                      none
+Overall                    0.5681220410310363
+Art_Style                  0.6581196581196581
+Counting                   0.7
+Forensic_Detection         0.42424242424242425
+Functional_Correspondence  0.3
+IQ_Test                    0.2733333333333333
+Jigsaw                     0.74
+Multi-view_Reasoning       0.5639097744360902
+Object_Localization        0.5245901639344263
+Relative_Depth             0.782258064516129
+Relative_Reflectance       0.30597014925373134
+Semantic_Correspondence    0.4028776978417266
+Spatial_Relation           0.8391608391608392
+Visual_Correspondence      0.6802325581395349
+Visual_Similarity          0.7555555555555555
+-------------------------  -------------------
+```
+
+````
+
+
+`````
+
+### MTVQA
+
+
+MTVQA (Multilingual Text-Centric Visual Question Answering) introduces high-quality human expert annotations across nine diverse languages to address multilingual TEC-VQA challenges, enhancing AI models' performance in text-centric visual environments.
+
+`````{tabs}
+
+````{tab} 1B
+
+```python
+torchrun --nproc-per-node=8 run.py --model InternVL2-1B --data MTVQA_TEST
+```
+
+The expected test results are:
+
+```
+{
+    "AR": 1.991465149359886,
+    "Average": 12.570079669519032,
+    "DE": 21.85114503816794,
+    "FR": 20.54176072234763,
+    "IT": 22.39819004524887,
+    "JA": 6.159420289855073,
+    "KR": 8.422939068100359,
+    "RU": 3.571428571428571,
+    "TH": 2.1645021645021645,
+    "VI": 11.199095022624435
+}
+```
+
+````
+
+````{tab} 2B
+
+```python
+torchrun --nproc-per-node=8 run.py --model InternVL2-2B --data MTVQA_TEST
+```
+
+The expected test results are:
+
+```
+{
+    "AR": 1.422475106685633,
+    "Average": 10.88816760106226,
+    "DE": 15.744274809160306,
+    "FR": 19.751693002257337,
+    "IT": 21.380090497737555,
+    "JA": 7.367149758454106,
+    "KR": 5.913978494623656,
+    "RU": 3.0423280423280423,
+    "TH": 0.8658008658008658,
+    "VI": 9.049773755656108
+}
+```
+
+````
+
+````{tab} 4B
+
+```python
+torchrun --nproc-per-node=8 run.py --model InternVL2-4B --data MTVQA_TEST
+```
+
+The expected test results are:
+
+```
+{
+    "AR": 1.849217638691323,
+    "Average": 15.34375922100915,
+    "DE": 24.904580152671755,
+    "FR": 30.81264108352145,
+    "IT": 26.923076923076923,
+    "JA": 8.091787439613526,
+    "KR": 8.064516129032258,
+    "RU": 3.7037037037037033,
+    "TH": 3.463203463203463,
+    "VI": 12.104072398190045
+}
+```
+
+````
+
+````{tab} 8B
+
+```python
+torchrun --nproc-per-node=8 run.py --model InternVL2-8B --data MTVQA_TEST
+```
+
+The expected test results are:
+
+```
+{
+    "AR": 2.418207681365576,
+    "Average": 18.102685157863675,
+    "DE": 28.435114503816795,
+    "FR": 33.972911963882616,
+    "IT": 30.20361990950226,
+    "JA": 8.57487922705314,
+    "KR": 10.931899641577061,
+    "RU": 5.158730158730158,
+    "TH": 6.926406926406926,
+    "VI": 17.760180995475114
+}
+```
+
+````
+
+````{tab} 26B
+
+```python
+torchrun --nproc-per-node=8 run.py --model InternVL2-26B --data MTVQA_TEST
+```
+
+The expected test results are:
+
+```
+{
+    "AR": 3.982930298719772,
+    "Average": 17.71909117733845,
+    "DE": 28.053435114503817,
+    "FR": 26.52370203160271,
+    "IT": 30.316742081447963,
+    "JA": 9.903381642512077,
+    "KR": 11.29032258064516,
+    "RU": 6.613756613756613,
+    "TH": 8.225108225108226,
+    "VI": 18.32579185520362
+}
+```
+
+````
+
+````{tab} 40B
+
+```python
+torchrun --nproc-per-node=8 run.py --model InternVL2-40B --data MTVQA_TEST
+```
+
+The expected test results are:
+
+```
+{
+    "AR": 4.551920341394026,
+    "Average": 20.61079964591325,
+    "DE": 30.62977099236641,
+    "FR": 36.455981941309254,
+    "IT": 34.61538461538461,
+    "JA": 10.748792270531402,
+    "KR": 13.261648745519713,
+    "RU": 6.481481481481481,
+    "TH": 5.627705627705628,
+    "VI": 21.49321266968326
+}
+```
+
+````
+
+````{tab} 76B
+
+```python
+torchrun --nproc-per-node=1 run.py --model InternVL2-76B --data MTVQA_TEST
 ```
 
 The expected test results are:
@@ -9265,6 +9810,8 @@ TODO
 ```
 
 ````
+
+
 `````
 
 
