@@ -54,7 +54,7 @@
     <link rel="prev" title="Evaluation of InternVL2 Series" href="evaluation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-    <meta name="docbuild:last-update" content="Aug 01, 2024"/>
+    <meta name="docbuild:last-update" content="Aug 03, 2024"/>
   </head>
   
   
@@ -532,7 +532,18 @@ document.write(`
 <span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 </pre></div>
 </div>
-</div><div aria-labelledby="tab-0-0-5" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-5" name="0-5" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Coming</span> <span class="n">soon</span><span class="o">...</span>
+</div><div aria-labelledby="tab-0-0-5" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-5" name="0-5" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lmdeploy</span> <span class="kn">import</span> <span class="n">pipeline</span><span class="p">,</span> <span class="n">TurbomindEngineConfig</span><span class="p">,</span> <span class="n">ChatTemplateConfig</span>
+<span class="kn">from</span> <span class="nn">lmdeploy.vl</span> <span class="kn">import</span> <span class="n">load_image</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="s1">&#39;OpenGVLab/InternVL2-Llama3-76B&#39;</span>
+<span class="n">system_prompt</span> <span class="o">=</span> <span class="s1">&#39;我是书生·万象，英文名是InternVL，是由上海人工智能实验室、清华大学及多家合作单位联合开发的多模态大语言模型。&#39;</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="s1">&#39;https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/tests/data/tiger.jpeg&#39;</span><span class="p">)</span>
+<span class="n">chat_template_config</span> <span class="o">=</span> <span class="n">ChatTemplateConfig</span><span class="p">(</span><span class="s1">&#39;internvl-internlm2&#39;</span><span class="p">)</span>
+<span class="n">chat_template_config</span><span class="o">.</span><span class="n">meta_instruction</span> <span class="o">=</span> <span class="n">system_prompt</span>
+<span class="n">pipe</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">chat_template_config</span><span class="o">=</span><span class="n">chat_template_config</span><span class="p">,</span>
+                <span class="n">backend_config</span><span class="o">=</span><span class="n">TurbomindEngineConfig</span><span class="p">(</span><span class="n">session_len</span><span class="o">=</span><span class="mi">8192</span><span class="p">),</span> <span class="n">tp</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">pipe</span><span class="p">((</span><span class="s1">&#39;describe this image&#39;</span><span class="p">,</span> <span class="n">image</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 </pre></div>
 </div>
 </div></div>
@@ -1429,7 +1440,7 @@ By InternVL Authors
   
   <div class="footer-item">
     <p class="last-updated">
-  Last updated on Aug 01, 2024.
+  Last updated on Aug 03, 2024.
   <br/>
 </p>
   </div>
