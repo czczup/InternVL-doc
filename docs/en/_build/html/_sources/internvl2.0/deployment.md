@@ -121,7 +121,7 @@ image = load_image('https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/t
 chat_template_config = ChatTemplateConfig('internvl-internlm2')
 chat_template_config.meta_instruction = system_prompt
 pipe = pipeline(model, chat_template_config=chat_template_config,
-                backend_config=TurbomindEngineConfig(session_len=8192), tp=4)
+                backend_config=TurbomindEngineConfig(session_len=8192, tp=4))
 response = pipe(('describe this image', image))
 print(response.text)
 ```
@@ -278,7 +278,26 @@ print(response.text)
 ````{tab} 76B
 
 ```python
-Coming soon...
+from lmdeploy import pipeline, TurbomindEngineConfig, ChatTemplateConfig
+from lmdeploy.vl import load_image
+from lmdeploy.vl.constants import IMAGE_TOKEN
+
+model = 'OpenGVLab/InternVL2-Llama3-76B'
+system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室、清华大学及多家合作单位联合开发的多模态大语言模型。'
+chat_template_config = ChatTemplateConfig('internvl-internlm2')
+chat_template_config.meta_instruction = system_prompt
+pipe = pipeline(model, chat_template_config=chat_template_config,
+                backend_config=TurbomindEngineConfig(session_len=8192, tp=4))
+
+image_urls=[
+    'https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/demo/resources/human-pose.jpg',
+    'https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/demo/resources/det.jpg'
+]
+
+images = [load_image(img_url) for img_url in image_urls]
+# Numbering images improves multi-image conversations
+response = pipe((f'Image-1: {IMAGE_TOKEN}\nImage-2: {IMAGE_TOKEN}\ndescribe these two images', images))
+print(response.text)
 ```
 
 ````
@@ -414,7 +433,23 @@ print(response)
 ````{tab} 76B
 
 ```python
-Coming soon...
+from lmdeploy import pipeline, TurbomindEngineConfig, ChatTemplateConfig
+from lmdeploy.vl import load_image
+
+model = 'OpenGVLab/InternVL2-Llama3-76B'
+system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室、清华大学及多家合作单位联合开发的多模态大语言模型。'
+chat_template_config = ChatTemplateConfig('internvl-internlm2')
+chat_template_config.meta_instruction = system_prompt
+pipe = pipeline(model, chat_template_config=chat_template_config,
+                backend_config=TurbomindEngineConfig(session_len=8192, tp=4))
+
+image_urls=[
+    "https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/demo/resources/human-pose.jpg",
+    "https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/demo/resources/det.jpg"
+]
+prompts = [('describe this image', load_image(img_url)) for img_url in image_urls]
+response = pipe(prompts)
+print(response)
 ```
 
 ````
@@ -545,7 +580,22 @@ print(sess.response.text)
 ````{tab} 76B
 
 ```python
-Coming soon...
+from lmdeploy import pipeline, TurbomindEngineConfig, ChatTemplateConfig, GenerationConfig
+from lmdeploy.vl import load_image
+
+model = 'OpenGVLab/InternVL2-Llama3-76B'
+system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室、清华大学及多家合作单位联合开发的多模态大语言模型。'
+chat_template_config = ChatTemplateConfig('internvl-internlm2')
+chat_template_config.meta_instruction = system_prompt
+pipe = pipeline(model, chat_template_config=chat_template_config,
+                backend_config=TurbomindEngineConfig(session_len=8192, tp=4))
+
+image = load_image('https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/demo/resources/human-pose.jpg')
+gen_config = GenerationConfig(top_k=40, top_p=0.8, temperature=0.8)
+sess = pipe.chat(('describe this image', image), gen_config=gen_config)
+print(sess.response.text)
+sess = pipe.chat('What is the woman doing?', session=sess, gen_config=gen_config)
+print(sess.response.text)
 ```
 
 ````
