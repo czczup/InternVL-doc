@@ -99,6 +99,13 @@ Documentation
    internvl_chat_llava <internvl1.0/internvl_chat_llava.md>
    internvl_g <internvl1.0/internvl_g.md>
 
+.. _classic_questions:
+.. toctree::
+   :maxdepth: 1
+   :caption: Classic Questions
+
+   Classic Questions <classic_questions/Classic_Questions.md>
+
 Indices and tables
 ==================
 
