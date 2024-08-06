@@ -9642,7 +9642,6 @@ Visual_Similarity          0.7555555555555555
 
 ### MTVQA
 
-
 MTVQA (Multilingual Text-Centric Visual Question Answering) introduces high-quality human expert annotations across nine diverse languages to address multilingual TEC-VQA challenges, enhancing AI models' performance in text-centric visual environments.
 
 `````{tabs}
@@ -9824,7 +9823,6 @@ The expected test results are:
 
 
 `````
-
 
 ## Citation
 
