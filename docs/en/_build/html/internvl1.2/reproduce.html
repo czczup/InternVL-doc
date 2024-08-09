@@ -53,7 +53,7 @@
     <link rel="prev" title="Quick Start of InternVL-Chat-V1-2" href="quick_start.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-    <meta name="docbuild:last-update" content="Aug 06, 2024"/>
+    <meta name="docbuild:last-update" content="Aug 09, 2024"/>
   </head>
   
   
@@ -425,7 +425,11 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-preparation">Model Preparation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-datasets-preparation">Training Datasets Preparation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-datasets-preparation">Training Datasets Preparation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preferred-method-download-from-huggingface">Preferred Method: Download from HuggingFace</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alternative-method-manual-download">Alternative Method: Manual Download</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#start-training">Start Training</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citation">Citation</a></li>
 </ul>
@@ -485,6 +489,16 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
 <section id="training-datasets-preparation">
 <h2>Training Datasets Preparation<a class="headerlink" href="#training-datasets-preparation" title="Permalink to this heading">#</a></h2>
 <p>Inspired by LLaVA-NeXT, we adopted a data-efficient SFT strategy to train InternVL-Chat-V1-2, utilizing approximately 1.2M of visual instruction tuning samples in total, all of which are fully open-source. In a macro sense, we build upon <a class="reference external" href="https://github.com/InternLM/InternLM-XComposer/blob/main/projects/ShareGPT4V/docs/Data.md#prepare-images">ShareGPT-4V</a> and additionally integrate <a class="reference external" href="https://huggingface.co/datasets/openbmb/llava_zh">LLaVA-ZH</a>, <a class="reference external" href="https://github.com/kushalkafle/DVQA_dataset">DVQA</a>, <a class="reference external" href="https://github.com/vis-nlp/ChartQA">ChartQA</a>, <a class="reference external" href="https://allenai.org/data/diagrams">AI2D</a>, <a class="reference external" href="https://www.docvqa.org/datasets">DocVQA</a>, <a class="reference external" href="https://github.com/SCNU203/GeoQA-Plus">GeoQA+</a>, and <a class="reference external" href="https://huggingface.co/datasets/naver-clova-ix/synthdog-en">SynthDoG-EN</a>. Most of the data remains consistent with LLaVA-NeXT.</p>
+<section id="preferred-method-download-from-huggingface">
+<h3>Preferred Method: Download from HuggingFace<a class="headerlink" href="#preferred-method-download-from-huggingface" title="Permalink to this heading">#</a></h3>
+<p>To simplify the dataset preparation, we recommend downloading the complete dataset directly from HuggingFace. This method is straightforward and ensures you have all the necessary data in one place.</p>
+<ul class="simple">
+<li><p>Download the entire dataset: <a class="reference external" href="https://huggingface.co/datasets/OpenGVLab/InternVL-Chat-V1-2-SFT-Data">InternVL-Chat-V1-2-SFT-Data</a></p></li>
+</ul>
+</section>
+<section id="alternative-method-manual-download">
+<h3>Alternative Method: Manual Download<a class="headerlink" href="#alternative-method-manual-download" title="Permalink to this heading">#</a></h3>
+<p>If you prefer, you can manually download the annotation files and images as detailed below.</p>
 <p>First, download the <a class="reference external" href="https://huggingface.co/OpenGVLab/InternVL/resolve/main/playground.zip">annotation files</a> and place them in the <code class="docutils literal notranslate"><span class="pre">playground/opensource/</span></code> folder.</p>
 <p>Second, download all the images we used.</p>
 <ul class="simple">
@@ -562,6 +576,7 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
 │   │   └── images
 </pre></div>
 </div>
+</section>
 </section>
 <section id="start-training">
 <h2>Start Training<a class="headerlink" href="#start-training" title="Permalink to this heading">#</a></h2>
@@ -666,7 +681,11 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-preparation">Model Preparation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-datasets-preparation">Training Datasets Preparation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-datasets-preparation">Training Datasets Preparation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preferred-method-download-from-huggingface">Preferred Method: Download from HuggingFace</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alternative-method-manual-download">Alternative Method: Manual Download</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#start-training">Start Training</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citation">Citation</a></li>
 </ul>
@@ -702,7 +721,7 @@ By InternVL Authors
   
   <div class="footer-item">
     <p class="last-updated">
-  Last updated on Aug 06, 2024.
+  Last updated on Aug 09, 2024.
   <br/>
 </p>
   </div>

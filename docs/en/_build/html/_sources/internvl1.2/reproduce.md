@@ -30,6 +30,16 @@ pretrained
 
 Inspired by LLaVA-NeXT, we adopted a data-efficient SFT strategy to train InternVL-Chat-V1-2, utilizing approximately 1.2M of visual instruction tuning samples in total, all of which are fully open-source. In a macro sense, we build upon [ShareGPT-4V](https://github.com/InternLM/InternLM-XComposer/blob/main/projects/ShareGPT4V/docs/Data.md#prepare-images) and additionally integrate [LLaVA-ZH](https://huggingface.co/datasets/openbmb/llava_zh), [DVQA](https://github.com/kushalkafle/DVQA_dataset), [ChartQA](https://github.com/vis-nlp/ChartQA), [AI2D](https://allenai.org/data/diagrams), [DocVQA](https://www.docvqa.org/datasets), [GeoQA+](https://github.com/SCNU203/GeoQA-Plus), and [SynthDoG-EN](https://huggingface.co/datasets/naver-clova-ix/synthdog-en). Most of the data remains consistent with LLaVA-NeXT.
 
+### Preferred Method: Download from HuggingFace
+
+To simplify the dataset preparation, we recommend downloading the complete dataset directly from HuggingFace. This method is straightforward and ensures you have all the necessary data in one place.
+
+- Download the entire dataset: [InternVL-Chat-V1-2-SFT-Data](https://huggingface.co/datasets/OpenGVLab/InternVL-Chat-V1-2-SFT-Data)
+
+### Alternative Method: Manual Download
+
+If you prefer, you can manually download the annotation files and images as detailed below.
+
 First, download the [annotation files](https://huggingface.co/OpenGVLab/InternVL/resolve/main/playground.zip) and place them in the `playground/opensource/` folder.
 
 Second, download all the images we used.
