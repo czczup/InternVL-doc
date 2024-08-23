@@ -44,6 +44,7 @@ model = AutoModel.from_pretrained(
     path,
     torch_dtype=torch.bfloat16,
     low_cpu_mem_usage=True,
+    use_flash_attn=True,
     trust_remote_code=True).eval().cuda()
 ```
 
@@ -58,6 +59,7 @@ model = AutoModel.from_pretrained(
     torch_dtype=torch.bfloat16,
     load_in_8bit=True,
     low_cpu_mem_usage=True,
+    use_flash_attn=True,
     trust_remote_code=True).eval()
 ```
 
@@ -104,6 +106,7 @@ model = AutoModel.from_pretrained(
     path,
     torch_dtype=torch.bfloat16,
     low_cpu_mem_usage=True,
+    use_flash_attn=True,
     trust_remote_code=True,
     device_map=device_map).eval()
 ```
@@ -121,6 +124,7 @@ model = AutoModel.from_pretrained(
     path,
     torch_dtype=torch.bfloat16,
     low_cpu_mem_usage=True,
+    use_flash_attn=True,
     trust_remote_code=True).eval().cuda()
 tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True, use_fast=False)
 
@@ -148,6 +152,7 @@ model = AutoModel.from_pretrained(
     path,
     torch_dtype=torch.bfloat16,
     low_cpu_mem_usage=True,
+    use_flash_attn=True,
     trust_remote_code=True).eval().cuda()
 tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True, use_fast=False)
 
@@ -174,6 +179,7 @@ model = AutoModel.from_pretrained(
     path,
     torch_dtype=torch.bfloat16,
     low_cpu_mem_usage=True,
+    use_flash_attn=True,
     trust_remote_code=True).eval().cuda()
 tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True, use_fast=False)
 
@@ -207,6 +213,7 @@ model = AutoModel.from_pretrained(
     path,
     torch_dtype=torch.bfloat16,
     low_cpu_mem_usage=True,
+    use_flash_attn=True,
     trust_remote_code=True).eval().cuda()
 tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True, use_fast=False)
 
@@ -245,6 +252,7 @@ model = AutoModel.from_pretrained(
     path,
     torch_dtype=torch.bfloat16,
     low_cpu_mem_usage=True,
+    use_flash_attn=True,
     trust_remote_code=True).eval().cuda()
 tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True, use_fast=False)
 
@@ -282,6 +290,7 @@ model = AutoModel.from_pretrained(
     path,
     torch_dtype=torch.bfloat16,
     low_cpu_mem_usage=True,
+    use_flash_attn=True,
     trust_remote_code=True).eval().cuda()
 tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True, use_fast=False)
 
@@ -352,6 +361,7 @@ model = AutoModel.from_pretrained(
     path,
     torch_dtype=torch.bfloat16,
     low_cpu_mem_usage=True,
+    use_flash_attn=True,
     trust_remote_code=True).eval().cuda()
 tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True, use_fast=False)
 
