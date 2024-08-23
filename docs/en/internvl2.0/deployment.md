@@ -5,7 +5,7 @@
 [LMDeploy](https://github.com/InternLM/lmdeploy) is a toolkit for compressing, deploying, and serving LLM, developed by the MMRazor and MMDeploy teams.
 
 ```sh
-pip install lmdeploy
+pip install lmdeploy==0.5.3
 ```
 
 LMDeploy abstracts the complex inference process of multi-modal Vision-Language Models (VLM) into an easy-to-use pipeline, similar to the Large Language Model (LLM) inference pipeline.
@@ -14,19 +14,30 @@ LMDeploy abstracts the complex inference process of multi-modal Vision-Language 
 
 `````{tabs}
 
+````{tab} 1B
+
+```python
+from lmdeploy import pipeline, TurbomindEngineConfig
+from lmdeploy.vl import load_image
+
+model = 'OpenGVLab/InternVL2-1B'
+image = load_image('https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/tests/data/tiger.jpeg')
+pipe = pipeline(model, backend_config=TurbomindEngineConfig(session_len=8192))
+response = pipe(('describe this image', image))
+print(response.text)
+```
+
+````
+
 ````{tab} 2B
 
 ```python
-from lmdeploy import pipeline, TurbomindEngineConfig, ChatTemplateConfig
+from lmdeploy import pipeline, TurbomindEngineConfig
 from lmdeploy.vl import load_image
 
 model = 'OpenGVLab/InternVL2-2B'
-system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室、清华大学及多家合作单位联合开发的多模态大语言模型。'
 image = load_image('https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/tests/data/tiger.jpeg')
-chat_template_config = ChatTemplateConfig('internvl-internlm2')
-chat_template_config.meta_instruction = system_prompt
-pipe = pipeline(model, chat_template_config=chat_template_config,
-                backend_config=TurbomindEngineConfig(session_len=8192))
+pipe = pipeline(model, backend_config=TurbomindEngineConfig(session_len=8192))
 response = pipe(('describe this image', image))
 print(response.text)
 ```
@@ -36,16 +47,12 @@ print(response.text)
 ````{tab} 4B
 
 ```python
-from lmdeploy import pipeline, PytorchEngineConfig, ChatTemplateConfig
+from lmdeploy import pipeline, TurbomindEngineConfig
 from lmdeploy.vl import load_image
 
 model = 'OpenGVLab/InternVL2-4B'
-system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室、清华大学及多家合作单位联合开发的多模态大语言模型。'
 image = load_image('https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/tests/data/tiger.jpeg')
-chat_template_config = ChatTemplateConfig('internvl-phi3')
-chat_template_config.meta_instruction = system_prompt
-pipe = pipeline(model, chat_template_config=chat_template_config,
-                backend_config=PytorchEngineConfig(session_len=8192))
+pipe = pipeline(model, backend_config=TurbomindEngineConfig(session_len=8192))
 response = pipe(('describe this image', image))
 print(response.text)
 ```
@@ -55,16 +62,12 @@ print(response.text)
 ````{tab} 8B
 
 ```python
-from lmdeploy import pipeline, TurbomindEngineConfig, ChatTemplateConfig
+from lmdeploy import pipeline, TurbomindEngineConfig
 from lmdeploy.vl import load_image
 
 model = 'OpenGVLab/InternVL2-8B'
-system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室、清华大学及多家合作单位联合开发的多模态大语言模型。'
 image = load_image('https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/tests/data/tiger.jpeg')
-chat_template_config = ChatTemplateConfig('internvl-internlm2')
-chat_template_config.meta_instruction = system_prompt
-pipe = pipeline(model, chat_template_config=chat_template_config,
-                backend_config=TurbomindEngineConfig(session_len=8192))
+pipe = pipeline(model, backend_config=TurbomindEngineConfig(session_len=8192))
 response = pipe(('describe this image', image))
 print(response.text)
 ```
@@ -74,16 +77,12 @@ print(response.text)
 ````{tab} 26B
 
 ```python
-from lmdeploy import pipeline, TurbomindEngineConfig, ChatTemplateConfig
+from lmdeploy import pipeline, TurbomindEngineConfig
 from lmdeploy.vl import load_image
 
 model = 'OpenGVLab/InternVL2-26B'
-system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室、清华大学及多家合作单位联合开发的多模态大语言模型。'
 image = load_image('https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/tests/data/tiger.jpeg')
-chat_template_config = ChatTemplateConfig('internvl-internlm2')
-chat_template_config.meta_instruction = system_prompt
-pipe = pipeline(model, chat_template_config=chat_template_config,
-                backend_config=TurbomindEngineConfig(session_len=8192))
+pipe = pipeline(model, backend_config=TurbomindEngineConfig(session_len=8192))
 response = pipe(('describe this image', image))
 print(response.text)
 ```
@@ -93,16 +92,12 @@ print(response.text)
 ````{tab} 40B
 
 ```python
-from lmdeploy import pipeline, TurbomindEngineConfig, ChatTemplateConfig
+from lmdeploy import pipeline, TurbomindEngineConfig
 from lmdeploy.vl import load_image
 
 model = 'OpenGVLab/InternVL2-40B'
-system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室、清华大学及多家合作单位联合开发的多模态大语言模型。'
 image = load_image('https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/tests/data/tiger.jpeg')
-chat_template_config = ChatTemplateConfig('internvl-zh-hermes2')
-chat_template_config.meta_instruction = system_prompt
-pipe = pipeline(model, chat_template_config=chat_template_config,
-                backend_config=TurbomindEngineConfig(session_len=8192))
+pipe = pipeline(model, backend_config=TurbomindEngineConfig(session_len=8192))
 response = pipe(('describe this image', image))
 print(response.text)
 ```
@@ -112,16 +107,12 @@ print(response.text)
 ````{tab} 76B
 
 ```python
-from lmdeploy import pipeline, TurbomindEngineConfig, ChatTemplateConfig
+from lmdeploy import pipeline, TurbomindEngineConfig
 from lmdeploy.vl import load_image
 
 model = 'OpenGVLab/InternVL2-Llama3-76B'
-system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室、清华大学及多家合作单位联合开发的多模态大语言模型。'
 image = load_image('https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/tests/data/tiger.jpeg')
-chat_template_config = ChatTemplateConfig('internvl-internlm2')
-chat_template_config.meta_instruction = system_prompt
-pipe = pipeline(model, chat_template_config=chat_template_config,
-                backend_config=TurbomindEngineConfig(session_len=8192, tp=4))
+pipe = pipeline(model, backend_config=TurbomindEngineConfig(session_len=8192, tp=4))
 response = pipe(('describe this image', image))
 print(response.text)
 ```
@@ -140,19 +131,38 @@ When dealing with multiple images, you can put them all in one list. Keep in min
 
 `````{tabs}
 
+````{tab} 1B
+
+```python
+from lmdeploy import pipeline, TurbomindEngineConfig
+from lmdeploy.vl import load_image
+from lmdeploy.vl.constants import IMAGE_TOKEN
+
+model = 'OpenGVLab/InternVL2-1B'
+pipe = pipeline(model, backend_config=TurbomindEngineConfig(session_len=8192))
+
+image_urls=[
+    'https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/demo/resources/human-pose.jpg',
+    'https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/demo/resources/det.jpg'
+]
+
+images = [load_image(img_url) for img_url in image_urls]
+# Numbering images improves multi-image conversations
+response = pipe((f'Image-1: {IMAGE_TOKEN}\nImage-2: {IMAGE_TOKEN}\ndescribe these two images', images))
+print(response.text)
+```
+
+````
+
 ````{tab} 2B
 
 ```python
-from lmdeploy import pipeline, TurbomindEngineConfig, ChatTemplateConfig
+from lmdeploy import pipeline, TurbomindEngineConfig
 from lmdeploy.vl import load_image
 from lmdeploy.vl.constants import IMAGE_TOKEN
 
 model = 'OpenGVLab/InternVL2-2B'
-system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室、清华大学及多家合作单位联合开发的多模态大语言模型。'
-chat_template_config = ChatTemplateConfig('internvl-internlm2')
-chat_template_config.meta_instruction = system_prompt
-pipe = pipeline(model, chat_template_config=chat_template_config,
-                backend_config=TurbomindEngineConfig(session_len=8192))
+pipe = pipeline(model, backend_config=TurbomindEngineConfig(session_len=8192))
 
 image_urls=[
     'https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/demo/resources/human-pose.jpg',
@@ -170,16 +180,12 @@ print(response.text)
 ````{tab} 4B
 
 ```python
-from lmdeploy import pipeline, PytorchEngineConfig, ChatTemplateConfig
+from lmdeploy import pipeline, TurbomindEngineConfig
 from lmdeploy.vl import load_image
 from lmdeploy.vl.constants import IMAGE_TOKEN
 
 model = 'OpenGVLab/InternVL2-4B'
-system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室、清华大学及多家合作单位联合开发的多模态大语言模型。'
-chat_template_config = ChatTemplateConfig('internvl-phi3')
-chat_template_config.meta_instruction = system_prompt
-pipe = pipeline(model, chat_template_config=chat_template_config,
-                backend_config=PytorchEngineConfig(session_len=8192))
+pipe = pipeline(model, backend_config=TurbomindEngineConfig(session_len=8192))
 
 image_urls=[
     'https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/demo/resources/human-pose.jpg',
@@ -197,16 +203,12 @@ print(response.text)
 ````{tab} 8B
 
 ```python
-from lmdeploy import pipeline, TurbomindEngineConfig, ChatTemplateConfig
+from lmdeploy import pipeline, TurbomindEngineConfig
 from lmdeploy.vl import load_image
 from lmdeploy.vl.constants import IMAGE_TOKEN
 
 model = 'OpenGVLab/InternVL2-8B'
-system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室、清华大学及多家合作单位联合开发的多模态大语言模型。'
-chat_template_config = ChatTemplateConfig('internvl-internlm2')
-chat_template_config.meta_instruction = system_prompt
-pipe = pipeline(model, chat_template_config=chat_template_config,
-                backend_config=TurbomindEngineConfig(session_len=8192))
+pipe = pipeline(model, backend_config=TurbomindEngineConfig(session_len=8192))
 
 image_urls=[
     'https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/demo/resources/human-pose.jpg',
@@ -224,16 +226,12 @@ print(response.text)
 ````{tab} 26B
 
 ```python
-from lmdeploy import pipeline, TurbomindEngineConfig, ChatTemplateConfig
+from lmdeploy import pipeline, TurbomindEngineConfig
 from lmdeploy.vl import load_image
 from lmdeploy.vl.constants import IMAGE_TOKEN
 
 model = 'OpenGVLab/InternVL2-26B'
-system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室、清华大学及多家合作单位联合开发的多模态大语言模型。'
-chat_template_config = ChatTemplateConfig('internvl-internlm2')
-chat_template_config.meta_instruction = system_prompt
-pipe = pipeline(model, chat_template_config=chat_template_config,
-                backend_config=TurbomindEngineConfig(session_len=8192))
+pipe = pipeline(model, backend_config=TurbomindEngineConfig(session_len=8192))
 
 image_urls=[
     'https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/demo/resources/human-pose.jpg',
@@ -251,16 +249,12 @@ print(response.text)
 ````{tab} 40B
 
 ```python
-from lmdeploy import pipeline, TurbomindEngineConfig, ChatTemplateConfig
+from lmdeploy import pipeline, TurbomindEngineConfig
 from lmdeploy.vl import load_image
 from lmdeploy.vl.constants import IMAGE_TOKEN
 
 model = 'OpenGVLab/InternVL2-40B'
-system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室、清华大学及多家合作单位联合开发的多模态大语言模型。'
-chat_template_config = ChatTemplateConfig('internvl-zh-hermes2')
-chat_template_config.meta_instruction = system_prompt
-pipe = pipeline(model, chat_template_config=chat_template_config,
-                backend_config=TurbomindEngineConfig(session_len=8192))
+pipe = pipeline(model, backend_config=TurbomindEngineConfig(session_len=8192))
 
 image_urls=[
     'https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/demo/resources/human-pose.jpg',
@@ -278,16 +272,12 @@ print(response.text)
 ````{tab} 76B
 
 ```python
-from lmdeploy import pipeline, TurbomindEngineConfig, ChatTemplateConfig
+from lmdeploy import pipeline, TurbomindEngineConfig
 from lmdeploy.vl import load_image
 from lmdeploy.vl.constants import IMAGE_TOKEN
 
 model = 'OpenGVLab/InternVL2-Llama3-76B'
-system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室、清华大学及多家合作单位联合开发的多模态大语言模型。'
-chat_template_config = ChatTemplateConfig('internvl-internlm2')
-chat_template_config.meta_instruction = system_prompt
-pipe = pipeline(model, chat_template_config=chat_template_config,
-                backend_config=TurbomindEngineConfig(session_len=8192, tp=4))
+pipe = pipeline(model, backend_config=TurbomindEngineConfig(session_len=8192, tp=4))
 
 image_urls=[
     'https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/demo/resources/human-pose.jpg',
@@ -310,18 +300,34 @@ Conducting inference with batch prompts is quite straightforward; just place the
 
 `````{tabs}
 
+````{tab} 1B
+
+```python
+from lmdeploy import pipeline, TurbomindEngineConfig
+from lmdeploy.vl import load_image
+
+model = 'OpenGVLab/InternVL2-1B'
+pipe = pipeline(model, backend_config=TurbomindEngineConfig(session_len=8192))
+
+image_urls=[
+    "https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/demo/resources/human-pose.jpg",
+    "https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/demo/resources/det.jpg"
+]
+prompts = [('describe this image', load_image(img_url)) for img_url in image_urls]
+response = pipe(prompts)
+print(response)
+```
+
+````
+
 ````{tab} 2B
 
 ```python
-from lmdeploy import pipeline, TurbomindEngineConfig, ChatTemplateConfig
+from lmdeploy import pipeline, TurbomindEngineConfig
 from lmdeploy.vl import load_image
 
 model = 'OpenGVLab/InternVL2-2B'
-system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室、清华大学及多家合作单位联合开发的多模态大语言模型。'
-chat_template_config = ChatTemplateConfig('internvl-internlm2')
-chat_template_config.meta_instruction = system_prompt
-pipe = pipeline(model, chat_template_config=chat_template_config,
-                backend_config=TurbomindEngineConfig(session_len=8192))
+pipe = pipeline(model, backend_config=TurbomindEngineConfig(session_len=8192))
 
 image_urls=[
     "https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/demo/resources/human-pose.jpg",
@@ -337,15 +343,11 @@ print(response)
 ````{tab} 4B
 
 ```python
-from lmdeploy import pipeline, PytorchEngineConfig, ChatTemplateConfig
+from lmdeploy import pipeline, TurbomindEngineConfig
 from lmdeploy.vl import load_image
 
 model = 'OpenGVLab/InternVL2-4B'
-system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室、清华大学及多家合作单位联合开发的多模态大语言模型。'
-chat_template_config = ChatTemplateConfig('internvl-phi3')
-chat_template_config.meta_instruction = system_prompt
-pipe = pipeline(model, chat_template_config=chat_template_config,
-                backend_config=PytorchEngineConfig(session_len=8192))
+pipe = pipeline(model, backend_config=TurbomindEngineConfig(session_len=8192))
 
 image_urls=[
     "https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/demo/resources/human-pose.jpg",
@@ -361,15 +363,11 @@ print(response)
 ````{tab} 8B
 
 ```python
-from lmdeploy import pipeline, TurbomindEngineConfig, ChatTemplateConfig
+from lmdeploy import pipeline, TurbomindEngineConfig
 from lmdeploy.vl import load_image
 
 model = 'OpenGVLab/InternVL2-8B'
-system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室、清华大学及多家合作单位联合开发的多模态大语言模型。'
-chat_template_config = ChatTemplateConfig('internvl-internlm2')
-chat_template_config.meta_instruction = system_prompt
-pipe = pipeline(model, chat_template_config=chat_template_config,
-                backend_config=TurbomindEngineConfig(session_len=8192))
+pipe = pipeline(model, backend_config=TurbomindEngineConfig(session_len=8192))
 
 image_urls=[
     "https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/demo/resources/human-pose.jpg",
@@ -385,15 +383,11 @@ print(response)
 ````{tab} 26B
 
 ```python
-from lmdeploy import pipeline, TurbomindEngineConfig, ChatTemplateConfig
+from lmdeploy import pipeline, TurbomindEngineConfig
 from lmdeploy.vl import load_image
 
 model = 'OpenGVLab/InternVL2-26B'
-system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室、清华大学及多家合作单位联合开发的多模态大语言模型。'
-chat_template_config = ChatTemplateConfig('internvl-internlm2')
-chat_template_config.meta_instruction = system_prompt
-pipe = pipeline(model, chat_template_config=chat_template_config,
-                backend_config=TurbomindEngineConfig(session_len=8192))
+pipe = pipeline(model, backend_config=TurbomindEngineConfig(session_len=8192))
 
 image_urls=[
     "https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/demo/resources/human-pose.jpg",
@@ -409,15 +403,11 @@ print(response)
 ````{tab} 40B
 
 ```python
-from lmdeploy import pipeline, TurbomindEngineConfig, ChatTemplateConfig
+from lmdeploy import pipeline, TurbomindEngineConfig
 from lmdeploy.vl import load_image
 
 model = 'OpenGVLab/InternVL2-40B'
-system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室、清华大学及多家合作单位联合开发的多模态大语言模型。'
-chat_template_config = ChatTemplateConfig('internvl-zh-hermes2')
-chat_template_config.meta_instruction = system_prompt
-pipe = pipeline(model, chat_template_config=chat_template_config,
-                backend_config=TurbomindEngineConfig(session_len=8192))
+pipe = pipeline(model, backend_config=TurbomindEngineConfig(session_len=8192))
 
 image_urls=[
     "https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/demo/resources/human-pose.jpg",
@@ -433,15 +423,11 @@ print(response)
 ````{tab} 76B
 
 ```python
-from lmdeploy import pipeline, TurbomindEngineConfig, ChatTemplateConfig
+from lmdeploy import pipeline, TurbomindEngineConfig
 from lmdeploy.vl import load_image
 
 model = 'OpenGVLab/InternVL2-Llama3-76B'
-system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室、清华大学及多家合作单位联合开发的多模态大语言模型。'
-chat_template_config = ChatTemplateConfig('internvl-internlm2')
-chat_template_config.meta_instruction = system_prompt
-pipe = pipeline(model, chat_template_config=chat_template_config,
-                backend_config=TurbomindEngineConfig(session_len=8192, tp=4))
+pipe = pipeline(model, backend_config=TurbomindEngineConfig(session_len=8192, tp=4))
 
 image_urls=[
     "https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/demo/resources/human-pose.jpg",
@@ -462,18 +448,33 @@ There are two ways to do the multi-turn conversations with the pipeline. One is 
 
 `````{tabs}
 
+````{tab} 1B
+
+```python
+from lmdeploy import pipeline, TurbomindEngineConfig, GenerationConfig
+from lmdeploy.vl import load_image
+
+model = 'OpenGVLab/InternVL2-1B'
+pipe = pipeline(model, backend_config=TurbomindEngineConfig(session_len=8192))
+
+image = load_image('https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/demo/resources/human-pose.jpg')
+gen_config = GenerationConfig(top_k=40, top_p=0.8, temperature=0.8)
+sess = pipe.chat(('describe this image', image), gen_config=gen_config)
+print(sess.response.text)
+sess = pipe.chat('What is the woman doing?', session=sess, gen_config=gen_config)
+print(sess.response.text)
+```
+
+````
+
 ````{tab} 2B
 
 ```python
-from lmdeploy import pipeline, TurbomindEngineConfig, ChatTemplateConfig, GenerationConfig
+from lmdeploy import pipeline, TurbomindEngineConfig, GenerationConfig
 from lmdeploy.vl import load_image
 
 model = 'OpenGVLab/InternVL2-2B'
-system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室、清华大学及多家合作单位联合开发的多模态大语言模型。'
-chat_template_config = ChatTemplateConfig('internvl-internlm2')
-chat_template_config.meta_instruction = system_prompt
-pipe = pipeline(model, chat_template_config=chat_template_config,
-                backend_config=TurbomindEngineConfig(session_len=8192))
+pipe = pipeline(model, backend_config=TurbomindEngineConfig(session_len=8192))
 
 image = load_image('https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/demo/resources/human-pose.jpg')
 gen_config = GenerationConfig(top_k=40, top_p=0.8, temperature=0.8)
@@ -488,15 +489,11 @@ print(sess.response.text)
 ````{tab} 4B
 
 ```python
-from lmdeploy import pipeline, PytorchEngineConfig, ChatTemplateConfig, GenerationConfig
+from lmdeploy import pipeline, TurbomindEngineConfig, GenerationConfig
 from lmdeploy.vl import load_image
 
 model = 'OpenGVLab/InternVL2-4B'
-system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室、清华大学及多家合作单位联合开发的多模态大语言模型。'
-chat_template_config = ChatTemplateConfig('internvl-phi3')
-chat_template_config.meta_instruction = system_prompt
-pipe = pipeline(model, chat_template_config=chat_template_config,
-                backend_config=PytorchEngineConfig(session_len=8192))
+pipe = pipeline(model, backend_config=TurbomindEngineConfig(session_len=8192))
 
 image = load_image('https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/demo/resources/human-pose.jpg')
 gen_config = GenerationConfig(top_k=40, top_p=0.8, temperature=0.8)
@@ -511,15 +508,11 @@ print(sess.response.text)
 ````{tab} 8B
 
 ```python
-from lmdeploy import pipeline, TurbomindEngineConfig, ChatTemplateConfig, GenerationConfig
+from lmdeploy import pipeline, TurbomindEngineConfig, GenerationConfig
 from lmdeploy.vl import load_image
 
 model = 'OpenGVLab/InternVL2-8B'
-system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室、清华大学及多家合作单位联合开发的多模态大语言模型。'
-chat_template_config = ChatTemplateConfig('internvl-internlm2')
-chat_template_config.meta_instruction = system_prompt
-pipe = pipeline(model, chat_template_config=chat_template_config,
-                backend_config=TurbomindEngineConfig(session_len=8192))
+pipe = pipeline(model, backend_config=TurbomindEngineConfig(session_len=8192))
 
 image = load_image('https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/demo/resources/human-pose.jpg')
 gen_config = GenerationConfig(top_k=40, top_p=0.8, temperature=0.8)
@@ -534,15 +527,11 @@ print(sess.response.text)
 ````{tab} 26B
 
 ```python
-from lmdeploy import pipeline, TurbomindEngineConfig, ChatTemplateConfig, GenerationConfig
+from lmdeploy import pipeline, TurbomindEngineConfig, GenerationConfig
 from lmdeploy.vl import load_image
 
 model = 'OpenGVLab/InternVL2-26B'
-system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室、清华大学及多家合作单位联合开发的多模态大语言模型。'
-chat_template_config = ChatTemplateConfig('internvl-internlm2')
-chat_template_config.meta_instruction = system_prompt
-pipe = pipeline(model, chat_template_config=chat_template_config,
-                backend_config=TurbomindEngineConfig(session_len=8192))
+pipe = pipeline(model, backend_config=TurbomindEngineConfig(session_len=8192))
 
 image = load_image('https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/demo/resources/human-pose.jpg')
 gen_config = GenerationConfig(top_k=40, top_p=0.8, temperature=0.8)
@@ -557,15 +546,11 @@ print(sess.response.text)
 ````{tab} 40B
 
 ```python
-from lmdeploy import pipeline, TurbomindEngineConfig, ChatTemplateConfig, GenerationConfig
+from lmdeploy import pipeline, TurbomindEngineConfig, GenerationConfig
 from lmdeploy.vl import load_image
 
 model = 'OpenGVLab/InternVL2-40B'
-system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室、清华大学及多家合作单位联合开发的多模态大语言模型。'
-chat_template_config = ChatTemplateConfig('internvl-zh-hermes2')
-chat_template_config.meta_instruction = system_prompt
-pipe = pipeline(model, chat_template_config=chat_template_config,
-                backend_config=TurbomindEngineConfig(session_len=8192))
+pipe = pipeline(model, backend_config=TurbomindEngineConfig(session_len=8192))
 
 image = load_image('https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/demo/resources/human-pose.jpg')
 gen_config = GenerationConfig(top_k=40, top_p=0.8, temperature=0.8)
@@ -580,15 +565,11 @@ print(sess.response.text)
 ````{tab} 76B
 
 ```python
-from lmdeploy import pipeline, TurbomindEngineConfig, ChatTemplateConfig, GenerationConfig
+from lmdeploy import pipeline, TurbomindEngineConfig, GenerationConfig
 from lmdeploy.vl import load_image
 
 model = 'OpenGVLab/InternVL2-Llama3-76B'
-system_prompt = '我是书生·万象，英文名是InternVL，是由上海人工智能实验室、清华大学及多家合作单位联合开发的多模态大语言模型。'
-chat_template_config = ChatTemplateConfig('internvl-internlm2')
-chat_template_config.meta_instruction = system_prompt
-pipe = pipeline(model, chat_template_config=chat_template_config,
-                backend_config=TurbomindEngineConfig(session_len=8192, tp=4))
+pipe = pipeline(model, backend_config=TurbomindEngineConfig(session_len=8192, tp=4))
 
 image = load_image('https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/demo/resources/human-pose.jpg')
 gen_config = GenerationConfig(top_k=40, top_p=0.8, temperature=0.8)
@@ -608,18 +589,29 @@ print(sess.response.text)
 
 `````{tabs}
 
+````{tab} 1B
+
+LMDeploy's `api_server` enables models to be easily packed into services with a single command. The provided RESTful APIs are compatible with OpenAI's interfaces. Below are an example of service startup:
+
+```shell
+lmdeploy serve api_server OpenGVLab/InternVL2-1B --backend turbomind --server-port 23333
+```
+
+The arguments of `api_server` can be viewed through the command `lmdeploy serve api_server -h`, for instance, `--tp` to set tensor parallelism, `--session-len` to specify the max length of the context window, `--cache-max-entry-count` to adjust the GPU mem ratio for k/v cache etc.
+````
+
 ````{tab} 2B
 
 LMDeploy's `api_server` enables models to be easily packed into services with a single command. The provided RESTful APIs are compatible with OpenAI's interfaces. Below are an example of service startup:
 
 ```shell
-lmdeploy serve api_server OpenGVLab/InternVL2-2B --model-name InternVL2-2B --backend turbomind --server-port 23333
+lmdeploy serve api_server OpenGVLab/InternVL2-2B --backend turbomind --server-port 23333
 ```
 
 You can also load 4-bit AWQ quantized models to save memory:
 
 ```shell
-lmdeploy serve api_server OpenGVLab/InternVL2-2B-AWQ --model-name InternVL2-2B --backend turbomind --server-port 23333 --model-format awq
+lmdeploy serve api_server OpenGVLab/InternVL2-2B-AWQ --backend turbomind --server-port 23333 --model-format awq
 ```
 
 The arguments of `api_server` can be viewed through the command `lmdeploy serve api_server -h`, for instance, `--tp` to set tensor parallelism, `--session-len` to specify the max length of the context window, `--cache-max-entry-count` to adjust the GPU mem ratio for k/v cache etc.
@@ -627,12 +619,10 @@ The arguments of `api_server` can be viewed through the command `lmdeploy serve 
 
 ````{tab} 4B
 
-> **⚠️ Warning**: This model only supports **Pytorch** backends for now.
-
 LMDeploy's `api_server` enables models to be easily packed into services with a single command. The provided RESTful APIs are compatible with OpenAI's interfaces. Below are an example of service startup:
 
 ```shell
-lmdeploy serve api_server OpenGVLab/InternVL2-4B --model-name InternVL2-4B --backend pytorch --server-port 23333
+lmdeploy serve api_server OpenGVLab/InternVL2-4B --backend turbomind --server-port 23333
 ```
 
 The arguments of `api_server` can be viewed through the command `lmdeploy serve api_server -h`, for instance, `--tp` to set tensor parallelism, `--session-len` to specify the max length of the context window, `--cache-max-entry-count` to adjust the GPU mem ratio for k/v cache etc.
@@ -643,13 +633,13 @@ The arguments of `api_server` can be viewed through the command `lmdeploy serve 
 LMDeploy's `api_server` enables models to be easily packed into services with a single command. The provided RESTful APIs are compatible with OpenAI's interfaces. Below are an example of service startup:
 
 ```shell
-lmdeploy serve api_server OpenGVLab/InternVL2-8B --model-name InternVL2-8B --backend turbomind --server-port 23333
+lmdeploy serve api_server OpenGVLab/InternVL2-8B --backend turbomind --server-port 23333
 ```
 
 You can also load 4-bit AWQ quantized models to save memory:
 
 ```shell
-lmdeploy serve api_server OpenGVLab/InternVL2-8B-AWQ --model-name InternVL2-8B --backend turbomind --server-port 23333 --model-format awq
+lmdeploy serve api_server OpenGVLab/InternVL2-8B-AWQ --backend turbomind --server-port 23333 --model-format awq
 ```
 
 The arguments of `api_server` can be viewed through the command `lmdeploy serve api_server -h`, for instance, `--tp` to set tensor parallelism, `--session-len` to specify the max length of the context window, `--cache-max-entry-count` to adjust the GPU mem ratio for k/v cache etc.
@@ -662,13 +652,13 @@ The arguments of `api_server` can be viewed through the command `lmdeploy serve 
 LMDeploy's `api_server` enables models to be easily packed into services with a single command. The provided RESTful APIs are compatible with OpenAI's interfaces. Below are an example of service startup:
 
 ```shell
-lmdeploy serve api_server OpenGVLab/InternVL2-26B --model-name InternVL2-26B --backend turbomind --server-port 23333
+lmdeploy serve api_server OpenGVLab/InternVL2-26B --backend turbomind --server-port 23333
 ```
 
 You can also load 4-bit AWQ quantized models to save memory:
 
 ```shell
-lmdeploy serve api_server OpenGVLab/InternVL2-26B-AWQ --model-name InternVL2-26B --backend turbomind --server-port 23333 --model-format awq
+lmdeploy serve api_server OpenGVLab/InternVL2-26B-AWQ --backend turbomind --server-port 23333 --model-format awq
 ```
 
 The arguments of `api_server` can be viewed through the command `lmdeploy serve api_server -h`, for instance, `--tp` to set tensor parallelism, `--session-len` to specify the max length of the context window, `--cache-max-entry-count` to adjust the GPU mem ratio for k/v cache etc.
@@ -681,13 +671,13 @@ The arguments of `api_server` can be viewed through the command `lmdeploy serve 
 LMDeploy's `api_server` enables models to be easily packed into services with a single command. The provided RESTful APIs are compatible with OpenAI's interfaces. Below are an example of service startup:
 
 ```shell
-lmdeploy serve api_server OpenGVLab/InternVL2-40B --model-name InternVL2-40B --backend turbomind --server-port 23333 --tp 2
+lmdeploy serve api_server OpenGVLab/InternVL2-40B --backend turbomind --server-port 23333 --tp 2
 ```
 
 You can also load 4-bit AWQ quantized models to save memory:
 
 ```shell
-lmdeploy serve api_server OpenGVLab/InternVL2-40B-AWQ --model-name InternVL2-40B --backend turbomind --server-port 23333 --model-format awq
+lmdeploy serve api_server OpenGVLab/InternVL2-40B-AWQ --backend turbomind --server-port 23333 --model-format awq
 ```
 
 The arguments of `api_server` can be viewed through the command `lmdeploy serve api_server -h`, for instance, `--tp` to set tensor parallelism, `--session-len` to specify the max length of the context window, `--cache-max-entry-count` to adjust the GPU mem ratio for k/v cache etc.
@@ -700,13 +690,13 @@ The arguments of `api_server` can be viewed through the command `lmdeploy serve 
 LMDeploy's `api_server` enables models to be easily packed into services with a single command. The provided RESTful APIs are compatible with OpenAI's interfaces. Below are an example of service startup:
 
 ```shell
-CUDA_VISIBLE_DEVICES=0,1,2,3 lmdeploy serve api_server OpenGVLab/InternVL2-Llama3-76B --model-name InternVL2-Llama3-76B --backend turbomind --server-port 23333 --tp 4
+CUDA_VISIBLE_DEVICES=0,1,2,3 lmdeploy serve api_server OpenGVLab/InternVL2-Llama3-76B --backend turbomind --server-port 23333 --tp 4
 ```
 
 You can also load 4-bit AWQ quantized models to save memory:
 
 ```shell
-lmdeploy serve api_server OpenGVLab/InternVL2-Llama3-76B-AWQ --model-name InternVL2-Llama3-76B --backend turbomind --server-port 23333 --model-format awq
+lmdeploy serve api_server OpenGVLab/InternVL2-Llama3-76B-AWQ --backend turbomind --server-port 23333 --model-format awq
 ```
 
 The arguments of `api_server` can be viewed through the command `lmdeploy serve api_server -h`, for instance, `--tp` to set tensor parallelism, `--session-len` to specify the max length of the context window, `--cache-max-entry-count` to adjust the GPU mem ratio for k/v cache etc.

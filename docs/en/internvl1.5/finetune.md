@@ -43,7 +43,7 @@ The format for the JSON file should be:
     "annotation": "path/to/the/jsonl/annotation",
     "data_augment": false,
     "repeat_time": 1,
-    "length": "number of your data"
+    "length": "number of samples in the dataset"
   },
   ...
 }

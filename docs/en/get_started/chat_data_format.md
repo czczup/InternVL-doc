@@ -11,7 +11,7 @@ In this document, we will detail the organization format of our conversation dat
     "annotation": "path/to/the/jsonl/annotation",
     "data_augment": false,
     "repeat_time": 1,
-    "length": "number of your data"
+    "length": "number of samples in the dataset"
   },
   ...
 }

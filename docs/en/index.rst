@@ -44,7 +44,7 @@ Documentation
    :caption: Tutorials
 
    tutorials/coco_caption_finetune.md
-   tutorials/classic_questions.md
+   tutorials/faqs.md
 
 .. _internvl_2_0:
 .. toctree::

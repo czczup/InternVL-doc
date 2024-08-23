@@ -26,7 +26,7 @@
   - `-r requirements/classification.txt`
   - `-r requirements/segmentation.txt`
 
-  The `clip_benchmark.txt` is **not** included in the default installation. If you require the `clip_benchmark` functionality, please install it manually by running the following command:
+  The `clip_benchmark.txt` is **not** included in the default installation. If you require the `clip_benchmark` functionality (for the evaluation of zero-shot classification or retrieval), please install it manually by running the following command:
 
   ```bash
   pip install -r requirements/clip_benchmark.txt

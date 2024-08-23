@@ -1,6 +1,6 @@
 # Build from source
 
-LMDeploy provides prebuilt package that can be easily installed by `pip install lmdeploy`.
+LMDeploy provides prebuilt package that can be easily installed by `pip install lmdeploy==0.5.3`.
 
 If you have requests to build lmdeploy from source, please clone lmdeploy repository from GitHub, and follow instructions in next sections
 
