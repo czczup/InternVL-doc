@@ -8,7 +8,7 @@
 pip install lmdeploy==0.5.3
 ```
 
-LMDeploy abstracts the complex inference process of multi-modal Vision-Language Models (VLM) into an easy-to-use pipeline, similar to the Large Language Model (LLM) inference pipeline.
+LMDeploy abstracts the complex inference process of multi-modal Vision-Language Models (VLM) into an easy-to-use pipeline, similar to the Large Language Model (LLM) inference pipeline. Here are some deployment examples. For more detailed deployment instructions, please refer to the [lmdeploy documentation](https://github.com/InternLM/lmdeploy/blob/main/docs/en/multi_modal/internvl.md).
 
 ### A 'Hello, world' example
 
@@ -583,6 +583,220 @@ print(sess.response.text)
 
 `````
 
+### OpenAI format prompt input
+
+Besides this structure, the pipeline also supports prompts in the OpenAI format.
+
+Note that `lmdeploy` has introduced the `max_dynamic_patch` key in the `messages` parameter, which allows you to control the maximum number of image crops by adjusting this setting.
+
+`````{tabs}
+
+````{tab} 1B
+
+```python
+from lmdeploy import pipeline, TurbomindEngineConfig, GenerationConfig
+
+model = 'OpenGVLab/InternVL2-1B'
+
+pipe = pipeline(model, backend_config=TurbomindEngineConfig(session_len=8192))
+gen_config = GenerationConfig(top_p=0.9,
+                              temperature=0.8,
+                              max_new_tokens=1024)
+messages  = [{
+    'role': 'user',
+    'content': [{
+        'type:'text',
+        "text':'describe this image'},
+        {
+            'type':'image_url',
+            'image_url':{
+                'max_dynamic_patch'=12,
+                'url'='https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/tests/data/tiger.jpeg'
+            }
+        }]
+}]
+response = pipe(messages,gen_config=gen_config)
+print(response.text)
+```
+
+````
+
+````{tab} 2B
+
+```python
+from lmdeploy import pipeline, TurbomindEngineConfig, GenerationConfig
+
+model = 'OpenGVLab/InternVL2-2B'
+pipe = pipeline(model, backend_config=TurbomindEngineConfig(session_len=8192))
+gen_config = GenerationConfig(top_p=0.9,
+                              temperature=0.8,
+                              max_new_tokens=1024)
+messages  = [{
+    'role': 'user',
+    'content': [{
+        'type:'text',
+        "text':'describe this image'},
+        {
+            'type':'image_url',
+            'image_url':{
+                'max_dynamic_patch'=12,
+                'url'='https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/tests/data/tiger.jpeg'
+            }
+        }]
+}]
+response = pipe(messages,gen_config=gen_config)
+print(response.text)
+```
+
+````
+
+````{tab} 4B
+
+```python
+from lmdeploy import pipeline, TurbomindEngineConfig, GenerationConfig
+
+model = 'OpenGVLab/InternVL2-4B'
+pipe = pipeline(model, backend_config=TurbomindEngineConfig(session_len=8192))
+gen_config = GenerationConfig(top_p=0.9,
+                              temperature=0.8,
+                              max_new_tokens=1024)
+messages  = [{
+    'role': 'user',
+    'content': [{
+        'type:'text',
+        "text':'describe this image'},
+        {
+            'type':'image_url',
+            'image_url':{
+                'max_dynamic_patch'=12,
+                'url'='https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/tests/data/tiger.jpeg'
+            }
+        }]
+}]
+response = pipe(messages,gen_config=gen_config)
+print(response.text)
+```
+
+````
+
+````{tab} 8B
+
+```python
+from lmdeploy import pipeline, TurbomindEngineConfig, GenerationConfig
+
+model = 'OpenGVLab/InternVL2-8B'
+pipe = pipeline(model, backend_config=TurbomindEngineConfig(session_len=8192))
+gen_config = GenerationConfig(top_p=0.9,
+                              temperature=0.8,
+                              max_new_tokens=1024)
+messages  = [{
+    'role': 'user',
+    'content': [{
+        'type:'text',
+        "text':'describe this image'},
+        {
+            'type':'image_url',
+            'image_url':{
+                'max_dynamic_patch'=12,
+                'url'='https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/tests/data/tiger.jpeg'
+            }
+        }]
+}]
+response = pipe(messages,gen_config=gen_config)
+print(response.text)
+```
+
+````
+
+````{tab} 26B
+
+```python
+from lmdeploy import pipeline, TurbomindEngineConfig, GenerationConfig
+
+model = 'OpenGVLab/InternVL2-26B'
+pipe = pipeline(model, backend_config=TurbomindEngineConfig(session_len=8192))
+gen_config = GenerationConfig(top_p=0.9,
+                              temperature=0.8,
+                              max_new_tokens=1024)
+messages  = [{
+    'role': 'user',
+    'content': [{
+        'type:'text',
+        "text':'describe this image'},
+        {
+            'type':'image_url',
+            'image_url':{
+                'max_dynamic_patch'=12,
+                'url'='https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/tests/data/tiger.jpeg'
+            }
+        }]
+}]
+response = pipe(messages,gen_config=gen_config)
+print(response.text)
+```
+
+````
+
+````{tab} 40B
+
+```python
+from lmdeploy import pipeline, TurbomindEngineConfig, GenerationConfig
+
+model = 'OpenGVLab/InternVL2-40B'
+pipe = pipeline(model, backend_config=TurbomindEngineConfig(session_len=8192))
+gen_config = GenerationConfig(top_p=0.9,
+                              temperature=0.8,
+                              max_new_tokens=1024)
+messages  = [{
+    'role': 'user',
+    'content': [{
+        'type:'text',
+        "text':'describe this image'},
+        {
+            'type':'image_url',
+            'image_url':{
+                'max_dynamic_patch'=12,
+                'url'='https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/tests/data/tiger.jpeg'
+            }
+        }]
+}]
+response = pipe(messages,gen_config=gen_config)
+print(response.text)
+```
+
+````
+
+````{tab} 76B
+
+```python
+from lmdeploy import pipeline, TurbomindEngineConfig, GenerationConfig
+
+model = 'OpenGVLab/InternVL2-Llama3-76B'
+pipe = pipeline(model, backend_config=TurbomindEngineConfig(session_len=8192))
+gen_config = GenerationConfig(top_p=0.9,
+                              temperature=0.8,
+                              max_new_tokens=1024)
+messages  = [{
+    'role': 'user',
+    'content': [{
+        'type:'text',
+        "text':'describe this image'},
+        {
+            'type':'image_url',
+            'image_url':{
+                'max_dynamic_patch'=12,
+                'url'='https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/tests/data/tiger.jpeg'
+            }
+        }]
+}]
+response = pipe(messages,gen_config=gen_config)
+print(response.text)
+```
+
+````
+
+`````
+
 ### Serving with OpenAI Compatible Server
 
 #### Launch Service
@@ -726,6 +940,7 @@ response = client.chat.completions.create(
             'image_url': {
                 'url':
                 'https://modelscope.oss-cn-beijing.aliyuncs.com/resource/tiger.jpeg',
+                'max_dynamic_patch':"12"
             },
         }],
     }],
