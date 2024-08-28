@@ -605,16 +605,16 @@ gen_config = GenerationConfig(top_p=0.9,
 messages  = [{
     'role': 'user',
     'content': [{
-        'type:'text',
-        "text':'describe this image'},
+        'type':'text',
+        'text':'describe this image'},
         {
             'type':'image_url',
             'image_url':{
-                'max_dynamic_patch'=12,
-                'url'='https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/tests/data/tiger.jpeg'
+                'max_dynamic_patch':12,
+                'url':'https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/tests/data/tiger.jpeg'
             }
         }]
-}]
+        }]
 response = pipe(messages,gen_config=gen_config)
 print(response.text)
 ```
@@ -634,16 +634,16 @@ gen_config = GenerationConfig(top_p=0.9,
 messages  = [{
     'role': 'user',
     'content': [{
-        'type:'text',
-        "text':'describe this image'},
+        'type':'text',
+        'text':'describe this image'},
         {
             'type':'image_url',
             'image_url':{
-                'max_dynamic_patch'=12,
-                'url'='https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/tests/data/tiger.jpeg'
+                'max_dynamic_patch':12,
+                'url':'https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/tests/data/tiger.jpeg'
             }
         }]
-}]
+        }]
 response = pipe(messages,gen_config=gen_config)
 print(response.text)
 ```
@@ -663,16 +663,16 @@ gen_config = GenerationConfig(top_p=0.9,
 messages  = [{
     'role': 'user',
     'content': [{
-        'type:'text',
-        "text':'describe this image'},
+        'type':'text',
+        'text':'describe this image'},
         {
             'type':'image_url',
             'image_url':{
-                'max_dynamic_patch'=12,
-                'url'='https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/tests/data/tiger.jpeg'
+                'max_dynamic_patch':12,
+                'url':'https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/tests/data/tiger.jpeg'
             }
         }]
-}]
+        }]
 response = pipe(messages,gen_config=gen_config)
 print(response.text)
 ```
@@ -692,16 +692,16 @@ gen_config = GenerationConfig(top_p=0.9,
 messages  = [{
     'role': 'user',
     'content': [{
-        'type:'text',
-        "text':'describe this image'},
+        'type':'text',
+        'text':'describe this image'},
         {
             'type':'image_url',
             'image_url':{
-                'max_dynamic_patch'=12,
-                'url'='https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/tests/data/tiger.jpeg'
+                'max_dynamic_patch':12,
+                'url':'https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/tests/data/tiger.jpeg'
             }
         }]
-}]
+        }]
 response = pipe(messages,gen_config=gen_config)
 print(response.text)
 ```
@@ -721,16 +721,16 @@ gen_config = GenerationConfig(top_p=0.9,
 messages  = [{
     'role': 'user',
     'content': [{
-        'type:'text',
-        "text':'describe this image'},
+        'type':'text',
+        'text':'describe this image'},
         {
             'type':'image_url',
             'image_url':{
-                'max_dynamic_patch'=12,
-                'url'='https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/tests/data/tiger.jpeg'
+                'max_dynamic_patch':12,
+                'url':'https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/tests/data/tiger.jpeg'
             }
         }]
-}]
+        }]
 response = pipe(messages,gen_config=gen_config)
 print(response.text)
 ```
@@ -750,16 +750,16 @@ gen_config = GenerationConfig(top_p=0.9,
 messages  = [{
     'role': 'user',
     'content': [{
-        'type:'text',
-        "text':'describe this image'},
+        'type':'text',
+        'text':'describe this image'},
         {
             'type':'image_url',
             'image_url':{
-                'max_dynamic_patch'=12,
-                'url'='https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/tests/data/tiger.jpeg'
+                'max_dynamic_patch':12,
+                'url':'https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/tests/data/tiger.jpeg'
             }
         }]
-}]
+        }]
 response = pipe(messages,gen_config=gen_config)
 print(response.text)
 ```
@@ -779,16 +779,16 @@ gen_config = GenerationConfig(top_p=0.9,
 messages  = [{
     'role': 'user',
     'content': [{
-        'type:'text',
-        "text':'describe this image'},
+        'type':'text',
+        'text':'describe this image'},
         {
             'type':'image_url',
             'image_url':{
-                'max_dynamic_patch'=12,
-                'url'='https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/tests/data/tiger.jpeg'
+                'max_dynamic_patch':12,
+                'url':'https://raw.githubusercontent.com/open-mmlab/mmdeploy/main/tests/data/tiger.jpeg'
             }
         }]
-}]
+        }]
 response = pipe(messages,gen_config=gen_config)
 print(response.text)
 ```
