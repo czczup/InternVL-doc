@@ -47,9 +47,9 @@ For pure text data, we use a JSONL file to store the data. Each entry is a dicti
   "id": 0,
   "conversations": [
     {"from": "human", "value": "user input"},
-    {"from": "gpt", "text": "assistant output"},
+    {"from": "gpt", "value": "assistant output"},
     {"from": "human", "value": "user input"},
-    {"from": "gpt", "text": "assistant output"}
+    {"from": "gpt", "value": "assistant output"}
   ]
 }
 ```
@@ -97,9 +97,9 @@ The path in the `image` field is relative to the `root` field. Concatenating the
   "height": 222,
   "conversations": [
     {"from": "human", "value": "<image>\nuser input"},
-    {"from": "gpt", "text": "assistant output"},
+    {"from": "gpt", "value": "assistant output"},
     {"from": "human", "value": "user input"},
-    {"from": "gpt", "text": "assistant output"}
+    {"from": "gpt", "value": "assistant output"}
   ]
 }
 ```
@@ -235,9 +235,9 @@ Each element in the list is a path relative to the `root` field. Concatenating t
   "height_list": [111, 222, 333],
   "conversations": [
     {"from": "human", "value": "<image>\nuser input <image>\nuser input"},
-    {"from": "gpt", "text": "assistant output"},
+    {"from": "gpt", "value": "assistant output"},
     {"from": "human", "value": "<image>\nuser input"},
-    {"from": "gpt", "text": "assistant output"}
+    {"from": "gpt", "value": "assistant output"}
   ]
 }
 ```
@@ -291,9 +291,9 @@ The path in the `video` field is relative to the `root` field. Concatenating the
   "video": "path/to/video.mp4",
   "conversations": [
     {"from": "human", "value": "<video>\nuser input"},
-    {"from": "gpt", "text": "assistant output"},
+    {"from": "gpt", "value": "assistant output"},
     {"from": "human", "value": "user input"},
-    {"from": "gpt", "text": "assistant output"}
+    {"from": "gpt", "value": "assistant output"}
   ]
 }
 ```

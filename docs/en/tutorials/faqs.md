@@ -1,10 +1,10 @@
 ﻿# FAQs
 
-## 1. Is there any performance metrics for using InternVL2 for object detection (including single object detection capability)?
+## 1. Are there performance metrics available for using InternVL2 for object detection (including single object detection capabilities)?
 
 [https://github.com/OpenGVLab/InternVL/issues/359](https://github.com/OpenGVLab/InternVL/issues/359)
 
-Currently, the model can perform grounding tasks. For specific scores, please refer to this [link](../internvl2.0/introduction.md#grounding-benchmarks). For more common object detection and open world detection, InternVL series models are evaluated on grounding in RefCOCO as shown in the table below:
+The model currently supports grounding tasks. For specific performance scores, please refer to this [link](../internvl2.0/introduction.md#grounding-benchmarks). For more general object detection and open-world detection, InternVL series models are evaluated on grounding in RefCOCO, as shown in the table below:
 
 |             Model              | avg. | RefCOCO<br>(val) | RefCOCO<br>(testA) | RefCOCO<br>(testB) | RefCOCO+<br>(val) | RefCOCO+<br>(testA) | RefCOCO+<br>(testB) | RefCOCO‑g<br>(val) | RefCOCO‑g<br>(test) |
 | :----------------------------: | :--: | :--------------: | :----------------: | :----------------: | :---------------: | :-----------------: | :-----------------: | :----------------: | :-----------------: |
@@ -72,9 +72,10 @@ It is due to excessive security hardening, and we will continue to optimize this
 [https://github.com/OpenGVLab/InternVL/issues/293](https://github.com/OpenGVLab/InternVL/issues/293)
 [https://github.com/OpenGVLab/InternVL/issues/295](https://github.com/OpenGVLab/InternVL/issues/295)
 
-You can align the package versions in the dependency environment here: <https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/pyproject.toml>. You can also try deploying this [new local demo](../get_started/local_chat_demo.md).
+You can align the package versions in the dependency environment here: <https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/pyproject.toml>. Alternatively, you can try deploying this [new local demo](../get_started/local_chat_demo.md).
 
-InternVL-1-5 is a 26B model, with model parameters consuming about 50G of memory in BF16, considering the additional overhead during training, it should require 100-150G. During training, you can use DeepSpeed Zero to distribute these overheads across different GPUs.
+InternVL-1-5 is a 26B model, with model parameters consuming about 50G of memory in BF16. Considering the additional overhead during training, it requires around 100-150G. During training, you can use DeepSpeed Zero to distribute these overheads across different GPUs.
+
 
 ## 6. Abnormal generation results (including repetition, garbled text, etc.)
 
@@ -88,7 +89,7 @@ This issue is due to an older version of transformers, please use `transformers=
 
 InternVL-Chat-V1-5 has a 4k context length. Mini-InternVL-Chat-2B/4B-V1-5 has an 8k context length. All models in the InternVL2 series have an 8k context length.
 
-## 8. Slow inference
+## 8. Perform inference faster and with less GPU memory usage using a 4-bit quantized model.
 
 [https://github.com/OpenGVLab/InternVL/issues/250](https://github.com/OpenGVLab/InternVL/issues/250)
 
@@ -122,6 +123,26 @@ Only LMDeploy's pytorch engine supports phi3 models, please refer to our latest 
 ## 10. How to deploy a local demo (streamlit version)
 
 Please refer to [this document](../get_started/local_chat_demo.md#streamlit-demo).
+
+## 11. What format should the dataset for detection and recognition be in for end-to-end OCR implementation?
+
+https://github.com/OpenGVLab/InternVL/issues/536
+
+The dataset format used for training OCR is as follows:
+
+```shell
+User: Please recognize the text in the image (there are dozens of similar templates like this).  
+Assistant: The text in the image includes: \nXXX\nXXX\nXXX\nXXX (directly outputting the OCR results).
+```
+
+Note that bounding boxes for OCR were not utilized during training. For detailed information about the dataset format, please refer to our  [OCR Data Format Documentation](https://internvl.readthedocs.io/en/latest/get_started/chat_data_format.html)
+
+## 12. How can the input length for the model be set?
+
+https://github.com/OpenGVLab/InternVL/issues/542
+
+You can configure it in the model's `tokenizer_config.json`, or modify the configuration after loading the model.
+
 
 <br>
 <br>

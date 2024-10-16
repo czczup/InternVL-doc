@@ -116,7 +116,7 @@ CIDEr: 0.793
 Next, we'll fine-tune the InternVL2-2B model using LoRA. Execute the following command for fine-tuning:
 
 ```shell
-GPUS=8 PER_DEVICE_BATCH_SIZE=4 sh shell/internvl2.0/2nd_finetune/internvl2_2b_internlm2_1_8b_dynamic_res_2nd_finetune_lora.sh
+GPUS=8 PER_DEVICE_BATCH_SIZE=4 sh shell/internvl2.0/2nd_finetune/internvl2_2b_internlm2_1_8b_dynamic_res_2nd_finetune_lora_coco.sh
 ```
 
 In [this script](https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/shell/internvl2.0/2nd_finetune/internvl2_2b_internlm2_1_8b_dynamic_res_2nd_finetune_lora_coco.sh), we set the LoRA rank to 128, which means 6.24% of InternLM2-Chat-1.8B's parameters will be trainable, totaling 125.8M parameters:
