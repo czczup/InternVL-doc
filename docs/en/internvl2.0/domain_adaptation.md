@@ -157,7 +157,7 @@ Importantly, before testing, please add the model to the `internvl_series` in [c
 ### Data Preparation
 
 - Prepare *InternVL-Chat-V1-2-SFT-Data*, See [Document](../internvl1.2/reproduce.md/#training-datasets-preparation)
-- Please download the files corresponding to the train_data, train_meta, and val directories from [InternVL-Domain-Adaptation-Data](https://huggingface.co/datasets/OpenGVLab/InternVL-Domain-Adaptation-Data), following the directory tree structure below.
+- Please download the corresponding files in train_data, train_meta, and val directories from [InternVL-Domain-Adaptation-Data](https://huggingface.co/datasets/OpenGVLab/InternVL-Domain-Adaptation-Data), following the directory tree structure below.
 
 - Download the images from [GeoChat](https://huggingface.co/datasets/MBZUAI/GeoChat_Instruct/tree/main), [FIT-RS](https://huggingface.co/datasets/ll-13/FIT-RS/blob/main/FIT-RS_Instruction/FIT-RS_Img.tar.gz), [RSVQA](https://rsvqa.sylvainlobry.com/) and [DIOR-RSVG](https://drive.google.com/drive/folders/1hTqtYsC6B-m4ED2ewx5oKuYZV13EoJp_). Extract the files and place them in the corresponding locations within the directory structure below.
 
