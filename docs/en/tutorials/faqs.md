@@ -76,7 +76,6 @@ You can align the package versions in the dependency environment here: <https://
 
 InternVL-1-5 is a 26B model, with model parameters consuming about 50G of memory in BF16. Considering the additional overhead during training, it requires around 100-150G. During training, you can use DeepSpeed Zero to distribute these overheads across different GPUs.
 
-
 ## 6. Abnormal generation results (including repetition, garbled text, etc.)
 
 [https://github.com/OpenGVLab/InternVL/issues/289](https://github.com/OpenGVLab/InternVL/issues/289)
@@ -142,7 +141,6 @@ Note that bounding boxes for OCR were not utilized during training. For detailed
 https://github.com/OpenGVLab/InternVL/issues/542
 
 You can configure it in the model's `tokenizer_config.json`, or modify the configuration after loading the model.
-
 
 <br>
 <br>
