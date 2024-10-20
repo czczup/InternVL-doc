@@ -56,6 +56,7 @@ Documentation
    Finetune <internvl2.0/finetune.md>
    Evaluation <internvl2.0/evaluation.md>
    Deployment <internvl2.0/deployment.md>
+   Domain Adaptation <internvl2.0/domain_adaptation.md>
 
 .. _internvl_1_5:
 .. toctree::
