@@ -57,6 +57,7 @@ Documentation
    Evaluation <internvl2.0/evaluation.md>
    Deployment <internvl2.0/deployment.md>
    Domain Adaptation <internvl2.0/domain_adaptation.md>
+   Preference Optimization <internvl2.0/preference_optimization.md>
 
 .. _internvl_1_5:
 .. toctree::
