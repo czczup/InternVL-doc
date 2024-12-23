@@ -1,35 +1,49 @@
 # Preference optimization on a Custom Dataset
 
+> Please use trl==0.10.1 to ensure the model works normally.
+
 ## Model Preparation
 
-| model name       | type | param | download                                                       | size  |
-| ---------------- | ---- | ----- | -------------------------------------------------------------- | :---: |
-| InternVL2-8B     | MLLM | 8.1B  | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL2-8B)     | 16 GB |
-| InternVL2-8B-MPO | MLLM | 8.1B  | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL2-8B-MPO) | 16 GB |
+| model name          | type | param | download                                                          |  size  |
+| ------------------- | ---- | ----- | ----------------------------------------------------------------- | :----: |
+| InternVL2_5-1B      | MLLM | 0.9B  | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL2_5-1B)      | 1.8 GB |
+| InternVL2_5-1B-MPO  | MLLM | 0.9B  | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL2_5-1B-MPO)  | 1.8 GB |
+| InternVL2_5-2B      | MLLM | 2.2B  | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL2_5-2B)      | 4.2 GB |
+| InternVL2_5-2B-MPO  | MLLM | 2.2B  | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL2_5-2B-MPO)  | 4.2 GB |
+| InternVL2_5-4B      | MLLM | 4.2B  | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL2_5-4B)      | 7.8 GB |
+| InternVL2_5-4B-MPO  | MLLM | 4.2B  | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL2_5-4B-MPO)  | 7.8 GB |
+| InternVL2_5-8B      | MLLM | 8.1B  | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL2_5-8B)      | 16 GB  |
+| InternVL2_5-8B-MPO  | MLLM | 8.1B  | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL2_5-8B-MPO)  | 16 GB  |
+| InternVL2_5-26B     | MLLM | 25.5B | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL2_5-26B)     | 48 GB  |
+| InternVL2_5-26B-MPO | MLLM | 25.5B | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL2_5-26B-MPO) | 48 GB  |
+| InternVL2_5-38B     | MLLM | 40.1B | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL2_5-38B)     | 75 GB  |
+| InternVL2_5-38B-MPO | MLLM | 40.1B | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL2_5-38B-MPO) | 75 GB  |
+| InternVL2_5-78B     | MLLM | 76.3B | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL2_5-78B)     | 143 GB |
+| InternVL2_5-78B-MPO | MLLM | 76.3B | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL2_5-78B-MPO) | 143 GB |
 
 Before starting the preference optimization, download the pre-trained model we provide.
 
 ```sh
 cd ckpt/
 # pip install -U huggingface_hub
-# Download OpenGVLab/InternVL2-8B
-huggingface-cli download --resume-download --local-dir-use-symlinks False OpenGVLab/InternVL2-8B --local-dir InternVL2-8B
-# Download OpenGVLab/InternVL2-8B-MPO
-huggingface-cli download --resume-download --local-dir-use-symlinks False OpenGVLab/InternVL2-8B-MPO --local-dir InternVL2-8B-MPO
+# Download OpenGVLab/InternVL2_5-8B
+huggingface-cli download --resume-download --local-dir-use-symlinks False OpenGVLab/InternVL2_5-8B --local-dir InternVL2_5-8B
+# Download OpenGVLab/InternVL2_5-8B-MPO
+huggingface-cli download --resume-download --local-dir-use-symlinks False OpenGVLab/InternVL2_5-8B-MPO --local-dir InternVL2_5-8B-MPO
 ```
 
 The directory structure is:
 
 ```sh
 ckpt
-├── InternVL2-8B
-└── InternVL2-8B-MPO
+├── InternVL2_5-8B
+└── InternVL2_5-8B-MPO
 ```
 
 ## Prepare Our MMPR Dataset
-To prepare the training data, please first download our [MMPR dataset](https://huggingface.co/datasets/OpenGVLab/MMPR) and [the JSON file](https://huggingface.co/datasets/OpenGVLab/MMPR/blob/main/meta.json).
+To prepare the training data, please first download our [MMPR dataset](https://huggingface.co/datasets/OpenGVLab/MMPR-v1.1) and [the JSON file](https://huggingface.co/datasets/OpenGVLab/MMPR-v1.1/blob/main/meta.json).
 
-Our dataset contains approximately 3 million preference pairs, of which only around 1.0 million are utilized during training. You can adjust the number of active data samples and the data mixture ratio by modifying the `repeat` parameter in the JSON file.
+Our dataset contains approximately 3 million preference pairs, of which only around 400k are utilized during training. You can adjust the number of active data samples and the data mixture ratio by modifying the `repeat` parameter in the JSON file.
 
 The directory structure is:
 
@@ -40,7 +54,7 @@ MMPR
 ```
 
 Please note that our training data includes instructions collected from [InternVL demo](https://internvl.opengvlab.com/). However, due to privacy protection concerns, we are unable to release these portion of the data.
-Therefore, the reproduced results on general VQA (*i.e.*, MMVet, LLaVABench, and MMHal-Bench) may be inferior to [our released model](https://huggingface.co/OpenGVLab/InternVL2-8B-MPO).
+Therefore, the reproduced results on general VQA (*i.e.*, MMVet, LLaVABench, and MMHal-Bench) may be inferior to [our released model](https://huggingface.co/OpenGVLab/InternVL2_5-8B-MPO).
 
 We recommend incorporating additional general VQA data to preserve the general VQA abilities, following [our DropoutNTP pipeline](#generate-more-preference-data).
 
@@ -93,28 +107,16 @@ Commands for preference optimization:
 
 ```sh
 cd internvl_chat
-sh shell/internvl2.0_mpo/preference_optimization/internvl2_8b_internlm2_7b_dynamic_res_mpo_full.sh
+sh shell/internvl2.5_mpo/preference_optimization/internvl2_5_8b_internlm2_5_7b_dynamic_res_mpo.sh
 ```
 
 If you encounter any issues, please let us know, and we will update the training guide to enhance its usability.
 
-> Based on the environment of InternVL, you need to additionally run `pip install trl==0.9.6`.
+> Based on the environment of InternVL, you need to additionally run `pip install trl==0.10.1`.
 
 ## Evaluation
 
-To evaluate the resulting model with Chain-of-Though (CoT), please use the following commands:
-```sh
-# M3CoT
-GPUS=8 sh evaluate.sh ckpt/InternVL2-8B-MPO m3cot --dynamic --cot
-# MathVista
-GPUS=8 sh evaluate.sh ckpt/InternVL2-8B-MPO mathvista-testmini --dynamic --cot
-# POPE
-GPUS=8 sh evaluate.sh ckpt/InternVL2-8B-MPO pope --dynamic --cot
-```
-
-Please note that we have organized the M3CoT data into the same format as ScienceQA. You can download the re-organized jsonl file [here](https://huggingface.co/datasets/Weiyun1025/M3CoT-ScienceQA-Format).
-
-> We evaluate the performance on other benchmarks (*e.g.*, MMVet, LLaVABench, and CRPE) using [VLMEvalKit](https://github.com/open-compass/VLMEvalKit). You need to set `use_mpo_prompt=True` in [config.py](https://github.com/open-compass/VLMEvalKit/blob/main/vlmeval/config.py) to activate the CoT prompt.
+We evaluate the performance on other benchmarks (*e.g.*, MMVet, LLaVABench, and CRPE) using [VLMEvalKit](https://github.com/open-compass/VLMEvalKit). You need to set `use_mpo_prompt=True` in [config.py](https://github.com/open-compass/VLMEvalKit/blob/main/vlmeval/config.py) and `USE_COT="1"` in environment variable to activate the CoT prompt.
 
 ## Generate Additional Preference Data
 
@@ -213,16 +215,29 @@ If you find this project useful in your research, please consider citing:
   journal={arXiv preprint arXiv:2411.10442},
   year={2024}
 }
-@article{chen2023internvl,
-  title={InternVL: Scaling up Vision Foundation Models and Aligning for Generic Visual-Linguistic Tasks},
-  author={Chen, Zhe and Wu, Jiannan and Wang, Wenhai and Su, Weijie and Chen, Guo and Xing, Sen and Zhong, Muyan and Zhang, Qinglong and Zhu, Xizhou and Lu, Lewei and Li, Bin and Luo, Ping and Lu, Tong and Qiao, Yu and Dai, Jifeng},
-  journal={arXiv preprint arXiv:2312.14238},
-  year={2023}
+@article{chen2024expanding,
+  title={Expanding Performance Boundaries of Open-Source Multimodal Models with Model, Data, and Test-Time Scaling},
+  author={Chen, Zhe and Wang, Weiyun and Cao, Yue and Liu, Yangzhou and Gao, Zhangwei and Cui, Erfei and Zhu, Jinguo and Ye, Shenglong and Tian, Hao and Liu, Zhaoyang and others},
+  journal={arXiv preprint arXiv:2412.05271},
+  year={2024}
+}
+@article{gao2024mini,
+  title={Mini-InternVL: A Flexible-Transfer Pocket Multimodal Model with 5\% Parameters and 90\% Performance},
+  author={Gao, Zhangwei and Chen, Zhe and Cui, Erfei and Ren, Yiming and Wang, Weiyun and Zhu, Jinguo and Tian, Hao and Ye, Shenglong and He, Junjun and Zhu, Xizhou and others},
+  journal={arXiv preprint arXiv:2410.16261},
+  year={2024}
 }
 @article{chen2024far,
   title={How Far Are We to GPT-4V? Closing the Gap to Commercial Multimodal Models with Open-Source Suites},
   author={Chen, Zhe and Wang, Weiyun and Tian, Hao and Ye, Shenglong and Gao, Zhangwei and Cui, Erfei and Tong, Wenwen and Hu, Kongzhi and Luo, Jiapeng and Ma, Zheng and others},
   journal={arXiv preprint arXiv:2404.16821},
+  year={2024}
+}
+@inproceedings{chen2024internvl,
+  title={Internvl: Scaling up vision foundation models and aligning for generic visual-linguistic tasks},
+  author={Chen, Zhe and Wu, Jiannan and Wang, Wenhai and Su, Weijie and Chen, Guo and Xing, Sen and Zhong, Muyan and Zhang, Qinglong and Zhu, Xizhou and Lu, Lewei and others},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={24185--24198},
   year={2024}
 }
 ```
