@@ -19,8 +19,8 @@ For more details, please refer to our [paper](https://huggingface.co/papers/2412
 As shown in this figure, InternVL2.5 utilizes the same architecture as InternVL1.5 and InternVL2.0, specifically the `ViT-MLP-LLM` configuration referenced in various existing studies.
 For the various sizes of the InternVL2.5 model, we employed different visual encoders and large language models, as detailed in the table below.
 
-|   Model Name    |                                       Vision Part                                       |                                 Language Part                                  |                          HF Link                           |
-| :-------------: | :-------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------: | :--------------------------------------------------------: |
+|   Model Name    |                                       Vision Part                                       |                                 Language Part                                  |                           HF Link                           |
+| :-------------: | :-------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------: | :---------------------------------------------------------: |
 | InternVL2_5-1B  | [InternViT-300M-448px-V2_5](https://huggingface.co/OpenGVLab/InternViT-300M-448px-V2_5) |   [Qwen2.5-0.5B-Instruct](https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct)   | [🤗 link](https://huggingface.co/OpenGVLab/InternVL2_5-1B)  |
 | InternVL2_5-2B  | [InternViT-300M-448px-V2_5](https://huggingface.co/OpenGVLab/InternViT-300M-448px-V2_5) | [internlm2_5-1_8b-chat](https://huggingface.co/internlm/internlm2_5-1_8b-chat) | [🤗 link](https://huggingface.co/OpenGVLab/InternVL2_5-2B)  |
 | InternVL2_5-4B  | [InternViT-300M-448px-V2_5](https://huggingface.co/OpenGVLab/InternViT-300M-448px-V2_5) |     [Qwen2.5-3B-Instruct](https://huggingface.co/Qwen/Qwen2.5-3B-Instruct)     | [🤗 link](https://huggingface.co/OpenGVLab/InternVL2_5-4B)  |
@@ -38,9 +38,8 @@ InternVL2.5-MPO family is built upon the following designs:
 
 See our [blog](https://internvl.github.io/blog/2024-12-20-InternVL-2.5-MPO/) and [paper](https://huggingface.co/papers/2411.10442) for more details.
 
-
-|     Model Name      |                                       Vision Part                                       |                                 Language Part                                  |                            HF Link                             |
-| :-----------------: | :-------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------: | :------------------------------------------------------------: |
+|     Model Name      |                                       Vision Part                                       |                                 Language Part                                  |                             HF Link                             |
+| :-----------------: | :-------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------: | :-------------------------------------------------------------: |
 | InternVL2_5-1B-MPO  | [InternViT-300M-448px-V2_5](https://huggingface.co/OpenGVLab/InternViT-300M-448px-V2_5) |   [Qwen2.5-0.5B-Instruct](https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct)   | [🤗 link](https://huggingface.co/OpenGVLab/InternVL2_5-1B-MPO)  |
 | InternVL2_5-2B-MPO  | [InternViT-300M-448px-V2_5](https://huggingface.co/OpenGVLab/InternViT-300M-448px-V2_5) | [internlm2_5-1_8b-chat](https://huggingface.co/internlm/internlm2_5-1_8b-chat) | [🤗 link](https://huggingface.co/OpenGVLab/InternVL2_5-2B-MPO)  |
 | InternVL2_5-4B-MPO  | [InternViT-300M-448px-V2_5](https://huggingface.co/OpenGVLab/InternViT-300M-448px-V2_5) |     [Qwen2.5-3B-Instruct](https://huggingface.co/Qwen/Qwen2.5-3B-Instruct)     | [🤗 link](https://huggingface.co/OpenGVLab/InternVL2_5-4B-MPO)  |

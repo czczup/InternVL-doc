@@ -2,8 +2,8 @@
 
 ## Model Preparation
 
-| model name       | type | param | download                                                       | size  |
-| ---------------- | ---- | ----- | -------------------------------------------------------------- | :---: |
+| model name       | type | param | download                                                        | size  |
+| ---------------- | ---- | ----- | --------------------------------------------------------------- | :---: |
 | InternVL2-8B     | MLLM | 8.1B  | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL2-8B)     | 16 GB |
 | InternVL2-8B-MPO | MLLM | 8.1B  | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL2-8B-MPO) | 16 GB |
 
@@ -27,6 +27,7 @@ ckpt
 ```
 
 ## Prepare Our MMPR Dataset
+
 To prepare the training data, please first download our [MMPR dataset](https://huggingface.co/datasets/OpenGVLab/MMPR) and [the JSON file](https://huggingface.co/datasets/OpenGVLab/MMPR/blob/main/meta.json).
 
 Our dataset contains approximately 3 million preference pairs, of which only around 1.0 million are utilized during training. You can adjust the number of active data samples and the data mixture ratio by modifying the `repeat` parameter in the JSON file.
@@ -103,6 +104,7 @@ If you encounter any issues, please let us know, and we will update the training
 ## Evaluation
 
 To evaluate the resulting model with Chain-of-Though (CoT), please use the following commands:
+
 ```sh
 # M3CoT
 GPUS=8 sh evaluate.sh ckpt/InternVL2-8B-MPO m3cot --dynamic --cot
@@ -153,7 +155,6 @@ The format for the prompt file should be:
 {"image": "2.png", "question": "xxx", "chosen": "xxx", "rejected": null,}
 ...
 ```
-
 
 To constrct additional CoT reasoning preference data, you can use our [correctness-based pipeline](https://github.com/OpenGVLab/InternVL/tree/main/internvl_chat/tools/mm_reasoning_pipeline/internvl_lmdeploy_cot.py) with the following command:
 

@@ -4,8 +4,8 @@
 
 ## Model Preparation
 
-| model name          | type | param | download                                                          |  size  |
-| ------------------- | ---- | ----- | ----------------------------------------------------------------- | :----: |
+| model name          | type | param | download                                                           |  size  |
+| ------------------- | ---- | ----- | ------------------------------------------------------------------ | :----: |
 | InternVL2_5-1B      | MLLM | 0.9B  | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL2_5-1B)      | 1.8 GB |
 | InternVL2_5-1B-MPO  | MLLM | 0.9B  | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL2_5-1B-MPO)  | 1.8 GB |
 | InternVL2_5-2B      | MLLM | 2.2B  | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL2_5-2B)      | 4.2 GB |
@@ -41,6 +41,7 @@ ckpt
 ```
 
 ## Prepare Our MMPR Dataset
+
 To prepare the training data, please first download our [MMPR dataset](https://huggingface.co/datasets/OpenGVLab/MMPR-v1.1) and [the JSON file](https://huggingface.co/datasets/OpenGVLab/MMPR-v1.1/blob/main/meta.json).
 
 Our dataset contains approximately 3 million preference pairs, of which only around 400k are utilized during training. You can adjust the number of active data samples and the data mixture ratio by modifying the `repeat` parameter in the JSON file.
@@ -155,7 +156,6 @@ The format for the prompt file should be:
 {"image": "2.png", "question": "xxx", "chosen": "xxx", "rejected": null,}
 ...
 ```
-
 
 To constrct additional CoT reasoning preference data, you can use our [correctness-based pipeline](https://github.com/OpenGVLab/InternVL/tree/main/internvl_chat/tools/mm_reasoning_pipeline/internvl_lmdeploy_cot.py) with the following command:
 

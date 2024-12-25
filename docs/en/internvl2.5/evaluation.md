@@ -6,11 +6,10 @@ To evaluate the performance of the InternVL2.5 series across various tasks, foll
 
 > 2⃣️ Please note that evaluating the same model using different testing toolkits like InternVL and VLMEvalKit can result in slight differences, which is normal. Updates to code versions and variations in environment and hardware can also cause minor discrepancies in results.
 
-
 ## Model Preparation
 
-| model name          | type | param | download                                                          |  size  |
-| ------------------- | ---- | ----- | ----------------------------------------------------------------- | :----: |
+| model name          | type | param | download                                                           |  size  |
+| ------------------- | ---- | ----- | ------------------------------------------------------------------ | :----: |
 | InternVL2_5-1B      | MLLM | 0.9B  | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL2_5-1B)      | 1.8 GB |
 | InternVL2_5-1B-MPO  | MLLM | 0.9B  | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL2_5-1B-MPO)  | 1.8 GB |
 | InternVL2_5-2B      | MLLM | 2.2B  | 🤗 [HF link](https://huggingface.co/OpenGVLab/InternVL2_5-2B)      | 4.2 GB |

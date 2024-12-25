@@ -5,6 +5,7 @@
 ### Data Preparation
 
 - Prepare *InternVL-Chat-V1-2-SFT-Data*, See [Document](../internvl1.2/reproduce.md/#training-datasets-preparation)
+
 - Download `drivelm_train.jsonl` and `drivelm_val.jsonl` from[InternVL-Domain-Adaptation-Data](https://huggingface.co/datasets/OpenGVLab/InternVL-Domain-Adaptation-Data). `drivelm_train.jsonl` and `drivelm_val.jsonl` are the data after format conversion.
 
 - Download the images from [DriveLM](https://github.com/OpenDriveLab/DriveLM/tree/main/challenge) and process the images using `tools/images_stitching.py`:
@@ -157,6 +158,7 @@ Importantly, before testing, please add the model to the `internvl_series` in [c
 ### Data Preparation
 
 - Prepare *InternVL-Chat-V1-2-SFT-Data*, See [Document](../internvl1.2/reproduce.md/#training-datasets-preparation)
+
 - Please download the corresponding files in train_data, train_meta, and val directories from [InternVL-Domain-Adaptation-Data](https://huggingface.co/datasets/OpenGVLab/InternVL-Domain-Adaptation-Data), following the directory tree structure below.
 
 - Download the images from [GeoChat](https://huggingface.co/datasets/MBZUAI/GeoChat_Instruct/tree/main), [FIT-RS](https://huggingface.co/datasets/ll-13/FIT-RS/blob/main/FIT-RS_Instruction/FIT-RS_Img.tar.gz), [RSVQA](https://rsvqa.sylvainlobry.com/) and [DIOR-RSVG](https://drive.google.com/drive/folders/1hTqtYsC6B-m4ED2ewx5oKuYZV13EoJp_). Extract the files and place them in the corresponding locations within the directory structure below.
@@ -188,6 +190,7 @@ path/to/internvl_chat/InternVL-Domain-Adaptation-Data
     ├── rsvqa_h_test_2_instruct.json
     └── rsvqa_l_test_instruct.json
 ```
+
 ### Finetune
 
 Please finetune the model using following scripts:
@@ -225,6 +228,7 @@ We assess the performance of our transferred model using the RSVQA dataset for t
 We chose the Presence, Comparison, and Rural/Urban subsets of the RSVQA-LR and RSVQA-HR datasets for assessment.
 
 You can now directly use the following command to run the test with 8 GPUs:
+
 ```bash
 # RSVQA-LR 
 GPUS=8 sh evaluate.sh ${checkpoint} rsvqa-lr --dynamic --max-num  12
