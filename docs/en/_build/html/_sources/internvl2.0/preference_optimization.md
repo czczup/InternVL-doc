@@ -1,4 +1,4 @@
-# Preference optimization on a Custom Dataset
+# Mixed Preference Optimization
 
 ## Model Preparation
 
@@ -45,7 +45,7 @@ Therefore, the reproduced results on general VQA (*i.e.*, MMVet, LLaVABench, and
 
 We recommend incorporating additional general VQA data to preserve the general VQA abilities, following [our DropoutNTP pipeline](#generate-more-preference-data).
 
-## Prepare Your Customized Training Data
+## Prepare Customized Data
 
 If you want to prepare your customized preference data, please create a JSON file similar to [this example](https://huggingface.co/datasets/OpenGVLab/MMPR/blob/main/meta.json).
 
@@ -57,10 +57,10 @@ The format for the JSON file should be:
     "root": "path/to/the/image/",
     "annotation": "path/to/the/jsonl/annotation",
     "data_augment": false,
+    "max_dynamic_patch": 12,
     "repeat_time": 1,
     "length": "number of samples in the dataset"
-  },
-  ...
+  }
 }
 ```
 
@@ -214,16 +214,21 @@ If you find this project useful in your research, please consider citing:
   journal={arXiv preprint arXiv:2411.10442},
   year={2024}
 }
-@article{chen2023internvl,
-  title={InternVL: Scaling up Vision Foundation Models and Aligning for Generic Visual-Linguistic Tasks},
-  author={Chen, Zhe and Wu, Jiannan and Wang, Wenhai and Su, Weijie and Chen, Guo and Xing, Sen and Zhong, Muyan and Zhang, Qinglong and Zhu, Xizhou and Lu, Lewei and Li, Bin and Luo, Ping and Lu, Tong and Qiao, Yu and Dai, Jifeng},
-  journal={arXiv preprint arXiv:2312.14238},
-  year={2023}
-}
 @article{chen2024far,
-  title={How Far Are We to GPT-4V? Closing the Gap to Commercial Multimodal Models with Open-Source Suites},
+  title={How far are we to gpt-4v? closing the gap to commercial multimodal models with open-source suites},
   author={Chen, Zhe and Wang, Weiyun and Tian, Hao and Ye, Shenglong and Gao, Zhangwei and Cui, Erfei and Tong, Wenwen and Hu, Kongzhi and Luo, Jiapeng and Ma, Zheng and others},
-  journal={arXiv preprint arXiv:2404.16821},
+  journal={Science China Information Sciences},
+  volume={67},
+  number={12},
+  pages={220101},
+  year={2024},
+  publisher={Springer}
+}
+@inproceedings{chen2024internvl,
+  title={Internvl: Scaling up vision foundation models and aligning for generic visual-linguistic tasks},
+  author={Chen, Zhe and Wu, Jiannan and Wang, Wenhai and Su, Weijie and Chen, Guo and Xing, Sen and Zhong, Muyan and Zhang, Qinglong and Zhu, Xizhou and Lu, Lewei and others},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={24185--24198},
   year={2024}
 }
 ```

@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Domain Adaptation &#8212; internvl</title>
+    <title>Domain Adaptation &#8212; InternVL</title>
   
   
   
@@ -50,7 +50,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'internvl2.0/domain_adaptation';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Preference optimization on a Custom Dataset" href="preference_optimization.html" />
+    <link rel="next" title="Mixed Preference Optimization" href="preference_optimization.html" />
     <link rel="prev" title="Deploy InternVL2 Series" href="deployment.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -139,8 +139,8 @@
       
     
     
-    <img src="../_static/new_logo.svg" class="logo__image only-light" alt="internvl - Home"/>
-    <script>document.write(`<img src="../_static/new_logo.svg" class="logo__image only-dark" alt="internvl - Home"/>`);</script>
+    <img src="../_static/new_logo.svg" class="logo__image only-light" alt="InternVL - Home"/>
+    <script>document.write(`<img src="../_static/new_logo.svg" class="logo__image only-dark" alt="InternVL - Home"/>`);</script>
   
   
 </a></div>
@@ -166,7 +166,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../internvl2.5/finetune.html">🔧 Finetune</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../internvl2.5/evaluation.html">📊 Evaluation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../internvl2.5/deployment.html">📦 Deployment</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../internvl2.5/domain_adaptation.html">🧩 Domain Adaptation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../internvl2.5/preference_optimization.html">🎯 Preference Optimization</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL 2.0</span></p>
@@ -475,7 +474,7 @@ document.write(`
 <section id="data-preparation">
 <h3>Data Preparation<a class="headerlink" href="#data-preparation" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Prepare <em>InternVL-Chat-V1-2-SFT-Data</em>, See <a class="reference internal" href="../internvl1.2/reproduce.html#training-datasets-preparation"><span class="std std-ref">Document</span></a></p></li>
+<li><p>Prepare <code class="docutils literal notranslate"><span class="pre">InternVL-Chat-V1-2-SFT-Data</span></code>, See <a class="reference internal" href="../internvl1.2/reproduce.html#training-datasets-preparation"><span class="std std-ref">Document</span></a>.</p></li>
 <li><p>Download <code class="docutils literal notranslate"><span class="pre">drivelm_train.jsonl</span></code> and <code class="docutils literal notranslate"><span class="pre">drivelm_val.jsonl</span></code> from<a class="reference external" href="https://huggingface.co/datasets/OpenGVLab/InternVL-Domain-Adaptation-Data">InternVL-Domain-Adaptation-Data</a>. <code class="docutils literal notranslate"><span class="pre">drivelm_train.jsonl</span></code> and <code class="docutils literal notranslate"><span class="pre">drivelm_val.jsonl</span></code> are the data after format conversion.</p></li>
 <li><p>Download the images from <a class="reference external" href="https://github.com/OpenDriveLab/DriveLM/tree/main/challenge">DriveLM</a> and process the images using <code class="docutils literal notranslate"><span class="pre">tools/images_stitching.py</span></code>:</p></li>
 </ul>
@@ -672,22 +671,14 @@ evaluation was conducted using the <a class="reference external" href="https://g
 <h2>Citation<a class="headerlink" href="#citation" title="Permalink to this heading">#</a></h2>
 <p>If you find this project useful in your research, please consider citing:</p>
 <div class="highlight-BibTeX notranslate"><div class="highlight"><pre><span></span><span class="nc">@article</span><span class="p">{</span><span class="nl">gao2024mini</span><span class="p">,</span>
-<span class="w">  </span><span class="na">title</span><span class="p">=</span><span class="s">{Mini-InternVL: A Flexible-Transfer Pocket Multimodal Model with 5\% Parameters and 90\% Performance}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">title</span><span class="p">=</span><span class="s">{Mini-InternVL: a flexible-transfer pocket multi-modal model with 5\% parameters and 90\% performance}</span><span class="p">,</span>
 <span class="w">  </span><span class="na">author</span><span class="p">=</span><span class="s">{Gao, Zhangwei and Chen, Zhe and Cui, Erfei and Ren, Yiming and Wang, Weiyun and Zhu, Jinguo and Tian, Hao and Ye, Shenglong and He, Junjun and Zhu, Xizhou and others}</span><span class="p">,</span>
-<span class="w">  </span><span class="na">journal</span><span class="p">=</span><span class="s">{arXiv preprint arXiv:2410.16261}</span><span class="p">,</span>
-<span class="w">  </span><span class="na">year</span><span class="p">=</span><span class="s">{2024}</span>
-<span class="p">}</span>
-<span class="nc">@article</span><span class="p">{</span><span class="nl">chen2023internvl</span><span class="p">,</span>
-<span class="w">  </span><span class="na">title</span><span class="p">=</span><span class="s">{InternVL: Scaling up Vision Foundation Models and Aligning for Generic Visual-Linguistic Tasks}</span><span class="p">,</span>
-<span class="w">  </span><span class="na">author</span><span class="p">=</span><span class="s">{Chen, Zhe and Wu, Jiannan and Wang, Wenhai and Su, Weijie and Chen, Guo and Xing, Sen and Zhong, Muyan and Zhang, Qinglong and Zhu, Xizhou and Lu, Lewei and Li, Bin and Luo, Ping and Lu, Tong and Qiao, Yu and Dai, Jifeng}</span><span class="p">,</span>
-<span class="w">  </span><span class="na">journal</span><span class="p">=</span><span class="s">{arXiv preprint arXiv:2312.14238}</span><span class="p">,</span>
-<span class="w">  </span><span class="na">year</span><span class="p">=</span><span class="s">{2023}</span>
-<span class="p">}</span>
-<span class="nc">@article</span><span class="p">{</span><span class="nl">chen2024far</span><span class="p">,</span>
-<span class="w">  </span><span class="na">title</span><span class="p">=</span><span class="s">{How Far Are We to GPT-4V? Closing the Gap to Commercial Multimodal Models with Open-Source Suites}</span><span class="p">,</span>
-<span class="w">  </span><span class="na">author</span><span class="p">=</span><span class="s">{Chen, Zhe and Wang, Weiyun and Tian, Hao and Ye, Shenglong and Gao, Zhangwei and Cui, Erfei and Tong, Wenwen and Hu, Kongzhi and Luo, Jiapeng and Ma, Zheng and others}</span><span class="p">,</span>
-<span class="w">  </span><span class="na">journal</span><span class="p">=</span><span class="s">{arXiv preprint arXiv:2404.16821}</span><span class="p">,</span>
-<span class="w">  </span><span class="na">year</span><span class="p">=</span><span class="s">{2024}</span>
+<span class="w">  </span><span class="na">journal</span><span class="p">=</span><span class="s">{Visual Intelligence}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">volume</span><span class="p">=</span><span class="s">{2}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">number</span><span class="p">=</span><span class="s">{1}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">pages</span><span class="p">=</span><span class="s">{1--17}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">year</span><span class="p">=</span><span class="s">{2024}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">publisher</span><span class="p">=</span><span class="s">{Springer}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -721,7 +712,7 @@ evaluation was conducted using the <a class="reference external" href="https://g
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Preference optimization on a Custom Dataset</p>
+        <p class="prev-next-title">Mixed Preference Optimization</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

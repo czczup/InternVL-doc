@@ -92,5 +92,29 @@ During training, we implemented a dynamic resolution strategy, dividing images i
 
 - We use the following prompt to evaluate InternVL's grounding ability: `Please provide the bounding box coordinates of the region this sentence describes: <ref>{}</ref>`
 
+## Citation
+
+If you find this project useful in your research, please consider citing:
+
+```BibTeX
+@article{chen2024far,
+  title={How far are we to gpt-4v? closing the gap to commercial multimodal models with open-source suites},
+  author={Chen, Zhe and Wang, Weiyun and Tian, Hao and Ye, Shenglong and Gao, Zhangwei and Cui, Erfei and Tong, Wenwen and Hu, Kongzhi and Luo, Jiapeng and Ma, Zheng and others},
+  journal={Science China Information Sciences},
+  volume={67},
+  number={12},
+  pages={220101},
+  year={2024},
+  publisher={Springer}
+}
+@inproceedings{chen2024internvl,
+  title={Internvl: Scaling up vision foundation models and aligning for generic visual-linguistic tasks},
+  author={Chen, Zhe and Wu, Jiannan and Wang, Wenhai and Su, Weijie and Chen, Guo and Xing, Sen and Zhong, Muyan and Zhang, Qinglong and Zhu, Xizhou and Lu, Lewei and others},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={24185--24198},
+  year={2024}
+}
+```
+
 <br>
 <br>

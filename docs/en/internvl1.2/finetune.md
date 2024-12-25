@@ -28,7 +28,7 @@ pretrained
 └── InternVL-Chat-V1-2-Plus
 ```
 
-## Prepare Your Customized Training Data
+## Prepare Customized Data
 
 After downloading the pre-trained model, prepare your customized SFT (Supervised Fine-Tuning) data. Create a JSON file in `internvl_chat/shell/data/` similar to [this example](https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/shell/data/internvl_1_2_finetune.json).
 
@@ -40,10 +40,10 @@ The format for the JSON file should be:
     "root": "path/to/the/image/",
     "annotation": "path/to/the/jsonl/annotation",
     "data_augment": false,
+    "max_dynamic_patch": 12,
     "repeat_time": 1,
     "length": "number of samples in the dataset"
-  },
-  ...
+  }
 }
 ```
 
@@ -55,6 +55,7 @@ Example:
     "root": "playground/data/",
     "annotation": "playground/opensource/sharegpt4v_instruct_gpt4-vision_cap100k.jsonl",
     "data_augment": false,
+    "max_dynamic_patch": 12,
     "repeat_time": 1,
     "length": 102025
   }
@@ -92,16 +93,21 @@ If you encounter any issues, please let me know, and I will update the training 
 If you find this project useful in your research, please consider citing:
 
 ```BibTeX
-@article{chen2023internvl,
-  title={InternVL: Scaling up Vision Foundation Models and Aligning for Generic Visual-Linguistic Tasks},
-  author={Chen, Zhe and Wu, Jiannan and Wang, Wenhai and Su, Weijie and Chen, Guo and Xing, Sen and Zhong, Muyan and Zhang, Qinglong and Zhu, Xizhou and Lu, Lewei and Li, Bin and Luo, Ping and Lu, Tong and Qiao, Yu and Dai, Jifeng},
-  journal={arXiv preprint arXiv:2312.14238},
-  year={2023}
-}
 @article{chen2024far,
-  title={How Far Are We to GPT-4V? Closing the Gap to Commercial Multimodal Models with Open-Source Suites},
+  title={How far are we to gpt-4v? closing the gap to commercial multimodal models with open-source suites},
   author={Chen, Zhe and Wang, Weiyun and Tian, Hao and Ye, Shenglong and Gao, Zhangwei and Cui, Erfei and Tong, Wenwen and Hu, Kongzhi and Luo, Jiapeng and Ma, Zheng and others},
-  journal={arXiv preprint arXiv:2404.16821},
+  journal={Science China Information Sciences},
+  volume={67},
+  number={12},
+  pages={220101},
+  year={2024},
+  publisher={Springer}
+}
+@inproceedings{chen2024internvl,
+  title={Internvl: Scaling up vision foundation models and aligning for generic visual-linguistic tasks},
+  author={Chen, Zhe and Wu, Jiannan and Wang, Wenhai and Su, Weijie and Chen, Guo and Xing, Sen and Zhong, Muyan and Zhang, Qinglong and Zhu, Xizhou and Lu, Lewei and others},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={24185--24198},
   year={2024}
 }
 ```

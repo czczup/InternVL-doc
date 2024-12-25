@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Deploy InternVL 1.5 Series &#8212; internvl</title>
+    <title>Deploy InternVL 1.5 Series &#8212; InternVL</title>
   
   
   
@@ -139,8 +139,8 @@
       
     
     
-    <img src="../_static/new_logo.svg" class="logo__image only-light" alt="internvl - Home"/>
-    <script>document.write(`<img src="../_static/new_logo.svg" class="logo__image only-dark" alt="internvl - Home"/>`);</script>
+    <img src="../_static/new_logo.svg" class="logo__image only-light" alt="InternVL - Home"/>
+    <script>document.write(`<img src="../_static/new_logo.svg" class="logo__image only-dark" alt="InternVL - Home"/>`);</script>
   
   
 </a></div>
@@ -166,7 +166,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../internvl2.5/finetune.html">🔧 Finetune</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../internvl2.5/evaluation.html">📊 Evaluation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../internvl2.5/deployment.html">📦 Deployment</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../internvl2.5/domain_adaptation.html">🧩 Domain Adaptation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../internvl2.5/preference_optimization.html">🎯 Preference Optimization</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL 2.0</span></p>
@@ -438,11 +437,11 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lmdeploy">LMDeploy</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-hello-world-example">A ‘Hello, world’ example</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-images-inference">Multi-images inference</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#batch-prompts-inference">Batch prompts inference</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-turn-conversation">Multi-turn conversation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#serving-with-openai-compatible-server">Serving with OpenAI Compatible Server</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-hello-world-example">A ‘Hello, World’ Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-images-inference">Multi-Images Inference</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#batch-prompts-inference">Batch Prompts Inference</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-turn-conversation">Multi-Turn Conversation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#serving">Serving</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#launch-service">Launch Service</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#integrate-with-openai">Integrate with <code class="docutils literal notranslate"><span class="pre">OpenAI</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#memory-usage-testing">Memory Usage Testing</a></li>
@@ -450,8 +449,6 @@ document.write(`
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vllm">vLLM</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ollama">Ollama</a></li>
 </ul>
             </nav>
         </div>
@@ -467,13 +464,13 @@ document.write(`
 <h1>Deploy InternVL 1.5 Series<a class="headerlink" href="#deploy-internvl-1-5-series" title="Permalink to this heading">#</a></h1>
 <section id="lmdeploy">
 <h2>LMDeploy<a class="headerlink" href="#lmdeploy" title="Permalink to this heading">#</a></h2>
-<p><a class="reference external" href="https://github.com/InternLM/lmdeploy">LMDeploy</a> is a toolkit for compressing, deploying, and serving LLM, developed by the MMRazor and MMDeploy teams.</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span><span class="nv">lmdeploy</span><span class="o">==</span><span class="m">0</span>.5.3
+<p><a class="reference external" href="https://github.com/InternLM/lmdeploy">LMDeploy</a> is a toolkit for compressing, deploying, and serving LLMs &amp; VLMs.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>lmdeploy&gt;<span class="o">=</span><span class="m">0</span>.5.3
 </pre></div>
 </div>
 <p>LMDeploy abstracts the complex inference process of multi-modal Vision-Language Models (VLM) into an easy-to-use pipeline, similar to the Large Language Model (LLM) inference pipeline.</p>
 <section id="a-hello-world-example">
-<h3>A ‘Hello, world’ example<a class="headerlink" href="#a-hello-world-example" title="Permalink to this heading">#</a></h3>
+<h3>A ‘Hello, World’ Example<a class="headerlink" href="#a-hello-world-example" title="Permalink to this heading">#</a></h3>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">InternVL-Chat-V1-5</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">Mini-InternVL-Chat-2B-V1-5</button><button aria-controls="panel-0-0-2" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-2" name="0-2" role="tab" tabindex="-1">Mini-InternVL-Chat-4B-V1-5</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lmdeploy</span> <span class="kn">import</span> <span class="n">pipeline</span><span class="p">,</span> <span class="n">TurbomindEngineConfig</span><span class="p">,</span> <span class="n">ChatTemplateConfig</span>
 <span class="kn">from</span> <span class="nn">lmdeploy.vl</span> <span class="kn">import</span> <span class="n">load_image</span>
@@ -515,7 +512,7 @@ document.write(`
 <p>If <code class="docutils literal notranslate"><span class="pre">ImportError</span></code> occurs while executing this case, please install the required packages as prompted.</p>
 </section>
 <section id="multi-images-inference">
-<h3>Multi-images inference<a class="headerlink" href="#multi-images-inference" title="Permalink to this heading">#</a></h3>
+<h3>Multi-Images Inference<a class="headerlink" href="#multi-images-inference" title="Permalink to this heading">#</a></h3>
 <p>When dealing with multiple images, you can put them all in one list. Keep in mind that multiple images will lead to a higher number of input tokens, and as a result, the size of the context window typically needs to be increased.</p>
 <blockquote>
 <div><p>Warning: Due to the scarcity of multi-image conversation data, the performance on multi-image tasks may be unstable, and it may require multiple attempts to achieve satisfactory results.</p>
@@ -584,7 +581,7 @@ document.write(`
 </div></div>
 </section>
 <section id="batch-prompts-inference">
-<h3>Batch prompts inference<a class="headerlink" href="#batch-prompts-inference" title="Permalink to this heading">#</a></h3>
+<h3>Batch Prompts Inference<a class="headerlink" href="#batch-prompts-inference" title="Permalink to this heading">#</a></h3>
 <p>Conducting inference with batch prompts is quite straightforward; just place them within a list structure:</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-2-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-2-2-0" name="2-0" role="tab" tabindex="0">InternVL-Chat-V1-5</button><button aria-controls="panel-2-2-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-2-2-1" name="2-1" role="tab" tabindex="-1">Mini-InternVL-Chat-2B-V1-5</button><button aria-controls="panel-2-2-2" aria-selected="false" class="sphinx-tabs-tab" id="tab-2-2-2" name="2-2" role="tab" tabindex="-1">Mini-InternVL-Chat-4B-V1-5</button></div><div aria-labelledby="tab-2-2-0" class="sphinx-tabs-panel" id="panel-2-2-0" name="2-0" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lmdeploy</span> <span class="kn">import</span> <span class="n">pipeline</span><span class="p">,</span> <span class="n">TurbomindEngineConfig</span><span class="p">,</span> <span class="n">ChatTemplateConfig</span>
@@ -641,7 +638,7 @@ document.write(`
 </div></div>
 </section>
 <section id="multi-turn-conversation">
-<h3>Multi-turn conversation<a class="headerlink" href="#multi-turn-conversation" title="Permalink to this heading">#</a></h3>
+<h3>Multi-Turn Conversation<a class="headerlink" href="#multi-turn-conversation" title="Permalink to this heading">#</a></h3>
 <p>There are two ways to do the multi-turn conversations with the pipeline. One is to construct messages according to the format of OpenAI and use above introduced method, the other is to use the <code class="docutils literal notranslate"><span class="pre">pipeline.chat</span></code> interface.</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-3-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-3-3-0" name="3-0" role="tab" tabindex="0">InternVL-Chat-V1-5</button><button aria-controls="panel-3-3-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-3-3-1" name="3-1" role="tab" tabindex="-1">Mini-InternVL-Chat-2B-V1-5</button><button aria-controls="panel-3-3-2" aria-selected="false" class="sphinx-tabs-tab" id="tab-3-3-2" name="3-2" role="tab" tabindex="-1">Mini-InternVL-Chat-4B-V1-5</button></div><div aria-labelledby="tab-3-3-0" class="sphinx-tabs-panel" id="panel-3-3-0" name="3-0" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lmdeploy</span> <span class="kn">import</span> <span class="n">pipeline</span><span class="p">,</span> <span class="n">TurbomindEngineConfig</span><span class="p">,</span> <span class="n">ChatTemplateConfig</span><span class="p">,</span> <span class="n">GenerationConfig</span>
@@ -694,8 +691,8 @@ document.write(`
 </div>
 </div></div>
 </section>
-<section id="serving-with-openai-compatible-server">
-<h3>Serving with OpenAI Compatible Server<a class="headerlink" href="#serving-with-openai-compatible-server" title="Permalink to this heading">#</a></h3>
+<section id="serving">
+<h3>Serving<a class="headerlink" href="#serving" title="Permalink to this heading">#</a></h3>
 <section id="launch-service">
 <h4>Launch Service<a class="headerlink" href="#launch-service" title="Permalink to this heading">#</a></h4>
 <div class="sphinx-tabs docutils container">
@@ -899,18 +896,10 @@ document.write(`
 </tbody>
 </table>
 </div></div>
-</section>
-</section>
-</section>
-<section id="vllm">
-<h2>vLLM<a class="headerlink" href="#vllm" title="Permalink to this heading">#</a></h2>
-<p>Coming soon…</p>
-</section>
-<section id="ollama">
-<h2>Ollama<a class="headerlink" href="#ollama" title="Permalink to this heading">#</a></h2>
-<p>Coming soon…</p>
 <br>
 <br>
+</section>
+</section>
 </section>
 </section>
 
@@ -959,11 +948,11 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lmdeploy">LMDeploy</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-hello-world-example">A ‘Hello, world’ example</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-images-inference">Multi-images inference</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#batch-prompts-inference">Batch prompts inference</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-turn-conversation">Multi-turn conversation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#serving-with-openai-compatible-server">Serving with OpenAI Compatible Server</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-hello-world-example">A ‘Hello, World’ Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-images-inference">Multi-Images Inference</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#batch-prompts-inference">Batch Prompts Inference</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-turn-conversation">Multi-Turn Conversation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#serving">Serving</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#launch-service">Launch Service</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#integrate-with-openai">Integrate with <code class="docutils literal notranslate"><span class="pre">OpenAI</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#memory-usage-testing">Memory Usage Testing</a></li>
@@ -971,8 +960,6 @@ document.write(`
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vllm">vLLM</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ollama">Ollama</a></li>
 </ul>
   </nav></div>
 

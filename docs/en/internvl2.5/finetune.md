@@ -87,7 +87,7 @@ pretrained
 └── InternVL2_5-78B-MPO
 ```
 
-## Prepare Your Customized Training Data
+## Prepare Customized Data
 
 After downloading the pre-trained model, prepare your customized SFT (Supervised Fine-Tuning) data. Create a JSON file in `internvl_chat/shell/data/` similar to [this example](https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/shell/data/internvl_1_2_finetune.json).
 
@@ -99,10 +99,10 @@ The format for the JSON file should be:
     "root": "path/to/the/image/",
     "annotation": "path/to/the/jsonl/annotation",
     "data_augment": false,
+    "max_dynamic_patch": 12,
     "repeat_time": 1,
     "length": "number of samples in the dataset"
-  },
-  ...
+  }
 }
 ```
 
@@ -114,6 +114,7 @@ Example:
     "root": "playground/data/",
     "annotation": "playground/opensource/sharegpt4v_instruct_gpt4-vision_cap100k.jsonl",
     "data_augment": false,
+    "max_dynamic_patch": 12,
     "repeat_time": 1,
     "length": 102025
   }
@@ -327,25 +328,6 @@ If you find this project useful in your research, please consider citing:
   title={Enhancing the Reasoning Ability of Multimodal Large Language Models via Mixed Preference Optimization},
   author={Wang, Weiyun and Chen, Zhe and Wang, Wenhai and Cao, Yue and Liu, Yangzhou and Gao, Zhangwei and Zhu, Jinguo and Zhu, Xizhou and Lu, Lewei and Qiao, Yu and Dai, Jifeng},
   journal={arXiv preprint arXiv:2411.10442},
-  year={2024}
-}
-@article{gao2024mini,
-  title={Mini-InternVL: A Flexible-Transfer Pocket Multimodal Model with 5\% Parameters and 90\% Performance},
-  author={Gao, Zhangwei and Chen, Zhe and Cui, Erfei and Ren, Yiming and Wang, Weiyun and Zhu, Jinguo and Tian, Hao and Ye, Shenglong and He, Junjun and Zhu, Xizhou and others},
-  journal={arXiv preprint arXiv:2410.16261},
-  year={2024}
-}
-@article{chen2024far,
-  title={How Far Are We to GPT-4V? Closing the Gap to Commercial Multimodal Models with Open-Source Suites},
-  author={Chen, Zhe and Wang, Weiyun and Tian, Hao and Ye, Shenglong and Gao, Zhangwei and Cui, Erfei and Tong, Wenwen and Hu, Kongzhi and Luo, Jiapeng and Ma, Zheng and others},
-  journal={arXiv preprint arXiv:2404.16821},
-  year={2024}
-}
-@inproceedings{chen2024internvl,
-  title={Internvl: Scaling up vision foundation models and aligning for generic visual-linguistic tasks},
-  author={Chen, Zhe and Wu, Jiannan and Wang, Wenhai and Su, Weijie and Chen, Guo and Xing, Sen and Zhong, Muyan and Zhang, Qinglong and Zhu, Xizhou and Lu, Lewei and others},
-  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
-  pages={24185--24198},
   year={2024}
 }
 ```

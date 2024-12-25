@@ -56,7 +56,6 @@ Documentation
    🔧 Finetune <internvl2.5/finetune.md>
    📊 Evaluation <internvl2.5/evaluation.md>
    📦 Deployment <internvl2.5/deployment.md>
-   🧩 Domain Adaptation <internvl2.5/domain_adaptation.md>
    🎯 Preference Optimization <internvl2.5/preference_optimization.md>
 
 .. _internvl_2_0:

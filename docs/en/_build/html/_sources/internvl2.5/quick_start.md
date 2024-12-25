@@ -1,10 +1,6 @@
-# Quick Start of InternVL2.5 Series
+# Quick Start of InternVL 2.5 Series
 
-We provide an example code to run InternVL2.5 series using `transformers`.
-
-We also welcome you to experience the InternVL2 series models in our [online demo](https://internvl.opengvlab.com/).
-
-<!-- > Please use transformers==4.37.2 to ensure the model works normally. -->
+> Please use transformers>=4.37.2 to ensure the model works normally.
 
 ## Model Preparation
 
@@ -28,8 +24,9 @@ We also welcome you to experience the InternVL2 series models in our [online dem
 Download the above model weights according to your need and place them in the `pretrained/` folder.
 
 ```sh
+pip install -U huggingface_hub
+
 cd pretrained/
-# pip install -U huggingface_hub
 # Download OpenGVLab/InternVL2_5-1B
 huggingface-cli download --resume-download --local-dir-use-symlinks False OpenGVLab/InternVL2_5-1B --local-dir InternVL2_5-1B
 
@@ -93,9 +90,9 @@ pretrained
 └── InternVL2_5-78B-MPO
 ```
 
-### Model Loading
+## Model Loading
 
-#### 16-bit (bf16 / fp16)
+### 16-bit (bf16 / fp16)
 
 `````{tabs}
 
@@ -206,7 +203,7 @@ model = AutoModel.from_pretrained(
 
 `````
 
-#### BNB 8-bit Quantization
+### BNB 8-bit Quantization
 
 `````{tabs}
 
@@ -333,7 +330,7 @@ model = AutoModel.from_pretrained(
 
 `````
 
-#### BNB 4-bit Quantization
+### BNB 4-bit Quantization
 
 `````{tabs}
 
@@ -425,7 +422,7 @@ model = AutoModel.from_pretrained(
 
 `````
 
-#### Multiple GPUs
+### Multiple GPUs
 
 The reason for writing the code this way is to avoid errors that occur during multi-GPU inference due to tensors not being on the same device. By ensuring that the first and last layers of the large language model (LLM) are on the same device, we prevent such errors.
 
@@ -564,7 +561,7 @@ model = AutoModel.from_pretrained(
 
 `````
 
-### Inference with Transformers
+## Inference with Transformers
 
 ```python
 import numpy as np
@@ -783,7 +780,7 @@ response, history = model.chat(tokenizer, pixel_values, question, generation_con
 print(f'User: {question}\nAssistant: {response}')
 ```
 
-#### Streaming output
+### Streaming Output
 
 Besides this method, you can also use the following code to get streamed output.
 
@@ -827,25 +824,6 @@ If you find this project useful in your research, please consider citing:
   title={Enhancing the Reasoning Ability of Multimodal Large Language Models via Mixed Preference Optimization},
   author={Wang, Weiyun and Chen, Zhe and Wang, Wenhai and Cao, Yue and Liu, Yangzhou and Gao, Zhangwei and Zhu, Jinguo and Zhu, Xizhou and Lu, Lewei and Qiao, Yu and Dai, Jifeng},
   journal={arXiv preprint arXiv:2411.10442},
-  year={2024}
-}
-@article{gao2024mini,
-  title={Mini-InternVL: A Flexible-Transfer Pocket Multimodal Model with 5\% Parameters and 90\% Performance},
-  author={Gao, Zhangwei and Chen, Zhe and Cui, Erfei and Ren, Yiming and Wang, Weiyun and Zhu, Jinguo and Tian, Hao and Ye, Shenglong and He, Junjun and Zhu, Xizhou and others},
-  journal={arXiv preprint arXiv:2410.16261},
-  year={2024}
-}
-@article{chen2024far,
-  title={How Far Are We to GPT-4V? Closing the Gap to Commercial Multimodal Models with Open-Source Suites},
-  author={Chen, Zhe and Wang, Weiyun and Tian, Hao and Ye, Shenglong and Gao, Zhangwei and Cui, Erfei and Tong, Wenwen and Hu, Kongzhi and Luo, Jiapeng and Ma, Zheng and others},
-  journal={arXiv preprint arXiv:2404.16821},
-  year={2024}
-}
-@inproceedings{chen2024internvl,
-  title={Internvl: Scaling up vision foundation models and aligning for generic visual-linguistic tasks},
-  author={Chen, Zhe and Wu, Jiannan and Wang, Wenhai and Su, Weijie and Chen, Guo and Xing, Sen and Zhong, Muyan and Zhang, Qinglong and Zhu, Xizhou and Lu, Lewei and others},
-  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
-  pages={24185--24198},
   year={2024}
 }
 ```

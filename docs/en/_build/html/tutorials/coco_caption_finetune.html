@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>✨ Enhancing InternVL2 on COCO Caption Using LoRA Fine-Tuning &#8212; internvl</title>
+    <title>✨ Enhancing InternVL2 on COCO Caption Using LoRA Fine-Tuning &#8212; InternVL</title>
   
   
   
@@ -138,8 +138,8 @@
       
     
     
-    <img src="../_static/new_logo.svg" class="logo__image only-light" alt="internvl - Home"/>
-    <script>document.write(`<img src="../_static/new_logo.svg" class="logo__image only-dark" alt="internvl - Home"/>`);</script>
+    <img src="../_static/new_logo.svg" class="logo__image only-light" alt="InternVL - Home"/>
+    <script>document.write(`<img src="../_static/new_logo.svg" class="logo__image only-dark" alt="InternVL - Home"/>`);</script>
   
   
 </a></div>
@@ -165,7 +165,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../internvl2.5/finetune.html">🔧 Finetune</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../internvl2.5/evaluation.html">📊 Evaluation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../internvl2.5/deployment.html">📦 Deployment</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../internvl2.5/domain_adaptation.html">🧩 Domain Adaptation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../internvl2.5/preference_optimization.html">🎯 Preference Optimization</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL 2.0</span></p>
@@ -436,15 +435,15 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-preparation">🛠️ Model Preparation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preparation">🗂️ Data Preparation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluating-the-original-model">📊 Evaluating the Original Model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lora-fine-tuning">✨ LoRA Fine-Tuning</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monitoring-with-tensorboard">📈 Monitoring with TensorBoard</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluating-the-fine-tuned-model">📊 Evaluating the Fine-tuned Model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merging-lora-weights">🧩 Merging LoRA Weights</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wrapping-into-automodel">📦 Wrapping into AutoModel</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">🏁 Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-preparation">Model Preparation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preparation">Data Preparation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluating-the-original-model">Evaluating the Original Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lora-fine-tuning">LoRA Fine-Tuning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monitoring-with-tensorboard">Monitoring with TensorBoard</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluating-the-fine-tuned-model">Evaluating the Fine-tuned Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merging-lora-weights">Merging LoRA Weights</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wrapping-into-automodel">Wrapping into AutoModel</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
 </ul>
             </nav>
         </div>
@@ -461,7 +460,7 @@ document.write(`
 <p>In this tutorial, we will provide a detailed guide on how to use LoRA fine-tuning to improve the performance of a trained InternVL2 model on COCO Caption.</p>
 <p>Before starting, please prepare the InternVL training environment according to the <a class="reference internal" href="../get_started/installation.html"><span class="std std-doc">installation guide</span></a>. Note that <a class="reference external" href="http://localhost:8000/get_started/installation.html#additional-instructions">Flash Attention</a> requires manual installation following the steps provided. If you encounter any issues, check the issues section on their <a class="reference external" href="https://github.com/Dao-AILab/flash-attention/issues">official repository</a>.</p>
 <section id="model-preparation">
-<h2>🛠️ Model Preparation<a class="headerlink" href="#model-preparation" title="Permalink to this heading">#</a></h2>
+<h2>Model Preparation<a class="headerlink" href="#model-preparation" title="Permalink to this heading">#</a></h2>
 <p>After setting up the environment, navigate to the <code class="docutils literal notranslate"><span class="pre">internvl_chat</span></code> directory. You will need to download a pre-trained InternVL2 model. The table below lists all available models in the InternVL2 series.</p>
 <table class="table">
 <thead>
@@ -544,7 +543,7 @@ huggingface-cli<span class="w"> </span>download<span class="w"> </span>--resume-
 </div>
 </section>
 <section id="data-preparation">
-<h2>🗂️ Data Preparation<a class="headerlink" href="#data-preparation" title="Permalink to this heading">#</a></h2>
+<h2>Data Preparation<a class="headerlink" href="#data-preparation" title="Permalink to this heading">#</a></h2>
 <p>To enhance the InternVL2 model on COCO Caption, we need to prepare the COCO Caption dataset for both training and testing.</p>
 <p>Follow these instructions to prepare the COCO Caption data:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 1: Create the data directory</span>
@@ -578,7 +577,7 @@ unzip<span class="w"> </span>coco_karpathy_train_567k.zip
 </div>
 </section>
 <section id="evaluating-the-original-model">
-<h2>📊 Evaluating the Original Model<a class="headerlink" href="#evaluating-the-original-model" title="Permalink to this heading">#</a></h2>
+<h2>Evaluating the Original Model<a class="headerlink" href="#evaluating-the-original-model" title="Permalink to this heading">#</a></h2>
 <p>With the data and model prepared, we can evaluate the InternVL2-2B model on COCO Caption.</p>
 <p>Use the following command to test the model with 4 GPUs. Adjust the number of GPUs based on your setup:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">4</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>pretrained/InternVL2-2B<span class="w"> </span>caption-coco<span class="w"> </span>--dynamic
@@ -599,7 +598,7 @@ unzip<span class="w"> </span>coco_karpathy_train_567k.zip
 </div>
 </section>
 <section id="lora-fine-tuning">
-<h2>✨ LoRA Fine-Tuning<a class="headerlink" href="#lora-fine-tuning" title="Permalink to this heading">#</a></h2>
+<h2>LoRA Fine-Tuning<a class="headerlink" href="#lora-fine-tuning" title="Permalink to this heading">#</a></h2>
 <p>Next, we’ll fine-tune the InternVL2-2B model using LoRA. Execute the following command for fine-tuning:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span><span class="nv">PER_DEVICE_BATCH_SIZE</span><span class="o">=</span><span class="m">4</span><span class="w"> </span>sh<span class="w"> </span>shell/internvl2.0/2nd_finetune/internvl2_2b_internlm2_1_8b_dynamic_res_2nd_finetune_lora_coco.sh
 </pre></div>
@@ -623,7 +622,7 @@ unzip<span class="w"> </span>coco_karpathy_train_567k.zip
 <p>Please note that the hyperparameters provided here are arbitrary and may not be optimal. You can achieve better performance by tuning the parameters.</p>
 </section>
 <section id="monitoring-with-tensorboard">
-<h2>📈 Monitoring with TensorBoard<a class="headerlink" href="#monitoring-with-tensorboard" title="Permalink to this heading">#</a></h2>
+<h2>Monitoring with TensorBoard<a class="headerlink" href="#monitoring-with-tensorboard" title="Permalink to this heading">#</a></h2>
 <p>After starting the training, navigate to the directory:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>work_dirs/internvl_chat_v2_0/internvl2_2b_internlm2_1_8b_dynamic_res_2nd_finetune_lora_coco
 </pre></div>
@@ -636,7 +635,7 @@ unzip<span class="w"> </span>coco_karpathy_train_567k.zip
 <p><img alt="tensorboard" src="../_images/tensorboard.png" /></p>
 </section>
 <section id="evaluating-the-fine-tuned-model">
-<h2>📊 Evaluating the Fine-tuned Model<a class="headerlink" href="#evaluating-the-fine-tuned-model" title="Permalink to this heading">#</a></h2>
+<h2>Evaluating the Fine-tuned Model<a class="headerlink" href="#evaluating-the-fine-tuned-model" title="Permalink to this heading">#</a></h2>
 <p>After fine-tuning, evaluate the model on COCO Caption again using the following command with 4 GPUs. Adjust the number of GPUs based on your setup:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS</span><span class="o">=</span><span class="m">4</span><span class="w"> </span>sh<span class="w"> </span>evaluate.sh<span class="w"> </span>work_dirs/internvl_chat_v2_0/internvl2_2b_internlm2_1_8b_dynamic_res_2nd_finetune_lora_coco<span class="w"> </span>caption-coco<span class="w"> </span>--dynamic
 </pre></div>
@@ -656,7 +655,7 @@ unzip<span class="w"> </span>coco_karpathy_train_567k.zip
 </div>
 </section>
 <section id="merging-lora-weights">
-<h2>🧩 Merging LoRA Weights<a class="headerlink" href="#merging-lora-weights" title="Permalink to this heading">#</a></h2>
+<h2>Merging LoRA Weights<a class="headerlink" href="#merging-lora-weights" title="Permalink to this heading">#</a></h2>
 <p>After evaluating the fine-tuned model, you may want to merge the LoRA weights back into the original InternVL2 model. Follow these steps to accomplish this.</p>
 <p>Use the provided script to merge the LoRA weights into the base model. The script takes two arguments: the input path of the fine-tuned model and the output path for the merged model.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>tools/merge_lora.py<span class="w"> </span>&lt;input_path&gt;<span class="w"> </span>&lt;output_path&gt;
@@ -677,7 +676,7 @@ Done!
 </div>
 </section>
 <section id="wrapping-into-automodel">
-<h2>📦 Wrapping into AutoModel<a class="headerlink" href="#wrapping-into-automodel" title="Permalink to this heading">#</a></h2>
+<h2>Wrapping into AutoModel<a class="headerlink" href="#wrapping-into-automodel" title="Permalink to this heading">#</a></h2>
 <p>After merging the LoRA weights, you can wrap the fine-tuned InternVL2 model into an <code class="docutils literal notranslate"><span class="pre">AutoModel</span></code> for easier inference or deployment.</p>
 <p>First, copy all the Python scripts from the original <code class="docutils literal notranslate"><span class="pre">InternVL2-2B</span></code> directory to the new merged model directory:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cp<span class="w"> </span>pretrained/InternVL2-2B/*.py<span class="w"> </span>work_dirs/internvl_chat_v2_0/internvl2_2b_internlm2_1_8b_dynamic_res_2nd_finetune_lora_coco_merge/
@@ -690,7 +689,7 @@ Done!
 <p>After copying the necessary files, you can now load and use the fine-tuned InternVL2 model with <code class="docutils literal notranslate"><span class="pre">AutoModel</span></code> for inference or deployment.</p>
 </section>
 <section id="conclusion">
-<h2>🏁 Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h2>
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h2>
 <p>This guide provided a step-by-step approach to enhancing the InternVL2 model on COCO Caption using LoRA fine-tuning. By following these instructions, you should be able to achieve improved performance in captioning tasks. COCO Caption is just one example; you can replace it with other downstream datasets for fine-tuning. Happy fine-tuning!</p>
 <br>
 <br>
@@ -741,15 +740,15 @@ Done!
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-preparation">🛠️ Model Preparation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preparation">🗂️ Data Preparation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluating-the-original-model">📊 Evaluating the Original Model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lora-fine-tuning">✨ LoRA Fine-Tuning</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monitoring-with-tensorboard">📈 Monitoring with TensorBoard</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluating-the-fine-tuned-model">📊 Evaluating the Fine-tuned Model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merging-lora-weights">🧩 Merging LoRA Weights</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wrapping-into-automodel">📦 Wrapping into AutoModel</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">🏁 Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-preparation">Model Preparation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preparation">Data Preparation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluating-the-original-model">Evaluating the Original Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lora-fine-tuning">LoRA Fine-Tuning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monitoring-with-tensorboard">Monitoring with TensorBoard</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluating-the-fine-tuned-model">Evaluating the Fine-tuned Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merging-lora-weights">Merging LoRA Weights</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wrapping-into-automodel">Wrapping into AutoModel</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
 </ul>
   </nav></div>
 

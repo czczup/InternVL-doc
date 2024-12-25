@@ -4,7 +4,7 @@ In this tutorial, we will provide a detailed guide on how to use LoRA fine-tunin
 
 Before starting, please prepare the InternVL training environment according to the [installation guide](../get_started/installation.md). Note that [Flash Attention](http://localhost:8000/get_started/installation.html#additional-instructions) requires manual installation following the steps provided. If you encounter any issues, check the issues section on their [official repository](https://github.com/Dao-AILab/flash-attention/issues).
 
-## 🛠️ Model Preparation
+## Model Preparation
 
 After setting up the environment, navigate to the `internvl_chat` directory. You will need to download a pre-trained InternVL2 model. The table below lists all available models in the InternVL2 series.
 
@@ -47,7 +47,7 @@ pretrained
 └── InternVL2-2B
 ```
 
-## 🗂️ Data Preparation
+## Data Preparation
 
 To enhance the InternVL2 model on COCO Caption, we need to prepare the COCO Caption dataset for both training and testing.
 
@@ -85,7 +85,7 @@ data/coco
 └── test2015
 ```
 
-## 📊 Evaluating the Original Model
+## Evaluating the Original Model
 
 With the data and model prepared, we can evaluate the InternVL2-2B model on COCO Caption.
 
@@ -110,7 +110,7 @@ computing CIDEr score...
 CIDEr: 0.793
 ```
 
-## ✨ LoRA Fine-Tuning
+## LoRA Fine-Tuning
 
 Next, we'll fine-tune the InternVL2-2B model using LoRA. Execute the following command for fine-tuning:
 
@@ -141,7 +141,7 @@ Training with 8 A100 GPUs will take approximately 4 hours. If you encounter OOM 
 
 Please note that the hyperparameters provided here are arbitrary and may not be optimal. You can achieve better performance by tuning the parameters.
 
-## 📈 Monitoring with TensorBoard
+## Monitoring with TensorBoard
 
 After starting the training, navigate to the directory:
 
@@ -159,7 +159,7 @@ Then, open your web browser and navigate to `http://localhost:10097/` to view th
 
 ![tensorboard](./tensorboard.png)
 
-## 📊 Evaluating the Fine-tuned Model
+## Evaluating the Fine-tuned Model
 
 After fine-tuning, evaluate the model on COCO Caption again using the following command with 4 GPUs. Adjust the number of GPUs based on your setup:
 
@@ -182,7 +182,7 @@ computing CIDEr score...
 CIDEr: 1.312
 ```
 
-## 🧩 Merging LoRA Weights
+## Merging LoRA Weights
 
 After evaluating the fine-tuned model, you may want to merge the LoRA weights back into the original InternVL2 model. Follow these steps to accomplish this.
 
@@ -209,7 +209,7 @@ Saving tokenizer...
 Done!
 ```
 
-## 📦 Wrapping into AutoModel
+## Wrapping into AutoModel
 
 After merging the LoRA weights, you can wrap the fine-tuned InternVL2 model into an `AutoModel` for easier inference or deployment.
 
@@ -227,7 +227,7 @@ cp pretrained/InternVL2-2B/config.json work_dirs/internvl_chat_v2_0/internvl2_2b
 
 After copying the necessary files, you can now load and use the fine-tuned InternVL2 model with `AutoModel` for inference or deployment.
 
-## 🏁 Conclusion
+## Conclusion
 
 This guide provided a step-by-step approach to enhancing the InternVL2 model on COCO Caption using LoRA fine-tuning. By following these instructions, you should be able to achieve improved performance in captioning tasks. COCO Caption is just one example; you can replace it with other downstream datasets for fine-tuning. Happy fine-tuning!
 

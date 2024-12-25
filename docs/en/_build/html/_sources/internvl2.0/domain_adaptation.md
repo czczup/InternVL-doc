@@ -4,7 +4,7 @@
 
 ### Data Preparation
 
-- Prepare *InternVL-Chat-V1-2-SFT-Data*, See [Document](../internvl1.2/reproduce.md/#training-datasets-preparation)
+- Prepare `InternVL-Chat-V1-2-SFT-Data`, See [Document](../internvl1.2/reproduce.md/#training-datasets-preparation).
 
 - Download `drivelm_train.jsonl` and `drivelm_val.jsonl` from[InternVL-Domain-Adaptation-Data](https://huggingface.co/datasets/OpenGVLab/InternVL-Domain-Adaptation-Data). `drivelm_train.jsonl` and `drivelm_val.jsonl` are the data after format conversion.
 
@@ -256,22 +256,14 @@ If you find this project useful in your research, please consider citing:
 
 ```BibTeX
 @article{gao2024mini,
-  title={Mini-InternVL: A Flexible-Transfer Pocket Multimodal Model with 5\% Parameters and 90\% Performance},
+  title={Mini-InternVL: a flexible-transfer pocket multi-modal model with 5\% parameters and 90\% performance},
   author={Gao, Zhangwei and Chen, Zhe and Cui, Erfei and Ren, Yiming and Wang, Weiyun and Zhu, Jinguo and Tian, Hao and Ye, Shenglong and He, Junjun and Zhu, Xizhou and others},
-  journal={arXiv preprint arXiv:2410.16261},
-  year={2024}
-}
-@article{chen2023internvl,
-  title={InternVL: Scaling up Vision Foundation Models and Aligning for Generic Visual-Linguistic Tasks},
-  author={Chen, Zhe and Wu, Jiannan and Wang, Wenhai and Su, Weijie and Chen, Guo and Xing, Sen and Zhong, Muyan and Zhang, Qinglong and Zhu, Xizhou and Lu, Lewei and Li, Bin and Luo, Ping and Lu, Tong and Qiao, Yu and Dai, Jifeng},
-  journal={arXiv preprint arXiv:2312.14238},
-  year={2023}
-}
-@article{chen2024far,
-  title={How Far Are We to GPT-4V? Closing the Gap to Commercial Multimodal Models with Open-Source Suites},
-  author={Chen, Zhe and Wang, Weiyun and Tian, Hao and Ye, Shenglong and Gao, Zhangwei and Cui, Erfei and Tong, Wenwen and Hu, Kongzhi and Luo, Jiapeng and Ma, Zheng and others},
-  journal={arXiv preprint arXiv:2404.16821},
-  year={2024}
+  journal={Visual Intelligence},
+  volume={2},
+  number={1},
+  pages={1--17},
+  year={2024},
+  publisher={Springer}
 }
 ```
 

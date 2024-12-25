@@ -1,10 +1,6 @@
 # Quick Start of InternVL-Chat-V1-1
 
-We provide an example code to run InternVL-Chat-V1-1 using `transformers`.
-
-We also welcome you to experience the InternVL2 series models in our [online demo](https://internvl.opengvlab.com/).
-
-> Please use transformers==4.37.2 to ensure the model works normally.
+> Please use transformers>=4.37.2 to ensure the model works normally.
 
 ## Model Preparation
 
@@ -380,7 +376,7 @@ print(f'User: {question}')
 print(f'Assistant: {response}')
 ```
 
-### Streaming output
+### Streaming Output
 
 Besides this method, you can also use the following code to get streamed output.
 
@@ -414,16 +410,11 @@ for new_text in streamer:
 If you find this project useful in your research, please consider citing:
 
 ```BibTeX
-@article{chen2023internvl,
-  title={InternVL: Scaling up Vision Foundation Models and Aligning for Generic Visual-Linguistic Tasks},
-  author={Chen, Zhe and Wu, Jiannan and Wang, Wenhai and Su, Weijie and Chen, Guo and Xing, Sen and Zhong, Muyan and Zhang, Qinglong and Zhu, Xizhou and Lu, Lewei and Li, Bin and Luo, Ping and Lu, Tong and Qiao, Yu and Dai, Jifeng},
-  journal={arXiv preprint arXiv:2312.14238},
-  year={2023}
-}
-@article{chen2024far,
-  title={How Far Are We to GPT-4V? Closing the Gap to Commercial Multimodal Models with Open-Source Suites},
-  author={Chen, Zhe and Wang, Weiyun and Tian, Hao and Ye, Shenglong and Gao, Zhangwei and Cui, Erfei and Tong, Wenwen and Hu, Kongzhi and Luo, Jiapeng and Ma, Zheng and others},
-  journal={arXiv preprint arXiv:2404.16821},
+@inproceedings{chen2024internvl,
+  title={Internvl: Scaling up vision foundation models and aligning for generic visual-linguistic tasks},
+  author={Chen, Zhe and Wu, Jiannan and Wang, Wenhai and Su, Weijie and Chen, Guo and Xing, Sen and Zhong, Muyan and Zhang, Qinglong and Zhu, Xizhou and Lu, Lewei and others},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={24185--24198},
   year={2024}
 }
 ```

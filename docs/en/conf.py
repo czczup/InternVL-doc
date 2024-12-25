@@ -20,7 +20,7 @@ __version__ = '2.0.0'
 
 # -- Project information -----------------------------------------------------
 
-project = 'internvl'
+project = 'InternVL'
 copyright = '2024, OpenGVLab'
 author = 'InternVL Authors'
 

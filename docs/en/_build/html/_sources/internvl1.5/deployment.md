@@ -2,15 +2,15 @@
 
 ## LMDeploy
 
-[LMDeploy](https://github.com/InternLM/lmdeploy) is a toolkit for compressing, deploying, and serving LLM, developed by the MMRazor and MMDeploy teams.
+[LMDeploy](https://github.com/InternLM/lmdeploy) is a toolkit for compressing, deploying, and serving LLMs & VLMs.
 
 ```sh
-pip install lmdeploy==0.5.3
+pip install lmdeploy>=0.5.3
 ```
 
 LMDeploy abstracts the complex inference process of multi-modal Vision-Language Models (VLM) into an easy-to-use pipeline, similar to the Large Language Model (LLM) inference pipeline.
 
-### A 'Hello, world' example
+### A 'Hello, World' Example
 
 `````{tabs}
 
@@ -69,7 +69,7 @@ print(response.text)
 
 If `ImportError` occurs while executing this case, please install the required packages as prompted.
 
-### Multi-images inference
+### Multi-Images Inference
 
 When dealing with multiple images, you can put them all in one list. Keep in mind that multiple images will lead to a higher number of input tokens, and as a result, the size of the context window typically needs to be increased.
 
@@ -154,7 +154,7 @@ print(response.text)
 
 `````
 
-### Batch prompts inference
+### Batch Prompts Inference
 
 Conducting inference with batch prompts is quite straightforward; just place them within a list structure:
 
@@ -228,7 +228,7 @@ print(response)
 
 `````
 
-### Multi-turn conversation
+### Multi-Turn Conversation
 
 There are two ways to do the multi-turn conversations with the pipeline. One is to construct messages according to the format of OpenAI and use above introduced method, the other is to use the `pipeline.chat` interface.
 
@@ -299,7 +299,7 @@ print(sess.response.text)
 
 `````
 
-### Serving with OpenAI Compatible Server
+### Serving
 
 #### Launch Service
 
@@ -431,14 +431,6 @@ To test the memory usage with several A100 GPUs, we will consider the following 
 ````
 
 `````
-
-## vLLM
-
-Coming soon…
-
-## Ollama
-
-Coming soon…
 
 <br>
 <br>
