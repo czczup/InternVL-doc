@@ -1,6 +1,6 @@
 # Evaluation Data Preparation
 
-> COCO images are used in VQAv2 / OK-VQA / RefCOCO / RefCOCO+ / RefCOCOg. Make sure you have already downloaded COCO images before evaluating on these benchmarks.
+> COCO images are used in VQAv2, OK-VQA, RefCOCO, POPE, and so on. Make sure you have already downloaded COCO images before evaluating on these benchmarks.
 
 ## Image Caption Benchmarks
 
