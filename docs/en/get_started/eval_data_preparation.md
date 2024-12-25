@@ -1,27 +1,28 @@
 # Evaluation Data Preparation
 
+> COCO images are used in VQAv2 / OK-VQA / RefCOCO / RefCOCO+ / RefCOCOg. Make sure you have already downloaded COCO images before evaluating on these benchmarks.
+
 ## Image Caption Benchmarks
 
-### COCO Karpathy test
-
-> COCO images are used in VQAv2/OK-VQA/RefCOCO/RefCOCO+/RefCOCOg. Make sure you have already downloaded COCO images before evaluating on these benchmarks.
+### COCO
 
 Follow the instructions below to prepare the data：
 
 ```bash
+# Step 1: Create the data directory
 mkdir -p data/coco && cd data/coco
 
-# download coco images
+# Step 2: Download and unzip image files
 wget http://images.cocodataset.org/zips/train2014.zip && unzip train2014.zip
 wget http://images.cocodataset.org/zips/val2014.zip && unzip val2014.zip
 wget http://images.cocodataset.org/zips/test2015.zip && unzip test2015.zip
 
+# Step 3: Download and place the annotation files
 mkdir -p annotations && cd annotations/
-# download converted annotation files
 wget https://github.com/OpenGVLab/InternVL/releases/download/data/coco_karpathy_test.json
 wget https://github.com/OpenGVLab/InternVL/releases/download/data/coco_karpathy_test_gt.json
 
-cd ../../../
+cd ../../..
 ```
 
 After preparation is complete, the directory structure is:
@@ -36,17 +37,21 @@ data/coco
 └── test2015
 ```
 
-### Flickr30K Karpathy test
+### Flickr30K
 
 Follow the instructions below to prepare the data：
 
 ```bash
+# Step 1: Create the data directory
 mkdir -p data/flickr30k && cd data/flickr30k
 
-# download images from https://bryanplummer.com/Flickr30kEntities/
-# karpathy split annotations can be downloaded from the following link:
-# https://github.com/mehdidc/retrieval_annotations/releases/download/1.0.0/flickr30k_test_karpathy.txt
-# this file is provided by the clip-benchmark repository.
+# Step 2: Download and unzip image files
+# Download images from https://bryanplummer.com/Flickr30kEntities/
+
+# Step 3: Download and place the annotation files
+# Karpathy split annotations can be downloaded from the following link:
+wget https://github.com/mehdidc/retrieval_annotations/releases/download/1.0.0/flickr30k_test_karpathy.txt
+# This file is provided by the clip-benchmark repository.
 # We convert this txt file to json format, download the converted file:
 wget https://github.com/OpenGVLab/InternVL/releases/download/data/flickr30k_test_karpathy.json
 
@@ -62,15 +67,19 @@ data/flickr30k
 └── flickr30k_test_karpathy.json
 ```
 
-### NoCaps val
+### NoCaps
 
 Follow the instructions below to prepare the data：
 
 ```bash
+# Step 1: Create the data directory
 mkdir -p data/nocaps && cd data/nocaps
 
-# download images from https://nocaps.org/download
-# original annotations can be downloaded from https://nocaps.s3.amazonaws.com/nocaps_val_4500_captions.json
+# Step 2: Download and unzip image files
+# Download images from https://nocaps.org/download
+
+# Step 3: Download and place the annotation files
+# Original annotations can be downloaded from https://nocaps.s3.amazonaws.com/nocaps_val_4500_captions.json
 wget https://nocaps.s3.amazonaws.com/nocaps_val_4500_captions.json
 
 cd ../..
@@ -86,26 +95,27 @@ data/nocaps
 
 ## General VQA Benchmarks
 
-### VQAv2 val & test-dev
+### VQAv2
 
 Follow the instructions below to prepare the data：
 
 ```bash
+# Step 1: Create the data directory
 mkdir -p data/vqav2 && cd data/vqav2
 
-# make sure you have downloaded COCO images
+# Step 2: Make sure you have downloaded COCO images
 ln -s ../coco/train2014 ./
 ln -s ../coco/val2014 ./
 ln -s ../coco/test2015 ./
 
-# download questions and annotations
+# Step 3: Download questions and annotations
 wget https://s3.amazonaws.com/cvmlp/vqa/mscoco/vqa/v2_Annotations_Train_mscoco.zip && unzip v2_Annotations_Train_mscoco.zip
 wget https://s3.amazonaws.com/cvmlp/vqa/mscoco/vqa/v2_Questions_Train_mscoco.zip && unzip v2_Questions_Train_mscoco.zip
 wget https://s3.amazonaws.com/cvmlp/vqa/mscoco/vqa/v2_Annotations_Val_mscoco.zip && unzip v2_Annotations_Val_mscoco.zip
 wget https://s3.amazonaws.com/cvmlp/vqa/mscoco/vqa/v2_Questions_Val_mscoco.zip && unzip v2_Questions_Val_mscoco.zip
 wget https://s3.amazonaws.com/cvmlp/vqa/mscoco/vqa/v2_Questions_Test_mscoco.zip && unzip v2_Questions_Test_mscoco.zip
 
-# download converted files
+# Step 4: Download converted files
 wget https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/vqav2/vqav2_train.jsonl
 wget https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/vqav2/vqav2_val.jsonl
 wget https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/vqav2/vqav2_testdev.jsonl
@@ -132,24 +142,25 @@ data/vqav2
 └── vqav2_val.jsonl
 ```
 
-### OKVQA val
+### OKVQA
 
 Follow the instructions below to prepare the data：
 
 ```bash
+# Step 1: Create the data directory
 mkdir -p data/okvqa && cd data/okvqa
 
-# make sure you have downloaded COCO images
+# Step 2: Make sure you have downloaded COCO images
 ln -s ../coco/train2014 ./
 ln -s ../coco/val2014 ./
 
-# download annotations and questions
+# Step 3: Download annotations and questions
 wget https://okvqa.allenai.org/static/data/mscoco_train2014_annotations.json.zip && unzip mscoco_train2014_annotations.json.zip
 wget https://okvqa.allenai.org/static/data/OpenEnded_mscoco_train2014_questions.json.zip && unzip OpenEnded_mscoco_train2014_questions.json.zip
 wget https://okvqa.allenai.org/static/data/mscoco_val2014_annotations.json.zip && unzip mscoco_val2014_annotations.json.zip
 wget https://okvqa.allenai.org/static/data/OpenEnded_mscoco_val2014_questions.json.zip && unzip OpenEnded_mscoco_val2014_questions.json.zip
 
-# download converted files
+# Step 4: Download converted files
 wget https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/okvqa/okvqa_train.jsonl
 wget https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/okvqa/okvqa_val.jsonl
 
@@ -175,12 +186,13 @@ data/okvqa
 Follow the instructions below to prepare the data：
 
 ```bash
+# Step 1: Create the data directory
 mkdir -p data/textvqa && cd data/textvqa
 
-# download images
+# Step 2: Download images
 wget https://dl.fbaipublicfiles.com/textvqa/images/train_val_images.zip && unzip train_val_images.zip
 
-# download converted files
+# Step 3: Download converted files
 wget https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/textvqa/textvqa_train_annotations.json
 wget https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/textvqa/textvqa_train_questions.json
 wget https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/textvqa/textvqa_train.jsonl
@@ -209,32 +221,31 @@ data/textvqa
 └── train_images
 ```
 
-### VizWiz val & test
+### VizWiz
 
 Follow the instructions below to prepare the data：
 
 ```bash
+# Step 1: Create the data directory
 mkdir -p data/vizwiz && cd data/vizwiz
 
-# download images
+# Step 2: Download images
 wget https://vizwiz.cs.colorado.edu/VizWiz_final/images/train.zip && unzip train.zip
 wget https://vizwiz.cs.colorado.edu/VizWiz_final/images/val.zip && unzip val.zip
 wget https://vizwiz.cs.colorado.edu/VizWiz_final/images/test.zip && unzip test.zip
 
-# download annotations
+# Step 3: Download annotations
 wget https://vizwiz.cs.colorado.edu/VizWiz_final/vqa_data/Annotations.zip && unzip Annotations.zip
 
-# download converted files
-# train
+# Step 4: download converted files
 wget https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/vizwiz/vizwiz_train_annotations.json
 wget https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/vizwiz/vizwiz_train_questions.json
 wget https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/vizwiz/vizwiz_train.jsonl
-# val
 wget https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/vizwiz/vizwiz_val_annotations.json
 wget https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/vizwiz/vizwiz_val_questions.json
 wget https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/vizwiz/vizwiz_val.jsonl
-# test
 wget https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/vizwiz/vizwiz_test.jsonl
+
 cd ../..
 ```
 
@@ -255,27 +266,29 @@ data/vizwiz
 └── vizwiz_val_questions.json
 ```
 
-### DocVQA val & test
+### DocVQA
 
 Follow the instructions below to prepare the data：
 
 ```bash
+# Step 1: Create the data directory
 mkdir -p data/docvqa && cd data/docvqa
 
-# download images and annotations
+# Step 2: Download images and annotations
 wget https://datasets.cvc.uab.es/rrc/DocVQA/train.tar.gz --no-check-certificate # (optional)
 wget https://datasets.cvc.uab.es/rrc/DocVQA/val.tar.gz --no-check-certificate
 wget https://datasets.cvc.uab.es/rrc/DocVQA/test.tar.gz --no-check-certificate
 
-# unzip files
+# Step 3: Unzip files
 tar -zxvf train.tar.gz
 tar -zxvf val.tar.gz
 tar -zxvf test.tar.gz
 
-# download converted jsonl files
+# Step 4: Download converted jsonl files
 wget https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/docvqa/train.jsonl
 wget https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/docvqa/val.jsonl
 wget https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/docvqa/test.jsonl
+
 cd ../..
 ```
 
@@ -291,17 +304,18 @@ data/docvqa
 └── val.jsonl
 ```
 
-### InfoVQA val & test
+### InfoVQA
 
 Follow the instructions below to prepare the data：
 
 ```bash
+# Step 1: Create the data directory
 mkdir -p data/infographicsvqa && cd data/infographicsvqa
 
-# download images and annotations from https://rrc.cvc.uab.es/?ch=17&com=downloads
+# Step 2: Download images and annotations from https://rrc.cvc.uab.es/?ch=17&com=downloads
 # infographicsVQA_test_v1.0.json, infographicsVQA_val_v1.0_withQT.json, infographicVQA_train_v1.0.json
 
-# download converted files
+# Step 3: Download converted files
 wget https://huggingface.co/OpenGVLab/InternVL/raw/main/infographicsvqa_val.jsonl -O val.jsonl
 wget https://huggingface.co/OpenGVLab/InternVL/raw/main/infographicsvqa_test.jsonl -O test.jsonl
 
@@ -320,16 +334,18 @@ data/infographicsvqa
 └── val.jsonl
 ```
 
-### ChartQA test-human & test-augmented
+### ChartQA
 
 Follow the instructions below to prepare the data：
 
 ```bash
+# Step 1: Create the data directory
 mkdir -p data/chartqa && cd data/chartqa
 
-# download images from https://drive.google.com/file/d/1Lm_w6zeET1Hyl_9ks6w5nEsgpoyPHalV/view
+# Step 2: download images from
+# https://drive.google.com/file/d/1Lm_w6zeET1Hyl_9ks6w5nEsgpoyPHalV/view
 
-# download converted files
+# Step 3: download converted files
 wget https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/chartqa/train_human.jsonl
 wget https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/chartqa/train_augmented.jsonl
 wget https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/chartqa/test_human.jsonl
@@ -352,18 +368,23 @@ data/chartqa
  └── train_human.jsonl
 ```
 
-### GQA testdev
+### GQA
 
 Follow the instructions below to prepare the data：
 
 ```bash
+# Step 1: Create the data directory
 mkdir -p data/gqa && cd data/gqa
 
-# download images
+# Step 2: Download the official evaluation script
+wget https://nlp.stanford.edu/data/gqa/eval.zip
+unzip eval.zip
+
+# Step 3: Download images
 wget https://downloads.cs.stanford.edu/nlp/data/gqa/images.zip
 unzip images.zip
 
-# download converted files
+# Step 4: Download converted files
 wget https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/gqa/testdev_balanced.jsonl
 wget https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/gqa/train_balanced.jsonl
 wget https://github.com/OpenGVLab/InternVL/releases/download/data/llava_gqa_testdev_balanced_qwen_format.jsonl
@@ -396,16 +417,18 @@ data/gqa
 └── val_balanced_questions.json
 ```
 
-### OCRVQA val & test
+### OCRVQA
 
 Follow the instructions below to prepare the data：
 
 ```bash
+# Step 1: Create the data directory
 mkdir -p data/ocrvqa && cd data/ocrvqa
 
-# download images by following instructions at https://ocr-vqa.github.io/kvqa_ProjectFiles/README.txt
+# Step 2: Download images by following instructions at 
+# https://ocr-vqa.github.io/kvqa_ProjectFiles/README.txt
 
-# download converted files
+# Step 3: Download converted files
 wget https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/ocrvqa/ocrvqa_train.jsonl
 wget https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/ocrvqa/ocrvqa_val.jsonl
 wget https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/ocrvqa/ocrvqa_test.jsonl
@@ -423,7 +446,7 @@ data/ocrvqa
 └── ocrvqa_val.jsonl
 ```
 
-### AI2D test
+### AI2D
 
 Follow the instructions below to prepare the data：
 
@@ -450,22 +473,23 @@ data/ai2diagram
  └── AI2D_TEST
 ```
 
-### ScienceQA test
+### ScienceQA
 
 Follow the instructions below to prepare the data：
 
 ```bash
+# Step 1: Create the data directory
 mkdir -p data/scienceqa/images && cd data/scienceqa/images
 
-# download images
+# Step 2: download images
 wget https://scienceqa.s3.us-west-1.amazonaws.com/images/test.zip && unzip test.zip
 
 cd ..
 
-# download original questions
+# Step 3: Download original questions
 wget https://github.com/lupantech/ScienceQA/blob/main/data/scienceqa/problems.json
 
-# download converted files
+# Step 4: download converted files
 wget https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/scienceqa/scienceqa_test_img.jsonl
 
 cd ../..
@@ -482,14 +506,15 @@ data/scienceqa
 
 ## Refer Expression Comprehension
 
-### RefCOCO/RefCOCO+/RefCOCO-g
+### RefCOCO / RefCOCO+ / RefCOCO-g
 
 Follow the instructions below to prepare the data：
 
 ```bash
+# Step 1: Create the data directory
 mkdir -p data/refcoco && cd data/refcoco
 
-# download converted files
+# Step 2: Download converted files
 wget https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/refcoco/refcoco_val.jsonl
 wget https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/refcoco/refcoco_testA.jsonl
 wget https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/refcoco/refcoco_testB.jsonl
@@ -523,10 +548,12 @@ data/refcoco
 Follow the instructions below to prepare the data：
 
 ```bash
+# Step 1: Create the data directory
 mkdir -p data/mme && cd data/mme
 
-# 1. Download the data following the official instructions [here](https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models/tree/Evaluation).
-# 2. Downloaded images to `MME_Benchmark_release_version`.
+# Step 2: Download MME_Benchmark_release_version
+wget https://huggingface.co/OpenGVLab/InternVL/resolve/main/MME_Benchmark_release_version.zip
+unzip MME_Benchmark_release_version.zip
 
 cd ../..
 ```
@@ -543,9 +570,10 @@ data/mme
 Follow the instructions below to prepare the data：
 
 ```bash
+# Step 1: Create the data directory
 mkdir -p data/mmbench && cd data/mmbench
 
-# download csv files of mmbench
+# Step 2: Download csv files
 wget http://opencompass.openxlab.space/utils/MMBench/CCBench_legacy.tsv
 wget https://download.openmmlab.com/mmclassification/datasets/mmbench/mmbench_dev_20230712.tsv
 wget https://download.openmmlab.com/mmclassification/datasets/mmbench/mmbench_dev_cn_20231003.tsv
@@ -574,13 +602,14 @@ data/mmbench
 Follow the instructions below to prepare the data：
 
 ```bash
+# Step 1: Create the data directory
 mkdir -p data/pope && cd data/pope
 
-# make sure you have downloaded COCO images
+# Step 2: Make sure you have downloaded COCO images
 ln -s ../coco/val2014 ./
 wget https://github.com/OpenGVLab/InternVL/releases/download/data/llava_pope_test.jsonl
 
-# download `coco` from POPE
+# Step 3: Download `coco` from POPE
 mkdir -p coco && cd coco
 wget https://github.com/AoiDragon/POPE/raw/e3e39262c85a6a83f26cf5094022a782cb0df58d/output/coco/coco_pope_adversarial.json
 wget https://github.com/AoiDragon/POPE/raw/e3e39262c85a6a83f26cf5094022a782cb0df58d/output/coco/coco_pope_popular.json
@@ -593,24 +622,32 @@ After preparation is complete, the directory structure is:
 ```
 data/pope
 ├── coco
+│   ├── coco_pope_adversarial.json
+│   ├── coco_pope_popular.json
+│   └── coco_pope_random.json
 ├── llava_pope_test.jsonl
 └── val2014
 ```
 
 ### MMMU
 
-The evaluation code will automatically download the dataset from hugging face.
+The evaluation script will automatically download the MMMU dataset from HuggingFace.
 
-### Tiny LVLM
+### MMMU-Pro
+
+The evaluation script will automatically download the MMMU-Pro dataset from HuggingFace.
+
+### Tiny-LVLM-eHub
 
 Follow the instructions below to prepare the data：
 
 ```bash
+# Step 1: Create the data directory
 mkdir -p data/tiny_lvlm && cd data/tiny_lvlm
 
-# download dataset from https://github.com/OpenGVLab/Multi-Modality-Arena/tree/main/tiny_lvlm_evaluation
-# i.e., download `updated_datasets.tar.gz` from https://drive.google.com/file/d/1PuFC612XzOmKwzRldtBb1CFZnIjiR7we/view
-tar -xzvf updated_datasets.tar.gz
+# Step 2: Download the dataset
+wget https://huggingface.co/OpenGVLab/InternVL/resolve/main/updated_datasets.zip
+unzip updated_datasets.zip
 
 cd ../..
 ```
@@ -627,7 +664,10 @@ data/tiny_lvlm
 Follow the instructions below to prepare the data：
 
 ```bash
+# Step 1: Create the data directory
 mkdir -p data/mm-vet && cd data/mm-vet
+
+# Step 2: Download the dataset
 wget https://github.com/yuweihao/MM-Vet/releases/download/v1/mm-vet.zip
 unzip mm-vet.zip
 wget https://huggingface.co/OpenGVLab/InternVL/raw/main/llava-mm-vet.jsonl
@@ -642,25 +682,48 @@ data/mm-vet
  └── llava-mm-vet.jsonl
 ```
 
-#### MMVP
+### MMVet v2
 
-Follow the instructions below to prepare the data：
+Follow the instructions below to prepare the data:
 
-```bash
-cd data
-git lfs install
-git clone https://huggingface.co/datasets/MMVP/MMVP
-cd ..
+```shell
+# Step 1: Create the data directory
+mkdir -p data/mm-vet-v2 && cd data/mm-vet-v2
+
+# Step 2: Download the dataset
+wget https://github.com/yuweihao/MM-Vet/releases/download/v2/mm-vet-v2.zip
+unzip mm-vet-v2.zip
+
+cd ../..
 ```
 
 After preparation is complete, the directory structure is:
 
+```shell
+data/mm-vet-v2
+ ├── images
+ └── mm-vet-v2.json
 ```
+
+#### MMVP
+
+Follow the instructions below to prepare the data:
+
+```shell
+# Step 1: Download the dataset
+cd data/
+git clone https://huggingface.co/datasets/MMVP/MMVP
+cd ../
+```
+
+After preparation is complete, the directory structure is:
+
+```shell
 data/MMVP
-├── MMVP\ Images
-├── Questions.csv
-├── Questions.xlsx
-└── README.md
+ ├── MMVP Images
+ ├── Questions.csv
+ ├── Questions.xlsx
+ └── README.md
 ```
 
 ### MathVista
@@ -668,8 +731,12 @@ data/MMVP
 Follow the instructions below to prepare the data：
 
 ```bash
+# Step 1: Create the data directory
 mkdir -p data/MathVista && cd data/MathVista
+
+# Step 2: Download the annotation
 wget https://huggingface.co/datasets/AI4Math/MathVista/raw/main/annot_testmini.json
+
 cd ../..
 ```
 
@@ -680,24 +747,25 @@ MathVista
 └── annot_testmini.json
 ```
 
-### SEED
+### SEED-Image
 
-Follow the instructions below to prepare the data：
+Follow the instructions below to prepare the data:
 
-```bash
+```shell
+# Step 1: Create the data directory
 mkdir -p data/SEED && cd data/SEED
-# 1. Follow the official instructions [Follow the instructions below to prepare the data： for SEED-Bench-1](https://github.com/AILab-CVC/SEED-Bench/blob/main/DATASET.md#data-preparation-for-seed-bench-1)
-#    to download the images and the videos. Put images under `./data/SEED/SEED-Bench-image`.
-# 2. Extract the video frame in the middle from the downloaded videos, and put them under `./data/SEED/SEED-Bench-image`.
-#    LLaVA provided the script [`extract_video_frames.py`](../internvl_chat/tools/extract_video_frames.py) modified from the official one.
 
-wget https://huggingface.co/OpenGVLab/InternVL/raw/main/seed.jsonl
+# Step 2: Download the dataset
+wget https://huggingface.co/OpenGVLab/InternVL/resolve/main/SEED-Bench-image.zip
+unzip SEED-Bench-image.zip
+wget https://huggingface.co/OpenGVLab/InternVL/resolve/main/seed.jsonl
+
 cd ../..
 ```
 
 After preparation is complete, the directory structure is:
 
-```
+```shell
 data/SEED
  ├── SEED-Bench-image
  └── seed.jsonl
