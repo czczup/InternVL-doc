@@ -1,4 +1,4 @@
-﻿# ❓ FAQs
+﻿# FAQs
 
 ## 1. Are there performance metrics available for using InternVL2 for object detection (including single object detection capabilities)?
 

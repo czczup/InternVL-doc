@@ -1,4 +1,4 @@
-# ✨ Enhancing InternVL2 on COCO Caption Using LoRA Fine-Tuning
+# Enhancing InternVL2 on COCO Caption Using LoRA Fine-Tuning
 
 In this tutorial, we will provide a detailed guide on how to use LoRA fine-tuning to improve the performance of a trained InternVL2 model on COCO Caption.
 
