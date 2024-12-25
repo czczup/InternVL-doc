@@ -1,4 +1,4 @@
-# 🗂️ Evaluation Data Preparation
+# Evaluation Data Preparation
 
 > [COCO](https://cocodataset.org/) images are used in VQAv2, OK-VQA, RefCOCO, POPE, and so on. Make sure you have already downloaded COCO images before evaluating on these benchmarks.
 

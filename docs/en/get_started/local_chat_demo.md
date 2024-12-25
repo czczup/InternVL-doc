@@ -1,4 +1,4 @@
-# 💻 Local Chat Demo
+# Local Chat Demo
 
 This document provides instructions for setting up the InternVL online demo. The system architecture includes a web server, a controller, and multiple model workers.
 

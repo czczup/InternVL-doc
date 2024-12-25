@@ -1,4 +1,4 @@
-# 💬 Chat Data Format
+# Chat Data Format
 
 ## Dataset Configuration
 
