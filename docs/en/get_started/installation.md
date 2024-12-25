@@ -1,4 +1,4 @@
-## Installation
+## 🛠️ Installation
 
 - Clone this repository:
 
@@ -9,7 +9,7 @@
 - Create a conda virtual environment and activate it:
 
   ```bash
-  conda create -n internvl python=3.9 -y
+  conda create -n internvl python=3.9
   conda activate internvl
   ```
 
@@ -34,7 +34,7 @@
 
 ### Additional Instructions
 
-- Install `flash-attn==2.3.6`:
+- Install `flash-attn==2.3.6` (optional, for training chat models):
 
   ```bash
   pip install flash-attn==2.3.6 --no-build-isolation
@@ -66,7 +66,7 @@
 
   If you encounter `ModuleNotFoundError: No module named 'fused_layer_norm_cuda'`, it is because apex's CUDA extensions are not being installed successfully. You can try uninstalling apex and the code will default to the PyTorch version of RMSNorm. Alternatively, if you prefer using apex, try adding a few lines to `setup.py` and then recompiling.
 
-  <img src=https://github.com/OpenGVLab/InternVL/assets/23737120/c04a989c-8024-49fa-b62c-2da623e63729 width=70%>
+  <img src=../_static/image/apex_code.png width=70%>
 
 <br>
 <br>

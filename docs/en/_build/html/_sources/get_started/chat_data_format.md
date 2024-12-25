@@ -1,4 +1,16 @@
-# Chat Data Format
+# 💬 Chat Data Format
+
+## Dataset Configuration
+
+In InternVL 2.0 and 2.5, the organization of the training data is controlled by several key parameters to optimize the balance and distribution of datasets during training.
+
+![image/png](../_static/image/data_configuration.png)
+
+- **Data Augmentation:** JPEG compression is applied conditionally: enabled for image datasets to enhance robustness and disabled for video datasets to maintain consistent frame quality.
+
+- **Maximum Tile Number:** The parameter `n_max` controls the maximum tiles per dataset. For example, higher values (24–36) are used for multi-image or high-resolution data, lower values (6–12) for standard images, and 1 for videos.
+
+- **Repeat Factor:** The repeat factor `r` adjusts dataset sampling frequency. Values below 1 reduce a dataset's weight, while values above 1 increase it. This ensures balanced training across tasks and prevents overfitting or underfitting.
 
 ## Meta File
 
@@ -10,6 +22,7 @@ In this document, we will detail the organization format of our conversation dat
     "root": "path/to/the/image/",
     "annotation": "path/to/the/jsonl/annotation",
     "data_augment": false,
+    "max_dynamic_patch": 12,
     "repeat_time": 1,
     "length": "number of samples in the dataset"
   },
@@ -27,6 +40,7 @@ For example, a file for the ShareGPT4V dataset looks like this:
     "root": "playground/data/",
     "annotation": "playground/opensource/sharegpt4v_instruct_gpt4-vision_cap100k.jsonl",
     "data_augment": false,
+    "max_dynamic_patch": 12,
     "repeat_time": 1,
     "length": 102025
   },
@@ -47,9 +61,9 @@ For pure text data, we use a JSONL file to store the data. Each entry is a dicti
   "id": 0,
   "conversations": [
     {"from": "human", "value": "user input"},
-    {"from": "gpt", "text": "assistant output"},
+    {"from": "gpt", "value": "assistant output"},
     {"from": "human", "value": "user input"},
-    {"from": "gpt", "text": "assistant output"}
+    {"from": "gpt", "value": "assistant output"}
   ]
 }
 ```
@@ -97,9 +111,9 @@ The path in the `image` field is relative to the `root` field. Concatenating the
   "height": 222,
   "conversations": [
     {"from": "human", "value": "<image>\nuser input"},
-    {"from": "gpt", "text": "assistant output"},
+    {"from": "gpt", "value": "assistant output"},
     {"from": "human", "value": "user input"},
-    {"from": "gpt", "text": "assistant output"}
+    {"from": "gpt", "value": "assistant output"}
   ]
 }
 ```
@@ -235,9 +249,9 @@ Each element in the list is a path relative to the `root` field. Concatenating t
   "height_list": [111, 222, 333],
   "conversations": [
     {"from": "human", "value": "<image>\nuser input <image>\nuser input"},
-    {"from": "gpt", "text": "assistant output"},
+    {"from": "gpt", "value": "assistant output"},
     {"from": "human", "value": "<image>\nuser input"},
-    {"from": "gpt", "text": "assistant output"}
+    {"from": "gpt", "value": "assistant output"}
   ]
 }
 ```
@@ -291,9 +305,9 @@ The path in the `video` field is relative to the `root` field. Concatenating the
   "video": "path/to/video.mp4",
   "conversations": [
     {"from": "human", "value": "<video>\nuser input"},
-    {"from": "gpt", "text": "assistant output"},
+    {"from": "gpt", "value": "assistant output"},
     {"from": "human", "value": "user input"},
-    {"from": "gpt", "text": "assistant output"}
+    {"from": "gpt", "value": "assistant output"}
   ]
 }
 ```

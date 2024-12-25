@@ -1,0 +1,705 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Introduction of InternVL2.5 Series &#8212; internvl</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/readthedocs.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'internvl2.5/introduction';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Quick Start of InternVL2.5 Series" href="quick_start.html" />
+    <link rel="prev" title="❓ FAQs" href="../tutorials/faqs.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+    <meta name="docbuild:last-update" content="Dec 25, 2024"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/new_logo.svg" class="logo__image only-light" alt="internvl - Home"/>
+    <script>document.write(`<img src="../_static/new_logo.svg" class="logo__image only-dark" alt="internvl - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../get_started/installation.html">🛠️ Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/chat_data_format.html">💬 Chat Data Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/eval_data_preparation.html">🗂️ Evaluation Data Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/local_chat_demo.html">💻 Local Chat Demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/internvl_chat_api.html">🌐 InternVL-Chat API</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/coco_caption_finetune.html">✨ Enhancing InternVL2 on COCO Caption Using LoRA Fine-Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/faqs.html">❓ FAQs</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL 2.5</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">📖 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quick_start.html">🚀 Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="finetune.html">🔧 Finetune</a></li>
+<li class="toctree-l1"><a class="reference internal" href="evaluation.html">📊 Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html">📦 Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="domain_adaptation.html">🧩 Domain Adaptation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preference_optimization.html">🎯 Preference Optimization</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL 2.0</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../internvl2.0/introduction.html">📖 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl2.0/quick_start.html">🚀 Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl2.0/finetune.html">🔧 Finetune</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl2.0/evaluation.html">📊 Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl2.0/deployment.html">📦 Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl2.0/domain_adaptation.html">🧩 Domain Adaptation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl2.0/preference_optimization.html">🎯 Preference Optimization</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL 1.5</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.5/introduction.html">📖 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.5/quick_start.html">🚀 Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.5/finetune.html">🔧 Finetune</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.5/evaluation.html">📊 Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.5/deployment.html">📦 Deployment</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL 1.2</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.2/introduction.html">📖 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.2/quick_start.html">🚀 Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.2/reproduce.html">🎯 Reproduce</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.2/finetune.html">🔧 Finetune</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.2/evaluation.html">📊 Evaluation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL 1.1</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.1/introduction.html">📖 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.1/quick_start.html">🚀 Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.1/evaluation.html">📊 Evaluation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL 1.0</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.0/classification.html">classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.0/clip_benchmark.html">clip_benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.0/segmentation.html">segmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.0/internvl_chat_llava.html">internvl_chat_llava</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.0/internvl_g.html">internvl_g</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/OpenGVLab/InternVL" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/OpenGVLab/InternVL/blob/main/docs/en/internvl2.5/introduction.md?plain=1" target="_blank"
+   class="btn btn-sm btn-source-file-button dropdown-item"
+   title="Show source"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">Show source</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/OpenGVLab/InternVL/edit/main/docs/en/internvl2.5/introduction.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/OpenGVLab/InternVL/issues/new?title=Issue%20on%20page%20%2Finternvl2.5/introduction.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/internvl2.5/introduction.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Introduction of InternVL2.5 Series</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citation">Citation</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="introduction-of-internvl2-5-series">
+<h1>Introduction of InternVL2.5 Series<a class="headerlink" href="#introduction-of-internvl2-5-series" title="Permalink to this heading">#</a></h1>
+<p>We introduce InternVL2.5, an advanced multimodal large language model (MLLM) series that builds upon InternVL2.0, maintaining its core model architecture while introducing significant enhancements in training and testing strategies as well as data quality. In this work, we delve into the relationship between model scaling and performance, systematically exploring the performance trends in vision encoders, language models, dataset sizes, and test-time configurations. Through extensive evaluations on a wide range of benchmarks, including multi-discipline reasoning, document understanding, multi-image / video understanding, real-world comprehension, multimodal hallucination detection, visual grounding, multilingual capabilities, and pure language processing, InternVL2.5 exhibits competitive performance, rivaling leading commercial models such as GPT-4o and Claude-3.5-Sonnet. Notably, <strong>our model is the first open-source MLLMs to achieve over 70% on the MMMU benchmark.</strong> We hope this model contributes to the open-source community by setting new standards for developing and applying multimodal AI systems.</p>
+<p><img alt="image" src="../_images/internvl2.5.jpg" /></p>
+<p>InternVL2.5 family is built upon the following designs:</p>
+<ul class="simple">
+<li><p><strong>Progressive Scaling Strategy</strong>: We propose a progressive scaling strategy to efficiently align the vision encoder (e.g., InternViT) with LLMs. This strategy adopts a staged training approach, starting with smaller, resource-efficient LLMs and progressively scaling up to larger LLMs. This approach stems from our observation that even when the ViT and LLM are jointly trained using NTP loss, the resulting visual features are generalizable representations that can be easily understood by other LLMs. Specifically, the InternViT is trained alongside a smaller LLM (e.g., 20B), focusing on optimizing fundamental visual capabilities and cross-modal alignment. This phase avoids the high computational costs associated with training directly with a large LLM. Using a shared-weight mechanism, the trained InternViT can be seamlessly transferred to a larger LLM (e.g., 72B) without requiring retraining. Consequently, when training a larger model, much less data is required and the computation cost is significantly reduced.</p></li>
+<li><p><strong>Improved Training Strategy</strong>: To enhance the model’s adaptability to real-world scenarios and overall performance, we introduce two key techniques: Random JPEG Compression and Loss Reweighting. For Random JPEG Compression, random JPEG compression with quality levels between 75 and 100 is applied to simulate the degradation commonly found in internet-sourced images. For Loss Reweighting, we express the widely applied strategies (i.e., token averaging and sample averaging) in a unified format and propose square averaging to balance the gradients biases towards long or short responses.</p></li>
+<li><p><strong>Well-structed Data Organization</strong>: During model development, we observed that even a small fraction of anomalous samples can lead to aberrant model behavior during inference. To address this issue, we propose a filtering pipeline consisting of LLM-Based Quality Scoring and Rule-Based Filtering, which significantly reduced the occurrence of anomalous behaviors, particularly repetitive generation, with notable improvements in CoT reasoning tasks. Additionally, we implement a data-packing strategy to enhance GPU utilization and improve training efficiency, which comprises four steps: select, search, pack, and maintain.</p></li>
+</ul>
+<p>For more details, please refer to our <a class="reference external" href="https://huggingface.co/papers/2412.05271">paper</a> and <a class="reference external" href="https://github.com/OpenGVLab/InternVL">GitHub</a>.</p>
+<p><img alt="image" src="../_images/arch1.png" /></p>
+<p>As shown in this figure, InternVL2.5 utilizes the same architecture as InternVL1.5 and InternVL2.0, specifically the <code class="docutils literal notranslate"><span class="pre">ViT-MLP-LLM</span></code> configuration referenced in various existing studies.
+For the various sizes of the InternVL2.5 model, we employed different visual encoders and large language models, as detailed in the table below.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Model Name</p></th>
+<th class="head text-center"><p>Vision Part</p></th>
+<th class="head text-center"><p>Language Part</p></th>
+<th class="head text-center"><p>HF Link</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>InternVL2_5-1B</p></td>
+<td class="text-center"><p><a class="reference external" href="https://huggingface.co/OpenGVLab/InternViT-300M-448px-V2_5">InternViT-300M-448px-V2_5</a></p></td>
+<td class="text-center"><p><a class="reference external" href="https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct">Qwen2.5-0.5B-Instruct</a></p></td>
+<td class="text-center"><p><a class="reference external" href="https://huggingface.co/OpenGVLab/InternVL2_5-1B">🤗 link</a></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>InternVL2_5-2B</p></td>
+<td class="text-center"><p><a class="reference external" href="https://huggingface.co/OpenGVLab/InternViT-300M-448px-V2_5">InternViT-300M-448px-V2_5</a></p></td>
+<td class="text-center"><p><a class="reference external" href="https://huggingface.co/internlm/internlm2_5-1_8b-chat">internlm2_5-1_8b-chat</a></p></td>
+<td class="text-center"><p><a class="reference external" href="https://huggingface.co/OpenGVLab/InternVL2_5-2B">🤗 link</a></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>InternVL2_5-4B</p></td>
+<td class="text-center"><p><a class="reference external" href="https://huggingface.co/OpenGVLab/InternViT-300M-448px-V2_5">InternViT-300M-448px-V2_5</a></p></td>
+<td class="text-center"><p><a class="reference external" href="https://huggingface.co/Qwen/Qwen2.5-3B-Instruct">Qwen2.5-3B-Instruct</a></p></td>
+<td class="text-center"><p><a class="reference external" href="https://huggingface.co/OpenGVLab/InternVL2_5-4B">🤗 link</a></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>InternVL2_5-8B</p></td>
+<td class="text-center"><p><a class="reference external" href="https://huggingface.co/OpenGVLab/InternViT-300M-448px-V2_5">InternViT-300M-448px-V2_5</a></p></td>
+<td class="text-center"><p><a class="reference external" href="https://huggingface.co/internlm/internlm2_5-7b-chat">internlm2_5-7b-chat</a></p></td>
+<td class="text-center"><p><a class="reference external" href="https://huggingface.co/OpenGVLab/InternVL2_5-8B">🤗 link</a></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>InternVL2_5-26B</p></td>
+<td class="text-center"><p><a class="reference external" href="https://huggingface.co/OpenGVLab/InternViT-6B-448px-V2_5">InternViT-6B-448px-V2_5</a></p></td>
+<td class="text-center"><p><a class="reference external" href="https://huggingface.co/internlm/internlm2_5-20b-chat">internlm2_5-20b-chat</a></p></td>
+<td class="text-center"><p><a class="reference external" href="https://huggingface.co/OpenGVLab/InternVL2_5-26B">🤗 link</a></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>InternVL2_5-38B</p></td>
+<td class="text-center"><p><a class="reference external" href="https://huggingface.co/OpenGVLab/InternViT-6B-448px-V2_5">InternViT-6B-448px-V2_5</a></p></td>
+<td class="text-center"><p><a class="reference external" href="https://huggingface.co/Qwen/Qwen2.5-32B-Instruct">Qwen2.5-32B-Instruct</a></p></td>
+<td class="text-center"><p><a class="reference external" href="https://huggingface.co/OpenGVLab/InternVL2_5-38B">🤗 link</a></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>InternVL2_5-78B</p></td>
+<td class="text-center"><p><a class="reference external" href="https://huggingface.co/OpenGVLab/InternViT-6B-448px-V2_5">InternViT-6B-448px-V2_5</a></p></td>
+<td class="text-center"><p><a class="reference external" href="https://huggingface.co/Qwen/Qwen2.5-72B-Instruct">Qwen2.5-72B-Instruct</a></p></td>
+<td class="text-center"><p><a class="reference external" href="https://huggingface.co/OpenGVLab/InternVL2_5-78B">🤗 link</a></p></td>
+</tr>
+</tbody>
+</table>
+<p>We also introduce InternVL2.5-MPO, which is finetuned with Mixed Preference Optimization (MPO). <strong>These models outperform their counterparts without MPO by an average of 2 points across all scales on the OpenCompass leaderboard.</strong></p>
+<p>InternVL2.5-MPO family is built upon the following designs:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://huggingface.co/datasets/OpenGVLab/MMPR-v1.1"><strong>Multi-Modal Preference Dataset (MMPR)</strong></a>: We propose an efficient preference data construction pipeline. Based on this pipeline, we create MMPR, a high-quality, large-scale multimodal reasoning preference dataset containing approximately 3 million samples.</p></li>
+<li><p><a class="reference external" href="https://huggingface.co/collections/OpenGVLab/internvl25-mpo-6753fed98cd828219b12f849"><strong>Mixed Preference Optimization (MPO)</strong></a>: We introduce MPO, an effective PO algorithm designed to improve the reasoning abilities of MLLMs. The key insight behind this algorithm is that an effective PO process should enable the model to learn the relative preference between pairs of responses, the absolute quality of individual responses, and the process for generating preferred responses.</p></li>
+</ul>
+<p>See our <a class="reference external" href="https://internvl.github.io/blog/2024-12-20-InternVL-2.5-MPO/">blog</a> and <a class="reference external" href="https://huggingface.co/papers/2411.10442">paper</a> for more details.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Model Name</p></th>
+<th class="head text-center"><p>Vision Part</p></th>
+<th class="head text-center"><p>Language Part</p></th>
+<th class="head text-center"><p>HF Link</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>InternVL2_5-1B-MPO</p></td>
+<td class="text-center"><p><a class="reference external" href="https://huggingface.co/OpenGVLab/InternViT-300M-448px-V2_5">InternViT-300M-448px-V2_5</a></p></td>
+<td class="text-center"><p><a class="reference external" href="https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct">Qwen2.5-0.5B-Instruct</a></p></td>
+<td class="text-center"><p><a class="reference external" href="https://huggingface.co/OpenGVLab/InternVL2_5-1B-MPO">🤗 link</a></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>InternVL2_5-2B-MPO</p></td>
+<td class="text-center"><p><a class="reference external" href="https://huggingface.co/OpenGVLab/InternViT-300M-448px-V2_5">InternViT-300M-448px-V2_5</a></p></td>
+<td class="text-center"><p><a class="reference external" href="https://huggingface.co/internlm/internlm2_5-1_8b-chat">internlm2_5-1_8b-chat</a></p></td>
+<td class="text-center"><p><a class="reference external" href="https://huggingface.co/OpenGVLab/InternVL2_5-2B-MPO">🤗 link</a></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>InternVL2_5-4B-MPO</p></td>
+<td class="text-center"><p><a class="reference external" href="https://huggingface.co/OpenGVLab/InternViT-300M-448px-V2_5">InternViT-300M-448px-V2_5</a></p></td>
+<td class="text-center"><p><a class="reference external" href="https://huggingface.co/Qwen/Qwen2.5-3B-Instruct">Qwen2.5-3B-Instruct</a></p></td>
+<td class="text-center"><p><a class="reference external" href="https://huggingface.co/OpenGVLab/InternVL2_5-4B-MPO">🤗 link</a></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>InternVL2_5-8B-MPO</p></td>
+<td class="text-center"><p><a class="reference external" href="https://huggingface.co/OpenGVLab/InternViT-300M-448px-V2_5">InternViT-300M-448px-V2_5</a></p></td>
+<td class="text-center"><p><a class="reference external" href="https://huggingface.co/internlm/internlm2_5-7b-chat">internlm2_5-7b-chat</a></p></td>
+<td class="text-center"><p><a class="reference external" href="https://huggingface.co/OpenGVLab/InternVL2_5-8B-MPO">🤗 link</a></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>InternVL2_5-26B-MPO</p></td>
+<td class="text-center"><p><a class="reference external" href="https://huggingface.co/OpenGVLab/InternViT-6B-448px-V2_5">InternViT-6B-448px-V2_5</a></p></td>
+<td class="text-center"><p><a class="reference external" href="https://huggingface.co/internlm/internlm2_5-20b-chat">internlm2_5-20b-chat</a></p></td>
+<td class="text-center"><p><a class="reference external" href="https://huggingface.co/OpenGVLab/InternVL2_5-26B-MPO">🤗 link</a></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>InternVL2_5-38B-MPO</p></td>
+<td class="text-center"><p><a class="reference external" href="https://huggingface.co/OpenGVLab/InternViT-6B-448px-V2_5">InternViT-6B-448px-V2_5</a></p></td>
+<td class="text-center"><p><a class="reference external" href="https://huggingface.co/Qwen/Qwen2.5-32B-Instruct">Qwen2.5-32B-Instruct</a></p></td>
+<td class="text-center"><p><a class="reference external" href="https://huggingface.co/OpenGVLab/InternVL2_5-38B-MPO">🤗 link</a></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>InternVL2_5-78B-MPO</p></td>
+<td class="text-center"><p><a class="reference external" href="https://huggingface.co/OpenGVLab/InternViT-6B-448px-V2_5">InternViT-6B-448px-V2_5</a></p></td>
+<td class="text-center"><p><a class="reference external" href="https://huggingface.co/Qwen/Qwen2.5-72B-Instruct">Qwen2.5-72B-Instruct</a></p></td>
+<td class="text-center"><p><a class="reference external" href="https://huggingface.co/OpenGVLab/InternVL2_5-78B-MPO">🤗 link</a></p></td>
+</tr>
+</tbody>
+</table>
+<section id="citation">
+<h2>Citation<a class="headerlink" href="#citation" title="Permalink to this heading">#</a></h2>
+<p>If you find this project useful in your research, please consider citing:</p>
+<div class="highlight-BibTeX notranslate"><div class="highlight"><pre><span></span><span class="nc">@article</span><span class="p">{</span><span class="nl">chen2024expanding</span><span class="p">,</span>
+<span class="w">  </span><span class="na">title</span><span class="p">=</span><span class="s">{Expanding Performance Boundaries of Open-Source Multimodal Models with Model, Data, and Test-Time Scaling}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">author</span><span class="p">=</span><span class="s">{Chen, Zhe and Wang, Weiyun and Cao, Yue and Liu, Yangzhou and Gao, Zhangwei and Cui, Erfei and Zhu, Jinguo and Ye, Shenglong and Tian, Hao and Liu, Zhaoyang and others}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">journal</span><span class="p">=</span><span class="s">{arXiv preprint arXiv:2412.05271}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">year</span><span class="p">=</span><span class="s">{2024}</span>
+<span class="p">}</span>
+<span class="nc">@article</span><span class="p">{</span><span class="nl">wang2024mpo</span><span class="p">,</span>
+<span class="w">  </span><span class="na">title</span><span class="p">=</span><span class="s">{Enhancing the Reasoning Ability of Multimodal Large Language Models via Mixed Preference Optimization}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">author</span><span class="p">=</span><span class="s">{Wang, Weiyun and Chen, Zhe and Wang, Wenhai and Cao, Yue and Liu, Yangzhou and Gao, Zhangwei and Zhu, Jinguo and Zhu, Xizhou and Lu, Lewei and Qiao, Yu and Dai, Jifeng}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">journal</span><span class="p">=</span><span class="s">{arXiv preprint arXiv:2411.10442}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">year</span><span class="p">=</span><span class="s">{2024}</span>
+<span class="p">}</span>
+<span class="nc">@article</span><span class="p">{</span><span class="nl">gao2024mini</span><span class="p">,</span>
+<span class="w">  </span><span class="na">title</span><span class="p">=</span><span class="s">{Mini-InternVL: A Flexible-Transfer Pocket Multimodal Model with 5\% Parameters and 90\% Performance}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">author</span><span class="p">=</span><span class="s">{Gao, Zhangwei and Chen, Zhe and Cui, Erfei and Ren, Yiming and Wang, Weiyun and Zhu, Jinguo and Tian, Hao and Ye, Shenglong and He, Junjun and Zhu, Xizhou and others}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">journal</span><span class="p">=</span><span class="s">{arXiv preprint arXiv:2410.16261}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">year</span><span class="p">=</span><span class="s">{2024}</span>
+<span class="p">}</span>
+<span class="nc">@article</span><span class="p">{</span><span class="nl">chen2024far</span><span class="p">,</span>
+<span class="w">  </span><span class="na">title</span><span class="p">=</span><span class="s">{How Far Are We to GPT-4V? Closing the Gap to Commercial Multimodal Models with Open-Source Suites}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">author</span><span class="p">=</span><span class="s">{Chen, Zhe and Wang, Weiyun and Tian, Hao and Ye, Shenglong and Gao, Zhangwei and Cui, Erfei and Tong, Wenwen and Hu, Kongzhi and Luo, Jiapeng and Ma, Zheng and others}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">journal</span><span class="p">=</span><span class="s">{arXiv preprint arXiv:2404.16821}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">year</span><span class="p">=</span><span class="s">{2024}</span>
+<span class="p">}</span>
+<span class="nc">@inproceedings</span><span class="p">{</span><span class="nl">chen2024internvl</span><span class="p">,</span>
+<span class="w">  </span><span class="na">title</span><span class="p">=</span><span class="s">{Internvl: Scaling up vision foundation models and aligning for generic visual-linguistic tasks}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">author</span><span class="p">=</span><span class="s">{Chen, Zhe and Wu, Jiannan and Wang, Wenhai and Su, Weijie and Chen, Guo and Xing, Sen and Zhong, Muyan and Zhang, Qinglong and Zhu, Xizhou and Lu, Lewei and others}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">booktitle</span><span class="p">=</span><span class="s">{Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">pages</span><span class="p">=</span><span class="s">{24185--24198}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">year</span><span class="p">=</span><span class="s">{2024}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../tutorials/faqs.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">❓ FAQs</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="quick_start.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Quick Start of InternVL2.5 Series</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citation">Citation</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By InternVL Authors
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, OpenGVLab.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+  Last updated on Dec 25, 2024.
+  <br/>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

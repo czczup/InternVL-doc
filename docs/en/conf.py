@@ -91,7 +91,7 @@ pygments_style = 'sphinx'
 #
 # html_theme = 'sphinx_rtd_theme'
 html_theme = 'sphinx_book_theme'
-html_logo = '_static/image/internvl-logo.svg'
+html_logo = '_static/image/new_logo.svg'
 html_title = project
 html_copy_source = True
 html_last_updated_fmt = ''

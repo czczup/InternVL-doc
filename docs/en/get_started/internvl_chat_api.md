@@ -1,4 +1,6 @@
-# InternVL-Chat API
+# 🌐 InternVL-Chat API
+
+> ⚠️ Note: Due to the release of the new InternVL 2.5, we plan to discontinue API access for InternVL2-Pro in the near future. Moving forward, the API for InternVL2.5-78B is planned to be used as a replacement.
 
 ## Official API of InternVL2-Pro
 
@@ -43,10 +45,6 @@ try:
 except requests.exceptions.RequestException as e:
     print(f"Error: {e}")
 ```
-
-## Community-Host API of InternVL 1.5
-
-https://rapidapi.com/adushar1320/api/internvl-chat
 
 <br>
 <br>

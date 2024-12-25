@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Evaluation Data Preparation &#8212; internvl</title>
+    <title>🗂️ Evaluation Data Preparation &#8212; internvl</title>
   
   
   
@@ -49,11 +49,11 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'get_started/eval_data_preparation';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Chat Data Format" href="chat_data_format.html" />
-    <link rel="prev" title="Installation" href="installation.html" />
+    <link rel="next" title="💻 Local Chat Demo" href="local_chat_demo.html" />
+    <link rel="prev" title="💬 Chat Data Format" href="chat_data_format.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-    <meta name="docbuild:last-update" content="Aug 06, 2024"/>
+    <meta name="docbuild:last-update" content="Dec 25, 2024"/>
   </head>
   
   
@@ -138,8 +138,8 @@
       
     
     
-    <img src="../_static/internvl-logo.svg" class="logo__image only-light" alt="internvl - Home"/>
-    <script>document.write(`<img src="../_static/internvl-logo.svg" class="logo__image only-dark" alt="internvl - Home"/>`);</script>
+    <img src="../_static/new_logo.svg" class="logo__image only-light" alt="internvl - Home"/>
+    <script>document.write(`<img src="../_static/new_logo.svg" class="logo__image only-dark" alt="internvl - Home"/>`);</script>
   
   
 </a></div>
@@ -147,46 +147,58 @@
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Get Started</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Evaluation Data Preparation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chat_data_format.html">Chat Data Format</a></li>
-<li class="toctree-l1"><a class="reference internal" href="internvl_chat_api.html">InternVL-Chat API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="local_chat_demo.html">Local Chat Demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">🛠️ Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chat_data_format.html">💬 Chat Data Format</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">🗂️ Evaluation Data Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="local_chat_demo.html">💻 Local Chat Demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internvl_chat_api.html">🌐 InternVL-Chat API</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/coco_caption_finetune.html">Enhancing InternVL2 on COCO Caption Using LoRA Fine-Tuning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/classic_questions.html">Classic Questions &amp; Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/coco_caption_finetune.html">✨ Enhancing InternVL2 on COCO Caption Using LoRA Fine-Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/faqs.html">❓ FAQs</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL 2.5</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../internvl2.5/introduction.html">📖 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl2.5/quick_start.html">🚀 Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl2.5/finetune.html">🔧 Finetune</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl2.5/evaluation.html">📊 Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl2.5/deployment.html">📦 Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl2.5/domain_adaptation.html">🧩 Domain Adaptation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl2.5/preference_optimization.html">🎯 Preference Optimization</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL 2.0</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../internvl2.0/introduction.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../internvl2.0/quick_start.html">Quick Start</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../internvl2.0/finetune.html">Finetune</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../internvl2.0/evaluation.html">Evaluation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../internvl2.0/deployment.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl2.0/introduction.html">📖 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl2.0/quick_start.html">🚀 Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl2.0/finetune.html">🔧 Finetune</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl2.0/evaluation.html">📊 Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl2.0/deployment.html">📦 Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl2.0/domain_adaptation.html">🧩 Domain Adaptation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl2.0/preference_optimization.html">🎯 Preference Optimization</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL 1.5</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../internvl1.5/introduction.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../internvl1.5/quick_start.html">Quick Start</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../internvl1.5/finetune.html">Finetune</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../internvl1.5/evaluation.html">Evaluation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../internvl1.5/deployment.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.5/introduction.html">📖 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.5/quick_start.html">🚀 Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.5/finetune.html">🔧 Finetune</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.5/evaluation.html">📊 Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.5/deployment.html">📦 Deployment</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL 1.2</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../internvl1.2/introduction.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../internvl1.2/quick_start.html">Quick Start</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../internvl1.2/reproduce.html">Reproduce</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../internvl1.2/finetune.html">Finetune</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../internvl1.2/evaluation.html">Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.2/introduction.html">📖 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.2/quick_start.html">🚀 Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.2/reproduce.html">🎯 Reproduce</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.2/finetune.html">🔧 Finetune</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.2/evaluation.html">📊 Evaluation</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL 1.1</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../internvl1.1/introduction.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../internvl1.1/quick_start.html">Quick Start</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../internvl1.1/evaluation.html">Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.1/introduction.html">📖 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.1/quick_start.html">🚀 Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internvl1.1/evaluation.html">📊 Evaluation</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">InternVL 1.0</span></p>
 <ul class="nav bd-sidenav">
@@ -414,7 +426,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Evaluation Data Preparation</h1>
+    <h1>🗂️ Evaluation Data Preparation</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -424,44 +436,65 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#image-caption-benchmarks">Image Caption Benchmarks</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coco-karpathy-test">COCO Karpathy test</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#flickr30k-karpathy-test">Flickr30K Karpathy test</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nocaps-val">NoCaps val</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#image-captioning">Image Captioning</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coco">COCO</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#flickr30k">Flickr30K</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nocaps">NoCaps</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-vqa-benchmarks">General VQA Benchmarks</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vqav2-val-test-dev">VQAv2 val &amp; test-dev</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#okvqa-val">OKVQA val</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#textvqa-val">TextVQA val</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vizwiz-val-test">VizWiz val &amp; test</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docvqa-val-test">DocVQA val &amp; test</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#infovqa-val-test">InfoVQA val &amp; test</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chartqa-test-human-test-augmented">ChartQA test-human &amp; test-augmented</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gqa-testdev">GQA testdev</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ocrvqa-val-test">OCRVQA val &amp; test</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ai2d-test">AI2D test</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scienceqa-test">ScienceQA test</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reasoning-mathematics">Reasoning &amp; Mathematics</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mmmu">MMMU</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mmmu-pro">MMMU-Pro</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathvista">MathVista</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#refer-expression-comprehension">Refer Expression Comprehension</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#refcoco-refcoco-refcoco-g">RefCOCO/RefCOCO+/RefCOCO-g</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ocr-chart-document">OCR &amp; Chart &amp; Document</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ai2d">AI2D</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chartqa">ChartQA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#textvqa">TextVQA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docvqa">DocVQA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#infovqa">InfoVQA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ocrvqa">OCRVQA</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multimodal-benchmarks">MultiModal Benchmarks</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-image">Multi-Image</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantis-eval">Mantis-Eval</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mmiu">MMIU</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mirb">MIRB</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comprehensive">Comprehensive</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mme">MME</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mmbench-ccbench">MMBench &amp; CCBench</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mmvet">MMVet</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mmvet-v2">MMVet v2</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hallucination">Hallucination</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mmhal-bench">MMHal-Bench</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pope">POPE</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mmmu">MMMU</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tiny-lvlm">Tiny LVLM</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mmvet">MMVet</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mmvp">MMVP</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathvista">MathVista</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seed">SEED</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visual-grounding">Visual Grounding</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#refcoco-series">RefCOCO Series</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#video">Video</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mvbench">MVBench</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-vqa">General VQA</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vqav2">VQAv2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#okvqa">OKVQA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vizwiz">VizWiz</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gqa">GQA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scienceqa">ScienceQA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seed-image">SEED-Image</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mmvp">MMVP</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tiny-lvlm-ehub">Tiny-LVLM-eHub</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-benchmarks">Other Benchmarks</a></li>
 </ul>
             </nav>
         </div>
@@ -474,28 +507,29 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="evaluation-data-preparation">
-<h1>Evaluation Data Preparation<a class="headerlink" href="#evaluation-data-preparation" title="Permalink to this heading">#</a></h1>
-<section id="image-caption-benchmarks">
-<h2>Image Caption Benchmarks<a class="headerlink" href="#image-caption-benchmarks" title="Permalink to this heading">#</a></h2>
-<section id="coco-karpathy-test">
-<h3>COCO Karpathy test<a class="headerlink" href="#coco-karpathy-test" title="Permalink to this heading">#</a></h3>
+<h1>🗂️ Evaluation Data Preparation<a class="headerlink" href="#evaluation-data-preparation" title="Permalink to this heading">#</a></h1>
 <blockquote>
-<div><p>COCO images are used in VQAv2/OK-VQA/RefCOCO/RefCOCO+/RefCOCOg. Make sure you have already downloaded COCO images before evaluating on these benchmarks.</p>
+<div><p><a class="reference external" href="https://cocodataset.org/">COCO</a> images are used in VQAv2, OK-VQA, RefCOCO, POPE, and so on. Make sure you have already downloaded COCO images before evaluating on these benchmarks.</p>
 </div></blockquote>
+<section id="image-captioning">
+<h2>Image Captioning<a class="headerlink" href="#image-captioning" title="Permalink to this heading">#</a></h2>
+<section id="coco">
+<h3>COCO<a class="headerlink" href="#coco" title="Permalink to this heading">#</a></h3>
 <p>Follow the instructions below to prepare the data：</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>data/coco<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/coco
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 1: Create the data directory</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>data/coco<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/coco
 
-<span class="c1"># download coco images</span>
+<span class="c1"># Step 2: Download and unzip image files</span>
 wget<span class="w"> </span>http://images.cocodataset.org/zips/train2014.zip<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>unzip<span class="w"> </span>train2014.zip
 wget<span class="w"> </span>http://images.cocodataset.org/zips/val2014.zip<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>unzip<span class="w"> </span>val2014.zip
 wget<span class="w"> </span>http://images.cocodataset.org/zips/test2015.zip<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>unzip<span class="w"> </span>test2015.zip
 
+<span class="c1"># Step 3: Download and place the annotation files</span>
 mkdir<span class="w"> </span>-p<span class="w"> </span>annotations<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>annotations/
-<span class="c1"># download converted annotation files</span>
 wget<span class="w"> </span>https://github.com/OpenGVLab/InternVL/releases/download/data/coco_karpathy_test.json
 wget<span class="w"> </span>https://github.com/OpenGVLab/InternVL/releases/download/data/coco_karpathy_test_gt.json
 
-<span class="nb">cd</span><span class="w"> </span>../../../
+<span class="nb">cd</span><span class="w"> </span>../../..
 </pre></div>
 </div>
 <p>After preparation is complete, the directory structure is:</p>
@@ -509,15 +543,19 @@ wget<span class="w"> </span>https://github.com/OpenGVLab/InternVL/releases/downl
 </pre></div>
 </div>
 </section>
-<section id="flickr30k-karpathy-test">
-<h3>Flickr30K Karpathy test<a class="headerlink" href="#flickr30k-karpathy-test" title="Permalink to this heading">#</a></h3>
+<section id="flickr30k">
+<h3>Flickr30K<a class="headerlink" href="#flickr30k" title="Permalink to this heading">#</a></h3>
 <p>Follow the instructions below to prepare the data：</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>data/flickr30k<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/flickr30k
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 1: Create the data directory</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>data/flickr30k<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/flickr30k
 
-<span class="c1"># download images from https://bryanplummer.com/Flickr30kEntities/</span>
-<span class="c1"># karpathy split annotations can be downloaded from the following link:</span>
-<span class="c1"># https://github.com/mehdidc/retrieval_annotations/releases/download/1.0.0/flickr30k_test_karpathy.txt</span>
-<span class="c1"># this file is provided by the clip-benchmark repository.</span>
+<span class="c1"># Step 2: Download and unzip image files</span>
+<span class="c1"># Download images from https://bryanplummer.com/Flickr30kEntities/</span>
+
+<span class="c1"># Step 3: Download and place the annotation files</span>
+<span class="c1"># Karpathy split annotations can be downloaded from the following link:</span>
+wget<span class="w"> </span>https://github.com/mehdidc/retrieval_annotations/releases/download/1.0.0/flickr30k_test_karpathy.txt
+<span class="c1"># This file is provided by the clip-benchmark repository.</span>
 <span class="c1"># We convert this txt file to json format, download the converted file:</span>
 wget<span class="w"> </span>https://github.com/OpenGVLab/InternVL/releases/download/data/flickr30k_test_karpathy.json
 
@@ -532,13 +570,17 @@ wget<span class="w"> </span>https://github.com/OpenGVLab/InternVL/releases/downl
 </pre></div>
 </div>
 </section>
-<section id="nocaps-val">
-<h3>NoCaps val<a class="headerlink" href="#nocaps-val" title="Permalink to this heading">#</a></h3>
+<section id="nocaps">
+<h3>NoCaps<a class="headerlink" href="#nocaps" title="Permalink to this heading">#</a></h3>
 <p>Follow the instructions below to prepare the data：</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>data/nocaps<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/nocaps
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 1: Create the data directory</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>data/nocaps<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/nocaps
 
-<span class="c1"># download images from https://nocaps.org/download</span>
-<span class="c1"># original annotations can be downloaded from https://nocaps.s3.amazonaws.com/nocaps_val_4500_captions.json</span>
+<span class="c1"># Step 2: Download and unzip image files</span>
+<span class="c1"># Download images from https://nocaps.org/download</span>
+
+<span class="c1"># Step 3: Download and place the annotation files</span>
+<span class="c1"># Original annotations can be downloaded from https://nocaps.s3.amazonaws.com/nocaps_val_4500_captions.json</span>
 wget<span class="w"> </span>https://nocaps.s3.amazonaws.com/nocaps_val_4500_captions.json
 
 <span class="nb">cd</span><span class="w"> </span>../..
@@ -552,95 +594,99 @@ wget<span class="w"> </span>https://nocaps.s3.amazonaws.com/nocaps_val_4500_capt
 </div>
 </section>
 </section>
-<section id="general-vqa-benchmarks">
-<h2>General VQA Benchmarks<a class="headerlink" href="#general-vqa-benchmarks" title="Permalink to this heading">#</a></h2>
-<section id="vqav2-val-test-dev">
-<h3>VQAv2 val &amp; test-dev<a class="headerlink" href="#vqav2-val-test-dev" title="Permalink to this heading">#</a></h3>
+<section id="reasoning-mathematics">
+<h2>Reasoning &amp; Mathematics<a class="headerlink" href="#reasoning-mathematics" title="Permalink to this heading">#</a></h2>
+<section id="mmmu">
+<h3>MMMU<a class="headerlink" href="#mmmu" title="Permalink to this heading">#</a></h3>
+<blockquote>
+<div><p>⚠️ Note: While our codebase can run the benchmark, we recommend using <a class="reference external" href="https://github.com/open-compass/VLMEvalKit">VLMEvalKit</a> for testing this benchmark if you aim to align results with our technical report.</p>
+</div></blockquote>
+<p>The evaluation script will automatically download the MMMU dataset from HuggingFace.</p>
+</section>
+<section id="mmmu-pro">
+<h3>MMMU-Pro<a class="headerlink" href="#mmmu-pro" title="Permalink to this heading">#</a></h3>
+<p>The evaluation script will automatically download the MMMU-Pro dataset from HuggingFace.</p>
+</section>
+<section id="mathvista">
+<h3>MathVista<a class="headerlink" href="#mathvista" title="Permalink to this heading">#</a></h3>
+<blockquote>
+<div><p>⚠️ Note: While our codebase can run the benchmark, we recommend using <a class="reference external" href="https://github.com/open-compass/VLMEvalKit">VLMEvalKit</a> for testing this benchmark if you aim to align results with our technical report.</p>
+</div></blockquote>
 <p>Follow the instructions below to prepare the data：</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>data/vqav2<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/vqav2
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 1: Create the data directory</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>data/MathVista<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/MathVista
 
-<span class="c1"># make sure you have downloaded COCO images</span>
-ln<span class="w"> </span>-s<span class="w"> </span>../coco/train2014<span class="w"> </span>./
-ln<span class="w"> </span>-s<span class="w"> </span>../coco/val2014<span class="w"> </span>./
-ln<span class="w"> </span>-s<span class="w"> </span>../coco/test2015<span class="w"> </span>./
-
-<span class="c1"># download questions and annotations</span>
-wget<span class="w"> </span>https://s3.amazonaws.com/cvmlp/vqa/mscoco/vqa/v2_Annotations_Train_mscoco.zip<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>unzip<span class="w"> </span>v2_Annotations_Train_mscoco.zip
-wget<span class="w"> </span>https://s3.amazonaws.com/cvmlp/vqa/mscoco/vqa/v2_Questions_Train_mscoco.zip<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>unzip<span class="w"> </span>v2_Questions_Train_mscoco.zip
-wget<span class="w"> </span>https://s3.amazonaws.com/cvmlp/vqa/mscoco/vqa/v2_Annotations_Val_mscoco.zip<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>unzip<span class="w"> </span>v2_Annotations_Val_mscoco.zip
-wget<span class="w"> </span>https://s3.amazonaws.com/cvmlp/vqa/mscoco/vqa/v2_Questions_Val_mscoco.zip<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>unzip<span class="w"> </span>v2_Questions_Val_mscoco.zip
-wget<span class="w"> </span>https://s3.amazonaws.com/cvmlp/vqa/mscoco/vqa/v2_Questions_Test_mscoco.zip<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>unzip<span class="w"> </span>v2_Questions_Test_mscoco.zip
-
-<span class="c1"># download converted files</span>
-wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/vqav2/vqav2_train.jsonl
-wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/vqav2/vqav2_val.jsonl
-wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/vqav2/vqav2_testdev.jsonl
+<span class="c1"># Step 2: Download the annotation</span>
+wget<span class="w"> </span>https://huggingface.co/datasets/AI4Math/MathVista/raw/main/annot_testmini.json
 
 <span class="nb">cd</span><span class="w"> </span>../..
 </pre></div>
 </div>
 <p>After preparation is complete, the directory structure is:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>data/vqav2
-├── train2014 -&gt; ../coco/train2014
-├── val2014 -&gt; ../coco/val2014
-├── test2015 -&gt; ../coco/test2015
-├── v2_mscoco_train2014_annotations.json
-├── v2_mscoco_train2014_complementary_pairs.json
-├── v2_mscoco_val2014_annotations.json
-├── v2_OpenEnded_mscoco_test2015_questions.json
-├── v2_OpenEnded_mscoco_test-dev2015_questions.json
-├── v2_OpenEnded_mscoco_train2014_questions.json
-├── v2_OpenEnded_mscoco_val2014_questions.json
-├── vqav2_testdev.jsonl
-├── vqav2_train.jsonl
-└── vqav2_val.jsonl
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>MathVista
+└── annot_testmini.json
 </pre></div>
 </div>
 </section>
-<section id="okvqa-val">
-<h3>OKVQA val<a class="headerlink" href="#okvqa-val" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="ocr-chart-document">
+<h2>OCR &amp; Chart &amp; Document<a class="headerlink" href="#ocr-chart-document" title="Permalink to this heading">#</a></h2>
+<section id="ai2d">
+<h3>AI2D<a class="headerlink" href="#ai2d" title="Permalink to this heading">#</a></h3>
 <p>Follow the instructions below to prepare the data：</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>data/okvqa<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/okvqa
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 1: Create the data directory</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>data/ai2diagram<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/ai2diagram
 
-<span class="c1"># make sure you have downloaded COCO images</span>
-ln<span class="w"> </span>-s<span class="w"> </span>../coco/train2014<span class="w"> </span>./
-ln<span class="w"> </span>-s<span class="w"> </span>../coco/val2014<span class="w"> </span>./
+<span class="c1"># Step 2: Download converted files</span>
+wget<span class="w"> </span>https://huggingface.co/OpenGVLab/InternVL/raw/main/ai2d_test_vlmevalkit.jsonl<span class="w"> </span>-O<span class="w"> </span>test_vlmevalkit.jsonl
+wget<span class="w"> </span>https://huggingface.co/OpenGVLab/InternVL/resolve/main/AI2D_TEST.zip<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>unzip<span class="w"> </span>AI2D_TEST.zip
 
-<span class="c1"># download annotations and questions</span>
-wget<span class="w"> </span>https://okvqa.allenai.org/static/data/mscoco_train2014_annotations.json.zip<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>unzip<span class="w"> </span>mscoco_train2014_annotations.json.zip
-wget<span class="w"> </span>https://okvqa.allenai.org/static/data/OpenEnded_mscoco_train2014_questions.json.zip<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>unzip<span class="w"> </span>OpenEnded_mscoco_train2014_questions.json.zip
-wget<span class="w"> </span>https://okvqa.allenai.org/static/data/mscoco_val2014_annotations.json.zip<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>unzip<span class="w"> </span>mscoco_val2014_annotations.json.zip
-wget<span class="w"> </span>https://okvqa.allenai.org/static/data/OpenEnded_mscoco_val2014_questions.json.zip<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>unzip<span class="w"> </span>OpenEnded_mscoco_val2014_questions.json.zip
-
-<span class="c1"># download converted files</span>
-wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/okvqa/okvqa_train.jsonl
-wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/okvqa/okvqa_val.jsonl
+<span class="c1"># Step 3: Download images from Google Drive (optional, provided by InternLM-XComposer)</span>
+<span class="c1"># https://drive.google.com/file/d/1dqqa3MnrxMXaU_K9JA6C83je32ibwdOY/view?usp=sharing</span>
+<span class="c1"># images should be placed in `data/ai2diagram/ai2d/abc_images` and `data/ai2diagram/ai2d/images`</span>
 
 <span class="nb">cd</span><span class="w"> </span>../..
 </pre></div>
 </div>
 <p>After preparation is complete, the directory structure is:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>data/okvqa
-├── mscoco_train2014_annotations.json
-├── mscoco_val2014_annotations.json
-├── okvqa_train.jsonl
-├── okvqa_val.jsonl
-├── OpenEnded_mscoco_train2014_questions.json
-├── OpenEnded_mscoco_val2014_questions.json
-├── test2014 -&gt; ../coco/test2014
-└── val2014 -&gt; ../coco/val2014
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>data/ai2diagram
+ ├── test_vlmevalkit.jsonl
+ ├── ai2d # (optional)
+ │    ├── abc_images
+ │    └── images
+ └── AI2D_TEST
 </pre></div>
 </div>
 </section>
-<section id="textvqa-val">
-<h3>TextVQA val<a class="headerlink" href="#textvqa-val" title="Permalink to this heading">#</a></h3>
+<section id="chartqa">
+<h3>ChartQA<a class="headerlink" href="#chartqa" title="Permalink to this heading">#</a></h3>
 <p>Follow the instructions below to prepare the data：</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>data/textvqa<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/textvqa
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 1: Create the data directory</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>data/chartqa<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/chartqa
 
-<span class="c1"># download images</span>
+<span class="c1"># Step 2: Download images from</span>
+<span class="c1"># https://drive.google.com/file/d/1Lm_w6zeET1Hyl_9ks6w5nEsgpoyPHalV/view</span>
+
+<span class="c1"># Step 3: Download converted files</span>
+wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/chartqa/train_human.jsonl
+wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/chartqa/train_augmented.jsonl
+wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/chartqa/test_human.jsonl
+wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/chartqa/test_augmented.jsonl
+
+<span class="nb">cd</span><span class="w"> </span>../..
+</pre></div>
+</div>
+</section>
+<section id="textvqa">
+<h3>TextVQA<a class="headerlink" href="#textvqa" title="Permalink to this heading">#</a></h3>
+<p>Follow the instructions below to prepare the data：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 1: Create the data directory</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>data/textvqa<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/textvqa
+
+<span class="c1"># Step 2: Download images</span>
 wget<span class="w"> </span>https://dl.fbaipublicfiles.com/textvqa/images/train_val_images.zip<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>unzip<span class="w"> </span>train_val_images.zip
 
-<span class="c1"># download converted files</span>
+<span class="c1"># Step 3: Download converted files</span>
 wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/textvqa/textvqa_train_annotations.json
 wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/textvqa/textvqa_train_questions.json
 wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/textvqa/textvqa_train.jsonl
@@ -667,31 +713,502 @@ wget<span class="w"> </span>https://huggingface.co/OpenGVLab/InternVL/raw/main/t
 └── train_images
 </pre></div>
 </div>
+<p>After preparation is complete, the directory structure is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>data/chartqa
+ ├── ChartQA Dataset
+ │    ├── test
+ │    ├── train
+ │    └── val
+ ├── test_augmented.jsonl
+ ├── test_human.jsonl
+ ├── train_augmented.jsonl
+ └── train_human.jsonl
+</pre></div>
+</div>
 </section>
-<section id="vizwiz-val-test">
-<h3>VizWiz val &amp; test<a class="headerlink" href="#vizwiz-val-test" title="Permalink to this heading">#</a></h3>
+<section id="docvqa">
+<h3>DocVQA<a class="headerlink" href="#docvqa" title="Permalink to this heading">#</a></h3>
 <p>Follow the instructions below to prepare the data：</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>data/vizwiz<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/vizwiz
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 1: Create the data directory</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>data/docvqa<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/docvqa
 
-<span class="c1"># download images</span>
+<span class="c1"># Step 2: Download images and annotations</span>
+wget<span class="w"> </span>https://datasets.cvc.uab.es/rrc/DocVQA/train.tar.gz<span class="w"> </span>--no-check-certificate<span class="w"> </span><span class="c1"># (optional)</span>
+wget<span class="w"> </span>https://datasets.cvc.uab.es/rrc/DocVQA/val.tar.gz<span class="w"> </span>--no-check-certificate
+wget<span class="w"> </span>https://datasets.cvc.uab.es/rrc/DocVQA/test.tar.gz<span class="w"> </span>--no-check-certificate
+
+<span class="c1"># Step 3: Unzip files</span>
+tar<span class="w"> </span>-zxvf<span class="w"> </span>train.tar.gz
+tar<span class="w"> </span>-zxvf<span class="w"> </span>val.tar.gz
+tar<span class="w"> </span>-zxvf<span class="w"> </span>test.tar.gz
+
+<span class="c1"># Step 4: Download converted jsonl files</span>
+wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/docvqa/train.jsonl
+wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/docvqa/val.jsonl
+wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/docvqa/test.jsonl
+
+<span class="nb">cd</span><span class="w"> </span>../..
+</pre></div>
+</div>
+<p>After preparation is complete, the directory structure is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>data/docvqa
+├── test
+├── test.jsonl
+├── train
+├── train.jsonl
+├── val
+└── val.jsonl
+</pre></div>
+</div>
+</section>
+<section id="infovqa">
+<h3>InfoVQA<a class="headerlink" href="#infovqa" title="Permalink to this heading">#</a></h3>
+<p>Follow the instructions below to prepare the data：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 1: Create the data directory</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>data/infographicsvqa<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/infographicsvqa
+
+<span class="c1"># Step 2: Download images and annotations from https://rrc.cvc.uab.es/?ch=17&amp;com=downloads</span>
+<span class="c1"># infographicsVQA_test_v1.0.json, infographicsVQA_val_v1.0_withQT.json, infographicVQA_train_v1.0.json</span>
+
+<span class="c1"># Step 3: Download converted files</span>
+wget<span class="w"> </span>https://huggingface.co/OpenGVLab/InternVL/raw/main/infographicsvqa_val.jsonl<span class="w"> </span>-O<span class="w"> </span>val.jsonl
+wget<span class="w"> </span>https://huggingface.co/OpenGVLab/InternVL/raw/main/infographicsvqa_test.jsonl<span class="w"> </span>-O<span class="w"> </span>test.jsonl
+
+<span class="nb">cd</span><span class="w"> </span>../..
+</pre></div>
+</div>
+<p>After preparation is complete, the directory structure is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>data/infographicsvqa
+├── infographicsvqa_images
+├── infographicsVQA_test_v1.0.json
+├── infographicsVQA_val_v1.0_withQT.json
+├── infographicVQA_train_v1.0.json
+├── test.jsonl
+└── val.jsonl
+</pre></div>
+</div>
+</section>
+<section id="ocrvqa">
+<h3>OCRVQA<a class="headerlink" href="#ocrvqa" title="Permalink to this heading">#</a></h3>
+<p>Follow the instructions below to prepare the data：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 1: Create the data directory</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>data/ocrvqa<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/ocrvqa
+
+<span class="c1"># Step 2: Download images by following instructions at </span>
+<span class="c1"># https://ocr-vqa.github.io/kvqa_ProjectFiles/README.txt</span>
+
+<span class="c1"># Step 3: Download converted files</span>
+wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/ocrvqa/ocrvqa_train.jsonl
+wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/ocrvqa/ocrvqa_val.jsonl
+wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/ocrvqa/ocrvqa_test.jsonl
+
+<span class="nb">cd</span><span class="w"> </span>../..
+</pre></div>
+</div>
+<p>After preparation is complete, the directory structure is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>data/ocrvqa
+├── images
+├── ocrvqa_test.jsonl
+├── ocrvqa_train.jsonl
+└── ocrvqa_val.jsonl
+</pre></div>
+</div>
+</section>
+</section>
+<section id="multi-image">
+<h2>Multi-Image<a class="headerlink" href="#multi-image" title="Permalink to this heading">#</a></h2>
+<section id="mantis-eval">
+<h3>Mantis-Eval<a class="headerlink" href="#mantis-eval" title="Permalink to this heading">#</a></h3>
+<p>The evaluation script will automatically download the Mantis Eval dataset from HuggingFace.</p>
+</section>
+<section id="mmiu">
+<h3>MMIU<a class="headerlink" href="#mmiu" title="Permalink to this heading">#</a></h3>
+<p>Follow the instructions below to prepare the data:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 1: Create the data directory</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>data/mmiu<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/mmiu
+
+<span class="c1"># Step 2: Download images</span>
+wget<span class="w"> </span>https://huggingface.co/MMIUBenchmark/MMIU/resolve/main/2D-spatial.zip
+wget<span class="w"> </span>https://huggingface.co/MMIUBenchmark/MMIU/resolve/main/3D-spatial.zip
+unzip<span class="w"> </span>2D-spatial.zip
+unzip<span class="w"> </span>3D-spatial.zip
+
+<span class="nb">cd</span><span class="w"> </span>../..
+</pre></div>
+</div>
+<p>After preparation is complete, the directory structure is:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>data/mmiu
+<span class="w"> </span>├──<span class="w"> </span>2D-spatial
+<span class="w"> </span>└──<span class="w"> </span>3D-spatial
+</pre></div>
+</div>
+</section>
+<section id="mirb">
+<h3>MIRB<a class="headerlink" href="#mirb" title="Permalink to this heading">#</a></h3>
+<p>Follow the instructions below to prepare the data:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 1: Download annotation files</span>
+<span class="nb">cd</span><span class="w"> </span>data/
+<span class="nv">GIT_LFS_SKIP_SMUDGE</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://huggingface.co/datasets/VLLMs/MIRB
+
+<span class="c1"># Step 2: Download and unzip the image files</span>
+<span class="nb">cd</span><span class="w"> </span>MIRB/<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>images.zip
+wget<span class="w"> </span>https://huggingface.co/datasets/VLLMs/MIRB/resolve/main/images.zip
+unzip<span class="w"> </span>images.zip
+
+<span class="nb">cd</span><span class="w"> </span>../../
+</pre></div>
+</div>
+<p>After preparation is complete, the directory structure is:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>data/MIRB
+├──<span class="w"> </span>images
+├──<span class="w"> </span>...
+├──<span class="w"> </span>visual_chain.json
+└──<span class="w"> </span>visual_chain_concat.json
+</pre></div>
+</div>
+</section>
+</section>
+<section id="comprehensive">
+<h2>Comprehensive<a class="headerlink" href="#comprehensive" title="Permalink to this heading">#</a></h2>
+<section id="mme">
+<h3>MME<a class="headerlink" href="#mme" title="Permalink to this heading">#</a></h3>
+<p>Follow the instructions below to prepare the data：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 1: Create the data directory</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>data/mme<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/mme
+
+<span class="c1"># Step 2: Download MME_Benchmark_release_version.zip</span>
+wget<span class="w"> </span>https://huggingface.co/OpenGVLab/InternVL/resolve/main/MME_Benchmark_release_version.zip
+unzip<span class="w"> </span>MME_Benchmark_release_version.zip
+
+<span class="nb">cd</span><span class="w"> </span>../..
+</pre></div>
+</div>
+<p>After preparation is complete, the directory structure is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>data/mme
+ └── MME_Benchmark_release_version
+</pre></div>
+</div>
+</section>
+<section id="mmbench-ccbench">
+<h3>MMBench &amp; CCBench<a class="headerlink" href="#mmbench-ccbench" title="Permalink to this heading">#</a></h3>
+<p>Follow the instructions below to prepare the data：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 1: Create the data directory</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>data/mmbench<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/mmbench
+
+<span class="c1"># Step 2: Download csv files</span>
+wget<span class="w"> </span>http://opencompass.openxlab.space/utils/MMBench/CCBench_legacy.tsv
+wget<span class="w"> </span>https://download.openmmlab.com/mmclassification/datasets/mmbench/mmbench_dev_20230712.tsv
+wget<span class="w"> </span>https://download.openmmlab.com/mmclassification/datasets/mmbench/mmbench_dev_cn_20231003.tsv
+wget<span class="w"> </span>https://download.openmmlab.com/mmclassification/datasets/mmbench/mmbench_dev_en_20231003.tsv
+wget<span class="w"> </span>https://download.openmmlab.com/mmclassification/datasets/mmbench/mmbench_test_cn_20231003.tsv
+wget<span class="w"> </span>https://download.openmmlab.com/mmclassification/datasets/mmbench/mmbench_test_en_20231003.tsv
+
+<span class="nb">cd</span><span class="w"> </span>../..
+</pre></div>
+</div>
+<p>After preparation is complete, the directory structure is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+data/mmbench
+ ├── CCBench_legacy.tsv
+ ├── mmbench_dev_20230712.tsv
+ ├── mmbench_dev_cn_20231003.tsv
+ ├── mmbench_dev_en_20231003.tsv
+ ├── mmbench_test_cn_20231003.tsv
+ └── mmbench_test_en_20231003.tsv
+</pre></div>
+</div>
+</section>
+<section id="mmvet">
+<h3>MMVet<a class="headerlink" href="#mmvet" title="Permalink to this heading">#</a></h3>
+<blockquote>
+<div><p>⚠️ Note: While our codebase can run the benchmark, we recommend using <a class="reference external" href="https://github.com/open-compass/VLMEvalKit">VLMEvalKit</a> for testing this benchmark if you aim to align results with our technical report.</p>
+</div></blockquote>
+<p>Follow the instructions below to prepare the data：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 1: Create the data directory</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>data/mm-vet<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/mm-vet
+
+<span class="c1"># Step 2: Download the dataset</span>
+wget<span class="w"> </span>https://github.com/yuweihao/MM-Vet/releases/download/v1/mm-vet.zip
+unzip<span class="w"> </span>mm-vet.zip
+wget<span class="w"> </span>https://huggingface.co/OpenGVLab/InternVL/raw/main/llava-mm-vet.jsonl
+<span class="nb">cd</span><span class="w"> </span>../..
+</pre></div>
+</div>
+<p>After preparation is complete, the directory structure is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>data/mm-vet
+ ├── images
+ └── llava-mm-vet.jsonl
+</pre></div>
+</div>
+</section>
+<section id="mmvet-v2">
+<h3>MMVet v2<a class="headerlink" href="#mmvet-v2" title="Permalink to this heading">#</a></h3>
+<p>Follow the instructions below to prepare the data:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 1: Create the data directory</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>data/mm-vet-v2<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/mm-vet-v2
+
+<span class="c1"># Step 2: Download the dataset</span>
+wget<span class="w"> </span>https://github.com/yuweihao/MM-Vet/releases/download/v2/mm-vet-v2.zip
+unzip<span class="w"> </span>mm-vet-v2.zip
+
+<span class="nb">cd</span><span class="w"> </span>../..
+</pre></div>
+</div>
+<p>After preparation is complete, the directory structure is:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>data/mm-vet-v2
+<span class="w"> </span>├──<span class="w"> </span>images
+<span class="w"> </span>└──<span class="w"> </span>mm-vet-v2.json
+</pre></div>
+</div>
+</section>
+</section>
+<section id="hallucination">
+<h2>Hallucination<a class="headerlink" href="#hallucination" title="Permalink to this heading">#</a></h2>
+<section id="mmhal-bench">
+<h3>MMHal-Bench<a class="headerlink" href="#mmhal-bench" title="Permalink to this heading">#</a></h3>
+<p>Follow the instructions below to prepare the data:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 1: Create the data directory</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>data/mm-halbench<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/mm-halbench
+
+<span class="c1"># Step 2: Download the `mmhal-bench_with_image.jsonl` file</span>
+<span class="c1"># This file is provided by RLAIF-V</span>
+<span class="c1"># See here: https://github.com/RLHF-V/RLAIF-V/blob/main/README.md#mmhal-bench</span>
+wget<span class="w"> </span>https://huggingface.co/OpenGVLab/InternVL/resolve/main/mmhal-bench_with_image.jsonl
+
+<span class="nb">cd</span><span class="w"> </span>../..
+</pre></div>
+</div>
+<p>After preparation is complete, the directory structure is:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>data/mm-halbench
+<span class="w"> </span>└──<span class="w"> </span>mmhal-bench_with_image.jsonl
+</pre></div>
+</div>
+</section>
+<section id="pope">
+<h3>POPE<a class="headerlink" href="#pope" title="Permalink to this heading">#</a></h3>
+<p>Follow the instructions below to prepare the data：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 1: Create the data directory</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>data/pope<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/pope
+
+<span class="c1"># Step 2: Make sure you have downloaded COCO images</span>
+ln<span class="w"> </span>-s<span class="w"> </span>../coco/val2014<span class="w"> </span>./
+wget<span class="w"> </span>https://github.com/OpenGVLab/InternVL/releases/download/data/llava_pope_test.jsonl
+
+<span class="c1"># Step 3: Download `coco` from POPE</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>coco<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>coco
+wget<span class="w"> </span>https://github.com/AoiDragon/POPE/raw/e3e39262c85a6a83f26cf5094022a782cb0df58d/output/coco/coco_pope_adversarial.json
+wget<span class="w"> </span>https://github.com/AoiDragon/POPE/raw/e3e39262c85a6a83f26cf5094022a782cb0df58d/output/coco/coco_pope_popular.json
+wget<span class="w"> </span>https://github.com/AoiDragon/POPE/raw/e3e39262c85a6a83f26cf5094022a782cb0df58d/output/coco/coco_pope_random.json
+<span class="nb">cd</span><span class="w"> </span>../../..
+</pre></div>
+</div>
+<p>After preparation is complete, the directory structure is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>data/pope
+├── coco
+│   ├── coco_pope_adversarial.json
+│   ├── coco_pope_popular.json
+│   └── coco_pope_random.json
+├── llava_pope_test.jsonl
+└── val2014
+</pre></div>
+</div>
+</section>
+</section>
+<section id="visual-grounding">
+<h2>Visual Grounding<a class="headerlink" href="#visual-grounding" title="Permalink to this heading">#</a></h2>
+<section id="refcoco-series">
+<h3>RefCOCO Series<a class="headerlink" href="#refcoco-series" title="Permalink to this heading">#</a></h3>
+<p>Follow the instructions below to prepare the data：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 1: Create the data directory</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>data/refcoco<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/refcoco
+
+<span class="c1"># Step 2: Download converted files</span>
+wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/refcoco/refcoco_val.jsonl
+wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/refcoco/refcoco_testA.jsonl
+wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/refcoco/refcoco_testB.jsonl
+wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/refcoco%2B/refcoco%2B_val.jsonl
+wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/refcoco%2B/refcoco%2B_testA.jsonl
+wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/refcoco%2B/refcoco%2B_testB.jsonl
+wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/refcocog/refcocog_val.jsonl
+wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/refcocog/refcocog_test.jsonl
+
+<span class="nb">cd</span><span class="w"> </span>../..
+</pre></div>
+</div>
+<p>After preparation is complete, the directory structure is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>data/refcoco
+├── refcocog_test.jsonl
+├── refcocog_val.jsonl
+├── refcoco_testA.jsonl
+├── refcoco+_testA.jsonl
+├── refcoco_testB.jsonl
+├── refcoco+_testB.jsonl
+├── refcoco_val.jsonl
+└── refcoco+_val.jsonl
+</pre></div>
+</div>
+</section>
+</section>
+<section id="video">
+<h2>Video<a class="headerlink" href="#video" title="Permalink to this heading">#</a></h2>
+<section id="mvbench">
+<h3>MVBench<a class="headerlink" href="#mvbench" title="Permalink to this heading">#</a></h3>
+<p>Follow the instructions below to prepare the data:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 1: Download the dataset</span>
+<span class="nb">cd</span><span class="w"> </span>data/
+huggingface-cli<span class="w"> </span>download<span class="w"> </span>--repo-type<span class="w"> </span>dataset<span class="w"> </span>--resume-download<span class="w"> </span>OpenGVLab/MVBench<span class="w"> </span>--local-dir<span class="w"> </span>MVBench<span class="w"> </span>--local-dir-use-symlinks<span class="w"> </span>False
+
+<span class="c1"># Step 2: Unzip videos</span>
+<span class="nb">cd</span><span class="w"> </span>MVBench/video/
+<span class="k">for</span><span class="w"> </span>file<span class="w"> </span><span class="k">in</span><span class="w"> </span>*.zip<span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>unzip<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$file</span><span class="s2">&quot;</span><span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">file</span><span class="p">%.*</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">;</span><span class="w"> </span><span class="k">done</span>
+<span class="nb">cd</span><span class="w"> </span>../../..
+</pre></div>
+</div>
+<p>After preparation is complete, the directory structure is:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>data/MVBench
+├──<span class="w"> </span>json
+│<span class="w">   </span>├──<span class="w"> </span>action_antonym.json
+│<span class="w">   </span>├──<span class="w"> </span>action_count.json
+│<span class="w">   </span>├──<span class="w"> </span>action_localization.json
+│<span class="w">   </span>├──<span class="w"> </span>action_prediction.json
+│<span class="w">   </span>├──<span class="w"> </span>action_sequence.json
+│<span class="w">   </span>├──<span class="w"> </span>character_order.json
+│<span class="w">   </span>├──<span class="w"> </span>counterfactual_inference.json
+│<span class="w">   </span>├──<span class="w"> </span>egocentric_navigation.json
+│<span class="w">   </span>├──<span class="w"> </span>episodic_reasoning.json
+│<span class="w">   </span>├──<span class="w"> </span>fine_grained_action.json
+│<span class="w">   </span>├──<span class="w"> </span>fine_grained_pose.json
+│<span class="w">   </span>├──<span class="w"> </span>moving_attribute.json
+│<span class="w">   </span>├──<span class="w"> </span>moving_count.json
+│<span class="w">   </span>├──<span class="w"> </span>moving_direction.json
+│<span class="w">   </span>├──<span class="w"> </span>object_existence.json
+│<span class="w">   </span>├──<span class="w"> </span>object_interaction.json
+│<span class="w">   </span>├──<span class="w"> </span>object_shuffle.json
+│<span class="w">   </span>├──<span class="w"> </span>scene_transition.json
+│<span class="w">   </span>├──<span class="w"> </span>state_change.json
+│<span class="w">   </span>└──<span class="w"> </span>unexpected_action.json
+├──<span class="w"> </span>README.md
+└──<span class="w"> </span>video
+<span class="w">    </span>├──<span class="w"> </span>clevrer
+<span class="w">    </span>├──<span class="w"> </span>FunQA_test
+<span class="w">    </span>├──<span class="w"> </span>Moments_in_Time_Raw
+<span class="w">    </span>├──<span class="w"> </span>nturgbd
+<span class="w">    </span>├──<span class="w"> </span>perception
+<span class="w">    </span>├──<span class="w"> </span>scene_qa
+<span class="w">    </span>├──<span class="w"> </span>ssv2_video
+<span class="w">    </span>├──<span class="w"> </span>sta
+<span class="w">    </span>├──<span class="w"> </span>star
+<span class="w">    </span>├──<span class="w"> </span>tvqa
+<span class="w">    </span>└──<span class="w"> </span>vlnqa
+</pre></div>
+</div>
+</section>
+</section>
+<section id="general-vqa">
+<h2>General VQA<a class="headerlink" href="#general-vqa" title="Permalink to this heading">#</a></h2>
+<section id="vqav2">
+<h3>VQAv2<a class="headerlink" href="#vqav2" title="Permalink to this heading">#</a></h3>
+<p>Follow the instructions below to prepare the data：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 1: Create the data directory</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>data/vqav2<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/vqav2
+
+<span class="c1"># Step 2: Make sure you have downloaded COCO images</span>
+ln<span class="w"> </span>-s<span class="w"> </span>../coco/train2014<span class="w"> </span>./
+ln<span class="w"> </span>-s<span class="w"> </span>../coco/val2014<span class="w"> </span>./
+ln<span class="w"> </span>-s<span class="w"> </span>../coco/test2015<span class="w"> </span>./
+
+<span class="c1"># Step 3: Download questions and annotations</span>
+wget<span class="w"> </span>https://s3.amazonaws.com/cvmlp/vqa/mscoco/vqa/v2_Annotations_Train_mscoco.zip<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>unzip<span class="w"> </span>v2_Annotations_Train_mscoco.zip
+wget<span class="w"> </span>https://s3.amazonaws.com/cvmlp/vqa/mscoco/vqa/v2_Questions_Train_mscoco.zip<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>unzip<span class="w"> </span>v2_Questions_Train_mscoco.zip
+wget<span class="w"> </span>https://s3.amazonaws.com/cvmlp/vqa/mscoco/vqa/v2_Annotations_Val_mscoco.zip<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>unzip<span class="w"> </span>v2_Annotations_Val_mscoco.zip
+wget<span class="w"> </span>https://s3.amazonaws.com/cvmlp/vqa/mscoco/vqa/v2_Questions_Val_mscoco.zip<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>unzip<span class="w"> </span>v2_Questions_Val_mscoco.zip
+wget<span class="w"> </span>https://s3.amazonaws.com/cvmlp/vqa/mscoco/vqa/v2_Questions_Test_mscoco.zip<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>unzip<span class="w"> </span>v2_Questions_Test_mscoco.zip
+
+<span class="c1"># Step 4: Download converted files</span>
+wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/vqav2/vqav2_train.jsonl
+wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/vqav2/vqav2_val.jsonl
+wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/vqav2/vqav2_testdev.jsonl
+
+<span class="nb">cd</span><span class="w"> </span>../..
+</pre></div>
+</div>
+<p>After preparation is complete, the directory structure is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>data/vqav2
+├── train2014 -&gt; ../coco/train2014
+├── val2014 -&gt; ../coco/val2014
+├── test2015 -&gt; ../coco/test2015
+├── v2_mscoco_train2014_annotations.json
+├── v2_mscoco_train2014_complementary_pairs.json
+├── v2_mscoco_val2014_annotations.json
+├── v2_OpenEnded_mscoco_test2015_questions.json
+├── v2_OpenEnded_mscoco_test-dev2015_questions.json
+├── v2_OpenEnded_mscoco_train2014_questions.json
+├── v2_OpenEnded_mscoco_val2014_questions.json
+├── vqav2_testdev.jsonl
+├── vqav2_train.jsonl
+└── vqav2_val.jsonl
+</pre></div>
+</div>
+</section>
+<section id="okvqa">
+<h3>OKVQA<a class="headerlink" href="#okvqa" title="Permalink to this heading">#</a></h3>
+<p>Follow the instructions below to prepare the data：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 1: Create the data directory</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>data/okvqa<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/okvqa
+
+<span class="c1"># Step 2: Make sure you have downloaded COCO images</span>
+ln<span class="w"> </span>-s<span class="w"> </span>../coco/train2014<span class="w"> </span>./
+ln<span class="w"> </span>-s<span class="w"> </span>../coco/val2014<span class="w"> </span>./
+
+<span class="c1"># Step 3: Download annotations and questions</span>
+wget<span class="w"> </span>https://okvqa.allenai.org/static/data/mscoco_train2014_annotations.json.zip<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>unzip<span class="w"> </span>mscoco_train2014_annotations.json.zip
+wget<span class="w"> </span>https://okvqa.allenai.org/static/data/OpenEnded_mscoco_train2014_questions.json.zip<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>unzip<span class="w"> </span>OpenEnded_mscoco_train2014_questions.json.zip
+wget<span class="w"> </span>https://okvqa.allenai.org/static/data/mscoco_val2014_annotations.json.zip<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>unzip<span class="w"> </span>mscoco_val2014_annotations.json.zip
+wget<span class="w"> </span>https://okvqa.allenai.org/static/data/OpenEnded_mscoco_val2014_questions.json.zip<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>unzip<span class="w"> </span>OpenEnded_mscoco_val2014_questions.json.zip
+
+<span class="c1"># Step 4: Download converted files</span>
+wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/okvqa/okvqa_train.jsonl
+wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/okvqa/okvqa_val.jsonl
+
+<span class="nb">cd</span><span class="w"> </span>../..
+</pre></div>
+</div>
+<p>After preparation is complete, the directory structure is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>data/okvqa
+├── mscoco_train2014_annotations.json
+├── mscoco_val2014_annotations.json
+├── okvqa_train.jsonl
+├── okvqa_val.jsonl
+├── OpenEnded_mscoco_train2014_questions.json
+├── OpenEnded_mscoco_val2014_questions.json
+├── test2014 -&gt; ../coco/test2014
+└── val2014 -&gt; ../coco/val2014
+</pre></div>
+</div>
+</section>
+<section id="vizwiz">
+<h3>VizWiz<a class="headerlink" href="#vizwiz" title="Permalink to this heading">#</a></h3>
+<p>Follow the instructions below to prepare the data：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 1: Create the data directory</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>data/vizwiz<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/vizwiz
+
+<span class="c1"># Step 2: Download images</span>
 wget<span class="w"> </span>https://vizwiz.cs.colorado.edu/VizWiz_final/images/train.zip<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>unzip<span class="w"> </span>train.zip
 wget<span class="w"> </span>https://vizwiz.cs.colorado.edu/VizWiz_final/images/val.zip<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>unzip<span class="w"> </span>val.zip
 wget<span class="w"> </span>https://vizwiz.cs.colorado.edu/VizWiz_final/images/test.zip<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>unzip<span class="w"> </span>test.zip
 
-<span class="c1"># download annotations</span>
+<span class="c1"># Step 3: Download annotations</span>
 wget<span class="w"> </span>https://vizwiz.cs.colorado.edu/VizWiz_final/vqa_data/Annotations.zip<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>unzip<span class="w"> </span>Annotations.zip
 
-<span class="c1"># download converted files</span>
-<span class="c1"># train</span>
+<span class="c1"># Step 4: Download converted files</span>
 wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/vizwiz/vizwiz_train_annotations.json
 wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/vizwiz/vizwiz_train_questions.json
 wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/vizwiz/vizwiz_train.jsonl
-<span class="c1"># val</span>
 wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/vizwiz/vizwiz_val_annotations.json
 wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/vizwiz/vizwiz_val_questions.json
 wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/vizwiz/vizwiz_val.jsonl
-<span class="c1"># test</span>
 wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/vizwiz/vizwiz_test.jsonl
+
 <span class="nb">cd</span><span class="w"> </span>../..
 </pre></div>
 </div>
@@ -711,104 +1228,21 @@ wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Q
 </pre></div>
 </div>
 </section>
-<section id="docvqa-val-test">
-<h3>DocVQA val &amp; test<a class="headerlink" href="#docvqa-val-test" title="Permalink to this heading">#</a></h3>
+<section id="gqa">
+<h3>GQA<a class="headerlink" href="#gqa" title="Permalink to this heading">#</a></h3>
 <p>Follow the instructions below to prepare the data：</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>data/docvqa<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/docvqa
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 1: Create the data directory</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>data/gqa<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/gqa
 
-<span class="c1"># download images and annotations</span>
-wget<span class="w"> </span>https://datasets.cvc.uab.es/rrc/DocVQA/train.tar.gz<span class="w"> </span>--no-check-certificate<span class="w"> </span><span class="c1"># (optional)</span>
-wget<span class="w"> </span>https://datasets.cvc.uab.es/rrc/DocVQA/val.tar.gz<span class="w"> </span>--no-check-certificate
-wget<span class="w"> </span>https://datasets.cvc.uab.es/rrc/DocVQA/test.tar.gz<span class="w"> </span>--no-check-certificate
+<span class="c1"># Step 2: Download the official evaluation script</span>
+wget<span class="w"> </span>https://nlp.stanford.edu/data/gqa/eval.zip
+unzip<span class="w"> </span>eval.zip
 
-<span class="c1"># unzip files</span>
-tar<span class="w"> </span>-zxvf<span class="w"> </span>train.tar.gz
-tar<span class="w"> </span>-zxvf<span class="w"> </span>val.tar.gz
-tar<span class="w"> </span>-zxvf<span class="w"> </span>test.tar.gz
-
-<span class="c1"># download converted jsonl files</span>
-wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/docvqa/train.jsonl
-wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/docvqa/val.jsonl
-wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/docvqa/test.jsonl
-<span class="nb">cd</span><span class="w"> </span>../..
-</pre></div>
-</div>
-<p>After preparation is complete, the directory structure is:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>data/docvqa
-├── test
-├── test.jsonl
-├── train
-├── train.jsonl
-├── val
-└── val.jsonl
-</pre></div>
-</div>
-</section>
-<section id="infovqa-val-test">
-<h3>InfoVQA val &amp; test<a class="headerlink" href="#infovqa-val-test" title="Permalink to this heading">#</a></h3>
-<p>Follow the instructions below to prepare the data：</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>data/infographicsvqa<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/infographicsvqa
-
-<span class="c1"># download images and annotations from https://rrc.cvc.uab.es/?ch=17&amp;com=downloads</span>
-<span class="c1"># infographicsVQA_test_v1.0.json, infographicsVQA_val_v1.0_withQT.json, infographicVQA_train_v1.0.json</span>
-
-<span class="c1"># download converted files</span>
-wget<span class="w"> </span>https://huggingface.co/OpenGVLab/InternVL/raw/main/infographicsvqa_val.jsonl<span class="w"> </span>-O<span class="w"> </span>val.jsonl
-wget<span class="w"> </span>https://huggingface.co/OpenGVLab/InternVL/raw/main/infographicsvqa_test.jsonl<span class="w"> </span>-O<span class="w"> </span>test.jsonl
-
-<span class="nb">cd</span><span class="w"> </span>../..
-</pre></div>
-</div>
-<p>After preparation is complete, the directory structure is:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>data/infographicsvqa
-├── infographicsvqa_images
-├── infographicsVQA_test_v1.0.json
-├── infographicsVQA_val_v1.0_withQT.json
-├── infographicVQA_train_v1.0.json
-├── test.jsonl
-└── val.jsonl
-</pre></div>
-</div>
-</section>
-<section id="chartqa-test-human-test-augmented">
-<h3>ChartQA test-human &amp; test-augmented<a class="headerlink" href="#chartqa-test-human-test-augmented" title="Permalink to this heading">#</a></h3>
-<p>Follow the instructions below to prepare the data：</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>data/chartqa<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/chartqa
-
-<span class="c1"># download images from https://drive.google.com/file/d/1Lm_w6zeET1Hyl_9ks6w5nEsgpoyPHalV/view</span>
-
-<span class="c1"># download converted files</span>
-wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/chartqa/train_human.jsonl
-wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/chartqa/train_augmented.jsonl
-wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/chartqa/test_human.jsonl
-wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/chartqa/test_augmented.jsonl
-
-<span class="nb">cd</span><span class="w"> </span>../..
-</pre></div>
-</div>
-<p>After preparation is complete, the directory structure is:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>data/chartqa
- ├── ChartQA Dataset
- │    ├── test
- │    ├── train
- │    └── val
- ├── test_augmented.jsonl
- ├── test_human.jsonl
- ├── train_augmented.jsonl
- └── train_human.jsonl
-</pre></div>
-</div>
-</section>
-<section id="gqa-testdev">
-<h3>GQA testdev<a class="headerlink" href="#gqa-testdev" title="Permalink to this heading">#</a></h3>
-<p>Follow the instructions below to prepare the data：</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>data/gqa<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/gqa
-
-<span class="c1"># download images</span>
+<span class="c1"># Step 3: Download images</span>
 wget<span class="w"> </span>https://downloads.cs.stanford.edu/nlp/data/gqa/images.zip
 unzip<span class="w"> </span>images.zip
 
-<span class="c1"># download converted files</span>
+<span class="c1"># Step 4: Download converted files</span>
 wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/gqa/testdev_balanced.jsonl
 wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/gqa/train_balanced.jsonl
 wget<span class="w"> </span>https://github.com/OpenGVLab/InternVL/releases/download/data/llava_gqa_testdev_balanced_qwen_format.jsonl
@@ -840,68 +1274,21 @@ wget<span class="w"> </span>https://github.com/OpenGVLab/InternVL/releases/downl
 </pre></div>
 </div>
 </section>
-<section id="ocrvqa-val-test">
-<h3>OCRVQA val &amp; test<a class="headerlink" href="#ocrvqa-val-test" title="Permalink to this heading">#</a></h3>
+<section id="scienceqa">
+<h3>ScienceQA<a class="headerlink" href="#scienceqa" title="Permalink to this heading">#</a></h3>
 <p>Follow the instructions below to prepare the data：</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>data/ocrvqa<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/ocrvqa
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 1: Create the data directory</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>data/scienceqa/images<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/scienceqa/images
 
-<span class="c1"># download images by following instructions at https://ocr-vqa.github.io/kvqa_ProjectFiles/README.txt</span>
-
-<span class="c1"># download converted files</span>
-wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/ocrvqa/ocrvqa_train.jsonl
-wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/ocrvqa/ocrvqa_val.jsonl
-wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/ocrvqa/ocrvqa_test.jsonl
-
-<span class="nb">cd</span><span class="w"> </span>../..
-</pre></div>
-</div>
-<p>After preparation is complete, the directory structure is:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>data/ocrvqa
-├── images
-├── ocrvqa_test.jsonl
-├── ocrvqa_train.jsonl
-└── ocrvqa_val.jsonl
-</pre></div>
-</div>
-</section>
-<section id="ai2d-test">
-<h3>AI2D test<a class="headerlink" href="#ai2d-test" title="Permalink to this heading">#</a></h3>
-<p>Follow the instructions below to prepare the data：</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>data/ai2diagram<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/ai2diagram
-<span class="c1"># download converted files</span>
-wget<span class="w"> </span>https://huggingface.co/OpenGVLab/InternVL/raw/main/ai2d_test_vlmevalkit.jsonl<span class="w"> </span>-O<span class="w"> </span>test_vlmevalkit.jsonl
-wget<span class="w"> </span>https://huggingface.co/OpenGVLab/InternVL/resolve/main/AI2D_TEST.zip<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>unzip<span class="w"> </span>AI2D_TEST.zip
-
-<span class="c1"># download images from Google drive (optional, provided by InternLM-XComposer)</span>
-<span class="c1"># https://drive.google.com/file/d/1dqqa3MnrxMXaU_K9JA6C83je32ibwdOY/view?usp=sharing</span>
-<span class="c1"># images should be placed in `data/ai2diagram/ai2d/abc_images` and `data/ai2diagram/ai2d/images`</span>
-<span class="nb">cd</span><span class="w"> </span>../..
-</pre></div>
-</div>
-<p>After preparation is complete, the directory structure is:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>data/ai2diagram
- ├── test_vlmevalkit.jsonl
- ├── ai2d # (optional)
- │    ├── abc_images
- │    └── images
- └── AI2D_TEST
-</pre></div>
-</div>
-</section>
-<section id="scienceqa-test">
-<h3>ScienceQA test<a class="headerlink" href="#scienceqa-test" title="Permalink to this heading">#</a></h3>
-<p>Follow the instructions below to prepare the data：</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>data/scienceqa/images<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/scienceqa/images
-
-<span class="c1"># download images</span>
+<span class="c1"># Step 2: Download images</span>
 wget<span class="w"> </span>https://scienceqa.s3.us-west-1.amazonaws.com/images/test.zip<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>unzip<span class="w"> </span>test.zip
 
 <span class="nb">cd</span><span class="w"> </span>..
 
-<span class="c1"># download original questions</span>
+<span class="c1"># Step 3: Download original questions</span>
 wget<span class="w"> </span>https://github.com/lupantech/ScienceQA/blob/main/data/scienceqa/problems.json
 
-<span class="c1"># download converted files</span>
+<span class="c1"># Step 4: Download converted files</span>
 wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/scienceqa/scienceqa_test_img.jsonl
 
 <span class="nb">cd</span><span class="w"> </span>../..
@@ -915,125 +1302,54 @@ wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Q
 </pre></div>
 </div>
 </section>
-</section>
-<section id="refer-expression-comprehension">
-<h2>Refer Expression Comprehension<a class="headerlink" href="#refer-expression-comprehension" title="Permalink to this heading">#</a></h2>
-<section id="refcoco-refcoco-refcoco-g">
-<h3>RefCOCO/RefCOCO+/RefCOCO-g<a class="headerlink" href="#refcoco-refcoco-refcoco-g" title="Permalink to this heading">#</a></h3>
-<p>Follow the instructions below to prepare the data：</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>data/refcoco<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/refcoco
+<section id="seed-image">
+<h3>SEED-Image<a class="headerlink" href="#seed-image" title="Permalink to this heading">#</a></h3>
+<p>Follow the instructions below to prepare the data:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 1: Create the data directory</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>data/SEED<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/SEED
 
-<span class="c1"># download converted files</span>
-wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/refcoco/refcoco_val.jsonl
-wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/refcoco/refcoco_testA.jsonl
-wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/refcoco/refcoco_testB.jsonl
-wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/refcoco%2B/refcoco%2B_val.jsonl
-wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/refcoco%2B/refcoco%2B_testA.jsonl
-wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/refcoco%2B/refcoco%2B_testB.jsonl
-wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/refcocog/refcocog_val.jsonl
-wget<span class="w"> </span>https://ofasys-wlcb.oss-cn-wulanchabu.aliyuncs.com/Qwen-VL/evaluation/refcocog/refcocog_test.jsonl
+<span class="c1"># Step 2: Download the dataset</span>
+wget<span class="w"> </span>https://huggingface.co/OpenGVLab/InternVL/resolve/main/SEED-Bench-image.zip
+unzip<span class="w"> </span>SEED-Bench-image.zip
+wget<span class="w"> </span>https://huggingface.co/OpenGVLab/InternVL/resolve/main/seed.jsonl
 
 <span class="nb">cd</span><span class="w"> </span>../..
 </pre></div>
 </div>
 <p>After preparation is complete, the directory structure is:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>data/refcoco
-├── refcocog_test.jsonl
-├── refcocog_val.jsonl
-├── refcoco_testA.jsonl
-├── refcoco+_testA.jsonl
-├── refcoco_testB.jsonl
-├── refcoco+_testB.jsonl
-├── refcoco_val.jsonl
-└── refcoco+_val.jsonl
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>data/SEED
+<span class="w"> </span>├──<span class="w"> </span>SEED-Bench-image
+<span class="w"> </span>└──<span class="w"> </span>seed.jsonl
 </pre></div>
 </div>
 </section>
-</section>
-<section id="multimodal-benchmarks">
-<h2>MultiModal Benchmarks<a class="headerlink" href="#multimodal-benchmarks" title="Permalink to this heading">#</a></h2>
-<section id="mme">
-<h3>MME<a class="headerlink" href="#mme" title="Permalink to this heading">#</a></h3>
-<p>Follow the instructions below to prepare the data：</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>data/mme<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/mme
-
-<span class="c1"># 1. Download the data following the official instructions [here](https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models/tree/Evaluation).</span>
-<span class="c1"># 2. Downloaded images to `MME_Benchmark_release_version`.</span>
-
-<span class="nb">cd</span><span class="w"> </span>../..
+<section id="mmvp">
+<h3>MMVP<a class="headerlink" href="#mmvp" title="Permalink to this heading">#</a></h3>
+<p>Follow the instructions below to prepare the data:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 1: Download the dataset</span>
+<span class="nb">cd</span><span class="w"> </span>data/
+git<span class="w"> </span>clone<span class="w"> </span>https://huggingface.co/datasets/MMVP/MMVP
+<span class="nb">cd</span><span class="w"> </span>../
 </pre></div>
 </div>
 <p>After preparation is complete, the directory structure is:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>data/mme
- └── MME_Benchmark_release_version
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>data/MMVP
+<span class="w"> </span>├──<span class="w"> </span>MMVP<span class="w"> </span>Images
+<span class="w"> </span>├──<span class="w"> </span>Questions.csv
+<span class="w"> </span>├──<span class="w"> </span>Questions.xlsx
+<span class="w"> </span>└──<span class="w"> </span>README.md
 </pre></div>
 </div>
 </section>
-<section id="mmbench-ccbench">
-<h3>MMBench &amp; CCBench<a class="headerlink" href="#mmbench-ccbench" title="Permalink to this heading">#</a></h3>
+<section id="tiny-lvlm-ehub">
+<h3>Tiny-LVLM-eHub<a class="headerlink" href="#tiny-lvlm-ehub" title="Permalink to this heading">#</a></h3>
 <p>Follow the instructions below to prepare the data：</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>data/mmbench<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/mmbench
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 1: Create the data directory</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>data/tiny_lvlm<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/tiny_lvlm
 
-<span class="c1"># download csv files of mmbench</span>
-wget<span class="w"> </span>http://opencompass.openxlab.space/utils/MMBench/CCBench_legacy.tsv
-wget<span class="w"> </span>https://download.openmmlab.com/mmclassification/datasets/mmbench/mmbench_dev_20230712.tsv
-wget<span class="w"> </span>https://download.openmmlab.com/mmclassification/datasets/mmbench/mmbench_dev_cn_20231003.tsv
-wget<span class="w"> </span>https://download.openmmlab.com/mmclassification/datasets/mmbench/mmbench_dev_en_20231003.tsv
-wget<span class="w"> </span>https://download.openmmlab.com/mmclassification/datasets/mmbench/mmbench_test_cn_20231003.tsv
-wget<span class="w"> </span>https://download.openmmlab.com/mmclassification/datasets/mmbench/mmbench_test_en_20231003.tsv
-
-<span class="nb">cd</span><span class="w"> </span>../..
-</pre></div>
-</div>
-<p>After preparation is complete, the directory structure is:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
-data/mmbench
- ├── CCBench_legacy.tsv
- ├── mmbench_dev_20230712.tsv
- ├── mmbench_dev_cn_20231003.tsv
- ├── mmbench_dev_en_20231003.tsv
- ├── mmbench_test_cn_20231003.tsv
- └── mmbench_test_en_20231003.tsv
-</pre></div>
-</div>
-</section>
-<section id="pope">
-<h3>POPE<a class="headerlink" href="#pope" title="Permalink to this heading">#</a></h3>
-<p>Follow the instructions below to prepare the data：</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>data/pope<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/pope
-
-<span class="c1"># make sure you have downloaded COCO images</span>
-ln<span class="w"> </span>-s<span class="w"> </span>../coco/val2014<span class="w"> </span>./
-wget<span class="w"> </span>https://github.com/OpenGVLab/InternVL/releases/download/data/llava_pope_test.jsonl
-
-<span class="c1"># download `coco` from POPE</span>
-mkdir<span class="w"> </span>-p<span class="w"> </span>coco<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>coco
-wget<span class="w"> </span>https://github.com/AoiDragon/POPE/raw/e3e39262c85a6a83f26cf5094022a782cb0df58d/output/coco/coco_pope_adversarial.json
-wget<span class="w"> </span>https://github.com/AoiDragon/POPE/raw/e3e39262c85a6a83f26cf5094022a782cb0df58d/output/coco/coco_pope_popular.json
-wget<span class="w"> </span>https://github.com/AoiDragon/POPE/raw/e3e39262c85a6a83f26cf5094022a782cb0df58d/output/coco/coco_pope_random.json
-<span class="nb">cd</span><span class="w"> </span>../../..
-</pre></div>
-</div>
-<p>After preparation is complete, the directory structure is:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>data/pope
-├── coco
-├── llava_pope_test.jsonl
-└── val2014
-</pre></div>
-</div>
-</section>
-<section id="mmmu">
-<h3>MMMU<a class="headerlink" href="#mmmu" title="Permalink to this heading">#</a></h3>
-<p>The evaluation code will automatically download the dataset from hugging face.</p>
-</section>
-<section id="tiny-lvlm">
-<h3>Tiny LVLM<a class="headerlink" href="#tiny-lvlm" title="Permalink to this heading">#</a></h3>
-<p>Follow the instructions below to prepare the data：</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>data/tiny_lvlm<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/tiny_lvlm
-
-<span class="c1"># download dataset from https://github.com/OpenGVLab/Multi-Modality-Arena/tree/main/tiny_lvlm_evaluation</span>
-<span class="c1"># i.e., download `updated_datasets.tar.gz` from https://drive.google.com/file/d/1PuFC612XzOmKwzRldtBb1CFZnIjiR7we/view</span>
-tar<span class="w"> </span>-xzvf<span class="w"> </span>updated_datasets.tar.gz
+<span class="c1"># Step 2: Download the dataset</span>
+wget<span class="w"> </span>https://huggingface.co/OpenGVLab/InternVL/resolve/main/updated_datasets.zip
+unzip<span class="w"> </span>updated_datasets.zip
 
 <span class="nb">cd</span><span class="w"> </span>../..
 </pre></div>
@@ -1044,77 +1360,12 @@ tar<span class="w"> </span>-xzvf<span class="w"> </span>updated_datasets.tar.gz
 </pre></div>
 </div>
 </section>
-<section id="mmvet">
-<h3>MMVet<a class="headerlink" href="#mmvet" title="Permalink to this heading">#</a></h3>
-<p>Follow the instructions below to prepare the data：</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>data/mm-vet<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/mm-vet
-wget<span class="w"> </span>https://github.com/yuweihao/MM-Vet/releases/download/v1/mm-vet.zip
-unzip<span class="w"> </span>mm-vet.zip
-wget<span class="w"> </span>https://huggingface.co/OpenGVLab/InternVL/raw/main/llava-mm-vet.jsonl
-<span class="nb">cd</span><span class="w"> </span>../..
-</pre></div>
-</div>
-<p>After preparation is complete, the directory structure is:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>data/mm-vet
- ├── images
- └── llava-mm-vet.jsonl
-</pre></div>
-</div>
-<section id="mmvp">
-<h4>MMVP<a class="headerlink" href="#mmvp" title="Permalink to this heading">#</a></h4>
-<p>Follow the instructions below to prepare the data：</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>data
-git<span class="w"> </span>lfs<span class="w"> </span>install
-git<span class="w"> </span>clone<span class="w"> </span>https://huggingface.co/datasets/MMVP/MMVP
-<span class="nb">cd</span><span class="w"> </span>..
-</pre></div>
-</div>
-<p>After preparation is complete, the directory structure is:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>data/MMVP
-├── MMVP\ Images
-├── Questions.csv
-├── Questions.xlsx
-└── README.md
-</pre></div>
-</div>
 </section>
-</section>
-<section id="mathvista">
-<h3>MathVista<a class="headerlink" href="#mathvista" title="Permalink to this heading">#</a></h3>
-<p>Follow the instructions below to prepare the data：</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>data/MathVista<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/MathVista
-wget<span class="w"> </span>https://huggingface.co/datasets/AI4Math/MathVista/raw/main/annot_testmini.json
-<span class="nb">cd</span><span class="w"> </span>../..
-</pre></div>
-</div>
-<p>After preparation is complete, the directory structure is:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>MathVista
-└── annot_testmini.json
-</pre></div>
-</div>
-</section>
-<section id="seed">
-<h3>SEED<a class="headerlink" href="#seed" title="Permalink to this heading">#</a></h3>
-<p>Follow the instructions below to prepare the data：</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>data/SEED<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data/SEED
-<span class="c1"># 1. Follow the official instructions [Follow the instructions below to prepare the data： for SEED-Bench-1](https://github.com/AILab-CVC/SEED-Bench/blob/main/DATASET.md#data-preparation-for-seed-bench-1)</span>
-<span class="c1">#    to download the images and the videos. Put images under `./data/SEED/SEED-Bench-image`.</span>
-<span class="c1"># 2. Extract the video frame in the middle from the downloaded videos, and put them under `./data/SEED/SEED-Bench-image`.</span>
-<span class="c1">#    LLaVA provided the script [`extract_video_frames.py`](../internvl_chat/tools/extract_video_frames.py) modified from the official one.</span>
-
-wget<span class="w"> </span>https://huggingface.co/OpenGVLab/InternVL/raw/main/seed.jsonl
-<span class="nb">cd</span><span class="w"> </span>../..
-</pre></div>
-</div>
-<p>After preparation is complete, the directory structure is:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>data/SEED
- ├── SEED-Bench-image
- └── seed.jsonl
-</pre></div>
-</div>
+<section id="other-benchmarks">
+<h2>Other Benchmarks<a class="headerlink" href="#other-benchmarks" title="Permalink to this heading">#</a></h2>
+<p>For other benchmarks mentioned in the <a class="reference external" href="https://arxiv.org/abs/2412.05271">InternVL 2.5 technical report</a> but not listed here, please use <a class="reference external" href="https://github.com/open-compass/VLMEvalKit">VLMEvalKit</a> for evaluation.</p>
 <br>
 <br>
-</section>
 </section>
 </section>
 
@@ -1130,20 +1381,20 @@ wget<span class="w"> </span>https://huggingface.co/OpenGVLab/InternVL/raw/main/s
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="installation.html"
+       href="chat_data_format.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Installation</p>
+        <p class="prev-next-title">💬 Chat Data Format</p>
       </div>
     </a>
     <a class="right-next"
-       href="chat_data_format.html"
+       href="local_chat_demo.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Chat Data Format</p>
+        <p class="prev-next-title">💻 Local Chat Demo</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1162,44 +1413,65 @@ wget<span class="w"> </span>https://huggingface.co/OpenGVLab/InternVL/raw/main/s
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#image-caption-benchmarks">Image Caption Benchmarks</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coco-karpathy-test">COCO Karpathy test</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#flickr30k-karpathy-test">Flickr30K Karpathy test</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nocaps-val">NoCaps val</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#image-captioning">Image Captioning</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coco">COCO</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#flickr30k">Flickr30K</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nocaps">NoCaps</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-vqa-benchmarks">General VQA Benchmarks</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vqav2-val-test-dev">VQAv2 val &amp; test-dev</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#okvqa-val">OKVQA val</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#textvqa-val">TextVQA val</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vizwiz-val-test">VizWiz val &amp; test</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docvqa-val-test">DocVQA val &amp; test</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#infovqa-val-test">InfoVQA val &amp; test</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chartqa-test-human-test-augmented">ChartQA test-human &amp; test-augmented</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gqa-testdev">GQA testdev</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ocrvqa-val-test">OCRVQA val &amp; test</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ai2d-test">AI2D test</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scienceqa-test">ScienceQA test</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reasoning-mathematics">Reasoning &amp; Mathematics</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mmmu">MMMU</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mmmu-pro">MMMU-Pro</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathvista">MathVista</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#refer-expression-comprehension">Refer Expression Comprehension</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#refcoco-refcoco-refcoco-g">RefCOCO/RefCOCO+/RefCOCO-g</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ocr-chart-document">OCR &amp; Chart &amp; Document</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ai2d">AI2D</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chartqa">ChartQA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#textvqa">TextVQA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docvqa">DocVQA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#infovqa">InfoVQA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ocrvqa">OCRVQA</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multimodal-benchmarks">MultiModal Benchmarks</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-image">Multi-Image</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantis-eval">Mantis-Eval</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mmiu">MMIU</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mirb">MIRB</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comprehensive">Comprehensive</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mme">MME</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mmbench-ccbench">MMBench &amp; CCBench</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mmvet">MMVet</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mmvet-v2">MMVet v2</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hallucination">Hallucination</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mmhal-bench">MMHal-Bench</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pope">POPE</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mmmu">MMMU</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tiny-lvlm">Tiny LVLM</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mmvet">MMVet</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mmvp">MMVP</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathvista">MathVista</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seed">SEED</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visual-grounding">Visual Grounding</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#refcoco-series">RefCOCO Series</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#video">Video</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mvbench">MVBench</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-vqa">General VQA</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vqav2">VQAv2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#okvqa">OKVQA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vizwiz">VizWiz</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gqa">GQA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scienceqa">ScienceQA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seed-image">SEED-Image</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mmvp">MMVP</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tiny-lvlm-ehub">Tiny-LVLM-eHub</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-benchmarks">Other Benchmarks</a></li>
 </ul>
   </nav></div>
 
@@ -1233,7 +1505,7 @@ By InternVL Authors
   
   <div class="footer-item">
     <p class="last-updated">
-  Last updated on Aug 06, 2024.
+  Last updated on Dec 25, 2024.
   <br/>
 </p>
   </div>

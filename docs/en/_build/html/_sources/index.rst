@@ -1,7 +1,7 @@
 Welcome to InternVL's tutorials!
 ====================================
 
-.. figure:: ./_static/image/internvl-logo.svg
+.. figure:: ./_static/image/new_logo.svg
   :width: 50%
   :align: center
   :alt: InternVL
@@ -14,7 +14,7 @@ Welcome to InternVL's tutorials!
    </strong>
     <br><br>
     <a href="https://trendshift.io/repositories/9803" target="_blank"><img src="https://trendshift.io/api/badge/repositories/9803" alt="OpenGVLab%2FInternVL | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
-    <img height="55" alt="image" src="https://github.com/user-attachments/assets/bd62ab46-f0ea-40c6-ab10-7fde671716cc">
+    <img height="55" alt="image" src="./_static/image/cvpr_oral.png">
    </p>
 
    <p style="text-align:center">
@@ -33,10 +33,10 @@ Documentation
    :caption: Get Started
 
    get_started/installation.md
-   get_started/eval_data_preparation.md
    get_started/chat_data_format.md
-   get_started/internvl_chat_api.md
+   get_started/eval_data_preparation.md
    get_started/local_chat_demo.md
+   get_started/internvl_chat_api.md
 
 .. _tutorials:
 .. toctree::
@@ -46,47 +46,62 @@ Documentation
    tutorials/coco_caption_finetune.md
    tutorials/faqs.md
 
+.. _internvl_2_5:
+.. toctree::
+   :maxdepth: 1
+   :caption: InternVL 2.5
+
+   📖 Introduction <internvl2.5/introduction.md>
+   🚀 Quick Start <internvl2.5/quick_start.md>
+   🔧 Finetune <internvl2.5/finetune.md>
+   📊 Evaluation <internvl2.5/evaluation.md>
+   📦 Deployment <internvl2.5/deployment.md>
+   🧩 Domain Adaptation <internvl2.5/domain_adaptation.md>
+   🎯 Preference Optimization <internvl2.5/preference_optimization.md>
+
 .. _internvl_2_0:
 .. toctree::
    :maxdepth: 1
    :caption: InternVL 2.0
 
-   Introduction <internvl2.0/introduction.md>
-   Quick Start <internvl2.0/quick_start.md>
-   Finetune <internvl2.0/finetune.md>
-   Evaluation <internvl2.0/evaluation.md>
-   Deployment <internvl2.0/deployment.md>
+   📖 Introduction <internvl2.0/introduction.md>
+   🚀 Quick Start <internvl2.0/quick_start.md>
+   🔧 Finetune <internvl2.0/finetune.md>
+   📊 Evaluation <internvl2.0/evaluation.md>
+   📦 Deployment <internvl2.0/deployment.md>
+   🧩 Domain Adaptation <internvl2.0/domain_adaptation.md>
+   🎯 Preference Optimization <internvl2.0/preference_optimization.md>
 
 .. _internvl_1_5:
 .. toctree::
    :maxdepth: 1
    :caption: InternVL 1.5
 
-   Introduction <internvl1.5/introduction.md>
-   Quick Start <internvl1.5/quick_start.md>
-   Finetune <internvl1.5/finetune.md>
-   Evaluation <internvl1.5/evaluation.md>
-   Deployment <internvl1.5/deployment.md>
+   📖 Introduction <internvl1.5/introduction.md>
+   🚀 Quick Start <internvl1.5/quick_start.md>
+   🔧 Finetune <internvl1.5/finetune.md>
+   📊 Evaluation <internvl1.5/evaluation.md>
+   📦 Deployment <internvl1.5/deployment.md>
 
 .. _internvl_1_2:
 .. toctree::
    :maxdepth: 1
    :caption: InternVL 1.2
 
-   Introduction <internvl1.2/introduction.md>
-   Quick Start <internvl1.2/quick_start.md>
-   Reproduce <internvl1.2/reproduce.md>
-   Finetune <internvl1.2/finetune.md>
-   Evaluation <internvl1.2/evaluation.md>
+   📖 Introduction <internvl1.2/introduction.md>
+   🚀 Quick Start <internvl1.2/quick_start.md>
+   🎯 Reproduce <internvl1.2/reproduce.md>
+   🔧 Finetune <internvl1.2/finetune.md>
+   📊 Evaluation <internvl1.2/evaluation.md>
 
 .. _internvl_1_1:
 .. toctree::
    :maxdepth: 1
    :caption: InternVL 1.1
 
-   Introduction <internvl1.1/introduction.md>
-   Quick Start <internvl1.1/quick_start.md>
-   Evaluation <internvl1.1/evaluation.md>
+   📖 Introduction <internvl1.1/introduction.md>
+   🚀 Quick Start <internvl1.1/quick_start.md>
+   📊 Evaluation <internvl1.1/evaluation.md>
 
 .. _internvl_1_0:
 .. toctree::
