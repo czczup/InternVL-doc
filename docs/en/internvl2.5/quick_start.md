@@ -435,8 +435,8 @@ def split_model(model_name):
     device_map = {}
     world_size = torch.cuda.device_count()
     num_layers = {
-        'InternVL2_5-1B': 24, 'InternVL2_5-2B': 24, 'InternVL2_5-4B': 32, 'InternVL2_5-8B': 32,
-        'InternVL2_5-26B': 48, 'InternVL2_5-38B': 60, 'InternVL2_5-78B': 80}[model_name]
+        'InternVL2_5-1B': 24, 'InternVL2_5-2B': 24, 'InternVL2_5-4B': 36, 'InternVL2_5-8B': 32,
+        'InternVL2_5-26B': 48, 'InternVL2_5-38B': 64, 'InternVL2_5-78B': 80}[model_name]
     # Since the first GPU will be used for ViT, treat it as half a GPU.
     num_layers_per_gpu = math.ceil(num_layers / (world_size - 0.5))
     num_layers_per_gpu = [num_layers_per_gpu] * world_size
