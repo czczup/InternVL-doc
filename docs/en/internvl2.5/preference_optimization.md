@@ -121,7 +121,7 @@ We evaluate the performance on other benchmarks (*e.g.*, MMVet, LLaVABench, and 
 
 ## Generate Additional Preference Data
 
-To construct additional open-ended VQA preference data, you can use our [DropoutNTP pipeline](https://github.com/OpenGVLab/InternVL/tree/main/internvl_chat/tools/mm_reasoning_pipeline/internvl_lmdeploy_continue_wo_image.py) with the following command:
+To construct additional open-ended VQA preference data, you can use our [DropoutNTP pipeline](https://github.com/OpenGVLab/InternVL/tree/main/internvl_chat/tools/reasoning_data_pipeline/mmpr_data_pipeline_dropout_ntp.py) with the following command:
 
 ```shell
 srun -p ${PARTITION} \
@@ -132,7 +132,7 @@ srun -p ${PARTITION} \
     --cpus-per-task=${CPUS_PER_TASK} \
     --kill-on-bad-exit=1 \
     --quotatype=${QUOTA_TYPE} \
-python -u tools/mm_reasoning_pipeline/internvl_lmdeploy_continue_wo_image.py \
+python -u tools/reasoning_data_pipeline/mmpr_data_pipeline_dropout_ntp.py \
     --checkpoint ${model_path} \  # the model you want to use to generate negative samples
     --prompt-path ${dataset} \  # please refer to the following format example
     --out-dir ${out_dir} \  # the output directory you want to save the resulting data
@@ -157,7 +157,7 @@ The format for the prompt file should be:
 ...
 ```
 
-To constrct additional CoT reasoning preference data, you can use our [correctness-based pipeline](https://github.com/OpenGVLab/InternVL/tree/main/internvl_chat/tools/mm_reasoning_pipeline/internvl_lmdeploy_cot.py) with the following command:
+To constrct additional CoT reasoning preference data, you can use our [correctness-based pipeline](https://github.com/OpenGVLab/InternVL/tree/main/internvl_chat/tools/reasoning_data_pipeline/mmpr_data_pipeline_correctness.py) with the following command:
 
 ```shell
 srun -p ${PARTITION} \
@@ -168,7 +168,7 @@ srun -p ${PARTITION} \
     --cpus-per-task=${CPUS_PER_TASK} \
     --kill-on-bad-exit=1 \
     --quotatype=${QUOTA_TYPE} \
-python -u tools/data_sampling_scripts/internvl_lmdeploy_cot.py \
+python -u tools/reasoning_data_pipeline/mmpr_data_pipeline_correctness.py \
     --checkpoint ${model_path} \  # the model you want to use to generate negative samples
     --prompt-path ${dataset} \  # please refer to the following format example
     --out-dir ${out_dir} \  # the output directory you want to save the resulting data
